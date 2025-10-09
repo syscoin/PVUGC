@@ -1,0 +1,44 @@
+[package]
+name = "arkworks_groth16"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "arkworks_groth16"
+crate-type = ["rlib"]  # Add rlib for testing
+
+[dependencies]
+# Arkworks ecosystem (0.5 for groth-sahai compatibility)
+ark-bls12-381 = "0.5"
+ark-ec = "0.5"
+ark-ff = "0.5"
+ark-groth16 = "0.5"
+ark-r1cs-std = "0.5"
+ark-relations = "0.5"
+ark-serialize = "0.5"
+ark-snark = "0.5"
+ark-std = "0.5"
+ark-crypto-primitives = { version = "0.5", features = ["r1cs", "crh"] }
+
+# Groth-Sahai proofs (vendored for custom exports)
+groth-sahai = { path = "groth_sahai" }
+
+# Crypto primitives for KEM and Schnorr
+secp256k1 = { version = "0.28", features = ["rand", "recovery"] }
+schnorr_fun = "0.11"             # Schnorr adaptor signatures and MuSig2
+bitcoin = "0.31"                 # Bitcoin types for schnorr_fun
+chacha20poly1305 = "0.10"        # AEAD encryption (ChaCha20-Poly1305)
+hmac = "0.12"                    # HMAC for key commitment
+
+# Serialization and utilities
+serde = { version = "1.0", features = ["derive"] }
+bincode = "1.3"
+sha2 = "0.10"
+hex = "0.4"
+rand = "0.8"
+thiserror = "1.0"                # Error handling
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

@@ -1,0 +1,42 @@
+# Rust build artifacts
+/target/
+**/target/
+Cargo.lock
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Rust specific
+**/*.rs.bk
+
+# Coverage reports
+tarpaulin-report.html
+coverage/
+
+# Documentation build
+/book/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+/tmp/
+
+# Backup files
+*.bak
+*.backup
