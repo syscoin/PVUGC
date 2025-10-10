@@ -124,41 +124,35 @@ impl<E: Pairing> AbstractCrs<E> for CRS<E> {
         let u22 = Com2::<E>(u2.into_affine(), v2.into_affine());
 
         // Compute dual bases for KEM (dual to u and v)
-        // For u[j] = (g1^a_j, g1^b_j), dual is u_dual[j] = (g2^{-b_j}, g2^{a_j})
-        // We need to extract the exponents from the constructed u, v
+        // Canonical binding formula:
+        // For u[j] = (g1^{a_j}, g1^{b_j}), dual is u_dual[j] = (g2^{-b_j}, g2^{a_j})
+        // For v[k] = (g2^{c_k}, g2^{d_k}), dual is v_dual[k] = (g1^{-d_k}, g1^{c_k})
         
-        // For the standard binding CRS above:
-        // u[0] = (p1, q1) where q1 = p1*a1
-        // So exponents are (1, a1) relative to base p1
-        // u_dual[0] = (p2^{-a1}, p2^1) = (p2*(-a1), p2)
-        
+        // u[0] = Com1(p1, q1) = Com1(g1^1, g1^{a1})
+        // Following canonical: a_0=1, b_0=a1, so u_dual[0] = (g2^{-a1}, g2^{1})
         let u_dual_0 = Com2::<E>(
             p2.mul(-a1).into_affine(),
             p2.into_affine()
         );
         
-        // u[1] = (u1, v1) where u1 = p1*t1, v1 computed from prepare_real_binding_key
-        // For binding: v1 = q1*t1 - 0 = (p1*a1)*t1 = p1*(a1*t1)
-        // So u[1] relative to p1 has exponents (t1, a1*t1)
-        // u_dual[1] = (p2^{-a1*t1}, p2^{t1})
-        
+        // u[1] = Com1(u1, v1) where u1 = p1*t1, v1 = p1*(a1*t1)
+        // So u[1] = Com1(g1^{t1}, g1^{a1*t1})
+        // Following canonical: a_1=t1, b_1=a1*t1, so u_dual[1] = (g2^{-a1*t1}, g2^{t1})
         let u_dual_1 = Com2::<E>(
             p2.mul(-a1 * t1).into_affine(),
             p2.mul(t1).into_affine()
         );
         
-        // For v (in G2):
-        // v[0] = (p2, q2) where q2 = p2*a2
-        // v_dual[0] = (p1^{-a2}, p1^1)
-        
+        // v[0] = Com2(p2, q2) = Com2(g2^1, g2^{a2})
+        // Following canonical: c_0=1, d_0=a2, so v_dual[0] = (g1^{-a2}, g1^{1})
         let v_dual_0 = Com1::<E>(
             p1.mul(-a2).into_affine(),
             p1.into_affine()
         );
         
-        // v[1] = (u2, v2) where u2 = p2*t2, v2 = q2*t2 = p2*(a2*t2)
-        // v_dual[1] = (p1^{-a2*t2}, p1^{t2})
-        
+        // v[1] = Com2(u2, v2) where u2 = p2*t2, v2 = p2*(a2*t2)
+        // So v[1] = Com2(g2^{t2}, g2^{a2*t2})
+        // Following canonical: c_1=t2, d_1=a2*t2, so v_dual[1] = (g1^{-a2*t2}, g1^{t2})
         let v_dual_1 = Com1::<E>(
             p1.mul(-a2 * t2).into_affine(),
             p1.mul(t2).into_affine()

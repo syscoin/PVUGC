@@ -3,9 +3,9 @@
 
 use ark_ec::pairing::{Pairing, PairingOutput};
 use ark_ec::AffineRepr;
-use ark_ff::PrimeField;
+use ark_ff::{PrimeField, Zero};
 
-use crate::data_structures::{Com1, Com2};
+use crate::data_structures::{Com1, Com2, BT};
 use crate::generator::CRS;
 use crate::statement::PPE;
 
@@ -134,4 +134,191 @@ pub fn mask_g2_pair<E: Pairing>(
 pub fn pow_gt<E: Pairing>(gt: E::TargetField, rho: E::ScalarField) -> E::TargetField {
     use ark_ff::Field;
     gt.pow(rho.into_bigint())
+}
+
+/// Evaluate the gamma cross term and raise it to rho
+/// This is the missing piece for proof-agnostic determinism
+fn eval_gamma_term_pow_rho<E: Pairing>(
+    ppe: &PPE<E>,
+    c1: &[Com1<E>], // X commitments (G1 pairs)
+    c2: &[Com2<E>], // Y commitments (G2 pairs)
+    rho: E::ScalarField,
+) -> E::TargetField {
+    use ark_ff::{One, Field};
+    let mut g = E::TargetField::one();
+
+    // γ has shape |X| × |Y|  (rows = X vars, cols = Y vars)
+    #[cfg(debug_assertions)]
+    eprintln!("Debug: gamma matrix dimensions: {}x{}", ppe.gamma.len(), 
+              if ppe.gamma.is_empty() { 0 } else { ppe.gamma[0].len() });
+    
+    for j in 0..ppe.gamma.len() {
+        for k in 0..ppe.gamma[j].len() {
+            let coeff = ppe.gamma[j][k];
+            if coeff.is_zero() { 
+                #[cfg(debug_assertions)]
+                eprintln!("  gamma[{}][{}] = 0, skipping", j, k);
+                continue; 
+            }
+
+            #[cfg(debug_assertions)]
+            eprintln!("  Processing gamma[{}][{}] = {:?}", j, k, coeff);
+
+            // In the stock GS 2×2 encoding, the cross term multiplies the like slots:
+            // e(C1[j].0, C2[k].0) * e(C1[j].1, C2[k].1), all raised to γ_{j,k}.
+            let PairingOutput(p00) = E::pairing(c1[j].0, c2[k].0);
+            let PairingOutput(p11) = E::pairing(c1[j].1, c2[k].1);
+            let term = p00 * p11;
+
+            #[cfg(debug_assertions)]
+            eprintln!("    term before pow = {:?}", term);
+            
+            g *= term.pow(coeff.into_bigint());
+        }
+    }
+    
+    #[cfg(debug_assertions)]
+    eprintln!("  gamma term before ^rho = {:?}", g);
+
+    // We must also raise γ-term to ρ so the whole LHS becomes (unmasked LHS)^ρ.
+    g.pow(rho.into_bigint())
+}
+
+/// Full GS evaluation with all FIVE pairing buckets (including gamma cross term)
+/// This includes the missing gamma term that must be explicitly raised to ρ
+pub fn ppe_eval_full_masked_with_gamma<E: Pairing>(
+    ppe: &PPE<E>,
+
+    // attestation payload
+    c1: &[Com1<E>],         // commitments for X vars (len = |X|)
+    c2: &[Com2<E>],         // commitments for Y vars (len = |Y|)
+    pi: &[Com2<E>],         // equation proof π (len = |X|, in G2^2)
+    theta: &[Com1<E>],      // equation proof θ (len = |Y|, in G1^2)
+
+    // CRS + mask
+    crs: &CRS<E>,
+    rho: E::ScalarField,
+) -> PairingOutput<E> {
+    use ark_ff::{One, Field};
+    
+    // Sanity checks
+    assert_eq!(ppe.gamma.len(), c1.len(), "gamma rows must match |X|");
+    assert!(!ppe.gamma.is_empty(), "gamma must not be empty");
+    assert_eq!(ppe.gamma[0].len(), c2.len(), "gamma cols must match |Y|");
+    assert_eq!(pi.len(), c1.len(), "len(pi) must equal |X|");
+    assert_eq!(theta.len(), c2.len(), "len(theta) must equal |Y|");
+    assert_eq!(crs.u.len(), c1.len(), "CRS.u must match |X|");
+    assert_eq!(crs.v.len(), c2.len(), "CRS.v must match |Y|");
+    assert_eq!(crs.u_dual.len(), c1.len(), "CRS.u_dual must match |X|");
+    assert_eq!(crs.v_dual.len(), c2.len(), "CRS.v_dual must match |Y|");
+
+    // Mask everything that involves CRS by ρ
+    let masks = mask_all_crs_pairs(crs, rho);
+
+    // Bucket 1: ∏_j e(C1_j, U*_j^ρ)
+    let mut acc = E::TargetField::one();
+    for (j, c1j) in c1.iter().enumerate() {
+        let PairingOutput(p0) = E::pairing(c1j.0, masks.u_dual_rho[j].0);
+        let PairingOutput(p1) = E::pairing(c1j.1, masks.u_dual_rho[j].1);
+        acc *= p0 * p1;
+    }
+
+    // Bucket 2: ∏_k e(V*_k^ρ, C2_k)
+    for (k, c2k) in c2.iter().enumerate() {
+        let PairingOutput(p0) = E::pairing(masks.v_dual_rho[k].0, c2k.0);
+        let PairingOutput(p1) = E::pairing(masks.v_dual_rho[k].1, c2k.1);
+        acc *= p0 * p1;
+    }
+
+    // Bucket 3 & 4: Use diagonal product of ComT (not just [1][1])
+    use crate::data_structures::ComT;
+    
+    // Helper to compute diagonal product of ComT
+    let diag_product = |t: &ComT<E>| -> E::TargetField {
+        let m = t.as_matrix();
+        let PairingOutput(a00) = m[0][0];
+        let PairingOutput(a11) = m[1][1];
+        #[cfg(debug_assertions)]
+        {
+            eprintln!("  ComT diagonal: [0][0]={:?}", a00);
+            eprintln!("                 [1][1]={:?}", a11);
+            eprintln!("  diagonal product={:?}", a00 * a11);
+        }
+        a00 * a11
+    };
+    
+    // Bucket 3: e(U^ρ, π) - use diagonal product
+    #[cfg(debug_assertions)]
+    eprintln!("Debug: Bucket 3 (pi):");
+    let com_pi = ComT::<E>::pairing_sum(&masks.u_rho, pi);
+    let pi_diag = diag_product(&com_pi);
+    #[cfg(debug_assertions)]
+    eprintln!("  acc before pi: {:?}", acc);
+    acc *= pi_diag;
+    #[cfg(debug_assertions)]
+    eprintln!("  acc after pi: {:?}", acc);
+    
+    // Bucket 4: e(θ, V^ρ) - use diagonal product
+    #[cfg(debug_assertions)]
+    eprintln!("Debug: Bucket 4 (theta):");
+    let com_theta = ComT::<E>::pairing_sum(theta, &masks.v_rho);
+    let theta_diag = diag_product(&com_theta);
+    #[cfg(debug_assertions)]
+    eprintln!("  acc before theta: {:?}", acc);
+    acc *= theta_diag;
+    #[cfg(debug_assertions)]
+    eprintln!("  acc after theta: {:?}", acc);
+
+    // Missing piece in your patch: the γ cross term, *also* to the power ρ.
+    let g_rho = eval_gamma_term_pow_rho::<E>(ppe, c1, c2, rho);
+    
+    #[cfg(debug_assertions)]
+    {
+        eprintln!("Debug: gamma cross term^rho = {:?}", g_rho);
+        eprintln!("Debug: acc before gamma = {:?}", acc);
+    }
+    
+    acc *= g_rho;
+    
+    #[cfg(debug_assertions)]
+    {
+        eprintln!("Debug: final acc after gamma = {:?}", acc);
+    }
+
+    PairingOutput(acc)
+}
+
+/// Struct to hold all masked CRS bases
+pub struct MaskedBases<E: Pairing> {
+    pub u_dual_rho: Vec<(E::G2Affine, E::G2Affine)>, // G2 (dual of u) ^ ρ
+    pub v_dual_rho: Vec<(E::G1Affine, E::G1Affine)>, // G1 (dual of v) ^ ρ
+    pub u_rho: Vec<Com1<E>>,                          // G1 primaries ^ ρ (as Com1 for pairing_sum)
+    pub v_rho: Vec<Com2<E>>,                          // G2 primaries ^ ρ (as Com2 for pairing_sum)
+}
+
+/// Mask ALL CRS pairs as the expert suggested
+pub fn mask_all_crs_pairs<E: Pairing>(crs: &CRS<E>, rho: E::ScalarField) -> MaskedBases<E> {
+    use ark_ec::CurveGroup;
+
+    let u_dual_rho = crs.u_dual.iter().map(|p| (
+        (p.0.into_group() * rho).into_affine(),
+        (p.1.into_group() * rho).into_affine(),
+    )).collect();
+
+    let v_dual_rho = crs.v_dual.iter().map(|p| (
+        (p.0.into_group() * rho).into_affine(),
+        (p.1.into_group() * rho).into_affine(),
+    )).collect();
+
+    let u_rho: Vec<Com1<E>> = crs.u.iter().map(|p| Com1::<E>(
+        (p.0.into_group() * rho).into_affine(),
+        (p.1.into_group() * rho).into_affine(),
+    )).collect();
+
+    let v_rho: Vec<Com2<E>> = crs.v.iter().map(|p| Com2::<E>(
+        (p.0.into_group() * rho).into_affine(),
+        (p.1.into_group() * rho).into_affine(),
+    )).collect();
+
+    MaskedBases { u_dual_rho, v_dual_rho, u_rho, v_rho }
 }

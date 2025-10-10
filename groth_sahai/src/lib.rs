@@ -12,6 +12,9 @@ pub use crate::kem_eval::{
     ppe_instance_bases,
     ppe_eval_bases,
     ppe_eval_with_masked_pairs,
+    ppe_eval_full_masked_with_gamma,
+    mask_all_crs_pairs,
     InstanceBases,
     EvalBases,
+    MaskedBases,
 };

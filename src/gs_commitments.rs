@@ -9,7 +9,7 @@ use ark_bls12_381::{Bls12_381, Fr, G1Affine, G2Affine, Fq12};
 use ark_ec::{pairing::Pairing, AffineRepr, pairing::PairingOutput};
 use ark_ff::{Zero, One, UniformRand};
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
-use ark_std::{rand::Rng, test_rng};
+use ark_std::rand::Rng;
 use sha2::{Sha256, Digest};
 use thiserror::Error;
 use groth_sahai::{
@@ -42,6 +42,8 @@ pub enum GSCommitmentError {
 pub struct GSAttestation {
     pub c1_commitments: Vec<Com1<Bls12_381>>,
     pub c2_commitments: Vec<Com2<Bls12_381>>,
+    pub pi: Vec<Com2<Bls12_381>>,      // Equation proof π (in G2)
+    pub theta: Vec<Com1<Bls12_381>>,   // Equation proof θ (in G1)
     pub proof_data: Vec<u8>,
     pub randomness_used: Vec<Fr>,
     pub ppe_target: Fq12,
@@ -75,6 +77,7 @@ impl GrothSahaiCommitments {
         public_input: &[Fr],
         with_randomness: bool,
     ) -> Result<GSAttestation, GSCommitmentError> {
+        use ark_std::test_rng;
         let mut rng = test_rng();
         
         if with_randomness {
@@ -82,17 +85,11 @@ impl GrothSahaiCommitments {
             let r_b = Fr::rand(&mut rng);
             let r_c = Fr::rand(&mut rng);
             
-            // Create PPE for Groth16 verification following working test pattern
-            // Groth16 verification: e(pi_A, pi_B) * e(pi_C, delta) = e(alpha, beta) * e(IC, gamma)
+            // Create PPE for Groth16 verification with ACTUAL proof elements
             let xvars = vec![proof.pi_a, proof.pi_c];
-            
-            // For Groth16, include the delta element from the verification key
             let yvars = vec![proof.pi_b, vk.delta_g2];
             
             // Create PPE equation matching Groth16 structure
-            // We have 2 G1 vars (pi_A, pi_C) and 2 G2 vars (pi_B, delta)
-            // gamma is diagonal; target must be Groth16 RHS: e(alpha, beta) * e(IC(x), gamma)
-            // Derive IC from explicit public inputs x
             let ic = compute_ic_from_vk_and_inputs(vk, public_input);
             let PairingOutput(rhs1) = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2);
             let PairingOutput(rhs2) = Bls12_381::pairing(ic, vk.gamma_g2);
@@ -106,9 +103,11 @@ impl GrothSahaiCommitments {
             // Use proper GS commitment construction via commit_and_prove
             let attestation_proof = ppe.commit_and_prove(&xvars, &yvars, &self.crs, &mut rng);
             
-            // Extract commitments from the proof
+            // Extract commitments and equation proofs
             let c1_commitments = attestation_proof.xcoms.coms;
             let c2_commitments = attestation_proof.ycoms.coms;
+            let pi = attestation_proof.equ_proofs[0].pi.clone();
+            let theta = attestation_proof.equ_proofs[0].theta.clone();
             
             let randomness = vec![r_a, r_b, r_c];
             
@@ -126,15 +125,15 @@ impl GrothSahaiCommitments {
             Ok(GSAttestation {
                 c1_commitments,
                 c2_commitments,
+                pi,
+                theta,
                 proof_data,
                 randomness_used: randomness,
                 ppe_target,
             })
         } else {
-            // Without randomness, still use proper PPE construction but with zero randomness
+            // Use ACTUAL proof elements (no randomness case)
             let xvars = vec![proof.pi_a, proof.pi_c];
-            
-            // For Groth16, include the delta element from the verification key
             let yvars = vec![proof.pi_b, vk.delta_g2];
             
             // Create PPE equation with RHS target from (vk, x)
@@ -151,9 +150,11 @@ impl GrothSahaiCommitments {
             // Use proper GS commitment construction via commit_and_prove
             let attestation_proof = ppe.commit_and_prove(&xvars, &yvars, &self.crs, &mut rng);
             
-            // Extract commitments from the proof
+            // Extract commitments and equation proofs
             let c1_commitments = attestation_proof.xcoms.coms;
             let c2_commitments = attestation_proof.ycoms.coms;
+            let pi = attestation_proof.equ_proofs[0].pi.clone();
+            let theta = attestation_proof.equ_proofs[0].theta.clone();
             let randomness = vec![Fr::zero(); 3];
             
             let mut proof_data_bytes = Vec::new();
@@ -170,6 +171,8 @@ impl GrothSahaiCommitments {
             Ok(GSAttestation {
                 c1_commitments,
                 c2_commitments,
+                pi,
+                theta,
                 proof_data,
                 randomness_used: randomness,
                 ppe_target,
@@ -274,7 +277,6 @@ impl GrothSahaiCommitments {
     /// Returns bases that depend on (CRS, vk, x) for PVUGC instance determinism
     pub fn get_instance_bases(&self, vk: &ArkworksVK, public_input: &[Fr]) -> (Vec<(G2Affine, G2Affine)>, Vec<(G1Affine, G1Affine)>) {
         use groth_sahai::{ppe_eval_bases, ppe_instance_bases};
-        use groth_sahai::statement::PPE;
 
         // Build the PPE representing Groth16 verification for (vk, x)
         let ppe = self.groth16_verify_as_ppe(vk, public_input);
@@ -492,7 +494,6 @@ mod tests {
 
     /// Test instance determinism: different proofs for same (vk,x) should yield same KEM result
     #[test]
-    #[ignore]
     fn test_instance_determinism() {
         use crate::groth16_wrapper::ArkworksGroth16;
         use groth_sahai::kem_eval::{ppe_eval_with_masked_pairs, mask_g1_pair, mask_g2_pair};

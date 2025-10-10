@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use ark_bls12_381::{Bls12_381, Fr, G1Affine, G2Affine};
+use ark_bls12_381::{Bls12_381, Fr, G1Affine, G2Affine, Fq12};
 use ark_ec::pairing::{Pairing, PairingOutput};
 use ark_ec::{CurveGroup, AffineRepr};
 use ark_std::test_rng;
@@ -14,6 +14,7 @@ use arkworks_groth16::{
     ArkworksProof,
     ArkworksVK,
     SchnorrAdaptor,
+    ArkworksGroth16,
 };
 
 // GS internals for direct testing
@@ -26,7 +27,6 @@ use groth_sahai::kem_eval::{mask_g1_pair, mask_g2_pair, pow_gt};
 use groth_sahai::data_structures::{Com1, Com2};
 
 use schnorr_fun::fun::{marker::*, Scalar};
-use arkworks_groth16::groth16_wrapper::ArkworksGroth16;
 
 type E = Bls12_381;
 type G1 = G1Affine;
@@ -842,6 +842,8 @@ fn test_complete_adaptor_signature_flow() {
     let fake_attestation = GSAttestation {
         c1_commitments: fake_C1,
         c2_commitments: fake_C2,
+        pi: vec![],     // Empty equation proof
+        theta: vec![],  // Empty equation proof
         proof_data: vec![],
         randomness_used: vec![],
         ppe_target: target,  // Even with correct target!
@@ -897,10 +899,8 @@ fn test_complete_adaptor_signature_flow() {
 }
 
 #[test]
-#[ignore]
 fn test_two_distinct_groth16_proofs_same_output() {
     // Two different Groth16 proofs for same (vk,x) should yield identical M under same CRS and masks
-    let mut rng = test_rng();
     let gs = GrothSahaiCommitments::from_seed(b"TWO_PROOFS_DET");
 
     let mut groth16 = ArkworksGroth16::new();
@@ -925,20 +925,57 @@ fn test_two_distinct_groth16_proofs_same_output() {
     let u_masked: Vec<_> = u_bases.iter().map(|&p| mask_g2_pair::<Bls12_381>(p, rho)).collect();
     let v_masked: Vec<_> = v_bases.iter().map(|&p| mask_g1_pair::<Bls12_381>(p, rho)).collect();
 
-    // Evaluate M for both attestations
-    let PairingOutput(m1) = ppe_eval_with_masked_pairs::<Bls12_381>(
-        &att1.c1_commitments,
-        &att1.c2_commitments,
-        &u_masked,
-        &v_masked,
-    );
-    let PairingOutput(m2) = ppe_eval_with_masked_pairs::<Bls12_381>(
-        &att2.c1_commitments,
-        &att2.c2_commitments,
-        &u_masked,
-        &v_masked,
-    );
-
-    assert_eq!(m1, m2, "Two distinct proofs for same (vk,x) must yield identical M");
+        // Create the same PPE structure used in commit_arkworks_proof
+        // This is a 2x2 diagonal PPE for Groth16
+        use groth_sahai::{ppe_eval_full_masked_with_gamma};
+        use ark_ff::{One, Zero};
+        
+        let ppe = PPE::<Bls12_381> {
+            a_consts: vec![G1Affine::zero(), G1Affine::zero()],
+            b_consts: vec![G2Affine::zero(), G2Affine::zero()],
+            gamma: vec![
+                vec![Fr::one(), Fr::zero()],   // [1, 0]
+                vec![Fr::zero(), Fr::one()]    // [0, 1] - diagonal matrix
+            ],
+            target: PairingOutput(att1.ppe_target),  // Wrap in PairingOutput
+        };
+        
+        // Use FULL evaluation with all 5 pairing buckets (including gamma term)
+        let PairingOutput(m1_full) = ppe_eval_full_masked_with_gamma::<Bls12_381>(
+            &ppe,
+            &att1.c1_commitments,
+            &att1.c2_commitments,
+            &att1.pi,
+            &att1.theta,
+            gs.get_crs(),
+            rho,
+        );
+        
+        let PairingOutput(m2_full) = ppe_eval_full_masked_with_gamma::<Bls12_381>(
+            &ppe,
+            &att2.c1_commitments,
+            &att2.c2_commitments,
+            &att2.pi,
+            &att2.theta,
+            gs.get_crs(),
+            rho,
+        );
+    
+    // Both should equal target^rho
+    let expected_masked = pow_gt::<Bls12_381>(att1.ppe_target, rho);
+    
+    // Debug output
+    println!("Target: {:?}", att1.ppe_target);
+    println!("Expected (target^rho): {:?}", expected_masked);
+    println!("m1_full: {:?}", m1_full);
+    println!("m2_full: {:?}", m2_full);
+    println!("m1_full == m2_full: {}", m1_full == m2_full);
+    println!("m1_full == expected: {}", m1_full == expected_masked);
+    
+    // Verify proof-agnostic property
+    assert_eq!(att1.ppe_target, att2.ppe_target, "PPE targets must be identical for same (vk,x)");
+    assert_eq!(m1_full, m2_full, "Two distinct proofs for same (vk,x) must yield identical M with full evaluation");
+    assert_eq!(m1_full, expected_masked, "m1_full should be target^rho");
+    assert_eq!(m2_full, expected_masked, "m2_full should be target^rho");
 }
 
