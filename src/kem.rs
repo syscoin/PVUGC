@@ -600,7 +600,7 @@ mod tests {
         };
         
         let public_input: Vec<Fr> = vec![]; // Empty public input for this test
-        let attestation = gs.commit_arkworks_proof(&proof, &vk, &public_input, true).unwrap();
+        let attestation = gs.commit_arkworks_proof(&proof, &vk, &public_input, true, &mut rng).unwrap();
         let (u_dual_bases, v_dual_bases) = gs.get_instance_bases(&vk, &public_input);
         
         // Serialize bases and commitments
@@ -696,7 +696,7 @@ mod tests {
             gamma_abc_g1: vec![G1Affine::rand(&mut rng)], vk_bytes,
         };
         let public_input: Vec<Fr> = vec![]; // Empty public input for this test
-        let attestation = gs.commit_arkworks_proof(&proof, &vk, &public_input, true).unwrap();
+        let attestation = gs.commit_arkworks_proof(&proof, &vk, &public_input, true, &mut rng).unwrap();
         
         // Serialize everything
         let public_input: Vec<Fr> = vec![]; // Empty public input for this test

@@ -11,7 +11,7 @@ use crate::data_structures::{
     col_vec_to_vec, vec_to_col_vec, Com1, Com2, ComT, Mat, Matrix, B1, B2, BT,
 };
 use crate::generator::CRS;
-use crate::prover::CProof;
+// use crate::prover::CProof; // already imported at top
 use crate::statement::{Equation, QuadEqu, MSMEG1, MSMEG2, PPE};
 
 /// A collection of attributes containing verifier functionality for an [`Equation`](crate::statement::Equation).
@@ -156,6 +156,44 @@ impl<E: Pairing> Verifiable<E> for QuadEqu<E> {
     }
 }
 
+
+// --- Debug tracing helpers ---
+use crate::statement::PPE as PPEStmt;
+use crate::prover::CProof;
+
+/// A simple trace of the verifier's ComT legs and a component-wise combined matrix
+#[derive(Clone, Debug)]
+pub struct VerifyTrace<E: Pairing> {
+    pub x_gamma_y: [[E::TargetField; 2]; 2],
+    pub u_pi: [[E::TargetField; 2]; 2],
+    pub th_v: [[E::TargetField; 2]; 2],
+    pub combined: [[E::TargetField; 2]; 2],
+    pub target: E::TargetField,
+}
+
+/// Build the three ComT legs the verifier uses and return their cells as well as a component-wise product
+pub fn trace_verify<E: Pairing>(ppe: &PPEStmt<E>, proof: &CProof<E>, crs: &CRS<E>) -> VerifyTrace<E> {
+    let stmt_y: Matrix<Com2<E>> = vec_to_col_vec(&proof.ycoms.coms).left_mul(&ppe.gamma, false);
+    let x_gamma_y = ComT::<E>::pairing_sum(&proof.xcoms.coms, &col_vec_to_vec(&stmt_y));
+    let u_pi = ComT::<E>::pairing_sum(&crs.u, &proof.equ_proofs[0].pi);
+    let th_v = ComT::<E>::pairing_sum(&proof.equ_proofs[0].theta, &crs.v);
+
+    let xm = x_gamma_y.as_matrix();
+    let um = u_pi.as_matrix();
+    let tm = th_v.as_matrix();
+    let combined = [
+        [ xm[0][0].0 * um[0][0].0 * tm[0][0].0, xm[0][1].0 * um[0][1].0 * tm[0][1].0 ],
+        [ xm[1][0].0 * um[1][0].0 * tm[1][0].0, xm[1][1].0 * um[1][1].0 * tm[1][1].0 ],
+    ];
+
+    VerifyTrace {
+        x_gamma_y: [[xm[0][0].0, xm[0][1].0],[xm[1][0].0, xm[1][1].0]],
+        u_pi: [[um[0][0].0, um[0][1].0],[um[1][0].0, um[1][1].0]],
+        th_v: [[tm[0][0].0, tm[0][1].0],[tm[1][0].0, tm[1][1].0]],
+        combined,
+        target: ppe.target.0,
+    }
+}
 
 /*
  * NOTE:

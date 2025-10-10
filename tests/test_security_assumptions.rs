@@ -375,9 +375,9 @@ fn test_proof_substitution_attack() {
     
     // Create attestations
     let public_input: Vec<Fr> = vec![];
-    let _att1 = gs.commit_arkworks_proof(&proof1, &vk1, &vec![], true)
+    let _att1 = gs.commit_arkworks_proof(&proof1, &vk1, &vec![], true, &mut rng)
         .expect("Failed to create attestation 1");
-    let _att2 = gs.commit_arkworks_proof(&proof2, &vk2, &vec![], true)
+    let _att2 = gs.commit_arkworks_proof(&proof2, &vk2, &vec![], true, &mut rng)
         .expect("Failed to create attestation 2");
     
     // Get instance bases (these depend on VK)

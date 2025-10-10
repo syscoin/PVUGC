@@ -88,31 +88,19 @@ impl<E: Pairing> AbstractCrs<E> for CRS<E> {
         let p1 = E::G1::rand(rng);
         let p2 = E::G2::rand(rng);
 
-        // Scalar intermediate values for binding CRS
-        // Ensure non-zero scalars to avoid degenerate keys
-        let a1 = loop {
-            let val = E::ScalarField::rand(rng);
-            if !val.is_zero() { break val; }
-        };
-        let a2 = loop {
-            let val = E::ScalarField::rand(rng);
-            if !val.is_zero() { break val; }
-        };
-        let t1 = loop {
-            let val = E::ScalarField::rand(rng);
-            if !val.is_zero() { break val; }
-        };
-        let t2 = loop {
-            let val = E::ScalarField::rand(rng);
-            if !val.is_zero() { break val; }
-        };
+        // Scalar intermediate values for binding CRS (non-zero)
+        let a1 = loop { let v = E::ScalarField::rand(rng); if !v.is_zero() { break v } };
+        let a2 = loop { let v = E::ScalarField::rand(rng); if !v.is_zero() { break v } };
+        let t1 = loop { let v = E::ScalarField::rand(rng); if !v.is_zero() { break v } };
+        let t2 = loop { let v = E::ScalarField::rand(rng); if !v.is_zero() { break v } };
 
-        // Projective intermediate values
+        // Projective intermediates
         let q1 = p1.mul(a1);
         let q2 = p2.mul(a2);
         let u1 = p1.mul(t1);
         let u2 = p2.mul(t2);
 
+        // Binding keys second components
         let (v1, v2) = Self::prepare_real_binding_key(p1, p2, q1, t1, q2, t2);
 
         // B1 commitment key for G1 and Fr
@@ -123,46 +111,16 @@ impl<E: Pairing> AbstractCrs<E> for CRS<E> {
         let u21 = Com2::<E>(p2.into_affine(), q2.into_affine());
         let u22 = Com2::<E>(u2.into_affine(), v2.into_affine());
 
-        // Compute dual bases for KEM (dual to u and v)
-        // For u[j] = (g1^a_j, g1^b_j), dual is u_dual[j] = (g2^{-b_j}, g2^{a_j})
-        // We need to extract the exponents from the constructed u, v
-        
-        // For the standard binding CRS above:
-        // u[0] = (p1, q1) where q1 = p1*a1
-        // So exponents are (1, a1) relative to base p1
-        // u_dual[0] = (p2^{-a1}, p2^1) = (p2*(-a1), p2)
-        
-        let u_dual_0 = Com2::<E>(
-            p2.mul(-a1).into_affine(),
-            p2.into_affine()
-        );
-        
-        // u[1] = (u1, v1) where u1 = p1*t1, v1 computed from prepare_real_binding_key
-        // For binding: v1 = q1*t1 - 0 = (p1*a1)*t1 = p1*(a1*t1)
-        // So u[1] relative to p1 has exponents (t1, a1*t1)
-        // u_dual[1] = (p2^{-a1*t1}, p2^{t1})
-        
-        let u_dual_1 = Com2::<E>(
-            p2.mul(-a1 * t1).into_affine(),
-            p2.mul(t1).into_affine()
-        );
-        
-        // For v (in G2):
-        // v[0] = (p2, q2) where q2 = p2*a2
-        // v_dual[0] = (p1^{-a2}, p1^1)
-        
-        let v_dual_0 = Com1::<E>(
-            p1.mul(-a2).into_affine(),
-            p1.into_affine()
-        );
-        
-        // v[1] = (u2, v2) where u2 = p2*t2, v2 = q2*t2 = p2*(a2*t2)
-        // v_dual[1] = (p1^{-a2*t2}, p1^{t2})
-        
-        let v_dual_1 = Com1::<E>(
-            p1.mul(-a2 * t2).into_affine(),
-            p1.mul(t2).into_affine()
-        );
+        // Duals derived from exponents
+        // u[0] exponents (1, a1) => u_dual[0] = (p2^{-a1}, p2)
+        let u_dual_0 = Com2::<E>( p2.mul(-a1).into_affine(), p2.into_affine() );
+        // u[1] exponents (t1, a1*t1) => u_dual[1] = (p2^{-a1*t1}, p2^{t1})
+        let u_dual_1 = Com2::<E>( p2.mul(- (a1 * t1)).into_affine(), p2.mul(t1).into_affine() );
+
+        // v[0] exponents (1, a2) => v_dual[0] = (p1^{-a2}, p1)
+        let v_dual_0 = Com1::<E>( p1.mul(-a2).into_affine(), p1.into_affine() );
+        // v[1] exponents (t2, a2*t2) => v_dual[1] = (p1^{-a2*t2}, p1^{t2})
+        let v_dual_1 = Com1::<E>( p1.mul(- (a2 * t2)).into_affine(), p1.mul(t2).into_affine() );
 
         let crs = CRS::<E> {
             u: vec![u11, u12],
@@ -229,22 +187,8 @@ mod tests {
     #[allow(non_snake_case)]
     #[test]
     fn test_valid_binding_CRS() {
-        std::env::set_var("DETERMINISTIC_TEST_RNG", "1");
         let mut rng = test_rng();
-        let mut rng2 = test_rng();
-
         let crs = CRS::<F>::generate_crs(&mut rng);
-
-        // Follow the same process as necessary to prepare a binding key
-        let p1 = G1Projective::rand(&mut rng2);
-        let p2 = G2Projective::rand(&mut rng2);
-        let a1 = Fr::rand(&mut rng2);
-        let a2 = Fr::rand(&mut rng2);
-        let t1 = Fr::rand(&mut rng2);
-        let t2 = Fr::rand(&mut rng2);
-        let q1 = p1.mul(a1);
-        let q2 = p2.mul(a2);
-        let (v1, v2) = CRS::<F>::prepare_real_binding_key(p1, p2, q1, t1, q2, t2);
 
         // Generated commitment keys are non-trivial
         assert_ne!(crs.u[0], Com1::zero());
@@ -252,11 +196,28 @@ mod tests {
         assert_ne!(crs.v[0], Com2::zero());
         assert_ne!(crs.v[1], Com2::zero());
 
-        // The chosen keys are binding (i.e. not hiding)
-        assert_ne!(crs.g1_gen, G1Affine::zero());
-        assert_ne!(crs.g2_gen, G2Affine::zero());
-        assert_eq!(crs.u[1].1, v1.into_affine());
-        assert_eq!(crs.v[1].1, v2.into_affine());
+        // Diagonal duality invariants hold; off-diagonals do not cancel
+        use ark_ff::One;
+        // u vs u_dual
+        for i in 0..crs.u.len() {
+            for j in 0..crs.u_dual.len() {
+                let PairingOutput(p0) = F::pairing(crs.u[i].0, crs.u_dual[j].0);
+                let PairingOutput(p1) = F::pairing(crs.u[i].1, crs.u_dual[j].1);
+                let prod = p0 * p1;
+                if i == j { assert_eq!(prod, <F as Pairing>::TargetField::one()); }
+                else { assert_ne!(prod, <F as Pairing>::TargetField::one()); }
+            }
+        }
+        // v_dual vs v
+        for i in 0..crs.v_dual.len() {
+            for j in 0..crs.v.len() {
+                let PairingOutput(p0) = F::pairing(crs.v_dual[i].0, crs.v[j].0);
+                let PairingOutput(p1) = F::pairing(crs.v_dual[i].1, crs.v[j].1);
+                let prod = p0 * p1;
+                if i == j { assert_eq!(prod, <F as Pairing>::TargetField::one()); }
+                else { assert_ne!(prod, <F as Pairing>::TargetField::one()); }
+            }
+        }
     }
 
     
