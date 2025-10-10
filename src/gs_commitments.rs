@@ -37,16 +37,22 @@ pub enum GSCommitmentError {
     InvalidInput(String),
 }
 
-/// Groth-Sahai attestation for Groth16 proof
+/// Single 1×1 GS equation with its commitments and proofs
+#[derive(Clone, Debug)]
+pub struct GSEquation {
+    pub c1: Com1<Bls12_381>,          // X-side commitment (G1 pair) for this 1×1
+    pub c2: Com2<Bls12_381>,          // Y-side commitment (G2 pair) for this 1×1
+    pub pi: Vec<Com2<Bls12_381>>,     // equation-proof π (len=1 for 1×1)
+    pub theta: Vec<Com1<Bls12_381>>,  // equation-proof θ (len=1 for 1×1)
+}
+
+/// Groth-Sahai attestation for Groth16 proof using two 1×1 equations
 #[derive(Clone, Debug)]
 pub struct GSAttestation {
-    pub c1_commitments: Vec<Com1<Bls12_381>>,
-    pub c2_commitments: Vec<Com2<Bls12_381>>,
-    pub pi: Vec<Com2<Bls12_381>>,      // Equation proof π (in G2)
-    pub theta: Vec<Com1<Bls12_381>>,   // Equation proof θ (in G1)
+    pub eq_ab: GSEquation,             // e(πA, πB) = e(α, β)
+    pub eq_cd: GSEquation,             // e(πC, δ) = e(IC, γ)
     pub proof_data: Vec<u8>,
-    pub randomness_used: Vec<Fr>,
-    pub ppe_target: Fq12,
+    pub ppe_target: Fq12,              // e(α,β)·e(IC,γ) - the full target
 }
 
 /// Groth-Sahai commitment system for real Groth16 proofs
@@ -85,31 +91,54 @@ impl GrothSahaiCommitments {
             let r_b = Fr::rand(&mut rng);
             let r_c = Fr::rand(&mut rng);
             
-            // Create PPE for Groth16 verification with ACTUAL proof elements
-            let xvars = vec![proof.pi_a, proof.pi_c];
-            let yvars = vec![proof.pi_b, vk.delta_g2];
+            // Create two 1×1 PPEs instead of one 2×2 diagonal PPE
+            // This ensures we get separate equation proofs for each diagonal entry
             
-            // Create PPE equation matching Groth16 structure
             let ic = compute_ic_from_vk_and_inputs(vk, public_input);
             let PairingOutput(rhs1) = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2);
             let PairingOutput(rhs2) = Bls12_381::pairing(ic, vk.gamma_g2);
-            let ppe = PPE::<Bls12_381> {
-                a_consts: vec![G1Affine::zero(), G1Affine::zero()],
-                b_consts: vec![G2Affine::zero(), G2Affine::zero()],
-                gamma: vec![vec![Fr::one(), Fr::zero()], vec![Fr::zero(), Fr::one()]],
-                target: PairingOutput::<Bls12_381>(rhs1 * rhs2),
+            let full_target = PairingOutput::<Bls12_381>(rhs1 * rhs2);
+            
+            // First PPE: πA ⊗ πB = e(α, β)
+            let ppe1 = PPE::<Bls12_381> {
+                a_consts: vec![G1Affine::zero()],
+                b_consts: vec![G2Affine::zero()],
+                gamma: vec![vec![Fr::one()]],  // 1×1 matrix
+                target: PairingOutput::<Bls12_381>(rhs1),  // Target: e(α, β)
             };
             
-            // Use proper GS commitment construction via commit_and_prove
-            let attestation_proof = ppe.commit_and_prove(&xvars, &yvars, &self.crs, &mut rng);
+            let xvars1 = vec![proof.pi_a];
+            let yvars1 = vec![proof.pi_b];
+            let proof1 = ppe1.commit_and_prove(&xvars1, &yvars1, &self.crs, &mut rng);
             
-            // Extract commitments and equation proofs
-            let c1_commitments = attestation_proof.xcoms.coms;
-            let c2_commitments = attestation_proof.ycoms.coms;
-            let pi = attestation_proof.equ_proofs[0].pi.clone();
-            let theta = attestation_proof.equ_proofs[0].theta.clone();
+            // Second PPE: πC ⊗ δ = e(IC, γ)
+            let ppe2 = PPE::<Bls12_381> {
+                a_consts: vec![G1Affine::zero()],
+                b_consts: vec![G2Affine::zero()],
+                gamma: vec![vec![Fr::one()]],  // 1×1 matrix
+                target: PairingOutput::<Bls12_381>(rhs2),  // Target: e(IC, γ)
+            };
             
-            let randomness = vec![r_a, r_b, r_c];
+            let xvars2 = vec![proof.pi_c];
+            let yvars2 = vec![vk.delta_g2];
+            let proof2 = ppe2.commit_and_prove(&xvars2, &yvars2, &self.crs, &mut rng);
+            
+            // Create equation structures for the new attestation format
+            let eq_ab = GSEquation {
+                c1: proof1.xcoms.coms[0],
+                c2: proof1.ycoms.coms[0],
+                pi: proof1.equ_proofs[0].pi.clone(),
+                theta: proof1.equ_proofs[0].theta.clone(),
+            };
+            
+            let eq_cd = GSEquation {
+                c1: proof2.xcoms.coms[0],
+                c2: proof2.ycoms.coms[0],
+                pi: proof2.equ_proofs[0].pi.clone(),
+                theta: proof2.equ_proofs[0].theta.clone(),
+            };
+            
+            eprintln!("DEBUG: Created 2 separate 1×1 equation proofs");
             
             let mut proof_data_bytes = Vec::new();
             proof.pi_a.serialize_compressed(&mut proof_data_bytes).unwrap();
@@ -119,43 +148,64 @@ impl GrothSahaiCommitments {
             
             let proof_data = Sha256::digest(&proof_data_bytes).to_vec();
             
-            // Extract the PPE target from the PPE
-            let ppe_target = ppe.target.0;
+            // Use the full target as PPE target
+            let ppe_target = full_target.0;
 
             Ok(GSAttestation {
-                c1_commitments,
-                c2_commitments,
-                pi,
-                theta,
+                eq_ab,
+                eq_cd,
                 proof_data,
-                randomness_used: randomness,
                 ppe_target,
             })
         } else {
-            // Use ACTUAL proof elements (no randomness case)
-            let xvars = vec![proof.pi_a, proof.pi_c];
-            let yvars = vec![proof.pi_b, vk.delta_g2];
+            // Create two 1×1 PPEs instead of one 2×2 diagonal PPE
+            // This ensures we get separate equation proofs for each diagonal entry
             
-            // Create PPE equation with RHS target from (vk, x)
             let ic = compute_ic_from_vk_and_inputs(vk, public_input);
             let PairingOutput(rhs1) = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2);
             let PairingOutput(rhs2) = Bls12_381::pairing(ic, vk.gamma_g2);
-            let ppe = PPE::<Bls12_381> {
-                a_consts: vec![G1Affine::zero(), G1Affine::zero()],
-                b_consts: vec![G2Affine::zero(), G2Affine::zero()],
-                gamma: vec![vec![Fr::one(), Fr::zero()], vec![Fr::zero(), Fr::one()]],
-                target: PairingOutput::<Bls12_381>(rhs1 * rhs2),
+            let full_target = PairingOutput::<Bls12_381>(rhs1 * rhs2);
+            
+            // First PPE: πA ⊗ πB = e(α, β)
+            let ppe1 = PPE::<Bls12_381> {
+                a_consts: vec![G1Affine::zero()],
+                b_consts: vec![G2Affine::zero()],
+                gamma: vec![vec![Fr::one()]],  // 1×1 matrix
+                target: PairingOutput::<Bls12_381>(rhs1),  // Target: e(α, β)
             };
             
-            // Use proper GS commitment construction via commit_and_prove
-            let attestation_proof = ppe.commit_and_prove(&xvars, &yvars, &self.crs, &mut rng);
+            let xvars1 = vec![proof.pi_a];
+            let yvars1 = vec![proof.pi_b];
+            let proof1 = ppe1.commit_and_prove(&xvars1, &yvars1, &self.crs, &mut rng);
             
-            // Extract commitments and equation proofs
-            let c1_commitments = attestation_proof.xcoms.coms;
-            let c2_commitments = attestation_proof.ycoms.coms;
-            let pi = attestation_proof.equ_proofs[0].pi.clone();
-            let theta = attestation_proof.equ_proofs[0].theta.clone();
-            let randomness = vec![Fr::zero(); 3];
+            // Second PPE: πC ⊗ δ = e(IC, γ)
+            let ppe2 = PPE::<Bls12_381> {
+                a_consts: vec![G1Affine::zero()],
+                b_consts: vec![G2Affine::zero()],
+                gamma: vec![vec![Fr::one()]],  // 1×1 matrix
+                target: PairingOutput::<Bls12_381>(rhs2),  // Target: e(IC, γ)
+            };
+            
+            let xvars2 = vec![proof.pi_c];
+            let yvars2 = vec![vk.delta_g2];
+            let proof2 = ppe2.commit_and_prove(&xvars2, &yvars2, &self.crs, &mut rng);
+            
+            // Create equation structures for the new attestation format
+            let eq_ab = GSEquation {
+                c1: proof1.xcoms.coms[0],
+                c2: proof1.ycoms.coms[0],
+                pi: proof1.equ_proofs[0].pi.clone(),
+                theta: proof1.equ_proofs[0].theta.clone(),
+            };
+            
+            let eq_cd = GSEquation {
+                c1: proof2.xcoms.coms[0],
+                c2: proof2.ycoms.coms[0],
+                pi: proof2.equ_proofs[0].pi.clone(),
+                theta: proof2.equ_proofs[0].theta.clone(),
+            };
+            
+            eprintln!("DEBUG: Created 2 separate 1×1 equation proofs");
             
             let mut proof_data_bytes = Vec::new();
             proof.pi_a.serialize_compressed(&mut proof_data_bytes).unwrap();
@@ -165,16 +215,13 @@ impl GrothSahaiCommitments {
             
             let proof_data = Sha256::digest(&proof_data_bytes).to_vec();
             
-            // Extract the PPE target from the PPE
-            let ppe_target = ppe.target.0;
+            // Use the full target as PPE target
+            let ppe_target = full_target.0;
 
             Ok(GSAttestation {
-                c1_commitments,
-                c2_commitments,
-                pi,
-                theta,
+                eq_ab,
+                eq_cd,
                 proof_data,
-                randomness_used: randomness,
                 ppe_target,
             })
         }
@@ -196,55 +243,46 @@ impl GrothSahaiCommitments {
         v_bases: &[(G1Affine, G1Affine)],
         _g_target: &Fq12,  // Not used with dual bases
     ) -> Result<bool, GSCommitmentError> {
-        // Structural validation
-        if attestation.c1_commitments.len() != u_bases.len() {
+        // Structural validation for two 1×1 equations
+        if attestation.eq_ab.pi.len() != 1 || attestation.eq_ab.theta.len() != 1 {
             return Err(GSCommitmentError::InvalidInput(
-                "C1 commitments count must match U bases count".to_string()
+                "Invalid equation proof lengths for eq_ab".to_string()
             ));
         }
-        if attestation.c2_commitments.len() != v_bases.len() {
+        if attestation.eq_cd.pi.len() != 1 || attestation.eq_cd.theta.len() != 1 {
             return Err(GSCommitmentError::InvalidInput(
-                "C2 commitments count must match V bases count".to_string()
+                "Invalid equation proof lengths for eq_cd".to_string()
             ));
         }
         
-        // VERIFICATION: Check that KEM formula M = anchor^ρ holds
+        // VERIFICATION: Check that KEM formula M = target^ρ holds
         // This is the PVUGC property that must be satisfied
         
-        use groth_sahai::kem_eval::{ppe_eval_with_masked_pairs, mask_g1_pair, mask_g2_pair, pow_gt};
+        use groth_sahai::kem_eval::{eval_two_equations_masked, pow_gt};
         use ark_std::test_rng;
         
         // Pick a random ρ for verification
         let mut rng = test_rng();
         let rho = Fr::rand(&mut rng);
         
-        // Mask bases
-        let u_bases_masked: Vec<_> = u_bases.iter()
-            .map(|&p| mask_g2_pair::<Bls12_381>(p, rho))
-            .collect();
-        let v_bases_masked: Vec<_> = v_bases.iter()
-            .map(|&p| mask_g1_pair::<Bls12_381>(p, rho))
-            .collect();
-        
-        // Compute with masked bases
-        let PairingOutput(result_masked) = ppe_eval_with_masked_pairs::<Bls12_381>(
-            &attestation.c1_commitments,
-            &attestation.c2_commitments,
-            &u_bases_masked,
-            &v_bases_masked,
+        // Evaluate the two 1×1 equations with masking
+        let PairingOutput(result_masked) = eval_two_equations_masked::<Bls12_381>(
+            &attestation.eq_ab.c1,
+            &attestation.eq_ab.c2,
+            &attestation.eq_ab.pi,
+            &attestation.eq_ab.theta,
+            &attestation.eq_cd.c1,
+            &attestation.eq_cd.c2,
+            &attestation.eq_cd.pi,
+            &attestation.eq_cd.theta,
+            &self.crs,
+            rho,
         );
         
-        // Compute with unmasked bases
-        let PairingOutput(anchor_unmasked) = ppe_eval_with_masked_pairs::<Bls12_381>(
-            &attestation.c1_commitments,
-            &attestation.c2_commitments,
-            u_bases,  // Unmasked
-            v_bases,
-        );
+        // The expected result should be target^ρ
+        let expected = pow_gt::<Bls12_381>(attestation.ppe_target, rho);
         
-        // Verify: result_masked = anchor_unmasked^ρ
-        let expected = pow_gt::<Bls12_381>(anchor_unmasked, rho);
-        
+        // Verify: result_masked = target^ρ
         Ok(result_masked == expected)
     }
 
@@ -392,8 +430,11 @@ mod tests {
         let attestation = gs.commit_arkworks_proof(&proof, &vk, &vec![], false)
             .expect("Commit should succeed");
         
-        assert_eq!(attestation.c1_commitments.len(), 2, "Should have 2 C1 commitments (pi_A, pi_C)");
-        assert_eq!(attestation.c2_commitments.len(), 2, "Should have 2 C2 commitments (pi_B, Y_delta)");
+        // Check that we have two equations as expected
+        assert_eq!(attestation.eq_ab.pi.len(), 1, "eq_ab should have 1 pi element");
+        assert_eq!(attestation.eq_ab.theta.len(), 1, "eq_ab should have 1 theta element");
+        assert_eq!(attestation.eq_cd.pi.len(), 1, "eq_cd should have 1 pi element");
+        assert_eq!(attestation.eq_cd.theta.len(), 1, "eq_cd should have 1 theta element");
         assert!(!attestation.proof_data.is_empty());
     }
 
@@ -531,19 +572,33 @@ mod tests {
             .map(|&p| mask_g1_pair::<Bls12_381>(p, rho))
             .collect();
         
-        // Evaluate KEM with both attestations
-        let PairingOutput(result1) = ppe_eval_with_masked_pairs::<Bls12_381>(
-            &attestation1.c1_commitments,
-            &attestation1.c2_commitments,
-            &u_bases_masked,
-            &v_bases_masked,
+        // Evaluate KEM with both attestations using the new 1×1 evaluator
+        use groth_sahai::kem_eval::eval_two_equations_masked;
+        
+        let PairingOutput(result1) = eval_two_equations_masked::<Bls12_381>(
+            &attestation1.eq_ab.c1,
+            &attestation1.eq_ab.c2,
+            &attestation1.eq_ab.pi,
+            &attestation1.eq_ab.theta,
+            &attestation1.eq_cd.c1,
+            &attestation1.eq_cd.c2,
+            &attestation1.eq_cd.pi,
+            &attestation1.eq_cd.theta,
+            &gs.crs,
+            rho,
         );
         
-        let PairingOutput(result2) = ppe_eval_with_masked_pairs::<Bls12_381>(
-            &attestation2.c1_commitments,
-            &attestation2.c2_commitments,
-            &u_bases_masked,
-            &v_bases_masked,
+        let PairingOutput(result2) = eval_two_equations_masked::<Bls12_381>(
+            &attestation2.eq_ab.c1,
+            &attestation2.eq_ab.c2,
+            &attestation2.eq_ab.pi,
+            &attestation2.eq_ab.theta,
+            &attestation2.eq_cd.c1,
+            &attestation2.eq_cd.c2,
+            &attestation2.eq_cd.pi,
+            &attestation2.eq_cd.theta,
+            &gs.crs,
+            rho,
         );
         
         // Results should be identical (instance determinism)

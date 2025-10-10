@@ -621,16 +621,26 @@ mod tests {
         }
         
         let mut c1_bytes = Vec::new();
-        for c1 in &attestation.c1_commitments {
+        // Serialize eq_ab and eq_cd c1 commitments
+        {
             let mut bytes = Vec::new();
-            c1.serialize_compressed(&mut bytes).unwrap();
+            attestation.eq_ab.c1.serialize_compressed(&mut bytes).unwrap();
+            c1_bytes.push(bytes);
+            
+            let mut bytes = Vec::new();
+            attestation.eq_cd.c1.serialize_compressed(&mut bytes).unwrap();
             c1_bytes.push(bytes);
         }
         
         let mut c2_bytes = Vec::new();
-        for c2 in &attestation.c2_commitments {
+        // Serialize eq_ab and eq_cd c2 commitments
+        {
             let mut bytes = Vec::new();
-            c2.serialize_compressed(&mut bytes).unwrap();
+            attestation.eq_ab.c2.serialize_compressed(&mut bytes).unwrap();
+            c2_bytes.push(bytes);
+            
+            let mut bytes = Vec::new();
+            attestation.eq_cd.c2.serialize_compressed(&mut bytes).unwrap();
             c2_bytes.push(bytes);
         }
         
@@ -718,14 +728,23 @@ mod tests {
             v1.serialize_compressed(&mut p).unwrap();
             v_bases.push(p);
         }
-        for c1 in &attestation.c1_commitments {
+        // Serialize eq_ab and eq_cd commitments
+        {
             let mut b = Vec::new();
-            c1.serialize_compressed(&mut b).unwrap();
+            attestation.eq_ab.c1.serialize_compressed(&mut b).unwrap();
+            c1_bytes.push(b);
+            
+            let mut b = Vec::new();
+            attestation.eq_cd.c1.serialize_compressed(&mut b).unwrap();
             c1_bytes.push(b);
         }
-        for c2 in &attestation.c2_commitments {
+        {
             let mut b = Vec::new();
-            c2.serialize_compressed(&mut b).unwrap();
+            attestation.eq_ab.c2.serialize_compressed(&mut b).unwrap();
+            c2_bytes.push(b);
+            
+            let mut b = Vec::new();
+            attestation.eq_cd.c2.serialize_compressed(&mut b).unwrap();
             c2_bytes.push(b);
         }
         

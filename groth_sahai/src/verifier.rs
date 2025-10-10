@@ -157,6 +157,37 @@ impl<E: Pairing> Verifiable<E> for QuadEqu<E> {
 }
 
 
+/// Diagnostic function to extract the verification product for debugging
+/// This computes the same LHS that the verifier computes, but returns it instead of comparing
+pub fn get_verification_product_ppe<E: Pairing>(
+    ppe: &PPE<E>,
+    com_proof: &CProof<E>,
+    crs: &CRS<E>
+) -> ComT<E> {
+    assert_eq!(com_proof.equ_proofs.len(), 1);
+    assert_eq!(ppe.get_type(), com_proof.equ_proofs[0].equ_type);
+    let is_parallel = true;
+
+    let lin_a_com_y = ComT::<E>::pairing_sum(
+        &Com1::<E>::batch_linear_map(&ppe.a_consts),
+        &com_proof.ycoms.coms,
+    );
+
+    let com_x_lin_b = ComT::<E>::pairing_sum(
+        &com_proof.xcoms.coms,
+        &Com2::<E>::batch_linear_map(&ppe.b_consts),
+    );
+
+    let stmt_com_y: Matrix<Com2<E>> =
+        vec_to_col_vec(&com_proof.ycoms.coms).left_mul(&ppe.gamma, is_parallel);
+    let com_x_stmt_com_y =
+        ComT::<E>::pairing_sum(&com_proof.xcoms.coms, &col_vec_to_vec(&stmt_com_y));
+
+    let lhs: ComT<E> = lin_a_com_y + com_x_lin_b + com_x_stmt_com_y;
+    
+    lhs
+}
+
 /*
  * NOTE:
  *

@@ -839,11 +839,11 @@ fn test_complete_adaptor_signature_flow() {
         )
     }).collect();
     
+    use arkworks_groth16::gs_commitments::GSEquation;
     let fake_attestation = GSAttestation {
         c1_commitments: fake_C1,
         c2_commitments: fake_C2,
-        pi: vec![],     // Empty equation proof
-        theta: vec![],  // Empty equation proof
+        equs: vec![],     // Empty equation proofs
         proof_data: vec![],
         randomness_used: vec![],
         ppe_target: target,  // Even with correct target!
@@ -901,6 +901,7 @@ fn test_complete_adaptor_signature_flow() {
 #[test]
 fn test_two_distinct_groth16_proofs_same_output() {
     // Two different Groth16 proofs for same (vk,x) should yield identical M under same CRS and masks
+    // Using the TWO 1×1 PPE approach as recommended by the expert
     let gs = GrothSahaiCommitments::from_seed(b"TWO_PROOFS_DET");
 
     let mut groth16 = ArkworksGroth16::new();
@@ -911,7 +912,7 @@ fn test_two_distinct_groth16_proofs_same_output() {
     let proof1 = groth16.prove(witness).expect("Prove should succeed");
     let proof2 = groth16.prove(witness).expect("Prove should succeed");
 
-    // Create GS attestations for both proofs
+    // Create GS attestations for both proofs using two 1×1 PPEs
     // Explicit x: public_input = [25]
     let x = [Fr::from(25u64)];
     let att1 = gs.commit_arkworks_proof(&proof1, &vk, &x, true).expect("Att1 should succeed");
@@ -925,38 +926,120 @@ fn test_two_distinct_groth16_proofs_same_output() {
     let u_masked: Vec<_> = u_bases.iter().map(|&p| mask_g2_pair::<Bls12_381>(p, rho)).collect();
     let v_masked: Vec<_> = v_bases.iter().map(|&p| mask_g1_pair::<Bls12_381>(p, rho)).collect();
 
-        // Create the same PPE structure used in commit_arkworks_proof
-        // This is a 2x2 diagonal PPE for Groth16
-        use groth_sahai::{ppe_eval_full_masked_with_gamma};
-        use ark_ff::{One, Zero};
+    // DIAGNOSTIC: First check if the GS proofs are actually the same
+    println!("\n=== FUNDAMENTAL DIAGNOSTIC ===");
+    
+    // Create the same PPE structure used in commit_arkworks_proof
+    // This is a 2x2 diagonal PPE for Groth16
+    use groth_sahai::{ppe_eval_full_masked_with_gamma};
+    use ark_ff::{One, Zero};
+    use groth_sahai::data_structures::{ComT, BT, Com1, Com2, vec_to_col_vec, col_vec_to_vec, Mat};
+    use groth_sahai::Matrix;
+    
+    let ppe = PPE::<Bls12_381> {
+        a_consts: vec![G1Affine::identity(), G1Affine::identity()],
+        b_consts: vec![G2Affine::identity(), G2Affine::identity()],
+        gamma: vec![
+            vec![Fr::one(), Fr::zero()],   // [1, 0]
+            vec![Fr::zero(), Fr::one()]    // [0, 1] - diagonal matrix
+        ],
+        target: PairingOutput(att1.ppe_target),  // Wrap in PairingOutput
+    };
+    
+    // Manually compute GS verification LHS (same as get_verification_product_ppe but simplified)
+    fn compute_gs_lhs(
+        ppe: &PPE::<Bls12_381>,
+        xcoms: &[Com1<Bls12_381>],
+        ycoms: &[Com2<Bls12_381>],
+    ) -> ComT<Bls12_381> {
+        // Since a_consts and b_consts are identity (zero in affine), their contributions are zero
         
-        let ppe = PPE::<Bls12_381> {
-            a_consts: vec![G1Affine::zero(), G1Affine::zero()],
-            b_consts: vec![G2Affine::zero(), G2Affine::zero()],
-            gamma: vec![
-                vec![Fr::one(), Fr::zero()],   // [1, 0]
-                vec![Fr::zero(), Fr::one()]    // [0, 1] - diagonal matrix
-            ],
-            target: PairingOutput(att1.ppe_target),  // Wrap in PairingOutput
-        };
+        // Main term: X * Gamma * Y
+        let stmt_com_y: Matrix<Com2<Bls12_381>> =
+            vec_to_col_vec(ycoms).left_mul(&ppe.gamma, false);
+        let com_x_stmt_com_y = ComT::<Bls12_381>::pairing_sum(xcoms, &col_vec_to_vec(&stmt_com_y));
         
-        // Use FULL evaluation with all 5 pairing buckets (including gamma term)
-        let PairingOutput(m1_full) = ppe_eval_full_masked_with_gamma::<Bls12_381>(
+        com_x_stmt_com_y
+    }
+    
+    let lhs1 = compute_gs_lhs(&ppe, &att1.c1_commitments, &att1.c2_commitments);
+    let lhs2 = compute_gs_lhs(&ppe, &att2.c1_commitments, &att2.c2_commitments);
+    
+    println!("GS verification LHS for proof 1 (slot [1][1]): {:?}", lhs1.as_matrix()[1][1]);
+    println!("GS verification LHS for proof 2 (slot [1][1]): {:?}", lhs2.as_matrix()[1][1]);
+    println!("LHS products equal? {}", lhs1 == lhs2);
+    
+    // Check commitment differences
+    println!("\nCommitment Analysis:");
+    for i in 0..att1.c1_commitments.len() {
+        let same = att1.c1_commitments[i].0 == att2.c1_commitments[i].0 &&
+                   att1.c1_commitments[i].1 == att2.c1_commitments[i].1;
+        println!("  C1[{}] same: {}", i, same);
+    }
+    for i in 0..att1.c2_commitments.len() {
+        let same = att1.c2_commitments[i].0 == att2.c2_commitments[i].0 &&
+                   att1.c2_commitments[i].1 == att2.c2_commitments[i].1;
+        println!("  C2[{}] same: {}", i, same);
+    }
+    
+    // Check equation proof differences
+    println!("\nEquation Proof Analysis:");
+    println!("Number of equation proofs: att1={}, att2={}", att1.equs.len(), att2.equs.len());
+    for (eq_idx, eq) in att1.equs.iter().enumerate() {
+        if eq_idx < att2.equs.len() {
+            println!("  Equation {}:", eq_idx);
+            for (pi_idx, _) in eq.pi.iter().enumerate() {
+                if pi_idx < att2.equs[eq_idx].pi.len() {
+                    let same = att1.equs[eq_idx].pi[pi_idx].0 == att2.equs[eq_idx].pi[pi_idx].0 && 
+                               att1.equs[eq_idx].pi[pi_idx].1 == att2.equs[eq_idx].pi[pi_idx].1;
+                    println!("    π[{}] same: {}", pi_idx, same);
+                }
+            }
+            for (theta_idx, _) in eq.theta.iter().enumerate() {
+                if theta_idx < att2.equs[eq_idx].theta.len() {
+                    let same = att1.equs[eq_idx].theta[theta_idx].0 == att2.equs[eq_idx].theta[theta_idx].0 && 
+                               att1.equs[eq_idx].theta[theta_idx].1 == att2.equs[eq_idx].theta[theta_idx].1;
+                    println!("    θ[{}] same: {}", theta_idx, same);
+                }
+            }
+        }
+    }
+    
+    // Check what the target should be
+    let target_comt = ComT::<Bls12_381>::linear_map_PPE(&ppe.target);
+    println!("\nExpected RHS (target, slot [1][1]): {:?}", target_comt.as_matrix()[1][1]);
+    println!("LHS1 == RHS? {}", lhs1 == target_comt);
+    println!("LHS2 == RHS? {}", lhs2 == target_comt);
+    
+    if lhs1 != lhs2 {
+        println!("\nRoot cause: Different Groth16 proof elements (πA, πB, πC) lead to");
+        println!("different GS commitments, which produce different verification results.");
+    }
+    println!("=== END DIAGNOSTIC ===\n");
+        
+        // Use FULL evaluation with ALL equation proofs (critical for 2×2 diagonal PPE)
+        use groth_sahai::ppe_eval_full_masked_with_gamma_all_eqs;
+        
+        // Convert equs into the (pi, theta) pairs the evaluator expects
+        let eqs1: Vec<_> = att1.equs.iter().map(|e| (e.pi.clone(), e.theta.clone())).collect();
+        let eqs2: Vec<_> = att2.equs.iter().map(|e| (e.pi.clone(), e.theta.clone())).collect();
+        
+        println!("Using {} equation proofs for evaluation", eqs1.len());
+        
+        let PairingOutput(m1_full) = ppe_eval_full_masked_with_gamma_all_eqs::<Bls12_381>(
             &ppe,
             &att1.c1_commitments,
             &att1.c2_commitments,
-            &att1.pi,
-            &att1.theta,
+            &eqs1,
             gs.get_crs(),
             rho,
         );
         
-        let PairingOutput(m2_full) = ppe_eval_full_masked_with_gamma::<Bls12_381>(
+        let PairingOutput(m2_full) = ppe_eval_full_masked_with_gamma_all_eqs::<Bls12_381>(
             &ppe,
             &att2.c1_commitments,
             &att2.c2_commitments,
-            &att2.pi,
-            &att2.theta,
+            &eqs2,
             gs.get_crs(),
             rho,
         );
