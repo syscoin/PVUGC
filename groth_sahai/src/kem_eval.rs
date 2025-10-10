@@ -138,50 +138,61 @@ pub fn pow_gt<E: Pairing>(gt: E::TargetField, rho: E::ScalarField) -> E::TargetF
 
 /// Evaluate the gamma cross term and raise it to rho
 /// This is the missing piece for proof-agnostic determinism
-fn eval_gamma_term_pow_rho<E: Pairing>(
+/// Correct γ-term: match verifier's structure exactly, then ^ρ
+fn gamma_term_pow_rho<E: Pairing>(
     ppe: &PPE<E>,
-    c1: &[Com1<E>], // X commitments (G1 pairs)
-    c2: &[Com2<E>], // Y commitments (G2 pairs)
+    x_coms: &[Com1<E>],  // X commitments (G1^2)
+    y_coms: &[Com2<E>],  // Y commitments (G2^2)
     rho: E::ScalarField,
 ) -> E::TargetField {
-    use ark_ff::{One, Field};
-    let mut g = E::TargetField::one();
-
-    // γ has shape |X| × |Y|  (rows = X vars, cols = Y vars)
-    #[cfg(debug_assertions)]
-    eprintln!("Debug: gamma matrix dimensions: {}x{}", ppe.gamma.len(), 
-              if ppe.gamma.is_empty() { 0 } else { ppe.gamma[0].len() });
+    use crate::data_structures::{vec_to_col_vec, col_vec_to_vec, Matrix, ComT, Mat};
+    use ark_ff::Field;
     
-    for j in 0..ppe.gamma.len() {
-        for k in 0..ppe.gamma[j].len() {
-            let coeff = ppe.gamma[j][k];
-            if coeff.is_zero() { 
-                #[cfg(debug_assertions)]
-                eprintln!("  gamma[{}][{}] = 0, skipping", j, k);
-                continue; 
-            }
-
-            #[cfg(debug_assertions)]
-            eprintln!("  Processing gamma[{}][{}] = {:?}", j, k, coeff);
-
-            // In the stock GS 2×2 encoding, the cross term multiplies the like slots:
-            // e(C1[j].0, C2[k].0) * e(C1[j].1, C2[k].1), all raised to γ_{j,k}.
-            let PairingOutput(p00) = E::pairing(c1[j].0, c2[k].0);
-            let PairingOutput(p11) = E::pairing(c1[j].1, c2[k].1);
-            let term = p00 * p11;
-
-            #[cfg(debug_assertions)]
-            eprintln!("    term before pow = {:?}", term);
-            
-            g *= term.pow(coeff.into_bigint());
-        }
+    #[cfg(debug_assertions)]
+    {
+        eprintln!("Debug: Computing gamma cross term (verifier style)...");
+        eprintln!("  |X| = {}, |Y| = {}", x_coms.len(), y_coms.len());
+        eprintln!("  gamma shape = {}x{}", ppe.gamma.len(), 
+                  if ppe.gamma.is_empty() { 0 } else { ppe.gamma[0].len() });
     }
     
+    // 1) Same as verifier: (gamma * y_coms)
+    let is_parallel = false; // Single-threaded for clarity
+    let stmt_com_y: Matrix<Com2<E>> = 
+        vec_to_col_vec(y_coms).left_mul(&ppe.gamma, is_parallel);
+    
     #[cfg(debug_assertions)]
-    eprintln!("  gamma term before ^rho = {:?}", g);
-
-    // We must also raise γ-term to ρ so the whole LHS becomes (unmasked LHS)^ρ.
-    g.pow(rho.into_bigint())
+    eprintln!("  stmt_com_y dimensions: rows={}, cols={}", 
+              stmt_com_y.len(), 
+              if stmt_com_y.is_empty() { 0 } else { stmt_com_y[0].len() });
+    
+    // 2) Pair X against (gamma * Y)
+    let com_x_stmt_com_y: ComT<E> = 
+        ComT::<E>::pairing_sum(x_coms, &col_vec_to_vec(&stmt_com_y));
+    
+    #[cfg(debug_assertions)]
+    {
+        let matrix = com_x_stmt_com_y.as_matrix();
+        eprintln!("  ComT matrix:");
+        eprintln!("    [0][0] = {:?}", matrix[0][0]);
+        eprintln!("    [0][1] = {:?}", matrix[0][1]);
+        eprintln!("    [1][0] = {:?}", matrix[1][0]);
+        eprintln!("    [1][1] = {:?}", matrix[1][1]);
+    }
+    
+    // 3) Extract the (1,1) slot (where the PPE target "lives")
+    let PairingOutput(term_11) = com_x_stmt_com_y.as_matrix()[1][1];
+    
+    #[cfg(debug_assertions)]
+    eprintln!("  gamma term before ^ρ (slot [1][1]) = {:?}", term_11);
+    
+    // 4) Raise the γ-term to ρ (so the whole LHS scales by ρ)
+    let result = term_11.pow(rho.into_bigint());
+    
+    #[cfg(debug_assertions)]
+    eprintln!("  gamma term after ^ρ = {:?}", result);
+    
+    result
 }
 
 /// Full GS evaluation with all FIVE pairing buckets (including gamma cross term)
@@ -270,7 +281,7 @@ pub fn ppe_eval_full_masked_with_gamma<E: Pairing>(
     eprintln!("  acc after theta: {:?}", acc);
 
     // Missing piece in your patch: the γ cross term, *also* to the power ρ.
-    let g_rho = eval_gamma_term_pow_rho::<E>(ppe, c1, c2, rho);
+    let g_rho = gamma_term_pow_rho::<E>(ppe, c1, c2, rho);
     
     #[cfg(debug_assertions)]
     {
