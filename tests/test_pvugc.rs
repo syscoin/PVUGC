@@ -1003,12 +1003,13 @@ fn test_two_distinct_groth16_proofs_same_output() {
     let masked_comt1 = gs.evaluate_masked_verifier_comt(&att1, &vk, &x, rho);
     let masked_comt2 = gs.evaluate_masked_verifier_comt(&att2, &vk, &x, rho);
     
-    // Extract M values from the masked ComT (using bottom-right cell as suggested)
-    let m1 = masked_comt1.3; // Bottom-right cell
-    let m2 = masked_comt2.3; // Bottom-right cell
+    // Derive KDF keys from full ComT matrices (more robust than single cell extraction)
+    use groth_sahai::kdf_from_comt;
+    let k1 = kdf_from_comt(&masked_comt1, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
+    let k2 = kdf_from_comt(&masked_comt2, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
     
     println!("\nUsing deterministic rho derived from (vk, x)");
-    println!("Result: m1 == m2: {}", m1 == m2);
+    println!("Result: k1 == k2: {}", k1 == k2);
     
     // Verify RHS parity for debugging
     let rhs_parity1 = gs.verify_masked_comt_rhs_parity(&masked_comt1, &vk, &x, rho);
@@ -1017,7 +1018,7 @@ fn test_two_distinct_groth16_proofs_same_output() {
 
     // MASKED VERIFIER COMT APPROACH: Now using deterministic proof elements
     // Deterministic proof elements derived from (vk, x) ensure proof-agnosticism
-    // Same statement → same proof elements → same M values
-    assert_eq!(m1, m2, "Two distinct Groth16 proofs for same (vk,x) must yield identical M (using deterministic proof elements)");
+    // Same statement → same proof elements → same KDF keys
+    assert_eq!(k1, k2, "Two distinct Groth16 proofs for same (vk,x) must yield identical KDF keys (using deterministic proof elements)");
 }
 
