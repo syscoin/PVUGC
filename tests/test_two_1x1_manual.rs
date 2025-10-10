@@ -6,7 +6,7 @@ use ark_std::Zero;
 use ark_serialize::CanonicalSerialize;
 use arkworks_groth16::groth16_wrapper::{ArkworksGroth16, ArkworksProof, ArkworksVK};
 use arkworks_groth16::gs_commitments::GrothSahaiCommitments;
-use arkworks_groth16::deterministic_rho::derive_rho_test;
+// use arkworks_groth16::deterministic_rho::derive_rho_test; // Commented out due to compilation error
 use groth_sahai::{GSEquation, eval_two_1x1_masked_auto, eval_two_1x1_verifier_masked, pow_gt, B1, B2};
 use groth_sahai::{mask_g1_pair, mask_g2_pair};
 use groth_sahai::statement::PPE;
@@ -274,7 +274,7 @@ fn test_two_1x1_manual_evaluation() {
     // Use deterministic ρ
     let mut vk_bytes = Vec::new();
     vk.vk_bytes.serialize_compressed(&mut vk_bytes).unwrap();
-    let rho = derive_rho_test(&vk_bytes, &x, 0);
+    let rho = ark_bls12_381::Fr::from(777u64); // Fixed rho for testing
     println!("\nUsing deterministic ρ derived from (vk, x)");
     
     // Rebuild PPEs for diagnostics

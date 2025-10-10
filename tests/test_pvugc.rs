@@ -20,6 +20,7 @@ use arkworks_groth16::{
     ArkworksVK,
     SchnorrAdaptor,
 };
+use arkworks_groth16::gs_commitments::compute_ic_from_vk_and_inputs;
 
 // GS internals for direct testing
 use groth_sahai::generator::CRS;
@@ -29,6 +30,7 @@ use groth_sahai::statement::PPE;
 use groth_sahai::{ppe_eval_with_masked_pairs, ppe_eval_bases, ppe_instance_bases};
 use groth_sahai::kem_eval::{mask_g1_pair, mask_g2_pair, pow_gt};
 use groth_sahai::data_structures::{Com1, Com2};
+use groth_sahai::{Mat, B1, B2};
 
 use schnorr_fun::fun::{marker::*, Scalar};
 use arkworks_groth16::groth16_wrapper::ArkworksGroth16;
@@ -929,7 +931,8 @@ fn test_two_distinct_groth16_proofs_same_output() {
     let ppe = gs.groth16_verify_as_ppe(&vk, &x);
     
     // CRS CONSISTENCY: Use one CRS instance for both commit and evaluation
-    let crs = gs.align_crs_rows_cols();
+    // Use original CRS, not aligned CRS, to ensure consistency
+    let crs = gs.get_crs().clone();
     
     // Use fixed rho for consistency with working test
     let rho = Fr::from(777u64);
@@ -952,9 +955,33 @@ fn test_two_distinct_groth16_proofs_same_output() {
     let mut det_rng1 = StdRng::from_seed(rng_seed);
     let mut det_rng2 = StdRng::from_seed(rng_seed);
     
-    // CORRECT VARIABLE ORDER: X=[π_A, π_C], Y=[π_B, δ] must be exact
-    let cpr1 = ppe.commit_and_prove(&[proof1.pi_a, proof1.pi_c], &[proof1.pi_b, vk.delta_g2], &crs, &mut det_rng1);
-    let cpr2 = ppe.commit_and_prove(&[proof2.pi_a, proof2.pi_c], &[proof2.pi_b, vk.delta_g2], &crs, &mut det_rng2);
+    // DEBUG: Check CRS dimensions
+    println!("Debug CRS dimensions:");
+    println!("  CRS u len: {}", crs.u.len());
+    println!("  CRS v len: {}", crs.v.len());
+    println!("  PPE gamma rows: {}", ppe.gamma.len());
+    println!("  PPE gamma cols: {}", ppe.gamma[0].len());
+    println!("  PPE a_consts len: {}", ppe.a_consts.len());
+    println!("  PPE b_consts len: {}", ppe.b_consts.len());
+    
+    // CORRECT VARIABLE ORDER: X=[π_A, π_C, IC], Y=[π_B, δ, -γ] must be exact
+    // IMPORTANT: arkworks uses NEGATED γ and δ in verification!
+    use ark_ec::CurveGroup;
+    let delta_neg = (-vk.delta_g2.into_group()).into_affine();
+    let gamma_neg = (-vk.gamma_g2.into_group()).into_affine();
+    let ic = compute_ic_from_vk_and_inputs(&vk, &x);
+    
+    let xvars1 = vec![proof1.pi_a, proof1.pi_c, ic];
+    let yvars1 = vec![proof1.pi_b, delta_neg, gamma_neg];
+    let xvars2 = vec![proof2.pi_a, proof2.pi_c, ic];
+    let yvars2 = vec![proof2.pi_b, delta_neg, gamma_neg];
+    
+    println!("Debug variable dimensions:");
+    println!("  X vars len: {}", xvars1.len());
+    println!("  Y vars len: {}", yvars1.len());
+    
+    let cpr1 = ppe.commit_and_prove(&xvars1, &yvars1, &crs, &mut det_rng1);
+    let cpr2 = ppe.commit_and_prove(&xvars2, &yvars2, &crs, &mut det_rng2);
     
     // CRITICAL INSIGHT: The prover test uses FIXED variables for all proofs
     // PVUGC uses DIFFERENT proof elements (pi_A, pi_B, pi_C) for each proof
@@ -995,6 +1022,104 @@ fn test_two_distinct_groth16_proofs_same_output() {
     assert!(groth16_verify1, "First Groth16 proof must verify");
     assert!(groth16_verify2, "Second Groth16 proof must verify");
     
+    // DEBUG: Check if Groth16 proof elements satisfy the PPE equation
+    // PPE equation: e(π_A, π_B) · e(π_C, δ) = e(α, β) · e(IC, γ)
+    // With γ = diag(1,1), this becomes: e(π_A, π_B) + e(π_C, δ) = target
+    // IMPORTANT: arkworks uses NEGATED δ and γ!
+    let lhs1 = Bls12_381::pairing(proof1.pi_a, proof1.pi_b) + Bls12_381::pairing(proof1.pi_c, delta_neg);
+    let lhs2 = Bls12_381::pairing(proof2.pi_a, proof2.pi_b) + Bls12_381::pairing(proof2.pi_c, delta_neg);
+    let rhs = ppe.target;
+    
+    // Also check the expected RHS: e(α, β) · e(IC, γ)
+    let ic = compute_ic_from_vk_and_inputs(&vk, &x);
+    let expected_rhs = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2) + Bls12_381::pairing(ic, gamma_neg);
+    
+    // DEBUG: Check IC computation
+    println!("Debug IC computation:");
+    println!("  Public input x: {:?}", x);
+    println!("  VK gamma_abc_g1 len: {}", vk.gamma_abc_g1.len());
+    println!("  IC = γ_abc[0] + ∑(γ_abc[i+1] * x[i])");
+    println!("  IC: {:?}", ic);
+    
+    // DEBUG: Check if Groth16 verification equation holds
+    // Groth16 equation: e(π_A, π_B) · e(π_C, δ) = e(α, β) · e(IC, γ)
+    // In GT, this becomes: e(π_A, π_B) + e(π_C, δ) = e(α, β) + e(IC, γ)
+    // IMPORTANT: arkworks uses NEGATED δ and γ!
+    let groth16_lhs1 = Bls12_381::pairing(proof1.pi_a, proof1.pi_b) + Bls12_381::pairing(proof1.pi_c, delta_neg);
+    let groth16_lhs2 = Bls12_381::pairing(proof2.pi_a, proof2.pi_b) + Bls12_381::pairing(proof2.pi_c, delta_neg);
+    let groth16_rhs = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2) + Bls12_381::pairing(ic, gamma_neg);
+    
+    println!("Debug Groth16 equation check:");
+    println!("  Groth16 LHS1 == RHS: {}", groth16_lhs1 == groth16_rhs);
+    println!("  Groth16 LHS2 == RHS: {}", groth16_lhs2 == groth16_rhs);
+    println!("  Groth16 LHS1 == LHS2: {}", groth16_lhs1 == groth16_lhs2);
+    
+    // DEBUG: Check individual pairing terms
+    let e_pi_a_pi_b_1 = Bls12_381::pairing(proof1.pi_a, proof1.pi_b);
+    let e_pi_c_delta_neg_1 = Bls12_381::pairing(proof1.pi_c, delta_neg);
+    let e_alpha_beta = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2);
+    let e_ic_gamma_neg = Bls12_381::pairing(ic, gamma_neg);
+    
+    println!("Debug individual pairings:");
+    println!("  e(π_A, π_B) = {:?}", e_pi_a_pi_b_1);
+    println!("  e(π_C, δ_neg) = {:?}", e_pi_c_delta_neg_1);
+    println!("  e(α, β) = {:?}", e_alpha_beta);
+    println!("  e(IC, γ_neg) = {:?}", e_ic_gamma_neg);
+    println!("  LHS = e(π_A, π_B) + e(π_C, δ_neg) = {:?}", groth16_lhs1);
+    println!("  RHS = e(α, β) + e(IC, γ_neg) = {:?}", groth16_rhs);
+    
+    println!("Debug PPE equation check:");
+    println!("  LHS1 == RHS: {}", lhs1 == rhs);
+    println!("  LHS2 == RHS: {}", lhs2 == rhs);
+    println!("  LHS1 == LHS2: {}", lhs1 == lhs2);
+    println!("  Expected RHS == RHS: {}", expected_rhs == rhs);
+    println!("  LHS1 == Expected RHS: {}", lhs1 == expected_rhs);
+    
+    // DEBUG: Check PPE gamma matrix
+    println!("Debug PPE gamma matrix:");
+    for (i, row) in ppe.gamma.iter().enumerate() {
+        println!("  gamma[{}]: {:?}", i, row);
+    }
+    
+    // DEBUG: Check variable order
+    println!("Debug variable order:");
+    println!("  X[0] = π_A, X[1] = π_C, X[2] = IC");
+    println!("  Y[0] = π_B, Y[1] = δ_neg, Y[2] = γ_neg");
+    println!("  With γ = diag(1,1,1), this should give: e(π_A, π_B) + e(π_C, δ_neg) + e(IC, γ_neg)");
+    
+    // DEBUG: Check if the issue is with variable order
+    println!("Debug variable values:");
+    println!("  π_A: {:?}", xvars1[0]);
+    println!("  π_C: {:?}", xvars1[1]);
+    println!("  IC: {:?}", xvars1[2]);
+    println!("  π_B: {:?}", yvars1[0]);
+    println!("  δ_neg: {:?}", yvars1[1]);
+    println!("  γ_neg: {:?}", yvars1[2]);
+    
+    // DEBUG: Check GS commitments
+    println!("Debug GS commitments:");
+    println!("  C1[0] (π_A): {:?}", cpr1.xcoms.coms[0]);
+    println!("  C1[1] (π_C): {:?}", cpr1.xcoms.coms[1]);
+    println!("  C1[2] (IC): {:?}", cpr1.xcoms.coms[2]);
+    println!("  C2[0] (π_B): {:?}", cpr1.ycoms.coms[0]);
+    println!("  C2[1] (δ_neg): {:?}", cpr1.ycoms.coms[1]);
+    println!("  C2[2] (γ_neg): {:?}", cpr1.ycoms.coms[2]);
+    
+    // DEBUG: Check GS proof elements
+    println!("Debug GS proof elements:");
+    println!("  π (proof elements): {:?}", cpr1.equ_proofs[0].pi);
+    println!("  θ (proof elements): {:?}", cpr1.equ_proofs[0].theta);
+    
+    // DEBUG: Use trace_verify to see what's happening
+    use groth_sahai::verifier::trace_verify;
+    let trace1 = trace_verify(&ppe, &cpr1, &crs);
+    println!("Debug GS trace verification:");
+    println!("  x_gamma_y: {:?}", trace1.x_gamma_y);
+    println!("  u_pi: {:?}", trace1.u_pi);
+    println!("  th_v: {:?}", trace1.th_v);
+    println!("  combined: {:?}", trace1.combined);
+    println!("  target: {:?}", trace1.target);
+    
     // VERIFY THEN EXTRACT: assert!(ppe.verify(&proof1, &crs) && ppe.verify(&proof2, &crs))
     let gs_verify1 = ppe.verify(&cpr1, &crs);
     let gs_verify2 = ppe.verify(&cpr2, &crs);
@@ -1004,22 +1129,35 @@ fn test_two_distinct_groth16_proofs_same_output() {
     assert!(gs_verify1, "First GS proof must verify");
     assert!(gs_verify2, "Second GS proof must verify");
     
-    // CORRECT MASKED COMT CALL: Call masked_verifier_comt(..., rho, false)
+    // CORRECT MASKED COMT CALL: Call masked_verifier_matrix_canonical
     // Use the SAME PPE and CRS as used for commit_and_prove
-    use groth_sahai::masked_verifier_comt;
+    use groth_sahai::masked_eval::masked_verifier_matrix_canonical;
     
-    let masked_comt1 = masked_verifier_comt(
+    let masked_matrix1 = masked_verifier_matrix_canonical(
         &ppe, &crs,  // Same PPE and CRS as commit_and_prove
         &cpr1.xcoms.coms, &cpr1.ycoms.coms,
         &cpr1.equ_proofs[0].pi, &cpr1.equ_proofs[0].theta,
-        rho, false,  // include_dual_helpers = false
+        rho,
     );
-    let masked_comt2 = masked_verifier_comt(
+    let masked_matrix2 = masked_verifier_matrix_canonical(
         &ppe, &crs,  // Same PPE and CRS as commit_and_prove
         &cpr2.xcoms.coms, &cpr2.ycoms.coms,
         &cpr2.equ_proofs[0].pi, &cpr2.equ_proofs[0].theta,
-        rho, false,  // include_dual_helpers = false
+        rho,
     );
+    
+    // Convert matrices to ComT for comparison
+    use groth_sahai::data_structures::{ComT, Matrix};
+    let matrix1: Matrix<PairingOutput<Bls12_381>> = vec![
+        vec![PairingOutput(masked_matrix1[0][0]), PairingOutput(masked_matrix1[0][1])],
+        vec![PairingOutput(masked_matrix1[1][0]), PairingOutput(masked_matrix1[1][1])],
+    ];
+    let matrix2: Matrix<PairingOutput<Bls12_381>> = vec![
+        vec![PairingOutput(masked_matrix2[0][0]), PairingOutput(masked_matrix2[0][1])],
+        vec![PairingOutput(masked_matrix2[1][0]), PairingOutput(masked_matrix2[1][1])],
+    ];
+    let masked_comt1 = ComT::<Bls12_381>::from(matrix1);
+    let masked_comt2 = ComT::<Bls12_381>::from(matrix2);
     
     // RHS mask should be linear_map_PPE(target^ρ)
     let PairingOutput(tgt) = ppe.target;
@@ -1030,6 +1168,87 @@ fn test_two_distinct_groth16_proofs_same_output() {
     println!("m1 == m2: {}", masked_comt1.as_matrix() == masked_comt2.as_matrix());
     println!("m1 == rhs: {}", masked_comt1.as_matrix() == rhs_mask.as_matrix());
     println!("m2 == rhs: {}", masked_comt2.as_matrix() == rhs_mask.as_matrix());
+
+    // Detailed diagnostics: compare masked verifier legs vs RHS per cell for both proofs
+    {
+        use groth_sahai::data_structures::{ComT, vec_to_col_vec, col_vec_to_vec, Com1 as DSCom1, Com2 as DSCom2};
+        use ark_ec::CurveGroup;
+
+        let print_legs = |label: &str, x: &Vec<DSCom1<Bls12_381>>, y: &Vec<DSCom2<Bls12_381>>, pi: &Vec<DSCom2<Bls12_381>>, theta: &Vec<DSCom1<Bls12_381>>| {
+            // Γ·Y and cross leg ^rho (post-exp on GT cells)
+            let stmt_y = vec_to_col_vec(y).left_mul(&ppe.gamma, false);
+            let cross = ComT::<Bls12_381>::pairing_sum(x, &col_vec_to_vec(&stmt_y)).as_matrix();
+
+            // U^rho and V^rho primaries
+            let u_rho: Vec<DSCom1<Bls12_381>> = crs.u.iter().map(|u| DSCom1::<Bls12_381>(
+                (u.0.into_group()*rho).into_affine(),
+                (u.1.into_group()*rho).into_affine(),
+            )).collect();
+            let v_rho: Vec<DSCom2<Bls12_381>> = crs.v.iter().map(|v| DSCom2::<Bls12_381>(
+                (v.0.into_group()*rho).into_affine(),
+                (v.1.into_group()*rho).into_affine(),
+            )).collect();
+
+            let u_pi = ComT::<Bls12_381>::pairing_sum(&u_rho, pi).as_matrix();
+            let th_v = ComT::<Bls12_381>::pairing_sum(theta, &v_rho).as_matrix();
+            // Constants a,b masked on CRS side: a^ρ and b^ρ
+            let i1_a = DSCom1::<Bls12_381>::batch_linear_map(&ppe.a_consts);
+            let i2_b = DSCom2::<Bls12_381>::batch_linear_map(&ppe.b_consts);
+            let i1_a_rho: Vec<DSCom1<Bls12_381>> = i1_a.iter().map(|c| DSCom1::<Bls12_381>(
+                (c.0.into_group()*rho).into_affine(),
+                (c.1.into_group()*rho).into_affine(),
+            )).collect();
+            let i2_b_rho: Vec<DSCom2<Bls12_381>> = i2_b.iter().map(|d| DSCom2::<Bls12_381>(
+                (d.0.into_group()*rho).into_affine(),
+                (d.1.into_group()*rho).into_affine(),
+            )).collect();
+            let a_y = ComT::<Bls12_381>::pairing_sum(&i1_a_rho, y).as_matrix();
+            let x_b = ComT::<Bls12_381>::pairing_sum(x, &i2_b_rho).as_matrix();
+
+            let rhs = rhs_mask.as_matrix();
+            println!("{} per-cell equalities vs RHS:", label);
+            let show = |name: &str, m: &[[PairingOutput<Bls12_381>;2];2]| {
+                print!("{}: ", name);
+                for r in 0..2 { for c in 0..2 { print!("[{}][{}] {}  ", r, c, m[r][c]==rhs[r][c]); } print!(" | "); }
+                println!("");
+            };
+            show("(X⊗ΓY)^ρ", &[
+                [PairingOutput(cross[0][0].0.pow(rho.into_bigint())), PairingOutput(cross[0][1].0.pow(rho.into_bigint()))],
+                [PairingOutput(cross[1][0].0.pow(rho.into_bigint())), PairingOutput(cross[1][1].0.pow(rho.into_bigint()))],
+            ]);
+            let u_pi_arr = [[u_pi[0][0], u_pi[0][1]], [u_pi[1][0], u_pi[1][1]]];
+            let th_v_arr = [[th_v[0][0], th_v[0][1]], [th_v[1][0], th_v[1][1]]];
+            let a_y_arr = [[a_y[0][0], a_y[0][1]], [a_y[1][0], a_y[1][1]]];
+            let x_b_arr = [[x_b[0][0], x_b[0][1]], [x_b[1][0], x_b[1][1]]];
+
+            show("U^ρ⊗π", &u_pi_arr);
+            show("θ⊗V^ρ", &th_v_arr);
+            show("(i1(a)·Y)^ρ", &a_y_arr);
+            show("(X·i2(b))^ρ", &x_b_arr);
+        };
+        print_legs("proof1", &cpr1.xcoms.coms, &cpr1.ycoms.coms, &cpr1.equ_proofs[0].pi, &cpr1.equ_proofs[0].theta);
+        print_legs("proof2", &cpr2.xcoms.coms, &cpr2.ycoms.coms, &cpr2.equ_proofs[0].pi, &cpr2.equ_proofs[0].theta);
+    }
+
+    // Try gamma-transpose variant to detect wiring orientation issues
+    {
+        use groth_sahai::masked_verifier_comt_with_gamma_mode;
+        let m1_t = masked_verifier_comt_with_gamma_mode(
+            &ppe, &crs,
+            &cpr1.xcoms.coms, &cpr1.ycoms.coms,
+            &cpr1.equ_proofs[0].pi, &cpr1.equ_proofs[0].theta,
+            rho, true,
+        );
+        let m2_t = masked_verifier_comt_with_gamma_mode(
+            &ppe, &crs,
+            &cpr2.xcoms.coms, &cpr2.ycoms.coms,
+            &cpr2.equ_proofs[0].pi, &cpr2.equ_proofs[0].theta,
+            rho, true,
+        );
+        println!("Transpose check: m1_t == m2_t: {}", m1_t.as_matrix() == m2_t.as_matrix());
+        println!("Transpose check: m1_t == rhs: {}", m1_t.as_matrix() == rhs_mask.as_matrix());
+        println!("Transpose check: m2_t == rhs: {}", m2_t.as_matrix() == rhs_mask.as_matrix());
+    }
     
     // Assert matrix equality
     assert_eq!(masked_comt1.as_matrix(), masked_comt2.as_matrix(), "Both proofs should produce identical masked ComT matrices");
@@ -1043,6 +1262,50 @@ fn test_two_distinct_groth16_proofs_same_output() {
     println!("\nUsing deterministic rho derived from (vk, x)");
     println!("Result: k1 == k2: {}", k1 == k2);
 
+    // Test masked ComT-based KEM extraction (correct approach)
+    println!("\n=== Testing Masked ComT-based KEM Extraction ===");
+    
+    // Create test masked bases (U^ρ, V^ρ) for testing
+    let masked_bases_d1: Vec<Com1<Bls12_381>> = crs.u.iter().map(|u| Com1::<Bls12_381>(
+        (u.0.into_group() * rho).into_affine(),
+        (u.1.into_group() * rho).into_affine(),
+    )).collect();
+    let masked_bases_d2: Vec<Com2<Bls12_381>> = crs.v.iter().map(|v| Com2::<Bls12_381>(
+        (v.0.into_group() * rho).into_affine(),
+        (v.1.into_group() * rho).into_affine(),
+    )).collect();
+    
+    // Create GSAttestation structs from the GS proofs
+    let att1 = GSAttestation {
+        c1_commitments: cpr1.xcoms.coms.clone(),
+        c2_commitments: cpr1.ycoms.coms.clone(),
+        pi_elements: cpr1.equ_proofs[0].pi.clone(),
+        theta_elements: cpr1.equ_proofs[0].theta.clone(),
+        proof_data: vec![], // TODO: Extract proper proof data
+        randomness_used: vec![],
+        ppe_target: ppe.target.0,
+    };
+    let att2 = GSAttestation {
+        c1_commitments: cpr2.xcoms.coms.clone(),
+        c2_commitments: cpr2.ycoms.coms.clone(),
+        pi_elements: cpr2.equ_proofs[0].pi.clone(),
+        theta_elements: cpr2.equ_proofs[0].theta.clone(),
+        proof_data: vec![], // TODO: Extract proper proof data
+        randomness_used: vec![],
+        ppe_target: ppe.target.0,
+    };
+    
+    let kem_key1 = gs.derive_kem_key_from_masked_comt(&att1, &ppe, &masked_bases_d1, &masked_bases_d2, b"ctx", b"gs_instance");
+    let kem_key2 = gs.derive_kem_key_from_masked_comt(&att2, &ppe, &masked_bases_d1, &masked_bases_d2, b"ctx", b"gs_instance");
+    
+    println!("Masked ComT KEM Key1 == KEM Key2: {}", kem_key1 == kem_key2);
+    
+    // Verify that masked ComT-based KEM keys are identical (proof-agnostic)
+    assert_eq!(kem_key1, kem_key2, "Masked ComT-based KEM keys must be identical for same statement");
+    
+    // Verify that masked ComT-based KEM keys match the direct masked ComT keys
+    println!("Masked ComT KEM == Direct Masked ComT KEM: {}", kem_key1 == k1);
+    
     // MASKED VERIFIER COMT APPROACH: Using deterministic GS commitment randomness
     // With deterministic GS commitment randomness, the masked verifier ComT SHOULD provide proof-agnostic determinism
     // Same (vk,x) → same GS commitment randomness → same masked ComT → same KDF keys

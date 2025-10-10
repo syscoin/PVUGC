@@ -4,6 +4,7 @@ pub mod prover;
 pub mod statement;
 pub mod verifier;
 pub mod kem_eval;
+pub mod masked_eval;
 
 pub use crate::data_structures::*;
 pub use crate::generator::*;
@@ -26,4 +27,9 @@ pub use crate::kem_eval::{
     pow_gt,
     mask_g1_pair,
     mask_g2_pair,
+};
+
+pub use crate::masked_eval::{
+    masked_verifier_matrix_canonical,
+    rhs_masked_matrix,
 };

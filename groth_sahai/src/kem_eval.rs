@@ -510,10 +510,20 @@ fn comt_v_dual_rho_with_y<E: Pairing>(y: &[Com2<E>], crs: &CRS<E>, rho: E::Scala
 }
 
 fn comt_gamma_cross_pow_rho<E: Pairing>(x: &[Com1<E>], y: &[Com2<E>], gamma: &Vec<Vec<E::ScalarField>>, rho: E::ScalarField) -> ComT<E> {
-    // Scale Y by rho in the cross leg so (c·Γ·d)^ρ is reflected
-    let y_rho = scale_com2::<E>(y, rho);
-    let stmt_y_rho = vec_to_col_vec(&y_rho).left_mul(gamma, false);
-    ComT::<E>::pairing_sum(x, &col_vec_to_vec(&stmt_y_rho))
+    // Compute unmasked cross leg X ⊗ (Γ·Y), then post-exponentiate each GT cell by ρ
+    let stmt_y = vec_to_col_vec(y).left_mul(gamma, false);
+    let cross = ComT::<E>::pairing_sum(x, &col_vec_to_vec(&stmt_y));
+    let mm = cross.as_matrix();
+    ComT::<E>::from(vec![
+        vec![
+            PairingOutput::<E>(mm[0][0].0.pow(rho.into_bigint())),
+            PairingOutput::<E>(mm[0][1].0.pow(rho.into_bigint())),
+        ],
+        vec![
+            PairingOutput::<E>(mm[1][0].0.pow(rho.into_bigint())),
+            PairingOutput::<E>(mm[1][1].0.pow(rho.into_bigint())),
+        ],
+    ])
 }
 
 /// Build masked verifier-style ComT: (X⊗ΓY)^ρ ⊕ (U^ρ⊗π) ⊕ (θ⊗V^ρ) [⊕ dual-helper buckets]
@@ -532,15 +542,15 @@ pub fn masked_verifier_comt<E: Pairing>(
     let v_rho = scale_v_by_rho::<E>(crs, rho);
     let u_pi_rho = ComT::<E>::pairing_sum(&u_rho, pi);
     let th_v_rho = ComT::<E>::pairing_sum(theta, &v_rho);
-    // Constants legs masked: (i1(a)·Y)^ρ via Y^ρ, and (X·i2(b))^ρ via X^ρ
+    // Constants legs: apply ρ on CRS constants (a,b), not on commitments
     let i1_a: Vec<Com1<E>> = Com1::batch_linear_map(&ppe.a_consts);
     let i2_b: Vec<Com2<E>> = Com2::batch_linear_map(&ppe.b_consts);
-    let x_rho = scale_com1::<E>(x_coms, rho);
-    let y_rho = scale_com2::<E>(y_coms, rho);
-    let a_y_rho = ComT::<E>::pairing_sum(&i1_a, &y_rho);
-    let x_rho_b = ComT::<E>::pairing_sum(&x_rho, &i2_b);
+    let i1_a_rho = scale_com1::<E>(&i1_a, rho);
+    let i2_b_rho = scale_com2::<E>(&i2_b, rho);
+    let a_y_rho = ComT::<E>::pairing_sum(&i1_a_rho, y_coms);
+    let x_b_rho = ComT::<E>::pairing_sum(x_coms, &i2_b_rho);
 
-    let mut acc = (((cross_rho + u_pi_rho) + th_v_rho) + a_y_rho) + x_rho_b;
+    let mut acc = (((cross_rho + u_pi_rho) + th_v_rho) + a_y_rho) + x_b_rho;
     if include_dual_helpers {
         acc = acc + comt_x_with_u_dual_rho::<E>(x_coms, crs, rho)
                   + comt_v_dual_rho_with_y::<E>(y_coms, crs, rho);
@@ -573,11 +583,11 @@ pub fn masked_verifier_comt_with_gamma_mode<E: Pairing>(
     let th_v_rho = ComT::<E>::pairing_sum(theta, &v_rho);
     let i1_a: Vec<Com1<E>> = Com1::batch_linear_map(&ppe.a_consts);
     let i2_b: Vec<Com2<E>> = Com2::batch_linear_map(&ppe.b_consts);
-    let x_rho = scale_com1::<E>(x_coms, rho);
-    let y_rho = scale_com2::<E>(y_coms, rho);
-    let a_y_rho = ComT::<E>::pairing_sum(&i1_a, &y_rho);
-    let x_rho_b = ComT::<E>::pairing_sum(&x_rho, &i2_b);
-    (((cross_rho + u_pi_rho) + th_v_rho) + a_y_rho) + x_rho_b
+    let i1_a_rho = scale_com1::<E>(&i1_a, rho);
+    let i2_b_rho = scale_com2::<E>(&i2_b, rho);
+    let a_y_rho = ComT::<E>::pairing_sum(&i1_a_rho, y_coms);
+    let x_b_rho = ComT::<E>::pairing_sum(x_coms, &i2_b_rho);
+    (((cross_rho + u_pi_rho) + th_v_rho) + a_y_rho) + x_b_rho
 }
 
 /// Build unmasked verifier LHS ComT exactly as verifier.rs, then exponentiate each cell by ρ and return the 2×2 matrix.
