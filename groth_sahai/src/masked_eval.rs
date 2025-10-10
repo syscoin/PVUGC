@@ -73,22 +73,26 @@ pub fn masked_verifier_matrix_canonical<E: Pairing>(
     rho: E::ScalarField,
 ) -> [[E::TargetField; 2]; 2] {
     // 1) Linear legs with rho on CRS constants, NOT on commitments
+    // PPE should now be 2-variable to match GS CRS size
     let i1_a      = Com1::<E>::batch_linear_map(&ppe.a_consts);
     let i2_b      = Com2::<E>::batch_linear_map(&ppe.b_consts);
     let i1_a_rho  = scale_com1::<E>(&i1_a, rho);
     let i2_b_rho  = scale_com2::<E>(&i2_b, rho);
 
-    let aY_rho    = ComT::<E>::pairing_sum(&i1_a_rho, ycoms);           // e(a^ρ, Y)
-    let Xb_rho    = ComT::<E>::pairing_sum(xcoms, &i2_b_rho);           // e(X, b^ρ)
+    let aY_rho    = ComT::<E>::pairing_sum(&i1_a_rho, ycoms);     // e(a^ρ, Y)
+    let Xb_rho    = ComT::<E>::pairing_sum(xcoms, &i2_b_rho);     // e(X, b^ρ)
 
     // 2) γ cross leg: compute unmasked, then ^ρ on GT cells (post-exp)
+    // PPE should now be 2-variable to match GS CRS size
     let stmt_y    = vec_to_col_vec(ycoms).left_mul(&ppe.gamma, false);  // Γ·Y
     let cross     = ComT::<E>::pairing_sum(xcoms, &col_vec_to_vec(&stmt_y)); // e(X, ΓY)
     let cross_rho = comt_pow_cells::<E>(&cross, rho);                    // e(X, ΓY)^ρ
 
     // 3) Proof legs with rho on CRS primaries (U,V), NOT on π/θ
+    // GS CRS is fixed at 2 elements, matching PPE size
     let u_rho     = scale_com1::<E>(&crs.u, rho);
     let v_rho     = scale_com2::<E>(&crs.v, rho);
+    
     let upi_rho   = ComT::<E>::pairing_sum(&u_rho, pi);                 // e(U^ρ, π)
     let thv_rho   = ComT::<E>::pairing_sum(theta, &v_rho);              // e(θ, V^ρ)
 
