@@ -21,6 +21,7 @@ use groth_sahai::{
     prover::Provable,
     kdf_from_comt,
 };
+use groth_sahai::data_structures::BT;
 
 use crate::groth16_wrapper::{ArkworksProof, ArkworksVK, compute_ic};
 
@@ -124,7 +125,7 @@ impl GrothSahaiCommitments {
         version: u64,
         _rng: &mut R,
     ) -> Result<GSAttestation, GSCommitmentError> {
-        // Use REAL Groth16 proof elements - this preserves proof-gating
+        // Use REAL groth16 proof elements - this preserves proof-gating
         // Use 2-variable PPE to match GS CRS size
         let ppe = self.groth16_verify_as_ppe_2var(vk, public_input);
         
@@ -134,7 +135,7 @@ impl GrothSahaiCommitments {
         use ark_ec::CurveGroup;
         let delta_neg = (-vk.delta_g2.into_group()).into_affine();
         
-        // Slice to 2 variables to match GS CRS size
+        // Use 2-slot variables with δ_neg to match arkworks Groth16 verifier wiring
         let xvars = vec![proof.pi_a, proof.pi_c];
         let yvars = vec![proof.pi_b, delta_neg];
         
@@ -407,9 +408,9 @@ impl GrothSahaiCommitments {
         attestation: &GSAttestation,
         u_bases: &[(G2Affine, G2Affine)],
         v_bases: &[(G1Affine, G1Affine)],
-        _g_target: &Fq12,  // Not used with dual bases
+        _g_target: &Fq12,  // Used to build canonical PPE target
     ) -> Result<bool, GSCommitmentError> {
-        // Structural validation
+        // Structural validation (keep basic shape checks against provided bases)
         if attestation.c1_commitments.len() != u_bases.len() {
             return Err(GSCommitmentError::InvalidInput(
                 "C1 commitments count must match U bases count".to_string()
@@ -420,45 +421,49 @@ impl GrothSahaiCommitments {
                 "C2 commitments count must match V bases count".to_string()
             ));
         }
-        
-        // VERIFICATION: Check that KEM formula M = anchor^ρ holds
-        // This is the PVUGC property that must be satisfied
-        
-        use groth_sahai::kem_eval::{ppe_eval_with_masked_pairs, mask_g1_pair, mask_g2_pair, pow_gt};
+
+        // Canonical verification using masked verifier algebra for the 2-variable PPE
+        // Build 2×2 PPE with diagonal γ and the provided target
+        use groth_sahai::statement::PPE;
+        use groth_sahai::masked_eval::masked_verifier_matrix_canonical;
+        use groth_sahai::data_structures::{ComT, Matrix};
         use ark_std::test_rng;
-        
-        // Pick a random ρ for verification
+        use ark_ff::Field;
+
+        let ppe = PPE::<Bls12_381> {
+            a_consts: vec![G1Affine::zero(), G1Affine::zero()],
+            b_consts: vec![G2Affine::zero(), G2Affine::zero()],
+            gamma: vec![vec![Fr::one(), Fr::zero()], vec![Fr::zero(), Fr::one()]],
+            target: PairingOutput::<Bls12_381>(*_g_target),
+        };
+
+        // Random ρ for parity check
         let mut rng = test_rng();
         let rho = Fr::rand(&mut rng);
-        
-        // Mask bases
-        let u_bases_masked: Vec<_> = u_bases.iter()
-            .map(|&p| mask_g2_pair::<Bls12_381>(p, rho))
-            .collect();
-        let v_bases_masked: Vec<_> = v_bases.iter()
-            .map(|&p| mask_g1_pair::<Bls12_381>(p, rho))
-            .collect();
-        
-        // Compute with masked bases
-        let PairingOutput(result_masked) = ppe_eval_with_masked_pairs::<Bls12_381>(
+
+        // Compute masked verifier matrix from attestation artifacts
+        let masked_matrix = masked_verifier_matrix_canonical(
+            &ppe,
+            &self.crs,
             &attestation.c1_commitments,
             &attestation.c2_commitments,
-            &u_bases_masked,
-            &v_bases_masked,
+            &attestation.pi_elements,
+            &attestation.theta_elements,
+            rho,
         );
-        
-        // Compute with unmasked bases
-        let PairingOutput(anchor_unmasked) = ppe_eval_with_masked_pairs::<Bls12_381>(
-            &attestation.c1_commitments,
-            &attestation.c2_commitments,
-            u_bases,  // Unmasked
-            v_bases,
-        );
-        
-        // Verify: result_masked = anchor_unmasked^ρ
-        let expected = pow_gt::<Bls12_381>(anchor_unmasked, rho);
-        
-        Ok(result_masked == expected)
+
+        // Convert to ComT for comparison
+        let lhs: Matrix<PairingOutput<Bls12_381>> = vec![
+            vec![PairingOutput(masked_matrix[0][0]), PairingOutput(masked_matrix[0][1])],
+            vec![PairingOutput(masked_matrix[1][0]), PairingOutput(masked_matrix[1][1])],
+        ];
+        let lhs_comt = ComT::<Bls12_381>::from(lhs);
+
+        // RHS: linear_map_PPE(target^ρ)
+        let PairingOutput(tgt) = ppe.target;
+        let rhs_comt = ComT::<Bls12_381>::linear_map_PPE(&PairingOutput::<Bls12_381>(tgt.pow(rho.into_bigint())));
+
+        Ok(lhs_comt.as_matrix() == rhs_comt.as_matrix())
     }
 
     /// Compute target for real arkworks proof: G_G16(vk, x) = e(α, β) · e(IC, γ)
@@ -514,42 +519,29 @@ impl GrothSahaiCommitments {
 
     /// Encode Groth16 verification equation into GS PPE for specific (vk, x)
     /// Groth16 verification: e(π_A, π_B) · e(π_C, δ) = e(α, β) · e(IC, γ)
-    /// We encode this as: e(π_A, π_B) · e(π_C, δ) · e(IC, -γ) = target
-    /// where target = e(α, β) is computed from (vk, x)
+    /// 2-variable PPE: X=[π_A, π_C], Y=[π_B, δ_neg]; target = e(α,β)·e(IC,γ)
     pub fn groth16_verify_as_ppe(&self, vk: &ArkworksVK, public_input: &[Fr]) -> PPE<Bls12_381> {
+        use ark_ec::CurveGroup;
         // Compute IC = ∑(γ_abc_i * x_i) for public inputs
         let ic = compute_ic_from_vk_and_inputs(vk, public_input);
-
-        // Compute target: e(α, β)
+        // target = e(α,β)·e(IC,γ)
         let e_alpha_beta = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2);
-        let target = PairingOutput::<Bls12_381>(e_alpha_beta.0);
-
-        // Build PPE for Groth16 verification
-        // arkworks computes: e(π_A, π_B) · e(π_C, δ) = e(α, β) · e(IC, γ)
-        // 
-        // For GS PPE, we need to encode this as: e(X, Y) = target where:
-        // - X = [π_A, π_C, IC] (G1 variables)
-        // - Y = [π_B, δ, -γ] (G2 variables) 
-        // - target = e(α, β)
-        // 
-        // This gives us: e(π_A, π_B) · e(π_C, δ) · e(IC, -γ) = e(α, β)
-        use ark_ec::CurveGroup;
-        let gamma_neg = (-vk.gamma_g2.into_group()).into_affine();
-        
+        let e_ic_gamma = Bls12_381::pairing(ic, vk.gamma_g2);
+        let target = PairingOutput::<Bls12_381>(e_alpha_beta.0 * e_ic_gamma.0);
+        // arkworks uses NEGATED δ in verification
+        let delta_neg = (-vk.delta_g2.into_group()).into_affine();
         PPE::<Bls12_381> {
-            a_consts: vec![G1Affine::zero(), G1Affine::zero(), G1Affine::zero()],
-            b_consts: vec![G2Affine::zero(), G2Affine::zero(), G2Affine::zero()],
+            a_consts: vec![G1Affine::zero(), G1Affine::zero()],
+            b_consts: vec![G2Affine::zero(), G2Affine::zero()],
             gamma: vec![
-                vec![Fr::one(), Fr::zero(), Fr::zero()],  // e(π_A, π_B) term
-                vec![Fr::zero(), Fr::one(), Fr::zero()],  // e(π_C, δ) term
-                vec![Fr::zero(), Fr::zero(), Fr::one()],  // e(IC, -γ) term
+                vec![Fr::one(), Fr::zero()],
+                vec![Fr::zero(), Fr::one()],
             ],
             target,
         }
     }
 
-    /// Create a 2-variable PPE for GS commitments (matches GS CRS size)
-    /// This slices the 3-variable PPE to work with the fixed 2-element GS CRS
+    /// Create a 2-variable PPE form (legacy). Retained for compatibility tests.
     pub fn groth16_verify_as_ppe_2var(&self, vk: &ArkworksVK, public_input: &[Fr]) -> PPE<Bls12_381> {
         // Compute IC = ∑(γ_abc_i * x_i) for public inputs
         let ic = compute_ic_from_vk_and_inputs(vk, public_input);

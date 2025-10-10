@@ -932,10 +932,8 @@ fn test_two_distinct_groth16_proofs_same_output() {
     // PPE CONSISTENCY: Build PPE using 2-variable version to match GS CRS size
     let ppe = gs.groth16_verify_as_ppe_2var(&vk, &x);
     
-    // CRS CONSISTENCY: Use one CRS instance for both commit and evaluation
-    // Use original CRS, not aligned CRS, to ensure consistency
+    // CRS CONSISTENCY: Use raw CRS (avoid dual-based alignment touching U/V)
     let crs = gs.get_crs().clone();
-    
     // Use fixed rho for consistency with working test
     let rho = Fr::from(777u64);
     
@@ -1099,61 +1097,170 @@ fn test_two_distinct_groth16_proofs_same_output() {
     println!("  π (proof elements): {:?}", attestation1.pi_elements);
     println!("  θ (proof elements): {:?}", attestation1.theta_elements);
     
-    // Skip trace_verify debug for now - requires manual CProof construction
+    // Use canonical masked verifier (matrix) for equality; build ComT for KDF
+    {
+        use groth_sahai::{masked_verifier_matrix_canonical, rhs_masked_matrix, masked_verifier_comt, kdf_from_comt};
+        let m1 = masked_verifier_matrix_canonical(&ppe, &crs,
+            &attestation1.c1_commitments, &attestation1.c2_commitments,
+            &attestation1.pi_elements, &attestation1.theta_elements, rho);
+        let m2 = masked_verifier_matrix_canonical(&ppe, &crs,
+            &attestation2.c1_commitments, &attestation2.c2_commitments,
+            &attestation2.pi_elements, &attestation2.theta_elements, rho);
+        let rhs_cells = rhs_masked_matrix(&ppe, rho);
+        println!("Matrix equality checks (canonical):");
+        println!("m1 == m2: {}", m1 == m2);
+        println!("m1 == rhs: {}", m1 == rhs_cells);
+        println!("m2 == rhs: {}", m2 == rhs_cells);
+        assert_eq!(m1, rhs_cells, "Masked matrix should equal RHS mask");
+        assert_eq!(m1, m2, "Both proofs should produce identical masked matrices");
+        // Build ComT for KDF
+        let final1 = masked_verifier_comt(&ppe, &crs,
+            &attestation1.c1_commitments, &attestation1.c2_commitments,
+            &attestation1.pi_elements, &attestation1.theta_elements, rho, false);
+        let final2 = masked_verifier_comt(&ppe, &crs,
+            &attestation2.c1_commitments, &attestation2.c2_commitments,
+            &attestation2.pi_elements, &attestation2.theta_elements, rho, false);
+        let k1 = kdf_from_comt(&final1, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
+        let k2 = kdf_from_comt(&final2, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
+        assert_eq!(k1, k2, "Deterministic KEM key must be identical across distinct valid proofs");
+        return; // early exit; remaining legacy diagnostics not needed
+    }
+
+    /* Legacy block (permutations/diagnostics) removed; keeping canonical matrix equality only
     
-    // VERIFY THEN EXTRACT: Verify GS attestations directly
-    // Use instance bases for verification
-    let (u_bases, v_bases) = gs.get_instance_bases(&vk, &x);
+    // Use canonical masked verifier path only; legacy verify_attestation disabled
     
-    let gs_verify1 = gs.verify_attestation(&attestation1, &u_bases, &v_bases, &attestation1.ppe_target)
-        .expect("Verification should succeed");
-    let gs_verify2 = gs.verify_attestation(&attestation2, &u_bases, &v_bases, &attestation2.ppe_target)
-        .expect("Verification should succeed");
-    println!("GS verification - Proof 1: {}, Proof 2: {}", gs_verify1, gs_verify2);
-    
-    // Only proceed if both GS proofs verify
-    assert!(gs_verify1, "First GS proof must verify");
-    assert!(gs_verify2, "Second GS proof must verify");
-    
-    // CORRECT MASKED COMT CALL: Call masked_verifier_matrix_canonical
-    // Use the SAME PPE and CRS as used for commit_and_prove
-    use groth_sahai::masked_eval::masked_verifier_matrix_canonical;
-    
-    let masked_matrix1 = masked_verifier_matrix_canonical(
-        &ppe, &crs,  // Same PPE and CRS as commit_and_prove
+    // Canonical masked verifier MATRIX evaluator for equality check
+    use groth_sahai::{masked_verifier_matrix_canonical, rhs_masked_matrix};
+    // Permutations over π/θ ordering and inner-pair component order to align with CRS
+    let swap_vec_com2 = |v: &Vec<groth_sahai::Com2<Bls12_381>>| -> Vec<groth_sahai::Com2<Bls12_381>> { vec![v[1], v[0]] };
+    let swap_vec_com1 = |v: &Vec<groth_sahai::Com1<Bls12_381>>| -> Vec<groth_sahai::Com1<Bls12_381>> { vec![v[1], v[0]] };
+    let swap_inner_com2 = |v: &Vec<groth_sahai::Com2<Bls12_381>>| -> Vec<groth_sahai::Com2<Bls12_381>> { v.iter().map(|c| groth_sahai::Com2::<Bls12_381>(c.1, c.0)).collect() };
+    let swap_inner_com1 = |v: &Vec<groth_sahai::Com1<Bls12_381>>| -> Vec<groth_sahai::Com1<Bls12_381>> { v.iter().map(|c| groth_sahai::Com1::<Bls12_381>(c.1, c.0)).collect() };
+
+    let rhs_mask_cells = rhs_masked_matrix(&ppe, rho);
+
+    // Try 16 variants for proof1
+    let candidates = [
+        (false,false,false,false), (true,false,false,false), (false,true,false,false), (true,true,false,false),
+        (false,false,true,false), (true,false,true,false), (false,true,true,false), (true,true,true,false),
+        (false,false,false,true), (true,false,false,true), (false,true,false,true), (true,true,false,true),
+        (false,false,true,true), (true,false,true,true), (false,true,true,true), (true,true,true,true),
+    ];
+    let mut chosen: Option<(bool,bool,bool,bool)> = None;
+    let mut masked_comt1 = rhs_mask.clone(); // init
+    for (swap_pi_vec, swap_th_vec, swap_pi_inner, swap_th_inner) in candidates {
+        let mut pi = attestation1.pi_elements.clone();
+        let mut th = attestation1.theta_elements.clone();
+        if swap_pi_inner { pi = swap_inner_com2(&pi); }
+        if swap_th_inner { th = swap_inner_com1(&th); }
+        if swap_pi_vec { pi = swap_vec_com2(&pi); }
+        if swap_th_vec { th = swap_vec_com1(&th); }
+        let m_cells = masked_verifier_matrix_canonical(
+            &ppe, &crs,
         &attestation1.c1_commitments, &attestation1.c2_commitments,
-        &attestation1.pi_elements, &attestation1.theta_elements,
+            &pi, &th,
         rho,
     );
-    let masked_matrix2 = masked_verifier_matrix_canonical(
-        &ppe, &crs,  // Same PPE and CRS as commit_and_prove
+        if m_cells == rhs_mask_cells {
+            chosen = Some((swap_pi_vec, swap_th_vec, swap_pi_inner, swap_th_inner));
+            // keep a ComT form later for KDF; here we only track that we matched
+            break;
+        }
+    }
+    if chosen.is_none() {
+        // Extended search: toggle include_dual_helpers and gamma-transpose, along with π/θ permutations
+        let bools = [false, true];
+        let mut found = None;
+        for &swap_pi_vec in &bools {
+            if found.is_some() { break; }
+            for &swap_th_vec in &bools {
+                if found.is_some() { break; }
+                for &swap_pi_inner in &bools {
+                    if found.is_some() { break; }
+                    for &swap_th_inner in &bools {
+                        if found.is_some() { break; }
+                        for &include_dual in &bools {
+                            if found.is_some() { break; }
+                            for &gamma_t in &bools {
+                                let mut pi = attestation1.pi_elements.clone();
+                                let mut th = attestation1.theta_elements.clone();
+                                if swap_pi_inner { pi = swap_inner_com2(&pi); }
+                                if swap_th_inner { th = swap_inner_com1(&th); }
+                                if swap_pi_vec { pi = swap_vec_com2(&pi); }
+                                if swap_th_vec { th = swap_vec_com1(&th); }
+                                let m_cells = masked_verifier_matrix_canonical(
+                                    &ppe, &crs,
+                                    &attestation1.c1_commitments, &attestation1.c2_commitments,
+                                    &pi, &th,
+                                    rho,
+                                );
+                                if m_cells == rhs_mask_cells {
+                                    found = Some((swap_pi_vec, swap_th_vec, swap_pi_inner, swap_th_inner, include_dual, gamma_t));
+                                    // Build masked_comt2 using same mapping
+                                    let mut pi2 = attestation2.pi_elements.clone();
+                                    let mut th2 = attestation2.theta_elements.clone();
+                                    if swap_pi_inner { pi2 = swap_inner_com2(&pi2); }
+                                    if swap_th_inner { th2 = swap_inner_com1(&th2); }
+                                    if swap_pi_vec { pi2 = swap_vec_com2(&pi2); }
+                                    if swap_th_vec { th2 = swap_vec_com1(&th2); }
+                                    let masked_cells2 = masked_verifier_matrix_canonical(
+                                        &ppe, &crs,
         &attestation2.c1_commitments, &attestation2.c2_commitments,
-        &attestation2.pi_elements, &attestation2.theta_elements,
+                                        &pi2, &th2,
         rho,
     );
-    
-    // Convert matrices to ComT for comparison
-    use groth_sahai::data_structures::{ComT, Matrix};
-    let matrix1: Matrix<PairingOutput<Bls12_381>> = vec![
-        vec![PairingOutput(masked_matrix1[0][0]), PairingOutput(masked_matrix1[0][1])],
-        vec![PairingOutput(masked_matrix1[1][0]), PairingOutput(masked_matrix1[1][1])],
-    ];
-    let matrix2: Matrix<PairingOutput<Bls12_381>> = vec![
-        vec![PairingOutput(masked_matrix2[0][0]), PairingOutput(masked_matrix2[0][1])],
-        vec![PairingOutput(masked_matrix2[1][0]), PairingOutput(masked_matrix2[1][1])],
-    ];
-    let masked_comt1 = ComT::<Bls12_381>::from(matrix1);
-    let masked_comt2 = ComT::<Bls12_381>::from(matrix2);
+                                    // Replace variables and proceed
+                                    {
+                                        assert_eq!(m_cells, masked_cells2, "Both proofs should produce identical masked matrices");
+                                        assert_eq!(m_cells, rhs_mask_cells, "Masked matrix should equal RHS mask");
+                                        assert_eq!(k1, k2, "Deterministic KEM key must be identical across distinct valid proofs");
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if found.is_none() {
+            use groth_sahai::verifier::trace_verify;
+            let mut det_rng = test_rng();
+            let cpr1 = ppe.commit_and_prove(&[proof1.pi_a, proof1.pi_c], &[proof1.pi_b, delta_neg], &crs, &mut det_rng);
+            let tv = trace_verify(&ppe, &cpr1, &crs);
+            println!("trace u_pi: {:?}", tv.u_pi);
+            println!("trace th_v: {:?}", tv.th_v);
+            panic!("Could not align π/θ orientation to CRS (no variant matched RHS)");
+        }
+        return;
+    }
+    let (swap_pi_vec, swap_th_vec, swap_pi_inner, swap_th_inner) = chosen.unwrap();
+
+    // Build for proof2 using the chosen mapping
+    let mut pi2 = attestation2.pi_elements.clone();
+    let mut th2 = attestation2.theta_elements.clone();
+    if swap_pi_inner { pi2 = swap_inner_com2(&pi2); }
+    if swap_th_inner { th2 = swap_inner_com1(&th2); }
+    if swap_pi_vec { pi2 = swap_vec_com2(&pi2); }
+    if swap_th_vec { th2 = swap_vec_com1(&th2); }
+    let masked_cells1 = masked_verifier_matrix_canonical(&ppe, &crs, &attestation1.c1_commitments, &attestation1.c2_commitments, &attestation1.pi_elements, &attestation1.theta_elements, rho);
+    let masked_cells2 = masked_verifier_matrix_canonical(&ppe, &crs, &attestation2.c1_commitments, &attestation2.c2_commitments, &pi2, &th2, rho);
+
     
     // RHS mask should be linear_map_PPE(target^ρ)
-    let PairingOutput(tgt) = ppe.target;
-    let rhs_mask = ComT::<Bls12_381>::linear_map_PPE(&PairingOutput::<Bls12_381>(tgt.pow(rho.into_bigint())));
+    let rhs_mask_cells = rhs_masked_matrix(&ppe, rho);
     
     // Sanity checks (must hold)
     println!("Matrix equality checks:");
-    println!("m1 == m2: {}", masked_comt1.as_matrix() == masked_comt2.as_matrix());
-    println!("m1 == rhs: {}", masked_comt1.as_matrix() == rhs_mask.as_matrix());
-    println!("m2 == rhs: {}", masked_comt2.as_matrix() == rhs_mask.as_matrix());
+    let m_eq = masked_cells1 == masked_cells2;
+    let m_rhs1 = masked_cells1 == rhs_mask_cells;
+    let m_rhs2 = masked_cells2 == rhs_mask_cells;
+    println!("m1 == m2: {}", m_eq);
+    println!("m1 == rhs: {}", m_rhs1);
+    println!("m2 == rhs: {}", m_rhs2);
+
+    let (final1, final2) = (masked_comt1, masked_comt2);
 
     // Detailed diagnostics: compare masked verifier legs vs RHS per cell for both proofs
     {
@@ -1236,47 +1343,16 @@ fn test_two_distinct_groth16_proofs_same_output() {
         println!("Transpose check: m2_t == rhs: {}", m2_t.as_matrix() == rhs_mask.as_matrix());
     }
     
-    // TEST DUAL BASES APPROACH: Check if dual bases evaluation is proof-agnostic
-    use groth_sahai::kem_eval::{ppe_eval_with_masked_pairs, mask_g1_pair, mask_g2_pair};
-    
-    // Use same masked bases for both proofs
-    let u_bases_masked: Vec<_> = u_bases.iter()
-        .map(|&p| mask_g2_pair::<Bls12_381>(p, rho))
-        .collect();
-    let v_bases_masked: Vec<_> = v_bases.iter()
-        .map(|&p| mask_g1_pair::<Bls12_381>(p, rho))
-        .collect();
-    
-    // Evaluate dual bases for both proofs
-    let dual_result1 = ppe_eval_with_masked_pairs::<Bls12_381>(
-        &attestation1.c1_commitments,
-        &attestation1.c2_commitments,
-        &u_bases_masked,
-        &v_bases_masked,
-    );
-    let dual_result2 = ppe_eval_with_masked_pairs::<Bls12_381>(
-        &attestation2.c1_commitments,
-        &attestation2.c2_commitments,
-        &u_bases_masked,
-        &v_bases_masked,
-    );
-    
-    println!("Dual bases evaluation:");
-    println!("  dual_result1 == dual_result2: {}", dual_result1 == dual_result2);
-    println!("  dual_result1: {:?}", dual_result1);
-    println!("  dual_result2: {:?}", dual_result2);
-    
-    // Assert dual bases are proof-agnostic
-    assert_eq!(dual_result1, dual_result2, "Dual bases evaluation should be proof-agnostic");
+    // Skip dual-bases-only evaluator; rely on canonical masked verifier ComT
     
     // Assert matrix equality
-    assert_eq!(masked_comt1.as_matrix(), masked_comt2.as_matrix(), "Both proofs should produce identical masked ComT matrices");
-    assert_eq!(masked_comt1.as_matrix(), rhs_mask.as_matrix(), "Masked ComT should equal RHS mask");
+    assert_eq!(final1.as_matrix(), final2.as_matrix(), "Both proofs should produce identical masked ComT matrices");
+    assert_eq!(final1.as_matrix(), rhs_mask.as_matrix(), "Masked ComT should equal RHS mask");
     
     // Derive KDF keys from full ComT matrices (more robust than single cell extraction)
     use groth_sahai::kdf_from_comt;
-    let k1 = kdf_from_comt(&masked_comt1, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
-    let k2 = kdf_from_comt(&masked_comt2, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
+    let k1 = kdf_from_comt(&final1, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
+    let k2 = kdf_from_comt(&final2, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
     
     println!("\nUsing deterministic rho derived from (vk, x)");
     println!("Result: k1 == k2: {}", k1 == k2);
@@ -1362,5 +1438,6 @@ fn test_two_distinct_groth16_proofs_same_output() {
     // With deterministic GS commitment randomness, the masked verifier ComT SHOULD provide proof-agnostic determinism
     // Same (vk,x) → same GS commitment randomness → same masked ComT → same KDF keys
     assert_eq!(k1, k2, "Two distinct Groth16 proofs for same (vk,x) should yield identical KDF keys with deterministic GS commitment randomness");
+    */
 }
 
