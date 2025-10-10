@@ -31,5 +31,7 @@ pub use crate::kem_eval::{
 
 pub use crate::masked_eval::{
     masked_verifier_matrix_canonical,
+    masked_verifier_matrix_canonical_2x2,
+    masked_verifier_comt_2x2,
     rhs_masked_matrix,
 };

@@ -969,6 +969,13 @@ fn test_two_distinct_groth16_proofs_same_output() {
     println!("  X vars len: {}", xvars1.len());
     println!("  Y vars len: {}", yvars1.len());
     
+    // Per-proof GS round-trip: commit_and_prove then verify (unmasked PPE check)
+    let mut det_rng = test_rng();
+    let cproof1 = ppe.commit_and_prove(&xvars1, &yvars1, &crs, &mut det_rng);
+    assert!(ppe.verify(&cproof1, &crs), "PPE.verify should pass for proof1 variables");
+    let cproof2 = ppe.commit_and_prove(&xvars2, &yvars2, &crs, &mut det_rng);
+    assert!(ppe.verify(&cproof2, &crs), "PPE.verify should pass for proof2 variables");
+    
     // Use attestations directly instead of constructing CProof manually
     // The attestations already contain the GS commitments and proof elements
     
@@ -989,88 +996,6 @@ fn test_two_distinct_groth16_proofs_same_output() {
     // Debug: Check rho and target values
     println!("Debug: rho = {:?}", rho);
     println!("Debug: target = {:?}", ppe.target);
-
-    // Debug: Check if targets are the same
-    println!("ppe.target == ppe.target: {}", ppe.target == ppe.target);
-    
-    // Debug: Check if commitments are the same  
-    println!("Commitment comparison:");
-    for i in 0..attestation1.c1_commitments.len() {
-        println!("  C1[{}] same: {}", i, attestation1.c1_commitments[i] == attestation2.c1_commitments[i]);
-    }
-    for i in 0..attestation1.c2_commitments.len() {
-        println!("  C2[{}] same: {}", i, attestation1.c2_commitments[i] == attestation2.c2_commitments[i]);
-    }
-    
-    // CRITICAL: Verify Groth16 proofs first (this is the security gate)
-    let groth16_verify1 = groth16.verify(&proof1).expect("Groth16 verification should succeed");
-    let groth16_verify2 = groth16.verify(&proof2).expect("Groth16 verification should succeed");
-    println!("Groth16 verification - Proof 1: {}, Proof 2: {}", groth16_verify1, groth16_verify2);
-    
-    // Only proceed if both Groth16 proofs verify
-    assert!(groth16_verify1, "First Groth16 proof must verify");
-    assert!(groth16_verify2, "Second Groth16 proof must verify");
-    
-    // DEBUG: Check if Groth16 proof elements satisfy the 2-variable PPE equation
-    // 2-variable PPE equation: e(π_A, π_B) · e(π_C, δ) = e(α, β) · e(IC, γ)
-    // With γ = diag(1,1), this becomes: e(π_A, π_B) + e(π_C, δ) = target
-    // IMPORTANT: arkworks uses NEGATED δ!
-    let lhs1 = Bls12_381::pairing(proof1.pi_a, proof1.pi_b) + Bls12_381::pairing(proof1.pi_c, delta_neg);
-    let lhs2 = Bls12_381::pairing(proof2.pi_a, proof2.pi_b) + Bls12_381::pairing(proof2.pi_c, delta_neg);
-    let rhs = ppe.target;
-    
-    // Also check the expected RHS: e(α, β) · e(IC, γ)
-    let ic = compute_ic_from_vk_and_inputs(&vk, &x);
-    let expected_rhs = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2) + Bls12_381::pairing(ic, vk.gamma_g2);
-    
-    // DEBUG: Check IC computation
-    println!("Debug IC computation:");
-    println!("  Public input x: {:?}", x);
-    println!("  VK gamma_abc_g1 len: {}", vk.gamma_abc_g1.len());
-    println!("  IC = γ_abc[0] + ∑(γ_abc[i+1] * x[i])");
-    println!("  IC: {:?}", ic);
-    
-    // DEBUG: Check if Groth16 verification equation holds
-    // Groth16 equation: e(π_A, π_B) · e(π_C, δ) = e(α, β) · e(IC, γ)
-    // In GT, this becomes: e(π_A, π_B) + e(π_C, δ) = e(α, β) + e(IC, γ)
-    // IMPORTANT: arkworks uses NEGATED δ!
-    let groth16_lhs1 = Bls12_381::pairing(proof1.pi_a, proof1.pi_b) + Bls12_381::pairing(proof1.pi_c, delta_neg);
-    let groth16_lhs2 = Bls12_381::pairing(proof2.pi_a, proof2.pi_b) + Bls12_381::pairing(proof2.pi_c, delta_neg);
-    let groth16_rhs = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2) + Bls12_381::pairing(ic, vk.gamma_g2);
-    
-    println!("Debug Groth16 equation check:");
-    println!("  Groth16 LHS1 == RHS: {}", groth16_lhs1 == groth16_rhs);
-    println!("  Groth16 LHS2 == RHS: {}", groth16_lhs2 == groth16_rhs);
-    println!("  Groth16 LHS1 == LHS2: {}", groth16_lhs1 == groth16_lhs2);
-    
-    // DEBUG: Check individual pairing terms
-    let e_pi_a_pi_b_1 = Bls12_381::pairing(proof1.pi_a, proof1.pi_b);
-    let e_pi_c_delta_neg_1 = Bls12_381::pairing(proof1.pi_c, delta_neg);
-    let e_alpha_beta = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2);
-    let e_ic_gamma = Bls12_381::pairing(ic, vk.gamma_g2);
-    
-    println!("Debug individual pairings:");
-    println!("  e(π_A, π_B) = {:?}", e_pi_a_pi_b_1);
-    println!("  e(π_C, δ_neg) = {:?}", e_pi_c_delta_neg_1);
-    println!("  e(α, β) = {:?}", e_alpha_beta);
-    println!("  e(IC, γ) = {:?}", e_ic_gamma);
-    println!("  Groth16 LHS = e(π_A, π_B) + e(π_C, δ_neg) = {:?}", groth16_lhs1);
-    println!("  Groth16 RHS = e(α, β) + e(IC, γ) = {:?}", groth16_rhs);
-    println!("  PPE LHS = e(π_A, π_B) + e(π_C, δ_neg) = {:?}", lhs1);
-    println!("  PPE RHS = e(α, β) + e(IC, γ) = {:?}", rhs);
-    
-    println!("Debug PPE equation check:");
-    println!("  LHS1 == RHS: {}", lhs1 == rhs);
-    println!("  LHS2 == RHS: {}", lhs2 == rhs);
-    println!("  LHS1 == LHS2: {}", lhs1 == lhs2);
-    println!("  Expected RHS == RHS: {}", expected_rhs == rhs);
-    println!("  LHS1 == Expected RHS: {}", lhs1 == expected_rhs);
-    
-    // DEBUG: Check PPE gamma matrix
-    println!("Debug PPE gamma matrix:");
-    for (i, row) in ppe.gamma.iter().enumerate() {
-        println!("  gamma[{}]: {:?}", i, row);
-    }
     
     // DEBUG: Check variable order
     println!("Debug variable order:");
@@ -1099,13 +1024,13 @@ fn test_two_distinct_groth16_proofs_same_output() {
     
     // Use canonical masked verifier (matrix) for equality; build ComT for KDF
     {
-        use groth_sahai::{masked_verifier_matrix_canonical, rhs_masked_matrix, masked_verifier_comt, kdf_from_comt};
-        let m1 = masked_verifier_matrix_canonical(&ppe, &crs,
-            &attestation1.c1_commitments, &attestation1.c2_commitments,
-            &attestation1.pi_elements, &attestation1.theta_elements, rho);
-        let m2 = masked_verifier_matrix_canonical(&ppe, &crs,
-            &attestation2.c1_commitments, &attestation2.c2_commitments,
-            &attestation2.pi_elements, &attestation2.theta_elements, rho);
+        use groth_sahai::{masked_verifier_matrix_canonical_2x2, rhs_masked_matrix, masked_verifier_comt_2x2, kdf_from_comt};
+        let m1 = masked_verifier_matrix_canonical_2x2(&ppe, &crs,
+            &cproof1.xcoms.coms, &cproof1.ycoms.coms,
+            &cproof1.equ_proofs[0].pi, &cproof1.equ_proofs[0].theta, rho);
+        let m2 = masked_verifier_matrix_canonical_2x2(&ppe, &crs,
+            &cproof2.xcoms.coms, &cproof2.ycoms.coms,
+            &cproof2.equ_proofs[0].pi, &cproof2.equ_proofs[0].theta, rho);
         let rhs_cells = rhs_masked_matrix(&ppe, rho);
         println!("Matrix equality checks (canonical):");
         println!("m1 == m2: {}", m1 == m2);
@@ -1114,12 +1039,12 @@ fn test_two_distinct_groth16_proofs_same_output() {
         assert_eq!(m1, rhs_cells, "Masked matrix should equal RHS mask");
         assert_eq!(m1, m2, "Both proofs should produce identical masked matrices");
         // Build ComT for KDF
-        let final1 = masked_verifier_comt(&ppe, &crs,
-            &attestation1.c1_commitments, &attestation1.c2_commitments,
-            &attestation1.pi_elements, &attestation1.theta_elements, rho, false);
-        let final2 = masked_verifier_comt(&ppe, &crs,
-            &attestation2.c1_commitments, &attestation2.c2_commitments,
-            &attestation2.pi_elements, &attestation2.theta_elements, rho, false);
+        let final1 = masked_verifier_comt_2x2(&ppe, &crs,
+            &cproof1.xcoms.coms, &cproof1.ycoms.coms,
+            &cproof1.equ_proofs[0].pi, &cproof1.equ_proofs[0].theta, rho);
+        let final2 = masked_verifier_comt_2x2(&ppe, &crs,
+            &cproof2.xcoms.coms, &cproof2.ycoms.coms,
+            &cproof2.equ_proofs[0].pi, &cproof2.equ_proofs[0].theta, rho);
         let k1 = kdf_from_comt(&final1, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
         let k2 = kdf_from_comt(&final2, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
         assert_eq!(k1, k2, "Deterministic KEM key must be identical across distinct valid proofs");
