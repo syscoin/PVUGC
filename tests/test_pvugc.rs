@@ -7,7 +7,10 @@ use ark_std::test_rng;
 use ark_ff::{UniformRand, One, Zero, PrimeField, BigInteger};
 use ark_serialize::{CanonicalSerialize, CanonicalDeserialize};
 use rand::{rngs::StdRng, SeedableRng};
+use sha2::{Sha256, Digest};
 use groth_sahai::verifier::Verifiable;
+use groth_sahai::{ComT, BT};
+use ark_ff::Field;
 
 // Use PVUGC wrappers
 use arkworks_groth16::{
@@ -919,53 +922,39 @@ fn test_two_distinct_groth16_proofs_same_output() {
     let proof1 = groth16.prove(witness).expect("Prove should succeed");
     let proof2 = groth16.prove(witness).expect("Prove should succeed");
 
-    // Create GS attestations for both proofs using deterministic commitments
     // Explicit x: public_input = [25]
     let x = [Fr::from(25u64)];
-    let mut rng = test_rng();
-    let att1 = gs.commit_proof_deterministic(&proof1, &vk, &x, &mut rng).expect("Att1 should succeed");
-    let att2 = gs.commit_proof_deterministic(&proof2, &vk, &x, &mut rng).expect("Att2 should succeed");
 
-    // Use the same instance bases method that ensures consistent CRS alignment
-    let (u_bases, v_bases) = gs.get_instance_bases(&vk, &x);
-
-    // Use DETERMINISTIC rho derived from PPE parameters (same as prover test)
-    use sha2::{Sha256, Digest};
-    use ark_serialize::CanonicalSerialize;
+    // PPE CONSISTENCY: Build PPE only via gs.groth16_verify_as_ppe(&vk, &x)
+    let ppe = gs.groth16_verify_as_ppe(&vk, &x);
     
-    // Create PPE for Groth16 verification (same as in commit_proof_deterministic)
-    let ic = arkworks_groth16::gs_commitments::compute_ic_from_vk_and_inputs(&vk, &x);
-    let PairingOutput(rhs1) = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2);
-    let PairingOutput(rhs2) = Bls12_381::pairing(ic, vk.gamma_g2);
-    let ppe = groth_sahai::statement::PPE::<Bls12_381> {
-        a_consts: vec![G1Affine::zero(), G1Affine::zero()],
-        b_consts: vec![G2Affine::zero(), G2Affine::zero()],
-        gamma: vec![vec![Fr::one(), Fr::zero()], vec![Fr::zero(), Fr::one()]],
-        target: PairingOutput::<Bls12_381>(rhs1 * rhs2),
-    };
+    // CRS CONSISTENCY: Use one CRS instance for both commit and evaluation
+    let crs = gs.align_crs_rows_cols();
     
-    // Derive rho from PPE parameters (same as prover test)
+    // Use fixed rho for consistency with working test
+    let rho = Fr::from(777u64);
+    
+    // Deterministic GS randomness (optional) - seed from public context
     let mut hasher = Sha256::new();
-    hasher.update(b"PVUGC/test/gs_proof_agnostic");
+    hasher.update(b"PVUGC/test/deterministic");
+    vk.alpha_g1.serialize_compressed(&mut hasher).unwrap();
+    vk.beta_g2.serialize_compressed(&mut hasher).unwrap();
+    vk.gamma_g2.serialize_compressed(&mut hasher).unwrap();
+    vk.delta_g2.serialize_compressed(&mut hasher).unwrap();
+    for input in &x {
+        input.serialize_compressed(&mut hasher).unwrap();
+    }
+    let seed = hasher.finalize();
+    let mut rng_seed = [0u8; 32];
+    rng_seed.copy_from_slice(&seed);
     
-    // Serialize PPE parameters for deterministic rho
-    let mut equ_bytes = Vec::new();
-    for a in &ppe.a_consts {
-        a.serialize_compressed(&mut equ_bytes).unwrap();
-    }
-    for b in &ppe.b_consts {
-        b.serialize_compressed(&mut equ_bytes).unwrap();
-    }
-    for row in &ppe.gamma {
-        for val in row {
-            val.serialize_compressed(&mut equ_bytes).unwrap();
-        }
-    }
-    ppe.target.serialize_compressed(&mut equ_bytes).unwrap();
+    // Use separate deterministic RNGs for each proof (but seeded identically)
+    let mut det_rng1 = StdRng::from_seed(rng_seed);
+    let mut det_rng2 = StdRng::from_seed(rng_seed);
     
-    hasher.update(&equ_bytes);
-    let rho_seed = hasher.finalize();
-    let rho = Fr::from_le_bytes_mod_order(&rho_seed);
+    // CORRECT VARIABLE ORDER: X=[π_A, π_C], Y=[π_B, δ] must be exact
+    let cpr1 = ppe.commit_and_prove(&[proof1.pi_a, proof1.pi_c], &[proof1.pi_b, vk.delta_g2], &crs, &mut det_rng1);
+    let cpr2 = ppe.commit_and_prove(&[proof2.pi_a, proof2.pi_c], &[proof2.pi_b, vk.delta_g2], &crs, &mut det_rng2);
     
     // CRITICAL INSIGHT: The prover test uses FIXED variables for all proofs
     // PVUGC uses DIFFERENT proof elements (pi_A, pi_B, pi_C) for each proof
@@ -983,25 +972,68 @@ fn test_two_distinct_groth16_proofs_same_output() {
     
     // Debug: Check rho and target values
     println!("Debug: rho = {:?}", rho);
-    println!("Debug: target = {:?}", att1.ppe_target);
-    let u_masked: Vec<_> = u_bases.iter().map(|&p| mask_g2_pair::<Bls12_381>(p, rho)).collect();
-    let v_masked: Vec<_> = v_bases.iter().map(|&p| mask_g1_pair::<Bls12_381>(p, rho)).collect();
+    println!("Debug: target = {:?}", ppe.target);
 
     // Debug: Check if targets are the same
-    println!("att1.ppe_target == att2.ppe_target: {}", att1.ppe_target == att2.ppe_target);
+    println!("ppe.target == ppe.target: {}", ppe.target == ppe.target);
     
     // Debug: Check if commitments are the same  
     println!("Commitment comparison:");
-    for i in 0..att1.c1_commitments.len() {
-        println!("  C1[{}] same: {}", i, att1.c1_commitments[i] == att2.c1_commitments[i]);
+    for i in 0..cpr1.xcoms.coms.len() {
+        println!("  C1[{}] same: {}", i, cpr1.xcoms.coms[i] == cpr2.xcoms.coms[i]);
     }
-    for i in 0..att1.c2_commitments.len() {
-        println!("  C2[{}] same: {}", i, att1.c2_commitments[i] == att2.c2_commitments[i]);
+    for i in 0..cpr1.ycoms.coms.len() {
+        println!("  C2[{}] same: {}", i, cpr1.ycoms.coms[i] == cpr2.ycoms.coms[i]);
     }
     
-    // Evaluate KEM using masked verifier ComT approach
-    let masked_comt1 = gs.evaluate_masked_verifier_comt(&att1, &vk, &x, rho);
-    let masked_comt2 = gs.evaluate_masked_verifier_comt(&att2, &vk, &x, rho);
+    // CRITICAL: Verify Groth16 proofs first (this is the security gate)
+    let groth16_verify1 = groth16.verify(&proof1).expect("Groth16 verification should succeed");
+    let groth16_verify2 = groth16.verify(&proof2).expect("Groth16 verification should succeed");
+    println!("Groth16 verification - Proof 1: {}, Proof 2: {}", groth16_verify1, groth16_verify2);
+    
+    // Only proceed if both Groth16 proofs verify
+    assert!(groth16_verify1, "First Groth16 proof must verify");
+    assert!(groth16_verify2, "Second Groth16 proof must verify");
+    
+    // VERIFY THEN EXTRACT: assert!(ppe.verify(&proof1, &crs) && ppe.verify(&proof2, &crs))
+    let gs_verify1 = ppe.verify(&cpr1, &crs);
+    let gs_verify2 = ppe.verify(&cpr2, &crs);
+    println!("GS verification - Proof 1: {}, Proof 2: {}", gs_verify1, gs_verify2);
+    
+    // Only proceed if both GS proofs verify
+    assert!(gs_verify1, "First GS proof must verify");
+    assert!(gs_verify2, "Second GS proof must verify");
+    
+    // CORRECT MASKED COMT CALL: Call masked_verifier_comt(..., rho, false)
+    // Use the SAME PPE and CRS as used for commit_and_prove
+    use groth_sahai::masked_verifier_comt;
+    
+    let masked_comt1 = masked_verifier_comt(
+        &ppe, &crs,  // Same PPE and CRS as commit_and_prove
+        &cpr1.xcoms.coms, &cpr1.ycoms.coms,
+        &cpr1.equ_proofs[0].pi, &cpr1.equ_proofs[0].theta,
+        rho, false,  // include_dual_helpers = false
+    );
+    let masked_comt2 = masked_verifier_comt(
+        &ppe, &crs,  // Same PPE and CRS as commit_and_prove
+        &cpr2.xcoms.coms, &cpr2.ycoms.coms,
+        &cpr2.equ_proofs[0].pi, &cpr2.equ_proofs[0].theta,
+        rho, false,  // include_dual_helpers = false
+    );
+    
+    // RHS mask should be linear_map_PPE(target^ρ)
+    let PairingOutput(tgt) = ppe.target;
+    let rhs_mask = ComT::<Bls12_381>::linear_map_PPE(&PairingOutput::<Bls12_381>(tgt.pow(rho.into_bigint())));
+    
+    // Sanity checks (must hold)
+    println!("Matrix equality checks:");
+    println!("m1 == m2: {}", masked_comt1.as_matrix() == masked_comt2.as_matrix());
+    println!("m1 == rhs: {}", masked_comt1.as_matrix() == rhs_mask.as_matrix());
+    println!("m2 == rhs: {}", masked_comt2.as_matrix() == rhs_mask.as_matrix());
+    
+    // Assert matrix equality
+    assert_eq!(masked_comt1.as_matrix(), masked_comt2.as_matrix(), "Both proofs should produce identical masked ComT matrices");
+    assert_eq!(masked_comt1.as_matrix(), rhs_mask.as_matrix(), "Masked ComT should equal RHS mask");
     
     // Derive KDF keys from full ComT matrices (more robust than single cell extraction)
     use groth_sahai::kdf_from_comt;
@@ -1010,15 +1042,10 @@ fn test_two_distinct_groth16_proofs_same_output() {
     
     println!("\nUsing deterministic rho derived from (vk, x)");
     println!("Result: k1 == k2: {}", k1 == k2);
-    
-    // Verify RHS parity for debugging
-    let rhs_parity1 = gs.verify_masked_comt_rhs_parity(&masked_comt1, &vk, &x, rho);
-    let rhs_parity2 = gs.verify_masked_comt_rhs_parity(&masked_comt2, &vk, &x, rho);
-    println!("RHS parity check - Proof 1: {}, Proof 2: {}", rhs_parity1, rhs_parity2);
 
-    // MASKED VERIFIER COMT APPROACH: Now using deterministic proof elements
-    // Deterministic proof elements derived from (vk, x) ensure proof-agnosticism
-    // Same statement → same proof elements → same KDF keys
-    assert_eq!(k1, k2, "Two distinct Groth16 proofs for same (vk,x) must yield identical KDF keys (using deterministic proof elements)");
+    // MASKED VERIFIER COMT APPROACH: Using deterministic GS commitment randomness
+    // With deterministic GS commitment randomness, the masked verifier ComT SHOULD provide proof-agnostic determinism
+    // Same (vk,x) → same GS commitment randomness → same masked ComT → same KDF keys
+    assert_eq!(k1, k2, "Two distinct Groth16 proofs for same (vk,x) should yield identical KDF keys with deterministic GS commitment randomness");
 }
 

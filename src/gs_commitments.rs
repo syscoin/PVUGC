@@ -55,7 +55,7 @@ pub struct GrothSahaiCommitments {
 }
 
 impl GrothSahaiCommitments {
-    fn align_crs_rows_cols(&self) -> CRS<Bls12_381> {
+    pub fn align_crs_rows_cols(&self) -> CRS<Bls12_381> {
         use ark_ec::CurveGroup;
         let mut out = self.crs.clone();
         // Align u with u_dual per row
@@ -111,26 +111,20 @@ impl GrothSahaiCommitments {
         Self::new(aligned)
     }
 
-    /// Commit to proof elements using masked verifier ComT approach for proof-agnostic behavior
-    /// This ensures M values are identical for different proofs of the same statement
-    /// while still requiring knowledge of valid Groth16 proof elements
-    pub fn commit_proof_deterministic<R: Rng>(
+    /// Commit to real Groth16 proof elements with deterministic GS commitment randomness
+    /// This preserves proof-gating while achieving proof-agnostic determinism
+    pub fn commit_proof_with_deterministic_gs_randomness<R: Rng>(
         &self,
         proof: &ArkworksProof,
         vk: &ArkworksVK,
         public_input: &[Fr],
-        rng: &mut R,
+        deposit_id: u64,
+        version: u64,
+        _rng: &mut R,
     ) -> Result<GSAttestation, GSCommitmentError> {
-        // Create PPE for Groth16 verification
-        // Groth16 verification: e(pi_A, pi_B) * e(pi_C, delta) = e(alpha, beta) * e(IC, gamma)
-        
-        // CRITICAL INSIGHT: Derive deterministic proof elements from statement parameters
-        // This ensures proof-agnosticism while maintaining security
-        let deterministic_proof_elements = self.derive_deterministic_groth16_proof_elements(vk, public_input);
-        
-        // Use deterministic proof elements as variables
-        let xvars = vec![deterministic_proof_elements.pi_a, deterministic_proof_elements.pi_c];
-        let yvars = vec![deterministic_proof_elements.pi_b, vk.delta_g2];
+        // Use REAL Groth16 proof elements - this preserves proof-gating
+        let xvars = vec![proof.pi_a, proof.pi_c];
+        let yvars = vec![proof.pi_b, vk.delta_g2];
         
         // Create PPE equation matching Groth16 structure
         let ic = compute_ic_from_vk_and_inputs(vk, public_input);
@@ -143,29 +137,12 @@ impl GrothSahaiCommitments {
             target: PairingOutput::<Bls12_381>(rhs1 * rhs2),
         };
         
-        // Use deterministic GS commitments to proof elements (maintains security + proof-agnosticism)
-        // Derive deterministic randomness from statement parameters
-        let mut hasher = Sha256::new();
-        hasher.update(b"PVUGC/deterministic_commitments");
+        // Derive deterministic randomness from public, statement-bound context
+        let mut deterministic_rng = self.create_deterministic_rng_from_context(
+            &ppe, vk, public_input, deposit_id, version
+        );
         
-        // Hash VK elements
-        vk.alpha_g1.serialize_compressed(&mut hasher).unwrap();
-        vk.beta_g2.serialize_compressed(&mut hasher).unwrap();
-        vk.gamma_g2.serialize_compressed(&mut hasher).unwrap();
-        vk.delta_g2.serialize_compressed(&mut hasher).unwrap();
-        
-        // Hash public inputs
-        for input in public_input {
-            input.serialize_compressed(&mut hasher).unwrap();
-        }
-        
-        let seed = hasher.finalize();
-        
-        // Derive deterministic randomness for commitments
-        let mut rng_seed = [0u8; 32];
-        rng_seed.copy_from_slice(&seed);
-        let mut deterministic_rng = StdRng::from_seed(rng_seed);
-        
+        // Create GS commitments with deterministic randomness
         let attestation_proof = ppe.commit_and_prove(&xvars, &yvars, &self.crs, &mut deterministic_rng);
         
         // Extract commitments and proof elements from the proof
@@ -174,10 +151,10 @@ impl GrothSahaiCommitments {
         let pi_elements = attestation_proof.equ_proofs[0].pi.clone();
         let theta_elements = attestation_proof.equ_proofs[0].theta.clone();
         
-        // Store randomness used
-        let randomness = vec![Fr::rand(rng), Fr::rand(rng), Fr::rand(rng)];
+        // Store randomness used (deterministic)
+        let randomness = vec![Fr::zero(); 3]; // Placeholder since we use deterministic RNG
         
-        // Create proof data from proof elements
+        // Create proof data from real proof elements
         let mut proof_data_bytes = Vec::new();
         proof.pi_a.serialize_compressed(&mut proof_data_bytes).unwrap();
         proof.pi_b.serialize_compressed(&mut proof_data_bytes).unwrap();
@@ -298,374 +275,6 @@ impl GrothSahaiCommitments {
         result
     }
     
-    /// Helper function to raise each GT cell of a ComT to a scalar power
-    fn pow_cells(&self, comt: &groth_sahai::ComT<Bls12_381>, power: Fr) -> groth_sahai::ComT<Bls12_381> {
-        use ark_ff::Field;
-        use ark_ec::pairing::PairingOutput;
-        
-        groth_sahai::ComT::<Bls12_381>(
-            PairingOutput(comt.0.0.pow(power.into_bigint())),
-            PairingOutput(comt.1.0.pow(power.into_bigint())),
-            PairingOutput(comt.2.0.pow(power.into_bigint())),
-            PairingOutput(comt.3.0.pow(power.into_bigint())),
-        )
-    }
-    
-    /// Evaluate KEM using dual bases approach for proof-agnostic behavior
-    /// This uses the actual attestation commitments while achieving determinism via dual bases
-    fn evaluate_kem_with_dual_bases(
-        &self,
-        c1_commitments: &[Com1<Bls12_381>],
-        c2_commitments: &[Com2<Bls12_381>],
-        u_dual_masked: &[(G2Affine, G2Affine)],
-        v_dual_masked: &[(G1Affine, G1Affine)],
-    ) -> PairingOutput<Bls12_381> {
-        use ark_ff::One;
-        let mut result = <Bls12_381 as Pairing>::TargetField::one();
-        
-        // X side: ∏_j e(C1_j, u_dual^ρ_j)
-        for (j, c1) in c1_commitments.iter().enumerate() {
-            let u = u_dual_masked[j];
-            let PairingOutput(p0) = Bls12_381::pairing(c1.0, u.0);
-            let PairingOutput(p1) = Bls12_381::pairing(c1.1, u.1);
-            result *= p0 * p1;
-        }
-        
-        // Y side: ∏_i e(v_dual^ρ_i, C2_i)
-        for (i, c2) in c2_commitments.iter().enumerate() {
-            let v = v_dual_masked[i];
-            let PairingOutput(p0) = Bls12_381::pairing(v.0, c2.0);
-            let PairingOutput(p1) = Bls12_381::pairing(v.1, c2.1);
-            result *= p0 * p1;
-        }
-        
-        PairingOutput(result)
-    }
-    
-    /// Derive deterministic values from statement parameters
-    /// This ensures identical values for different proofs of the same statement
-    fn derive_deterministic_values_from_statement(
-        &self,
-        vk: &ArkworksVK,
-        public_input: &[Fr],
-    ) -> DeterministicValues {
-        use ark_ec::CurveGroup;
-        
-        // Create deterministic hash from statement parameters
-        let mut hasher = Sha256::new();
-        hasher.update(b"PVUGC/deterministic_values/v2");
-        hasher.update(&vk.vk_bytes);
-        let mut pi_bytes = Vec::new();
-        for x in public_input {
-            x.serialize_compressed(&mut pi_bytes).unwrap();
-        }
-        hasher.update(&pi_bytes);
-        let statement_seed = hasher.finalize();
-        
-        // Derive deterministic scalars from statement
-        let mut scalars = Vec::new();
-        for i in 0u64..8 {
-            let mut hasher_i = Sha256::new();
-            hasher_i.update(&statement_seed);
-            hasher_i.update(i.to_be_bytes());
-            let seed_i = hasher_i.finalize();
-            scalars.push(Fr::from_le_bytes_mod_order(&seed_i));
-        }
-        
-        // Create deterministic G1 and G2 values
-        let g1_values = vec![
-            (self.crs.u[0].0.into_group() * scalars[0]).into_affine(),
-            (self.crs.u[1].0.into_group() * scalars[1]).into_affine(),
-        ];
-        
-        let g2_values = vec![
-            (self.crs.v[0].1.into_group() * scalars[2]).into_affine(),
-            (self.crs.v[1].1.into_group() * scalars[3]).into_affine(),
-        ];
-        
-        DeterministicValues {
-            g1_values,
-            g2_values,
-            scalars,
-        }
-    }
-    
-    /// Create deterministic commitments to statement-derived values
-    fn create_deterministic_commitments_to_statement_values(
-        &self,
-        deterministic_values: &DeterministicValues,
-        vk: &ArkworksVK,
-        public_input: &[Fr],
-    ) -> (Vec<Com1<Bls12_381>>, Vec<Com2<Bls12_381>>) {
-        use ark_ec::CurveGroup;
-        
-        // Derive deterministic randomness from statement parameters
-        let randomness = self.derive_deterministic_randomness_from_statement(vk, public_input);
-        
-        // Create commitments to deterministic G1 values
-        let mut c1_commitments = Vec::new();
-        for (i, &g1_val) in deterministic_values.g1_values.iter().enumerate() {
-            let r = randomness[i % randomness.len()];
-            let c1 = Com1::<Bls12_381>(
-                (self.crs.u[i].0.into_group() * r + g1_val.into_group()).into_affine(),
-                (self.crs.u[i].1.into_group() * r).into_affine(),
-            );
-            c1_commitments.push(c1);
-        }
-        
-        // Create commitments to deterministic G2 values
-        let mut c2_commitments = Vec::new();
-        for (i, &g2_val) in deterministic_values.g2_values.iter().enumerate() {
-            let r = randomness[i % randomness.len()];
-            let c2 = Com2::<Bls12_381>(
-                (self.crs.v[i].0.into_group() * r).into_affine(),
-                (self.crs.v[i].1.into_group() * r + g2_val.into_group()).into_affine(),
-            );
-            c2_commitments.push(c2);
-        }
-        
-        (c1_commitments, c2_commitments)
-    }
-    
-    /// Derive deterministic proof elements from statement parameters
-    fn derive_deterministic_proof_elements(
-        &self,
-        deterministic_values: &DeterministicValues,
-        _vk: &ArkworksVK,
-        _public_input: &[Fr],
-    ) -> (Vec<Com2<Bls12_381>>, Vec<Com1<Bls12_381>>) {
-        use ark_ec::CurveGroup;
-        
-        // Create deterministic proof elements using statement-derived scalars
-        let pi_elements = vec![
-            Com2::<Bls12_381>(
-                (self.crs.v[0].0.into_group() * deterministic_values.scalars[4]).into_affine(),
-                (self.crs.v[0].1.into_group() * deterministic_values.scalars[5]).into_affine(),
-            ),
-            Com2::<Bls12_381>(
-                (self.crs.v[1].0.into_group() * deterministic_values.scalars[6]).into_affine(),
-                (self.crs.v[1].1.into_group() * deterministic_values.scalars[7]).into_affine(),
-            ),
-        ];
-        
-        let theta_elements = vec![
-            Com1::<Bls12_381>(
-                (self.crs.u[0].0.into_group() * deterministic_values.scalars[4]).into_affine(),
-                (self.crs.u[0].1.into_group() * deterministic_values.scalars[5]).into_affine(),
-            ),
-            Com1::<Bls12_381>(
-                (self.crs.u[1].0.into_group() * deterministic_values.scalars[6]).into_affine(),
-                (self.crs.u[1].1.into_group() * deterministic_values.scalars[7]).into_affine(),
-            ),
-        ];
-        
-        (pi_elements, theta_elements)
-    }
-}
-
-/// Deterministic values derived from statement parameters
-struct DeterministicValues {
-    g1_values: Vec<G1Affine>,
-    g2_values: Vec<G2Affine>,
-    scalars: Vec<Fr>,
-}
-
-/// Deterministic Groth16 proof elements derived from statement parameters
-struct DeterministicGroth16Proof {
-    pi_a: G1Affine,
-    pi_b: G2Affine,
-    pi_c: G1Affine,
-}
-
-impl GrothSahaiCommitments {
-    /// Derive deterministic values from proof elements that are identical for different proofs of same statement
-    /// This is the key insight: derive deterministic values that still require proof knowledge
-    fn derive_deterministic_values_from_proof_elements(
-        &self,
-        xvars: &[G1Affine],
-        yvars: &[G2Affine],
-        vk: &ArkworksVK,
-        public_input: &[Fr],
-    ) -> (Vec<G1Affine>, Vec<G2Affine>) {
-        use ark_ec::CurveGroup;
-        
-        // Create deterministic hash from statement parameters
-        let mut hasher = Sha256::new();
-        hasher.update(b"PVUGC/deterministic_values/v1");
-        hasher.update(&vk.vk_bytes);
-        let mut pi_bytes = Vec::new();
-        for x in public_input {
-            x.serialize_compressed(&mut pi_bytes).unwrap();
-        }
-        hasher.update(&pi_bytes);
-        let statement_seed = hasher.finalize();
-        
-        // Derive deterministic scalars from statement
-        let mut scalars = Vec::new();
-        for i in 0u64..4 {
-            let mut hasher_i = Sha256::new();
-            hasher_i.update(&statement_seed);
-            hasher_i.update(i.to_be_bytes());
-            let seed_i = hasher_i.finalize();
-            scalars.push(Fr::from_le_bytes_mod_order(&seed_i));
-        }
-        
-        // Create deterministic values by combining proof elements with statement-derived scalars
-        // This ensures identical values for different proofs of same statement while requiring proof knowledge
-        let mut deterministic_xvars = Vec::new();
-        let mut deterministic_yvars = Vec::new();
-        
-        // For G1 variables: combine proof elements with statement-derived values
-        for (i, &xvar) in xvars.iter().enumerate() {
-            let scalar = scalars[i % scalars.len()];
-            // Create deterministic value: proof_element + statement_derived_offset
-            let deterministic_value = (xvar.into_group() + self.crs.u[i].0.into_group() * scalar).into_affine();
-            deterministic_xvars.push(deterministic_value);
-        }
-        
-        // For G2 variables: combine proof elements with statement-derived values
-        for (i, &yvar) in yvars.iter().enumerate() {
-            let scalar = scalars[i % scalars.len()];
-            // Create deterministic value: proof_element + statement_derived_offset
-            let deterministic_value = (yvar.into_group() + self.crs.v[i].1.into_group() * scalar).into_affine();
-            deterministic_yvars.push(deterministic_value);
-        }
-        
-        (deterministic_xvars, deterministic_yvars)
-    }
-    
-    /// Create deterministic GS commitments that are identical for different proofs of same statement
-    /// Uses deterministic randomness derived from statement only to ensure identical commitments
-    fn create_deterministic_commitments(
-        &self,
-        xvars: &[G1Affine],
-        yvars: &[G2Affine],
-        vk: &ArkworksVK,
-        public_input: &[Fr],
-    ) -> (Vec<Com1<Bls12_381>>, Vec<Com2<Bls12_381>>) {
-        use ark_ec::CurveGroup;
-        
-        // Derive deterministic randomness from statement parameters only
-        // This ensures identical randomness for different proofs of same statement
-        let randomness = self.derive_deterministic_randomness_from_statement(vk, public_input);
-        
-        // Create deterministic commitments using statement-derived randomness
-        let mut c1_commitments = Vec::new();
-        let mut c2_commitments = Vec::new();
-        
-        // Commit to G1 variables (xvars) using deterministic randomness
-        for (i, &xvar) in xvars.iter().enumerate() {
-            let r = randomness[i % randomness.len()];
-            let c1 = Com1::<Bls12_381>(
-                (self.crs.u[i].0.into_group() * r + xvar.into_group()).into_affine(),
-                (self.crs.u[i].1.into_group() * r).into_affine(),
-            );
-            c1_commitments.push(c1);
-        }
-        
-        // Commit to G2 variables (yvars) using deterministic randomness
-        for (i, &yvar) in yvars.iter().enumerate() {
-            let r = randomness[i % randomness.len()];
-            let c2 = Com2::<Bls12_381>(
-                (self.crs.v[i].0.into_group() * r).into_affine(),
-                (self.crs.v[i].1.into_group() * r + yvar.into_group()).into_affine(),
-            );
-            c2_commitments.push(c2);
-        }
-        
-        (c1_commitments, c2_commitments)
-    }
-    
-    /// Derive deterministic randomness from proof elements to ensure identical commitments
-    /// for different proofs of the same statement
-    fn derive_deterministic_randomness_from_proof_elements(
-        &self,
-        xvars: &[G1Affine],
-        yvars: &[G2Affine],
-        vk: &ArkworksVK,
-        public_input: &[Fr],
-    ) -> Vec<Fr> {
-        // Create a deterministic hash from proof elements and statement
-        let mut hasher = Sha256::new();
-        hasher.update(b"PVUGC/deterministic_commitments/v1");
-        
-        // Include statement parameters
-        hasher.update(&vk.vk_bytes);
-        let mut pi_bytes = Vec::new();
-        for x in public_input {
-            x.serialize_compressed(&mut pi_bytes).unwrap();
-        }
-        hasher.update(&pi_bytes);
-        
-        // Include proof elements in deterministic order
-        for &xvar in xvars {
-            xvar.serialize_compressed(&mut pi_bytes).unwrap();
-        }
-        for &yvar in yvars {
-            yvar.serialize_compressed(&mut pi_bytes).unwrap();
-        }
-        hasher.update(&pi_bytes);
-        
-        let seed = hasher.finalize();
-        
-        // Derive multiple random values for commitments
-        let mut randomness = Vec::new();
-        for i in 0u64..4 { // Need enough randomness for all commitments
-            let mut hasher_i = Sha256::new();
-            hasher_i.update(&seed);
-            hasher_i.update(i.to_be_bytes());
-            let seed_i = hasher_i.finalize();
-            randomness.push(Fr::from_le_bytes_mod_order(&seed_i));
-        }
-        
-        randomness
-    }
-    
-    /// Derive deterministic randomness from statement parameters only
-    /// This ensures identical randomness for different proofs of the same statement
-    fn derive_deterministic_randomness_from_statement(
-        &self,
-        vk: &ArkworksVK,
-        public_input: &[Fr],
-    ) -> Vec<Fr> {
-        use crate::deterministic_rho::derive_rho_test;
-        
-        // Derive deterministic rho from statement parameters (not proof elements)
-        let rho = derive_rho_test(&vk.vk_bytes, public_input, 0);
-        
-        // Use rho to derive deterministic randomness for GS commitments
-        // This ensures same randomness for different proofs of same statement
-        let mut hasher = Sha256::new();
-        hasher.update(b"PVUGC/gs_randomness/v1");
-        hasher.update(&vk.vk_bytes);
-        
-        // Include public input in randomness derivation
-        let mut pi_bytes = Vec::new();
-        for x in public_input {
-            x.serialize_compressed(&mut pi_bytes).unwrap();
-        }
-        hasher.update(&pi_bytes);
-        
-        // Include rho in randomness derivation
-        let mut rho_bytes = Vec::new();
-        rho.serialize_compressed(&mut rho_bytes).unwrap();
-        hasher.update(&rho_bytes);
-        
-        let seed = hasher.finalize();
-        
-        // Derive four random values for GS commitments
-        let mut randomness = Vec::new();
-        for i in 0u64..4 {
-            let mut hasher_i = Sha256::new();
-            hasher_i.update(&seed);
-            hasher_i.update(i.to_be_bytes());
-            let seed_i = hasher_i.finalize();
-            randomness.push(Fr::from_le_bytes_mod_order(&seed_i));
-        }
-        
-        randomness
-    }
-
     /// Commit to real arkworks Groth16 proof
     pub fn commit_arkworks_proof<R: Rng>(
         &self,
@@ -906,7 +515,7 @@ impl GrothSahaiCommitments {
     /// Groth16 verification: e(π_A, π_B) · e(π_C, δ) = e(α, β) · e(IC, γ)
     /// We encode this as: e(π_A, π_B) · e(π_C, δ) = target
     /// where target = e(α, β) · e(IC, γ) is computed from (vk, x)
-    fn groth16_verify_as_ppe(&self, vk: &ArkworksVK, public_input: &[Fr]) -> PPE<Bls12_381> {
+    pub fn groth16_verify_as_ppe(&self, vk: &ArkworksVK, public_input: &[Fr]) -> PPE<Bls12_381> {
         // Compute IC = ∑(γ_abc_i * x_i) for public inputs
         let ic = compute_ic_from_vk_and_inputs(vk, public_input);
 
@@ -929,85 +538,54 @@ impl GrothSahaiCommitments {
         }
     }
 
-    /// Derive deterministic Groth16 proof elements from statement parameters
-    /// This ensures proof-agnosticism: same (vk, x) → same proof elements → same M
-    fn derive_deterministic_groth16_proof_elements(
+    /// Create deterministic RNG from public, statement-bound context
+    /// This ensures identical GS commitment randomness for different proofs of same statement
+    fn create_deterministic_rng_from_context(
         &self,
+        ppe: &PPE<Bls12_381>,
         vk: &ArkworksVK,
         public_input: &[Fr],
-    ) -> DeterministicGroth16Proof {
-        use ark_ec::CurveGroup;
+        deposit_id: u64,
+        version: u64,
+    ) -> StdRng {
         use sha2::{Sha256, Digest};
         use ark_serialize::CanonicalSerialize;
         
-        // Derive deterministic randomness from statement parameters
         let mut hasher = Sha256::new();
-        hasher.update(b"PVUGC/deterministic_groth16_proof");
+        hasher.update(b"PVUGC/deterministic_gs_randomness");
         
-        // Hash VK elements
-        vk.alpha_g1.serialize_compressed(&mut hasher).unwrap();
-        vk.beta_g2.serialize_compressed(&mut hasher).unwrap();
-        vk.gamma_g2.serialize_compressed(&mut hasher).unwrap();
-        vk.delta_g2.serialize_compressed(&mut hasher).unwrap();
+        // Hash CRS digest
+        let mut crs_bytes = Vec::new();
+        self.crs.serialize_compressed(&mut crs_bytes).unwrap();
+        hasher.update(&Sha256::digest(&crs_bytes));
+        
+        // Hash PPE digest
+        let mut ppe_bytes = Vec::new();
+        ppe.serialize_compressed(&mut ppe_bytes).unwrap();
+        hasher.update(&Sha256::digest(&ppe_bytes));
+        
+        // Hash VK
+        hasher.update(&vk.vk_bytes);
         
         // Hash public inputs
+        let mut x_bytes = Vec::new();
         for input in public_input {
-            input.serialize_compressed(&mut hasher).unwrap();
+            input.serialize_compressed(&mut x_bytes).unwrap();
         }
+        hasher.update(&Sha256::digest(&x_bytes));
+        
+        // Hash deposit_id and version
+        hasher.update(deposit_id.to_be_bytes());
+        hasher.update(version.to_be_bytes());
         
         let seed = hasher.finalize();
         
-        // Derive deterministic scalars from seed
-        let mut scalar_hasher = Sha256::new();
-        scalar_hasher.update(&seed);
-        scalar_hasher.update(b"scalar_r_a");
-        let r_a_bytes = scalar_hasher.finalize();
-        let r_a = Fr::from_le_bytes_mod_order(&r_a_bytes);
-        
-        let mut scalar_hasher = Sha256::new();
-        scalar_hasher.update(&seed);
-        scalar_hasher.update(b"scalar_r_b");
-        let r_b_bytes = scalar_hasher.finalize();
-        let r_b = Fr::from_le_bytes_mod_order(&r_b_bytes);
-        
-        let mut scalar_hasher = Sha256::new();
-        scalar_hasher.update(&seed);
-        scalar_hasher.update(b"scalar_r_c");
-        let r_c_bytes = scalar_hasher.finalize();
-        let r_c = Fr::from_le_bytes_mod_order(&r_c_bytes);
-        
-        // Compute IC = ∑(γ_abc_i * x_i)
-        let ic = compute_ic_from_vk_and_inputs(vk, public_input);
-        
-        // Derive deterministic proof elements that satisfy Groth16 verification
-        // We need: e(π_A, π_B) · e(π_C, δ) = e(α, β) · e(IC, γ)
-        
-        // Strategy: Use deterministic scalars to create proof elements
-        // π_A = α * r_a (scaled alpha)
-        let pi_a = (vk.alpha_g1.into_group() * r_a).into_affine();
-        
-        // π_B = β * r_b (scaled beta)  
-        let pi_b = (vk.beta_g2.into_group() * r_b).into_affine();
-        
-        // π_C = IC * r_c (scaled IC)
-        let pi_c = (ic.into_group() * r_c).into_affine();
-        
-        // For simplicity, let's use r_a = r_b = 1 and derive r_c such that:
-        // e(IC*r_c, δ) = e(IC, γ) => r_c * e(IC, δ) = e(IC, γ) => r_c = e(IC, γ) / e(IC, δ)
-        
-        let pi_a_final = vk.alpha_g1; // r_a = 1
-        let pi_b_final = vk.beta_g2;  // r_b = 1
-        
-        // For simplicity, use r_c = 1 to avoid complex field arithmetic
-        // This creates deterministic proof elements that satisfy Groth16 verification
-        let pi_c_final = ic; // r_c = 1, so π_C = IC
-        
-        DeterministicGroth16Proof {
-            pi_a: pi_a_final,
-            pi_b: pi_b_final,
-            pi_c: pi_c_final,
-        }
+        // Create deterministic RNG from seed
+        let mut rng_seed = [0u8; 32];
+        rng_seed.copy_from_slice(&seed);
+        StdRng::from_seed(rng_seed)
     }
+
 
     /// Get the CRS
     pub fn get_crs(&self) -> &CRS<Bls12_381> {
@@ -1145,9 +723,28 @@ mod tests {
         // Align CRS strictly (per-index duality)
         let crs = gs.align_crs_rows_cols();
 
+        // Commit-and-prove with DETERMINISTIC randomness derived from statement (vk, x)
+        // This ensures proof-agnostic behavior: same statement → same commitment randomness
+        let mut hasher = Sha256::new();
+        hasher.update(b"PVUGC/test/deterministic");
+        vk.alpha_g1.serialize_compressed(&mut hasher).unwrap();
+        vk.beta_g2.serialize_compressed(&mut hasher).unwrap();
+        vk.gamma_g2.serialize_compressed(&mut hasher).unwrap();
+        vk.delta_g2.serialize_compressed(&mut hasher).unwrap();
+        for input in &x {
+            input.serialize_compressed(&mut hasher).unwrap();
+        }
+        let seed = hasher.finalize();
+        let mut rng_seed = [0u8; 32];
+        rng_seed.copy_from_slice(&seed);
+        
+        // Use separate deterministic RNGs for each proof (but seeded identically)
+        let mut det_rng1 = StdRng::from_seed(rng_seed);
+        let mut det_rng2 = StdRng::from_seed(rng_seed);
+        
         // Commit-and-prove with canonical wiring: X=[piA,piC], Y=[piB,delta]
-        let cpr1 = ppe.commit_and_prove(&[p1.pi_a, p1.pi_c], &[p1.pi_b, vk.delta_g2], &crs, &mut test_rng());
-        let cpr2 = ppe.commit_and_prove(&[p2.pi_a, p2.pi_c], &[p2.pi_b, vk.delta_g2], &crs, &mut test_rng());
+        let cpr1 = ppe.commit_and_prove(&[p1.pi_a, p1.pi_c], &[p1.pi_b, vk.delta_g2], &crs, &mut det_rng1);
+        let cpr2 = ppe.commit_and_prove(&[p2.pi_a, p2.pi_c], &[p2.pi_b, vk.delta_g2], &crs, &mut det_rng2);
 
         // Masked verifier-style ComT for both proofs (NO dual-helper legs for correct algebra)
         let rho = Fr::from(777u64);
