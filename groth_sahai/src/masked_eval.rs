@@ -39,23 +39,6 @@ fn comt_pow_cells<E: Pairing>(m: &ComT<E>, rho: E::ScalarField) -> [[E::TargetFi
     ]
 }
 
-/// Convert a ComT to a raw 2×2 GT matrix (to allow cellwise multiplication).
-fn comt_to_cells<E: Pairing>(m: &ComT<E>) -> [[E::TargetField; 2]; 2] {
-    let mm = m.as_matrix();
-    [[ mm[0][0].0, mm[0][1].0 ], [ mm[1][0].0, mm[1][1].0 ]]
-}
-
-/// Cellwise multiply 2×2 GT matrices (ComT's additive notation is multiplicative in GT).
-fn mul_cells<E: Pairing>(
-    a: [[E::TargetField; 2]; 2],
-    b: [[E::TargetField; 2]; 2],
-) -> [[E::TargetField; 2]; 2] {
-    [
-        [ a[0][0] * b[0][0], a[0][1] * b[0][1] ],
-        [ a[1][0] * b[1][0], a[1][1] * b[1][1] ],
-    ]
-}
-
 /// Canonical masked verifier evaluator (proof-agnostic under fixed (vk,x)).
 /// 
 /// IMPORTANT:
@@ -79,8 +62,8 @@ pub fn masked_verifier_matrix_canonical<E: Pairing>(
     let i1_a_rho  = scale_com1::<E>(&i1_a, rho);
     let i2_b_rho  = scale_com2::<E>(&i2_b, rho);
 
-    let aY_rho    = ComT::<E>::pairing_sum(&i1_a_rho, ycoms);     // e(a^ρ, Y)
-    let Xb_rho    = ComT::<E>::pairing_sum(xcoms, &i2_b_rho);     // e(X, b^ρ)
+    let a_y_rho   = ComT::<E>::pairing_sum(&i1_a_rho, ycoms);     // e(a^ρ, Y)
+    let x_b_rho   = ComT::<E>::pairing_sum(xcoms, &i2_b_rho);     // e(X, b^ρ)
 
     // 2) γ cross leg: compute unmasked, then ^ρ on GT cells (post-exp)
     // PPE should now be 2-variable to match GS CRS size
@@ -96,13 +79,28 @@ pub fn masked_verifier_matrix_canonical<E: Pairing>(
     let upi_rho   = ComT::<E>::pairing_sum(&u_rho, pi);                 // e(U^ρ, π)
     let thv_rho   = ComT::<E>::pairing_sum(theta, &v_rho);              // e(θ, V^ρ)
 
-    // 4) Sum in ComT-world (cellwise multiply in GT), using 2×2 raw GT cells
-    let mut acc   = comt_to_cells::<E>(&aY_rho);
-    acc           = mul_cells::<E>(acc, comt_to_cells::<E>(&Xb_rho));
-    acc           = mul_cells::<E>(acc, cross_rho);
-    acc           = mul_cells::<E>(acc, comt_to_cells::<E>(&upi_rho));
-    acc           = mul_cells::<E>(acc, comt_to_cells::<E>(&thv_rho));
-    acc
+    // 4) Build masked cross leg as ComT
+    let cross_rho_comt = ComT::<E>::from(vec![
+        vec![
+            PairingOutput::<E>(cross_rho[0][0]),
+            PairingOutput::<E>(cross_rho[0][1]),
+        ],
+        vec![
+            PairingOutput::<E>(cross_rho[1][0]),
+            PairingOutput::<E>(cross_rho[1][1]),
+        ],
+    ]);
+
+    // 5) Reconstruct masked verifier LHS and subtract masked proof legs
+    let lhs_mask = (a_y_rho + x_b_rho) + cross_rho_comt;
+    let rhs_mask = lhs_mask - upi_rho - thv_rho;
+
+    // 6) Return raw GT cells of masked RHS (should equal target^ρ)
+    let rhs_matrix = rhs_mask.as_matrix();
+    [
+        [rhs_matrix[0][0].0, rhs_matrix[0][1].0],
+        [rhs_matrix[1][0].0, rhs_matrix[1][1].0],
+    ]
 }
 
 /// Convenience: expected RHS matrix = linear_map_PPE(target^ρ)
