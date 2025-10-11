@@ -33,6 +33,7 @@ jobs:
           set -euo pipefail
           ASAN_RT="${ASAN_RUNTIME_DIR}/libclang_rt.asan-x86_64.so"
           export LD_LIBRARY_PATH="${ASAN_RUNTIME_DIR}:${LD_LIBRARY_PATH:-}"
+          export LD_PRELOAD="${ASAN_RT}:${LD_PRELOAD:-}"
           export RUSTFLAGS="-Z sanitizer=address -C link-arg=${ASAN_RT} -C link-arg=-Wl,-rpath,${ASAN_RUNTIME_DIR}"
           export RUSTDOCFLAGS="${RUSTFLAGS}"
           export ASAN_OPTIONS="detect_leaks=0"
