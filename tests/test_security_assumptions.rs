@@ -13,15 +13,9 @@ use ark_bls12_381::{Bls12_381, Fr, G1Affine, G2Affine, Fq12};
 use ark_ec::pairing::{Pairing, PairingOutput};
 use ark_ec::{CurveGroup, AffineRepr};
 use ark_std::test_rng;
-use rand::{SeedableRng, rngs::StdRng};
 use ark_ff::{UniformRand, One, Zero};
 use sha2::{Sha256, Digest};
 
-use arkworks_groth16::{
-    GrothSahaiCommitments,
-    ArkworksProof,
-    ArkworksVK,
-};
 
 use groth_sahai::generator::CRS;
 use groth_sahai::AbstractCrs;
