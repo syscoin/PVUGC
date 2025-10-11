@@ -39,9 +39,9 @@ pub enum KEMError {
 pub struct KEMShare {
     /// Index of this share
     pub index: u32,
-    /// Masked U base pairs (G2, each pair is 192 bytes)
+    /// Masked CRS U elements (U^ρ in G1, each pair is 96 bytes)
     pub d1_masks: Vec<Vec<u8>>,
-    /// Masked V base pairs (G1, each pair is 96 bytes)
+    /// Masked CRS V elements (V^ρ in G2, each pair is 192 bytes)
     pub d2_masks: Vec<Vec<u8>>,
     /// Encrypted adaptor share
     pub ciphertext: Vec<u8>,
@@ -236,7 +236,7 @@ impl ProductKeyKEM {
         Ok(plaintext)
     }
 
-    /// Mask G2 base pairs with scalar multiplication
+    /// Mask CRS V pairs (G2) with scalar multiplication
     pub fn mask_g2_pairs(
         &self,
         pairs: &[Vec<u8>],
@@ -253,19 +253,19 @@ impl ProductKeyKEM {
             }
             
             // Split pair into two G2 points
-            let u0_bytes = &pair_bytes[..96];
-            let u1_bytes = &pair_bytes[96..];
+            let v0_bytes = &pair_bytes[..96];
+            let v1_bytes = &pair_bytes[96..];
             
             // Use BLS12381Ops for scalar multiplication
-            let u0_masked = BLS12381Ops::g2_multiply(&u0_bytes.to_vec(), rho)
-                .map_err(|e| KEMError::Crypto(format!("G2 u0 multiply: {:?}", e)))?;
-            let u1_masked = BLS12381Ops::g2_multiply(&u1_bytes.to_vec(), rho)
-                .map_err(|e| KEMError::Crypto(format!("G2 u1 multiply: {:?}", e)))?;
+            let v0_masked = BLS12381Ops::g2_multiply(&v0_bytes.to_vec(), rho)
+                .map_err(|e| KEMError::Crypto(format!("G2 v0 multiply: {:?}", e)))?;
+            let v1_masked = BLS12381Ops::g2_multiply(&v1_bytes.to_vec(), rho)
+                .map_err(|e| KEMError::Crypto(format!("G2 v1 multiply: {:?}", e)))?;
             
             // Combine masked points
             let mut masked_pair = Vec::new();
-            masked_pair.extend_from_slice(&u0_masked);
-            masked_pair.extend_from_slice(&u1_masked);
+            masked_pair.extend_from_slice(&v0_masked);
+            masked_pair.extend_from_slice(&v1_masked);
             
             masked_pairs.push(masked_pair);
         }
@@ -273,7 +273,7 @@ impl ProductKeyKEM {
         Ok(masked_pairs)
     }
 
-    /// Mask G1 base pairs with scalar multiplication
+    /// Mask CRS U pairs (G1) with scalar multiplication
     pub fn mask_g1_pairs(
         &self,
         pairs: &[Vec<u8>],
@@ -290,19 +290,19 @@ impl ProductKeyKEM {
             }
             
             // Split pair into two G1 points
-            let v0_bytes = &pair_bytes[..48];
-            let v1_bytes = &pair_bytes[48..];
+            let u0_bytes = &pair_bytes[..48];
+            let u1_bytes = &pair_bytes[48..];
             
             // Use BLS12381Ops for scalar multiplication
-            let v0_masked = BLS12381Ops::g1_multiply(&v0_bytes.to_vec(), rho)
-                .map_err(|e| KEMError::Crypto(format!("G1 v0 multiply: {:?}", e)))?;
-            let v1_masked = BLS12381Ops::g1_multiply(&v1_bytes.to_vec(), rho)
-                .map_err(|e| KEMError::Crypto(format!("G1 v1 multiply: {:?}", e)))?;
+            let u0_masked = BLS12381Ops::g1_multiply(&u0_bytes.to_vec(), rho)
+                .map_err(|e| KEMError::Crypto(format!("G1 u0 multiply: {:?}", e)))?;
+            let u1_masked = BLS12381Ops::g1_multiply(&u1_bytes.to_vec(), rho)
+                .map_err(|e| KEMError::Crypto(format!("G1 u1 multiply: {:?}", e)))?;
             
             // Combine masked points
             let mut masked_pair = Vec::new();
-            masked_pair.extend_from_slice(&v0_masked);
-            masked_pair.extend_from_slice(&v1_masked);
+            masked_pair.extend_from_slice(&u0_masked);
+            masked_pair.extend_from_slice(&u1_masked);
             
             masked_pairs.push(masked_pair);
         }
@@ -310,15 +310,17 @@ impl ProductKeyKEM {
         Ok(masked_pairs)
     }
 
-    /// Encapsulate using dual-base evaluator
+    /// Encapsulate using canonical evaluator
     pub fn encapsulate<R: Rng>(
         &self,
         rng: &mut R,
         share_index: u32,
-        u_bases: &[Vec<u8>],  // u_dual bases (G2)
-        v_bases: &[Vec<u8>],  // v_dual bases (G1)
         attestation_commitments_g1: &[Vec<u8>],  // C1 from attestation
         attestation_commitments_g2: &[Vec<u8>],  // C2 from attestation
+        pi_elements: &[Vec<u8>],  // π proof elements (G2)
+        theta_elements: &[Vec<u8>],  // θ proof elements (G1)
+        crs_u: &[Vec<u8>],  // CRS U elements (G1)
+        crs_v: &[Vec<u8>],  // CRS V elements (G2)
         adaptor_share: Scalar,
         ctx_hash: &[u8],
         gs_instance_digest: &[u8],
@@ -326,17 +328,20 @@ impl ProductKeyKEM {
         // Generate random rho_i (non-zero)
         let rho_i = BLS12381Ops::random_scalar(rng);
         
-        // Mask dual base pairs with ρ
-        let d1_masks = self.mask_g2_pairs(u_bases, rho_i)?;
-        let d2_masks = self.mask_g1_pairs(v_bases, rho_i)?;
+        // Mask CRS U and V elements with ρ for public sharing
+        let u_masked = self.mask_g1_pairs(crs_u, rho_i)?;  // U^ρ in G1 
+        let v_masked = self.mask_g2_pairs(crs_v, rho_i)?;  // V^ρ in G2
         
-        // Compute M_i using dual-base KEM evaluator with masked bases
-        // This gives M_i = anchor^ρ (proof-agnostic)
-        let m_i_bytes = crate::gs_kem_helpers::compute_kem_product(
+        // Compute M_i using canonical masked evaluator
+        // This gives M_i = target^ρ (proof-agnostic)
+        let m_i_bytes = crate::gs_kem_helpers::compute_canonical_masked_eval(
             attestation_commitments_g1,
             attestation_commitments_g2,
-            &d1_masks,
-            &d2_masks,
+            pi_elements,
+            theta_elements,
+            crs_u,
+            crs_v,
+            rho_i,
         ).map_err(|e| KEMError::Crypto(e))?;
         
         // Derive encryption key directly from serialized GT bytes to avoid
@@ -362,7 +367,7 @@ impl ProductKeyKEM {
         plaintext.extend_from_slice(&h_i);
         
         // Build associated data
-        let ad = self.build_ad(share_index, ctx_hash, gs_instance_digest, &t_i, &d1_masks, &d2_masks)?;
+        let ad = self.build_ad(share_index, ctx_hash, gs_instance_digest, &t_i, &u_masked, &v_masked)?;
         
         // Encrypt with key-committing DEM
         let (ciphertext, auth_tag) = self.dem_encrypt(&k_i, &plaintext, &ad)?;
@@ -370,8 +375,8 @@ impl ProductKeyKEM {
         // Create public KEM share
         let kem_share = KEMShare {
             index: share_index,
-            d1_masks,
-            d2_masks,
+            d1_masks: u_masked,  // Now U^ρ in G1
+            d2_masks: v_masked,  // Now V^ρ in G2
             ciphertext,
             auth_tag,
             t_i,
@@ -381,22 +386,26 @@ impl ProductKeyKEM {
         Ok((kem_share, m_i))
     }
 
-    /// Decapsulate using GS commitments from attestation
+    /// Decapsulate using GS commitments and proof elements from attestation
     pub fn decapsulate(
         &self,
         kem_share: &KEMShare,
         attestation_commitments_g1: &[Vec<u8>],  // C1 from valid attestation
         attestation_commitments_g2: &[Vec<u8>],  // C2 from valid attestation
+        pi_elements: &[Vec<u8>],  // π proof elements from attestation
+        theta_elements: &[Vec<u8>],  // θ proof elements from attestation
         ctx_hash: &[u8],
         gs_instance_digest: &[u8],
     ) -> Result<Fr, KEMError> {
-        // Compute M_i using dual-base KEM evaluator
-        // Uses valid attestation C1, C2 + published masked bases D1, D2
-        let m_i_bytes = crate::gs_kem_helpers::compute_kem_product(
+        // Compute M_i using canonical masked evaluator with published masked CRS elements
+        // Uses valid attestation C1, C2, π, θ + published masked U^ρ, V^ρ
+        let m_i_bytes = crate::gs_kem_helpers::compute_canonical_masked_eval_with_masked_crs(
             attestation_commitments_g1,
             attestation_commitments_g2,
-            &kem_share.d1_masks,
-            &kem_share.d2_masks,
+            pi_elements,
+            theta_elements,
+            &kem_share.d1_masks,  // U^ρ
+            &kem_share.d2_masks,  // V^ρ
         ).map_err(|e| KEMError::Crypto(e))?;
         
         // Derive decryption key from M_i
@@ -516,14 +525,18 @@ mod tests {
         // Mock attestation commitments
         let mock_c1 = vec![vec![0u8; 96]; 2];  // 2 C1 commitments
         let mock_c2 = vec![vec![0u8; 192]; 2];  // 2 C2 commitments
+        let mock_pi = vec![vec![0u8; 192]; 2];  // 2 pi elements (G2)
+        let mock_theta = vec![vec![0u8; 96]; 2];  // 2 theta elements (G1)
         
         let result = kem.encapsulate(
             &mut rng,
             0,
-            &u_bases,
-            &v_bases,
             &mock_c1,
             &mock_c2,
+            &mock_pi,
+            &mock_theta,
+            &u_bases,
+            &v_bases,
             adaptor_share,
             ctx_hash,
             gs_instance_digest,
@@ -601,11 +614,11 @@ mod tests {
         
         let public_input: Vec<Fr> = vec![]; // Empty public input for this test
         let attestation = gs.commit_arkworks_proof(&proof, &vk, &public_input, true, &mut rng).unwrap();
-        let (u_dual_bases, v_dual_bases) = gs.get_instance_bases(&vk, &public_input);
+        let (u_elements, v_elements) = gs.get_crs_elements();
         
         // Serialize bases and commitments
         let mut u_bases = Vec::new();
-        for (u0, u1) in u_dual_bases {
+        for (u0, u1) in u_elements {
             let mut pair = Vec::new();
             u0.serialize_compressed(&mut pair).unwrap();
             u1.serialize_compressed(&mut pair).unwrap();
@@ -613,7 +626,7 @@ mod tests {
         }
         
         let mut v_bases = Vec::new();
-        for (v0, v1) in v_dual_bases {
+        for (v0, v1) in v_elements {
             let mut pair = Vec::new();
             v0.serialize_compressed(&mut pair).unwrap();
             v1.serialize_compressed(&mut pair).unwrap();
@@ -634,6 +647,21 @@ mod tests {
             c2_bytes.push(bytes);
         }
         
+        // Serialize pi and theta elements for canonical evaluation
+        let mut pi_bytes = Vec::new();
+        for pi_elem in &attestation.pi_elements {
+            let mut bytes = Vec::new();
+            pi_elem.serialize_compressed(&mut bytes).unwrap();
+            pi_bytes.push(bytes);
+        }
+        
+        let mut theta_bytes = Vec::new();
+        for theta_elem in &attestation.theta_elements {
+            let mut bytes = Vec::new();
+            theta_elem.serialize_compressed(&mut bytes).unwrap();
+            theta_bytes.push(bytes);
+        }
+        
         let adaptor_share = Fr::rand(&mut rng);
         let ctx_hash = b"test_context";
         let gs_instance_digest = b"test_digest";
@@ -642,10 +670,12 @@ mod tests {
         let (kem_share, _m_i) = kem.encapsulate(
             &mut rng,
             0,
-            &u_bases,
-            &v_bases,
             &c1_bytes,
             &c2_bytes,
+            &pi_bytes,
+            &theta_bytes,
+            &u_bases,
+            &v_bases,
             adaptor_share,
             ctx_hash,
             gs_instance_digest,
@@ -662,6 +692,8 @@ mod tests {
             &kem_share,
             &c1_bytes,
             &c2_bytes,
+            &pi_bytes,
+            &theta_bytes,
             ctx_hash,
             gs_instance_digest,
         ).unwrap();
@@ -699,20 +731,20 @@ mod tests {
         let attestation = gs.commit_arkworks_proof(&proof, &vk, &public_input, true, &mut rng).unwrap();
         
         // Serialize everything
-        let public_input: Vec<Fr> = vec![]; // Empty public input for this test
-        let (u_dual, v_dual) = gs.get_instance_bases(&vk, &public_input);
+        let _public_input: Vec<Fr> = vec![]; // Empty public input for this test
+        let (u_elements, v_elements) = gs.get_crs_elements();
         let mut u_bases = Vec::new();
         let mut v_bases = Vec::new();
         let mut c1_bytes = Vec::new();
         let mut c2_bytes = Vec::new();
         
-        for (u0, u1) in u_dual {
+        for (u0, u1) in u_elements {
             let mut p = Vec::new();
             u0.serialize_compressed(&mut p).unwrap();
             u1.serialize_compressed(&mut p).unwrap();
             u_bases.push(p);
         }
-        for (v0, v1) in v_dual {
+        for (v0, v1) in v_elements {
             let mut p = Vec::new();
             v0.serialize_compressed(&mut p).unwrap();
             v1.serialize_compressed(&mut p).unwrap();
@@ -729,6 +761,21 @@ mod tests {
             c2_bytes.push(b);
         }
         
+        // Serialize pi and theta elements
+        let mut pi_bytes = Vec::new();
+        for pi_elem in &attestation.pi_elements {
+            let mut bytes = Vec::new();
+            pi_elem.serialize_compressed(&mut bytes).unwrap();
+            pi_bytes.push(bytes);
+        }
+        
+        let mut theta_bytes = Vec::new();
+        for theta_elem in &attestation.theta_elements {
+            let mut bytes = Vec::new();
+            theta_elem.serialize_compressed(&mut bytes).unwrap();
+            theta_bytes.push(bytes);
+        }
+        
         let adaptor_share = Fr::rand(&mut rng);
         let ctx_hash = b"ctx";
         let gs_digest = b"digest";
@@ -737,8 +784,8 @@ mod tests {
         let mut kem_shares = Vec::new();
         for i in 0..5 {
             let (share, _) = kem.encapsulate(
-                &mut rng, i, &u_bases, &v_bases, &c1_bytes, &c2_bytes,
-                adaptor_share, ctx_hash, gs_digest
+                &mut rng, i, &c1_bytes, &c2_bytes, &pi_bytes, &theta_bytes,
+                &u_bases, &v_bases, adaptor_share, ctx_hash, gs_digest
             ).unwrap();
             kem_shares.push(share);
         }
@@ -746,7 +793,7 @@ mod tests {
         // All should decrypt to the same adaptor_share
         let mut recovered_values = Vec::new();
         for (i, share) in kem_shares.iter().enumerate() {
-            let recovered = kem.decapsulate(share, &c1_bytes, &c2_bytes, ctx_hash, gs_digest).unwrap();
+            let recovered = kem.decapsulate(share, &c1_bytes, &c2_bytes, &pi_bytes, &theta_bytes, ctx_hash, gs_digest).unwrap();
             recovered_values.push(recovered);
             assert_eq!(recovered, adaptor_share, "Share {} decrypted to wrong value", i);
         }
@@ -772,14 +819,18 @@ mod tests {
         
         let mock_c1 = vec![vec![0u8; 96]; 2];
         let mock_c2 = vec![vec![0u8; 192]; 2];
+        let mock_pi = vec![vec![0u8; 192]; 2];  // 2 pi elements (G2)
+        let mock_theta = vec![vec![0u8; 96]; 2];  // 2 theta elements (G1)
         
         let result = kem.encapsulate(
             &mut rng,
             0,
-            &invalid_u_bases,
-            &vec![vec![0u8; 96]; 2],
             &mock_c1,
             &mock_c2,
+            &mock_pi,
+            &mock_theta,
+            &invalid_u_bases,
+            &vec![vec![0u8; 96]; 2],
             adaptor_share,
             ctx_hash,
             gs_instance_digest,

@@ -13,7 +13,10 @@
 
 use crate::data_structures::{Com1, Com2};
 
-use ark_ec::pairing::{Pairing, PairingOutput};
+use ark_ec::{
+    pairing::{Pairing, PairingOutput},
+    CurveGroup,
+};
 use ark_ff::{UniformRand, Zero};
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use ark_std::{ops::Mul, rand::Rng};
@@ -36,9 +39,6 @@ pub struct CRS<E: Pairing> {
     pub g1_gen: E::G1Affine,
     pub g2_gen: E::G2Affine,
     pub gt_gen: PairingOutput<E>,
-    /// Dual bases for KEM (derived from u, v)
-    pub u_dual: Vec<Com2<E>>,  // Dual to u in G2
-    pub v_dual: Vec<Com1<E>>,  // Dual to v in G1
 }
 
 impl<E: Pairing> CRS<E> {
@@ -82,25 +82,22 @@ impl<E: Pairing> AbstractCrs<E> for CRS<E> {
     where
         R: Rng,
     {
-        use ark_ec::CurveGroup;
-        
         // Generators for G1 and G2
         let p1 = E::G1::rand(rng);
         let p2 = E::G2::rand(rng);
 
-        // Scalar intermediate values for binding CRS (non-zero)
-        let a1 = loop { let v = E::ScalarField::rand(rng); if !v.is_zero() { break v } };
-        let a2 = loop { let v = E::ScalarField::rand(rng); if !v.is_zero() { break v } };
-        let t1 = loop { let v = E::ScalarField::rand(rng); if !v.is_zero() { break v } };
-        let t2 = loop { let v = E::ScalarField::rand(rng); if !v.is_zero() { break v } };
+        // Scalar intermediate values
+        let a1 = E::ScalarField::rand(rng);
+        let a2 = E::ScalarField::rand(rng);
+        let t1 = E::ScalarField::rand(rng);
+        let t2 = E::ScalarField::rand(rng);
 
-        // Projective intermediates
+        // Projective intermediate values
         let q1 = p1.mul(a1);
         let q2 = p2.mul(a2);
         let u1 = p1.mul(t1);
         let u2 = p2.mul(t2);
 
-        // Binding keys second components
         let (v1, v2) = Self::prepare_real_binding_key(p1, p2, q1, t1, q2, t2);
 
         // B1 commitment key for G1 and Fr
@@ -111,46 +108,13 @@ impl<E: Pairing> AbstractCrs<E> for CRS<E> {
         let u21 = Com2::<E>(p2.into_affine(), q2.into_affine());
         let u22 = Com2::<E>(u2.into_affine(), v2.into_affine());
 
-        // Duals derived from exponents
-        // u[0] exponents (1, a1) => u_dual[0] = (p2^{-a1}, p2)
-        let u_dual_0 = Com2::<E>( p2.mul(-a1).into_affine(), p2.into_affine() );
-        // u[1] exponents (t1, a1*t1) => u_dual[1] = (p2^{-a1*t1}, p2^{t1})
-        let u_dual_1 = Com2::<E>( p2.mul(- (a1 * t1)).into_affine(), p2.mul(t1).into_affine() );
-
-        // v[0] exponents (1, a2) => v_dual[0] = (p1^{-a2}, p1)
-        let v_dual_0 = Com1::<E>( p1.mul(-a2).into_affine(), p1.into_affine() );
-        // v[1] exponents (t2, a2*t2) => v_dual[1] = (p1^{-a2*t2}, p1^{t2})
-        let v_dual_1 = Com1::<E>( p1.mul(- (a2 * t2)).into_affine(), p1.mul(t2).into_affine() );
-
-        let crs = CRS::<E> {
+        CRS::<E> {
             u: vec![u11, u12],
             v: vec![u21, u22],
             g1_gen: p1.into_affine(),
             g2_gen: p2.into_affine(),
             gt_gen: E::pairing(p1.into_affine(), p2.into_affine()),
-            u_dual: vec![u_dual_0, u_dual_1],
-            v_dual: vec![v_dual_0, v_dual_1],
-        };
-
-        // Runtime assertions for CRS pair-compatibility
-        #[cfg(debug_assertions)]
-        {
-            use ark_ff::One;
-            for j in 0..crs.u.len() {
-                let PairingOutput(p0) = E::pairing(crs.u[j].0, crs.u_dual[j].0);
-                let PairingOutput(p1) = E::pairing(crs.u[j].1, crs.u_dual[j].1);
-                debug_assert_eq!(p0 * p1, E::TargetField::one(), 
-                    "CRS u/u_dual pair {} invariant failed", j);
-            }
-            for k in 0..crs.v.len() {
-                let PairingOutput(p0) = E::pairing(crs.v_dual[k].0, crs.v[k].0);
-                let PairingOutput(p1) = E::pairing(crs.v_dual[k].1, crs.v[k].1);
-                debug_assert_eq!(p0 * p1, E::TargetField::one(), 
-                    "CRS v_dual/v pair {} invariant failed", k);
-            }
         }
-
-        crs
     }
 }
 
@@ -187,8 +151,22 @@ mod tests {
     #[allow(non_snake_case)]
     #[test]
     fn test_valid_binding_CRS() {
+        std::env::set_var("DETERMINISTIC_TEST_RNG", "1");
         let mut rng = test_rng();
+        let mut rng2 = test_rng();
+
         let crs = CRS::<F>::generate_crs(&mut rng);
+
+        // Follow the same process as necessary to prepare a binding key
+        let p1 = G1Projective::rand(&mut rng2);
+        let p2 = G2Projective::rand(&mut rng2);
+        let a1 = Fr::rand(&mut rng2);
+        let a2 = Fr::rand(&mut rng2);
+        let t1 = Fr::rand(&mut rng2);
+        let t2 = Fr::rand(&mut rng2);
+        let q1 = p1.mul(a1);
+        let q2 = p2.mul(a2);
+        let (v1, v2) = CRS::<F>::prepare_real_binding_key(p1, p2, q1, t1, q2, t2);
 
         // Generated commitment keys are non-trivial
         assert_ne!(crs.u[0], Com1::zero());
@@ -196,31 +174,12 @@ mod tests {
         assert_ne!(crs.v[0], Com2::zero());
         assert_ne!(crs.v[1], Com2::zero());
 
-        // Diagonal duality invariants hold; off-diagonals do not cancel
-        use ark_ff::One;
-        // u vs u_dual
-        for i in 0..crs.u.len() {
-            for j in 0..crs.u_dual.len() {
-                let PairingOutput(p0) = F::pairing(crs.u[i].0, crs.u_dual[j].0);
-                let PairingOutput(p1) = F::pairing(crs.u[i].1, crs.u_dual[j].1);
-                let prod = p0 * p1;
-                if i == j { assert_eq!(prod, <F as Pairing>::TargetField::one()); }
-                else { assert_ne!(prod, <F as Pairing>::TargetField::one()); }
-            }
-        }
-        // v_dual vs v
-        for i in 0..crs.v_dual.len() {
-            for j in 0..crs.v.len() {
-                let PairingOutput(p0) = F::pairing(crs.v_dual[i].0, crs.v[j].0);
-                let PairingOutput(p1) = F::pairing(crs.v_dual[i].1, crs.v[j].1);
-                let prod = p0 * p1;
-                if i == j { assert_eq!(prod, <F as Pairing>::TargetField::one()); }
-                else { assert_ne!(prod, <F as Pairing>::TargetField::one()); }
-            }
-        }
+        // The chosen keys are binding (i.e. not hiding)
+        assert_ne!(crs.g1_gen, G1Affine::zero());
+        assert_ne!(crs.g2_gen, G2Affine::zero());
+        assert_eq!(crs.u[1].1, v1.into_affine());
+        assert_eq!(crs.v[1].1, v2.into_affine());
     }
-
-    
 
     #[allow(non_snake_case)]
     #[test]

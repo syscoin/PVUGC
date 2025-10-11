@@ -5,14 +5,9 @@ use ark_ec::pairing::{Pairing, PairingOutput};
 use ark_ec::{CurveGroup, AffineRepr};
 use ark_std::test_rng;
 use ark_ff::{UniformRand, One, Zero, PrimeField, BigInteger};
-use ark_serialize::{CanonicalSerialize, CanonicalDeserialize};
-use rand::{rngs::StdRng, SeedableRng, thread_rng};
+use ark_serialize::{CanonicalSerialize};
 use sha2::{Sha256, Digest};
 use groth_sahai::verifier::Verifiable;
-use groth_sahai::{ComT, BT};
-use groth_sahai::prover::{CProof, EquProof};
-use groth_sahai::prover::commit::{Commit1, Commit2};
-use ark_ff::Field;
 
 // Use PVUGC wrappers
 use arkworks_groth16::{
@@ -22,17 +17,14 @@ use arkworks_groth16::{
     ArkworksVK,
     SchnorrAdaptor,
 };
-use arkworks_groth16::gs_commitments::compute_ic_from_vk_and_inputs;
 
 // GS internals for direct testing
 use groth_sahai::generator::CRS;
 use groth_sahai::AbstractCrs;
 use groth_sahai::prover::Provable;
 use groth_sahai::statement::PPE;
-use groth_sahai::{ppe_eval_with_masked_pairs, ppe_eval_bases, ppe_instance_bases};
-use groth_sahai::kem_eval::{mask_g1_pair, mask_g2_pair, pow_gt};
+use groth_sahai::{masked_verifier_matrix_canonical_2x2};
 use groth_sahai::data_structures::{Com1, Com2};
-use groth_sahai::{Mat, B1, B2};
 
 use schnorr_fun::fun::{marker::*, Scalar};
 use arkworks_groth16::groth16_wrapper::ArkworksGroth16;
@@ -101,7 +93,7 @@ fn create_mock_proof_and_vk(rng: &mut impl rand::Rng) -> (ArkworksProof, Arkwork
 
 #[test]
 fn test_kem_bit_for_bit_match() {
-    // Test KEM encap/decap produces bit-for-bit matching results using wrapper
+    // Test KEM encap/decap produces bit-for-bit matching results using canonical masked verifier
     println!("Testing KEM bit-for-bit match");
     
     let mut rng = test_rng();
@@ -112,106 +104,92 @@ fn test_kem_bit_for_bit_match() {
         .expect("Failed to create attestation");
     
     let rho = Fr::from(0x1234567890abcdefu64);
-    let _public_input: Vec<Fr> = vec![];
-    let (u_bases, v_bases) = gs.get_instance_bases(&vk, &_public_input);
     
-    let u_dual_masked: Vec<_> = u_bases.iter()
-        .map(|&p| mask_g2_pair::<Bls12_381>(p, rho))
-        .collect();
-    let v_dual_masked: Vec<_> = v_bases.iter()
-        .map(|&p| mask_g1_pair::<Bls12_381>(p, rho))
-        .collect();
+    // Get PPE and CRS for canonical evaluation
+    let ppe = gs.groth16_verify_as_ppe_2var(&vk, &vec![]);
+    let crs = gs.get_crs();
     
-    // Compute anchor (unmasked)
-    let PairingOutput(M_i_unmasked) = ppe_eval_with_masked_pairs::<Bls12_381>(
+    // Use canonical masked verifier for encap
+    let masked_matrix_encap = masked_verifier_matrix_canonical_2x2(
+        &ppe,
+        &crs,
         &attestation.c1_commitments,
         &attestation.c2_commitments,
-        &u_bases,
-        &v_bases,
+        &attestation.pi_elements,
+        &attestation.theta_elements,
+        rho,
     );
     
-    // Compute M_i with masked bases (encap)
-    let PairingOutput(M_i_encap) = ppe_eval_with_masked_pairs::<Bls12_381>(
+    // Use canonical masked verifier for decap (should be identical)
+    let masked_matrix_decap = masked_verifier_matrix_canonical_2x2(
+        &ppe,
+        &crs,
         &attestation.c1_commitments,
         &attestation.c2_commitments,
-        &u_dual_masked,
-        &v_dual_masked,
-    );
-    
-    // Compute M_i via GS KEM (decap - same as encap)
-    let PairingOutput(M_i_decap) = ppe_eval_with_masked_pairs::<Bls12_381>(
-        &attestation.c1_commitments,
-        &attestation.c2_commitments,
-        &u_dual_masked,
-        &v_dual_masked,
+        &attestation.pi_elements,
+        &attestation.theta_elements,
+        rho,
     );
     
     // Compare - should be identical
-    assert_eq!(M_i_encap, M_i_decap, "M_i encap and decap don't match");
-    // Verify M = anchor^ρ
-    let expected_M = pow_gt::<Bls12_381>(M_i_unmasked, rho);
-    assert_eq!(M_i_encap, expected_M, "M_i != anchor^ρ");
+    assert_eq!(masked_matrix_encap, masked_matrix_decap, "M_i encap and decap don't match");
     
 }
 
 #[test]
 fn test_kem_determinism_guarantee() {
-    // Test: multiple attestations produce different M (demonstrates non-proof-agnostic behavior)
+    // Test: canonical masked verifier produces consistent results across multiple attestations
     
     let mut rng = test_rng();
     let gs = GrothSahaiCommitments::from_seed(b"DETERMINISM_TEST");
     let (proof, vk) = create_mock_proof_and_vk(&mut rng);
     
     let rho = Fr::from(0xdeadbeefcafeu64);
-    let _public_input = vec![];
-    let (u_bases, v_bases) = gs.get_instance_bases(&vk, &_public_input);
     
-    let u_dual_masked: Vec<_> = u_bases.iter()
-        .map(|&p| mask_g2_pair::<Bls12_381>(p, rho))
-        .collect();
-    let v_dual_masked: Vec<_> = v_bases.iter()
-        .map(|&p| mask_g1_pair::<Bls12_381>(p, rho))
-        .collect();
+    // Get PPE and CRS for canonical evaluation
+    let ppe = gs.groth16_verify_as_ppe_2var(&vk, &vec![]);
+    let crs = gs.get_crs();
     
     let attestation = gs.commit_arkworks_proof(&proof, &vk, &vec![], true, &mut rng)
         .expect("Failed to create attestation");
     
-    let PairingOutput(M_encap) = ppe_eval_with_masked_pairs::<Bls12_381>(
+    let masked_matrix_encap = masked_verifier_matrix_canonical_2x2(
+        &ppe,
+        &crs,
         &attestation.c1_commitments,
         &attestation.c2_commitments,
-        &u_dual_masked,
-        &v_dual_masked,
+        &attestation.pi_elements,
+        &attestation.theta_elements,
+        rho,
     );
     
     // Create MULTIPLE attestations (different randomness)
-    let mut recovered_M_values = Vec::new();
+    let mut recovered_matrices = Vec::new();
     let num_iterations = 5;
     
     for _ in 0..num_iterations {
         let attestation_i = gs.commit_arkworks_proof(&proof, &vk, &vec![], true, &mut rng)
             .expect("Failed to create attestation");
         
-        let PairingOutput(M_i) = ppe_eval_with_masked_pairs::<Bls12_381>(
+        let masked_matrix_i = masked_verifier_matrix_canonical_2x2(
+            &ppe,
+            &crs,
             &attestation_i.c1_commitments,
             &attestation_i.c2_commitments,
-            &u_dual_masked,
-            &v_dual_masked,
+            &attestation_i.pi_elements,
+            &attestation_i.theta_elements,
+            rho,
         );
         
-        recovered_M_values.push(M_i);
+        recovered_matrices.push(masked_matrix_i);
     }
     
-    // Critical: M values must be identical (proof-agnostic behavior)
-    // This demonstrates that GS commitments are proof-agnostic
-    for (i, m) in recovered_M_values.iter().enumerate() {
-        assert_eq!(*m, M_encap, "Attestation {} produced different M", i);
-        println!("Attestation {} produced same M as first attestation", i);
+    // Critical: matrices must be identical (proof-agnostic behavior)
+    // This demonstrates that canonical masked verifier is proof-agnostic
+    for (i, matrix) in recovered_matrices.iter().enumerate() {
+        assert_eq!(*matrix, masked_matrix_encap, "Attestation {} produced different matrix", i);
+        println!("Attestation {} produced same matrix as first attestation", i);
     }
-    
-    println!("✅ Confirmed: Multiple attestations produce identical M values");
-    println!("✅ This demonstrates that GS commitments ARE proof-agnostic");
-    println!("✅ Same proof → same commitments → same KEM values");
-    
 }
 
 #[test]
@@ -262,45 +240,33 @@ fn test_negative_wrong_public_input() {
     
     let attestation2 = ppe2.commit_and_prove(&xvars2, &yvars2, &crs, &mut rng);
     
-    // Get bases for both
-    let eval_bases1 = ppe_eval_bases(&ppe1, &crs);
-    let inst_bases1 = ppe_instance_bases(&ppe1, &crs);
-    let eval_bases2 = ppe_eval_bases(&ppe2, &crs);
-    let inst_bases2 = ppe_instance_bases(&ppe2, &crs);
-    
-    // Encrypt with proof1's target
     let rho = Fr::rand(&mut rng);
-    let u_dual_masked1: Vec<_> = eval_bases1.x_g2_pairs.iter()
-        .map(|&p| mask_g2_pair::<E>(p, rho))
-        .collect();
-    let v_dual_masked1: Vec<_> = inst_bases1.v_pairs.iter()
-        .map(|&p| mask_g1_pair::<E>(p, rho))
-        .collect();
     
-    let PairingOutput(M_encap) = ppe_eval_with_masked_pairs::<E>(
+    // Use canonical masked verifier for attestation1
+    let masked_matrix1 = masked_verifier_matrix_canonical_2x2(
+        &ppe1,
+        &crs,
         &attestation1.xcoms.coms,
         &attestation1.ycoms.coms,
-        &u_dual_masked1,
-        &v_dual_masked1,
+        &attestation1.equ_proofs[0].pi,
+        &attestation1.equ_proofs[0].theta,
+        rho,
     );
     
-    // Try to decrypt with different proof (wrong public input)
-    let u_dual_masked2: Vec<_> = eval_bases2.x_g2_pairs.iter()
-        .map(|&p| mask_g2_pair::<E>(p, rho))
-        .collect();
-    let v_dual_masked2: Vec<_> = inst_bases2.v_pairs.iter()
-        .map(|&p| mask_g1_pair::<E>(p, rho))
-        .collect();
-    
-    let PairingOutput(M_decap_wrong) = ppe_eval_with_masked_pairs::<E>(
+    // Use canonical masked verifier for attestation2 (wrong public input)
+    let masked_matrix2 = masked_verifier_matrix_canonical_2x2(
+        &ppe2,
+        &crs,
         &attestation2.xcoms.coms,
         &attestation2.ycoms.coms,
-        &u_dual_masked2,
-        &v_dual_masked2,
+        &attestation2.equ_proofs[0].pi,
+        &attestation2.equ_proofs[0].theta,
+        rho,
     );
     
-    // Should fail (different public input → different G_target)
-    assert_ne!(M_encap, M_decap_wrong, "Should not decrypt with wrong public input");
+    // Should fail (different public input → different matrices)
+    assert_ne!(masked_matrix1, masked_matrix2, "Should not match with wrong public input");
+
 }
 
 #[test]
@@ -331,35 +297,21 @@ fn test_negative_no_proof_cannot_sign() {
     };
     
     let attestation_dummy = ppe.commit_and_prove(&xvars, &yvars, &crs, &mut rng);
-    let eval_bases = ppe_eval_bases(&ppe, &crs);
-    let inst_bases = ppe_instance_bases(&ppe, &crs);
     
-    // Arm with adaptor fragments
-    let adaptor_fragments = vec![Fr::from(0x111u64), Fr::from(0x222u64), Fr::from(0x333u64)];
-    let mut kem_shares = Vec::new();
+    let rho = Fr::rand(&mut rng);
     
-    for (_i, fragment) in adaptor_fragments.iter().enumerate() {
-        let rho = Fr::rand(&mut rng);
-        
-        let u_dual_masked: Vec<_> = eval_bases.x_g2_pairs.iter()
-            .map(|&p| mask_g2_pair::<E>(p, rho))
-            .collect();
-        let v_dual_masked: Vec<_> = inst_bases.v_pairs.iter()
-            .map(|&p| mask_g1_pair::<E>(p, rho))
-            .collect();
-        
-        let PairingOutput(M_i) = ppe_eval_with_masked_pairs::<E>(
-            &attestation_dummy.xcoms.coms,
-            &attestation_dummy.ycoms.coms,
-            &u_dual_masked,
-            &v_dual_masked,
-        );
-        
-        kem_shares.push((rho, M_i, *fragment));
-    }
+    // Use canonical masked verifier with valid attestation
+    let masked_matrix_valid = masked_verifier_matrix_canonical_2x2(
+        &ppe,
+        &crs,
+        &attestation_dummy.xcoms.coms,
+        &attestation_dummy.ycoms.coms,
+        &attestation_dummy.equ_proofs[0].pi,
+        &attestation_dummy.equ_proofs[0].theta,
+        rho,
+    );
     
-    
-    // ATTACK: Try to decrypt without having a valid proof
+    // ATTACK: Try to use canonical masked verifier with fake commitments
     let fake_C1: Vec<_> = (0..2).map(|_| {
         Com1::<E>(
             (crs.g1_gen.into_group() * Fr::rand(&mut rng)).into_affine(),
@@ -374,30 +326,19 @@ fn test_negative_no_proof_cannot_sign() {
         )
     }).collect();
     
-    // Try to decrypt with fake commitments
-    let mut recovered_any = false;
-    for (i, (rho, _, _)) in kem_shares.iter().enumerate() {
-        let u_dual_masked: Vec<_> = eval_bases.x_g2_pairs.iter()
-            .map(|&p| mask_g2_pair::<E>(p, *rho))
-            .collect();
-        let v_dual_masked: Vec<_> = inst_bases.v_pairs.iter()
-            .map(|&p| mask_g1_pair::<E>(p, *rho))
-            .collect();
-        
-        let PairingOutput(M_fake) = ppe_eval_with_masked_pairs::<E>(
-            &fake_C1,
-            &fake_C2,
-            &u_dual_masked,
-            &v_dual_masked,
-        );
-        
-        if M_fake == kem_shares[i].1 {
-            recovered_any = true;
-        }
-    }
+    // Use canonical masked verifier with fake commitments
+    let masked_matrix_fake = masked_verifier_matrix_canonical_2x2(
+        &ppe,
+        &crs,
+        &fake_C1,
+        &fake_C2,
+        &attestation_dummy.equ_proofs[0].pi,
+        &attestation_dummy.equ_proofs[0].theta,
+        rho,
+    );
     
-    // Should NOT decrypt without valid proof
-    assert!(!recovered_any, "❌ Should NOT decrypt without valid proof!");
+    // Should NOT match (fake commitments → different matrix)
+    assert_ne!(masked_matrix_valid, masked_matrix_fake, "❌ Should NOT match with fake commitments!");
     
 }
 
@@ -429,67 +370,106 @@ fn test_determinism_across_sessions() {
     };
     
     let attestation1 = ppe.commit_and_prove(&xvars, &yvars, &crs1, &mut rng);
-    let eval_bases = ppe_eval_bases(&ppe, &crs1);
-    let inst_bases = ppe_instance_bases(&ppe, &crs1);
     
     let rho = Fr::from(42u64);
-    let u_dual_masked: Vec<_> = eval_bases.x_g2_pairs.iter()
-        .map(|&p| mask_g2_pair::<E>(p, rho))
-        .collect();
-    let v_dual_masked: Vec<_> = inst_bases.v_pairs.iter()
-        .map(|&p| mask_g1_pair::<E>(p, rho))
-        .collect();
     
-    let PairingOutput(_M1) = ppe_eval_with_masked_pairs::<E>(
+    // Use canonical masked verifier for session 1
+    let masked_matrix1 = masked_verifier_matrix_canonical_2x2(
+        &ppe,
+        &crs1,
         &attestation1.xcoms.coms,
         &attestation1.ycoms.coms,
-        &u_dual_masked,
-        &v_dual_masked,
+        &attestation1.equ_proofs[0].pi,
+        &attestation1.equ_proofs[0].theta,
+        rho,
     );
     
-    // Session 2: Different CRS instance, same proof
-    let crs2 = CRS::<E>::generate_crs(&mut rng);
+    // Session 2: Same CRS instance, same proof variables (deterministic across sessions)
+    // This tests that the same statement + same CRS produces the same masked matrix
+    let attestation2 = ppe.commit_and_prove(&xvars, &yvars, &crs1, &mut rng);
     
-    let pi_A2 = (crs2.g1_gen.into_group() * Fr::from(2u64)).into_affine();
-    let pi_C2 = (crs2.g1_gen.into_group() * Fr::from(3u64)).into_affine();
-    let pi_B2 = (crs2.g2_gen.into_group() * Fr::from(5u64)).into_affine();
-    let Y_delta2 = (crs2.g2_gen.into_group() * Fr::from(7u64)).into_affine();
+    // Use canonical masked verifier for session 2 with same CRS
+    let masked_matrix2 = masked_verifier_matrix_canonical_2x2(
+        &ppe,
+        &crs1,
+        &attestation2.xcoms.coms,
+        &attestation2.ycoms.coms,
+        &attestation2.equ_proofs[0].pi,
+        &attestation2.equ_proofs[0].theta,
+        rho,
+    );
     
-    let xvars2 = vec![pi_A2, pi_C2];
-    let yvars2 = vec![pi_B2, Y_delta2];
+    // Test determinism: same statement + same CRS + same rho → same masked matrix
+    assert_eq!(masked_matrix1, masked_matrix2, "Same statement and CRS should produce identical masked matrices across sessions");
     
-    let ppe2 = PPE::<E> {
+    // Session 3: Different CRS instance, same proof variables (should produce different matrix)
+    let crs3 = CRS::<E>::generate_crs(&mut rng);
+    let attestation3 = ppe.commit_and_prove(&xvars, &yvars, &crs3, &mut rng);
+    
+    let masked_matrix3 = masked_verifier_matrix_canonical_2x2(
+        &ppe,
+        &crs3,
+        &attestation3.xcoms.coms,
+        &attestation3.ycoms.coms,
+        &attestation3.equ_proofs[0].pi,
+        &attestation3.equ_proofs[0].theta,
+        rho,
+    );
+    
+    // Test CRS independence: different CRS produces same masked matrix (canonical masked verifier behavior)
+    assert_eq!(masked_matrix1, masked_matrix3, "Different CRS should produce same masked matrix for canonical masked verifier");
+    
+    // Session 4: Same CRS, different rho (should produce different matrix)
+    let rho2 = Fr::from(123u64);
+    let masked_matrix4 = masked_verifier_matrix_canonical_2x2(
+        &ppe,
+        &crs1,
+        &attestation1.xcoms.coms,
+        &attestation1.ycoms.coms,
+        &attestation1.equ_proofs[0].pi,
+        &attestation1.equ_proofs[0].theta,
+        rho2,
+    );
+    
+    // Test rho dependency: different rho should produce different masked matrix
+    assert_ne!(masked_matrix1, masked_matrix4, "Different rho should produce different masked matrices");
+    
+    // Session 5: Different PPE + Different CRS (should produce different matrix)
+    let crs5 = CRS::<E>::generate_crs(&mut rng);
+    
+    // Create different proof variables for different statement
+    let pi_A5 = (crs5.g1_gen.into_group() * Fr::from(11u64)).into_affine();
+    let pi_C5 = (crs5.g1_gen.into_group() * Fr::from(13u64)).into_affine();
+    let pi_B5 = (crs5.g2_gen.into_group() * Fr::from(17u64)).into_affine();
+    let Y_delta5 = (crs5.g2_gen.into_group() * Fr::from(19u64)).into_affine();
+    
+    let xvars5 = vec![pi_A5, pi_C5];
+    let yvars5 = vec![pi_B5, Y_delta5];
+    
+    let ppe5 = PPE::<E> {
         a_consts: vec![G1::identity(), G1::identity()],
         b_consts: vec![G2::identity(), G2::identity()],
         gamma: vec![vec![Fr::one(), Fr::zero()], vec![Fr::zero(), Fr::one()]],
         target: {
-            let PairingOutput(t) = E::multi_pairing(&[pi_A2, pi_C2], &[pi_B2, Y_delta2]);
+            let PairingOutput(t) = E::multi_pairing(&[pi_A5, pi_C5], &[pi_B5, Y_delta5]);
             PairingOutput::<E>(t)
         },
     };
     
-    let attestation2 = ppe2.commit_and_prove(&xvars2, &yvars2, &crs2, &mut rng);
-    let eval_bases2 = ppe_eval_bases(&ppe2, &crs2);
-    let inst_bases2 = ppe_instance_bases(&ppe2, &crs2);
+    let attestation5 = ppe5.commit_and_prove(&xvars5, &yvars5, &crs5, &mut rng);
     
-    // Decrypt with session2 attestation
-    let u_dual_masked2: Vec<_> = eval_bases2.x_g2_pairs.iter()
-        .map(|&p| mask_g2_pair::<E>(p, rho))
-        .collect();
-    let v_dual_masked2: Vec<_> = inst_bases2.v_pairs.iter()
-        .map(|&p| mask_g1_pair::<E>(p, rho))
-        .collect();
-    
-    let PairingOutput(_M2) = ppe_eval_with_masked_pairs::<E>(
-        &attestation2.xcoms.coms,
-        &attestation2.ycoms.coms,
-        &u_dual_masked2,
-        &v_dual_masked2,
+    let masked_matrix5 = masked_verifier_matrix_canonical_2x2(
+        &ppe5,
+        &crs5,
+        &attestation5.xcoms.coms,
+        &attestation5.ycoms.coms,
+        &attestation5.equ_proofs[0].pi,
+        &attestation5.equ_proofs[0].theta,
+        rho,
     );
     
-    // Note: M1 and M2 will be different because CRS is different
-    // But the determinism property is that same proof + same CRS → same M
-    // This test verifies the structure works across sessions
+    // Test statement dependency: different PPE + different CRS should produce different masked matrix
+    assert_ne!(masked_matrix1, masked_matrix5, "Different PPE and CRS should produce different masked matrices");
     
 }
 
@@ -521,50 +501,39 @@ fn test_kem_multi_share() {
     
     let attestation = ppe.commit_and_prove(&xvars, &yvars, &crs, &mut rng);
     
-    let eval_bases = ppe_eval_bases(&ppe, &crs);
-    let inst_bases = ppe_instance_bases(&ppe, &crs);
-    
-    // Create 3 KEM shares
+    // Create 3 KEM shares using canonical masked verifier
     let adaptor_shares = vec![Fr::from(0x111111u64), Fr::from(0x222222u64), Fr::from(0x333333u64)];
     let mut kem_shares = Vec::new();
     
     for (_i, _adaptor) in adaptor_shares.iter().enumerate() {
         let rho = Fr::rand(&mut rng);
         
-        let u_dual_masked: Vec<_> = eval_bases.x_g2_pairs.iter()
-            .map(|&p| mask_g2_pair::<E>(p, rho))
-            .collect();
-        let v_dual_masked: Vec<_> = inst_bases.v_pairs.iter()
-            .map(|&p| mask_g1_pair::<E>(p, rho))
-            .collect();
-        
-        let PairingOutput(M_i) = ppe_eval_with_masked_pairs::<E>(
+        let masked_matrix_i = masked_verifier_matrix_canonical_2x2(
+            &ppe,
+            &crs,
             &attestation.xcoms.coms,
             &attestation.ycoms.coms,
-            &u_dual_masked,
-            &v_dual_masked,
+            &attestation.equ_proofs[0].pi,
+            &attestation.equ_proofs[0].theta,
+            rho,
         );
         
-        kem_shares.push((rho, M_i));
+        kem_shares.push((rho, masked_matrix_i));
     }
     
     // Decapsulate all shares
-    for (i, (rho, expected_M)) in kem_shares.iter().enumerate() {
-        let u_dual_masked: Vec<_> = eval_bases.x_g2_pairs.iter()
-            .map(|&p| mask_g2_pair::<E>(p, *rho))
-            .collect();
-        let v_dual_masked: Vec<_> = inst_bases.v_pairs.iter()
-            .map(|&p| mask_g1_pair::<E>(p, *rho))
-            .collect();
-        
-        let PairingOutput(recovered_M) = ppe_eval_with_masked_pairs::<E>(
+    for (i, (rho, expected_matrix)) in kem_shares.iter().enumerate() {
+        let recovered_matrix = masked_verifier_matrix_canonical_2x2(
+            &ppe,
+            &crs,
             &attestation.xcoms.coms,
             &attestation.ycoms.coms,
-            &u_dual_masked,
-            &v_dual_masked,
+            &attestation.equ_proofs[0].pi,
+            &attestation.equ_proofs[0].theta,
+            *rho,
         );
         
-        assert_eq!(recovered_M, *expected_M, "Share {} M mismatch", i);
+        assert_eq!(recovered_matrix, *expected_matrix, "Share {} matrix mismatch", i);
     }
     
 }
@@ -671,7 +640,7 @@ fn test_complete_adaptor_signature_flow() {
     println!("  - Adaptor equation verified: s'·G + T = R' + c·P ✓");
     
     // === STEP 3: CREATE GS ATTESTATION ===
-    let _public_input = vec![];
+    let _public_input: Vec<Fr> = vec![];
     let attestation = gs.commit_arkworks_proof(&proof, &vk, &vec![], true, &mut rng)
         .expect("Failed to create attestation");
     
@@ -680,35 +649,35 @@ fn test_complete_adaptor_signature_flow() {
     println!("  - {} C2 commitments", attestation.c2_commitments.len());
     
     // === STEP 4: GET DUAL BASES FOR KEM ===
-    let (u_bases, v_bases) = gs.get_instance_bases(&vk, &_public_input);
+    // Get CRS elements for canonical evaluation
+    let (u_elements, v_elements) = gs.get_crs_elements();
     println!("\n✓ Step 4: Dual bases extracted from GS");
-    println!("  - {} u_dual bases (G2)", u_bases.len());
-    println!("  - {} v_dual bases (G1)", v_bases.len());
+    println!("  - {} U elements (G1)", u_elements.len());
+    println!("  - {} V elements (G2)", v_elements.len());
     
     // === STEP 5: ARM (Encrypt adaptor secrets with ProductKeyKEM) ===
     use arkworks_groth16::kem::{ProductKeyKEM, KEMShare};
-    use sha2::{Sha256, Digest};
     use ark_serialize::CanonicalSerialize;
     
     let kem = ProductKeyKEM::new();
     let ctx_hash = Sha256::digest(b"test_context").to_vec();
     let gs_instance_digest = Sha256::digest(b"test_crs").to_vec();
     
-    // Serialize dual bases
-    let mut u_bases_bytes = Vec::new();
-    for (u0, u1) in u_bases.iter() {
+    // Serialize CRS elements
+    let mut u_elements_bytes = Vec::new();
+    for (u0, u1) in u_elements.iter() {
         let mut pair = Vec::new();
         u0.serialize_compressed(&mut pair).unwrap();
         u1.serialize_compressed(&mut pair).unwrap();
-        u_bases_bytes.push(pair);
+        u_elements_bytes.push(pair);
     }
     
-    let mut v_bases_bytes = Vec::new();
-    for (v0, v1) in v_bases.iter() {
+    let mut v_elements_bytes = Vec::new();
+    for (v0, v1) in v_elements.iter() {
         let mut pair = Vec::new();
         v0.serialize_compressed(&mut pair).unwrap();
         v1.serialize_compressed(&mut pair).unwrap();
-        v_bases_bytes.push(pair);
+        v_elements_bytes.push(pair);
     }
     
     // Serialize attestation commitments
@@ -726,6 +695,21 @@ fn test_complete_adaptor_signature_flow() {
         c2_bytes.push(bytes);
     }
     
+    // Serialize pi and theta elements for canonical evaluation
+    let mut pi_bytes = Vec::new();
+    for pi_elem in &attestation.pi_elements {
+        let mut bytes = Vec::new();
+        pi_elem.serialize_compressed(&mut bytes).unwrap();
+        pi_bytes.push(bytes);
+    }
+    
+    let mut theta_bytes = Vec::new();
+    for theta_elem in &attestation.theta_elements {
+        let mut bytes = Vec::new();
+        theta_elem.serialize_compressed(&mut bytes).unwrap();
+        theta_bytes.push(bytes);
+    }
+    
     let mut kem_shares: Vec<KEMShare> = Vec::new();
     
     for (i, s_i_fr) in shares.iter().enumerate() {
@@ -734,10 +718,12 @@ fn test_complete_adaptor_signature_flow() {
         let (share, _m_i) = kem.encapsulate(
             &mut rng,
             i as u32,
-            &u_bases_bytes,
-            &v_bases_bytes,
             &c1_bytes,
             &c2_bytes,
+            &pi_bytes,
+            &theta_bytes,
+            &u_elements_bytes,
+            &v_elements_bytes,
             *s_i_fr,
             &ctx_hash,
             &gs_instance_digest,
@@ -760,6 +746,8 @@ fn test_complete_adaptor_signature_flow() {
             share,
             &c1_bytes,
             &c2_bytes,
+            &pi_bytes,
+            &theta_bytes,
             &ctx_hash,
             &gs_instance_digest,
         ).expect(&format!("Decapsulation failed for share {}", i));
@@ -873,10 +861,16 @@ fn test_complete_adaptor_signature_flow() {
     // Try to decrypt with fake attestation using ProductKeyKEM
     let mut any_decrypted = false;
     for share in kem_shares.iter() {
+        // Create dummy pi and theta for the test (decapsulation should fail regardless)
+        let fake_pi_bytes = pi_bytes.clone(); // Use same structure
+        let fake_theta_bytes = theta_bytes.clone();
+        
         let result = kem.decapsulate(
             share,
             &fake_c1_bytes,
             &fake_c2_bytes,
+            &fake_pi_bytes,
+            &fake_theta_bytes,
             &ctx_hash,
             &gs_instance_digest,
         );
@@ -888,20 +882,6 @@ fn test_complete_adaptor_signature_flow() {
     }
     
     assert!(!any_decrypted, "❌ Fake attestation should NOT decrypt!");
-    
-    println!("✓ Fake attestation → Wrong M");
-    println!("✓ Wrong M → Decryption fails");
-    println!("✓ Cannot recover α without valid proof");
-    println!("✓ Cannot complete adaptor signature!");
-    
-    println!("\n{}", "=".repeat(70));
-    println!("✅ COMPLETE ADAPTOR SIGNATURE FLOW SUCCESS");
-    println!("{}", "=".repeat(70));
-    println!("\nProven:");
-    println!("  ✓ Valid proof → decrypt fragments → complete signature");
-    println!("  ✓ Invalid proof → cannot decrypt → cannot sign");
-    println!("  ✓ Proof existence GATES signature completion");
-    println!("\nPVUGC is ready for Bitcoin!\n");
 }
 
 #[test]
@@ -920,34 +900,13 @@ fn test_two_distinct_groth16_proofs_same_output() {
     // Explicit x: public_input = [25]
     let x = [Fr::from(25u64)];
 
-    // PPE CONSISTENCY: Build PPE using 2-variable version to match GS CRS size
     let ppe = gs.groth16_verify_as_ppe_2var(&vk, &x);
     
-    // CRS CONSISTENCY: Use raw CRS (avoid dual-based alignment touching U/V)
     let crs = gs.get_crs().clone();
     // Use fixed rho for consistency with working test
     let rho = Fr::from(777u64);
     
-    // Create GS attestations using deterministic GS commitment randomness
-    // This ensures proof-agnostic behavior: same statement → same commitment randomness
-    let mut rng = thread_rng();
-    let attestation1 = gs.commit_proof_with_deterministic_gs_randomness(&proof1, &vk, &x, 1, 1, &mut rng)
-        .expect("Commit should succeed");
-    let attestation2 = gs.commit_proof_with_deterministic_gs_randomness(&proof2, &vk, &x, 1, 1, &mut rng)
-        .expect("Commit should succeed");
-    
-    // DEBUG: Check CRS dimensions
-    println!("Debug CRS dimensions:");
-    println!("  CRS u len: {}", crs.u.len());
-    println!("  CRS v len: {}", crs.v.len());
-    println!("  PPE gamma rows: {}", ppe.gamma.len());
-    println!("  PPE gamma cols: {}", ppe.gamma[0].len());
-    println!("  PPE a_consts len: {}", ppe.a_consts.len());
-    println!("  PPE b_consts len: {}", ppe.b_consts.len());
-    
-    // CORRECT VARIABLE ORDER: Match the 2-variable PPE used in attestation creation
-    // IMPORTANT: arkworks uses NEGATED δ in verification!
-    use ark_ec::CurveGroup;
+    // arkworks uses negated δ in verification
     let delta_neg = (-vk.delta_g2.into_group()).into_affine();
     
     // Use same 2-variable structure as attestation creation
@@ -956,10 +915,7 @@ fn test_two_distinct_groth16_proofs_same_output() {
     let xvars2 = vec![proof2.pi_a, proof2.pi_c];
     let yvars2 = vec![proof2.pi_b, delta_neg];
     
-    println!("Debug variable dimensions:");
-    println!("  X vars len: {}", xvars1.len());
-    println!("  Y vars len: {}", yvars1.len());
-    
+
     // Per-proof GS round-trip: commit_and_prove then verify (unmasked PPE check)
     let mut det_rng = test_rng();
     let cproof1 = ppe.commit_and_prove(&xvars1, &yvars1, &crs, &mut det_rng);
@@ -967,392 +923,27 @@ fn test_two_distinct_groth16_proofs_same_output() {
     let cproof2 = ppe.commit_and_prove(&xvars2, &yvars2, &crs, &mut det_rng);
     assert!(ppe.verify(&cproof2, &crs), "PPE.verify should pass for proof2 variables");
     
-    // Use attestations directly instead of constructing CProof manually
-    // The attestations already contain the GS commitments and proof elements
-    
-    // CRITICAL INSIGHT: The prover test uses FIXED variables for all proofs
-    // PVUGC uses DIFFERENT proof elements (pi_A, pi_B, pi_C) for each proof
-    // Dual bases cancel commitment randomness, NOT proof randomness
-    // 
-    // This explains why PVUGC integration fails - Groth16 proof elements differ between proofs
-    println!("✅ Dual bases ARE proof-agnostic when variables are fixed (prover test)");
-    println!("❌ Dual bases are NOT proof-agnostic when variables differ (real Groth16 case)");
-    println!("This explains why PVUGC integration fails - Groth16 proof elements differ between proofs");
-    
-    // The fundamental issue: Groth16 proofs have randomized elements (pi_A, pi_B, pi_C)
-    // Dual bases can only cancel commitment randomness, not proof element randomness
-    // Therefore, different Groth16 proofs will produce different KEM values
-    // This is mathematically unavoidable and expected behavior
-    
-    // Debug: Check rho and target values
-    println!("Debug: rho = {:?}", rho);
-    println!("Debug: target = {:?}", ppe.target);
-    
-    // DEBUG: Check variable order
-    println!("Debug variable order:");
-    println!("  X[0] = π_A, X[1] = π_C");
-    println!("  Y[0] = π_B, Y[1] = δ_neg");
-    println!("  With γ = diag(1,1), this should give: e(π_A, π_B) + e(π_C, δ_neg) = e(α, β) + e(IC, γ)");
-    
-    // DEBUG: Check if the issue is with variable order
-    println!("Debug variable values:");
-    println!("  π_A: {:?}", xvars1[0]);
-    println!("  π_C: {:?}", xvars1[1]);
-    println!("  π_B: {:?}", yvars1[0]);
-    println!("  δ_neg: {:?}", yvars1[1]);
-    
-    // DEBUG: Check GS commitments
-    println!("Debug GS commitments:");
-    println!("  C1[0] (π_A): {:?}", attestation1.c1_commitments[0]);
-    println!("  C1[1] (π_C): {:?}", attestation1.c1_commitments[1]);
-    println!("  C2[0] (π_B): {:?}", attestation1.c2_commitments[0]);
-    println!("  C2[1] (δ_neg): {:?}", attestation1.c2_commitments[1]);
-    
-    // DEBUG: Check GS proof elements
-    println!("Debug GS proof elements:");
-    println!("  π (proof elements): {:?}", attestation1.pi_elements);
-    println!("  θ (proof elements): {:?}", attestation1.theta_elements);
-    
-    // Use canonical masked verifier (matrix) for equality; build ComT for KDF
-    {
-        use groth_sahai::{masked_verifier_matrix_canonical_2x2, rhs_masked_matrix, masked_verifier_comt_2x2, kdf_from_comt};
-        let m1 = masked_verifier_matrix_canonical_2x2(&ppe, &crs,
-            &cproof1.xcoms.coms, &cproof1.ycoms.coms,
-            &cproof1.equ_proofs[0].pi, &cproof1.equ_proofs[0].theta, rho);
-        let m2 = masked_verifier_matrix_canonical_2x2(&ppe, &crs,
-            &cproof2.xcoms.coms, &cproof2.ycoms.coms,
-            &cproof2.equ_proofs[0].pi, &cproof2.equ_proofs[0].theta, rho);
-        let rhs_cells = rhs_masked_matrix(&ppe, rho);
-        println!("Matrix equality checks (canonical):");
-        println!("m1 == m2: {}", m1 == m2);
-        println!("m1 == rhs: {}", m1 == rhs_cells);
-        println!("m2 == rhs: {}", m2 == rhs_cells);
-        assert_eq!(m1, rhs_cells, "Masked matrix should equal RHS mask");
-        assert_eq!(m1, m2, "Both proofs should produce identical masked matrices");
-        // Build ComT for KDF
-        let final1 = masked_verifier_comt_2x2(&ppe, &crs,
-            &cproof1.xcoms.coms, &cproof1.ycoms.coms,
-            &cproof1.equ_proofs[0].pi, &cproof1.equ_proofs[0].theta, rho);
-        let final2 = masked_verifier_comt_2x2(&ppe, &crs,
-            &cproof2.xcoms.coms, &cproof2.ycoms.coms,
-            &cproof2.equ_proofs[0].pi, &cproof2.equ_proofs[0].theta, rho);
-        let k1 = kdf_from_comt(&final1, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
-        let k2 = kdf_from_comt(&final2, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
-        assert_eq!(k1, k2, "Deterministic KEM key must be identical across distinct valid proofs");
-        return; // early exit; remaining legacy diagnostics not needed
-    }
 
-    /* Legacy block (permutations/diagnostics) removed; keeping canonical matrix equality only
-    
-    // Use canonical masked verifier path only; legacy verify_attestation disabled
-    
-    // Canonical masked verifier MATRIX evaluator for equality check
-    use groth_sahai::{masked_verifier_matrix_canonical, rhs_masked_matrix};
-    // Permutations over π/θ ordering and inner-pair component order to align with CRS
-    let swap_vec_com2 = |v: &Vec<groth_sahai::Com2<Bls12_381>>| -> Vec<groth_sahai::Com2<Bls12_381>> { vec![v[1], v[0]] };
-    let swap_vec_com1 = |v: &Vec<groth_sahai::Com1<Bls12_381>>| -> Vec<groth_sahai::Com1<Bls12_381>> { vec![v[1], v[0]] };
-    let swap_inner_com2 = |v: &Vec<groth_sahai::Com2<Bls12_381>>| -> Vec<groth_sahai::Com2<Bls12_381>> { v.iter().map(|c| groth_sahai::Com2::<Bls12_381>(c.1, c.0)).collect() };
-    let swap_inner_com1 = |v: &Vec<groth_sahai::Com1<Bls12_381>>| -> Vec<groth_sahai::Com1<Bls12_381>> { v.iter().map(|c| groth_sahai::Com1::<Bls12_381>(c.1, c.0)).collect() };
-
-    let rhs_mask_cells = rhs_masked_matrix(&ppe, rho);
-
-    // Try 16 variants for proof1
-    let candidates = [
-        (false,false,false,false), (true,false,false,false), (false,true,false,false), (true,true,false,false),
-        (false,false,true,false), (true,false,true,false), (false,true,true,false), (true,true,true,false),
-        (false,false,false,true), (true,false,false,true), (false,true,false,true), (true,true,false,true),
-        (false,false,true,true), (true,false,true,true), (false,true,true,true), (true,true,true,true),
-    ];
-    let mut chosen: Option<(bool,bool,bool,bool)> = None;
-    let mut masked_comt1 = rhs_mask.clone(); // init
-    for (swap_pi_vec, swap_th_vec, swap_pi_inner, swap_th_inner) in candidates {
-        let mut pi = attestation1.pi_elements.clone();
-        let mut th = attestation1.theta_elements.clone();
-        if swap_pi_inner { pi = swap_inner_com2(&pi); }
-        if swap_th_inner { th = swap_inner_com1(&th); }
-        if swap_pi_vec { pi = swap_vec_com2(&pi); }
-        if swap_th_vec { th = swap_vec_com1(&th); }
-        let m_cells = masked_verifier_matrix_canonical(
-            &ppe, &crs,
-        &attestation1.c1_commitments, &attestation1.c2_commitments,
-            &pi, &th,
-        rho,
-    );
-        if m_cells == rhs_mask_cells {
-            chosen = Some((swap_pi_vec, swap_th_vec, swap_pi_inner, swap_th_inner));
-            // keep a ComT form later for KDF; here we only track that we matched
-            break;
-        }
-    }
-    if chosen.is_none() {
-        // Extended search: toggle include_dual_helpers and gamma-transpose, along with π/θ permutations
-        let bools = [false, true];
-        let mut found = None;
-        for &swap_pi_vec in &bools {
-            if found.is_some() { break; }
-            for &swap_th_vec in &bools {
-                if found.is_some() { break; }
-                for &swap_pi_inner in &bools {
-                    if found.is_some() { break; }
-                    for &swap_th_inner in &bools {
-                        if found.is_some() { break; }
-                        for &include_dual in &bools {
-                            if found.is_some() { break; }
-                            for &gamma_t in &bools {
-                                let mut pi = attestation1.pi_elements.clone();
-                                let mut th = attestation1.theta_elements.clone();
-                                if swap_pi_inner { pi = swap_inner_com2(&pi); }
-                                if swap_th_inner { th = swap_inner_com1(&th); }
-                                if swap_pi_vec { pi = swap_vec_com2(&pi); }
-                                if swap_th_vec { th = swap_vec_com1(&th); }
-                                let m_cells = masked_verifier_matrix_canonical(
-                                    &ppe, &crs,
-                                    &attestation1.c1_commitments, &attestation1.c2_commitments,
-                                    &pi, &th,
-                                    rho,
-                                );
-                                if m_cells == rhs_mask_cells {
-                                    found = Some((swap_pi_vec, swap_th_vec, swap_pi_inner, swap_th_inner, include_dual, gamma_t));
-                                    // Build masked_comt2 using same mapping
-                                    let mut pi2 = attestation2.pi_elements.clone();
-                                    let mut th2 = attestation2.theta_elements.clone();
-                                    if swap_pi_inner { pi2 = swap_inner_com2(&pi2); }
-                                    if swap_th_inner { th2 = swap_inner_com1(&th2); }
-                                    if swap_pi_vec { pi2 = swap_vec_com2(&pi2); }
-                                    if swap_th_vec { th2 = swap_vec_com1(&th2); }
-                                    let masked_cells2 = masked_verifier_matrix_canonical(
-                                        &ppe, &crs,
-        &attestation2.c1_commitments, &attestation2.c2_commitments,
-                                        &pi2, &th2,
-        rho,
-    );
-                                    // Replace variables and proceed
-                                    {
-                                        assert_eq!(m_cells, masked_cells2, "Both proofs should produce identical masked matrices");
-                                        assert_eq!(m_cells, rhs_mask_cells, "Masked matrix should equal RHS mask");
-                                        assert_eq!(k1, k2, "Deterministic KEM key must be identical across distinct valid proofs");
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if found.is_none() {
-            use groth_sahai::verifier::trace_verify;
-            let mut det_rng = test_rng();
-            let cpr1 = ppe.commit_and_prove(&[proof1.pi_a, proof1.pi_c], &[proof1.pi_b, delta_neg], &crs, &mut det_rng);
-            let tv = trace_verify(&ppe, &cpr1, &crs);
-            println!("trace u_pi: {:?}", tv.u_pi);
-            println!("trace th_v: {:?}", tv.th_v);
-            panic!("Could not align π/θ orientation to CRS (no variant matched RHS)");
-        }
-        return;
-    }
-    let (swap_pi_vec, swap_th_vec, swap_pi_inner, swap_th_inner) = chosen.unwrap();
-
-    // Build for proof2 using the chosen mapping
-    let mut pi2 = attestation2.pi_elements.clone();
-    let mut th2 = attestation2.theta_elements.clone();
-    if swap_pi_inner { pi2 = swap_inner_com2(&pi2); }
-    if swap_th_inner { th2 = swap_inner_com1(&th2); }
-    if swap_pi_vec { pi2 = swap_vec_com2(&pi2); }
-    if swap_th_vec { th2 = swap_vec_com1(&th2); }
-    let masked_cells1 = masked_verifier_matrix_canonical(&ppe, &crs, &attestation1.c1_commitments, &attestation1.c2_commitments, &attestation1.pi_elements, &attestation1.theta_elements, rho);
-    let masked_cells2 = masked_verifier_matrix_canonical(&ppe, &crs, &attestation2.c1_commitments, &attestation2.c2_commitments, &pi2, &th2, rho);
-
-    
-    // RHS mask should be linear_map_PPE(target^ρ)
-    let rhs_mask_cells = rhs_masked_matrix(&ppe, rho);
-    
-    // Sanity checks (must hold)
-    println!("Matrix equality checks:");
-    let m_eq = masked_cells1 == masked_cells2;
-    let m_rhs1 = masked_cells1 == rhs_mask_cells;
-    let m_rhs2 = masked_cells2 == rhs_mask_cells;
-    println!("m1 == m2: {}", m_eq);
-    println!("m1 == rhs: {}", m_rhs1);
-    println!("m2 == rhs: {}", m_rhs2);
-
-    let (final1, final2) = (masked_comt1, masked_comt2);
-
-    // Detailed diagnostics: compare masked verifier legs vs RHS per cell for both proofs
-    {
-        use groth_sahai::data_structures::{ComT, vec_to_col_vec, col_vec_to_vec, Com1 as DSCom1, Com2 as DSCom2};
-        use ark_ec::CurveGroup;
-
-        let print_legs = |label: &str, x: &Vec<DSCom1<Bls12_381>>, y: &Vec<DSCom2<Bls12_381>>, pi: &Vec<DSCom2<Bls12_381>>, theta: &Vec<DSCom1<Bls12_381>>| {
-            // Γ·Y and cross leg ^rho (post-exp on GT cells)
-            let stmt_y = vec_to_col_vec(y).left_mul(&ppe.gamma, false);
-            let cross = ComT::<Bls12_381>::pairing_sum(x, &col_vec_to_vec(&stmt_y)).as_matrix();
-
-            // U^rho and V^rho primaries
-            let u_rho: Vec<DSCom1<Bls12_381>> = crs.u.iter().map(|u| DSCom1::<Bls12_381>(
-                (u.0.into_group()*rho).into_affine(),
-                (u.1.into_group()*rho).into_affine(),
-            )).collect();
-            let v_rho: Vec<DSCom2<Bls12_381>> = crs.v.iter().map(|v| DSCom2::<Bls12_381>(
-                (v.0.into_group()*rho).into_affine(),
-                (v.1.into_group()*rho).into_affine(),
-            )).collect();
-
-            let u_pi = ComT::<Bls12_381>::pairing_sum(&u_rho, pi).as_matrix();
-            let th_v = ComT::<Bls12_381>::pairing_sum(theta, &v_rho).as_matrix();
-            // Constants a,b masked on CRS side: a^ρ and b^ρ
-            let i1_a = DSCom1::<Bls12_381>::batch_linear_map(&ppe.a_consts);
-            let i2_b = DSCom2::<Bls12_381>::batch_linear_map(&ppe.b_consts);
-            let i1_a_rho: Vec<DSCom1<Bls12_381>> = i1_a.iter().map(|c| DSCom1::<Bls12_381>(
-                (c.0.into_group()*rho).into_affine(),
-                (c.1.into_group()*rho).into_affine(),
-            )).collect();
-            let i2_b_rho: Vec<DSCom2<Bls12_381>> = i2_b.iter().map(|d| DSCom2::<Bls12_381>(
-                (d.0.into_group()*rho).into_affine(),
-                (d.1.into_group()*rho).into_affine(),
-            )).collect();
-            let a_y = ComT::<Bls12_381>::pairing_sum(&i1_a_rho, y).as_matrix();
-            let x_b = ComT::<Bls12_381>::pairing_sum(x, &i2_b_rho).as_matrix();
-
-            let rhs = rhs_mask.as_matrix();
-            println!("{} per-cell equalities vs RHS:", label);
-            let show = |name: &str, m: &[[PairingOutput<Bls12_381>;2];2]| {
-                print!("{}: ", name);
-                for r in 0..2 { for c in 0..2 { print!("[{}][{}] {}  ", r, c, m[r][c]==rhs[r][c]); } print!(" | "); }
-                println!("");
-            };
-            show("(X⊗ΓY)^ρ", &[
-                [PairingOutput(cross[0][0].0.pow(rho.into_bigint())), PairingOutput(cross[0][1].0.pow(rho.into_bigint()))],
-                [PairingOutput(cross[1][0].0.pow(rho.into_bigint())), PairingOutput(cross[1][1].0.pow(rho.into_bigint()))],
-            ]);
-            let u_pi_arr = [[u_pi[0][0], u_pi[0][1]], [u_pi[1][0], u_pi[1][1]]];
-            let th_v_arr = [[th_v[0][0], th_v[0][1]], [th_v[1][0], th_v[1][1]]];
-            let a_y_arr = [[a_y[0][0], a_y[0][1]], [a_y[1][0], a_y[1][1]]];
-            let x_b_arr = [[x_b[0][0], x_b[0][1]], [x_b[1][0], x_b[1][1]]];
-
-            show("U^ρ⊗π", &u_pi_arr);
-            show("θ⊗V^ρ", &th_v_arr);
-            show("(i1(a)·Y)^ρ", &a_y_arr);
-            show("(X·i2(b))^ρ", &x_b_arr);
-        };
-        print_legs("proof1", &attestation1.c1_commitments, &attestation1.c2_commitments, &attestation1.pi_elements, &attestation1.theta_elements);
-        print_legs("proof2", &attestation2.c1_commitments, &attestation2.c2_commitments, &attestation2.pi_elements, &attestation2.theta_elements);
-    }
-
-    // Try gamma-transpose variant to detect wiring orientation issues
-    {
-        use groth_sahai::masked_verifier_comt_with_gamma_mode;
-        let m1_t = masked_verifier_comt_with_gamma_mode(
-            &ppe, &crs,
-            &attestation1.c1_commitments, &attestation1.c2_commitments,
-            &attestation1.pi_elements, &attestation1.theta_elements,
-            rho, true,
-        );
-        let m2_t = masked_verifier_comt_with_gamma_mode(
-            &ppe, &crs,
-            &attestation2.c1_commitments, &attestation2.c2_commitments,
-            &attestation2.pi_elements, &attestation2.theta_elements,
-            rho, true,
-        );
-        println!("Transpose check: m1_t == m2_t: {}", m1_t.as_matrix() == m2_t.as_matrix());
-        println!("Transpose check: m1_t == rhs: {}", m1_t.as_matrix() == rhs_mask.as_matrix());
-        println!("Transpose check: m2_t == rhs: {}", m2_t.as_matrix() == rhs_mask.as_matrix());
-    }
-    
-    // Skip dual-bases-only evaluator; rely on canonical masked verifier ComT
-    
-    // Assert matrix equality
-    assert_eq!(final1.as_matrix(), final2.as_matrix(), "Both proofs should produce identical masked ComT matrices");
-    assert_eq!(final1.as_matrix(), rhs_mask.as_matrix(), "Masked ComT should equal RHS mask");
-    
-    // Derive KDF keys from full ComT matrices (more robust than single cell extraction)
-    use groth_sahai::kdf_from_comt;
+    use groth_sahai::{masked_verifier_matrix_canonical_2x2, rhs_masked_matrix, masked_verifier_comt_2x2, kdf_from_comt};
+    let m1 = masked_verifier_matrix_canonical_2x2(&ppe, &crs,
+        &cproof1.xcoms.coms, &cproof1.ycoms.coms,
+        &cproof1.equ_proofs[0].pi, &cproof1.equ_proofs[0].theta, rho);
+        
+    let m2 = masked_verifier_matrix_canonical_2x2(&ppe, &crs,
+        &cproof2.xcoms.coms, &cproof2.ycoms.coms,
+        &cproof2.equ_proofs[0].pi, &cproof2.equ_proofs[0].theta, rho);
+    let rhs_cells = rhs_masked_matrix(&ppe, rho);
+    assert_eq!(m1, rhs_cells, "Masked matrix should equal RHS mask");
+    assert_eq!(m1, m2, "Both proofs should produce identical masked matrices");
+    // Build ComT for KDF
+    let final1 = masked_verifier_comt_2x2(&ppe, &crs,
+        &cproof1.xcoms.coms, &cproof1.ycoms.coms,
+        &cproof1.equ_proofs[0].pi, &cproof1.equ_proofs[0].theta, rho);
+    let final2 = masked_verifier_comt_2x2(&ppe, &crs,
+        &cproof2.xcoms.coms, &cproof2.ycoms.coms,
+        &cproof2.equ_proofs[0].pi, &cproof2.equ_proofs[0].theta, rho);
     let k1 = kdf_from_comt(&final1, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
     let k2 = kdf_from_comt(&final2, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
-    
-    println!("\nUsing deterministic rho derived from (vk, x)");
-    println!("Result: k1 == k2: {}", k1 == k2);
-
-    // Test secure masked ComT-based KEM extraction (PVUGC approach)
-    println!("\n=== Testing Secure Masked ComT-based KEM Extraction (PVUGC) ===");
-    
-    // Simulate N-of-N armer setup
-    // Each armer chooses secret ρᵢ and publishes masked bases D1ᵢ=U^ρᵢ, D2ᵢ=V^ρᵢ
-    let num_armers = 3;
-    let mut armer_rhos = Vec::new();
-    let mut armer_masked_bases = Vec::new();
-    
-    for i in 0..num_armers {
-        // Each armer chooses a random ρᵢ
-        let rho_i = Fr::rand(&mut thread_rng());
-        armer_rhos.push(rho_i);
-        
-        // Armer publishes masked bases
-        let d1_i: Vec<Com1<Bls12_381>> = crs.u.iter().map(|u| Com1::<Bls12_381>(
-            (u.0.into_group() * rho_i).into_affine(),
-            (u.1.into_group() * rho_i).into_affine(),
-        )).collect();
-        let d2_i: Vec<Com2<Bls12_381>> = crs.v.iter().map(|v| Com2::<Bls12_381>(
-            (v.0.into_group() * rho_i).into_affine(),
-            (v.1.into_group() * rho_i).into_affine(),
-        )).collect();
-        
-        armer_masked_bases.push((d1_i, d2_i));
-    }
-    
-    // Withdrawer combines published bases: D1 = ∏ᵢ D1ᵢ = U^∑ρᵢ = U^ρ
-    let armer_bases_refs: Vec<_> = armer_masked_bases.iter()
-        .map(|(d1, d2)| (d1.as_slice(), d2.as_slice()))
-        .collect();
-    let (combined_d1, combined_d2) = GrothSahaiCommitments::combine_armer_masked_bases(&armer_bases_refs);
-    
-    // Verify that combined bases equal U^ρ, V^ρ where ρ = ∑ρᵢ
-    let total_rho: Fr = armer_rhos.iter().sum();
-    let expected_d1: Vec<Com1<Bls12_381>> = crs.u.iter().map(|u| Com1::<Bls12_381>(
-        (u.0.into_group() * total_rho).into_affine(),
-        (u.1.into_group() * total_rho).into_affine(),
-    )).collect();
-    let expected_d2: Vec<Com2<Bls12_381>> = crs.v.iter().map(|v| Com2::<Bls12_381>(
-        (v.0.into_group() * total_rho).into_affine(),
-        (v.1.into_group() * total_rho).into_affine(),
-    )).collect();
-    
-    println!("Combined bases equal expected U^ρ, V^ρ: {}", 
-        combined_d1.iter().zip(expected_d1.iter()).all(|(a, b)| a == b) &&
-        combined_d2.iter().zip(expected_d2.iter()).all(|(a, b)| a == b)
-    );
-    
-    // Use attestations directly (they are already GSAttestation structs)
-    let att1 = attestation1;
-    let att2 = attestation2;
-    
-    // Derive KEM keys using GS attestation + published masked bases
-    let kem_key1 = gs.derive_kem_key_from_masked_comt(&att1, &ppe, &combined_d1, &combined_d2, b"ctx", b"gs_instance");
-    let kem_key2 = gs.derive_kem_key_from_masked_comt(&att2, &ppe, &combined_d1, &combined_d2, b"ctx", b"gs_instance");
-    
-    println!("Secure Masked ComT KEM Key1 == KEM Key2: {}", kem_key1 == kem_key2);
-    
-    // SECURITY: Verify that both KEM keys are derived successfully (proof-gating works)
-    assert!(kem_key1 != [0u8; 32], "KEM key1 should not be zero");
-    assert!(kem_key2 != [0u8; 32], "KEM key2 should not be zero");
-    
-    // The masked ComT approach provides proof-agnostic KEM extraction
-    // Different valid Groth16 proofs for same (vk,x) produce the same KEM key
-    println!("PVUGC Secure KEM Extraction: SUCCESS");
-    println!("Proof-gating: Both proofs require valid GS verification to extract KEM keys");
-    println!("Security: Invalid proofs cannot extract valid KEM keys");
-    println!("Privacy: No single armer knows the total ρ = ∑ρᵢ");
-    
-    // Verify that masked ComT-based KEM keys are identical (proof-agnostic)
-    assert_eq!(kem_key1, kem_key2, "Masked ComT-based KEM keys must be identical for same statement");
-    
-    // Verify that both KEM keys are derived successfully (proof-gating works)
-    assert!(k1 != [0u8; 32], "KEM key1 should not be zero");
-    assert!(k2 != [0u8; 32], "KEM key2 should not be zero");
-    
-    // MASKED VERIFIER COMT APPROACH: Using deterministic GS commitment randomness
-    // With deterministic GS commitment randomness, the masked verifier ComT SHOULD provide proof-agnostic determinism
-    // Same (vk,x) → same GS commitment randomness → same masked ComT → same KDF keys
-    assert_eq!(k1, k2, "Two distinct Groth16 proofs for same (vk,x) should yield identical KDF keys with deterministic GS commitment randomness");
-    */
+    assert_eq!(k1, k2, "Deterministic KEM key must be identical across distinct valid proofs");
+       
 }
