@@ -7,9 +7,9 @@ use ark_ec::pairing::{Pairing, PairingOutput};
 use ark_ec::{AffineRepr, CurveGroup};
 use ark_ff::{Field, PrimeField};
 
-use crate::data_structures::{Com1, Com2, ComT, vec_to_col_vec, col_vec_to_vec, BT, B1, B2, Mat};
-use crate::generator::CRS;
-use crate::statement::PPE;
+use groth_sahai::data_structures::{Com1, Com2, ComT, vec_to_col_vec, col_vec_to_vec, B1, B2, BT, Mat};
+use groth_sahai::generator::CRS;
+use groth_sahai::statement::PPE;
 
 /// Scale a vector of Com1/Com2 (CRS-side) by rho (used only for CRS constants and primaries).
 fn scale_com1<E: Pairing>(v: &[Com1<E>], rho: E::ScalarField) -> Vec<Com1<E>> {
@@ -177,34 +177,6 @@ pub fn masked_verifier_comt<E: Pairing>(
     // Return the masked verifier LHS (no dual helpers needed anymore)
     ((a_y_rho + x_b_rho) + cross_rho) - u_pi_rho - th_v_rho
 }
-/*pub fn masked_verifier_comt<E: Pairing>(
-    ppe: &PPE<E>,
-    crs: &CRS<E>,
-    x: &[Com1<E>],
-    y: &[Com2<E>],
-    pi: &[Com2<E>],
-    theta: &[Com1<E>],
-    u_rho: &[Com1<E>],
-    v_rho: &[Com2<E>],
-) -> ComT<E> {
-    // 1) LHS commitment side (no rho here)
-    let i1_a = Com1::batch_linear_map(&ppe.a_consts);   // zeros in plain Groth16
-    let i2_b = Com2::batch_linear_map(&ppe.b_consts);   // zeros in plain Groth16
-    let lhs_a = ComT::pairing_sum(&i1_a, y);
-    let lhs_b = ComT::pairing_sum(x, &i2_b);
-    let stmt_y = vec_to_col_vec(y).left_mul(&ppe.gamma, false); // Γ·Y
-    let cross = ComT::pairing_sum(x, &col_vec_to_vec(&stmt_y));
-    let lhs_commit = lhs_a + lhs_b + cross;
-
-    // 2) Proof legs with masked primaries (this is where ρ enters)
-    let u_pi_rho = ComT::pairing_sum(u_rho, pi);    // U^ρ ⊗ π
-    let theta_v_rho = ComT::pairing_sum(theta, v_rho); // θ ⊗ V^ρ
-
-    // 3) Isolate masked target by subtraction
-    let masked_target = lhs_commit - u_pi_rho - theta_v_rho;
-
-    masked_target
-}*/
 
 fn scale_u_by_rho<E: Pairing>(crs: &CRS<E>, rho: E::ScalarField) -> Vec<Com1<E>> {
     crs.u.iter().map(|u| Com1::<E>(

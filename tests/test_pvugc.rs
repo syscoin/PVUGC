@@ -23,7 +23,7 @@ use groth_sahai::generator::CRS;
 use groth_sahai::AbstractCrs;
 use groth_sahai::prover::Provable;
 use groth_sahai::statement::PPE;
-use groth_sahai::{masked_verifier_matrix_canonical_2x2};
+use arkworks_groth16::{masked_verifier_matrix_canonical_2x2};
 use groth_sahai::data_structures::{Com1, Com2};
 
 use schnorr_fun::fun::{marker::*, Scalar};
@@ -924,7 +924,7 @@ fn test_two_distinct_groth16_proofs_same_output() {
     assert!(ppe.verify(&cproof2, &crs), "PPE.verify should pass for proof2 variables");
     
 
-    use groth_sahai::{masked_verifier_matrix_canonical_2x2, rhs_masked_matrix, masked_verifier_comt_2x2, kdf_from_comt};
+    use arkworks_groth16::{masked_verifier_matrix_canonical_2x2, rhs_masked_matrix, masked_verifier_comt_2x2, kdf_from_comt};
     let m1 = masked_verifier_matrix_canonical_2x2(&ppe, &crs,
         &cproof1.xcoms.coms, &cproof1.ycoms.coms,
         &cproof1.equ_proofs[0].pi, &cproof1.equ_proofs[0].theta, rho);

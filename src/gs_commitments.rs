@@ -19,8 +19,8 @@ use groth_sahai::{
     Com1, Com2, ComT,
     statement::PPE,
     prover::Provable,
-    kdf_from_comt,
 };
+use crate::gs_kem_eval::kdf_from_comt;
 use groth_sahai::data_structures::BT;
 
 use crate::groth16_wrapper::{ArkworksProof, ArkworksVK, compute_ic};
@@ -286,7 +286,7 @@ impl GrothSahaiCommitments {
         // Canonical verification using masked verifier algebra for the 2-variable PPE
         // Build 2×2 PPE with diagonal γ and the provided target
         use groth_sahai::statement::PPE;
-        use groth_sahai::masked_verifier_matrix_canonical;
+        use crate::gs_kem_eval::masked_verifier_matrix_canonical;
         use groth_sahai::data_structures::{ComT, Matrix};
         use ark_std::test_rng;
         use ark_ff::Field;
@@ -487,7 +487,7 @@ impl GrothSahaiCommitments {
         ctx_hash: &[u8],
         gs_instance_digest: &[u8],
     ) -> [u8; 32] {
-        use groth_sahai::masked_verifier_matrix_canonical;
+        use crate::gs_kem_eval::masked_verifier_matrix_canonical;
         
         // SECURITY: Use published masked bases directly, don't derive ρ
         // The masked bases D1=U^ρ, D2=V^ρ are published by armers who know ρ
@@ -614,7 +614,7 @@ fn get_rng_from_seed(seed: &[u8]) -> impl Rng {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use groth_sahai::{kdf_from_comt};
+    use crate::gs_kem_eval::kdf_from_comt;
     use ark_std::test_rng;
 
     #[test]
@@ -724,7 +724,7 @@ mod tests {
         let cpr2 = ppe.commit_and_prove(&[p2.pi_a, p2.pi_c], &[p2.pi_b, delta_neg], &crs, &mut det_rng2);
 
         let rho = Fr::from(777u64);
-        let lhs1 = groth_sahai::masked_verifier_matrix_canonical_2x2(
+        let lhs1 = crate::gs_kem_eval::masked_verifier_matrix_canonical_2x2(
             &ppe,
             &crs,
             &cpr1.xcoms.coms,
@@ -733,7 +733,7 @@ mod tests {
             &cpr1.equ_proofs[0].theta,
             rho,
         );
-        let lhs2 = groth_sahai::masked_verifier_matrix_canonical_2x2(
+        let lhs2 = crate::gs_kem_eval::masked_verifier_matrix_canonical_2x2(
             &ppe,
             &crs,
             &cpr2.xcoms.coms,
@@ -742,11 +742,11 @@ mod tests {
             &cpr2.equ_proofs[0].theta,
             rho,
         );
-        let rhs = groth_sahai::rhs_masked_matrix(&ppe, rho);
+        let rhs = crate::gs_kem_eval::rhs_masked_matrix(&ppe, rho);
         assert_eq!(lhs1, rhs, "Masked matrix (proof1) should equal target^ρ");
         assert_eq!(lhs2, rhs, "Masked matrix (proof2) should equal target^ρ");
 
-        let comt1 = groth_sahai::masked_verifier_comt_2x2(
+        let comt1 = crate::gs_kem_eval::masked_verifier_comt_2x2(
             &ppe,
             &crs,
             &cpr1.xcoms.coms,
@@ -755,7 +755,7 @@ mod tests {
             &cpr1.equ_proofs[0].theta,
             rho,
         );
-        let comt2 = groth_sahai::masked_verifier_comt_2x2(
+        let comt2 = crate::gs_kem_eval::masked_verifier_comt_2x2(
             &ppe,
             &crs,
             &cpr2.xcoms.coms,
@@ -773,7 +773,7 @@ mod tests {
     #[test]
     #[ignore]
     fn test_instance_determinism() {
-        use groth_sahai::{masked_verifier_matrix_canonical_2x2};
+        use crate::gs_kem_eval::masked_verifier_matrix_canonical_2x2;
         
         let seed = b"determinism_test";
         let gs = GrothSahaiCommitments::from_seed(seed);

@@ -21,7 +21,7 @@ use groth_sahai::generator::CRS;
 use groth_sahai::AbstractCrs;
 use groth_sahai::prover::Provable;
 use groth_sahai::statement::PPE;
-use groth_sahai::masked_verifier_matrix_canonical_2x2;
+use arkworks_groth16::masked_verifier_matrix_canonical_2x2;
 use groth_sahai::data_structures::{Com1, ComT};
 
 type E = Bls12_381;
@@ -251,7 +251,7 @@ fn test_identity_element_protection() {
     assert_eq!(masked_matrix, identity_matrix, "Identity target produces identity masked matrix");
     
     // Test that KDF from identity matrix produces predictable key
-    use groth_sahai::{masked_verifier_comt_2x2, kdf_from_comt};
+    use arkworks_groth16::{masked_verifier_comt_2x2, kdf_from_comt};
     let masked_comt = masked_verifier_comt_2x2(
         &ppe_degenerate,
         &crs,
@@ -413,7 +413,7 @@ fn test_proof_substitution_attack() {
     assert_eq!(substituted_matrix, masked_matrix1, "Substituted proof should match original statement matrix");
     
     // Test KEM key derivation to show substitution attack fails
-    use groth_sahai::{masked_verifier_comt_2x2, kdf_from_comt};
+    use arkworks_groth16::{masked_verifier_comt_2x2, kdf_from_comt};
     
     let legitimate_comt1 = masked_verifier_comt_2x2(
         &ppe1,
