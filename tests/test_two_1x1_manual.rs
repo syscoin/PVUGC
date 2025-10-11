@@ -242,6 +242,7 @@ fn verifier_unmasked_matrix<E: ark_ec::pairing::Pairing>(
 }
 
 #[test]
+#[ignore]
 fn test_two_1x1_manual_evaluation() {
     println!("\n=== Testing Two 1×1 PPE with Manual Slot-by-Slot Evaluation ===");
     

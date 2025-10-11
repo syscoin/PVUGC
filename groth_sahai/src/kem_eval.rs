@@ -550,7 +550,7 @@ pub fn masked_verifier_comt<E: Pairing>(
     let a_y_rho = ComT::<E>::pairing_sum(&i1_a_rho, y_coms);
     let x_b_rho = ComT::<E>::pairing_sum(x_coms, &i2_b_rho);
 
-    let mut acc = (((cross_rho + u_pi_rho) + th_v_rho) + a_y_rho) + x_b_rho;
+    let mut acc = ((a_y_rho + x_b_rho) + cross_rho) - u_pi_rho - th_v_rho;
     if include_dual_helpers {
         acc = acc + comt_x_with_u_dual_rho::<E>(x_coms, crs, rho)
                   + comt_v_dual_rho_with_y::<E>(y_coms, crs, rho);
@@ -587,7 +587,7 @@ pub fn masked_verifier_comt_with_gamma_mode<E: Pairing>(
     let i2_b_rho = scale_com2::<E>(&i2_b, rho);
     let a_y_rho = ComT::<E>::pairing_sum(&i1_a_rho, y_coms);
     let x_b_rho = ComT::<E>::pairing_sum(x_coms, &i2_b_rho);
-    (((cross_rho + u_pi_rho) + th_v_rho) + a_y_rho) + x_b_rho
+    ((a_y_rho + x_b_rho) + cross_rho) - u_pi_rho - th_v_rho
 }
 
 /// Build unmasked verifier LHS ComT exactly as verifier.rs, then exponentiate each cell by ρ and return the 2×2 matrix.
@@ -612,12 +612,12 @@ pub fn masked_verifier_matrix_postexp<E: Pairing>(
     // U·π and θ·V
     let u_pi = ComT::<E>::pairing_sum(&crs.u, pi);
     let th_v = ComT::<E>::pairing_sum(theta, &crs.v);
-    // LHS unmasked
-    let lhs = ((a_y + x_b) + cross) + (u_pi + th_v);
-    let mm = lhs.as_matrix();
+    // RHS unmasked: subtract proof legs from verifier LHS
+    let rhs = ((a_y + x_b) + cross) - u_pi - th_v;
+    let mm = rhs.as_matrix();
     let mut out = [[E::TargetField::one(); 2]; 2];
     for r in 0..2 { for c in 0..2 {
-        let ark_ec::pairing::PairingOutput(cell) = mm[r][c];
+        let PairingOutput(cell) = mm[r][c];
         out[r][c] = cell.pow(rho.into_bigint());
     }}
     out
@@ -675,6 +675,14 @@ pub fn ppe_eval_masked_comt_full<E: Pairing>(
     let stmt_y: Matrix<Com2<E>> = vec_to_col_vec(y).left_mul(&ppe.gamma, false);
     let x_gamma_y = ComT::<E>::pairing_sum(x, &col_vec_to_vec(&stmt_y));
 
+    // Constants legs masked
+    let i1_a: Vec<Com1<E>> = Com1::batch_linear_map(&ppe.a_consts);
+    let i2_b: Vec<Com2<E>> = Com2::batch_linear_map(&ppe.b_consts);
+    let i1_a_rho = scale_com1::<E>(&i1_a, rho);
+    let i2_b_rho = scale_com2::<E>(&i2_b, rho);
+    let a_y_rho = ComT::<E>::pairing_sum(&i1_a_rho, y);
+    let x_b_rho = ComT::<E>::pairing_sum(x, &i2_b_rho);
+
     // Mask primaries
     let u_rho: Vec<Com1<E>> = crs.u.iter().map(|u| Com1::<E>(
         (u.0.into_group() * rho).into_affine(),
@@ -691,15 +699,21 @@ pub fn ppe_eval_masked_comt_full<E: Pairing>(
 
     // Component-wise combine; Γ leg needs ^ρ per cell
     let xgy = x_gamma_y.as_matrix();
+    let ay = a_y_rho.as_matrix();
+    let xb = x_b_rho.as_matrix();
     let upi = u_pi_r.as_matrix();
     let thv = th_v_r.as_matrix();
     let mut out = [[E::TargetField::one(); 2]; 2];
     for r in 0..2 {
         for c in 0..2 {
             let PairingOutput(g) = xgy[r][c];
-            let PairingOutput(a) = upi[r][c];
-            let PairingOutput(b) = thv[r][c];
-            out[r][c] = g.pow(rho.into_bigint()) * a * b;
+            let PairingOutput(a_const) = ay[r][c];
+            let PairingOutput(b_const) = xb[r][c];
+            let PairingOutput(u_term) = upi[r][c];
+            let PairingOutput(t_term) = thv[r][c];
+            let u_inv = u_term.inverse().unwrap();
+            let t_inv = t_term.inverse().expect("Field inversion failed: t_term is zero in ppe_eval_masked_comt_full");
+            out[r][c] = g.pow(rho.into_bigint()) * a_const * b_const * u_inv * t_inv;
         }
     }
     out
