@@ -9,9 +9,10 @@ pub use crate::data_structures::*;
 pub use crate::generator::*;
 pub use crate::statement::EquType;
 pub use crate::kem_eval::{
-    ppe_instance_bases,
-    ppe_eval_bases,
-    ppe_eval_with_masked_pairs,
-    InstanceBases,
-    EvalBases,
+    masked_verifier_matrix_canonical,
+    masked_verifier_matrix_canonical_2x2,
+    masked_verifier_comt,
+    masked_verifier_comt_2x2,
+    rhs_masked_matrix,
+    kdf_from_comt,
 };

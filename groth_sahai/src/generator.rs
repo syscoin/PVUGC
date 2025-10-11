@@ -13,7 +13,10 @@
 
 use crate::data_structures::{Com1, Com2};
 
-use ark_ec::pairing::{Pairing, PairingOutput};
+use ark_ec::{
+    pairing::{Pairing, PairingOutput},
+    CurveGroup,
+};
 use ark_ff::{UniformRand, Zero};
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use ark_std::{ops::Mul, rand::Rng};
@@ -36,9 +39,6 @@ pub struct CRS<E: Pairing> {
     pub g1_gen: E::G1Affine,
     pub g2_gen: E::G2Affine,
     pub gt_gen: PairingOutput<E>,
-    /// Dual bases for KEM (derived from u, v)
-    pub u_dual: Vec<Com2<E>>,  // Dual to u in G2
-    pub v_dual: Vec<Com1<E>>,  // Dual to v in G1
 }
 
 impl<E: Pairing> CRS<E> {
@@ -82,30 +82,15 @@ impl<E: Pairing> AbstractCrs<E> for CRS<E> {
     where
         R: Rng,
     {
-        use ark_ec::CurveGroup;
-        
         // Generators for G1 and G2
         let p1 = E::G1::rand(rng);
         let p2 = E::G2::rand(rng);
 
-        // Scalar intermediate values for binding CRS
-        // Ensure non-zero scalars to avoid degenerate keys
-        let a1 = loop {
-            let val = E::ScalarField::rand(rng);
-            if !val.is_zero() { break val; }
-        };
-        let a2 = loop {
-            let val = E::ScalarField::rand(rng);
-            if !val.is_zero() { break val; }
-        };
-        let t1 = loop {
-            let val = E::ScalarField::rand(rng);
-            if !val.is_zero() { break val; }
-        };
-        let t2 = loop {
-            let val = E::ScalarField::rand(rng);
-            if !val.is_zero() { break val; }
-        };
+        // Scalar intermediate values
+        let a1 = E::ScalarField::rand(rng);
+        let a2 = E::ScalarField::rand(rng);
+        let t1 = E::ScalarField::rand(rng);
+        let t2 = E::ScalarField::rand(rng);
 
         // Projective intermediate values
         let q1 = p1.mul(a1);
@@ -123,76 +108,13 @@ impl<E: Pairing> AbstractCrs<E> for CRS<E> {
         let u21 = Com2::<E>(p2.into_affine(), q2.into_affine());
         let u22 = Com2::<E>(u2.into_affine(), v2.into_affine());
 
-        // Compute dual bases for KEM (dual to u and v)
-        // For u[j] = (g1^a_j, g1^b_j), dual is u_dual[j] = (g2^{-b_j}, g2^{a_j})
-        // We need to extract the exponents from the constructed u, v
-        
-        // For the standard binding CRS above:
-        // u[0] = (p1, q1) where q1 = p1*a1
-        // So exponents are (1, a1) relative to base p1
-        // u_dual[0] = (p2^{-a1}, p2^1) = (p2*(-a1), p2)
-        
-        let u_dual_0 = Com2::<E>(
-            p2.mul(-a1).into_affine(),
-            p2.into_affine()
-        );
-        
-        // u[1] = (u1, v1) where u1 = p1*t1, v1 computed from prepare_real_binding_key
-        // For binding: v1 = q1*t1 - 0 = (p1*a1)*t1 = p1*(a1*t1)
-        // So u[1] relative to p1 has exponents (t1, a1*t1)
-        // u_dual[1] = (p2^{-a1*t1}, p2^{t1})
-        
-        let u_dual_1 = Com2::<E>(
-            p2.mul(-a1 * t1).into_affine(),
-            p2.mul(t1).into_affine()
-        );
-        
-        // For v (in G2):
-        // v[0] = (p2, q2) where q2 = p2*a2
-        // v_dual[0] = (p1^{-a2}, p1^1)
-        
-        let v_dual_0 = Com1::<E>(
-            p1.mul(-a2).into_affine(),
-            p1.into_affine()
-        );
-        
-        // v[1] = (u2, v2) where u2 = p2*t2, v2 = q2*t2 = p2*(a2*t2)
-        // v_dual[1] = (p1^{-a2*t2}, p1^{t2})
-        
-        let v_dual_1 = Com1::<E>(
-            p1.mul(-a2 * t2).into_affine(),
-            p1.mul(t2).into_affine()
-        );
-
-        let crs = CRS::<E> {
+        CRS::<E> {
             u: vec![u11, u12],
             v: vec![u21, u22],
             g1_gen: p1.into_affine(),
             g2_gen: p2.into_affine(),
             gt_gen: E::pairing(p1.into_affine(), p2.into_affine()),
-            u_dual: vec![u_dual_0, u_dual_1],
-            v_dual: vec![v_dual_0, v_dual_1],
-        };
-
-        // Runtime assertions for CRS pair-compatibility
-        #[cfg(debug_assertions)]
-        {
-            use ark_ff::One;
-            for j in 0..crs.u.len() {
-                let PairingOutput(p0) = E::pairing(crs.u[j].0, crs.u_dual[j].0);
-                let PairingOutput(p1) = E::pairing(crs.u[j].1, crs.u_dual[j].1);
-                debug_assert_eq!(p0 * p1, E::TargetField::one(), 
-                    "CRS u/u_dual pair {} invariant failed", j);
-            }
-            for k in 0..crs.v.len() {
-                let PairingOutput(p0) = E::pairing(crs.v_dual[k].0, crs.v[k].0);
-                let PairingOutput(p1) = E::pairing(crs.v_dual[k].1, crs.v[k].1);
-                debug_assert_eq!(p0 * p1, E::TargetField::one(), 
-                    "CRS v_dual/v pair {} invariant failed", k);
-            }
         }
-
-        crs
     }
 }
 
@@ -258,8 +180,6 @@ mod tests {
         assert_eq!(crs.u[1].1, v1.into_affine());
         assert_eq!(crs.v[1].1, v2.into_affine());
     }
-
-    
 
     #[allow(non_snake_case)]
     #[test]
