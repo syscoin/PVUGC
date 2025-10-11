@@ -29,8 +29,11 @@ fn test_masked_matrix_consistency_and_uniqueness() {
 
     let mut rng_a1 = test_rng();
     let mut rng_a2 = test_rng();
+    let mut rng_a3 = test_rng();
     let proof_a1 = groth16.prove(witness_a).expect("proof a1");
     let proof_a2 = groth16.prove(witness_a).expect("proof a2");
+    let witness_a_alt = -witness_a;
+    let proof_a3 = groth16.prove(witness_a_alt).expect("proof a3 (alternate witness)");
 
     let cpr_a1 = ppe_a.commit_and_prove(
         &[proof_a1.pi_a, proof_a1.pi_c],
@@ -43,6 +46,12 @@ fn test_masked_matrix_consistency_and_uniqueness() {
         &[proof_a2.pi_b, delta_neg],
         &crs,
         &mut rng_a2,
+    );
+    let cpr_a3 = ppe_a.commit_and_prove(
+        &[proof_a3.pi_a, proof_a3.pi_c],
+        &[proof_a3.pi_b, delta_neg],
+        &crs,
+        &mut rng_a3,
     );
 
     let rho = Fr::from(777u64);
@@ -64,10 +73,20 @@ fn test_masked_matrix_consistency_and_uniqueness() {
         &cpr_a2.equ_proofs[0].theta,
         rho,
     );
+    let lhs_a3 = masked_verifier_matrix_canonical_2x2(
+        &ppe_a,
+        &crs,
+        &cpr_a3.xcoms.coms,
+        &cpr_a3.ycoms.coms,
+        &cpr_a3.equ_proofs[0].pi,
+        &cpr_a3.equ_proofs[0].theta,
+        rho,
+    );
     let rhs_a = rhs_masked_matrix(&ppe_a, rho);
 
     assert_eq!(lhs_a1, rhs_a, "Proof A1 masked matrix must equal target");
     assert_eq!(lhs_a2, rhs_a, "Proof A2 masked matrix must equal target");
+    assert_eq!(lhs_a3, rhs_a, "Proof A3 (alternate witness) masked matrix must equal target");
 
     let comt_a1 = masked_verifier_comt_2x2(
         &ppe_a,
@@ -87,10 +106,21 @@ fn test_masked_matrix_consistency_and_uniqueness() {
         &cpr_a2.equ_proofs[0].theta,
         rho,
     );
+    let comt_a3 = masked_verifier_comt_2x2(
+        &ppe_a,
+        &crs,
+        &cpr_a3.xcoms.coms,
+        &cpr_a3.ycoms.coms,
+        &cpr_a3.equ_proofs[0].pi,
+        &cpr_a3.equ_proofs[0].theta,
+        rho,
+    );
 
     let key_a1 = kdf_from_comt(&comt_a1, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
     let key_a2 = kdf_from_comt(&comt_a2, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
     assert_eq!(key_a1, key_a2, "KEM keys must match across valid proofs for the same statement");
+    let key_a3 = kdf_from_comt(&comt_a3, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
+    assert_eq!(key_a1, key_a3, "KEM keys must match even with alternate witnesses for the same statement");
 
     // Statement B: different public input 36 (witness 6)
     let witness_b = Fr::from(6u64);
