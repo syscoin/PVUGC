@@ -39,6 +39,15 @@ fn comt_pow_cells<E: Pairing>(m: &ComT<E>, rho: E::ScalarField) -> [[E::TargetFi
     ]
 }
 
+/// Extract raw GT cells for matrix comparisons.
+fn comt_to_cells<E: Pairing>(m: &ComT<E>) -> [[E::TargetField; 2]; 2] {
+    let mm = m.as_matrix();
+    [
+        [mm[0][0].0, mm[0][1].0],
+        [mm[1][0].0, mm[1][1].0],
+    ]
+}
+
 /// Canonical masked verifier evaluator (proof-agnostic under fixed (vk,x)).
 /// 
 /// IMPORTANT:
@@ -96,11 +105,7 @@ pub fn masked_verifier_matrix_canonical<E: Pairing>(
     let rhs_mask = lhs_mask - upi_rho - thv_rho;
 
     // 6) Return raw GT cells of masked RHS (should equal target^ρ)
-    let rhs_matrix = rhs_mask.as_matrix();
-    [
-        [rhs_matrix[0][0].0, rhs_matrix[0][1].0],
-        [rhs_matrix[1][0].0, rhs_matrix[1][1].0],
-    ]
+    comt_to_cells(&rhs_mask)
 }
 
 /// Convenience: expected RHS matrix = linear_map_PPE(target^ρ)
@@ -129,46 +134,7 @@ pub fn masked_verifier_comt_2x2<E: Pairing>(
     theta: &[Com1<E>],
     rho: E::ScalarField,
 ) -> ComT<E> {
-    use ark_ec::CurveGroup;
-    use crate::data_structures::{vec_to_col_vec, col_vec_to_vec};
-
-    // Mask primaries (U,V)
-    let u_rho: Vec<Com1<E>> = crs.u.iter().map(|u| Com1::<E>(
-        (u.0.into_group()*rho).into_affine(),
-        (u.1.into_group()*rho).into_affine(),
-    )).collect();
-    let v_rho: Vec<Com2<E>> = crs.v.iter().map(|v| Com2::<E>(
-        (v.0.into_group()*rho).into_affine(),
-        (v.1.into_group()*rho).into_affine(),
-    )).collect();
-
-    // Mask variables where required
-    let x_rho: Vec<Com1<E>> = x.iter().map(|c| Com1::<E>(
-        (c.0.into_group()*rho).into_affine(),
-        (c.1.into_group()*rho).into_affine(),
-    )).collect();
-    let y_rho: Vec<Com2<E>> = y.iter().map(|d| Com2::<E>(
-        (d.0.into_group()*rho).into_affine(),
-        (d.1.into_group()*rho).into_affine(),
-    )).collect();
-
-    // Linear legs from constants A,B (zeros in our mapping, but keep generic)
-    let i1_a: Vec<Com1<E>> = Com1::<E>::batch_linear_map(&ppe.a_consts);
-    let i2_b: Vec<Com2<E>> = Com2::<E>::batch_linear_map(&ppe.b_consts);
-
-    // 1) i1(A) ⊗ Y^ρ
-    let a_y_rho = ComT::<E>::pairing_sum(&i1_a, &y_rho);
-    // 2) X^ρ ⊗ i2(B)
-    let x_rho_b = ComT::<E>::pairing_sum(&x_rho, &i2_b);
-    // 3) X ⊗ (Γ·Y^ρ)  [post-exp γ pushed into Y]
-    let stmt_y_rho = vec_to_col_vec(&y_rho).left_mul(&ppe.gamma, false);
-    let cross = ComT::<E>::pairing_sum(x, &col_vec_to_vec(&stmt_y_rho));
-    // 4) U^ρ ⊗ π
-    let u_pi_rho = ComT::<E>::pairing_sum(&u_rho, pi);
-    // 5) θ ⊗ V^ρ
-    let th_v_rho = ComT::<E>::pairing_sum(theta, &v_rho);
-
-    (((a_y_rho + x_rho_b) + cross) + u_pi_rho) + th_v_rho
+    crate::kem_eval::masked_verifier_comt(ppe, crs, x, y, pi, theta, rho, false)
 }
 
 /// Matrix form of the strict 2×2 canonical masked verifier
@@ -181,6 +147,5 @@ pub fn masked_verifier_matrix_canonical_2x2<E: Pairing>(
     theta: &[Com1<E>],
     rho: E::ScalarField,
 ) -> [[E::TargetField; 2]; 2] {
-    let comt = masked_verifier_comt_2x2::<E>(ppe, crs, x, y, pi, theta, rho);
-    comt_to_cells::<E>(&comt)
+    masked_verifier_matrix_canonical(ppe, crs, x, y, pi, theta, rho)
 }
