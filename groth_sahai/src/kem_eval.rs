@@ -712,7 +712,7 @@ pub fn ppe_eval_masked_comt_full<E: Pairing>(
             let PairingOutput(u_term) = upi[r][c];
             let PairingOutput(t_term) = thv[r][c];
             let u_inv = u_term.inverse().unwrap();
-            let t_inv = t_term.inverse().unwrap();
+            let t_inv = t_term.inverse().expect("Field inversion failed: t_term is zero in ppe_eval_masked_comt_full");
             out[r][c] = g.pow(rho.into_bigint()) * a_const * b_const * u_inv * t_inv;
         }
     }
