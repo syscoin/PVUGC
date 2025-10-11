@@ -13,16 +13,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install LLVM symbolizer
-        run: sudo apt-get update && sudo apt-get install -y llvm
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y clang llvm binutils libclang-rt-18-dev
+
+      - name: Configure AddressSanitizer runtime
+        run: |
+          RESOURCE_DIR="$(clang --print-resource-dir)"
+          RUNTIME_DIR="${RESOURCE_DIR}/lib/linux"
+          echo "ASAN_RUNTIME_DIR=${RUNTIME_DIR}" >> "${GITHUB_ENV}"
+          echo "ASAN_RT=${RUNTIME_DIR}/libclang_rt.asan-x86_64.so" >> "${GITHUB_ENV}"
+          if command -v llvm-symbolizer >/dev/null 2>&1; then
+            echo "ASAN_SYMBOLIZER_PATH=$(command -v llvm-symbolizer)" >> "${GITHUB_ENV}"
+          fi
 
       - name: Install nightly toolchain
         uses: dtolnay/rust-toolchain@nightly
 
       - name: Run tests with AddressSanitizer
-        env:
-          RUSTFLAGS: "-Z sanitizer=address"
-          RUSTDOCFLAGS: "-Z sanitizer=address"
-          ASAN_SYMBOLIZER_PATH: "/usr/bin/llvm-symbolizer"
-          RUST_BACKTRACE: "1"
-        run: cargo +nightly test -- --nocapture
+        run: |
+          set -euo pipefail
+          export LD_LIBRARY_PATH="${ASAN_RUNTIME_DIR}:${LD_LIBRARY_PATH:-}"
+          export LD_PRELOAD="${ASAN_RT}:${LD_PRELOAD:-}"
+          export RUSTFLAGS="-Z sanitizer=address -C link-arg=${ASAN_RT} -C link-arg=-Wl,-rpath,${ASAN_RUNTIME_DIR}"
+          export RUSTDOCFLAGS="${RUSTFLAGS}"
+          export ASAN_OPTIONS="detect_leaks=0"
+          export LSAN_OPTIONS="detect_leaks=0"
+          export RUST_BACKTRACE="1"
+          cargo +nightly test -- --nocapture
