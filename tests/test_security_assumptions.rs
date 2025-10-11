@@ -14,15 +14,14 @@ use ark_ec::pairing::{Pairing, PairingOutput};
 use ark_ec::{CurveGroup, AffineRepr};
 use ark_std::test_rng;
 use ark_ff::{UniformRand, One, Zero};
-use sha2::{Sha256, Digest};
 
 
 use groth_sahai::generator::CRS;
 use groth_sahai::AbstractCrs;
 use groth_sahai::prover::Provable;
 use groth_sahai::statement::PPE;
-use arkworks_groth16::masked_verifier_matrix_canonical_2x2;
-use groth_sahai::data_structures::{Com1, ComT};
+use arkworks_groth16::masked_verifier_matrix_canonical;
+use groth_sahai::data_structures::Com1;
 
 type E = Bls12_381;
 
@@ -61,7 +60,7 @@ fn test_determinism_different_proofs_same_statement() {
     // Compute canonical masked matrices with each attestation
     let mut masked_matrices = Vec::new();
     for att in &attestations {
-        let masked_matrix = masked_verifier_matrix_canonical_2x2(
+        let masked_matrix = masked_verifier_matrix_canonical(
             &ppe,
             &crs,
             &att.xcoms.coms,
@@ -115,7 +114,7 @@ fn test_randomness_independence() {
     // Compute canonical masked matrices for each rho value
     let mut masked_matrices = Vec::new();
     for rho in &rho_values {
-        let masked_matrix = masked_verifier_matrix_canonical_2x2(
+        let masked_matrix = masked_verifier_matrix_canonical(
             &ppe,
             &crs,
             &attestation.xcoms.coms,
@@ -179,7 +178,7 @@ fn test_wrong_public_input_rejection() {
     let rho = Fr::rand(&mut rng);
     
     // Use canonical masked verifier for attestation1
-    let masked_matrix1 = masked_verifier_matrix_canonical_2x2(
+    let masked_matrix1 = masked_verifier_matrix_canonical(
         &ppe1,
         &crs,
         &attestation1.xcoms.coms,
@@ -190,7 +189,7 @@ fn test_wrong_public_input_rejection() {
     );
     
     // Use canonical masked verifier for attestation2 (different statement)
-    let masked_matrix2 = masked_verifier_matrix_canonical_2x2(
+    let masked_matrix2 = masked_verifier_matrix_canonical(
         &ppe2,
         &crs,
         &attestation2.xcoms.coms,
@@ -232,7 +231,7 @@ fn test_identity_element_protection() {
     let rho = Fr::rand(&mut rng);
     
     // Use canonical masked verifier for degenerate statement
-    let masked_matrix = masked_verifier_matrix_canonical_2x2(
+    let masked_matrix = masked_verifier_matrix_canonical(
         &ppe_degenerate,
         &crs,
         &attestation.xcoms.coms,
@@ -251,25 +250,24 @@ fn test_identity_element_protection() {
     assert_eq!(masked_matrix, identity_matrix, "Identity target produces identity masked matrix");
     
     // Test that KDF from identity matrix produces predictable key
-    use arkworks_groth16::{masked_verifier_comt_2x2, kdf_from_comt};
-    let masked_comt = masked_verifier_comt_2x2(
-        &ppe_degenerate,
-        &crs,
-        &attestation.xcoms.coms,
-        &attestation.ycoms.coms,
-        &attestation.equ_proofs[0].pi,
-        &attestation.equ_proofs[0].theta,
-        rho,
-    );
+    use arkworks_groth16::kdf_from_comt;
+    use groth_sahai::data_structures::{ComT, Matrix};
+    use ark_ec::pairing::PairingOutput;
     
-    let kem_key = kdf_from_comt(&masked_comt, b"test_crs", b"test_ppe", b"test_vk", b"test_x", b"test_deposit", 1);
+    // Convert identity matrix to ComT for KDF
+    let identity_matrix_comt = ComT::<E>::from(Matrix::<PairingOutput<E>>::from(vec![
+        vec![PairingOutput::<E>(Fq12::one()), PairingOutput::<E>(Fq12::one())],
+        vec![PairingOutput::<E>(Fq12::one()), PairingOutput::<E>(Fq12::one())],
+    ]));
+    
+    let kem_key = kdf_from_comt(&identity_matrix_comt, b"test_crs", b"test_ppe", b"test_vk", b"test_x", b"test_deposit", 1);
     
     // Test that identity target produces predictable KEM key
     // This demonstrates why identity elements should be rejected in production
-    let expected_identity_key = kdf_from_comt(&ComT::<E>::from(vec![
+    let expected_identity_key = kdf_from_comt(&ComT::<E>::from(Matrix::<PairingOutput<E>>::from(vec![
         vec![PairingOutput::<E>(Fq12::one()), PairingOutput::<E>(Fq12::one())],
         vec![PairingOutput::<E>(Fq12::one()), PairingOutput::<E>(Fq12::one())],
-    ]), b"test_crs", b"test_ppe", b"test_vk", b"test_x", b"test_deposit", 1);
+    ])), b"test_crs", b"test_ppe", b"test_vk", b"test_x", b"test_deposit", 1);
     
     assert_eq!(kem_key, expected_identity_key, "Identity target produces predictable KEM key");
     
@@ -288,7 +286,8 @@ fn test_identity_element_protection() {
         &mut rng
     );
     
-    let non_identity_comt = masked_verifier_comt_2x2(
+    // Test non-identity KEM key derivation
+    let non_identity_matrix = masked_verifier_matrix_canonical(
         &non_identity_ppe,
         &crs,
         &non_identity_attestation.xcoms.coms,
@@ -298,7 +297,13 @@ fn test_identity_element_protection() {
         rho,
     );
     
-    let non_identity_key = kdf_from_comt(&non_identity_comt, b"test_crs", b"test_ppe", b"test_vk", b"test_x", b"test_deposit", 1);
+    // Convert non-identity matrix to ComT for KDF
+    let non_identity_matrix_comt = ComT::<E>::from(Matrix::<PairingOutput<E>>::from(vec![
+        vec![PairingOutput::<E>(non_identity_matrix[0][0]), PairingOutput::<E>(non_identity_matrix[0][1])],
+        vec![PairingOutput::<E>(non_identity_matrix[1][0]), PairingOutput::<E>(non_identity_matrix[1][1])],
+    ]));
+    
+    let non_identity_key = kdf_from_comt(&non_identity_matrix_comt, b"test_crs", b"test_ppe", b"test_vk", b"test_x", b"test_deposit", 1);
     
     assert_ne!(kem_key, non_identity_key, "Identity KEM key should differ from non-identity KEM key");
 }
@@ -372,7 +377,7 @@ fn test_proof_substitution_attack() {
     let rho = Fr::rand(&mut rng);
     
     // Compute masked matrices for legitimate attestations
-    let masked_matrix1 = masked_verifier_matrix_canonical_2x2(
+    let masked_matrix1 = masked_verifier_matrix_canonical(
         &ppe1,
         &crs,
         &attestation1.xcoms.coms,
@@ -382,7 +387,7 @@ fn test_proof_substitution_attack() {
         rho,
     );
     
-    let masked_matrix2 = masked_verifier_matrix_canonical_2x2(
+    let masked_matrix2 = masked_verifier_matrix_canonical(
         &ppe2,
         &crs,
         &attestation2.xcoms.coms,
@@ -393,7 +398,7 @@ fn test_proof_substitution_attack() {
     );
     
     // Test substitution attack: try to use attestation1 (for statement1) with PPE2 (for statement2)
-    let substituted_matrix = masked_verifier_matrix_canonical_2x2(
+    let substituted_matrix = masked_verifier_matrix_canonical(
         &ppe2,  // Statement2 PPE
         &crs,
         &attestation1.xcoms.coms,  // Statement1 attestation
@@ -413,27 +418,23 @@ fn test_proof_substitution_attack() {
     assert_eq!(substituted_matrix, masked_matrix1, "Substituted proof should match original statement matrix");
     
     // Test KEM key derivation to show substitution attack fails
-    use arkworks_groth16::{masked_verifier_comt_2x2, kdf_from_comt};
+    use arkworks_groth16::kdf_from_comt;
+    use groth_sahai::data_structures::{ComT, Matrix};
+    use ark_ec::pairing::PairingOutput;
+    use sha2::{Sha256, Digest};
     
-    let legitimate_comt1 = masked_verifier_comt_2x2(
-        &ppe1,
-        &crs,
-        &attestation1.xcoms.coms,
-        &attestation1.ycoms.coms,
-        &attestation1.equ_proofs[0].pi,
-        &attestation1.equ_proofs[0].theta,
-        rho,
-    );
+    // Convert matrices to ComT for KDF
+    let legitimate_matrix1 = masked_matrix1;
+    let legitimate_comt1 = ComT::<E>::from(Matrix::<PairingOutput<E>>::from(vec![
+        vec![PairingOutput::<E>(legitimate_matrix1[0][0]), PairingOutput::<E>(legitimate_matrix1[0][1])],
+        vec![PairingOutput::<E>(legitimate_matrix1[1][0]), PairingOutput::<E>(legitimate_matrix1[1][1])],
+    ]));
     
-    let substituted_comt = masked_verifier_comt_2x2(
-        &ppe2,
-        &crs,
-        &attestation1.xcoms.coms,  // Wrong attestation for statement2
-        &attestation1.ycoms.coms,
-        &attestation1.equ_proofs[0].pi,
-        &attestation1.equ_proofs[0].theta,
-        rho,
-    );
+    let substituted_matrix = substituted_matrix;
+    let substituted_comt = ComT::<E>::from(Matrix::<PairingOutput<E>>::from(vec![
+        vec![PairingOutput::<E>(substituted_matrix[0][0]), PairingOutput::<E>(substituted_matrix[0][1])],
+        vec![PairingOutput::<E>(substituted_matrix[1][0]), PairingOutput::<E>(substituted_matrix[1][1])],
+    ]));
     
     // Use statement-specific context for KDF to prevent substitution attacks
     let vk_hash1 = Sha256::digest(format!("vk_statement1_{:?}", target1).as_bytes()).to_vec();
@@ -487,7 +488,7 @@ fn test_multi_share_threshold_security() {
     for (i, &share) in shares.iter().enumerate() {
         let rho_i = Fr::rand(&mut rng);
         
-        let masked_matrix_i = masked_verifier_matrix_canonical_2x2(
+        let masked_matrix_i = masked_verifier_matrix_canonical(
             &ppe,
             &crs,
             &attestation.xcoms.coms,

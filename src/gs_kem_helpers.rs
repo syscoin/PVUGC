@@ -211,3 +211,59 @@ pub fn fr_from_be(bytes: &[u8]) -> Fr {
     use ark_ff::PrimeField;
     Fr::from_be_bytes_mod_order(bytes)
 }
+
+/// Helper to serialize attestation components for KEM operations
+pub fn serialize_attestation_for_kem(
+    attestation: &crate::GSAttestation
+) -> (Vec<Vec<u8>>, Vec<Vec<u8>>, Vec<Vec<u8>>, Vec<Vec<u8>>) {
+    let mut c1_bytes = Vec::new();
+    for c1 in &attestation.c1_commitments {
+        let mut bytes = Vec::new();
+        c1.serialize_compressed(&mut bytes).unwrap();
+        c1_bytes.push(bytes);
+    }
+    
+    let mut c2_bytes = Vec::new();
+    for c2 in &attestation.c2_commitments {
+        let mut bytes = Vec::new();
+        c2.serialize_compressed(&mut bytes).unwrap();
+        c2_bytes.push(bytes);
+    }
+    
+    let mut pi_bytes = Vec::new();
+    for pi in &attestation.pi_elements {
+        let mut bytes = Vec::new();
+        pi.serialize_compressed(&mut bytes).unwrap();
+        pi_bytes.push(bytes);
+    }
+    
+    let mut theta_bytes = Vec::new();
+    for theta in &attestation.theta_elements {
+        let mut bytes = Vec::new();
+        theta.serialize_compressed(&mut bytes).unwrap();
+        theta_bytes.push(bytes);
+    }
+    
+    (c1_bytes, c2_bytes, pi_bytes, theta_bytes)
+}
+
+/// Helper to serialize CRS elements for KEM operations
+pub fn serialize_crs_for_kem(
+    crs: &groth_sahai::generator::CRS<Bls12_381>
+) -> (Vec<Vec<u8>>, Vec<Vec<u8>>) {
+    let mut u_bases = Vec::new();
+    for u in &crs.u {
+        let mut bytes = Vec::new();
+        u.serialize_compressed(&mut bytes).unwrap();
+        u_bases.push(bytes);
+    }
+    
+    let mut v_bases = Vec::new();
+    for v in &crs.v {
+        let mut bytes = Vec::new();
+        v.serialize_compressed(&mut bytes).unwrap();
+        v_bases.push(bytes);
+    }
+    
+    (u_bases, v_bases)
+}

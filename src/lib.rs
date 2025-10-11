@@ -11,11 +11,9 @@ pub use groth16_wrapper::{ArkworksProof, ArkworksVK, ArkworksGroth16};
 pub use gs_commitments::{GrothSahaiCommitments, GSAttestation};
 pub use schnorr::{SchnorrAdaptor, AdaptorSignature};
 pub use kem::{ProductKeyKEM, KEMShare};
+pub use gs_kem_helpers::{serialize_attestation_for_kem, serialize_crs_for_kem};
 pub use gs_kem_eval::{
     masked_verifier_matrix_canonical,
-    masked_verifier_matrix_canonical_2x2,
-    masked_verifier_comt,
-    masked_verifier_comt_2x2,
     rhs_masked_matrix,
     kdf_from_comt,
 };

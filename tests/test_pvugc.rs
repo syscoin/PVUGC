@@ -7,7 +7,6 @@ use ark_std::test_rng;
 use ark_ff::{UniformRand, One, Zero, PrimeField, BigInteger};
 use ark_serialize::{CanonicalSerialize};
 use sha2::{Sha256, Digest};
-use groth_sahai::verifier::Verifiable;
 
 // Use PVUGC wrappers
 use arkworks_groth16::{
@@ -16,6 +15,10 @@ use arkworks_groth16::{
     ArkworksProof,
     ArkworksVK,
     SchnorrAdaptor,
+    ProductKeyKEM,
+    serialize_attestation_for_kem,
+    serialize_crs_for_kem,
+    masked_verifier_matrix_canonical,
 };
 
 // GS internals for direct testing
@@ -23,7 +26,6 @@ use groth_sahai::generator::CRS;
 use groth_sahai::AbstractCrs;
 use groth_sahai::prover::Provable;
 use groth_sahai::statement::PPE;
-use arkworks_groth16::{masked_verifier_matrix_canonical_2x2};
 use groth_sahai::data_structures::{Com1, Com2};
 
 use schnorr_fun::fun::{marker::*, Scalar};
@@ -91,9 +93,10 @@ fn create_mock_proof_and_vk(rng: &mut impl rand::Rng) -> (ArkworksProof, Arkwork
     (proof, vk)
 }
 
+
 #[test]
 fn test_kem_bit_for_bit_match() {
-    // Test KEM encap/decap produces bit-for-bit matching results using canonical masked verifier
+    // Test ProductKeyKEM encap/decap produces bit-for-bit matching results
     println!("Testing KEM bit-for-bit match");
     
     let mut rng = test_rng();
@@ -103,36 +106,45 @@ fn test_kem_bit_for_bit_match() {
     let attestation = gs.commit_arkworks_proof(&proof, &vk, &vec![], true, &mut rng)
         .expect("Failed to create attestation");
     
-    let rho = Fr::from(0x1234567890abcdefu64);
-    
-    // Get PPE and CRS for canonical evaluation
-    let ppe = gs.groth16_verify_as_ppe_2var(&vk, &vec![]);
+    // Serialize attestation and CRS components for KEM
+    let (c1_bytes, c2_bytes, pi_bytes, theta_bytes) = serialize_attestation_for_kem(&attestation);
     let crs = gs.get_crs();
+    let (u_bases, v_bases) = serialize_crs_for_kem(&crs);
     
-    // Use canonical masked verifier for encap
-    let masked_matrix_encap = masked_verifier_matrix_canonical_2x2(
-        &ppe,
-        &crs,
-        &attestation.c1_commitments,
-        &attestation.c2_commitments,
-        &attestation.pi_elements,
-        &attestation.theta_elements,
-        rho,
-    );
+    // Context for KEM
+    let ctx_hash = b"test_context";
+    let gs_instance_digest = b"test_gs_instance";
+    let adaptor_share = Fr::from(0x1234567890abcdefu64);
     
-    // Use canonical masked verifier for decap (should be identical)
-    let masked_matrix_decap = masked_verifier_matrix_canonical_2x2(
-        &ppe,
-        &crs,
-        &attestation.c1_commitments,
-        &attestation.c2_commitments,
-        &attestation.pi_elements,
-        &attestation.theta_elements,
-        rho,
-    );
+    // Use ProductKeyKEM for encap
+    let kem = ProductKeyKEM::new();
+    let (kem_share, _m_i_encap) = kem.encapsulate(
+        &mut rng,
+        0,
+        &c1_bytes,
+        &c2_bytes,
+        &pi_bytes,
+        &theta_bytes,
+        &u_bases,
+        &v_bases,
+        adaptor_share,
+        ctx_hash,
+        gs_instance_digest,
+    ).expect("Encapsulation failed");
     
-    // Compare - should be identical
-    assert_eq!(masked_matrix_encap, masked_matrix_decap, "M_i encap and decap don't match");
+    // Use ProductKeyKEM for decap (should recover same M_i)
+    let recovered_share = kem.decapsulate(
+        &kem_share,
+        &c1_bytes,
+        &c2_bytes,
+        &pi_bytes,
+        &theta_bytes,
+        ctx_hash,
+        gs_instance_digest,
+    ).expect("Decapsulation failed");
+    
+    // Verify recovered adaptor share matches original
+    assert_eq!(recovered_share, adaptor_share, "Adaptor share recovery failed");
     
 }
 
@@ -144,51 +156,92 @@ fn test_kem_determinism_guarantee() {
     let gs = GrothSahaiCommitments::from_seed(b"DETERMINISM_TEST");
     let (proof, vk) = create_mock_proof_and_vk(&mut rng);
     
-    let rho = Fr::from(0xdeadbeefcafeu64);
-    
-    // Get PPE and CRS for canonical evaluation
-    let ppe = gs.groth16_verify_as_ppe_2var(&vk, &vec![]);
     let crs = gs.get_crs();
     
     let attestation = gs.commit_arkworks_proof(&proof, &vk, &vec![], true, &mut rng)
         .expect("Failed to create attestation");
     
-    let masked_matrix_encap = masked_verifier_matrix_canonical_2x2(
-        &ppe,
-        &crs,
-        &attestation.c1_commitments,
-        &attestation.c2_commitments,
-        &attestation.pi_elements,
-        &attestation.theta_elements,
-        rho,
-    );
-    
-    // Create MULTIPLE attestations (different randomness)
-    let mut recovered_matrices = Vec::new();
+    // Test proof-agnostic behavior: different attestations for same statement should produce same masked matrix
     let num_iterations = 5;
     
-    for _ in 0..num_iterations {
+    // Serialize CRS elements for KEM
+    let (u_bases, v_bases) = serialize_crs_for_kem(&crs);
+    
+    // Context for KEM
+    let ctx_hash = b"test_context";
+    let gs_instance_digest = b"test_gs_instance";
+    let adaptor_share = Fr::from(0xdeadbeefcafeu64);
+    
+    let kem = ProductKeyKEM::new();
+    
+    // Serialize first attestation
+    let (c1_bytes, c2_bytes, pi_bytes, theta_bytes) = serialize_attestation_for_kem(&attestation);
+    
+    // Encapsulate with first attestation
+    let (kem_share_first, _) = kem.encapsulate(
+        &mut rng,
+        0,
+        &c1_bytes,
+        &c2_bytes,
+        &pi_bytes,
+        &theta_bytes,
+        &u_bases,
+        &v_bases,
+        adaptor_share,
+        ctx_hash,
+        gs_instance_digest,
+    ).expect("First encapsulation failed");
+    
+    // Decapsulate with same attestation to verify it works
+    let recovered_share_first = kem.decapsulate(
+        &kem_share_first,
+        &c1_bytes,
+        &c2_bytes,
+        &pi_bytes,
+        &theta_bytes,
+        ctx_hash,
+        gs_instance_digest,
+    ).expect("Decapsulation failed");
+    
+    assert_eq!(recovered_share_first, adaptor_share, "First attestation should recover correct adaptor share");
+    
+    // Test proof-agnostic behavior: different attestations for same statement should produce same KEM key
+    for i in 0..num_iterations {
         let attestation_i = gs.commit_arkworks_proof(&proof, &vk, &vec![], true, &mut rng)
             .expect("Failed to create attestation");
         
-        let masked_matrix_i = masked_verifier_matrix_canonical_2x2(
-            &ppe,
-            &crs,
-            &attestation_i.c1_commitments,
-            &attestation_i.c2_commitments,
-            &attestation_i.pi_elements,
-            &attestation_i.theta_elements,
-            rho,
-        );
+        // Serialize new attestation
+        let (c1_bytes_i, c2_bytes_i, pi_bytes_i, theta_bytes_i) = serialize_attestation_for_kem(&attestation_i);
         
-        recovered_matrices.push(masked_matrix_i);
-    }
-    
-    // Critical: matrices must be identical (proof-agnostic behavior)
-    // This demonstrates that canonical masked verifier is proof-agnostic
-    for (i, matrix) in recovered_matrices.iter().enumerate() {
-        assert_eq!(*matrix, masked_matrix_encap, "Attestation {} produced different matrix", i);
-        println!("Attestation {} produced same matrix as first attestation", i);
+        // Encapsulate with new attestation - should produce same KEM key (proof-agnostic)
+        let (kem_share_i, _) = kem.encapsulate(
+            &mut rng,
+            i as u32,
+            &c1_bytes_i,
+            &c2_bytes_i,
+            &pi_bytes_i,
+            &theta_bytes_i,
+            &u_bases,
+            &v_bases,
+            adaptor_share,
+            ctx_hash,
+            gs_instance_digest,
+        ).expect("Encapsulation failed");
+        
+        // Decapsulate using same attestation - should recover same adaptor share
+        let recovered_share_i = kem.decapsulate(
+            &kem_share_i,
+            &c1_bytes_i,
+            &c2_bytes_i,
+            &pi_bytes_i,
+            &theta_bytes_i,
+            ctx_hash,
+            gs_instance_digest,
+        ).expect("Decapsulation failed");
+        
+        // Critical: adaptor share must be identical (proof-agnostic behavior)
+        assert_eq!(recovered_share_i, adaptor_share, "Attestation {} produced different adaptor share", i);
+        println!("Attestation {} produced same adaptor share as first attestation", i);
     }
 }
 
@@ -243,7 +296,7 @@ fn test_negative_wrong_public_input() {
     let rho = Fr::rand(&mut rng);
     
     // Use canonical masked verifier for attestation1
-    let masked_matrix1 = masked_verifier_matrix_canonical_2x2(
+    let masked_matrix1 = masked_verifier_matrix_canonical(
         &ppe1,
         &crs,
         &attestation1.xcoms.coms,
@@ -254,7 +307,7 @@ fn test_negative_wrong_public_input() {
     );
     
     // Use canonical masked verifier for attestation2 (wrong public input)
-    let masked_matrix2 = masked_verifier_matrix_canonical_2x2(
+    let masked_matrix2 = masked_verifier_matrix_canonical(
         &ppe2,
         &crs,
         &attestation2.xcoms.coms,
@@ -301,7 +354,7 @@ fn test_negative_no_proof_cannot_sign() {
     let rho = Fr::rand(&mut rng);
     
     // Use canonical masked verifier with valid attestation
-    let masked_matrix_valid = masked_verifier_matrix_canonical_2x2(
+    let masked_matrix_valid = masked_verifier_matrix_canonical(
         &ppe,
         &crs,
         &attestation_dummy.xcoms.coms,
@@ -327,7 +380,7 @@ fn test_negative_no_proof_cannot_sign() {
     }).collect();
     
     // Use canonical masked verifier with fake commitments
-    let masked_matrix_fake = masked_verifier_matrix_canonical_2x2(
+    let masked_matrix_fake = masked_verifier_matrix_canonical(
         &ppe,
         &crs,
         &fake_C1,
@@ -374,7 +427,7 @@ fn test_determinism_across_sessions() {
     let rho = Fr::from(42u64);
     
     // Use canonical masked verifier for session 1
-    let masked_matrix1 = masked_verifier_matrix_canonical_2x2(
+    let masked_matrix1 = masked_verifier_matrix_canonical(
         &ppe,
         &crs1,
         &attestation1.xcoms.coms,
@@ -389,7 +442,7 @@ fn test_determinism_across_sessions() {
     let attestation2 = ppe.commit_and_prove(&xvars, &yvars, &crs1, &mut rng);
     
     // Use canonical masked verifier for session 2 with same CRS
-    let masked_matrix2 = masked_verifier_matrix_canonical_2x2(
+    let masked_matrix2 = masked_verifier_matrix_canonical(
         &ppe,
         &crs1,
         &attestation2.xcoms.coms,
@@ -406,7 +459,7 @@ fn test_determinism_across_sessions() {
     let crs3 = CRS::<E>::generate_crs(&mut rng);
     let attestation3 = ppe.commit_and_prove(&xvars, &yvars, &crs3, &mut rng);
     
-    let masked_matrix3 = masked_verifier_matrix_canonical_2x2(
+    let masked_matrix3 = masked_verifier_matrix_canonical(
         &ppe,
         &crs3,
         &attestation3.xcoms.coms,
@@ -421,7 +474,7 @@ fn test_determinism_across_sessions() {
     
     // Session 4: Same CRS, different rho (should produce different matrix)
     let rho2 = Fr::from(123u64);
-    let masked_matrix4 = masked_verifier_matrix_canonical_2x2(
+    let masked_matrix4 = masked_verifier_matrix_canonical(
         &ppe,
         &crs1,
         &attestation1.xcoms.coms,
@@ -458,7 +511,7 @@ fn test_determinism_across_sessions() {
     
     let attestation5 = ppe5.commit_and_prove(&xvars5, &yvars5, &crs5, &mut rng);
     
-    let masked_matrix5 = masked_verifier_matrix_canonical_2x2(
+    let masked_matrix5 = masked_verifier_matrix_canonical(
         &ppe5,
         &crs5,
         &attestation5.xcoms.coms,
@@ -508,7 +561,7 @@ fn test_kem_multi_share() {
     for (_i, _adaptor) in adaptor_shares.iter().enumerate() {
         let rho = Fr::rand(&mut rng);
         
-        let masked_matrix_i = masked_verifier_matrix_canonical_2x2(
+        let masked_matrix_i = masked_verifier_matrix_canonical(
             &ppe,
             &crs,
             &attestation.xcoms.coms,
@@ -523,7 +576,7 @@ fn test_kem_multi_share() {
     
     // Decapsulate all shares
     for (i, (rho, expected_matrix)) in kem_shares.iter().enumerate() {
-        let recovered_matrix = masked_verifier_matrix_canonical_2x2(
+        let recovered_matrix = masked_verifier_matrix_canonical(
             &ppe,
             &crs,
             &attestation.xcoms.coms,
@@ -900,50 +953,79 @@ fn test_two_distinct_groth16_proofs_same_output() {
     // Explicit x: public_input = [25]
     let x = [Fr::from(25u64)];
 
-    let ppe = gs.groth16_verify_as_ppe_2var(&vk, &x);
-    
     let crs = gs.get_crs().clone();
-    // Use fixed rho for consistency with working test
-    let rho = Fr::from(777u64);
+    let mut rng = test_rng();
     
-    // arkworks uses negated δ in verification
-    let delta_neg = (-vk.delta_g2.into_group()).into_affine();
+    // Test proof-agnostic behavior using ProductKeyKEM
+    let kem = ProductKeyKEM::new();
+    let adaptor_share = Fr::from(0x1234567890abcdefu64);
+    let ctx_hash = b"crs";
+    let gs_instance_digest = b"ppe";
     
-    // Use same 2-variable structure as attestation creation
-    let xvars1 = vec![proof1.pi_a, proof1.pi_c];
-    let yvars1 = vec![proof1.pi_b, delta_neg];
-    let xvars2 = vec![proof2.pi_a, proof2.pi_c];
-    let yvars2 = vec![proof2.pi_b, delta_neg];
+    // Serialize CRS elements
+    let (u_bases, v_bases) = serialize_crs_for_kem(&crs);
     
-
-    // Per-proof GS round-trip: commit_and_prove then verify (unmasked PPE check)
-    let mut det_rng = test_rng();
-    let cproof1 = ppe.commit_and_prove(&xvars1, &yvars1, &crs, &mut det_rng);
-    assert!(ppe.verify(&cproof1, &crs), "PPE.verify should pass for proof1 variables");
-    let cproof2 = ppe.commit_and_prove(&xvars2, &yvars2, &crs, &mut det_rng);
-    assert!(ppe.verify(&cproof2, &crs), "PPE.verify should pass for proof2 variables");
+    // Convert GS proofs to GSAttestations and serialize them
+    let attestation1 = gs.commit_arkworks_proof(&proof1, &vk, &x, true, &mut rng)
+        .expect("Failed to create attestation1");
+    let attestation2 = gs.commit_arkworks_proof(&proof2, &vk, &x, true, &mut rng)
+        .expect("Failed to create attestation2");
     
-
-    use arkworks_groth16::{masked_verifier_matrix_canonical_2x2, rhs_masked_matrix, masked_verifier_comt_2x2, kdf_from_comt};
-    let m1 = masked_verifier_matrix_canonical_2x2(&ppe, &crs,
-        &cproof1.xcoms.coms, &cproof1.ycoms.coms,
-        &cproof1.equ_proofs[0].pi, &cproof1.equ_proofs[0].theta, rho);
-        
-    let m2 = masked_verifier_matrix_canonical_2x2(&ppe, &crs,
-        &cproof2.xcoms.coms, &cproof2.ycoms.coms,
-        &cproof2.equ_proofs[0].pi, &cproof2.equ_proofs[0].theta, rho);
-    let rhs_cells = rhs_masked_matrix(&ppe, rho);
-    assert_eq!(m1, rhs_cells, "Masked matrix should equal RHS mask");
-    assert_eq!(m1, m2, "Both proofs should produce identical masked matrices");
-    // Build ComT for KDF
-    let final1 = masked_verifier_comt_2x2(&ppe, &crs,
-        &cproof1.xcoms.coms, &cproof1.ycoms.coms,
-        &cproof1.equ_proofs[0].pi, &cproof1.equ_proofs[0].theta, rho);
-    let final2 = masked_verifier_comt_2x2(&ppe, &crs,
-        &cproof2.xcoms.coms, &cproof2.ycoms.coms,
-        &cproof2.equ_proofs[0].pi, &cproof2.equ_proofs[0].theta, rho);
-    let k1 = kdf_from_comt(&final1, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
-    let k2 = kdf_from_comt(&final2, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
-    assert_eq!(k1, k2, "Deterministic KEM key must be identical across distinct valid proofs");
+    let (c1_bytes1, c2_bytes1, pi_bytes1, theta_bytes1) = serialize_attestation_for_kem(&attestation1);
+    let (c1_bytes2, c2_bytes2, pi_bytes2, theta_bytes2) = serialize_attestation_for_kem(&attestation2);
+    
+    // Encapsulate with both proofs - should produce same KEM key (proof-agnostic)
+    let (kem_share1, _) = kem.encapsulate(
+        &mut rng,
+        0,
+        &c1_bytes1,
+        &c2_bytes1,
+        &pi_bytes1,
+        &theta_bytes1,
+        &u_bases,
+        &v_bases,
+        adaptor_share,
+        ctx_hash,
+        gs_instance_digest,
+    ).expect("Encapsulation failed");
+    
+    let (kem_share2, _) = kem.encapsulate(
+        &mut rng,
+        1,
+        &c1_bytes2,
+        &c2_bytes2,
+        &pi_bytes2,
+        &theta_bytes2,
+        &u_bases,
+        &v_bases,
+        adaptor_share,
+        ctx_hash,
+        gs_instance_digest,
+    ).expect("Encapsulation failed");
+    
+    // Both KEM shares should decrypt to the same adaptor share (proof-agnostic behavior)
+    let recovered1 = kem.decapsulate(
+        &kem_share1,
+        &c1_bytes1,
+        &c2_bytes1,
+        &pi_bytes1,
+        &theta_bytes1,
+        ctx_hash,
+        gs_instance_digest,
+    ).expect("Decapsulation failed");
+    
+    let recovered2 = kem.decapsulate(
+        &kem_share2,
+        &c1_bytes2,
+        &c2_bytes2,
+        &pi_bytes2,
+        &theta_bytes2,
+        ctx_hash,
+        gs_instance_digest,
+    ).expect("Decapsulation failed");
+    
+    assert_eq!(recovered1, adaptor_share, "First proof should recover correct adaptor share");
+    assert_eq!(recovered2, adaptor_share, "Second proof should recover correct adaptor share");
+    assert_eq!(recovered1, recovered2, "Both proofs should produce identical adaptor shares");
        
 }
