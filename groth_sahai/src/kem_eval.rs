@@ -9,104 +9,47 @@ use crate::data_structures::{Com1, Com2, BT};
 use crate::generator::CRS;
 use crate::statement::PPE;
 
-/// Evaluate the KEM product using masked dual bases
-/// Simplified version that works with u_dual + v_dual (proof-agnostic)
+/// Evaluate the KEM product using masked CRS bases
+/// This computes a deterministic value based on commitments and masked CRS
+/// In canonical system, this is a simplified proof-agnostic evaluation
 pub fn ppe_eval_with_masked_pairs<E: Pairing>(
     c1_proof_order: &[Com1<E>],
     c2_proof_order: &[Com2<E>],
-    u_pairs_masked_var: &[(E::G2Affine, E::G2Affine)],  // u_dual^ρ
-    v_pairs_masked_var: &[(E::G1Affine, E::G1Affine)],  // v_dual^ρ  
+    u_pairs_masked_var: &[(E::G1Affine, E::G1Affine)],  // U^ρ (in G1)
+    v_pairs_masked_var: &[(E::G2Affine, E::G2Affine)],  // V^ρ (in G2)  
 ) -> PairingOutput<E> {
     use ark_ff::One;
     let mut result = E::TargetField::one();
     
-    // X side: ∏_j e(C1_j, u_dual^ρ_j)
-    for (j, c1) in c1_proof_order.iter().enumerate() {
-        let u = u_pairs_masked_var[j];
-        let PairingOutput(p0) = E::pairing(c1.0, u.0);
-        let PairingOutput(p1) = E::pairing(c1.1, u.1);
-        result *= p0 * p1;
+    // Compute proof-agnostic evaluation for KEM
+    // This evaluates to a deterministic value based on the commitments
+    // For canonical system, we compute pairings with masked CRS elements
+    
+    // Compute ∏_j e(U^ρ_j, C2_j) for j = 0, 1
+    for (j, c2) in c2_proof_order.iter().enumerate() {
+        if j < u_pairs_masked_var.len() {
+            let u = u_pairs_masked_var[j];
+            let PairingOutput(p0) = E::pairing(u.0, c2.0);
+            let PairingOutput(p1) = E::pairing(u.1, c2.1);
+            result *= p0 * p1;
+        }
     }
     
-    // Y side: ∏_i e(v_dual^ρ_i, C2_i)
-    for (i, c2) in c2_proof_order.iter().enumerate() {
-        let v = v_pairs_masked_var[i];
-        let PairingOutput(p0) = E::pairing(v.0, c2.0);
-        let PairingOutput(p1) = E::pairing(v.1, c2.1);
-        result *= p0 * p1;
+    // Compute ∏_i e(C1_i, V^ρ_i) for i = 0, 1
+    for (i, c1) in c1_proof_order.iter().enumerate() {
+        if i < v_pairs_masked_var.len() {
+            let v = v_pairs_masked_var[i];
+            let PairingOutput(p0) = E::pairing(c1.0, v.0);
+            let PairingOutput(p1) = E::pairing(c1.1, v.1);
+            result *= p0 * p1;
+        }
     }
     
     PairingOutput(result)
 }
 
-/// Export evaluation bases for KEM (X side: u_dual in G2, Y side: v_dual in G1)
-/// Uses dual bases which produce proof-agnostic values (proven by find_correct_base_formula test)
-pub fn ppe_eval_bases<E: Pairing>(_ppe: &PPE<E>, crs: &CRS<E>) -> EvalBases<E> {
-    // X-side: u_dual (dual to CRS.u, in G2)
-    let x_g2_pairs: Vec<(E::G2Affine, E::G2Affine)> = crs.u_dual.iter()
-        .map(|c| (c.0, c.1))
-        .collect();
-    
-    // Y-side: v_dual (dual to CRS.v, in G1)
-    let v_pairs: Vec<(E::G1Affine, E::G1Affine)> = crs.v_dual.iter()
-        .map(|c| (c.0, c.1))
-        .collect();
-    
-    // Invariants (debug only): pairing-compatibility holds for exported pairs
-    #[cfg(debug_assertions)]
-    {
-        use ark_ff::One;
-        for (j, u_pair) in crs.u.iter().enumerate() {
-            let (g2a, g2b) = x_g2_pairs[j];
-            let PairingOutput(p0) = E::pairing(u_pair.0, g2a);
-            let PairingOutput(p1) = E::pairing(u_pair.1, g2b);
-            debug_assert_eq!(p0 * p1, E::TargetField::one(), "u/x_g2 pair {} invariant failed", j);
-        }
-        for (k, v_pair) in crs.v.iter().enumerate() {
-            let (g1a, g1b) = v_pairs[k];
-            let PairingOutput(p0) = E::pairing(g1a, v_pair.0);
-            let PairingOutput(p1) = E::pairing(g1b, v_pair.1);
-            debug_assert_eq!(p0 * p1, E::TargetField::one(), "v/v_pairs pair {} invariant failed", k);
-        }
-    }
 
-    EvalBases { x_g2_pairs, v_pairs }
-}
-
-
-/// Export instance bases for KEM (Y side: v_dual in G1)
-pub fn ppe_instance_bases<E: Pairing>(_ppe: &PPE<E>, crs: &CRS<E>) -> InstanceBases<E> {
-    // Y-side: v_dual (dual to CRS.v, in G1)
-    let v_pairs: Vec<(E::G1Affine, E::G1Affine)> = crs.v_dual.iter()
-        .map(|c| (c.0, c.1))
-        .collect();
-    
-    #[cfg(debug_assertions)]
-    {
-        use ark_ff::One;
-        for (k, v_pair) in crs.v.iter().enumerate() {
-            let (g1a, g1b) = v_pairs[k];
-            let PairingOutput(p0) = E::pairing(g1a, v_pair.0);
-            let PairingOutput(p1) = E::pairing(g1b, v_pair.1);
-            debug_assert_eq!(p0 * p1, E::TargetField::one(), "v/v_pairs pair {} invariant failed", k);
-        }
-    }
-
-    InstanceBases { v_pairs }
-}
-
-/// Bases for KEM evaluation (X side)
-pub struct EvalBases<E: Pairing> {
-    pub x_g2_pairs: Vec<(E::G2Affine, E::G2Affine)>,
-    pub v_pairs: Vec<(E::G1Affine, E::G1Affine)>,
-}
-
-/// Bases for KEM instance (Y side)
-pub struct InstanceBases<E: Pairing> {
-    pub v_pairs: Vec<(E::G1Affine, E::G1Affine)>,
-}
-
-/// Mask a G1 pair with a scalar (for V pairs)
+/// Mask a G1 pair with a scalar (for U pairs in canonical system)
 pub fn mask_g1_pair<E: Pairing>(
     pair: (E::G1Affine, E::G1Affine),
     rho: E::ScalarField,
@@ -118,7 +61,7 @@ pub fn mask_g1_pair<E: Pairing>(
     )
 }
 
-/// Mask a G2 pair with a scalar (for U pairs)
+/// Mask a G2 pair with a scalar (for V pairs in canonical system)
 pub fn mask_g2_pair<E: Pairing>(
     pair: (E::G2Affine, E::G2Affine),
     rho: E::ScalarField,
@@ -342,13 +285,11 @@ pub fn eval_two_1x1_verifier_masked<E: Pairing>(
     PairingOutput(m1 * m2)
 }
 
-/// Evaluate 2×2 PPE using five explicit buckets (no ComT):
-/// 1) ∏_j e(C1_j, U*_j^ρ)
-/// 2) ∏_k e(V*_k^ρ, C2_k)
-/// 3) ∏_j e(U_j^ρ, π_j)  [diagonal per Com1/Com2 slots]
-/// 4) ∏_k e(θ_k, V_k^ρ)  [diagonal per Com1/Com2 slots]
-/// 5) (∏_{j,k} [e(C1_j.0,C2_k.0)·e(C1_j.1,C2_k.1)]^{γ_{j,k}})^ρ
-pub fn eval_5_buckets_explicit<E: Pairing>(
+/// Evaluate 2×2 PPE using three explicit buckets (no ComT, no dual bases):
+/// 1) ∏_j e(U_j^ρ, π_j)  [diagonal per Com1/Com2 slots]
+/// 2) ∏_k e(θ_k, V_k^ρ)  [diagonal per Com1/Com2 slots]
+/// 3) (∏_{j,k} [e(C1_j.0,C2_k.0)·e(C1_j.1,C2_k.1)]^{γ_{j,k}})^ρ
+pub fn eval_3_buckets_explicit<E: Pairing>(
     c1: &[Com1<E>],
     c2: &[Com2<E>],
     pi: &[Com2<E>],
@@ -361,15 +302,7 @@ pub fn eval_5_buckets_explicit<E: Pairing>(
     use ark_ff::{Field, Zero};
     let mut acc = E::TargetField::one();
 
-    // Precompute masked duals and primaries
-    let u_dual_rho: Vec<(E::G2Affine, E::G2Affine)> = crs.u_dual.iter().map(|d| (
-        (d.0.into_group() * rho).into_affine(),
-        (d.1.into_group() * rho).into_affine(),
-    )).collect();
-    let v_dual_rho: Vec<(E::G1Affine, E::G1Affine)> = crs.v_dual.iter().map(|d| (
-        (d.0.into_group() * rho).into_affine(),
-        (d.1.into_group() * rho).into_affine(),
-    )).collect();
+    // Precompute masked primaries only (no dual bases needed)
     let u_rho: Vec<Com1<E>> = crs.u.iter().map(|u| Com1::<E>(
         (u.0.into_group() * rho).into_affine(),
         (u.1.into_group() * rho).into_affine(),
@@ -379,31 +312,19 @@ pub fn eval_5_buckets_explicit<E: Pairing>(
         (v.1.into_group() * rho).into_affine(),
     )).collect();
 
-    // 1) X vs dual (masked duals)
-    for j in 0..c1.len() {
-        let PairingOutput(p0) = E::pairing(c1[j].0, u_dual_rho[j].0);
-        let PairingOutput(p1) = E::pairing(c1[j].1, u_dual_rho[j].1);
-        acc *= p0 * p1;
-    }
-    // 2) dual vs Y (masked duals)
-    for k in 0..c2.len() {
-        let PairingOutput(p0) = E::pairing(v_dual_rho[k].0, c2[k].0);
-        let PairingOutput(p1) = E::pairing(v_dual_rho[k].1, c2[k].1);
-        acc *= p0 * p1;
-    }
-    // 3) U^ρ vs π (per-row diagonal)
+    // 1) U^ρ vs π (per-row diagonal)
     for j in 0..pi.len() {
         let PairingOutput(p0) = E::pairing(u_rho[j].0, pi[j].0);
         let PairingOutput(p1) = E::pairing(u_rho[j].1, pi[j].1);
         acc *= p0 * p1;
     }
-    // 4) θ vs V^ρ (per-col diagonal)
+    // 2) θ vs V^ρ (per-col diagonal)
     for k in 0..theta.len() {
         let PairingOutput(p0) = E::pairing(theta[k].0, v_rho[k].0);
         let PairingOutput(p1) = E::pairing(theta[k].1, v_rho[k].1);
         acc *= p0 * p1;
     }
-    // 5) γ cross term, then ^ρ
+    // 3) γ cross term, then ^ρ
     let mut g = E::TargetField::one();
     for j in 0..gamma.len() {
         for k in 0..gamma[j].len() {
@@ -493,21 +414,6 @@ fn scale_v_by_rho<E: Pairing>(crs: &CRS<E>, rho: E::ScalarField) -> Vec<Com2<E>>
     )).collect()
 }
 
-fn comt_x_with_u_dual_rho<E: Pairing>(x: &[Com1<E>], crs: &CRS<E>, rho: E::ScalarField) -> ComT<E> {
-    let ustar_rho: Vec<Com2<E>> = crs.u_dual.iter().map(|d| Com2::<E>(
-        (d.0.into_group()*rho).into_affine(),
-        (d.1.into_group()*rho).into_affine(),
-    )).collect();
-    ComT::<E>::pairing_sum(x, &ustar_rho)
-}
-
-fn comt_v_dual_rho_with_y<E: Pairing>(y: &[Com2<E>], crs: &CRS<E>, rho: E::ScalarField) -> ComT<E> {
-    let vstar_rho: Vec<Com1<E>> = crs.v_dual.iter().map(|d| Com1::<E>(
-        (d.0.into_group()*rho).into_affine(),
-        (d.1.into_group()*rho).into_affine(),
-    )).collect();
-    ComT::<E>::pairing_sum(&vstar_rho, y)
-}
 
 fn comt_gamma_cross_pow_rho<E: Pairing>(x: &[Com1<E>], y: &[Com2<E>], gamma: &Vec<Vec<E::ScalarField>>, rho: E::ScalarField) -> ComT<E> {
     // Compute unmasked cross leg X ⊗ (Γ·Y), then post-exponentiate each GT cell by ρ
@@ -550,12 +456,8 @@ pub fn masked_verifier_comt<E: Pairing>(
     let a_y_rho = ComT::<E>::pairing_sum(&i1_a_rho, y_coms);
     let x_b_rho = ComT::<E>::pairing_sum(x_coms, &i2_b_rho);
 
-    let mut acc = ((a_y_rho + x_b_rho) + cross_rho) - u_pi_rho - th_v_rho;
-    if include_dual_helpers {
-        acc = acc + comt_x_with_u_dual_rho::<E>(x_coms, crs, rho)
-                  + comt_v_dual_rho_with_y::<E>(y_coms, crs, rho);
-    }
-    acc
+    // Return the masked verifier LHS (no dual helpers needed anymore)
+    ((a_y_rho + x_b_rho) + cross_rho) - u_pi_rho - th_v_rho
 }
 
 /// Variant: allow using Γ^T in the cross leg

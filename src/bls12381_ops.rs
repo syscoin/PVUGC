@@ -155,7 +155,7 @@ impl BLS12381Ops {
     /// Serialize GT element to bytes (canonical format)
     pub fn serialize_gt(elem: &GTElement) -> Vec<u8> {
         use crate::gs_kem_helpers::serialize_gt_pvugc;
-        serialize_gt_pvugc(elem)
+        serialize_gt_pvugc(elem).expect("GT serialization should not fail")
     }
 
 

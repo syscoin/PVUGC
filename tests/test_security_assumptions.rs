@@ -25,7 +25,7 @@ use groth_sahai::generator::CRS;
 use groth_sahai::AbstractCrs;
 use groth_sahai::prover::Provable;
 use groth_sahai::statement::PPE;
-use groth_sahai::{ppe_eval_with_masked_pairs, ppe_eval_bases, ppe_instance_bases};
+use groth_sahai::ppe_eval_with_masked_pairs;
 use groth_sahai::kem_eval::{mask_g1_pair, mask_g2_pair, pow_gt};
 use groth_sahai::data_structures::Com1;
 
@@ -60,24 +60,26 @@ fn test_determinism_different_proofs_same_statement() {
         attestations.push(att);
     }
     
-    // Get bases for KEM
-    let eval_bases = ppe_eval_bases(&ppe, &crs);
-    let inst_bases = ppe_instance_bases(&ppe, &crs);
+    // Get CRS U and V elements directly for canonical evaluation
+    let u_pairs: Vec<(G1Affine, G1Affine)> = crs.u.iter().map(|c| (c.0, c.1)).collect();
+    let v_pairs: Vec<(G2Affine, G2Affine)> = crs.v.iter().map(|c| (c.0, c.1)).collect();
     
     // Choose a fixed rho for masking
     let rho = Fr::from(12345u64);
     
-    // Mask the bases
-    let u_masked: Vec<_> = eval_bases.x_g2_pairs.iter()
-        .map(|&p| mask_g2_pair::<E>(p, rho))
-        .collect();
-    let v_masked: Vec<_> = inst_bases.v_pairs.iter()
+    // Mask the CRS elements (U is G1, V is G2 in canonical system)
+    let u_masked: Vec<_> = u_pairs.iter()
         .map(|&p| mask_g1_pair::<E>(p, rho))
+        .collect();
+    let v_masked: Vec<_> = v_pairs.iter()
+        .map(|&p| mask_g2_pair::<E>(p, rho))
         .collect();
     
     // Compute M with each attestation
     let mut m_values = Vec::new();
     for att in &attestations {
+        // Note: For canonical evaluation, we'd normally use masked_verifier_matrix_canonical
+        // but for compatibility with this test, we can still use the pairing eval directly
         let PairingOutput(m) = ppe_eval_with_masked_pairs::<E>(
             &att.xcoms.coms,
             &att.ycoms.coms,
@@ -117,8 +119,9 @@ fn test_randomness_independence() {
     
     let attestation = ppe.commit_and_prove(&vec![g1_elem], &vec![g2_elem], &crs, &mut rng);
     
-    let eval_bases = ppe_eval_bases(&ppe, &crs);
-    let inst_bases = ppe_instance_bases(&ppe, &crs);
+    // Get CRS elements directly
+    let u_pairs: Vec<(G1Affine, G1Affine)> = crs.u.iter().map(|c| (c.0, c.1)).collect();
+    let v_pairs: Vec<(G2Affine, G2Affine)> = crs.v.iter().map(|c| (c.0, c.1)).collect();
     
     // Multiple armers with different rho values
     let rho_values = vec![
@@ -133,13 +136,13 @@ fn test_randomness_independence() {
             if i == j { continue; }
             
             // Masks from armer i
-            let u_masked_i: Vec<_> = eval_bases.x_g2_pairs.iter()
-                .map(|&p| mask_g2_pair::<E>(p, rho_i))
+            let u_masked_i: Vec<_> = u_pairs.iter()
+                .map(|&p| mask_g1_pair::<E>(p, rho_i))
                 .collect();
             
             // Try to decrypt with armer j's rho (should fail)
-            let v_masked_j: Vec<_> = inst_bases.v_pairs.iter()
-                .map(|&p| mask_g1_pair::<E>(p, rho_j))
+            let v_masked_j: Vec<_> = v_pairs.iter()
+                .map(|&p| mask_g2_pair::<E>(p, rho_j))
                 .collect();
             
             let PairingOutput(m_mixed) = ppe_eval_with_masked_pairs::<E>(
@@ -198,18 +201,18 @@ fn test_wrong_public_input_rejection() {
     let attestation1 = ppe1.commit_and_prove(&vec![g1_elem1], &vec![g2_elem1], &crs, &mut rng);
     let attestation2 = ppe2.commit_and_prove(&vec![g1_elem2], &vec![g2_elem2], &crs, &mut rng);
     
-    // Get bases for statement 1
-    let eval_bases1 = ppe_eval_bases(&ppe1, &crs);
-    let inst_bases1 = ppe_instance_bases(&ppe1, &crs);
+    // Get CRS elements for canonical evaluation
+    let u_pairs: Vec<(G1Affine, G1Affine)> = crs.u.iter().map(|c| (c.0, c.1)).collect();
+    let v_pairs: Vec<(G2Affine, G2Affine)> = crs.v.iter().map(|c| (c.0, c.1)).collect();
     
     let rho = Fr::rand(&mut rng);
     
-    // Mask bases for statement 1
-    let u_masked1: Vec<_> = eval_bases1.x_g2_pairs.iter()
-        .map(|&p| mask_g2_pair::<E>(p, rho))
-        .collect();
-    let v_masked1: Vec<_> = inst_bases1.v_pairs.iter()
+    // Mask CRS elements (U is G1, V is G2 in canonical system)
+    let u_masked1: Vec<_> = u_pairs.iter()
         .map(|&p| mask_g1_pair::<E>(p, rho))
+        .collect();
+    let v_masked1: Vec<_> = v_pairs.iter()
+        .map(|&p| mask_g2_pair::<E>(p, rho))
         .collect();
     
     // Correct decryption with matching attestation
@@ -241,11 +244,12 @@ fn test_wrong_public_input_rejection() {
     // But multiple valid attestations for the same statement would all produce the same M.
     
     // Compute the anchor (unmasked evaluation)
+    // In canonical system, we pass unmasked U and V
     let PairingOutput(anchor) = ppe_eval_with_masked_pairs::<E>(
         &attestation1.xcoms.coms,
         &attestation1.ycoms.coms,
-        &eval_bases1.x_g2_pairs,  // Unmasked bases
-        &inst_bases1.v_pairs,      // Unmasked bases  
+        &u_pairs,  // Unmasked U (G1)
+        &v_pairs,  // Unmasked V (G2)
     );
     
     // Now the expected M is anchor^rho
@@ -276,16 +280,17 @@ fn test_identity_element_protection() {
     
     let attestation = ppe_degenerate.commit_and_prove(&vec![g1_elem], &vec![g2_elem], &crs, &mut rng);
     
-    let eval_bases = ppe_eval_bases(&ppe_degenerate, &crs);
-    let inst_bases = ppe_instance_bases(&ppe_degenerate, &crs);
+    // Get CRS elements for canonical evaluation
+    let u_pairs: Vec<(G1Affine, G1Affine)> = crs.u.iter().map(|c| (c.0, c.1)).collect();
+    let v_pairs: Vec<(G2Affine, G2Affine)> = crs.v.iter().map(|c| (c.0, c.1)).collect();
     
     let rho = Fr::rand(&mut rng);
     
-    let u_masked: Vec<_> = eval_bases.x_g2_pairs.iter()
-        .map(|&p| mask_g2_pair::<E>(p, rho))
-        .collect();
-    let v_masked: Vec<_> = inst_bases.v_pairs.iter()
+    let u_masked: Vec<_> = u_pairs.iter()
         .map(|&p| mask_g1_pair::<E>(p, rho))
+        .collect();
+    let v_masked: Vec<_> = v_pairs.iter()
+        .map(|&p| mask_g2_pair::<E>(p, rho))
         .collect();
     
     let PairingOutput(m_result) = ppe_eval_with_masked_pairs::<E>(
@@ -381,9 +386,9 @@ fn test_proof_substitution_attack() {
         .expect("Failed to create attestation 2");
     
     // Get instance bases (these depend on VK)
-    let public_input = vec![];
-    let (_u_bases1, _v_bases1) = gs.get_instance_bases(&vk1, &public_input);
-    let (_u_bases2, _v_bases2) = gs.get_instance_bases(&vk2, &public_input);
+    let public_input: Vec<Fr> = vec![];
+    // Get CRS elements for canonical evaluation
+    let (_u_elements, _v_elements) = gs.get_crs_elements();
     
     // The bases should be different for different VKs
     // (In real implementation - here they might be same due to mock)
@@ -420,8 +425,9 @@ fn test_multi_share_threshold_security() {
     
     let attestation = ppe.commit_and_prove(&vec![g1_elem], &vec![g2_elem], &crs, &mut rng);
     
-    let eval_bases = ppe_eval_bases(&ppe, &crs);
-    let inst_bases = ppe_instance_bases(&ppe, &crs);
+    // Get CRS elements for canonical evaluation
+    let u_pairs: Vec<(G1Affine, G1Affine)> = crs.u.iter().map(|c| (c.0, c.1)).collect();
+    let v_pairs: Vec<(G2Affine, G2Affine)> = crs.v.iter().map(|c| (c.0, c.1)).collect();
     
     // Create 5 shares for 5-of-5 threshold
     let k = 5;
@@ -440,11 +446,11 @@ fn test_multi_share_threshold_security() {
     for (i, &share) in shares.iter().enumerate() {
         let rho_i = Fr::rand(&mut rng);
         
-        let u_masked: Vec<_> = eval_bases.x_g2_pairs.iter()
-            .map(|&p| mask_g2_pair::<E>(p, rho_i))
-            .collect();
-        let v_masked: Vec<_> = inst_bases.v_pairs.iter()
+        let u_masked: Vec<_> = u_pairs.iter()
             .map(|&p| mask_g1_pair::<E>(p, rho_i))
+            .collect();
+        let v_masked: Vec<_> = v_pairs.iter()
+            .map(|&p| mask_g2_pair::<E>(p, rho_i))
             .collect();
         
         let PairingOutput(m_i) = ppe_eval_with_masked_pairs::<E>(

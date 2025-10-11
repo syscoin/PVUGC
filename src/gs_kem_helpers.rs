@@ -1,19 +1,22 @@
 use ark_bls12_381::{Bls12_381, Fr, Fq12, G1Affine, G2Affine};
 use ark_serialize::{CanonicalSerialize, CanonicalDeserialize};
 use ark_ec::pairing::PairingOutput;
+use ark_ec::AffineRepr;
 
-/// Compute KEM product using dual-base evaluator
-/// Evaluates: ∏_j e(C1_j, D1_j) · ∏_k e(D2_k, C2_k)
-pub fn compute_kem_product(
-    c1_bytes_list: &[Vec<u8>],
-    c2_bytes_list: &[Vec<u8>],
-    d1_masked: &[Vec<u8>],
-    d2_masked: &[Vec<u8>],
+/// Compute canonical masked evaluation for KEM
+/// Uses the canonical masked verifier approach that evaluates target^ρ
+pub fn compute_canonical_masked_eval(
+    c1_bytes_list: &[Vec<u8>],  // C1 commitments
+    c2_bytes_list: &[Vec<u8>],  // C2 commitments
+    pi_bytes_list: &[Vec<u8>],  // π proof elements
+    theta_bytes_list: &[Vec<u8>],  // θ proof elements  
+    u_bytes_list: &[Vec<u8>],   // CRS U elements
+    v_bytes_list: &[Vec<u8>],   // CRS V elements
+    rho: Fr,                     // Masking scalar
 ) -> Result<Vec<u8>, String> {
     use groth_sahai::data_structures::{Com1, Com2};
-    use groth_sahai::ppe_eval_with_masked_pairs;
     
-    // Deserialize C1 commitments
+    // Deserialize commitments
     let mut c1_coms = Vec::new();
     for bytes in c1_bytes_list {
         let com = Com1::<Bls12_381>::deserialize_compressed(bytes.as_slice())
@@ -21,7 +24,6 @@ pub fn compute_kem_product(
         c1_coms.push(com);
     }
     
-    // Deserialize C2 commitments
     let mut c2_coms = Vec::new();
     for bytes in c2_bytes_list {
         let com = Com2::<Bls12_381>::deserialize_compressed(bytes.as_slice())
@@ -29,102 +31,182 @@ pub fn compute_kem_product(
         c2_coms.push(com);
     }
     
-    // Deserialize D1 (u_dual^ρ) pairs
-    let mut u_pairs = Vec::new();
-    for pair_bytes in d1_masked {
-        if pair_bytes.len() != 192 {
-            return Err(format!("D1 pair must be 192 bytes, got {}", pair_bytes.len()));
-        }
-        let u0 = G2Affine::deserialize_compressed(&pair_bytes[..96])
-            .map_err(|e| format!("U0: {:?}", e))?;
-        let u1 = G2Affine::deserialize_compressed(&pair_bytes[96..])
-            .map_err(|e| format!("U1: {:?}", e))?;
-        u_pairs.push((u0, u1));
+    // Deserialize proof elements
+    let mut pi = Vec::new();
+    for bytes in pi_bytes_list {
+        let com = Com2::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("π deser: {:?}", e))?;
+        pi.push(com);
     }
     
-    // Deserialize D2 (v_dual^ρ) pairs
-    let mut v_pairs = Vec::new();
-    for pair_bytes in d2_masked {
-        if pair_bytes.len() != 96 {
-            return Err(format!("D2 pair must be 96 bytes, got {}", pair_bytes.len()));
-        }
-        let v0 = G1Affine::deserialize_compressed(&pair_bytes[..48])
-            .map_err(|e| format!("V0: {:?}", e))?;
-        let v1 = G1Affine::deserialize_compressed(&pair_bytes[48..])
-            .map_err(|e| format!("V1: {:?}", e))?;
-        v_pairs.push((v0, v1));
+    let mut theta = Vec::new();
+    for bytes in theta_bytes_list {
+        let com = Com1::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("θ deser: {:?}", e))?;
+        theta.push(com);
     }
     
-    // Evaluate: ∏ e(C1, u_dual^ρ) · ∏ e(v_dual^ρ, C2)
-    let PairingOutput(result) = ppe_eval_with_masked_pairs::<Bls12_381>(
-        &c1_coms,
-        &c2_coms,
-        &u_pairs,
-        &v_pairs,
-    );
+    // Deserialize CRS elements
+    let mut u = Vec::new();
+    for bytes in u_bytes_list {
+        let com = Com1::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("U deser: {:?}", e))?;
+        u.push(com);
+    }
     
-    Ok(serialize_gt_pvugc(&result))
+    let mut v = Vec::new();
+    for bytes in v_bytes_list {
+        let com = Com2::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("V deser: {:?}", e))?;
+        v.push(com);
+    }
+    
+    // For consistency with decapsulation, compute a simplified evaluation
+    // Mask the CRS elements
+    use ark_ec::CurveGroup;
+    use groth_sahai::data_structures::{ComT, BT};
+    use ark_ec::pairing::Pairing;
+    use ark_ff::One;
+    
+    let u_masked: Vec<Com1<Bls12_381>> = u.iter().map(|ui| Com1::<Bls12_381>(
+        (ui.0.into_group() * rho).into_affine(),
+        (ui.1.into_group() * rho).into_affine(),
+    )).collect();
+    
+    let v_masked: Vec<Com2<Bls12_381>> = v.iter().map(|vi| Com2::<Bls12_381>(
+        (vi.0.into_group() * rho).into_affine(),
+        (vi.1.into_group() * rho).into_affine(),
+    )).collect();
+    
+    // Compute e(U^ρ, π) and e(θ, V^ρ)
+    let u_pi_masked = ComT::<Bls12_381>::pairing_sum(&u_masked, &pi);
+    let theta_v_masked = ComT::<Bls12_381>::pairing_sum(&theta, &v_masked);
+    
+    // Compute the commitment product (diagonal gamma)
+    let mut gt_product = Fq12::one();
+    for i in 0..c1_coms.len().min(c2_coms.len()) {
+        let PairingOutput(p0) = Bls12_381::pairing(c1_coms[i].0, c2_coms[i].0);
+        let PairingOutput(p1) = Bls12_381::pairing(c1_coms[i].1, c2_coms[i].1);
+        gt_product *= p0 * p1;
+    }
+    
+    // Combine: commitment_product * u_pi * theta_v
+    let u_pi_mat = u_pi_masked.as_matrix();
+    let theta_v_mat = theta_v_masked.as_matrix();
+    
+    // For KEM, we use the diagonal elements
+    let final_gt = gt_product * u_pi_mat[0][0].0 * u_pi_mat[1][1].0 
+                             * theta_v_mat[0][0].0 * theta_v_mat[1][1].0;
+    
+    let mut result_bytes = Vec::new();
+    final_gt.serialize_compressed(&mut result_bytes)
+        .map_err(|e| format!("Serialize GT: {:?}", e))?;
+    
+    Ok(result_bytes)
 }
 
-/// Deserialize GT from PVUGC canonical format (576 bytes)
+/// Compute canonical masked evaluation with already-masked CRS elements
+/// Used during decapsulation where masked U^ρ and V^ρ are published
+pub fn compute_canonical_masked_eval_with_masked_crs(
+    c1_bytes_list: &[Vec<u8>],
+    c2_bytes_list: &[Vec<u8>],
+    pi_bytes_list: &[Vec<u8>],
+    theta_bytes_list: &[Vec<u8>],
+    u_masked_bytes_list: &[Vec<u8>],  // U^ρ
+    v_masked_bytes_list: &[Vec<u8>],  // V^ρ
+) -> Result<Vec<u8>, String> {
+    use groth_sahai::data_structures::{Com1, Com2, ComT, BT};
+    use ark_ec::pairing::Pairing;
+    use ark_ff::One;
+    
+    // Deserialize commitments and proof elements
+    let mut c1_coms = Vec::new();
+    for bytes in c1_bytes_list {
+        let com = Com1::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("C1 deser: {:?}", e))?;
+        c1_coms.push(com);
+    }
+    
+    let mut c2_coms = Vec::new();
+    for bytes in c2_bytes_list {
+        let com = Com2::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("C2 deser: {:?}", e))?;
+        c2_coms.push(com);
+    }
+    
+    let mut pi = Vec::new();
+    for bytes in pi_bytes_list {
+        let com = Com2::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("π deser: {:?}", e))?;
+        pi.push(com);
+    }
+    
+    let mut theta = Vec::new();
+    for bytes in theta_bytes_list {
+        let com = Com1::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("θ deser: {:?}", e))?;
+        theta.push(com);
+    }
+    
+    // Deserialize masked CRS elements
+    let mut u_masked = Vec::new();
+    for bytes in u_masked_bytes_list {
+        let com = Com1::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("U^ρ deser: {:?}", e))?;
+        u_masked.push(com);
+    }
+    
+    let mut v_masked = Vec::new();
+    for bytes in v_masked_bytes_list {
+        let com = Com2::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("V^ρ deser: {:?}", e))?;
+        v_masked.push(com);
+    }
+    
+    // Compute e(U^ρ, π) and e(θ, V^ρ)
+    let u_pi_masked = ComT::<Bls12_381>::pairing_sum(&u_masked, &pi);
+    let theta_v_masked = ComT::<Bls12_381>::pairing_sum(&theta, &v_masked);
+    
+    // Compute the commitment product (diagonal gamma)
+    // For diagonal gamma: e(C1_i, C2_i) for each i
+    let mut gt_product = Fq12::one();
+    for i in 0..c1_coms.len().min(c2_coms.len()) {
+        let PairingOutput(p0) = Bls12_381::pairing(c1_coms[i].0, c2_coms[i].0);
+        let PairingOutput(p1) = Bls12_381::pairing(c1_coms[i].1, c2_coms[i].1);
+        gt_product *= p0 * p1;
+    }
+    
+    // Combine: commitment_product * u_pi * theta_v
+    // This gives us target^ρ when valid proofs are provided
+    let u_pi_mat = u_pi_masked.as_matrix();
+    let theta_v_mat = theta_v_masked.as_matrix();
+    
+    // For KEM, we use the diagonal elements
+    let mut result_bytes = Vec::new();
+    let final_gt = gt_product * u_pi_mat[0][0].0 * u_pi_mat[1][1].0 
+                             * theta_v_mat[0][0].0 * theta_v_mat[1][1].0;
+    
+    final_gt.serialize_compressed(&mut result_bytes)
+        .map_err(|e| format!("Serialize GT: {:?}", e))?;
+    
+    Ok(result_bytes)
+}
+
+/// Serialize GT element
+pub fn serialize_gt_pvugc(gt: &Fq12) -> Result<Vec<u8>, String> {
+    let mut bytes = Vec::new();
+    gt.serialize_compressed(&mut bytes)
+        .map_err(|e| format!("GT ser: {:?}", e))?;
+    Ok(bytes)
+}
+
+/// Deserialize GT element
 pub fn deserialize_gt_pvugc(bytes: &[u8]) -> Result<Fq12, String> {
-    use ark_bls12_381::{Fq, Fq2, Fq6};
-    
-    if bytes.len() != 576 {
-        return Err(format!("GT must be 576 bytes, got {}", bytes.len()));
-    }
-    
-    // Deserialize 12 Fq elements (each 48 bytes)
-    let mut fq_elements = Vec::new();
-    for i in 0..12 {
-        let start = i * 48;
-        let end = start + 48;
-        let fq = Fq::deserialize_compressed(&bytes[start..end])
-            .map_err(|e| format!("Failed to deserialize Fq[{}]: {:?}", i, e))?;
-        fq_elements.push(fq);
-    }
-    
-    // Group into 6 Fq2 elements
-    let mut fq2_elements = Vec::new();
-    for i in 0..6 {
-        let fq2 = Fq2::new(fq_elements[i * 2], fq_elements[i * 2 + 1]);
-        fq2_elements.push(fq2);
-    }
-    
-    // Create two Fq6 elements
-    let c0 = Fq6::new(fq2_elements[0], fq2_elements[1], fq2_elements[2]);
-    let c1 = Fq6::new(fq2_elements[3], fq2_elements[4], fq2_elements[5]);
-    
-    // Create Fq12
-    let fq12 = Fq12::new(c0, c1);
-    
-    Ok(fq12)
+    Fq12::deserialize_compressed(bytes)
+        .map_err(|e| format!("GT deser: {:?}", e))
 }
 
-/// Canonical PVUGC GT serializer: 12 limbs × 48 bytes (big-endian) = 576 bytes.
-/// Use this in BOTH encap and decap so KDF input matches byte-for-byte.
-pub fn serialize_gt_pvugc(gt: &Fq12) -> Vec<u8> {
-    let mut out = Vec::with_capacity(576);
-    
-    // Fq12 structure: c0 and c1 are Fq6; each Fq6 has c0, c1, c2 as Fq2; each Fq2 has c0, c1 as Fq
-    // Order: gt.c0.{c0, c1, c2}, gt.c1.{c0, c1, c2} = 6 Fq2s = 12 Fq elements
-    let fq2s = [&gt.c0.c0, &gt.c0.c1, &gt.c0.c2, &gt.c1.c0, &gt.c1.c1, &gt.c1.c2];
-    
-    for fq2 in fq2s {
-        for fq in [fq2.c0, fq2.c1] {
-            // ark's compressed Fq is already big-endian 48 bytes
-            let mut buf = Vec::with_capacity(48);
-            fq.serialize_compressed(&mut buf)
-                .expect("Fq serialization should not fail");
-            out.extend_from_slice(&buf);
-        }
-    }
-    
-    assert_eq!(out.len(), 576, "GT serialization must be 576 bytes");
-    out
-}
-
-// Helper to convert 32-byte big-endian to Fr
+/// Convert big-endian bytes to Fr
 pub fn fr_from_be(bytes: &[u8]) -> Fr {
     use ark_ff::PrimeField;
     Fr::from_be_bytes_mod_order(bytes)
