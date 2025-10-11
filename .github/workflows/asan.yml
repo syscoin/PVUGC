@@ -1,0 +1,31 @@
+name: CI-ASan
+
+on:
+  pull_request:
+  push:
+    branches:
+      - KEM-POP
+
+jobs:
+  asan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y clang binutils
+
+      - name: Install nightly toolchain
+        uses: dtolnay/rust-toolchain@nightly
+
+      - name: Run tests with AddressSanitizer
+        env:
+          RUSTFLAGS: "-Z sanitizer=address"
+          ASAN_OPTIONS: "detect_leaks=1"
+        run: |
+          cargo +nightly clean
+          cargo +nightly test --lib -- --nocapture
+          cargo +nightly test --test test_pvugc -- --nocapture
+          cargo +nightly test --test test_security_assumptions -- --nocapture
+          cargo +nightly test --test test_multi_proof_consistency -- --nocapture
