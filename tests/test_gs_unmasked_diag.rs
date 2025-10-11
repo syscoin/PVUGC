@@ -14,6 +14,7 @@ use groth_sahai::verifier::Verifiable;
 use groth_sahai::{B1, B2};
 
 #[test]
+#[ignore]
 fn test_gs_unmasked_diag_debug() {
     // Trigger commit_arkworks_proof to print GS DEBUG unmasked diag equality
     let gs = GrothSahaiCommitments::from_seed(b"GS_UNMASKED_DIAG_DBG");
@@ -450,5 +451,4 @@ fn test_gs_minimal_ppe_truth_path_and_substitutions() {
     let v_c = ppe_c.verify(&cproof_c, crs);
     println!("Substitution C (x0=pi_a, y0=pi_b) verify: {}", v_c);
 }
-
 

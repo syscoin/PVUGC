@@ -295,8 +295,9 @@ impl GrothSahaiCommitments {
             // Groth16 verification: e(pi_A, pi_B) * e(pi_C, delta) = e(alpha, beta) * e(IC, gamma)
             let xvars = vec![proof.pi_a, proof.pi_c];
             
-            // For Groth16, include the delta element from the verification key
-            let yvars = vec![proof.pi_b, vk.delta_g2];
+            // For Groth16, include the NEGATED delta element from the verification key
+            let delta_neg = (-vk.delta_g2.into_group()).into_affine();
+            let yvars = vec![proof.pi_b, delta_neg];
             
             // Create PPE equation matching Groth16 structure
             // We have 2 G1 vars (pi_A, pi_C) and 2 G2 vars (pi_B, delta)
@@ -347,8 +348,9 @@ impl GrothSahaiCommitments {
             // Without randomness, still use proper PPE construction but with zero randomness
             let xvars = vec![proof.pi_a, proof.pi_c];
             
-            // For Groth16, include the delta element from the verification key
-            let yvars = vec![proof.pi_b, vk.delta_g2];
+            // For Groth16, include the NEGATED delta element from the verification key
+            let delta_neg = (-vk.delta_g2.into_group()).into_affine();
+            let yvars = vec![proof.pi_b, delta_neg];
             
             // Create PPE equation with RHS target from (vk, x)
             let ic = compute_ic_from_vk_and_inputs(vk, public_input);
@@ -878,96 +880,58 @@ mod tests {
         let mut rng_seed = [0u8; 32];
         rng_seed.copy_from_slice(&seed);
         
-        // Use separate deterministic RNGs for each proof (but seeded identically)
+        // Use separate deterministic RNGs for each proof (deterministic but different)
         let mut det_rng1 = StdRng::from_seed(rng_seed);
-        let mut det_rng2 = StdRng::from_seed(rng_seed);
-        
-        // Commit-and-prove with canonical wiring: X=[piA,piC], Y=[piB,delta]
-        let cpr1 = ppe.commit_and_prove(&[p1.pi_a, p1.pi_c], &[p1.pi_b, vk.delta_g2], &crs, &mut det_rng1);
-        let cpr2 = ppe.commit_and_prove(&[p2.pi_a, p2.pi_c], &[p2.pi_b, vk.delta_g2], &crs, &mut det_rng2);
+        let mut det_rng2 = StdRng::from_seed([42u8; 32]);
+        let delta_neg = (-vk.delta_g2.into_group()).into_affine();
 
-        // Masked verifier-style ComT for both proofs (NO dual-helper legs for correct algebra)
+        let cpr1 = ppe.commit_and_prove(&[p1.pi_a, p1.pi_c], &[p1.pi_b, delta_neg], &crs, &mut det_rng1);
+        let cpr2 = ppe.commit_and_prove(&[p2.pi_a, p2.pi_c], &[p2.pi_b, delta_neg], &crs, &mut det_rng2);
+
         let rho = Fr::from(777u64);
-        let m1 = masked_verifier_comt(
-            &ppe, &crs,
-            &cpr1.xcoms.coms, &cpr1.ycoms.coms,
-            &cpr1.equ_proofs[0].pi, &cpr1.equ_proofs[0].theta,
-            rho, false,  // Changed to false for correct verifier algebra
+        let lhs1 = groth_sahai::masked_verifier_matrix_canonical_2x2(
+            &ppe,
+            &crs,
+            &cpr1.xcoms.coms,
+            &cpr1.ycoms.coms,
+            &cpr1.equ_proofs[0].pi,
+            &cpr1.equ_proofs[0].theta,
+            rho,
         );
-        let m2 = masked_verifier_comt(
-            &ppe, &crs,
-            &cpr2.xcoms.coms, &cpr2.ycoms.coms,
-            &cpr2.equ_proofs[0].pi, &cpr2.equ_proofs[0].theta,
-            rho, false,  // Changed to false for correct verifier algebra
+        let lhs2 = groth_sahai::masked_verifier_matrix_canonical_2x2(
+            &ppe,
+            &crs,
+            &cpr2.xcoms.coms,
+            &cpr2.ycoms.coms,
+            &cpr2.equ_proofs[0].pi,
+            &cpr2.equ_proofs[0].theta,
+            rho,
         );
+        let rhs = groth_sahai::rhs_masked_matrix(&ppe, rho);
+        assert_eq!(lhs1, rhs, "Masked matrix (proof1) should equal target^ρ");
+        assert_eq!(lhs2, rhs, "Masked matrix (proof2) should equal target^ρ");
 
-        // RHS mask should be linear_map_PPE(target^ρ)
-        let PairingOutput(tgt) = ppe.target;
-        let rhs_mask = ComT::<Bls12_381>::linear_map_PPE(&PairingOutput::<Bls12_381>(tgt.pow(rho.into_bigint())));
-
-        // Instrument: compute each masked leg explicitly and print per-cell equality vs RHS
-        let print_legs = |label: &str, x: &Vec<Com1<Bls12_381>>, y: &Vec<Com2<Bls12_381>>, pi: &Vec<Com2<Bls12_381>>, theta: &Vec<Com1<Bls12_381>>| {
-            // scale X by rho for cross leg
-            let x_rho: Vec<Com1<Bls12_381>> = x.iter().map(|c| Com1::<Bls12_381>(
-                (c.0.into_group()*rho).into_affine(),
-                (c.1.into_group()*rho).into_affine(),
-            )).collect();
-            // Γ·Y
-            let stmt_y = vec_to_col_vec(y).left_mul(&ppe.gamma, false);
-            let cross_rho = ComT::<Bls12_381>::pairing_sum(&x_rho, &col_vec_to_vec(&stmt_y));
-
-            // U^ρ and V^ρ
-            let u_rho: Vec<Com1<Bls12_381>> = crs.u.iter().map(|u| Com1::<Bls12_381>(
-                (u.0.into_group()*rho).into_affine(),
-                (u.1.into_group()*rho).into_affine(),
-            )).collect();
-            let v_rho: Vec<Com2<Bls12_381>> = crs.v.iter().map(|v| Com2::<Bls12_381>(
-                (v.0.into_group()*rho).into_affine(),
-                (v.1.into_group()*rho).into_affine(),
-            )).collect();
-            let u_pi_r = ComT::<Bls12_381>::pairing_sum(&u_rho, pi);
-            let th_v_r = ComT::<Bls12_381>::pairing_sum(theta, &v_rho);
-
-            // Dual-helper legs
-            let ustar_rho: Vec<Com2<Bls12_381>> = crs.u_dual.iter().map(|d| Com2::<Bls12_381>(
-                (d.0.into_group()*rho).into_affine(),
-                (d.1.into_group()*rho).into_affine(),
-            )).collect();
-            let vstar_rho: Vec<Com1<Bls12_381>> = crs.v_dual.iter().map(|d| Com1::<Bls12_381>(
-                (d.0.into_group()*rho).into_affine(),
-                (d.1.into_group()*rho).into_affine(),
-            )).collect();
-            let x_u_star_r = ComT::<Bls12_381>::pairing_sum(x, &ustar_rho);
-            let v_star_y_r = ComT::<Bls12_381>::pairing_sum(&vstar_rho, y);
-
-            let rhs = rhs_mask.as_matrix();
-            let pr = |name: &str, m: &ComT<Bls12_381>| {
-                let mm = m.as_matrix();
-                print!("{}: ", name);
-                for r in 0..2 { for c in 0..2 { print!("[{}][{}] {}  ", r,c, mm[r][c]==rhs[r][c]); } print!(" | "); }
-                println!();
-            };
-            println!("{} per-cell vs RHS:", label);
-            pr("cross^rho", &cross_rho);
-            pr("U^rho⊗pi", &u_pi_r);
-            pr("theta⊗V^rho", &th_v_r);
-            pr("X⊗U*^rho", &x_u_star_r);
-            pr("V*^rho⊗Y", &v_star_y_r);
-
-            let combined = (((cross_rho + u_pi_r) + th_v_r) + x_u_star_r) + v_star_y_r;
-            pr("combined", &combined);
-        };
-        print_legs("proof1", &cpr1.xcoms.coms, &cpr1.ycoms.coms, &cpr1.equ_proofs[0].pi, &cpr1.equ_proofs[0].theta);
-        print_legs("proof2", &cpr2.xcoms.coms, &cpr2.ycoms.coms, &cpr2.equ_proofs[0].pi, &cpr2.equ_proofs[0].theta);
-
-        // Compare full matrices
-        assert_eq!(m1.as_matrix(), m2.as_matrix(), "masked ComT differs across proofs");
-        assert_eq!(m1.as_matrix(), rhs_mask.as_matrix(), "masked LHS != masked RHS(target^ρ)");
-
-        // Derive deterministic keys from full masked ComT
-        let k1 = kdf_from_comt(&m1, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
-        let k2 = kdf_from_comt(&m2, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
-        assert_eq!(k1, k2, "KEM key derived from masked ComT should be equal across proofs");
+        let comt1 = groth_sahai::masked_verifier_comt_2x2(
+            &ppe,
+            &crs,
+            &cpr1.xcoms.coms,
+            &cpr1.ycoms.coms,
+            &cpr1.equ_proofs[0].pi,
+            &cpr1.equ_proofs[0].theta,
+            rho,
+        );
+        let comt2 = groth_sahai::masked_verifier_comt_2x2(
+            &ppe,
+            &crs,
+            &cpr2.xcoms.coms,
+            &cpr2.ycoms.coms,
+            &cpr2.equ_proofs[0].pi,
+            &cpr2.equ_proofs[0].theta,
+            rho,
+        );
+        let k1 = kdf_from_comt(&comt1, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
+        let k2 = kdf_from_comt(&comt2, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
+        assert_eq!(k1, k2, "Canonical masked verifier should yield identical KEM keys");
     }
 
     #[test]
