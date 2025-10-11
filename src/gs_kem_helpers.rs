@@ -1,4 +1,4 @@
-use ark_bls12_381::{Bls12_381, Fr, Fq12, G1Affine, G2Affine};
+use ark_bls12_381::{Bls12_381, Fr, Fq12};
 use ark_serialize::{CanonicalSerialize, CanonicalDeserialize};
 use ark_ec::pairing::PairingOutput;
 use ark_ec::AffineRepr;

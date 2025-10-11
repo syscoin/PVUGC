@@ -731,7 +731,7 @@ mod tests {
         let attestation = gs.commit_arkworks_proof(&proof, &vk, &public_input, true, &mut rng).unwrap();
         
         // Serialize everything
-        let public_input: Vec<Fr> = vec![]; // Empty public input for this test
+        let _public_input: Vec<Fr> = vec![]; // Empty public input for this test
         let (u_elements, v_elements) = gs.get_crs_elements();
         let mut u_bases = Vec::new();
         let mut v_bases = Vec::new();

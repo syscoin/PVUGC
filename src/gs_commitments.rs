@@ -7,7 +7,7 @@ Implements GS attestation per PVUGC spec.
 
 use ark_bls12_381::{Bls12_381, Fr, G1Affine, G2Affine, Fq12};
 use ark_ec::{pairing::Pairing, AffineRepr, pairing::PairingOutput};
-use ark_ff::{Zero, One, UniformRand, PrimeField, BigInteger};
+use ark_ff::{Zero, One, UniformRand, PrimeField};
 use ark_ec::CurveGroup;
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use ark_std::rand::{Rng, rngs::StdRng, SeedableRng};
@@ -58,11 +58,6 @@ pub struct GrothSahaiCommitments {
 }
 
 impl GrothSahaiCommitments {
-    pub fn align_crs_rows_cols(&self) -> CRS<Bls12_381> {
-        // With canonical evaluation, no alignment is needed
-        // Just return the CRS as is
-        self.crs.clone()
-    }
     /// Create a new GS commitment system
     pub fn new(crs: CRS<Bls12_381>) -> Self {
         Self {
@@ -74,10 +69,7 @@ impl GrothSahaiCommitments {
     pub fn from_seed(seed: &[u8]) -> Self {
         let mut rng = get_rng_from_seed(seed);
         let crs = CRS::<Bls12_381>::generate_crs(&mut rng);
-        // Canonicalize CRS orientation once so all operations share the same aligned CRS
-        let tmp = Self::new(crs);
-        let aligned = tmp.align_crs_rows_cols();
-        Self::new(aligned)
+        Self::new(crs)
     }
 
     /// Commit to real Groth16 proof elements with deterministic GS commitment randomness
@@ -97,8 +89,7 @@ impl GrothSahaiCommitments {
         
         // Extract variables from the PPE for GS commitment
         // GS CRS is fixed at 2 elements, so slice to match CRS size
-        let ic = compute_ic_from_vk_and_inputs(vk, public_input);
-        use ark_ec::CurveGroup;
+        let _ic = compute_ic_from_vk_and_inputs(vk, public_input);
         let delta_neg = (-vk.delta_g2.into_group()).into_affine();
         
         // Use 2-slot variables with δ_neg to match arkworks Groth16 verifier wiring
@@ -143,104 +134,6 @@ impl GrothSahaiCommitments {
             randomness_used: randomness,
             ppe_target,
         })
-    }
-    
-    /// Evaluate proof-agnostic KEM using masked verifier ComT approach
-    /// This achieves proof-agnostic behavior by mirroring the GS verifier algebra exactly
-    /// and masking proof legs with ρ while post-exponentiating X/Y-dependent legs
-    pub fn evaluate_masked_verifier_comt(
-        &self,
-        attestation: &GSAttestation,
-        vk: &ArkworksVK,
-        public_input: &[Fr],
-        rho: Fr,
-    ) -> groth_sahai::ComT<Bls12_381> {
-        use groth_sahai::statement::PPE;
-        use ark_ec::pairing::PairingOutput;
-        
-        // SECURITY: Use the actual attestation commitments - this requires proof knowledge
-        let c1_commitments = &attestation.c1_commitments;
-        let c2_commitments = &attestation.c2_commitments;
-        
-        // Create PPE for Groth16 verification
-        let ic = compute_ic_from_vk_and_inputs(vk, public_input);
-        let PairingOutput(rhs1) = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2);
-        let PairingOutput(rhs2) = Bls12_381::pairing(ic, vk.gamma_g2);
-        let ppe = PPE::<Bls12_381> {
-            a_consts: vec![G1Affine::zero(), G1Affine::zero()],
-            b_consts: vec![G2Affine::zero(), G2Affine::zero()],
-            gamma: vec![vec![Fr::one(), Fr::zero()], vec![Fr::zero(), Fr::one()]],
-            target: PairingOutput::<Bls12_381>(rhs1 * rhs2),
-        };
-        
-        // Use actual proof elements from the attestation
-        let pi_elements = &attestation.pi_elements;
-        let theta_elements = &attestation.theta_elements;
-        
-        // Debug: Print proof elements
-        println!("Debug: pi_elements len: {}", pi_elements.len());
-        println!("Debug: theta_elements len: {}", theta_elements.len());
-        println!("Debug: c1_commitments len: {}", c1_commitments.len());
-        println!("Debug: c2_commitments len: {}", c2_commitments.len());
-        
-        // CORRECT IMPLEMENTATION: Use masked_verifier_comt with include_dual_helpers=false
-        // This mirrors the GS verifier algebra exactly:
-        // (X⊗ΓY)^ρ ⊕ (U^ρ⊗π) ⊕ (θ⊗V^ρ) ⊕ (i1(a)·Y)^ρ ⊕ (X·i2(b))^ρ
-        groth_sahai::masked_verifier_comt(
-            &ppe,
-            &self.crs,
-            c1_commitments,  // x_coms
-            c2_commitments,  // y_coms
-            pi_elements,     // pi
-            theta_elements,  // theta
-            rho,
-            false,  // include_dual_helpers = false to maintain correct verifier algebra
-        )
-    }
-    
-    /// Verify that masked ComT equals ComT(target^rho) for debugging
-    pub fn verify_masked_comt_rhs_parity(
-        &self,
-        masked_comt: &groth_sahai::ComT<Bls12_381>,
-        vk: &ArkworksVK,
-        public_input: &[Fr],
-        rho: Fr,
-    ) -> bool {
-        use groth_sahai::{ComT, BT};
-        use groth_sahai::statement::PPE;
-        use ark_ec::pairing::PairingOutput;
-        use ark_ff::Field;
-        
-        // Create PPE for Groth16 verification
-        let ic = compute_ic_from_vk_and_inputs(vk, public_input);
-        let PairingOutput(rhs1) = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2);
-        let PairingOutput(rhs2) = Bls12_381::pairing(ic, vk.gamma_g2);
-        let ppe = PPE::<Bls12_381> {
-            a_consts: vec![G1Affine::zero(), G1Affine::zero()],
-            b_consts: vec![G2Affine::zero(), G2Affine::zero()],
-            gamma: vec![vec![Fr::one(), Fr::zero()], vec![Fr::zero(), Fr::one()]],
-            target: PairingOutput::<Bls12_381>(rhs1 * rhs2),
-        };
-        
-        // Compute ComT(target^rho)
-        let target_rho_value = ppe.target.0.pow(rho.into_bigint());
-        println!("Debug: target = {:?}", ppe.target.0);
-        println!("Debug: target^rho = {:?}", target_rho_value);
-        let target_rho = ComT::<Bls12_381>::linear_map_PPE(&PairingOutput(target_rho_value));
-        
-        // Check if masked ComT equals ComT(target^rho)
-        let result = masked_comt == &target_rho;
-        
-        // Debug output
-        println!("Debug RHS parity:");
-        println!("  Masked ComT[0,0]: {:?}", masked_comt.0.0);
-        println!("  Target^rho ComT[0,0]: {:?}", target_rho.0.0);
-        println!("  Masked ComT[0,0] == Target^rho[0,0]: {}", masked_comt.0.0 == target_rho.0.0);
-        println!("  Masked ComT[3,3]: {:?}", masked_comt.3.0);
-        println!("  Target^rho ComT[3,3]: {:?}", target_rho.3.0);
-        println!("  Masked ComT[3,3] == Target^rho[3,3]: {}", masked_comt.3.0 == target_rho.3.0);
-        
-        result
     }
     
     /// Commit to real arkworks Groth16 proof
@@ -393,7 +286,7 @@ impl GrothSahaiCommitments {
         // Canonical verification using masked verifier algebra for the 2-variable PPE
         // Build 2×2 PPE with diagonal γ and the provided target
         use groth_sahai::statement::PPE;
-        use groth_sahai::masked_eval::masked_verifier_matrix_canonical;
+        use groth_sahai::masked_verifier_matrix_canonical;
         use groth_sahai::data_structures::{ComT, Matrix};
         use ark_std::test_rng;
         use ark_ff::Field;
@@ -478,15 +371,12 @@ impl GrothSahaiCommitments {
     /// Groth16 verification: e(π_A, π_B) · e(π_C, δ) = e(α, β) · e(IC, γ)
     /// 2-variable PPE: X=[π_A, π_C], Y=[π_B, δ_neg]; target = e(α,β)·e(IC,γ)
     pub fn groth16_verify_as_ppe(&self, vk: &ArkworksVK, public_input: &[Fr]) -> PPE<Bls12_381> {
-        use ark_ec::CurveGroup;
         // Compute IC = ∑(γ_abc_i * x_i) for public inputs
         let ic = compute_ic_from_vk_and_inputs(vk, public_input);
         // target = e(α,β)·e(IC,γ)
         let e_alpha_beta = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2);
         let e_ic_gamma = Bls12_381::pairing(ic, vk.gamma_g2);
         let target = PairingOutput::<Bls12_381>(e_alpha_beta.0 * e_ic_gamma.0);
-        // arkworks uses NEGATED δ in verification
-        let delta_neg = (-vk.delta_g2.into_group()).into_affine();
         PPE::<Bls12_381> {
             a_consts: vec![G1Affine::zero(), G1Affine::zero()],
             b_consts: vec![G2Affine::zero(), G2Affine::zero()],
@@ -592,12 +482,12 @@ impl GrothSahaiCommitments {
         &self,
         attestation: &GSAttestation,
         ppe: &PPE<Bls12_381>,
-        masked_bases_d1: &[Com1<Bls12_381>], // U^ρ (published by armers)
-        masked_bases_d2: &[Com2<Bls12_381>], // V^ρ (published by armers)
+        _masked_bases_d1: &[Com1<Bls12_381>], // U^ρ (published by armers)
+        _masked_bases_d2: &[Com2<Bls12_381>], // V^ρ (published by armers)
         ctx_hash: &[u8],
         gs_instance_digest: &[u8],
     ) -> [u8; 32] {
-        use groth_sahai::masked_eval::masked_verifier_matrix_canonical;
+        use groth_sahai::masked_verifier_matrix_canonical;
         
         // SECURITY: Use published masked bases directly, don't derive ρ
         // The masked bases D1=U^ρ, D2=V^ρ are published by armers who know ρ
@@ -693,7 +583,6 @@ impl GrothSahaiCommitments {
 /// Compute IC = ∑(γ_abc_i * x_i) for public inputs
 /// This is the input commitment term in Groth16 verification
 pub fn compute_ic_from_vk_and_inputs(vk: &ArkworksVK, public_input: &[Fr]) -> G1Affine {
-    use ark_ec::CurveGroup;
     
     // Start with γ_abc[0] (the constant term)
     let mut ic = vk.gamma_abc_g1[0].into_group();
@@ -725,10 +614,7 @@ fn get_rng_from_seed(seed: &[u8]) -> impl Rng {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use groth_sahai::{masked_verifier_comt, kdf_from_comt, BT};
-    use groth_sahai::data_structures::{ComT, vec_to_col_vec, col_vec_to_vec, Mat};
-    use ark_ff::{Field, PrimeField};
-    use ark_ec::CurveGroup;
+    use groth_sahai::{kdf_from_comt};
     use ark_std::test_rng;
 
     #[test]
@@ -740,11 +626,11 @@ mod tests {
 
     #[test]
     fn test_commit_arkworks_proof() {
-        use crate::groth16_wrapper::ArkworksGroth16;
         
         let seed = b"test seed";
         let gs = GrothSahaiCommitments::from_seed(seed);
         
+        use crate::groth16_wrapper::ArkworksGroth16;
         let mut groth16 = ArkworksGroth16::new();
         let vk = groth16.setup().expect("Setup should succeed");
         
@@ -752,21 +638,21 @@ mod tests {
         let proof = groth16.prove(witness).expect("Prove should succeed");
         
         let mut rng = test_rng();
-        let attestation = gs.commit_arkworks_proof(&proof, &vk, &vec![], false, &mut rng)
+        let _attestation = gs.commit_arkworks_proof(&proof, &vk, &vec![], false, &mut rng)
             .expect("Commit should succeed");
         
-        assert_eq!(attestation.c1_commitments.len(), 2, "Should have 2 C1 commitments (pi_A, pi_C)");
-        assert_eq!(attestation.c2_commitments.len(), 2, "Should have 2 C2 commitments (pi_B, Y_delta)");
-        assert!(!attestation.proof_data.is_empty());
+        assert_eq!(_attestation.c1_commitments.len(), 2, "Should have 2 C1 commitments (pi_A, pi_C)");
+        assert_eq!(_attestation.c2_commitments.len(), 2, "Should have 2 C2 commitments (pi_B, Y_delta)");
+        assert!(!_attestation.proof_data.is_empty());
     }
 
     #[test]
     fn test_compute_target() {
-        use crate::groth16_wrapper::ArkworksGroth16;
         
         let seed = b"test seed";
         let gs = GrothSahaiCommitments::from_seed(seed);
         
+        use crate::groth16_wrapper::ArkworksGroth16;
         let mut groth16 = ArkworksGroth16::new();
         let vk = groth16.setup().expect("Setup should succeed");
         
@@ -781,26 +667,24 @@ mod tests {
 
     #[test]
     fn test_get_crs_elements() {
-        use crate::groth16_wrapper::ArkworksGroth16;
         
         let seed = b"test seed";
         let gs = GrothSahaiCommitments::from_seed(seed);
         
         // Get CRS elements for canonical evaluation
-        let (u_elements, v_elements) = gs.get_crs_elements();
+        let (_u_elements, _v_elements) = gs.get_crs_elements();
         
-        assert_eq!(u_elements.len(), 2, "Should have 2 U elements in G1");
-        assert_eq!(v_elements.len(), 2, "Should have 2 V elements in G2");
+        assert_eq!(_u_elements.len(), 2, "Should have 2 U elements in G1");
+        assert_eq!(_v_elements.len(), 2, "Should have 2 V elements in G2");
     }
 
     #[test]
     fn gs_masked_comt_parity_across_proofs() {
-        use crate::groth16_wrapper::ArkworksGroth16;
-        use ark_ec::pairing::PairingOutput;
 
         // Setup GS and Groth16
         let seed = b"COMT_PARITY";
         let gs = GrothSahaiCommitments::from_seed(seed);
+        use crate::groth16_wrapper::ArkworksGroth16;
         let mut groth16 = ArkworksGroth16::new();
         let vk = groth16.setup().expect("vk ok");
 
@@ -814,7 +698,7 @@ mod tests {
         let ppe = gs.groth16_verify_as_ppe(&vk, &x);
 
         // Align CRS strictly (per-index duality)
-        let crs = gs.align_crs_rows_cols();
+        let crs = gs.get_crs().clone();
 
         // Commit-and-prove with DETERMINISTIC randomness derived from statement (vk, x)
         // This ensures proof-agnostic behavior: same statement → same commitment randomness
@@ -885,76 +769,16 @@ mod tests {
         assert_eq!(k1, k2, "Canonical masked verifier should yield identical KEM keys");
     }
 
-    #[test]
-    fn test_verify_attestation_with_dual_crs() {
-        use crate::groth16_wrapper::ArkworksGroth16;
-        
-        let seed = b"test seed";
-        let gs = GrothSahaiCommitments::from_seed(seed);
-        
-        let mut groth16 = ArkworksGroth16::new();
-        let vk = groth16.setup().expect("Setup should succeed");
-        
-        let witness = Fr::from(5u64); // Square root of 25
-        let proof = groth16.prove(witness).expect("Prove should succeed");
-        
-        // Create attestation with randomness (proper GS commitment)
-        let mut rng = test_rng();
-        let attestation = gs.commit_arkworks_proof(&proof, &vk, &vec![Fr::from(25u64)], true, &mut rng)
-            .expect("Commit should succeed");
-        
-        // Use CRS elements for canonical verification
-        let public_input = vec![Fr::from(25u64)]; // Square of witness 5
-        let (u_elements, v_elements) = gs.get_crs_elements();
-        
-        // For verification, we'll use the canonical masked verifier approach directly
-        // The verify_attestation function needs updating to use canonical evaluation
-        // Verification is disabled for now (would need canonical masked verifier implementation)
-        let verified = true; // gs.verify_attestation(&attestation, &u_elements, &v_elements, &attestation.ppe_target)
-        
-        assert!(verified, "GS attestation should verify with CRS elements");
-    }
-
-    #[test]
-    fn test_verify_attestation_without_randomness() {
-        use crate::groth16_wrapper::ArkworksGroth16;
-        
-        let seed = b"test seed";
-        let gs = GrothSahaiCommitments::from_seed(seed);
-        
-        let mut groth16 = ArkworksGroth16::new();
-        let vk = groth16.setup().expect("Setup should succeed");
-        
-        let witness = Fr::from(5u64); // Square root of 25
-        let proof = groth16.prove(witness).expect("Prove should succeed");
-        
-        // Create attestation without randomness (direct commitment)
-        let mut rng = test_rng();
-        let attestation = gs.commit_arkworks_proof(&proof, &vk, &vec![Fr::from(25u64)], false, &mut rng)
-            .expect("Commit should succeed");
-        
-        // Use CRS elements for canonical evaluation
-        let public_input = vec![Fr::from(25u64)]; // Square of witness 5
-        let (u_elements, v_elements) = gs.get_crs_elements();
-        
-        // For verification, we'll use the canonical masked verifier approach directly
-        // The verify_attestation function needs updating to use canonical evaluation
-        // Verification is disabled for now (would need canonical masked verifier implementation)
-        let verified = true; // gs.verify_attestation(&attestation, &u_elements, &v_elements, &attestation.ppe_target)
-        
-        assert!(verified, "GS attestation should verify with CRS elements");
-    }
-
     /// Test instance determinism: different proofs for same (vk,x) should yield same KEM result
     #[test]
     #[ignore]
     fn test_instance_determinism() {
-        use crate::groth16_wrapper::ArkworksGroth16;
-        use groth_sahai::kem_eval::{ppe_eval_with_masked_pairs, mask_g1_pair, mask_g2_pair};
+        use groth_sahai::{masked_verifier_matrix_canonical_2x2};
         
         let seed = b"determinism_test";
         let gs = GrothSahaiCommitments::from_seed(seed);
         
+        use crate::groth16_wrapper::ArkworksGroth16;
         let mut groth16 = ArkworksGroth16::new();
         let vk = groth16.setup().expect("Setup should succeed");
         
@@ -975,35 +799,37 @@ mod tests {
             .expect("Commit should succeed");
         
         // Get CRS elements for canonical evaluation
-        let (u_elements, v_elements) = gs.get_crs_elements();
+        let (_u_elements, _v_elements) = gs.get_crs_elements();
         
-        // Test with same ρ
+        // Test with same ρ using canonical masked verifier
         let rho = Fr::from(12345u64);
-        // Note: With canonical evaluation, masking is now done on U (G1) and V (G2) CRS elements
-        // U is in G1, V is in G2 (opposite of the old dual bases)
-        let u_masked: Vec<_> = u_elements.iter()
-            .map(|&p| mask_g1_pair::<Bls12_381>(p, rho))
-            .collect();
-        let v_masked: Vec<_> = v_elements.iter()
-            .map(|&p| mask_g2_pair::<Bls12_381>(p, rho))
-            .collect();
-       
-       // Evaluate KEM with both attestations
-       let PairingOutput(result1) = ppe_eval_with_masked_pairs::<Bls12_381>(
-           &attestation1.c1_commitments,
-           &attestation1.c2_commitments,
-           &u_masked,
-           &v_masked,
-       );
-       
-       let PairingOutput(result2) = ppe_eval_with_masked_pairs::<Bls12_381>(
-           &attestation2.c1_commitments,
-           &attestation2.c2_commitments,
-           &u_masked,
-           &v_masked,
-       );
+        
+        // Get PPE and CRS for canonical evaluation
+        let ppe = gs.groth16_verify_as_ppe_2var(&vk, &public_input);
+        let crs = gs.get_crs();
+        
+        // Evaluate KEM with both attestations using canonical masked verifier
+        let matrix1 = masked_verifier_matrix_canonical_2x2(
+            &ppe,
+            &crs,
+            &attestation1.c1_commitments,
+            &attestation1.c2_commitments,
+            &attestation1.pi_elements,
+            &attestation1.theta_elements,
+            rho,
+        );
+        
+        let matrix2 = masked_verifier_matrix_canonical_2x2(
+            &ppe,
+            &crs,
+            &attestation2.c1_commitments,
+            &attestation2.c2_commitments,
+            &attestation2.pi_elements,
+            &attestation2.theta_elements,
+            rho,
+        );
         
         // Results should be identical (instance determinism)
-        assert_eq!(result1, result2, "Different proofs for same (vk,x) should yield identical KEM results");
+        assert_eq!(matrix1, matrix2, "Different proofs for same (vk,x) should yield identical canonical matrices");
     }
 }
