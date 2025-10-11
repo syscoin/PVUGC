@@ -38,8 +38,4 @@ jobs:
           export RUSTDOCFLAGS="${RUSTFLAGS}"
           export ASAN_OPTIONS="detect_leaks=0"
           export LSAN_OPTIONS="detect_leaks=0"
-          cargo +nightly clean
-          cargo +nightly test --lib -- --nocapture
-          cargo +nightly test --test test_pvugc -- --nocapture
-          cargo +nightly test --test test_security_assumptions -- --nocapture
-          cargo +nightly test --test test_multi_proof_consistency -- --nocapture
+          cargo +nightly test -- --nocapture
