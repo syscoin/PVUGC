@@ -27,7 +27,7 @@ use crate::gs_kem_helpers::{
     serialize_comt_matrix,
 };
 use groth_sahai::statement::PPE;
-use groth_sahai::{Com1, Com2, ComT, BT};
+use groth_sahai::{Com1, Com2};
 
 /// Errors that can occur during KEM operations
 #[derive(Error, Debug)]
