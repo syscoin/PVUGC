@@ -76,7 +76,7 @@ let ppe = gs.groth16_verify_as_ppe(&vk, &public_inputs);
         adaptor_share,
         ctx_hash,
         instance_digest,
-    )?;
+)?;
 
 // Later: decrypt with any valid attestation
 let recovered_secret = kem.decapsulate(&kem_share, &ppe, &c1_bytes, &c2_bytes, &pi_bytes, &theta_bytes, ctx_hash, instance_digest)?;

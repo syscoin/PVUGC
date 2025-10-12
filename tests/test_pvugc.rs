@@ -95,6 +95,7 @@ fn test_kem_bit_for_bit_match() {
             ctx_hash,
             gs_instance_digest,
         )
+
         .expect("Encapsulation failed");
 
     let u_masked =
@@ -167,6 +168,7 @@ fn test_kem_bit_for_bit_match() {
             ctx_hash,
             gs_instance_digest,
         )
+
         .expect("Decapsulation failed");
 
     // Verify recovered adaptor share matches original
@@ -209,6 +211,7 @@ fn test_kem_determinism_guarantee() {
             &v_bases,
             adaptor_share,
             ctx_hash,
+
             gs_instance_digest,
         )
         .expect("First encapsulation failed");
@@ -246,13 +249,14 @@ fn test_kem_determinism_guarantee() {
                 &c1_bytes_i,
                 &c2_bytes_i,
                 &pi_bytes_i,
+
                 &theta_bytes_i,
                 &u_bases,
                 &v_bases,
                 adaptor_share,
                 ctx_hash,
                 gs_instance_digest,
-            )
+    )
             .expect("Encapsulation failed");
 
         let recovered_share_i = kem
