@@ -17,7 +17,7 @@ To move from “tests pass” to “Bitcoin-grade” assurance, follow this acti
 
 ## 4. Static Analysis and Sanitizers
 - Run `cargo fmt`, `cargo clippy`, and produce code-coverage reports (`cargo tarpaulin` or equivalent).
-- Build and test with sanitizers (ASan, UBSan) to catch undefined behaviour in cryptographic routines.
+- Build and test with sanitizers (ASan, UBSan) to catch undefined behavior in cryptographic routines.
 
 ## 5. Protocol Validation Harnesses
 - Simulate complete adaptor flows under adversarial scenarios (bad proofs, wrong public inputs, tampered CRS) to confirm deterministic failure behaviour.
