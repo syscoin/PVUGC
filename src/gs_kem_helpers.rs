@@ -342,7 +342,7 @@ pub fn deserialize_masked_v(bytes_list: &[Vec<u8>]) -> Result<Vec<Com2<Bls12_381
 }
 /// Compute masked verifier result using published masked primaries (ρ never revealed)
 pub fn masked_verifier_from_masked(
-    _ppe: &PPE<Bls12_381>,
+    ppe: &PPE<Bls12_381>,
     c1_coms: &[Com1<Bls12_381>],
     c2_coms: &[Com2<Bls12_381>],
     pi: &[Com2<Bls12_381>],
@@ -350,26 +350,16 @@ pub fn masked_verifier_from_masked(
     u_rho: &[Com1<Bls12_381>],
     v_rho: &[Com2<Bls12_381>],
 ) -> ComT<Bls12_381> {
-    use ark_ec::pairing::Pairing;
-    use ark_ff::One;
+    use groth_sahai::data_structures::{col_vec_to_vec, vec_to_col_vec, Mat};
 
-    // Contribution from commitments (diagonal gamma)
-    let mut gt_product = Fq12::one();
-    for i in 0..c1_coms.len().min(c2_coms.len()) {
-        let PairingOutput(p0) = Bls12_381::pairing(c1_coms[i].0, c2_coms[i].0);
-        let PairingOutput(p1) = Bls12_381::pairing(c1_coms[i].1, c2_coms[i].1);
-        gt_product *= p0 * p1;
-    }
+    // Γ·Y and cross leg as ComT: e(C1, Γ·C2)
+    let stmt_y = vec_to_col_vec(c2_coms).left_mul(&ppe.gamma, false);
+    let cross = ComT::<Bls12_381>::pairing_sum(c1_coms, &col_vec_to_vec(&stmt_y));
 
     // Proof legs with masked CRS primaries
-    let u_pi_masked = ComT::<Bls12_381>::pairing_sum(u_rho, pi);
-    let theta_v_masked = ComT::<Bls12_381>::pairing_sum(theta, v_rho);
+    let u_pi_masked = ComT::<Bls12_381>::pairing_sum(u_rho, pi);     // e(U^ρ, π)
+    let theta_v_masked = ComT::<Bls12_381>::pairing_sum(theta, v_rho); // e(θ, V^ρ)
 
-    let u_pi_mat = u_pi_masked.as_matrix();
-    let theta_v_mat = theta_v_masked.as_matrix();
-
-    let final_gt = gt_product * u_pi_mat[0][0].0 * u_pi_mat[1][1].0
-        * theta_v_mat[0][0].0 * theta_v_mat[1][1].0;
-
-    ComT::<Bls12_381>::linear_map_PPE(&PairingOutput::<Bls12_381>(final_gt))
+    // ComT extractor: (G) - (B3 + B4) with A=B=0 (Groth16 wiring)
+    cross - u_pi_masked - theta_v_masked
 }

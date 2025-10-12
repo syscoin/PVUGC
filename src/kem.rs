@@ -5,14 +5,15 @@ The core innovation: turning proof existence into a decryption key
 This module implements the KEM functionality.
 */
 
-use ark_bls12_381::{Bls12_381, Fr};
+use ark_bls12_381::{Bls12_381, Fq12, Fr};
 use ark_ec::pairing::PairingOutput;
 use ark_ff::{BigInteger, PrimeField};
+use ark_std::{One, Zero};
 use ark_serialize::CanonicalDeserialize;
 use ark_std::{rand::Rng, vec::Vec};
 
 use chacha20poly1305::{
-    aead::{Aead, KeyInit},
+    aead::{Aead, KeyInit, Payload},
     ChaCha20Poly1305, Key, Nonce,
 };
 use serde::{Deserialize, Serialize};
@@ -92,20 +93,54 @@ impl ProductKeyKEM {
         let u_masked = self.mask_g1_pairs(crs_u, rho_i)?; // U^ρ in G1
         let v_masked = self.mask_g2_pairs(crs_v, rho_i)?; // V^ρ in G2
 
-        let m_i_bytes = crate::gs_kem_helpers::compute_canonical_masked_eval(
-            attestation_commitments_g1,
-            attestation_commitments_g2,
-            pi_elements,
-            theta_elements,
-            crs_u,
-            crs_v,
-            rho_i,
-        )
-        .map_err(KEMError::Crypto)?;
-
-        let masked_gt = crate::gs_kem_helpers::deserialize_gt_pvugc(&m_i_bytes)
-            .map_err(KEMError::Deserialization)?;
-        let masked_comt = ComT::<Bls12_381>::linear_map_PPE(&PairingOutput::<Bls12_381>(masked_gt));
+        // Derive masked ComT using masked primaries (ρ-free at withdraw) to match decapsulation
+        // 1) Deserialize attestation components
+        let mut c1_coms = Vec::new();
+        for bytes in attestation_commitments_g1 {
+            let com = Com1::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+                .map_err(|e| KEMError::Deserialization(format!("C1 deser: {:?}", e)))?;
+            c1_coms.push(com);
+        }
+        let mut c2_coms = Vec::new();
+        for bytes in attestation_commitments_g2 {
+            let com = Com2::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+                .map_err(|e| KEMError::Deserialization(format!("C2 deser: {:?}", e)))?;
+            c2_coms.push(com);
+        }
+        let mut pi = Vec::new();
+        for bytes in pi_elements {
+            let com = Com2::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+                .map_err(|e| KEMError::Deserialization(format!("π deser: {:?}", e)))?;
+            pi.push(com);
+        }
+        let mut theta = Vec::new();
+        for bytes in theta_elements {
+            let com = Com1::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+                .map_err(|e| KEMError::Deserialization(format!("θ deser: {:?}", e)))?;
+            theta.push(com);
+        }
+        // 2) Deserialize masked CRS primaries we just produced
+        let u_masked_coms = deserialize_masked_u(&u_masked)
+            .map_err(|e| KEMError::Deserialization(format!("U^ρ deser: {}", e)))?;
+        let v_masked_coms = deserialize_masked_v(&v_masked)
+            .map_err(|e| KEMError::Deserialization(format!("V^ρ deser: {}", e)))?;
+        // 3) Build Γ=diag(1,1) PPE (A=B=0); target unused for extractor
+        let ppe_stub = PPE::<Bls12_381> {
+            a_consts: vec![],
+            b_consts: vec![],
+            gamma: vec![vec![Fr::one(), Fr::zero()], vec![Fr::zero(), Fr::one()]],
+            target: PairingOutput::<Bls12_381>(Fq12::one()),
+        };
+        // 4) Compute masked ComT using the extractor
+        let masked_comt = masked_verifier_from_masked(
+            &ppe_stub,
+            &c1_coms,
+            &c2_coms,
+            &pi,
+            &theta,
+            &u_masked_coms,
+            &v_masked_coms,
+        );
 
         let key = kdf_from_comt(
             &masked_comt,
@@ -253,7 +288,8 @@ impl ProductKeyKEM {
         let cipher = ChaCha20Poly1305::new(Key::from_slice(enc_key));
         let nonce = Nonce::from_slice(nonce_bytes);
 
-        let ciphertext_and_tag = cipher.encrypt(nonce, plaintext).map_err(|e| {
+        let payload = Payload { msg: plaintext, aad: &aad };
+        let ciphertext_and_tag = cipher.encrypt(nonce, payload).map_err(|e| {
             KEMError::Encryption(format!("ChaCha20-Poly1305 encrypt error: {:?}", e))
         })?;
 
@@ -319,8 +355,9 @@ impl ProductKeyKEM {
         ciphertext_and_tag.extend_from_slice(ciphertext);
         ciphertext_and_tag.extend_from_slice(auth_tag);
 
+        let payload = Payload { msg: ciphertext_and_tag.as_slice(), aad: &aad };
         let plaintext = cipher
-            .decrypt(nonce, ciphertext_and_tag.as_slice())
+            .decrypt(nonce, payload)
             .map_err(|e| {
                 KEMError::Decryption(format!("ChaCha20-Poly1305 decrypt error: {:?}", e))
             })?;

@@ -10,7 +10,9 @@ use arkworks_groth16::{kdf_from_comt, masked_verifier_matrix_canonical, rhs_mask
 use groth_sahai::data_structures::{ComT, Matrix};
 use groth_sahai::prover::Provable;
 
+
 #[test]
+
 fn test_masked_matrix_consistency_and_uniqueness() {
     // Setup Groth16 instance
     let gs = GrothSahaiCommitments::from_seed(b"CONSISTENCY");

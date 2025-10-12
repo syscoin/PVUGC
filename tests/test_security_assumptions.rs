@@ -15,7 +15,7 @@ use ark_ec::{AffineRepr, CurveGroup};
 use ark_ff::{One, UniformRand, Zero};
 use ark_std::test_rng;
 
-use arkworks_groth16::masked_verifier_matrix_canonical;
+use arkworks_groth16::{masked_verifier_matrix_canonical, rhs_masked_matrix};
 use groth_sahai::data_structures::Com1;
 use groth_sahai::generator::CRS;
 use groth_sahai::prover::Provable;
@@ -71,12 +71,12 @@ fn test_determinism_different_proofs_same_statement() {
         masked_matrices.push(masked_matrix);
     }
 
-    // All masked matrices must be identical
-    let first_matrix = masked_matrices[0];
-    for (i, matrix) in masked_matrices.iter().enumerate().skip(1) {
+    // All masked matrices must match rhs_masked_matrix
+    let rhs = rhs_masked_matrix(&ppe, rho);
+    for (i, matrix) in masked_matrices.iter().enumerate() {
         assert_eq!(
-            first_matrix, *matrix,
-            "Attestation {} produced different matrix! Determinism violated.",
+            rhs, *matrix,
+            "Attestation {} produced different matrix from rhs! Determinism violated.",
             i
         );
     }
