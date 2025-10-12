@@ -1,19 +1,15 @@
-pub mod gs_kem_helpers;
 mod bls12381_ops;
-pub mod kem;
-pub mod schnorr;
 pub mod groth16_wrapper;
 pub mod gs_commitments;
 pub mod gs_kem_eval;
+pub mod gs_kem_helpers;
+pub mod kem;
+pub mod schnorr;
 
 // Re-export for external use
-pub use groth16_wrapper::{ArkworksProof, ArkworksVK, ArkworksGroth16};
-pub use gs_commitments::{GrothSahaiCommitments, GSAttestation};
-pub use schnorr::{SchnorrAdaptor, AdaptorSignature};
-pub use kem::{ProductKeyKEM, KEMShare};
+pub use groth16_wrapper::{ArkworksGroth16, ArkworksProof, ArkworksVK};
+pub use gs_commitments::{GSAttestation, GrothSahaiCommitments};
+pub use gs_kem_eval::{kdf_from_comt, masked_verifier_matrix_canonical, rhs_masked_matrix};
 pub use gs_kem_helpers::{serialize_attestation_for_kem, serialize_crs_for_kem};
-pub use gs_kem_eval::{
-    masked_verifier_matrix_canonical,
-    rhs_masked_matrix,
-    kdf_from_comt,
-};
+pub use kem::{KEMShare, ProductKeyKEM};
+pub use schnorr::{AdaptorSignature, SchnorrAdaptor};
