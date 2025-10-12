@@ -1,18 +1,14 @@
-use ark_bls12_381::{Bls12_381, Fr, Fq12};
+use ark_bls12_381::{Bls12_381, Fq12, Fr};
 use ark_ec::{AffineRepr, CurveGroup};
 use ark_std::test_rng;
 
 use arkworks_groth16::groth16_wrapper::ArkworksGroth16;
 use arkworks_groth16::gs_commitments::GrothSahaiCommitments;
 
-use arkworks_groth16::{
-    masked_verifier_matrix_canonical,
-    rhs_masked_matrix,
-    kdf_from_comt,
-};
+use ark_ec::pairing::PairingOutput;
+use arkworks_groth16::{kdf_from_comt, masked_verifier_matrix_canonical, rhs_masked_matrix};
 use groth_sahai::data_structures::{ComT, Matrix};
 use groth_sahai::prover::Provable;
-use ark_ec::pairing::PairingOutput;
 
 #[test]
 fn test_masked_matrix_consistency_and_uniqueness() {
@@ -34,7 +30,9 @@ fn test_masked_matrix_consistency_and_uniqueness() {
     let proof_a1 = groth16.prove(witness_a).expect("proof a1");
     let proof_a2 = groth16.prove(witness_a).expect("proof a2");
     let witness_a_alt = -witness_a;
-    let proof_a3 = groth16.prove(witness_a_alt).expect("proof a3 (alternate witness)");
+    let proof_a3 = groth16
+        .prove(witness_a_alt)
+        .expect("proof a3 (alternate witness)");
 
     let cpr_a1 = ppe_a.commit_and_prove(
         &[proof_a1.pi_a, proof_a1.pi_c],
@@ -87,7 +85,10 @@ fn test_masked_matrix_consistency_and_uniqueness() {
 
     assert_eq!(lhs_a1, rhs_a, "Proof A1 masked matrix must equal target");
     assert_eq!(lhs_a2, rhs_a, "Proof A2 masked matrix must equal target");
-    assert_eq!(lhs_a3, rhs_a, "Proof A3 (alternate witness) masked matrix must equal target");
+    assert_eq!(
+        lhs_a3, rhs_a,
+        "Proof A3 (alternate witness) masked matrix must equal target"
+    );
 
     let comt_a1 = matrix_to_comt(lhs_a1);
     let comt_a2 = matrix_to_comt(lhs_a2);
@@ -95,9 +96,15 @@ fn test_masked_matrix_consistency_and_uniqueness() {
 
     let key_a1 = kdf_from_comt(&comt_a1, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
     let key_a2 = kdf_from_comt(&comt_a2, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
-    assert_eq!(key_a1, key_a2, "KEM keys must match across valid proofs for the same statement");
+    assert_eq!(
+        key_a1, key_a2,
+        "KEM keys must match across valid proofs for the same statement"
+    );
     let key_a3 = kdf_from_comt(&comt_a3, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
-    assert_eq!(key_a1, key_a3, "KEM keys must match even with alternate witnesses for the same statement");
+    assert_eq!(
+        key_a1, key_a3,
+        "KEM keys must match even with alternate witnesses for the same statement"
+    );
 
     // Statement B: different public input 36 (witness 6)
     let witness_b = Fr::from(6u64);
@@ -125,15 +132,27 @@ fn test_masked_matrix_consistency_and_uniqueness() {
     assert_eq!(lhs_b, rhs_b, "Proof B masked matrix must equal target");
 
     // Ensure distinct statements produce different masked matrices/keys
-    assert_ne!(lhs_a1, lhs_b, "Different statements should not share masked matrices");
+    assert_ne!(
+        lhs_a1, lhs_b,
+        "Different statements should not share masked matrices"
+    );
     let comt_b = matrix_to_comt(lhs_b);
     let key_b = kdf_from_comt(&comt_b, b"crs", b"ppe", b"vk", b"x", b"deposit", 1);
-    assert_ne!(key_a1, key_b, "Different statements should not derive identical KEM keys");
+    assert_ne!(
+        key_a1, key_b,
+        "Different statements should not derive identical KEM keys"
+    );
 }
 
 fn matrix_to_comt(matrix: [[Fq12; 2]; 2]) -> ComT<Bls12_381> {
     ComT::<Bls12_381>::from(Matrix::<PairingOutput<Bls12_381>>::from(vec![
-        vec![PairingOutput::<Bls12_381>(matrix[0][0]), PairingOutput::<Bls12_381>(matrix[0][1])],
-        vec![PairingOutput::<Bls12_381>(matrix[1][0]), PairingOutput::<Bls12_381>(matrix[1][1])],
+        vec![
+            PairingOutput::<Bls12_381>(matrix[0][0]),
+            PairingOutput::<Bls12_381>(matrix[0][1]),
+        ],
+        vec![
+            PairingOutput::<Bls12_381>(matrix[1][0]),
+            PairingOutput::<Bls12_381>(matrix[1][1]),
+        ],
     ]))
 }

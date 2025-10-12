@@ -63,10 +63,23 @@ let attestation = gs.commit_arkworks_proof(&proof, &vk, &public_input, true)?;
 
 // Setup KEM and encrypt adaptor shares
 let kem = ProductKeyKEM::new();
-let (kem_share, _) = kem.encapsulate(...)?;
+let ppe = gs.groth16_verify_as_ppe(&vk, &public_inputs);
+    let (kem_share, masked_target_bytes) = kem.encapsulate_deposit(
+        &mut rng,
+        share_index,
+        &c1_bytes,
+        &c2_bytes,
+        &pi_bytes,
+        &theta_bytes,
+        &u_bytes,
+        &v_bytes,
+        adaptor_share,
+        ctx_hash,
+        instance_digest,
+    )?;
 
 // Later: decrypt with any valid attestation
-let recovered_secret = kem.decapsulate(&kem_share, ...)?;
+let recovered_secret = kem.decapsulate(&kem_share, &ppe, &c1_bytes, &c2_bytes, &pi_bytes, &theta_bytes, ctx_hash, instance_digest)?;
 ```
 
 ## Security

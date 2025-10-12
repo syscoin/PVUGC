@@ -5,11 +5,11 @@ Core cryptographic operations for PVUGC using Arkworks.
 This module provides the equivalent functionality to pvugc_pairing_ops.py
 */
 
-use ark_bls12_381::{Fr, G1Affine, G2Affine, Fq12};
+use ark_bls12_381::{Fr, G1Affine, G2Affine};
 use ark_ec::{AffineRepr, CurveGroup};
 use ark_ff::Zero;
-use ark_serialize::{CanonicalSerialize, CanonicalDeserialize};
-use ark_std::{vec::Vec, rand::Rng, UniformRand};
+use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
+use ark_std::{rand::Rng, vec::Vec, UniformRand};
 use thiserror::Error;
 
 /// Errors that can occur during BLS12-381 operations
@@ -23,7 +23,6 @@ pub enum BLS12381Error {
 
 pub type G1Point = Vec<u8>;
 pub type G2Point = Vec<u8>;
-pub type GTElement = Fq12;
 pub type Scalar = Fr;
 
 /// BLS12-381 operations implementation
@@ -45,15 +44,16 @@ impl BLS12381Ops {
         // Deserialize point
         let p = G1Affine::deserialize_compressed(point.as_slice())
             .map_err(|e| BLS12381Error::Deserialization(format!("G1 deserialize: {:?}", e)))?;
-        
+
         // Multiply by scalar
         let result = (p.into_group() * scalar).into_affine();
-        
+
         // Serialize result
         let mut compressed = Vec::new();
-        result.serialize_compressed(&mut compressed)
+        result
+            .serialize_compressed(&mut compressed)
             .map_err(|e| BLS12381Error::Serialization(format!("G1 serialize: {:?}", e)))?;
-        
+
         Ok(compressed)
     }
 
@@ -62,15 +62,16 @@ impl BLS12381Ops {
         // Deserialize point
         let p = G2Affine::deserialize_compressed(point.as_slice())
             .map_err(|e| BLS12381Error::Deserialization(format!("G2 deserialize: {:?}", e)))?;
-        
+
         // Multiply by scalar
         let result = (p.into_group() * scalar).into_affine();
-        
+
         // Serialize result
         let mut compressed = Vec::new();
-        result.serialize_compressed(&mut compressed)
+        result
+            .serialize_compressed(&mut compressed)
             .map_err(|e| BLS12381Error::Serialization(format!("G2 serialize: {:?}", e)))?;
-        
+
         Ok(compressed)
     }
 }
@@ -90,12 +91,12 @@ mod tests {
     #[test]
     fn test_g1_multiply() {
         let mut rng = test_rng();
-        
+
         // Generate random G1 point
         let generator = G1Affine::generator();
         let mut compressed = Vec::new();
         generator.serialize_compressed(&mut compressed).unwrap();
-        
+
         // Test scalar multiplication
         let scalar = BLS12381Ops::random_scalar(&mut rng);
         let multiplied = BLS12381Ops::g1_multiply(&compressed, scalar).unwrap();
@@ -105,16 +106,15 @@ mod tests {
     #[test]
     fn test_g2_multiply() {
         let mut rng = test_rng();
-        
+
         // Generate random G2 point
         let generator = G2Affine::generator();
         let mut compressed = Vec::new();
         generator.serialize_compressed(&mut compressed).unwrap();
-        
+
         // Test scalar multiplication
         let scalar = BLS12381Ops::random_scalar(&mut rng);
         let multiplied = BLS12381Ops::g2_multiply(&compressed, scalar).unwrap();
         assert_eq!(multiplied.len(), 96);
     }
-
 }
