@@ -21,7 +21,7 @@ ark-std = "0.5"
 ark-crypto-primitives = { version = "0.5", features = ["r1cs", "crh"] }
 
 # Groth-Sahai proofs
-groth-sahai = { git = "https://github.com/jdwhite88/groth-sahai-rs" }
+groth-sahai = { path = "groth-sahai" }
 
 # Crypto primitives for KEM and Schnorr
 secp256k1 = { version = "0.28", features = ["rand", "recovery"] }

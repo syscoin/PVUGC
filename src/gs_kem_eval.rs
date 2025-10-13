@@ -131,12 +131,12 @@ pub fn kdf_from_comt<E: Pairing>(
     vk_hash: &[u8],
     x_hash: &[u8],
     deposit_id: &[u8],
-    version: u8,
+    label: &[u8],
 ) -> [u8; 32] {
     let m = comt.as_matrix();
     let mut h = Sha256::new();
-    h.update(b"PVUGC-KEM-ComT-v");
-    h.update([version]);
+    h.update(b"PVUGC-KEM-ComT-");
+    h.update(label);
     h.update(crs_digest);
     h.update(ppe_digest);
     h.update(vk_hash);
@@ -153,4 +153,35 @@ pub fn kdf_from_comt<E: Pairing>(
     let mut key = [0u8; 32];
     key.copy_from_slice(&out[..32]);
     key
+}
+
+/// Five-bucket ComT extractor (ρ-free, proof-agnostic)
+pub fn five_bucket_comt<E: Pairing>(
+    xcoms: &[Com1<E>],
+    ycoms: &[Com2<E>],
+    pi: &[Com2<E>],
+    theta: &[Com1<E>],
+    gamma: &Vec<Vec<E::ScalarField>>,
+    u_rho: &[Com1<E>],
+    v_rho: &[Com2<E>],
+    u_star_rho: &[(E::G2Affine, E::G2Affine)],
+    v_star_rho: &[(E::G1Affine, E::G1Affine)],
+) -> ComT<E> {
+    use groth_sahai::data_structures::{vec_to_col_vec, col_vec_to_vec};
+
+    // Convert dual pairs to Com1/Com2 format for pairing
+    let ustar_com2: Vec<Com2<E>> = u_star_rho.iter().map(|(a, b)| Com2(*a, *b)).collect();
+    let vstar_com1: Vec<Com1<E>> = v_star_rho.iter().map(|(a, b)| Com1(*a, *b)).collect();
+
+    // Five-bucket formula: (B1 + B2 + G) - B3 - B4
+    let b1 = ComT::<E>::pairing_sum(xcoms, &ustar_com2);  // e(C1, U*^ρ)
+    let b2 = ComT::<E>::pairing_sum(&vstar_com1, ycoms);  // e(V*^ρ, C2)
+    let b3 = ComT::<E>::pairing_sum(u_rho, pi);           // e(U^ρ, π)
+    let b4 = ComT::<E>::pairing_sum(theta, v_rho);       // e(θ, V^ρ)
+    
+    // G term: e(C1, γ·C2)
+    let gy = vec_to_col_vec(ycoms).left_mul(gamma, false);
+    let g = ComT::<E>::pairing_sum(xcoms, &col_vec_to_vec(&gy));
+
+    (b1 + b2 + g) - b3 - b4
 }

@@ -260,14 +260,14 @@ fn test_identity_element_protection() {
         vec![PairingOutput::<E>(Fq12::one()), PairingOutput::<E>(Fq12::one())],
     ]));
     
-    let kem_key = kdf_from_comt(&identity_matrix_comt, b"test_crs", b"test_ppe", b"test_vk", b"test_x", b"test_deposit", 1);
+    let kem_key = kdf_from_comt(&identity_matrix_comt, b"test_crs", b"test_ppe", b"test_vk", b"test_x", b"test_deposit", b"K1");
     
     // Test that identity target produces predictable KEM key
     // This demonstrates why identity elements should be rejected in production
     let expected_identity_key = kdf_from_comt(&ComT::<E>::from(Matrix::<PairingOutput<E>>::from(vec![
         vec![PairingOutput::<E>(Fq12::one()), PairingOutput::<E>(Fq12::one())],
         vec![PairingOutput::<E>(Fq12::one()), PairingOutput::<E>(Fq12::one())],
-    ])), b"test_crs", b"test_ppe", b"test_vk", b"test_x", b"test_deposit", 1);
+    ])), b"test_crs", b"test_ppe", b"test_vk", b"test_x", b"test_deposit", b"K1");
     
     assert_eq!(kem_key, expected_identity_key, "Identity target produces predictable KEM key");
     
@@ -303,7 +303,7 @@ fn test_identity_element_protection() {
         vec![PairingOutput::<E>(non_identity_matrix[1][0]), PairingOutput::<E>(non_identity_matrix[1][1])],
     ]));
     
-    let non_identity_key = kdf_from_comt(&non_identity_matrix_comt, b"test_crs", b"test_ppe", b"test_vk", b"test_x", b"test_deposit", 1);
+    let non_identity_key = kdf_from_comt(&non_identity_matrix_comt, b"test_crs", b"test_ppe", b"test_vk", b"test_x", b"test_deposit", b"K1");
     
     assert_ne!(kem_key, non_identity_key, "Identity KEM key should differ from non-identity KEM key");
 }
@@ -444,8 +444,8 @@ fn test_proof_substitution_attack() {
     let deposit_id1 = b"deposit_statement1";
     let deposit_id2 = b"deposit_statement2";
     
-    let legitimate_key1 = kdf_from_comt(&legitimate_comt1, b"test_crs", &ppe_hash1, &vk_hash1, b"test_x", deposit_id1, 1);
-    let substituted_key = kdf_from_comt(&substituted_comt, b"test_crs", &ppe_hash2, &vk_hash2, b"test_x", deposit_id2, 1);
+    let legitimate_key1 = kdf_from_comt(&legitimate_comt1, b"test_crs", &ppe_hash1, &vk_hash1, b"test_x", deposit_id1, b"K1");
+    let substituted_key = kdf_from_comt(&substituted_comt, b"test_crs", &ppe_hash2, &vk_hash2, b"test_x", deposit_id2, b"K1");
     
     // Test 3: KEM key derivation should be statement-specific
     assert_ne!(legitimate_key1, substituted_key, "Substituted proof should produce different KEM key");

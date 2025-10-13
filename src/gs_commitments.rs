@@ -12,7 +12,7 @@ use ark_ff::{One, PrimeField, UniformRand, Zero};
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use ark_std::rand::Rng;
 use groth_sahai::data_structures::BT;
-use groth_sahai::{generator::CRS, prover::Provable, statement::PPE, Com1, Com2};
+use groth_sahai::{generator::{CRS, CRSWithDuals}, prover::Provable, statement::PPE, Com1, Com2};
 use sha2::{Digest, Sha256};
 use thiserror::Error;
 
@@ -70,8 +70,17 @@ impl GrothSahaiCommitments {
     /// Generate CRS from seed
     pub fn from_seed(seed: &[u8]) -> Self {
         let mut rng = get_rng_from_seed(seed);
-        let (crs, u_duals, v_duals) = generate_wi_crs_with_duals(&mut rng);
-        Self::new(crs, u_duals, v_duals)
+        let crs_with_duals = CRSWithDuals::<Bls12_381>::generate_wi_with_duals(&mut rng);
+        
+        // Convert dual pairs to Com1/Com2 format
+        let u_duals: Vec<Com2<Bls12_381>> = crs_with_duals.u_star.iter()
+            .map(|(a, b)| Com2(*a, *b))
+            .collect();
+        let v_duals: Vec<Com1<Bls12_381>> = crs_with_duals.v_star.iter()
+            .map(|(a, b)| Com1(*a, *b))
+            .collect();
+            
+        Self::new(crs_with_duals.crs, u_duals, v_duals)
     }
 
     /// Commit to real arkworks Groth16 proof
@@ -366,77 +375,6 @@ impl GrothSahaiCommitments {
     pub fn get_crs(&self) -> &CRS<Bls12_381> {
         &self.crs
     }
-}
-
-/// Generate a WI (rank-2) CRS together with its dual bases
-fn generate_wi_crs_with_duals<R: Rng>(
-    rng: &mut R,
-) -> (CRS<Bls12_381>, Vec<Com2<Bls12_381>>, Vec<Com1<Bls12_381>>) {
-    use ark_ec::pairing::Pairing;
-    use ark_ec::CurveGroup;
-
-    let g1_proj = <Bls12_381 as Pairing>::G1::rand(rng);
-    let g2_proj = <Bls12_381 as Pairing>::G2::rand(rng);
-
-    let g1_proj_for_mul = g1_proj.clone();
-    let g2_proj_for_mul = g2_proj.clone();
-
-    let g1 = g1_proj.into_affine();
-    let g2 = g2_proj.into_affine();
-
-    let g1_proj = g1_proj_for_mul;
-    let g2_proj = g2_proj_for_mul;
-
-    let a1 = Fr::rand(rng);
-    let t1 = Fr::rand(rng);
-    let a2 = Fr::rand(rng);
-    let t2 = Fr::rand(rng);
-
-    let one = Fr::one();
-    let minus_one = -one;
-
-    let a1_t1 = a1 * t1;
-    let a2_t2 = a2 * t2;
-
-    let u0 = Com1::<Bls12_381>(g1, (g1_proj.clone() * a1).into_affine());
-    let u1 = Com1::<Bls12_381>(
-        (g1_proj.clone() * t1).into_affine(),
-        (g1_proj.clone() * (a1_t1 - one)).into_affine(),
-    );
-
-    let v0 = Com2::<Bls12_381>(g2, (g2_proj.clone() * a2).into_affine());
-    let v1 = Com2::<Bls12_381>(
-        (g2_proj.clone() * t2).into_affine(),
-        (g2_proj.clone() * (a2_t2 - one)).into_affine(),
-    );
-
-    let u_dual0 = Com2::<Bls12_381>(
-        (g2_proj.clone() * (one - a1_t1)).into_affine(),
-        (g2_proj.clone() * a1).into_affine(),
-    );
-    let u_dual1 = Com2::<Bls12_381>(
-        (g2_proj.clone() * t1).into_affine(),
-        (g2_proj.clone() * minus_one).into_affine(),
-    );
-
-    let v_dual0 = Com1::<Bls12_381>(
-        (g1_proj.clone() * (one - a2_t2)).into_affine(),
-        (g1_proj.clone() * a2).into_affine(),
-    );
-    let v_dual1 = Com1::<Bls12_381>(
-        (g1_proj.clone() * t2).into_affine(),
-        (g1_proj * minus_one).into_affine(),
-    );
-
-    let crs = CRS::<Bls12_381> {
-        u: vec![u0, u1],
-        v: vec![v0, v1],
-        g1_gen: g1,
-        g2_gen: g2,
-        gt_gen: Bls12_381::pairing(g1, g2),
-    };
-
-    (crs, vec![u_dual0, u_dual1], vec![v_dual0, v_dual1])
 }
 
 /// Compute IC = ∑(γ_abc_i * x_i) for public inputs

@@ -1015,14 +1015,24 @@ fn test_two_distinct_groth16_proofs_same_output() {
 
     // Same witness produces same public input; Groth16 proofs are randomized
     let witness = Fr::from(5u64);
+    let witness1 = -witness; // second valid proof with same x = witness^2
     let proof1 = groth16.prove(witness).expect("Prove should succeed");
-    let proof2 = groth16.prove(witness).expect("Prove should succeed");
+    let proof2 = groth16.prove(witness1).expect("Prove should succeed");
 
     // Explicit x: public_input = [25]
     let x = [Fr::from(25u64)];
 
     let crs = gs.get_crs().clone();
     let (u_duals, v_duals) = gs.duals();
+    
+    // Convert Com1/Com2 to affine pairs for encapsulate_duo
+    let u_star_pairs: Vec<(ark_bls12_381::G2Affine, ark_bls12_381::G2Affine)> = u_duals.iter()
+        .map(|com2| (com2.0, com2.1))
+        .collect();
+    let v_star_pairs: Vec<(ark_bls12_381::G1Affine, ark_bls12_381::G1Affine)> = v_duals.iter()
+        .map(|com1| (com1.0, com1.1))
+        .collect();
+    
     let mut rng = test_rng();
 
     // Test proof-agnostic behavior using ProductKeyKEM
@@ -1048,65 +1058,69 @@ fn test_two_distinct_groth16_proofs_same_output() {
     let (c1_bytes2, c2_bytes2, pi_bytes2, theta_bytes2) =
         serialize_attestation_for_kem(&attestation2);
 
-    // Encapsulate with both proofs - should produce same KEM key (proof-agnostic)
+    // Deposit: encapsulate once using Duo flow
+    let crs_digest = b"crs_digest";
+    let ppe_digest = b"ppe_digest";
+    let vk_hash = b"vk_hash";
+    let x_hash = b"x_hash";
+    let deposit_id = b"deposit_id";
+    
     let (kem_share1, _) = kem
-        .encapsulate(
+        .encapsulate_duo(
             &mut rng,
             0,
-            &c1_bytes1,
-            &c2_bytes1,
-            &pi_bytes1,
-            &theta_bytes1,
             &u_bases,
             &v_bases,
-            &u_dual_bases,
-            &v_dual_bases,
+            &u_star_pairs,
+            &v_star_pairs,
             adaptor_share,
             ctx_hash,
-            gs_instance_digest,
+            &vk,
+            &x[0].into_bigint().to_bytes_be(),
+            crs_digest,
+            ppe_digest,
+            vk_hash,
+            x_hash,
+            deposit_id,
         )
-        .expect("Encapsulation failed");
+        .expect("Deposit encapsulation failed");
 
-    let (kem_share2, _) = kem
-        .encapsulate(
-            &mut rng,
-            1,
-            &c1_bytes2,
-            &c2_bytes2,
-            &pi_bytes2,
-            &theta_bytes2,
-            &u_bases,
-            &v_bases,
-            &u_dual_bases,
-            &v_dual_bases,
-            adaptor_share,
-            ctx_hash,
-            gs_instance_digest,
-        )
-        .expect("Encapsulation failed");
+    // Second share not needed for Duo; reuse same kem_share for both withdraws
+    let kem_share2 = kem_share1.clone();
 
     // Both KEM shares should decrypt to the same adaptor share (proof-agnostic behavior)
+    let ppe = gs.groth16_verify_as_ppe(&vk, &x);
     let recovered1 = kem
-        .decapsulate(
+        .decapsulate_duo(
             &kem_share1,
+            &ppe,
             &c1_bytes1,
             &c2_bytes1,
             &pi_bytes1,
             &theta_bytes1,
             ctx_hash,
-            gs_instance_digest,
+            crs_digest,
+            ppe_digest,
+            vk_hash,
+            x_hash,
+            deposit_id,
         )
         .expect("Decapsulation failed");
 
     let recovered2 = kem
-        .decapsulate(
+        .decapsulate_duo(
             &kem_share2,
+            &ppe,
             &c1_bytes2,
             &c2_bytes2,
             &pi_bytes2,
             &theta_bytes2,
             ctx_hash,
-            gs_instance_digest,
+            crs_digest,
+            ppe_digest,
+            vk_hash,
+            x_hash,
+            deposit_id,
         )
         .expect("Decapsulation failed");
 
