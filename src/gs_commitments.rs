@@ -8,10 +8,11 @@ Implements GS attestation per PVUGC spec.
 use ark_bls12_381::{Bls12_381, Fq12, Fr, G1Affine, G2Affine};
 use ark_ec::CurveGroup;
 use ark_ec::{pairing::Pairing, pairing::PairingOutput, AffineRepr};
-use ark_ff::{One, PrimeField, UniformRand, Zero};
+use ark_ff::{One, UniformRand, Zero};
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use ark_std::rand::Rng;
-use groth_sahai::data_structures::BT;
+use groth_sahai::prover::CProof;
+use groth_sahai::verifier::Verifiable;
 use groth_sahai::{generator::{CRS, CRSWithDuals}, prover::Provable, statement::PPE, Com1, Com2};
 use sha2::{Digest, Sha256};
 use thiserror::Error;
@@ -43,6 +44,7 @@ pub struct GSAttestation {
     pub proof_data: Vec<u8>,
     pub randomness_used: Vec<Fr>,
     pub ppe_target: Fq12,
+    pub cproof: CProof<Bls12_381>, // full GS proof for canonical verification
 }
 
 /// Groth-Sahai commitment system for real Groth16 proofs
@@ -74,10 +76,10 @@ impl GrothSahaiCommitments {
         
         // Convert dual pairs to Com1/Com2 format
         let u_duals: Vec<Com2<Bls12_381>> = crs_with_duals.u_star.iter()
-            .map(|(a, b)| Com2(*a, *b))
+            .map(|(a, b)| Com2(*b, *a))
             .collect();
         let v_duals: Vec<Com1<Bls12_381>> = crs_with_duals.v_star.iter()
-            .map(|(a, b)| Com1(*a, *b))
+            .map(|(a, b)| Com1(*b, *a))
             .collect();
             
         Self::new(crs_with_duals.crs, u_duals, v_duals)
@@ -123,8 +125,8 @@ impl GrothSahaiCommitments {
             let attestation_proof = ppe.commit_and_prove(&xvars, &yvars, &self.crs, rng);
 
             // Extract commitments and proof elements from the proof
-            let c1_commitments = attestation_proof.xcoms.coms;
-            let c2_commitments = attestation_proof.ycoms.coms;
+            let c1_commitments = attestation_proof.xcoms.coms.clone();
+            let c2_commitments = attestation_proof.ycoms.coms.clone();
             let pi_elements = attestation_proof.equ_proofs[0].pi.clone();
             let theta_elements = attestation_proof.equ_proofs[0].theta.clone();
 
@@ -158,6 +160,7 @@ impl GrothSahaiCommitments {
                 proof_data,
                 randomness_used: randomness,
                 ppe_target,
+                cproof: attestation_proof,
             })
         } else {
             // Without randomness, still use proper PPE construction but with zero randomness
@@ -182,8 +185,8 @@ impl GrothSahaiCommitments {
             let attestation_proof = ppe.commit_and_prove(&xvars, &yvars, &self.crs, rng);
 
             // Extract commitments and proof elements from the proof
-            let c1_commitments = attestation_proof.xcoms.coms;
-            let c2_commitments = attestation_proof.ycoms.coms;
+            let c1_commitments = attestation_proof.xcoms.coms.clone();
+            let c2_commitments = attestation_proof.ycoms.coms.clone();
             let pi_elements = attestation_proof.equ_proofs[0].pi.clone();
             let theta_elements = attestation_proof.equ_proofs[0].theta.clone();
             let randomness = vec![Fr::zero(); 3];
@@ -216,6 +219,7 @@ impl GrothSahaiCommitments {
                 proof_data,
                 randomness_used: randomness,
                 ppe_target,
+                cproof: attestation_proof,
             })
         }
     }
@@ -236,6 +240,7 @@ impl GrothSahaiCommitments {
         v_bases: &[(G1Affine, G1Affine)],
         _g_target: &Fq12, // Used to build canonical PPE target
     ) -> Result<bool, GSCommitmentError> {
+        // TODO: add direct canonical GS verification when exposing CProof externally
         // Structural validation (keep basic shape checks against provided bases)
         if attestation.c1_commitments.len() != u_bases.len() {
             return Err(GSCommitmentError::InvalidInput(
@@ -248,56 +253,15 @@ impl GrothSahaiCommitments {
             ));
         }
 
-        // Canonical verification using masked verifier algebra for the 2-variable PPE
-        // Build 2×2 PPE with diagonal γ and the provided target
-        use crate::gs_kem_eval::masked_verifier_matrix_canonical;
-        use ark_ff::Field;
-        use ark_std::test_rng;
-        use groth_sahai::data_structures::{ComT, Matrix};
-        use groth_sahai::statement::PPE;
-
+        // Canonical verification using actual GS verifier via stored CProof
         let ppe = PPE::<Bls12_381> {
             a_consts: vec![G1Affine::zero(), G1Affine::zero()],
             b_consts: vec![G2Affine::zero(), G2Affine::zero()],
             gamma: vec![vec![Fr::one(), Fr::zero()], vec![Fr::zero(), Fr::one()]],
             target: PairingOutput::<Bls12_381>(*_g_target),
         };
-
-        // Random ρ for parity check
-        let mut rng = test_rng();
-        let rho = Fr::rand(&mut rng);
-
-        // Compute masked verifier matrix from attestation artifacts
-        let masked_matrix = masked_verifier_matrix_canonical(
-            &ppe,
-            &self.crs,
-            &attestation.c1_commitments,
-            &attestation.c2_commitments,
-            &attestation.pi_elements,
-            &attestation.theta_elements,
-            rho,
-        );
-
-        // Convert to ComT for comparison
-        let lhs: Matrix<PairingOutput<Bls12_381>> = vec![
-            vec![
-                PairingOutput(masked_matrix[0][0]),
-                PairingOutput(masked_matrix[0][1]),
-            ],
-            vec![
-                PairingOutput(masked_matrix[1][0]),
-                PairingOutput(masked_matrix[1][1]),
-            ],
-        ];
-        let lhs_comt = ComT::<Bls12_381>::from(lhs);
-
-        // RHS: linear_map_PPE(target^ρ)
-        let PairingOutput(tgt) = ppe.target;
-        let rhs_comt = ComT::<Bls12_381>::linear_map_PPE(&PairingOutput::<Bls12_381>(
-            tgt.pow(rho.into_bigint()),
-        ));
-
-        Ok(lhs_comt.as_matrix() == rhs_comt.as_matrix())
+        let ok = ppe.verify(&attestation.cproof, &self.crs);
+        Ok(ok)
     }
 
     /// Compute target for real arkworks proof: G_G16(vk, x) = e(α, β) · e(IC, γ)
@@ -366,6 +330,7 @@ impl GrothSahaiCommitments {
         PPE::<Bls12_381> {
             a_consts: vec![G1Affine::zero(), G1Affine::zero()],
             b_consts: vec![G2Affine::zero(), G2Affine::zero()],
+            // Identity Γ; Y already includes -δ so Γ·Y = Y
             gamma: vec![vec![Fr::one(), Fr::zero()], vec![Fr::zero(), Fr::one()]],
             target,
         }
@@ -429,8 +394,9 @@ mod tests {
         let mut groth16 = ArkworksGroth16::new();
         let vk = groth16.setup().expect("Setup should succeed");
 
-        let witness = Fr::from(5u64); // Square root of 25
-        let proof = groth16.prove(witness).expect("Prove should succeed");
+        let witness1 = Fr::from(3u64);
+        let witness2 = Fr::from(2u64); // 3 + 2 = 5
+        let proof = groth16.prove(witness1, witness2).expect("Prove should succeed");
 
         let mut rng = test_rng();
         let _attestation = gs
@@ -459,8 +425,9 @@ mod tests {
         let mut groth16 = ArkworksGroth16::new();
         let vk = groth16.setup().expect("Setup should succeed");
 
-        let witness = Fr::from(5u64); // Square root of 25
-        let proof = groth16.prove(witness).expect("Prove should succeed");
+        let witness1 = Fr::from(3u64);
+        let witness2 = Fr::from(2u64); // 3 + 2 = 5
+        let proof = groth16.prove(witness1, witness2).expect("Prove should succeed");
 
         let target = gs
             .compute_target(&vk, &proof.public_input)
@@ -490,11 +457,14 @@ mod tests {
         let mut groth16 = ArkworksGroth16::new();
         let vk = groth16.setup().expect("vk ok");
 
-        // Two proofs for the same statement x=25 (witness=5)
-        let witness = Fr::from(5u64);
-        let p1 = groth16.prove(witness).expect("p1");
-        let p2 = groth16.prove(witness).expect("p2");
-        let x = [Fr::from(25u64)];
+        // Two proofs for the same statement x=5 (3+2=5 and 4+1=5)
+        let witness1 = Fr::from(3u64);
+        let witness2 = Fr::from(2u64);
+        let witness3 = Fr::from(4u64);
+        let witness4 = Fr::from(1u64);
+        let p1 = groth16.prove(witness1, witness2).expect("p1");
+        let p2 = groth16.prove(witness3, witness4).expect("p2");
+        let x = [Fr::from(5u64)]; // 3+2=5 and 4+1=5
 
         // Build PPE for (vk,x)
         let ppe = gs.groth16_verify_as_ppe(&vk, &x);

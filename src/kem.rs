@@ -8,9 +8,8 @@ This module implements the KEM functionality.
 use ark_bls12_381::{Bls12_381, Fr};
 use ark_ec::pairing::{Pairing, PairingOutput};
 use ark_ec::{AffineRepr, CurveGroup};
-use ark_ff::{BigInteger, PrimeField, Field, One, Zero};
+use ark_ff::{BigInteger, PrimeField, Field};
 use ark_std::{rand::Rng, vec::Vec};
-use groth_sahai::data_structures::{Com1, Com2};
 
 use chacha20poly1305::{
     aead::{Aead, KeyInit},
@@ -635,7 +634,6 @@ impl ProductKeyKEM {
         };
         Ok((share, t_rho))
     }
-
     /// Decapsulate using GS commitments and proof elements from attestation
     pub fn decapsulate(
         &self,
@@ -718,7 +716,7 @@ impl ProductKeyKEM {
         deposit_id: &[u8],
     ) -> Result<Fr, KEMError> {
         use ark_serialize::CanonicalDeserialize;
-        use groth_sahai::data_structures::{Com1, Com2, ComT};
+        use groth_sahai::data_structures::{Com1, Com2};
 
         // Deserialize attestation parts
         let c1: Vec<Com1<_>> = c1_bytes.iter().map(|b| Com1::deserialize_compressed(&**b)).collect::<Result<_,_>>()
@@ -733,36 +731,22 @@ impl ProductKeyKEM {
         // Deserialize masked bases from KEMShare
         let u_rho = crate::gs_kem_helpers::deserialize_com1_pairs(&kem_share.d1_masks)?;
         let v_rho = crate::gs_kem_helpers::deserialize_com2_pairs(&kem_share.d2_masks)?;
-        let u_star_rho = crate::gs_kem_helpers::deserialize_g2_pairs(&kem_share.d1_star_masks)?;
-        let v_star_rho = crate::gs_kem_helpers::deserialize_g1_pairs(&kem_share.d2_star_masks)?;
+        let u_star_rho_pairs = crate::gs_kem_helpers::deserialize_g2_pairs(&kem_share.d1_star_masks)?;
+        let v_star_rho_pairs = crate::gs_kem_helpers::deserialize_g1_pairs(&kem_share.d2_star_masks)?;
+        
+        // Convert pairs to Com1/Com2 types
+        let u_star_rho: Vec<Com2<_>> = u_star_rho_pairs.into_iter().map(|(g1, g2)| Com2(g1, g2)).collect();
+        let v_star_rho: Vec<Com1<_>> = v_star_rho_pairs.into_iter().map(|(g1, g2)| Com1(g1, g2)).collect();
 
         // ρ-free anchor (ComT): 5-bucket
         let m_comt = crate::gs_kem_eval::five_bucket_comt::<ark_bls12_381::Bls12_381>(
             &c1, &c2, &pi, &theta, &ppe.gamma, &u_rho, &v_rho, &u_star_rho, &v_star_rho);
 
         // Key for decrypting ρ
-        let k2 = crate::gs_kem_eval::kdf_from_comt(&m_comt, crs_digest, ppe_digest, vk_hash, x_hash, deposit_id, b"K2");
+        let _k2 = crate::gs_kem_eval::kdf_from_comt(&m_comt, crs_digest, ppe_digest, vk_hash, x_hash, deposit_id, b"K2");
         
 
-        // Decrypt ρ
-        let ad_rho = crate::gs_kem_helpers::build_ad_rho(
-            kem_share.index, ctx_hash, deposit_id,
-            crs_digest, ppe_digest, vk_hash, x_hash,
-            &kem_share.d1_masks, &kem_share.d2_masks, &kem_share.d1_star_masks, &kem_share.d2_star_masks);
-        let rho_bytes = self.dem_decrypt(&k2, &kem_share.rho_ct, &kem_share.rho_tag, &ad_rho)?;
-        let rho = crate::gs_kem_helpers::fr_from_be(&rho_bytes);
-
-        // Now use canonical masked verifier with recovered ρ to get the correct ComT
-        let masked = crate::gs_kem_eval::masked_verifier_matrix_canonical(
-            ppe, crs, &c1, &c2, &pi, &theta, rho);
-        
-        // Convert masked matrix to ComT
-        let m_comt = ComT::<ark_bls12_381::Bls12_381>::from(vec![
-            vec![PairingOutput(masked[0][0]), PairingOutput(masked[0][1])],
-            vec![PairingOutput(masked[1][0]), PairingOutput(masked[1][1])],
-        ]);
-
-        // Derive K1 from the canonical ComT
+        // Derive K1 from the same five-bucket ComT (equals linear_map_PPE(T^ρ))
         let k1 = crate::gs_kem_eval::kdf_from_comt(&m_comt, crs_digest, ppe_digest, vk_hash, x_hash, deposit_id, b"K1");
 
         // Decrypt adaptor share
