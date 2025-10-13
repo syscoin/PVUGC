@@ -10,12 +10,11 @@ use ark_ec::{pairing::Pairing, AffineRepr, pairing::PairingOutput};
 use ark_ff::{Zero, One, UniformRand, PrimeField};
 use ark_ec::CurveGroup;
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
-use ark_std::rand::{Rng, rngs::StdRng, SeedableRng};
+use ark_std::rand::Rng;
 use sha2::{Sha256, Digest};
 use thiserror::Error;
 use groth_sahai::{
     generator::CRS,
-    AbstractCrs,
     Com1, Com2,
     statement::PPE,
     prover::Provable,
@@ -54,21 +53,87 @@ pub struct GSAttestation {
 /// Groth-Sahai commitment system for real Groth16 proofs
 pub struct GrothSahaiCommitments {
     crs: CRS<Bls12_381>,
+    u_duals: Vec<(G2Affine, G2Affine)>,
+    v_duals: Vec<(G1Affine, G1Affine)>,
 }
 
 impl GrothSahaiCommitments {
-    /// Create a new GS commitment system
-    pub fn new(crs: CRS<Bls12_381>) -> Self {
-        Self {
-            crs,
-        }
+    /// Create a new GS commitment system with explicit dual bases
+    pub fn new(
+        crs: CRS<Bls12_381>,
+        u_duals: Vec<(G2Affine, G2Affine)>,
+        v_duals: Vec<(G1Affine, G1Affine)>,
+    ) -> Self {
+        Self { crs, u_duals, v_duals }
     }
 
     /// Generate CRS from seed
     pub fn from_seed(seed: &[u8]) -> Self {
+        use ark_ec::CurveGroup;
+
         let mut rng = get_rng_from_seed(seed);
-        let crs = CRS::<Bls12_381>::generate_crs(&mut rng);
-        Self::new(crs)
+
+        let g1_affine = <Bls12_381 as Pairing>::G1::rand(&mut rng).into_affine();
+        let g2_affine = <Bls12_381 as Pairing>::G2::rand(&mut rng).into_affine();
+
+        let g1_group = g1_affine.clone().into_group();
+        let g2_group = g2_affine.clone().into_group();
+
+        let a1 = Fr::rand(&mut rng);
+        let t1 = Fr::rand(&mut rng);
+        let a2 = Fr::rand(&mut rng);
+        let t2 = Fr::rand(&mut rng);
+
+        let u0 = Com1::<Bls12_381>(
+            g1_affine.clone(),
+            (g1_group * a1).into_affine(),
+        );
+        let u1 = Com1::<Bls12_381>(
+            (g1_group * t1).into_affine(),
+            (g1_group * (a1 * t1 - Fr::one())).into_affine(),
+        );
+
+        let v0 = Com2::<Bls12_381>(
+            g2_affine.clone(),
+            (g2_group * a2).into_affine(),
+        );
+        let v1 = Com2::<Bls12_381>(
+            (g2_group * t2).into_affine(),
+            (g2_group * (a2 * t2 - Fr::one())).into_affine(),
+        );
+
+        // Dual bases derived from the inverse of the row matrices
+        let u_dual_0 = Com2::<Bls12_381>(
+            (g2_group * (Fr::one() - a1 * t1)).into_affine(),
+            (g2_group * t1).into_affine(),
+        );
+        let u_dual_1 = Com2::<Bls12_381>(
+            (g2_group * a1).into_affine(),
+            (g2_group * (-Fr::one())).into_affine(),
+        );
+
+        let v_dual_0 = Com1::<Bls12_381>(
+            (g1_group * (Fr::one() - a2 * t2)).into_affine(),
+            (g1_group * t2).into_affine(),
+        );
+        let v_dual_1 = Com1::<Bls12_381>(
+            (g1_group * a2).into_affine(),
+            (g1_group * (-Fr::one())).into_affine(),
+        );
+
+        let crs = CRS::<Bls12_381> {
+            u: vec![u0, u1],
+            v: vec![v0, v1],
+            g1_gen: g1_affine.clone(),
+            g2_gen: g2_affine.clone(),
+            gt_gen: Bls12_381::pairing(g1_affine, g2_affine),
+        };
+
+        Self::new(
+            crs,
+            vec![(u_dual_0.0, u_dual_0.1), (u_dual_1.0, u_dual_1.1)],
+            vec![(v_dual_0.0, v_dual_0.1), (v_dual_1.0, v_dual_1.1)],
+        )
     }
 
     
@@ -295,12 +360,17 @@ impl GrothSahaiCommitments {
         let u_pairs: Vec<(G1Affine, G1Affine)> = self.crs.u.iter()
             .map(|c| (c.0, c.1))
             .collect();
-        
+
         let v_pairs: Vec<(G2Affine, G2Affine)> = self.crs.v.iter()
             .map(|c| (c.0, c.1))
             .collect();
-        
+
         (u_pairs, v_pairs)
+    }
+
+    /// Get dual CRS elements (U* in G2, V* in G1)
+    pub fn get_dual_elements(&self) -> (Vec<(G2Affine, G2Affine)>, Vec<(G1Affine, G1Affine)>) {
+        (self.u_duals.clone(), self.v_duals.clone())
     }
 
     /// Encode Groth16 verification equation into GS PPE for specific (vk, x)
@@ -365,12 +435,16 @@ fn get_rng_from_seed(seed: &[u8]) -> impl Rng {
 mod tests {
     use super::*;
     use ark_std::test_rng;
+    use ark_std::rand::{rngs::StdRng, SeedableRng};
 
     #[test]
     fn test_gs_commitments_new() {
         let seed = b"test seed";
         let gs = GrothSahaiCommitments::from_seed(seed);
         assert!(!gs.get_crs().u[0].0.is_zero());
+        let (u_duals, v_duals) = gs.get_dual_elements();
+        assert_eq!(u_duals.len(), 2);
+        assert_eq!(v_duals.len(), 2);
     }
 
     #[test]

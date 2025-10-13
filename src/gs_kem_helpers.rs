@@ -2,6 +2,7 @@ use ark_bls12_381::{Bls12_381, Fr, Fq12};
 use ark_serialize::{CanonicalSerialize, CanonicalDeserialize};
 use ark_ec::pairing::PairingOutput;
 use ark_ec::AffineRepr;
+use groth_sahai::data_structures::{Com1, Com2, ComT};
 
 /// Compute canonical masked evaluation for KEM
 /// Uses the canonical masked verifier approach that evaluates target^ρ
@@ -14,7 +15,6 @@ pub fn compute_canonical_masked_eval(
     v_bytes_list: &[Vec<u8>],   // CRS V elements
     rho: Fr,                     // Masking scalar
 ) -> Result<Vec<u8>, String> {
-    use groth_sahai::data_structures::{Com1, Com2};
     
     // Deserialize commitments
     let mut c1_coms = Vec::new();
@@ -64,7 +64,7 @@ pub fn compute_canonical_masked_eval(
     // For consistency with decapsulation, compute a simplified evaluation
     // Mask the CRS elements
     use ark_ec::CurveGroup;
-    use groth_sahai::data_structures::{ComT, BT};
+    use groth_sahai::data_structures::BT;
     use ark_ec::pairing::Pairing;
     use ark_ff::One;
     
@@ -115,7 +115,7 @@ pub fn compute_canonical_masked_eval_with_masked_crs(
     u_masked_bytes_list: &[Vec<u8>],  // U^ρ
     v_masked_bytes_list: &[Vec<u8>],  // V^ρ
 ) -> Result<Vec<u8>, String> {
-    use groth_sahai::data_structures::{Com1, Com2, ComT, BT};
+    use groth_sahai::data_structures::BT;
     use ark_ec::pairing::Pairing;
     use ark_ff::One;
     
@@ -192,6 +192,90 @@ pub fn compute_canonical_masked_eval_with_masked_crs(
     Ok(result_bytes)
 }
 
+/// Compute the five-bucket anchor using serialized inputs
+pub fn compute_five_bucket_anchor(
+    c1_bytes_list: &[Vec<u8>],
+    c2_bytes_list: &[Vec<u8>],
+    pi_bytes_list: &[Vec<u8>],
+    theta_bytes_list: &[Vec<u8>],
+    u_rho_bytes_list: &[Vec<u8>],
+    v_rho_bytes_list: &[Vec<u8>],
+    u_dual_rho_bytes_list: &[Vec<u8>],
+    v_dual_rho_bytes_list: &[Vec<u8>],
+    gamma: &[Vec<Fr>],
+) -> Result<ComT<Bls12_381>, String> {
+
+    let mut c1_coms = Vec::new();
+    for bytes in c1_bytes_list {
+        let com = Com1::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("C1 deser: {:?}", e))?;
+        c1_coms.push(com);
+    }
+
+    let mut c2_coms = Vec::new();
+    for bytes in c2_bytes_list {
+        let com = Com2::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("C2 deser: {:?}", e))?;
+        c2_coms.push(com);
+    }
+
+    let mut pi = Vec::new();
+    for bytes in pi_bytes_list {
+        let com = Com2::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("π deser: {:?}", e))?;
+        pi.push(com);
+    }
+
+    let mut theta = Vec::new();
+    for bytes in theta_bytes_list {
+        let com = Com1::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("θ deser: {:?}", e))?;
+        theta.push(com);
+    }
+
+    let mut u_rho = Vec::new();
+    for bytes in u_rho_bytes_list {
+        let com = Com1::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("U^ρ deser: {:?}", e))?;
+        u_rho.push(com);
+    }
+
+    let mut v_rho = Vec::new();
+    for bytes in v_rho_bytes_list {
+        let com = Com2::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("V^ρ deser: {:?}", e))?;
+        v_rho.push(com);
+    }
+
+    let mut u_dual_rho = Vec::new();
+    for bytes in u_dual_rho_bytes_list {
+        let com = Com2::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("U*^ρ deser: {:?}", e))?;
+        u_dual_rho.push(com);
+    }
+
+    let mut v_dual_rho = Vec::new();
+    for bytes in v_dual_rho_bytes_list {
+        let com = Com1::<Bls12_381>::deserialize_compressed(bytes.as_slice())
+            .map_err(|e| format!("V*^ρ deser: {:?}", e))?;
+        v_dual_rho.push(com);
+    }
+
+    let anchor = crate::gs_kem_eval::five_bucket_anchor::<Bls12_381>(
+        &c1_coms,
+        &c2_coms,
+        &pi,
+        &theta,
+        gamma,
+        &u_rho,
+        &v_rho,
+        &u_dual_rho,
+        &v_dual_rho,
+    );
+
+    Ok(anchor)
+}
+
 /// Serialize GT element
 pub fn serialize_gt_pvugc(gt: &Fq12) -> Result<Vec<u8>, String> {
     let mut bytes = Vec::new();
@@ -249,21 +333,39 @@ pub fn serialize_attestation_for_kem(
 
 /// Helper to serialize CRS elements for KEM operations
 pub fn serialize_crs_for_kem(
-    crs: &groth_sahai::generator::CRS<Bls12_381>
-) -> (Vec<Vec<u8>>, Vec<Vec<u8>>) {
+    crs: &groth_sahai::generator::CRS<Bls12_381>,
+    u_duals: &[(ark_bls12_381::G2Affine, ark_bls12_381::G2Affine)],
+    v_duals: &[(ark_bls12_381::G1Affine, ark_bls12_381::G1Affine)],
+) -> (Vec<Vec<u8>>, Vec<Vec<u8>>, Vec<Vec<u8>>, Vec<Vec<u8>>) {
     let mut u_bases = Vec::new();
     for u in &crs.u {
         let mut bytes = Vec::new();
         u.serialize_compressed(&mut bytes).unwrap();
         u_bases.push(bytes);
     }
-    
+
     let mut v_bases = Vec::new();
     for v in &crs.v {
         let mut bytes = Vec::new();
         v.serialize_compressed(&mut bytes).unwrap();
         v_bases.push(bytes);
     }
-    
-    (u_bases, v_bases)
+
+    let mut u_dual_bytes = Vec::new();
+    for (d0, d1) in u_duals {
+        let mut bytes = Vec::new();
+        d0.serialize_compressed(&mut bytes).unwrap();
+        d1.serialize_compressed(&mut bytes).unwrap();
+        u_dual_bytes.push(bytes);
+    }
+
+    let mut v_dual_bytes = Vec::new();
+    for (d0, d1) in v_duals {
+        let mut bytes = Vec::new();
+        d0.serialize_compressed(&mut bytes).unwrap();
+        d1.serialize_compressed(&mut bytes).unwrap();
+        v_dual_bytes.push(bytes);
+    }
+
+    (u_bases, v_bases, u_dual_bytes, v_dual_bytes)
 }

@@ -103,13 +103,17 @@ fn test_kem_bit_for_bit_match() {
     let gs = GrothSahaiCommitments::from_seed(b"KEM_BIT_TEST");
     let (proof, vk) = create_mock_proof_and_vk(&mut rng);
     
-    let attestation = gs.commit_arkworks_proof(&proof, &vk, &vec![], true, &mut rng)
+    let public_inputs: Vec<Fr> = vec![];
+    let attestation = gs.commit_arkworks_proof(&proof, &vk, &public_inputs, true, &mut rng)
         .expect("Failed to create attestation");
-    
+
     // Serialize attestation and CRS components for KEM
     let (c1_bytes, c2_bytes, pi_bytes, theta_bytes) = serialize_attestation_for_kem(&attestation);
     let crs = gs.get_crs();
-    let (u_bases, v_bases) = serialize_crs_for_kem(&crs);
+    let (u_duals, v_duals) = gs.get_dual_elements();
+    let (u_bases, v_bases, u_dual_bases, v_dual_bases) =
+        serialize_crs_for_kem(crs, &u_duals, &v_duals);
+    let gamma = gs.groth16_verify_as_ppe(&vk, &public_inputs).gamma.clone();
     
     // Context for KEM
     let ctx_hash = b"test_context";
@@ -127,6 +131,9 @@ fn test_kem_bit_for_bit_match() {
         &theta_bytes,
         &u_bases,
         &v_bases,
+        &u_dual_bases,
+        &v_dual_bases,
+        &gamma,
         adaptor_share,
         ctx_hash,
         gs_instance_digest,
@@ -139,6 +146,7 @@ fn test_kem_bit_for_bit_match() {
         &c2_bytes,
         &pi_bytes,
         &theta_bytes,
+        &gamma,
         ctx_hash,
         gs_instance_digest,
     ).expect("Decapsulation failed");
@@ -157,15 +165,19 @@ fn test_kem_determinism_guarantee() {
     let (proof, vk) = create_mock_proof_and_vk(&mut rng);
     
     let crs = gs.get_crs();
-    
-    let attestation = gs.commit_arkworks_proof(&proof, &vk, &vec![], true, &mut rng)
+    let (u_duals, v_duals) = gs.get_dual_elements();
+    let public_inputs: Vec<Fr> = vec![];
+
+    let attestation = gs.commit_arkworks_proof(&proof, &vk, &public_inputs, true, &mut rng)
         .expect("Failed to create attestation");
     
     // Test proof-agnostic behavior: different attestations for same statement should produce same masked matrix
     let num_iterations = 5;
     
     // Serialize CRS elements for KEM
-    let (u_bases, v_bases) = serialize_crs_for_kem(&crs);
+    let (u_bases, v_bases, u_dual_bases, v_dual_bases) =
+        serialize_crs_for_kem(crs, &u_duals, &v_duals);
+    let gamma = gs.groth16_verify_as_ppe(&vk, &public_inputs).gamma.clone();
     
     // Context for KEM
     let ctx_hash = b"test_context";
@@ -187,6 +199,9 @@ fn test_kem_determinism_guarantee() {
         &theta_bytes,
         &u_bases,
         &v_bases,
+        &u_dual_bases,
+        &v_dual_bases,
+        &gamma,
         adaptor_share,
         ctx_hash,
         gs_instance_digest,
@@ -199,6 +214,7 @@ fn test_kem_determinism_guarantee() {
         &c2_bytes,
         &pi_bytes,
         &theta_bytes,
+        &gamma,
         ctx_hash,
         gs_instance_digest,
     ).expect("Decapsulation failed");
@@ -207,7 +223,7 @@ fn test_kem_determinism_guarantee() {
     
     // Test proof-agnostic behavior: different attestations for same statement should produce same KEM key
     for i in 0..num_iterations {
-        let attestation_i = gs.commit_arkworks_proof(&proof, &vk, &vec![], true, &mut rng)
+        let attestation_i = gs.commit_arkworks_proof(&proof, &vk, &public_inputs, true, &mut rng)
             .expect("Failed to create attestation");
         
         // Serialize new attestation
@@ -223,6 +239,9 @@ fn test_kem_determinism_guarantee() {
             &theta_bytes_i,
             &u_bases,
             &v_bases,
+            &u_dual_bases,
+            &v_dual_bases,
+            &gamma,
             adaptor_share,
             ctx_hash,
             gs_instance_digest,
@@ -235,6 +254,7 @@ fn test_kem_determinism_guarantee() {
             &c2_bytes_i,
             &pi_bytes_i,
             &theta_bytes_i,
+            &gamma,
             ctx_hash,
             gs_instance_digest,
         ).expect("Decapsulation failed");
@@ -694,7 +714,7 @@ fn test_complete_adaptor_signature_flow() {
     
     // === STEP 3: CREATE GS ATTESTATION ===
     let _public_input: Vec<Fr> = vec![];
-    let attestation = gs.commit_arkworks_proof(&proof, &vk, &vec![], true, &mut rng)
+    let attestation = gs.commit_arkworks_proof(&proof, &vk, &_public_input, true, &mut rng)
         .expect("Failed to create attestation");
     
     println!("\n✓ Step 3: GS attestation created using GrothSahaiCommitments");
@@ -704,6 +724,8 @@ fn test_complete_adaptor_signature_flow() {
     // === STEP 4: GET DUAL BASES FOR KEM ===
     // Get CRS elements for canonical evaluation
     let (u_elements, v_elements) = gs.get_crs_elements();
+    let (u_dual_elements, v_dual_elements) = gs.get_dual_elements();
+    let gamma = gs.groth16_verify_as_ppe(&vk, &_public_input).gamma.clone();
     println!("\n✓ Step 4: Dual bases extracted from GS");
     println!("  - {} U elements (G1)", u_elements.len());
     println!("  - {} V elements (G2)", v_elements.len());
@@ -731,6 +753,22 @@ fn test_complete_adaptor_signature_flow() {
         v0.serialize_compressed(&mut pair).unwrap();
         v1.serialize_compressed(&mut pair).unwrap();
         v_elements_bytes.push(pair);
+    }
+
+    let mut u_dual_bytes = Vec::new();
+    for (d0, d1) in u_dual_elements.iter() {
+        let mut pair = Vec::new();
+        d0.serialize_compressed(&mut pair).unwrap();
+        d1.serialize_compressed(&mut pair).unwrap();
+        u_dual_bytes.push(pair);
+    }
+
+    let mut v_dual_bytes = Vec::new();
+    for (d0, d1) in v_dual_elements.iter() {
+        let mut pair = Vec::new();
+        d0.serialize_compressed(&mut pair).unwrap();
+        d1.serialize_compressed(&mut pair).unwrap();
+        v_dual_bytes.push(pair);
     }
     
     // Serialize attestation commitments
@@ -777,6 +815,9 @@ fn test_complete_adaptor_signature_flow() {
             &theta_bytes,
             &u_elements_bytes,
             &v_elements_bytes,
+            &u_dual_bytes,
+            &v_dual_bytes,
+            &gamma,
             *s_i_fr,
             &ctx_hash,
             &gs_instance_digest,
@@ -801,6 +842,7 @@ fn test_complete_adaptor_signature_flow() {
             &c2_bytes,
             &pi_bytes,
             &theta_bytes,
+            &gamma,
             &ctx_hash,
             &gs_instance_digest,
         ).expect(&format!("Decapsulation failed for share {}", i));
@@ -924,6 +966,7 @@ fn test_complete_adaptor_signature_flow() {
             &fake_c2_bytes,
             &fake_pi_bytes,
             &fake_theta_bytes,
+            &gamma,
             &ctx_hash,
             &gs_instance_digest,
         );
@@ -954,16 +997,19 @@ fn test_two_distinct_groth16_proofs_same_output() {
     let x = [Fr::from(25u64)];
 
     let crs = gs.get_crs().clone();
+    let (u_duals_final, v_duals_final) = gs.get_dual_elements();
     let mut rng = test_rng();
-    
+
     // Test proof-agnostic behavior using ProductKeyKEM
     let kem = ProductKeyKEM::new();
     let adaptor_share = Fr::from(0x1234567890abcdefu64);
     let ctx_hash = b"crs";
     let gs_instance_digest = b"ppe";
-    
+
     // Serialize CRS elements
-    let (u_bases, v_bases) = serialize_crs_for_kem(&crs);
+    let (u_bases, v_bases, u_dual_bases, v_dual_bases) =
+        serialize_crs_for_kem(&crs, &u_duals_final, &v_duals_final);
+    let gamma = gs.groth16_verify_as_ppe(&vk, &x).gamma.clone();
     
     // Convert GS proofs to GSAttestations and serialize them
     let attestation1 = gs.commit_arkworks_proof(&proof1, &vk, &x, true, &mut rng)
@@ -984,6 +1030,9 @@ fn test_two_distinct_groth16_proofs_same_output() {
         &theta_bytes1,
         &u_bases,
         &v_bases,
+        &u_dual_bases,
+        &v_dual_bases,
+        &gamma,
         adaptor_share,
         ctx_hash,
         gs_instance_digest,
@@ -998,6 +1047,9 @@ fn test_two_distinct_groth16_proofs_same_output() {
         &theta_bytes2,
         &u_bases,
         &v_bases,
+        &u_dual_bases,
+        &v_dual_bases,
+        &gamma,
         adaptor_share,
         ctx_hash,
         gs_instance_digest,
@@ -1010,6 +1062,7 @@ fn test_two_distinct_groth16_proofs_same_output() {
         &c2_bytes1,
         &pi_bytes1,
         &theta_bytes1,
+        &gamma,
         ctx_hash,
         gs_instance_digest,
     ).expect("Decapsulation failed");
@@ -1020,6 +1073,7 @@ fn test_two_distinct_groth16_proofs_same_output() {
         &c2_bytes2,
         &pi_bytes2,
         &theta_bytes2,
+        &gamma,
         ctx_hash,
         gs_instance_digest,
     ).expect("Decapsulation failed");

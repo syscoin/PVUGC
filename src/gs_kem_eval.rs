@@ -117,6 +117,31 @@ pub fn rhs_masked_matrix<E: Pairing>(ppe: &PPE<E>, rho: E::ScalarField) -> [[E::
     [[ m[0][0].0, m[0][1].0 ], [ m[1][0].0, m[1][1].0 ]]
 }
 
+/// Compute the five-bucket anchor: (B1 + B2 + G) - B3 - B4
+pub fn five_bucket_anchor<E: Pairing>(
+    xcoms: &[Com1<E>],
+    ycoms: &[Com2<E>],
+    pi: &[Com2<E>],
+    theta: &[Com1<E>],
+    gamma: &[Vec<E::ScalarField>],
+    u_rho: &[Com1<E>],
+    v_rho: &[Com2<E>],
+    u_dual_rho: &[Com2<E>],
+    v_dual_rho: &[Com1<E>],
+) -> ComT<E> {
+    let b1 = ComT::<E>::pairing_sum(xcoms, u_dual_rho);
+    let b2 = ComT::<E>::pairing_sum(v_dual_rho, ycoms);
+
+    let gamma_matrix: Vec<Vec<E::ScalarField>> = gamma.to_vec();
+    let stmt_y = vec_to_col_vec(ycoms).left_mul(&gamma_matrix, false);
+    let g = ComT::<E>::pairing_sum(xcoms, &col_vec_to_vec(&stmt_y));
+
+    let b3 = ComT::<E>::pairing_sum(u_rho, pi);
+    let b4 = ComT::<E>::pairing_sum(theta, v_rho);
+
+    (b1 + b2 + g) - b3 - b4
+}
+
 
 
 
