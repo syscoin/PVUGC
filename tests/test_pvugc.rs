@@ -12,6 +12,7 @@ use sha2::{Digest, Sha256};
 use arkworks_groth16::{
     masked_verifier_matrix_canonical, serialize_attestation_for_kem, serialize_crs_for_kem,
     ArkworksProof, ArkworksVK, GSAttestation, GrothSahaiCommitments, ProductKeyKEM, SchnorrAdaptor,
+    compute_target_public, deserialize_com1_pairs, deserialize_com2_pairs, five_bucket_comt,
 };
 
 // GS internals for direct testing
@@ -1136,4 +1137,152 @@ fn test_two_distinct_groth16_proofs_same_output() {
         recovered1, recovered2,
         "Both proofs should produce identical adaptor shares"
     );
+}
+
+#[test]
+fn deposit_withdraw_comt_equivalence() {
+    use ark_bls12_381::Bls12_381 as E;
+    use ark_ec::pairing::PairingOutput;
+    use ark_ff::Field;
+    use groth_sahai::data_structures::{Com1, Com2, ComT};
+    use groth_sahai::BT;
+    use ark_serialize::CanonicalDeserialize;
+    use ark_std::test_rng;
+    use std::io::Cursor;
+
+    let mut rng = test_rng();
+    
+    // === SETUP: Create the same scenario as the failing test ===
+    let gs = GrothSahaiCommitments::from_seed(b"KEM_BIT_TEST");
+    let (proof, vk) = create_mock_proof_and_vk(&mut rng);
+    let attestation = gs
+        .commit_arkworks_proof(&proof, &vk, &vec![], true, &mut rng)
+        .expect("Failed to create attestation");
+
+    // Serialize attestation and CRS components for KEM
+    let (c1_bytes, c2_bytes, pi_bytes, theta_bytes) = serialize_attestation_for_kem(&attestation);
+    let crs = gs.get_crs();
+    let (u_duals, v_duals) = gs.duals();
+    
+    // Convert duals to affine pairs for encapsulate_duo
+    let u_star_pairs: Vec<(ark_bls12_381::G2Affine, ark_bls12_381::G2Affine)> = u_duals.iter()
+        .map(|com2| (com2.0, com2.1))
+        .collect();
+    let v_star_pairs: Vec<(ark_bls12_381::G1Affine, ark_bls12_381::G1Affine)> = v_duals.iter()
+        .map(|com1| (com1.0, com1.1))
+        .collect();
+
+    // Serialize CRS bases
+    let (u_bases, v_bases, _, _) = serialize_crs_for_kem(crs, &u_duals, &v_duals);
+    
+    // Create PPE
+    let x = vec![Fr::from(25u64)]; // public input
+    let ppe = gs.groth16_verify_as_ppe(&vk, &x);
+    
+    // Generate random rho
+    let rho = ark_bls12_381::Fr::rand(&mut rng);
+    
+    // === DEPOSIT SIDE: Compute ComT using linear_map_PPE(T^ρ) ===
+    let t = compute_target_public(&vk, &x[0].into_bigint().to_bytes_be())
+        .expect("Failed to compute target");
+    let t_rho = t.0.pow(rho.into_bigint());
+    let comt_dep = ComT::<E>::linear_map_PPE(&PairingOutput::<E>(t_rho));
+    
+    // === WITHDRAW SIDE: Compute ComT using five_bucket_comt ===
+    // Deserialize attestation components
+    let c1: Vec<Com1<E>> = c1_bytes.iter().map(|b| Com1::deserialize_compressed(&**b)).collect::<Result<_,_>>()
+        .expect("Failed to deserialize C1");
+    let c2: Vec<Com2<E>> = c2_bytes.iter().map(|b| Com2::deserialize_compressed(&**b)).collect::<Result<_,_>>()
+        .expect("Failed to deserialize C2");
+    let pi: Vec<Com2<E>> = pi_bytes.iter().map(|b| Com2::deserialize_compressed(&**b)).collect::<Result<_,_>>()
+        .expect("Failed to deserialize pi");
+    let theta: Vec<Com1<E>> = theta_bytes.iter().map(|b| Com1::deserialize_compressed(&**b)).collect::<Result<_,_>>()
+        .expect("Failed to deserialize theta");
+    
+    // Create masked bases (simplified - just use the same rho for all)
+    let kem = ProductKeyKEM::new();
+    let u_rho = kem.mask_g1_pairs(&u_bases, rho).expect("Failed to mask U");
+    let v_rho = kem.mask_g2_pairs(&v_bases, rho).expect("Failed to mask V");
+    let u_star_rho = kem.mask_g2_dual_pairs(&u_star_pairs, rho);
+    let v_star_rho = kem.mask_g1_dual_pairs(&v_star_pairs, rho);
+    
+    // Deserialize masked bases
+    let u_rho_com1: Vec<Com1<E>> = deserialize_com1_pairs(&u_rho).expect("Failed to deserialize U^ρ");
+    let v_rho_com2: Vec<Com2<E>> = deserialize_com2_pairs(&v_rho).expect("Failed to deserialize V^ρ");
+    
+    // Deserialize masked duals to affine pairs
+    let u_star_rho_pairs: Vec<(ark_bls12_381::G2Affine, ark_bls12_381::G2Affine)> = u_star_rho.iter()
+        .map(|bytes| {
+            let mut cursor = std::io::Cursor::new(bytes);
+            let a = ark_bls12_381::G2Affine::deserialize_compressed(&mut cursor).expect("Failed to deserialize G2");
+            let b = ark_bls12_381::G2Affine::deserialize_compressed(&mut cursor).expect("Failed to deserialize G2");
+            (a, b)
+        }).collect();
+    
+    let v_star_rho_pairs: Vec<(ark_bls12_381::G1Affine, ark_bls12_381::G1Affine)> = v_star_rho.iter()
+        .map(|bytes| {
+            let mut cursor = std::io::Cursor::new(bytes);
+            let a = ark_bls12_381::G1Affine::deserialize_compressed(&mut cursor).expect("Failed to deserialize G1");
+            let b = ark_bls12_381::G1Affine::deserialize_compressed(&mut cursor).expect("Failed to deserialize G1");
+            (a, b)
+        }).collect();
+    
+    let comt_wd = five_bucket_comt::<E>(
+        &c1, &c2, &pi, &theta, &ppe.gamma,
+        &u_rho_com1, &v_rho_com2, &u_star_rho_pairs, &v_star_rho_pairs
+    );
+    
+    // === COMPARISON: Check cell-by-cell equality ===
+    let md = comt_dep.as_matrix();
+    let mw = comt_wd.as_matrix();
+    
+    println!("Deposit ComT matrix:");
+    println!("  [0][0]: {:?}", md[0][0].0);
+    println!("  [0][1]: {:?}", md[0][1].0);
+    println!("  [1][0]: {:?}", md[1][0].0);
+    println!("  [1][1]: {:?}", md[1][1].0);
+    
+    println!("Withdraw ComT matrix:");
+    println!("  [0][0]: {:?}", mw[0][0].0);
+    println!("  [0][1]: {:?}", mw[0][1].0);
+    println!("  [1][0]: {:?}", mw[1][0].0);
+    println!("  [1][1]: {:?}", mw[1][1].0);
+    
+    // Check if matrices are equal
+    let mut all_equal = true;
+    for i in 0..2 {
+        for j in 0..2 {
+            if md[i][j].0 != mw[i][j].0 {
+                println!("❌ ComT[{}][{}] mismatch!", i, j);
+                all_equal = false;
+            } else {
+                println!("✓ ComT[{}][{}] match", i, j);
+            }
+        }
+    }
+    
+    if all_equal {
+        println!("✅ SUCCESS: Deposit and withdraw ComT matrices are identical!");
+    } else {
+        println!("❌ FAILURE: ComT matrices differ - this explains the decryption failure");
+        
+        // Additional diagnostics
+        println!("\n=== DIAGNOSTICS ===");
+        println!("PPE gamma: {:?}", ppe.gamma);
+        println!("PPE target: {:?}", ppe.target);
+        println!("T^ρ: {:?}", t_rho);
+        println!("C1 len: {}, C2 len: {}", c1.len(), c2.len());
+        println!("pi len: {}, theta len: {}", pi.len(), theta.len());
+        println!("U^ρ len: {}, V^ρ len: {}", u_rho_com1.len(), v_rho_com2.len());
+        println!("U*^ρ len: {}, V*^ρ len: {}", u_star_rho_pairs.len(), v_star_rho_pairs.len());
+    }
+    
+    // Assert equality (this will fail if there's a mismatch)
+    assert_eq!(md[0][0].0, mw[0][0].0, "ComT[0][0]");
+    assert_eq!(md[0][1].0, mw[0][1].0, "ComT[0][1]");
+    assert_eq!(md[1][0].0, mw[1][0].0, "ComT[1][0]");
+    assert_eq!(md[1][1].0, mw[1][1].0, "ComT[1][1]");
+    
+    // Sanity check: target cell should equal T^ρ
+    assert_eq!(md[1][1].0, t_rho, "target cell mismatch");
 }

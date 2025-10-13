@@ -332,7 +332,7 @@ impl ProductKeyKEM {
     }
 
     /// Mask G2 dual pairs with scalar multiplication
-    fn mask_g2_dual_pairs(&self, u_star_pairs: &[(ark_bls12_381::G2Affine, ark_bls12_381::G2Affine)], rho: Scalar) -> Vec<Vec<u8>> {
+    pub fn mask_g2_dual_pairs(&self, u_star_pairs: &[(ark_bls12_381::G2Affine, ark_bls12_381::G2Affine)], rho: Scalar) -> Vec<Vec<u8>> {
         use ark_serialize::CanonicalSerialize;
         u_star_pairs.iter().map(|(a, b)| {
             let a = (a.into_group() * rho).into_affine();
@@ -345,7 +345,7 @@ impl ProductKeyKEM {
     }
 
     /// Mask G1 dual pairs with scalar multiplication
-    fn mask_g1_dual_pairs(&self, v_star_pairs: &[(ark_bls12_381::G1Affine, ark_bls12_381::G1Affine)], rho: Scalar) -> Vec<Vec<u8>> {
+    pub fn mask_g1_dual_pairs(&self, v_star_pairs: &[(ark_bls12_381::G1Affine, ark_bls12_381::G1Affine)], rho: Scalar) -> Vec<Vec<u8>> {
         use ark_serialize::CanonicalSerialize;
         v_star_pairs.iter().map(|(a, b)| {
             let a = (a.into_group() * rho).into_affine();
