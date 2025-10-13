@@ -3,13 +3,11 @@
 use ark_bls12_381::{Bls12_381, Fr};
 use ark_ec::pairing::{Pairing, PairingOutput};
 use ark_ec::{AffineRepr, CurveGroup};
-use ark_ff::{BigInteger, PrimeField, One, Zero};
+use ark_ff::{PrimeField, One, Zero};
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use ark_std::vec::Vec;
 
-use groth_sahai::data_structures::{Com1, Com2, ComT, vec_to_col_vec, col_vec_to_vec, B1, B2, BT, Mat};
-use groth_sahai::generator::CRS;
-use groth_sahai::statement::PPE;
+use groth_sahai::data_structures::{Com1, Com2, ComT, vec_to_col_vec, col_vec_to_vec, BT, Mat};
 
 use crate::groth16_wrapper::ArkworksVK;
 

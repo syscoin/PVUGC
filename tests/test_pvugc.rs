@@ -98,8 +98,10 @@ fn test_kem_bit_for_bit_match() {
     let gs = GrothSahaiCommitments::from_seed(b"KEM_BIT_TEST");
     let (proof, vk) = create_mock_proof_and_vk(&mut rng);
 
+    // Public input x for this test (must be used consistently in attestation and target)
+    let x = vec![Fr::from(25u64)]; // public input
     let attestation = gs
-        .commit_arkworks_proof(&proof, &vk, &vec![], true, &mut rng)
+        .commit_arkworks_proof(&proof, &vk, &x, true, &mut rng)
         .expect("Failed to create attestation");
 
     // Serialize attestation and CRS components for KEM
@@ -963,6 +965,7 @@ fn test_complete_adaptor_signature_flow() {
         proof_data: vec![],
         randomness_used: vec![],
         ppe_target: attestation.ppe_target, // Even with correct target!
+        cproof: attestation.cproof.clone(),
     };
 
     // Serialize fake attestation commitments
@@ -1015,22 +1018,24 @@ fn test_two_distinct_groth16_proofs_same_output() {
     let vk = groth16.setup().expect("Setup should succeed");
 
     // Same witness produces same public input; Groth16 proofs are randomized
-    let witness = Fr::from(5u64);
-    let witness1 = -witness; // second valid proof with same x = witness^2
-    let proof1 = groth16.prove(witness).expect("Prove should succeed");
-    let proof2 = groth16.prove(witness1).expect("Prove should succeed");
+    let witness1 = Fr::from(3u64);
+    let witness2 = Fr::from(2u64); // 3 + 2 = 5
+    let witness3 = Fr::from(4u64);
+    let witness4 = Fr::from(1u64); // 4 + 1 = 5 (different witnesses, same public input)
+    let proof1 = groth16.prove(witness1, witness2).expect("Prove should succeed");
+    let proof2 = groth16.prove(witness3, witness4).expect("Prove should succeed");
 
-    // Explicit x: public_input = [25]
-    let x = [Fr::from(25u64)];
+    // Explicit x: public_input = [5]
+    let x = [Fr::from(5u64)];
 
     let crs = gs.get_crs().clone();
     let (u_duals, v_duals) = gs.duals();
     
     // Convert Com1/Com2 to affine pairs for encapsulate_duo
-    let u_star_pairs: Vec<(ark_bls12_381::G2Affine, ark_bls12_381::G2Affine)> = u_duals.iter()
+    let _u_star_pairs: Vec<(ark_bls12_381::G2Affine, ark_bls12_381::G2Affine)> = u_duals.iter()
         .map(|com2| (com2.0, com2.1))
         .collect();
-    let v_star_pairs: Vec<(ark_bls12_381::G1Affine, ark_bls12_381::G1Affine)> = v_duals.iter()
+    let _v_star_pairs: Vec<(ark_bls12_381::G1Affine, ark_bls12_381::G1Affine)> = v_duals.iter()
         .map(|com1| (com1.0, com1.1))
         .collect();
     
@@ -1040,10 +1045,10 @@ fn test_two_distinct_groth16_proofs_same_output() {
     let kem = ProductKeyKEM::new();
     let adaptor_share = Fr::from(0x1234567890abcdefu64);
     let ctx_hash = b"crs";
-    let gs_instance_digest = b"ppe";
+    let _gs_instance_digest = b"ppe";
 
     // Serialize CRS elements
-    let (u_bases, v_bases, u_dual_bases, v_dual_bases) =
+    let (u_bases, v_bases, _u_dual_bases, _v_dual_bases) =
         serialize_crs_for_kem(&crs, u_duals, v_duals);
 
     // Convert GS proofs to GSAttestations and serialize them
@@ -1066,14 +1071,15 @@ fn test_two_distinct_groth16_proofs_same_output() {
     let x_hash = b"x_hash";
     let deposit_id = b"deposit_id";
     
+    // Use attestation1 for encapsulation to match decapsulation
     let (kem_share1, _) = kem
         .encapsulate_duo(
             &mut rng,
             0,
             &u_bases,
             &v_bases,
-            &u_star_pairs,
-            &v_star_pairs,
+            &_u_star_pairs,
+            &_v_star_pairs,
             adaptor_share,
             ctx_hash,
             &vk,
@@ -1091,6 +1097,17 @@ fn test_two_distinct_groth16_proofs_same_output() {
 
     // Both KEM shares should decrypt to the same adaptor share (proof-agnostic behavior)
     let ppe = gs.groth16_verify_as_ppe(&vk, &x);
+    {
+        // Canonical GS verification of both attestations for the same (vk,x)
+        use groth_sahai::verifier::Verifiable;
+        let crs_ref = gs.get_crs();
+        let ok1 = ppe.verify(&attestation1.cproof, crs_ref);
+        let ok2 = ppe.verify(&attestation2.cproof, crs_ref);
+        println!("Attestation1 PPE verify: {}", ok1);
+        println!("Attestation2 PPE verify: {}", ok2);
+        assert!(ok1, "PPE verification failed for attestation1");
+        assert!(ok2, "PPE verification failed for attestation2");
+    }
     let recovered1 = kem
         .decapsulate_duo(
             &kem_share1,
@@ -1141,23 +1158,92 @@ fn test_two_distinct_groth16_proofs_same_output() {
 
 #[test]
 fn deposit_withdraw_comt_equivalence() {
+    use arkworks_groth16::gs_kem_eval;
+    use groth_sahai::{vec_to_col_vec, col_vec_to_vec, Mat};
     use ark_bls12_381::Bls12_381 as E;
     use ark_ec::pairing::PairingOutput;
     use ark_ff::Field;
     use groth_sahai::data_structures::{Com1, Com2, ComT};
     use groth_sahai::BT;
+    use groth_sahai::verifier::Verifiable;
     use ark_serialize::CanonicalDeserialize;
     use ark_std::test_rng;
-    use std::io::Cursor;
 
     let mut rng = test_rng();
     
-    // === SETUP: Create the same scenario as the failing test ===
+    // === SETUP: Create real Groth16 circuit and proof ===
     let gs = GrothSahaiCommitments::from_seed(b"KEM_BIT_TEST");
-    let (proof, vk) = create_mock_proof_and_vk(&mut rng);
+    
+    // Create real Groth16 circuit and proof
+    use arkworks_groth16::groth16_wrapper::ArkworksGroth16;
+    let mut groth16 = ArkworksGroth16::new();
+    let vk_struct = groth16.setup().expect("Failed to setup Groth16");
+    
+    // Create proof for addition (3 + 2 = 5)
+    let witness1 = Fr::from(3u64);
+    let witness2 = Fr::from(2u64);
+    let proof_struct = groth16.prove(witness1, witness2).expect("Failed to prove");
+    
+    // Convert to ArkworksProof format
+    let _proof = ArkworksProof {
+        pi_a: proof_struct.pi_a,
+        pi_b: proof_struct.pi_b,
+        pi_c: proof_struct.pi_c,
+        public_input: proof_struct.public_input.clone(),
+        proof_bytes: proof_struct.proof_bytes,
+    };
+    
+    // Convert to ArkworksVK format
+    let vk = ArkworksVK {
+        alpha_g1: vk_struct.alpha_g1,
+        beta_g2: vk_struct.beta_g2,
+        gamma_g2: vk_struct.gamma_g2,
+        delta_g2: vk_struct.delta_g2,
+        gamma_abc_g1: vk_struct.gamma_abc_g1,
+        vk_bytes: vk_struct.vk_bytes,
+    };
+    
+    // Use consistent public input for both attestation creation and verification
+    let x = vec![Fr::from(5u64)]; // public input (3 + 2 = 5)
+    
+    // === CREATE MULTIPLE PROOFS/ATTESTATIONS ===
+    // Create multiple proofs for the SAME statement (same public input) with different witnesses
+    // Using addition circuit: witness1 + witness2 = public_input
+    let test_cases = vec![
+        (Fr::from(3u64), Fr::from(2u64), Fr::from(5u64)),   // 3 + 2 = 5
+        (Fr::from(4u64), Fr::from(1u64), Fr::from(5u64)),   // 4 + 1 = 5
+        (Fr::from(0u64), Fr::from(5u64), Fr::from(5u64)),   // 0 + 5 = 5
+    ];
+    
+    let mut attestations = Vec::new();
+    let mut public_inputs = Vec::new();
+    
+    for (i, (witness1, witness2, public_input)) in test_cases.iter().enumerate() {
+        // Create proof for each witness pair
+        let proof_struct = groth16.prove(*witness1, *witness2).expect(&format!("Failed to prove witnesses {}", i));
+        
+        // Convert to ArkworksProof format
+        let proof = ArkworksProof {
+            pi_a: proof_struct.pi_a,
+            pi_b: proof_struct.pi_b,
+            pi_c: proof_struct.pi_c,
+            public_input: proof_struct.public_input.clone(),
+            proof_bytes: proof_struct.proof_bytes,
+        };
+        
+        // Create attestation with the CORRECT public input for each proof
+        let x_i = vec![*public_input];
     let attestation = gs
-        .commit_arkworks_proof(&proof, &vk, &vec![], true, &mut rng)
-        .expect("Failed to create attestation");
+            .commit_arkworks_proof(&proof, &vk, &x_i, true, &mut rng)
+            .expect(&format!("Failed to create attestation {}", i));
+        
+        attestations.push(attestation);
+        public_inputs.push(x_i);
+        println!("Created attestation {} with witnesses ({}, {}) and public input {}", i, witness1, witness2, public_input);
+    }
+    
+    // Use the first attestation for the main test logic
+    let attestation = &attestations[0];
 
     // Serialize attestation and CRS components for KEM
     let (c1_bytes, c2_bytes, pi_bytes, theta_bytes) = serialize_attestation_for_kem(&attestation);
@@ -1175,9 +1261,12 @@ fn deposit_withdraw_comt_equivalence() {
     // Serialize CRS bases
     let (u_bases, v_bases, _, _) = serialize_crs_for_kem(crs, &u_duals, &v_duals);
     
-    // Create PPE
-    let x = vec![Fr::from(25u64)]; // public input
+    // Create PPE (using the same public input as attestation creation)
     let ppe = gs.groth16_verify_as_ppe(&vk, &x);
+    
+    // === PPE VERIFICATION: Verify the attestation satisfies the PPE ===
+    let ppe_verification_result = ppe.verify(&attestation.cproof, crs);
+    assert!(ppe_verification_result, "PPE verification must pass for valid attestation");
     
     // Generate random rho
     let rho = ark_bls12_381::Fr::rand(&mut rng);
@@ -1187,6 +1276,15 @@ fn deposit_withdraw_comt_equivalence() {
         .expect("Failed to compute target");
     let t_rho = t.0.pow(rho.into_bigint());
     let comt_dep = ComT::<E>::linear_map_PPE(&PairingOutput::<E>(t_rho));
+
+    // === DIAG 1: Canonical masked-verifier ComT must equal deposit linear map ===
+    let mv = gs_kem_eval::masked_verifier_matrix_canonical(
+        &ppe, crs, &attestation.c1_commitments, &attestation.c2_commitments,
+        &attestation.pi_elements, &attestation.theta_elements, rho);
+    let comt_mv = ComT::<E>::from(vec![
+        vec![PairingOutput::<E>(mv[0][0]), PairingOutput::<E>(mv[0][1])],
+        vec![PairingOutput::<E>(mv[1][0]), PairingOutput::<E>(mv[1][1])],
+    ]);
     
     // === WITHDRAW SIDE: Compute ComT using five_bucket_comt ===
     // Deserialize attestation components
@@ -1227,61 +1325,243 @@ fn deposit_withdraw_comt_equivalence() {
             (a, b)
         }).collect();
     
+    // Convert pairs to Com1/Com2 types
+    let u_star_rho_com2: Vec<Com2<E>> = u_star_rho_pairs.iter().map(|(a,b)| Com2(*a,*b)).collect();
+    let v_star_rho_com1: Vec<Com1<E>> = v_star_rho_pairs.iter().map(|(a,b)| Com1(*a,*b)).collect();
+    
     let comt_wd = five_bucket_comt::<E>(
         &c1, &c2, &pi, &theta, &ppe.gamma,
-        &u_rho_com1, &v_rho_com2, &u_star_rho_pairs, &v_star_rho_pairs
+        &u_rho_com1, &v_rho_com2, &u_star_rho_com2, &v_star_rho_com1
     );
     
     // === COMPARISON: Check cell-by-cell equality ===
     let md = comt_dep.as_matrix();
     let mw = comt_wd.as_matrix();
     
-    println!("Deposit ComT matrix:");
-    println!("  [0][0]: {:?}", md[0][0].0);
-    println!("  [0][1]: {:?}", md[0][1].0);
-    println!("  [1][0]: {:?}", md[1][0].0);
-    println!("  [1][1]: {:?}", md[1][1].0);
-    
-    println!("Withdraw ComT matrix:");
-    println!("  [0][0]: {:?}", mw[0][0].0);
-    println!("  [0][1]: {:?}", mw[0][1].0);
-    println!("  [1][0]: {:?}", mw[1][0].0);
-    println!("  [1][1]: {:?}", mw[1][1].0);
-    
-    // Check if matrices are equal
-    let mut all_equal = true;
-    for i in 0..2 {
-        for j in 0..2 {
-            if md[i][j].0 != mw[i][j].0 {
-                println!("❌ ComT[{}][{}] mismatch!", i, j);
-                all_equal = false;
+    // === SYSTEMATIC COMBINATION TESTING ===
+    println!("\n=== SYSTEMATIC COMBINATION TESTING ===");
+    println!("Expected T^ρ: {:?}", t_rho);
+    println!("Deposit [1][1]: {:?}", md[1][1].0);
+
+
+
+    // Buckets with primaries (new approach) - but primaries don't work for pairing types
+    // This is just for testing, will fail due to Com1×Com1 and Com2×Com2 pairings
+    let b1_primary = ComT::<E>::zero(); // Can't compute Com1×Com1 pairing
+    let b2_primary = ComT::<E>::zero(); // Can't compute Com2×Com2 pairing  
+    let b3_primary = ComT::<E>::pairing_sum(&u_rho_com1, &pi);
+    let b4_primary = ComT::<E>::pairing_sum(&theta, &v_rho_com2);
+    let g_primary = {
+        let stmt_y = vec_to_col_vec(&c2).left_mul(&ppe.gamma, false);
+        ComT::<E>::pairing_sum(&c1, &col_vec_to_vec(&stmt_y))
+    };
+
+    // Buckets with duals (original approach)
+    let b1_dual = ComT::<E>::pairing_sum(&c1, &u_star_rho_com2);
+    let b2_dual = ComT::<E>::pairing_sum(&v_star_rho_com1, &c2);
+    let b3_dual = ComT::<E>::pairing_sum(&u_rho_com1, &pi);
+    let b4_dual = ComT::<E>::pairing_sum(&theta, &v_rho_com2);
+    let g_dual = {
+        let stmt_y = vec_to_col_vec(&c2).left_mul(&ppe.gamma, false);
+        ComT::<E>::pairing_sum(&c1, &col_vec_to_vec(&stmt_y))
+    };
+
+    let buckets_primary = [b1_primary, b2_primary, b3_primary, b4_primary, g_primary];
+    let buckets_dual = [b1_dual, b2_dual, b3_dual, b4_dual, g_dual];
+    let bucket_names = ["B1", "B2", "B3", "B4", "G"];
+
+    // Test all 32 combinations (2^5) for each approach type
+    let mut found_match = false;
+    for use_primary in [true, false] {
+        let buckets = if use_primary { &buckets_primary } else { &buckets_dual };
+        let approach_str = if use_primary { "primary" } else { "dual" };
+        
+        println!("\n--- Testing {} combinations ---", approach_str);
+        
+        for combination in 0..32 {
+            let mut result = ComT::<E>::from(vec![
+                vec![PairingOutput::<E>::zero(), PairingOutput::<E>::zero()],
+                vec![PairingOutput::<E>::zero(), PairingOutput::<E>::zero()],
+            ]);
+            
+            let mut used_buckets = Vec::new();
+            let mut signs = Vec::new();
+            
+            for i in 0..5 {
+                if (combination >> i) & 1 == 1 {
+                    result = result + buckets[i];
+                    used_buckets.push(bucket_names[i]);
+                    signs.push("+");
             } else {
-                println!("✓ ComT[{}][{}] match", i, j);
+                    result = result - buckets[i];
+                    used_buckets.push(bucket_names[i]);
+                    signs.push("-");
+                }
+            }
+            
+            let result_val = result.as_matrix()[1][1].0;
+            let matches_deposit = result_val == md[1][1].0;
+            let matches_t_rho = result_val == t_rho;
+            
+            if matches_deposit || matches_t_rho {
+                println!("✅ MATCH FOUND! Combination {}: {} {} {} {} {} {} {} {} {} {}",
+                    combination,
+                    signs[0], used_buckets[0],
+                    signs[1], used_buckets[1], 
+                    signs[2], used_buckets[2],
+                    signs[3], used_buckets[3],
+                    signs[4], used_buckets[4]
+                );
+                println!("   Result: {:?}", result_val);
+                println!("   Matches deposit: {}", matches_deposit);
+                println!("   Matches T^ρ: {}", matches_t_rho);
+                found_match = true;
+            }
+        }
+    }
+
+    if !found_match {
+        println!("❌ No combination found that matches deposit or T^ρ");
+    }
+    
+    // Compare with deposit side (which is known to be correct)
+    println!("\n=== COMPARING WITH DEPOSIT SIDE ===");
+    println!("Deposit [1][1]: {:?}", md[1][1].0);
+    println!("Five bucket [1][1]: {:?}", mw[1][1].0);
+    println!("Expected T^ρ: {:?}", t_rho);
+    println!("Deposit == T^ρ: {}", md[1][1].0 == t_rho);
+    println!("Five bucket == T^ρ: {}", mw[1][1].0 == t_rho);
+    println!("Five bucket == Deposit: {}", mw[1][1].0 == md[1][1].0);
+
+    // === VERIFY: Five bucket should equal deposit [1][1] ===
+    assert_eq!(mw[1][1].0, md[1][1].0, "Five bucket [1][1] should equal deposit [1][1]");
+    println!("✅ Five bucket equals deposit [1][1]");
+    
+    // === MULTIPLE ATTESTATIONS COMPARISON ===
+    println!("\n=== COMPARING MULTIPLE ATTESTATIONS ===");
+    
+    // Compute ComT matrices for all attestations
+    let mut all_comt_matrices = Vec::new();
+    
+    for (i, attestation) in attestations.iter().enumerate() {
+        // Serialize this attestation
+        let (c1_bytes_i, c2_bytes_i, pi_bytes_i, theta_bytes_i) = serialize_attestation_for_kem(attestation);
+        
+        // Deserialize components
+        let c1_i: Vec<Com1<E>> = c1_bytes_i.iter().map(|b| Com1::deserialize_compressed(&**b)).collect::<Result<_,_>>()
+            .expect(&format!("Failed to deserialize C1 for attestation {}", i));
+        let c2_i: Vec<Com2<E>> = c2_bytes_i.iter().map(|b| Com2::deserialize_compressed(&**b)).collect::<Result<_,_>>()
+            .expect(&format!("Failed to deserialize C2 for attestation {}", i));
+        let pi_i: Vec<Com2<E>> = pi_bytes_i.iter().map(|b| Com2::deserialize_compressed(&**b)).collect::<Result<_,_>>()
+            .expect(&format!("Failed to deserialize pi for attestation {}", i));
+        let theta_i: Vec<Com1<E>> = theta_bytes_i.iter().map(|b| Com1::deserialize_compressed(&**b)).collect::<Result<_,_>>()
+            .expect(&format!("Failed to deserialize theta for attestation {}", i));
+        
+        // Create PPE for this attestation's public input
+        let ppe_i = gs.groth16_verify_as_ppe(&vk, &public_inputs[i]);
+        
+        // === VERIFY EACH ATTESTATION ===
+        let ppe_verification_result = ppe_i.verify(&attestation.cproof, crs);
+        assert!(ppe_verification_result, "PPE verification must pass for attestation {}", i);
+        println!("✅ PPE verification passed for attestation {}", i);
+        
+        // Compute ComT using five_bucket_comt
+        let comt_i = five_bucket_comt::<E>(
+            &c1_i, &c2_i, &pi_i, &theta_i, &ppe_i.gamma,
+            &u_rho_com1, &v_rho_com2, &u_star_rho_com2, &v_star_rho_com1
+        );
+        
+        all_comt_matrices.push(comt_i);
+        println!("Computed ComT matrix for attestation {} with public input {}", i, public_inputs[i][0]);
+    }
+    
+    // Compare attestations with the same public input (should produce same ComT)
+    println!("\n=== COMPARING ATTESTATIONS WITH SAME PUBLIC INPUT ===");
+    
+    // Group attestations by public input
+    let mut groups: std::collections::HashMap<Fr, Vec<usize>> = std::collections::HashMap::new();
+    for (i, public_input) in public_inputs.iter().enumerate() {
+        groups.entry(public_input[0]).or_insert_with(Vec::new).push(i);
+    }
+    
+    for (public_input, indices) in groups.iter() {
+        if indices.len() > 1 {
+            println!("Found {} attestations with public input {}", indices.len(), public_input);
+            
+            // Compare all attestations in this group
+            for i in 0..indices.len() {
+                for j in (i+1)..indices.len() {
+                    let idx_i = indices[i];
+                    let idx_j = indices[j];
+                    let matrix_i = all_comt_matrices[idx_i].as_matrix();
+                    let matrix_j = all_comt_matrices[idx_j].as_matrix();
+                    let mut matches = true;
+                    
+                    for row in 0..2 {
+                        for col in 0..2 {
+                            if matrix_i[row][col].0 != matrix_j[row][col].0 {
+                                println!("❌ Attestation {} ComT[{}][{}] differs from attestation {}", idx_i, row, col, idx_j);
+                                matches = false;
+                            }
+                        }
+                    }
+                    
+                    if matches {
+                        println!("✅ Attestation {} ComT matrix matches attestation {}", idx_i, idx_j);
+                    }
+                }
             }
         }
     }
     
-    if all_equal {
-        println!("✅ SUCCESS: Deposit and withdraw ComT matrices are identical!");
+    // Compare attestations with different public inputs (should produce different ComT)
+    println!("\n=== COMPARING ATTESTATIONS WITH DIFFERENT PUBLIC INPUTS ===");
+    for i in 0..attestations.len() {
+        for j in (i+1)..attestations.len() {
+            if public_inputs[i][0] != public_inputs[j][0] {
+                let matrix_i = all_comt_matrices[i].as_matrix();
+                let matrix_j = all_comt_matrices[j].as_matrix();
+                let mut differs = false;
+                
+                for row in 0..2 {
+                    for col in 0..2 {
+                        if matrix_i[row][col].0 != matrix_j[row][col].0 {
+                            differs = true;
+                            break;
+                        }
+                    }
+                    if differs { break; }
+                }
+                
+                if differs {
+                    println!("✅ Attestation {} (public input {}) differs from attestation {} (public input {})", 
+                             i, public_inputs[i][0], j, public_inputs[j][0]);
     } else {
-        println!("❌ FAILURE: ComT matrices differ - this explains the decryption failure");
-        
-        // Additional diagnostics
-        println!("\n=== DIAGNOSTICS ===");
-        println!("PPE gamma: {:?}", ppe.gamma);
-        println!("PPE target: {:?}", ppe.target);
-        println!("T^ρ: {:?}", t_rho);
-        println!("C1 len: {}, C2 len: {}", c1.len(), c2.len());
-        println!("pi len: {}, theta len: {}", pi.len(), theta.len());
-        println!("U^ρ len: {}, V^ρ len: {}", u_rho_com1.len(), v_rho_com2.len());
-        println!("U*^ρ len: {}, V*^ρ len: {}", u_star_rho_pairs.len(), v_star_rho_pairs.len());
+                    println!("❌ Attestation {} (public input {}) unexpectedly matches attestation {} (public input {})", 
+                             i, public_inputs[i][0], j, public_inputs[j][0]);
+                }
+            }
+        }
     }
     
-    // Assert equality (this will fail if there's a mismatch)
-    assert_eq!(md[0][0].0, mw[0][0].0, "ComT[0][0]");
-    assert_eq!(md[0][1].0, mw[0][1].0, "ComT[0][1]");
-    assert_eq!(md[1][0].0, mw[1][0].0, "ComT[1][0]");
-    assert_eq!(md[1][1].0, mw[1][1].0, "ComT[1][1]");
+    // Only assert that the first attestation matches the deposit ComT (since they have the same public input)
+    let first_matrix = all_comt_matrices[0].as_matrix();
+    
+    // Debug: Print the [1][1] values to understand the target cell issue
+    println!("\n=== TARGET CELL DEBUG ===");
+    println!("Deposit ComT[1][1]: {:?}", md[1][1].0);
+    println!("Withdraw ComT[1][1]: {:?}", first_matrix[1][1].0);
+        println!("T^ρ: {:?}", t_rho);
+    println!("Deposit [1][1] == T^ρ: {}", md[1][1].0 == t_rho);
+    println!("Withdraw [1][1] == T^ρ: {}", first_matrix[1][1].0 == t_rho);
+    println!("Deposit [1][1] == Withdraw [1][1]: {}", md[1][1].0 == first_matrix[1][1].0);
+    
+    assert_eq!(md[0][0].0, first_matrix[0][0].0, "First attestation ComT[0][0] should match deposit");
+    assert_eq!(md[0][1].0, first_matrix[0][1].0, "First attestation ComT[0][1] should match deposit");
+    assert_eq!(md[1][0].0, first_matrix[1][0].0, "First attestation ComT[1][0] should match deposit");
+    assert_eq!(md[1][1].0, first_matrix[1][1].0, "First attestation ComT[1][1] should match deposit (target cell)");
+    
+    println!("✅ Multiple attestations test completed successfully!");
     
     // Sanity check: target cell should equal T^ρ
     assert_eq!(md[1][1].0, t_rho, "target cell mismatch");

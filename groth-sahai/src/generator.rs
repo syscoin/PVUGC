@@ -15,9 +15,9 @@ use crate::data_structures::{Com1, Com2};
 
 use ark_ec::{
     pairing::{Pairing, PairingOutput},
-    CurveGroup, AffineRepr,
+    CurveGroup,
 };
-use ark_ff::{UniformRand, Zero, Field, One};
+use ark_ff::{UniformRand, Zero, One};
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use ark_std::{ops::Mul, rand::Rng};
 

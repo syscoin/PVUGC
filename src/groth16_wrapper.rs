@@ -11,7 +11,6 @@ use ark_r1cs_std::{alloc::AllocVar, prelude::*, fields::fp::FpVar};
 use ark_relations::r1cs::{ConstraintSynthesizer, ConstraintSystemRef};
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use ark_snark::SNARK;
-use ark_ff::Field;
 use ark_crypto_primitives::crh::sha256::Sha256;
 use sha2::Digest;
 use thiserror::Error;
@@ -55,18 +54,23 @@ pub struct ArkworksVK {
     pub vk_bytes: Vec<u8>,
 }
 
-/// Simple test circuit for Groth16 functionality
+/// Addition test circuit for Groth16 functionality
 #[derive(Clone)]
-pub struct SimpleTestCircuit {
-    pub witness: Option<Fr>,
+pub struct AdditionTestCircuit {
+    pub witness1: Option<Fr>,
+    pub witness2: Option<Fr>,
     pub public_input: Fr,
 }
 
-impl ConstraintSynthesizer<Fr> for SimpleTestCircuit {
+impl ConstraintSynthesizer<Fr> for AdditionTestCircuit {
     fn generate_constraints(self, cs: ConstraintSystemRef<Fr>) -> ark_relations::r1cs::Result<()> {
-        // Allocate witness variable
-        let witness_var = FpVar::<Fr>::new_witness(cs.clone(), || {
-            self.witness.ok_or(ark_relations::r1cs::SynthesisError::AssignmentMissing)
+        // Allocate witness variables
+        let witness1_var = FpVar::<Fr>::new_witness(cs.clone(), || {
+            self.witness1.ok_or(ark_relations::r1cs::SynthesisError::AssignmentMissing)
+        })?;
+
+        let witness2_var = FpVar::<Fr>::new_witness(cs.clone(), || {
+            self.witness2.ok_or(ark_relations::r1cs::SynthesisError::AssignmentMissing)
         })?;
 
         // Allocate public input
@@ -74,10 +78,10 @@ impl ConstraintSynthesizer<Fr> for SimpleTestCircuit {
             Ok(self.public_input)
         })?;
 
-        // Simple constraint: witness * witness = public_input
-        // This proves knowledge of a square root
-        let witness_squared = witness_var.square()?;
-        witness_squared.enforce_equal(&public_input_var)?;
+        // Constraint: witness1 + witness2 = public_input
+        // This proves knowledge of two numbers that sum to the public input
+        let sum = witness1_var + witness2_var;
+        sum.enforce_equal(&public_input_var)?;
 
         Ok(())
     }
@@ -104,9 +108,10 @@ impl ArkworksGroth16 {
     pub fn setup(&mut self) -> Result<ArkworksVK, Groth16Error> {
         let mut rng = ark_std::rand::thread_rng();
         
-        // Create circuit for setup
-        let circuit = SimpleTestCircuit {
-            witness: None,
+        // Create circuit for setup (using addition circuit)
+        let circuit = AdditionTestCircuit {
+            witness1: None,
+            witness2: None,
             public_input: Fr::from(1u64), // Placeholder
         };
 
@@ -139,21 +144,22 @@ impl ArkworksGroth16 {
         Ok(vk_struct)
     }
 
-    /// Generate proof for square root knowledge
-    pub fn prove(&self, witness: Fr) -> Result<ArkworksProof, Groth16Error> {
+    /// Generate proof for addition knowledge (witness1 + witness2 = public_input)
+    pub fn prove(&self, witness1: Fr, witness2: Fr) -> Result<ArkworksProof, Groth16Error> {
         let pk_bytes = self.pk_bytes.as_ref()
             .ok_or(Groth16Error::InvalidInput("Must call setup() first".to_string()))?;
 
-        // Compute public input (witness squared)
-        let public_input = witness.square();
+        // Compute public input (witness1 + witness2)
+        let public_input = witness1 + witness2;
 
         // Deserialize proving key
         let pk = ProvingKey::<Bls12_381>::deserialize_compressed(pk_bytes.as_slice())
             .map_err(|e| Groth16Error::Deserialization(format!("PK: {:?}", e)))?;
 
-        // Create circuit with witness
-        let circuit = SimpleTestCircuit {
-            witness: Some(witness),
+        // Create circuit with witnesses
+        let circuit = AdditionTestCircuit {
+            witness1: Some(witness1),
+            witness2: Some(witness2),
             public_input,
         };
 
@@ -277,18 +283,6 @@ pub fn setup_test_circuit() -> Result<(Vec<u8>, Vec<u8>), Groth16Error> {
     Ok((pk_bytes, vk.vk_bytes))
 }
 
-/// Prove square root knowledge
-pub fn prove_square_root(
-    witness: Fr,
-    pk_bytes: &[u8],
-) -> Result<(Vec<u8>, Vec<u8>), Groth16Error> {
-    let mut groth16 = ArkworksGroth16::new();
-    groth16.pk_bytes = Some(pk_bytes.to_vec());
-    
-    let proof = groth16.prove(witness)?;
-    Ok((proof.proof_bytes, proof.public_input))
-}
-
 /// Verify proof
 pub fn verify_proof(
     public_input: &[u8],
@@ -327,9 +321,10 @@ mod tests {
         let mut groth16 = ArkworksGroth16::new();
         let _vk = groth16.setup().expect("Setup should succeed");
         
-        let witness = Fr::from(5u64); // Square root of 25
+        let witness1 = Fr::from(3u64);
+        let witness2 = Fr::from(2u64); // 3 + 2 = 5
         
-        let proof = groth16.prove(witness).expect("Prove should succeed");
+        let proof = groth16.prove(witness1, witness2).expect("Prove should succeed");
         let verified = groth16.verify(&proof).expect("Verify should succeed");
         
         assert!(verified);
