@@ -751,7 +751,20 @@ impl ProductKeyKEM {
             crs_digest, ppe_digest, vk_hash, x_hash,
             &kem_share.d1_masks, &kem_share.d2_masks, &kem_share.d1_star_masks, &kem_share.d2_star_masks);
         let rho_bytes = self.dem_decrypt(&k2, &kem_share.rho_ct, &kem_share.rho_tag, &ad_rho)?;
-        let _rho = crate::gs_kem_helpers::fr_from_be(&rho_bytes);
+        let rho = crate::gs_kem_helpers::fr_from_be(&rho_bytes);
+
+        // Now use canonical masked verifier with recovered ρ to get the correct ComT
+        let masked = crate::gs_kem_eval::masked_verifier_matrix_canonical(
+            ppe, crs, &c1, &c2, &pi, &theta, rho);
+        
+        // Convert masked matrix to ComT
+        let m_comt = ComT::<ark_bls12_381::Bls12_381>::from(vec![
+            vec![PairingOutput(masked[0][0]), PairingOutput(masked[0][1])],
+            vec![PairingOutput(masked[1][0]), PairingOutput(masked[1][1])],
+        ]);
+
+        // Derive K1 from the canonical ComT
+        let k1 = crate::gs_kem_eval::kdf_from_comt(&m_comt, crs_digest, ppe_digest, vk_hash, x_hash, deposit_id, b"K1");
 
         // Optional: mask-consistency check on primaries only
         // (dual recomputation would require base duals; skip or keep a cached public CRS)
