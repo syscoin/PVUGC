@@ -5,10 +5,12 @@ The core innovation: turning proof existence into a decryption key
 This module implements the KEM functionality.
 */
 
-use ark_bls12_381::Fr;
-use ark_ec::pairing::PairingOutput;
-use ark_ff::{BigInteger, PrimeField};
+use ark_bls12_381::{Bls12_381, Fr};
+use ark_ec::pairing::{Pairing, PairingOutput};
+use ark_ec::{AffineRepr, CurveGroup};
+use ark_ff::{BigInteger, PrimeField, Field, One, Zero};
 use ark_std::{rand::Rng, vec::Vec};
+use groth_sahai::data_structures::{Com1, Com2};
 
 use chacha20poly1305::{
     aead::{Aead, KeyInit},
@@ -20,7 +22,9 @@ use thiserror::Error;
 
 use crate::bls12381_ops::{BLS12381Ops, GTElement, Scalar};
 use crate::gs_kem_helpers::fr_from_be;
-use groth_sahai::data_structures::BT;
+use crate::groth16_wrapper::ArkworksVK;
+use crate::gs_commitments::compute_ic_from_vk_and_inputs;
+use groth_sahai::data_structures::{BT, ComT};
 
 /// Errors that can occur during KEM operations
 #[derive(Error, Debug)]
@@ -39,26 +43,40 @@ pub enum KEMError {
     Crypto(String),
 }
 
+impl From<String> for KEMError {
+    fn from(err: String) -> Self {
+        KEMError::Deserialization(err)
+    }
+}
+
 /// KEM share containing encapsulated data
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct KEMShare {
     /// Index of this share
     pub index: u32,
-    /// Masked CRS U elements (U^ρ in G1, each pair is 96 bytes)
-    pub d1_masks: Vec<Vec<u8>>,
-    /// Masked CRS V elements (V^ρ in G2, each pair is 192 bytes)
-    pub d2_masks: Vec<Vec<u8>>,
-    /// Masked dual U* elements (U*^ρ in G2)
-    pub u_dual_masks: Vec<Vec<u8>>,
-    /// Masked dual V* elements (V*^ρ in G1)
-    pub v_dual_masks: Vec<Vec<u8>>,
-    /// Encrypted adaptor share
+
+    // Phase-B masks (primaries)
+    pub d1_masks: Vec<Vec<u8>>, // U^ρ (G1 pairs)
+    pub d2_masks: Vec<Vec<u8>>, // V^ρ (G2 pairs)
+
+    // Phase-B masks (duals)
+    pub d1_star_masks: Vec<Vec<u8>>, // U*^ρ (G2 pairs)
+    pub d2_star_masks: Vec<Vec<u8>>, // V*^ρ (G1 pairs)
+
+    // (optional) Instance-only masks you had before; you can keep or remove
+    pub d1_inst: Vec<Vec<u8>>,
+    pub d2_inst: Vec<Vec<u8>>,
+
+    // Phase-A lock for rho
+    pub rho_ct: Vec<u8>,
+    pub rho_tag: Vec<u8>,
+
+    // Adaptor share lock
     pub ciphertext: Vec<u8>,
-    /// Authentication tag
     pub auth_tag: Vec<u8>,
-    /// Adaptor point T_i (secp256k1 public key)
+
+    // Commitments to the adaptor share
     pub t_i: Vec<u8>,
-    /// Hash commitment h_i
     pub h_i: Vec<u8>,
 }
 
@@ -313,6 +331,32 @@ impl ProductKeyKEM {
         Ok(masked_pairs)
     }
 
+    /// Mask G2 dual pairs with scalar multiplication
+    pub fn mask_g2_dual_pairs(&self, u_star_pairs: &[(ark_bls12_381::G2Affine, ark_bls12_381::G2Affine)], rho: Scalar) -> Vec<Vec<u8>> {
+        use ark_serialize::CanonicalSerialize;
+        u_star_pairs.iter().map(|(a, b)| {
+            let a = (a.into_group() * rho).into_affine();
+            let b = (b.into_group() * rho).into_affine();
+            let mut v = Vec::new();
+            a.serialize_compressed(&mut v).unwrap();
+            b.serialize_compressed(&mut v).unwrap();
+            v
+        }).collect()
+    }
+
+    /// Mask G1 dual pairs with scalar multiplication
+    pub fn mask_g1_dual_pairs(&self, v_star_pairs: &[(ark_bls12_381::G1Affine, ark_bls12_381::G1Affine)], rho: Scalar) -> Vec<Vec<u8>> {
+        use ark_serialize::CanonicalSerialize;
+        v_star_pairs.iter().map(|(a, b)| {
+            let a = (a.into_group() * rho).into_affine();
+            let b = (b.into_group() * rho).into_affine();
+            let mut v = Vec::new();
+            a.serialize_compressed(&mut v).unwrap();
+            b.serialize_compressed(&mut v).unwrap();
+            v
+        }).collect()
+    }
+
     /// Encapsulate using canonical evaluator
     pub fn encapsulate<R: Rng>(
         &self,
@@ -399,8 +443,12 @@ impl ProductKeyKEM {
             index: share_index,
             d1_masks: u_masked, // Now U^ρ in G1
             d2_masks: v_masked, // Now V^ρ in G2
-            u_dual_masks: u_dual_masked,
-            v_dual_masks: v_dual_masked,
+            d1_star_masks: u_dual_masked,
+            d2_star_masks: v_dual_masked,
+            d1_inst: Vec::new(),
+            d2_inst: Vec::new(),
+            rho_ct: Vec::new(),
+            rho_tag: Vec::new(),
             ciphertext,
             auth_tag,
             t_i,
@@ -408,6 +456,184 @@ impl ProductKeyKEM {
         };
 
         Ok((kem_share, m_i))
+    }
+
+    /// Encapsulate (deposit) without attestation: compute ComT from target^ρ using (vk, x)
+    pub fn encapsulate_deposit<R: Rng>(
+        &self,
+        rng: &mut R,
+        share_index: u32,
+        crs_u: &[Vec<u8>],                      // CRS U elements (G1)
+        crs_v: &[Vec<u8>],                      // CRS V elements (G2)
+        crs_u_duals: &[Vec<u8>],                // CRS U* dual elements (G2)
+        crs_v_duals: &[Vec<u8>],                // CRS V* dual elements (G1)
+        adaptor_share: Scalar,
+        ctx_hash: &[u8],
+        gs_instance_digest: &[u8],
+        vk: &ArkworksVK,
+        public_input: &[Fr],
+    ) -> Result<(KEMShare, GTElement), KEMError> {
+        // Sample ρ and publish masked primaries and duals
+        let rho_i = BLS12381Ops::random_scalar(rng);
+
+        let u_masked = self.mask_g1_pairs(crs_u, rho_i)?; // U^ρ in G1
+        let v_masked = self.mask_g2_pairs(crs_v, rho_i)?; // V^ρ in G2
+        let u_dual_masked = self.mask_g2_pairs(crs_u_duals, rho_i)?; // U*^ρ in G2
+        let v_dual_masked = self.mask_g1_pairs(crs_v_duals, rho_i)?; // V*^ρ in G1
+
+        // Compute target G_G16(vk,x) and raise to ρ
+        let ic = compute_ic_from_vk_and_inputs(vk, public_input);
+        let e_alpha_beta = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2);
+        let e_ic_gamma = Bls12_381::pairing(ic, vk.gamma_g2);
+        let target = (e_alpha_beta.0 * e_ic_gamma.0).pow(rho_i.into_bigint());
+
+        // Build ComT as linear_map_PPE(target^ρ)
+        let comt = ComT::<Bls12_381>::linear_map_PPE(&ark_ec::pairing::PairingOutput::<Bls12_381>(target));
+
+        // Derive key from full ComT bytes
+        let m_i_bytes = crate::gs_kem_helpers::serialize_comt(&comt)
+            .map_err(|e| KEMError::Serialization(e))?;
+        let k_i = self.kdf_from_bytes(&m_i_bytes, ctx_hash, gs_instance_digest)?;
+
+        // Extract a representative GT cell to return (not used by DEM)
+        let m_matrix = comt.as_matrix();
+        let PairingOutput(gt_cell) = m_matrix[1][1];
+        let m_i = gt_cell;
+
+        // Compute adaptor point and commitment
+        let t_i = self.compute_adaptor_point(adaptor_share)?;
+        let mut h_i_input = Vec::new();
+        h_i_input.extend_from_slice(&adaptor_share.into_bigint().to_bytes_be());
+        h_i_input.extend_from_slice(&t_i);
+        h_i_input.extend_from_slice(&share_index.to_be_bytes());
+        let h_i = Sha256::digest(&h_i_input).to_vec();
+
+        // Encrypt (s_i || h_i) under key derived from ComT
+        let mut plaintext = Vec::new();
+        plaintext.extend_from_slice(&adaptor_share.into_bigint().to_bytes_be());
+        plaintext.extend_from_slice(&h_i);
+
+        // AAD binds index, context, digest, adaptor point, and all four masked arrays
+        let ad = self.build_ad(
+            share_index,
+            ctx_hash,
+            gs_instance_digest,
+            &t_i,
+            &u_masked,
+            &v_masked,
+            &u_dual_masked,
+            &v_dual_masked,
+        )?;
+
+        let (ciphertext, auth_tag) = self.dem_encrypt(&k_i, &plaintext, &ad)?;
+
+        let kem_share = KEMShare {
+            index: share_index,
+            d1_masks: u_masked,
+            d2_masks: v_masked,
+            d1_star_masks: u_dual_masked,
+            d2_star_masks: v_dual_masked,
+            d1_inst: Vec::new(),
+            d2_inst: Vec::new(),
+            rho_ct: Vec::new(),
+            rho_tag: Vec::new(),
+            ciphertext,
+            auth_tag,
+            t_i,
+            h_i,
+        };
+
+        Ok((kem_share, m_i))
+    }
+
+    /// Encapsulate Duo (deposit) with 5-bucket ComT
+    pub fn encapsulate_duo<R: Rng>(
+        &self,
+        rng: &mut R,
+        share_index: u32,
+        crs_u: &[Vec<u8>],           // CRS.u serialized
+        crs_v: &[Vec<u8>],           // CRS.v serialized
+        u_star_pairs: &[(ark_bls12_381::G2Affine, ark_bls12_381::G2Affine)], // base duals (G2 pairs)
+        v_star_pairs: &[(ark_bls12_381::G1Affine, ark_bls12_381::G1Affine)], // base duals (G1 pairs)
+        adaptor_share: Scalar,
+        ctx_hash: &[u8],
+        vk: &ArkworksVK,
+        public_input_bytes: &[u8],
+        crs_digest: &[u8], 
+        ppe_digest: &[u8],
+        vk_hash: &[u8], 
+        x_hash: &[u8],
+        deposit_id: &[u8],
+    ) -> Result<(KEMShare, GTElement), KEMError> {
+        let rho = BLS12381Ops::random_scalar(rng);
+
+        // Phase-B masks (primaries)
+        let u_rho = self.mask_g1_pairs(crs_u, rho)?;
+        let v_rho = self.mask_g2_pairs(crs_v, rho)?;
+        // Phase-B masks (duals)
+        let u_star_rho = self.mask_g2_dual_pairs(u_star_pairs, rho);
+        let v_star_rho = self.mask_g1_dual_pairs(v_star_pairs, rho);
+
+        // T^ρ and ComT
+        let t = crate::gs_kem_helpers::compute_target_public(vk, public_input_bytes)
+            .map_err(|e| KEMError::Crypto(e))?;
+        let t_rho = t.0.pow(rho.into_bigint());
+        
+        // According to the spec, we should use linear_map_PPE(T^ρ) for deposit
+        // This should be equivalent to five_bucket_comt in decapsulate_duo
+        let comt = ComT::<ark_bls12_381::Bls12_381>::linear_map_PPE(
+            &PairingOutput::<ark_bls12_381::Bls12_381>(t_rho));
+
+        // KDFs
+        let k1 = crate::gs_kem_eval::kdf_from_comt(&comt, crs_digest, ppe_digest, vk_hash, x_hash, deposit_id, b"K1");
+        let k2 = crate::gs_kem_eval::kdf_from_comt(&comt, crs_digest, ppe_digest, vk_hash, x_hash, deposit_id, b"K2");
+        
+        
+
+        // Encrypt rho under K2
+        let rho_bytes = rho.into_bigint().to_bytes_be();
+        let ad_rho = crate::gs_kem_helpers::build_ad_rho(
+            share_index, ctx_hash, deposit_id,
+            crs_digest, ppe_digest, vk_hash, x_hash,
+            &u_rho, &v_rho, &u_star_rho, &v_star_rho);
+        let (rho_ct, rho_tag) = self.dem_encrypt(&k2, &rho_bytes, &ad_rho)?;
+
+        // Adaptor point + share under K1
+        let t_i = self.compute_adaptor_point(adaptor_share)?;
+        let h_i = { 
+            use sha2::{Sha256, Digest};
+            let mut input = Vec::new();
+            input.extend_from_slice(&adaptor_share.into_bigint().to_bytes_be());
+            input.extend_from_slice(&t_i);
+            input.extend_from_slice(&share_index.to_be_bytes());
+            Sha256::digest(&input).to_vec()
+        };
+        let mut plaintext = Vec::new();
+        plaintext.extend_from_slice(&adaptor_share.into_bigint().to_bytes_be());
+        plaintext.extend_from_slice(&h_i);
+
+        let ad_share = crate::gs_kem_helpers::build_ad_share(
+            share_index, ctx_hash, deposit_id, &t_i,
+            &u_rho, &v_rho, &u_star_rho, &v_star_rho,
+            crs_digest, ppe_digest, vk_hash, x_hash);
+        let (ciphertext, auth_tag) = self.dem_encrypt(&k1, &plaintext, &ad_share)?;
+
+        let share = KEMShare {
+            index: share_index,
+            d1_masks: u_rho,
+            d2_masks: v_rho,
+            d1_star_masks: u_star_rho,
+            d2_star_masks: v_star_rho,
+            d1_inst: Vec::new(),
+            d2_inst: Vec::new(),
+            rho_ct, 
+            rho_tag,
+            ciphertext, 
+            auth_tag,
+            t_i, 
+            h_i,
+        };
+        Ok((share, t_rho))
     }
 
     /// Decapsulate using GS commitments and proof elements from attestation
@@ -430,8 +656,8 @@ impl ProductKeyKEM {
             theta_elements,
             &kem_share.d1_masks, // U^ρ
             &kem_share.d2_masks, // V^ρ
-            &kem_share.u_dual_masks,
-            &kem_share.v_dual_masks,
+            &kem_share.d1_star_masks,
+            &kem_share.d2_star_masks,
         )
         .map_err(|e| KEMError::Crypto(e))?;
 
@@ -449,8 +675,8 @@ impl ProductKeyKEM {
             &kem_share.t_i,
             &kem_share.d1_masks,
             &kem_share.d2_masks,
-            &kem_share.u_dual_masks,
-            &kem_share.v_dual_masks,
+            &kem_share.d1_star_masks,
+            &kem_share.d2_star_masks,
         )?;
 
         // Decrypt adaptor share
@@ -472,6 +698,75 @@ impl ProductKeyKEM {
             ));
         }
 
+        Ok(adaptor_share)
+    }
+
+    /// Decapsulate Duo (withdraw) with ρ-free extractor
+    pub fn decapsulate_duo(
+        &self,
+        kem_share: &KEMShare,
+        ppe: &groth_sahai::statement::PPE<ark_bls12_381::Bls12_381>,
+        c1_bytes: &[Vec<u8>], 
+        c2_bytes: &[Vec<u8>],
+        pi_bytes: &[Vec<u8>], 
+        theta_bytes: &[Vec<u8>],
+        ctx_hash: &[u8],
+        crs_digest: &[u8], 
+        ppe_digest: &[u8],
+        vk_hash: &[u8], 
+        x_hash: &[u8],
+        deposit_id: &[u8],
+    ) -> Result<Fr, KEMError> {
+        use ark_serialize::CanonicalDeserialize;
+        use groth_sahai::data_structures::{Com1, Com2, ComT};
+
+        // Deserialize attestation parts
+        let c1: Vec<Com1<_>> = c1_bytes.iter().map(|b| Com1::deserialize_compressed(&**b)).collect::<Result<_,_>>()
+            .map_err(|e| KEMError::Deserialization(format!("C1: {:?}", e)))?;
+        let c2: Vec<Com2<_>> = c2_bytes.iter().map(|b| Com2::deserialize_compressed(&**b)).collect::<Result<_,_>>()
+            .map_err(|e| KEMError::Deserialization(format!("C2: {:?}", e)))?;
+        let pi: Vec<Com2<_>> = pi_bytes.iter().map(|b| Com2::deserialize_compressed(&**b)).collect::<Result<_,_>>()
+            .map_err(|e| KEMError::Deserialization(format!("pi: {:?}", e)))?;
+        let theta: Vec<Com1<_>> = theta_bytes.iter().map(|b| Com1::deserialize_compressed(&**b)).collect::<Result<_,_>>()
+            .map_err(|e| KEMError::Deserialization(format!("theta: {:?}", e)))?;
+
+        // Deserialize masked bases from KEMShare
+        let u_rho = crate::gs_kem_helpers::deserialize_com1_pairs(&kem_share.d1_masks)?;
+        let v_rho = crate::gs_kem_helpers::deserialize_com2_pairs(&kem_share.d2_masks)?;
+        let u_star_rho = crate::gs_kem_helpers::deserialize_g2_pairs(&kem_share.d1_star_masks)?;
+        let v_star_rho = crate::gs_kem_helpers::deserialize_g1_pairs(&kem_share.d2_star_masks)?;
+
+        // ρ-free anchor (ComT): 5-bucket
+        let m_comt = crate::gs_kem_eval::five_bucket_comt::<ark_bls12_381::Bls12_381>(
+            &c1, &c2, &pi, &theta, &ppe.gamma, &u_rho, &v_rho, &u_star_rho, &v_star_rho);
+
+        // Keys
+        let k1 = crate::gs_kem_eval::kdf_from_comt(&m_comt, crs_digest, ppe_digest, vk_hash, x_hash, deposit_id, b"K1");
+        let k2 = crate::gs_kem_eval::kdf_from_comt(&m_comt, crs_digest, ppe_digest, vk_hash, x_hash, deposit_id, b"K2");
+        
+
+        // Decrypt ρ
+        let ad_rho = crate::gs_kem_helpers::build_ad_rho(
+            kem_share.index, ctx_hash, deposit_id,
+            crs_digest, ppe_digest, vk_hash, x_hash,
+            &kem_share.d1_masks, &kem_share.d2_masks, &kem_share.d1_star_masks, &kem_share.d2_star_masks);
+        let rho_bytes = self.dem_decrypt(&k2, &kem_share.rho_ct, &kem_share.rho_tag, &ad_rho)?;
+        let _rho = crate::gs_kem_helpers::fr_from_be(&rho_bytes);
+
+        // Optional: mask-consistency check on primaries only
+        // (dual recomputation would require base duals; skip or keep a cached public CRS)
+        // ...
+
+        // Decrypt adaptor share
+        let ad_share = crate::gs_kem_helpers::build_ad_share(
+            kem_share.index, ctx_hash, deposit_id, &kem_share.t_i,
+            &kem_share.d1_masks, &kem_share.d2_masks, &kem_share.d1_star_masks, &kem_share.d2_star_masks,
+            crs_digest, ppe_digest, vk_hash, x_hash);
+        let pt = self.dem_decrypt(&k1, &kem_share.ciphertext, &kem_share.auth_tag, &ad_share)?;
+        if pt.len() < 32 { return Err(KEMError::Decryption("bad plaintext".into())); }
+        let adaptor_share = crate::gs_kem_helpers::fr_from_be(&pt[..32]);
+        let h_i = &pt[32..];
+        if h_i != &kem_share.h_i { return Err(KEMError::Decryption("hash commitment mismatch".into())); }
         Ok(adaptor_share)
     }
 
@@ -511,8 +806,8 @@ impl ProductKeyKEM {
         t_i: &[u8],
         d1_masks: &[Vec<u8>],
         d2_masks: &[Vec<u8>],
-        u_dual_masks: &[Vec<u8>],
-        v_dual_masks: &[Vec<u8>],
+        d1_star_masks: &[Vec<u8>],
+        d2_star_masks: &[Vec<u8>],
     ) -> Result<Vec<u8>, KEMError> {
         let mut ad = Vec::new();
         ad.extend_from_slice(&share_index.to_be_bytes());
@@ -530,11 +825,11 @@ impl ProductKeyKEM {
             ad.extend_from_slice(mask);
         }
 
-        for mask in u_dual_masks {
+        for mask in d1_star_masks {
             ad.extend_from_slice(mask);
         }
 
-        for mask in v_dual_masks {
+        for mask in d2_star_masks {
             ad.extend_from_slice(mask);
         }
 
@@ -731,8 +1026,8 @@ mod tests {
         assert_eq!(kem_share.index, 0);
         assert_eq!(kem_share.d1_masks.len(), 2);
         assert_eq!(kem_share.d2_masks.len(), 2);
-        assert_eq!(kem_share.u_dual_masks.len(), 2);
-        assert_eq!(kem_share.v_dual_masks.len(), 2);
+        assert_eq!(kem_share.d1_star_masks.len(), 2);
+        assert_eq!(kem_share.d2_star_masks.len(), 2);
         assert!(!kem_share.ciphertext.is_empty());
 
         // Decap with same attestation
