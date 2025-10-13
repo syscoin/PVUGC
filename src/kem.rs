@@ -740,8 +740,7 @@ impl ProductKeyKEM {
         let m_comt = crate::gs_kem_eval::five_bucket_comt::<ark_bls12_381::Bls12_381>(
             &c1, &c2, &pi, &theta, &ppe.gamma, &u_rho, &v_rho, &u_star_rho, &v_star_rho);
 
-        // Keys
-        let k1 = crate::gs_kem_eval::kdf_from_comt(&m_comt, crs_digest, ppe_digest, vk_hash, x_hash, deposit_id, b"K1");
+        // Key for decrypting ρ
         let k2 = crate::gs_kem_eval::kdf_from_comt(&m_comt, crs_digest, ppe_digest, vk_hash, x_hash, deposit_id, b"K2");
         
 
@@ -765,10 +764,6 @@ impl ProductKeyKEM {
 
         // Derive K1 from the canonical ComT
         let k1 = crate::gs_kem_eval::kdf_from_comt(&m_comt, crs_digest, ppe_digest, vk_hash, x_hash, deposit_id, b"K1");
-
-        // Optional: mask-consistency check on primaries only
-        // (dual recomputation would require base duals; skip or keep a cached public CRS)
-        // ...
 
         // Decrypt adaptor share
         let ad_share = crate::gs_kem_helpers::build_ad_share(
