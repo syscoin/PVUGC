@@ -53,6 +53,22 @@ cargo doc --open
 ```
 The API is subject to change, and is still very much a work in progress.
 
+#### PVUGC Protocol
+
+For the complete protocol specification, see:
+
+**[../specs/PVUGC.md](../specs/PVUGC.md)** - Full protocol specification including Bitcoin integration, security model, and cryptographic assumptions
+
+For implementation details and mathematical foundations, see:
+
+**[PVUGC_PROTOCOL.md](PVUGC_PROTOCOL.md)** - Implementation guide covering:
+- Per-slot CRS construction with binding structure
+- Rank decomposition for Γ matrices
+- Four-bucket verifier with randomness cancellation
+- PVUGC arming and decapping protocol
+- Full-GS block-based verifier for Groth16 integration
+- Security assumptions (SXDH, GT-XPDH, binding CRS properties)
+
 ## Contributing
 
 If you notice a bug, would like to ask a question, or want to propose a new feature, feel free to open an issue!

@@ -1,6 +1,10 @@
+pub mod base_construction;
 pub mod data_structures;
 pub mod generator;
+pub mod ppe_export;
 pub mod prover;
+pub mod pvugc;
+pub mod rank_decomp;
 pub mod statement;
 pub mod verifier;
 

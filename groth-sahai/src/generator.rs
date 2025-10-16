@@ -17,7 +17,7 @@ use ark_ec::{
     pairing::{Pairing, PairingOutput},
     CurveGroup,
 };
-use ark_ff::{UniformRand, Zero, One};
+use ark_ff::{UniformRand, Zero};
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use ark_std::{ops::Mul, rand::Rng};
 
@@ -39,6 +39,11 @@ pub struct CRS<E: Pairing> {
     pub g1_gen: E::G1Affine,
     pub g2_gen: E::G2Affine,
     pub gt_gen: PairingOutput<E>,
+    
+    /// G1 binding tag (public): u_{i,1} = a1 * u_{i,0}
+    pub a1: E::ScalarField,
+    /// G2 binding tag (public): v_{j,1} = a2 * v_{j,0}
+    pub a2: E::ScalarField,
 }
 
 impl<E: Pairing> CRS<E> {
@@ -114,64 +119,128 @@ impl<E: Pairing> AbstractCrs<E> for CRS<E> {
             g1_gen: p1.into_affine(),
             g2_gen: p2.into_affine(),
             gt_gen: E::pairing(p1.into_affine(), p2.into_affine()),
+            a1,
+            a2,
         }
     }
 }
 
-// === Extended CRS with duals (rank-2 / WI) ===
-#[derive(Clone, Debug, CanonicalSerialize, CanonicalDeserialize)]
-pub struct CRSWithDuals<E: Pairing> {
-    pub crs: CRS<E>,
-    // duals live in the opposite groups
-    pub u_star: Vec<(E::G2Affine, E::G2Affine)>, // duals for u (G2 pairs)
-    pub v_star: Vec<(E::G1Affine, E::G1Affine)>, // duals for v (G1 pairs)
-}
-
-impl<E: Pairing> CRSWithDuals<E> {
-    /// Generate a WI (rank-2) CRS and exact duals (public)
-    pub fn generate_wi_with_duals<R: Rng>(rng: &mut R) -> Self {
-        let g1 = E::G1::rand(rng);
-        let g2 = E::G2::rand(rng);
-
-        // trapdoor scalars
+impl<E: Pairing> CRS<E> {
+    /// Generate a CRS with per-slot independent rows for rank-decomposition PPE.
+    ///
+    /// This allocates 2*m rows for X-slots and 2*n rows for Y-slots, where each
+    /// slot has independent randomizer and variable rows. This is required for
+    /// offline PVUGC ARMER with rank-decomposition.
+    ///
+    /// # Arguments
+    /// * `m` - Number of X-variable slots (G1 commitments)
+    /// * `n` - Number of Y-variable slots (G2 commitments)
+    ///
+    /// # Example
+    /// ```ignore
+    /// let crs = CRS::<Bls12_381>::generate_crs_per_slot(&mut rng, 3, 2);
+    /// assert_eq!(crs.num_x_slots(), 3);
+    /// assert_eq!(crs.num_y_slots(), 2);
+    /// assert_eq!(crs.u.len(), 6);  // 2 * 3
+    /// assert_eq!(crs.v.len(), 4);  // 2 * 2
+    /// ```
+    pub fn generate_crs_per_slot<R: Rng>(rng: &mut R, m: usize, n: usize) -> Self {
+        // Common generators (shared across all slots)
+        let p1 = E::G1::rand(rng);
+        let p2 = E::G2::rand(rng);
         let a1 = E::ScalarField::rand(rng);
-        let t1 = E::ScalarField::rand(rng);
         let a2 = E::ScalarField::rand(rng);
-        let t2 = E::ScalarField::rand(rng);
+        
+        let q1 = p1.mul(a1);
+        let q2 = p2.mul(a2);
 
-        // WI rows: u = [(g1, a1*g1), (t1*g1, (a1*t1-1)*g1)]
-        let u0  = g1.into_affine();
-        let u0b = (g1 * a1).into_affine();
-        let u1  = (g1 * t1).into_affine();
-        let u1b = (g1 * (a1 * t1 - E::ScalarField::one())).into_affine();
+        // Generate per-slot rows for X (G1) - each slot gets 2 rows
+        // Enforce simple linear relation u_{i,1} = a1 * u_{i,0} per slot
+        let mut u = Vec::with_capacity(2 * m);
+        for _slot_i in 0..m {
+            let t_i = E::ScalarField::rand(rng);
+            let u_i_0 = p1.mul(t_i);
+            let (u_i_1, _) = Self::prepare_real_binding_key(p1, p2, q1, t_i, q2, E::ScalarField::zero());
+            
+            // Randomizer row for slot i: (p1, q1) where q1 = a1*p1
+            u.push(Com1::<E>(p1.into_affine(), q1.into_affine()));
+            // Variable row for slot i: (u_{i,0}, u_{i,1}) where u_{i,1} = a1*u_{i,0}
+            u.push(Com1::<E>(u_i_0.into_affine(), u_i_1.into_affine()));
+        }
 
-        // WI rows: v = [(g2, a2*g2), (t2*g2, (a2*t2-1)*g2)]
-        let v0  = g2.into_affine();
-        let v0b = (g2 * a2).into_affine();
-        let v1  = (g2 * t2).into_affine();
-        let v1b = (g2 * (a2 * t2 - E::ScalarField::one())).into_affine();
+        // Generate per-slot rows for Y (G2) - each slot gets 2 rows
+        // Enforce simple linear relation v_{j,1} = a2 * v_{j,0} per slot
+        let mut v = Vec::with_capacity(2 * n);
+        for _slot_j in 0..n {
+            let t_j = E::ScalarField::rand(rng);
+            let v_j_0 = p2.mul(t_j);
+            let (_, v_j_1) = Self::prepare_real_binding_key(p1, p2, q1, E::ScalarField::zero(), q2, t_j);
+            
+            // Randomizer row for slot j: (p2, q2) where q2 = a2*p2
+            v.push(Com2::<E>(p2.into_affine(), q2.into_affine()));
+            // Variable row for slot j: (v_{j,0}, v_{j,1}) where v_{j,1} = a2*v_{j,0}
+            v.push(Com2::<E>(v_j_0.into_affine(), v_j_1.into_affine()));
+        }
 
-        let crs = CRS::<E> {
-            u: vec![Com1(u0, u0b), Com1(u1, u1b)],
-            v: vec![Com2(v0, v0b), Com2(v1, v1b)],
-            g1_gen: g1.into_affine(),
-            g2_gen: g2.into_affine(),
-            gt_gen: E::pairing(g1.into_affine(), g2.into_affine()),
-        };
+        CRS::<E> {
+            u,
+            v,
+            g1_gen: p1.into_affine(),
+            g2_gen: p2.into_affine(),
+            gt_gen: E::pairing(p1.into_affine(), p2.into_affine()),
+            a1,
+            a2,
+        }
+    }
 
-        // exact duals from U^{-1}, V^{-1} (det = -1)
-        // U^{-1} = [[1 - a1 t1, a1],[t1, -1]]
-        let u_star = vec![
-            ((g2 * (E::ScalarField::one() - a1 * t1)).into_affine(), (g2 * t1).into_affine()),
-            ((g2 * a1).into_affine(),                                (g2 * (-E::ScalarField::one())).into_affine()),
-        ];
-        // V^{-1} = [[1 - a2 t2, a2],[t2, -1]]
-        let v_star = vec![
-            ((g1 * (E::ScalarField::one() - a2 * t2)).into_affine(), (g1 * t2).into_affine()),
-            ((g1 * a2).into_affine(),                                (g1 * (-E::ScalarField::one())).into_affine()),
-        ];
+    /// Get the randomizer and variable rows for X slot i.
+    ///
+    /// Returns `(randomizer_row, variable_row)` where each is a `Com1` element.
+    /// The randomizer row (index `2*i`) is used for blinding.
+    /// The variable row (index `2*i+1`) is used for encoding the witness.
+    ///
+    /// # Panics
+    /// Panics if the slot index is out of bounds.
+    pub fn u_for_slot(&self, slot_i: usize) -> (&Com1<E>, &Com1<E>) {
+        assert!(
+            2 * slot_i + 1 < self.u.len(),
+            "X slot index {} out of bounds (have {} slots)",
+            slot_i,
+            self.u.len() / 2
+        );
+        (&self.u[2 * slot_i], &self.u[2 * slot_i + 1])
+    }
 
-        CRSWithDuals { crs, u_star, v_star }
+    /// Get the randomizer and variable rows for Y slot j.
+    ///
+    /// Returns `(randomizer_row, variable_row)` where each is a `Com2` element.
+    /// The randomizer row (index `2*j`) is used for blinding.
+    /// The variable row (index `2*j+1`) is used for encoding the witness.
+    ///
+    /// # Panics
+    /// Panics if the slot index is out of bounds.
+    pub fn v_for_slot(&self, slot_j: usize) -> (&Com2<E>, &Com2<E>) {
+        assert!(
+            2 * slot_j + 1 < self.v.len(),
+            "Y slot index {} out of bounds (have {} slots)",
+            slot_j,
+            self.v.len() / 2
+        );
+        (&self.v[2 * slot_j], &self.v[2 * slot_j + 1])
+    }
+
+    /// Number of X-variable slots in this CRS.
+    ///
+    /// Each slot has 2 rows (randomizer and variable), so this returns `u.len() / 2`.
+    pub fn num_x_slots(&self) -> usize {
+        self.u.len() / 2
+    }
+
+    /// Number of Y-variable slots in this CRS.
+    ///
+    /// Each slot has 2 rows (randomizer and variable), so this returns `v.len() / 2`.
+    pub fn num_y_slots(&self) -> usize {
+        self.v.len() / 2
     }
 }
 
@@ -203,121 +272,6 @@ mod tests {
         assert_ne!(crs.g1_gen, G1Affine::zero());
         assert_ne!(crs.g2_gen, G2Affine::zero());
         assert_ne!(crs.gt_gen, GT::zero());
-    }
-
-    #[test]
-    fn test_wi_rank2_duals() {
-        let mut rng = test_rng();
-        
-        // Generate WI CRS with duals
-        let crs_with_duals = CRSWithDuals::<F>::generate_wi_with_duals(&mut rng);
-        
-        // Check basic structure
-        assert_eq!(crs_with_duals.crs.u.len(), 2);
-        assert_eq!(crs_with_duals.crs.v.len(), 2);
-        assert_eq!(crs_with_duals.u_star.len(), 2);
-        assert_eq!(crs_with_duals.v_star.len(), 2);
-        
-        // Check that duals are in opposite groups
-        // u_star should be G2 pairs (duals of u which are G1)
-        // v_star should be G1 pairs (duals of v which are G2)
-        for (a, b) in &crs_with_duals.u_star {
-            assert_ne!(*a, G2Affine::zero());
-            assert_ne!(*b, G2Affine::zero());
-        }
-        for (a, b) in &crs_with_duals.v_star {
-            assert_ne!(*a, G1Affine::zero());
-            assert_ne!(*b, G1Affine::zero());
-        }
-        
-        // Test dual orthogonality: u_i · u_star_j = δ_{ij} * e(g1, g2)
-        // where δ_{ij} is the Kronecker delta
-        let gt_gen = crs_with_duals.crs.gt_gen;
-        
-        // Test u[0] · u_star[0] = e(g1, g2)
-        let u0_pairing = F::pairing(crs_with_duals.crs.u[0].0, crs_with_duals.u_star[0].0) +
-                        F::pairing(crs_with_duals.crs.u[0].1, crs_with_duals.u_star[0].1);
-        assert_eq!(u0_pairing, gt_gen);
-        
-        // Test u[1] · u_star[1] = e(g1, g2)
-        let u1_pairing = F::pairing(crs_with_duals.crs.u[1].0, crs_with_duals.u_star[1].0) +
-                        F::pairing(crs_with_duals.crs.u[1].1, crs_with_duals.u_star[1].1);
-        assert_eq!(u1_pairing, gt_gen);
-        
-        // Test u[0] · u_star[1] = 0 (orthogonality)
-        let u0_u1_pairing = F::pairing(crs_with_duals.crs.u[0].0, crs_with_duals.u_star[1].0) +
-                           F::pairing(crs_with_duals.crs.u[0].1, crs_with_duals.u_star[1].1);
-        assert_eq!(u0_u1_pairing, GT::zero());
-        
-        // Test u[1] · u_star[0] = 0 (orthogonality)
-        let u1_u0_pairing = F::pairing(crs_with_duals.crs.u[1].0, crs_with_duals.u_star[0].0) +
-                           F::pairing(crs_with_duals.crs.u[1].1, crs_with_duals.u_star[0].1);
-        assert_eq!(u1_u0_pairing, GT::zero());
-        
-        // Test v[0] · v_star[0] = e(g1, g2)
-        let v0_pairing = F::pairing(crs_with_duals.v_star[0].0, crs_with_duals.crs.v[0].0) +
-                        F::pairing(crs_with_duals.v_star[0].1, crs_with_duals.crs.v[0].1);
-        assert_eq!(v0_pairing, gt_gen);
-        
-        // Test v[1] · v_star[1] = e(g1, g2)
-        let v1_pairing = F::pairing(crs_with_duals.v_star[1].0, crs_with_duals.crs.v[1].0) +
-                        F::pairing(crs_with_duals.v_star[1].1, crs_with_duals.crs.v[1].1);
-        assert_eq!(v1_pairing, gt_gen);
-        
-        // Test v[0] · v_star[1] = 0 (orthogonality)
-        let v0_v1_pairing = F::pairing(crs_with_duals.v_star[0].0, crs_with_duals.crs.v[1].0) +
-                           F::pairing(crs_with_duals.v_star[0].1, crs_with_duals.crs.v[1].1);
-        assert_eq!(v0_v1_pairing, GT::zero());
-        
-        // Test v[1] · v_star[0] = 0 (orthogonality)
-        let v1_v0_pairing = F::pairing(crs_with_duals.v_star[1].0, crs_with_duals.crs.v[0].0) +
-                           F::pairing(crs_with_duals.v_star[1].1, crs_with_duals.crs.v[0].1);
-        assert_eq!(v1_v0_pairing, GT::zero());
-        
-        println!("✓ WI rank-2 duals test passed: dual orthogonality verified");
-    }
-
-    #[test]
-    fn test_wi_rank2_matrix_inverse() {
-        let mut rng = test_rng();
-        
-        // Generate WI CRS with duals
-        let crs_with_duals = CRSWithDuals::<F>::generate_wi_with_duals(&mut rng);
-        
-        // Test that the duals are exact matrix inverses
-        // For WI CRS: u = [(g1, a1*g1), (t1*g1, (a1*t1-1)*g1)]
-        // The duals should be: u_star = [(g2*(1-a1*t1), g2*t1), (g2*a1, g2*(-1))]
-        // This corresponds to U^{-1} = [[1 - a1 t1, a1],[t1, -1]]
-        
-        // We can't directly test matrix multiplication since we don't have the trapdoor scalars,
-        // but we can test that the duals satisfy the orthogonality relationships
-        
-        // Test that u[0] · u_star[0] = e(g1, g2) and u[0] · u_star[1] = 0
-        // This verifies that u_star[0] is orthogonal to u[1] and normalized with u[0]
-        let u0_u0_star = F::pairing(crs_with_duals.crs.u[0].0, crs_with_duals.u_star[0].0) +
-                        F::pairing(crs_with_duals.crs.u[0].1, crs_with_duals.u_star[0].1);
-        let u0_u1_star = F::pairing(crs_with_duals.crs.u[0].0, crs_with_duals.u_star[1].0) +
-                        F::pairing(crs_with_duals.crs.u[0].1, crs_with_duals.u_star[1].1);
-        
-        assert_eq!(u0_u0_star, crs_with_duals.crs.gt_gen);
-        assert_eq!(u0_u1_star, GT::zero());
-        
-        // Test that u[1] · u_star[1] = e(g1, g2) and u[1] · u_star[0] = 0
-        let u1_u1_star = F::pairing(crs_with_duals.crs.u[1].0, crs_with_duals.u_star[1].0) +
-                        F::pairing(crs_with_duals.crs.u[1].1, crs_with_duals.u_star[1].1);
-        let u1_u0_star = F::pairing(crs_with_duals.crs.u[1].0, crs_with_duals.u_star[0].0) +
-                        F::pairing(crs_with_duals.crs.u[1].1, crs_with_duals.u_star[0].1);
-        
-        assert_eq!(u1_u1_star, crs_with_duals.crs.gt_gen);
-        assert_eq!(u1_u0_star, GT::zero());
-        
-        // Test that the duals are non-zero and distinct
-        assert_ne!(crs_with_duals.u_star[0].0, crs_with_duals.u_star[1].0);
-        assert_ne!(crs_with_duals.u_star[0].1, crs_with_duals.u_star[1].1);
-        assert_ne!(crs_with_duals.v_star[0].0, crs_with_duals.v_star[1].0);
-        assert_ne!(crs_with_duals.v_star[0].1, crs_with_duals.v_star[1].1);
-        
-        println!("✓ WI rank-2 matrix inverse test passed: duals are exact inverses");
     }
 
     #[allow(non_snake_case)]
@@ -353,8 +307,8 @@ mod tests {
         assert_eq!(crs.v[1].1, v2.into_affine());
     }
 
-    #[allow(non_snake_case)]
     #[test]
+    #[allow(non_snake_case)]
     fn test_CRS_serde() {
         let mut rng = test_rng();
         let crs = CRS::<F>::generate_crs(&mut rng);
@@ -377,4 +331,191 @@ mod tests {
         assert_eq!(crs.g2_gen, crs_deserialized.g2_gen);
         assert_eq!(crs.gt_gen, crs_deserialized.gt_gen);
     }
+
+    // === Phase 1: Per-Slot CRS Tests ===
+
+    #[test]
+    fn test_per_slot_crs_generation() {
+        use ark_bls12_381::Bls12_381 as F;
+        use ark_std::test_rng;
+
+        let mut rng = test_rng();
+        let m = 3; // X slots
+        let n = 2; // Y slots
+        let crs = CRS::<F>::generate_crs_per_slot(&mut rng, m, n);
+
+        // Check slot counts
+        assert_eq!(crs.num_x_slots(), m, "Should have {} X slots", m);
+        assert_eq!(crs.num_y_slots(), n, "Should have {} Y slots", n);
+
+        // Check raw vector lengths
+        assert_eq!(crs.u.len(), 2 * m, "Should have {} u rows (2 per slot)", 2 * m);
+        assert_eq!(crs.v.len(), 2 * n, "Should have {} v rows (2 per slot)", 2 * n);
+
+        println!("Per-slot CRS generation: correct dimensions");
+    }
+
+    #[test]
+    fn test_per_slot_crs_independence() {
+        use ark_bls12_381::Bls12_381 as F;
+        use ark_std::test_rng;
+
+        let mut rng = test_rng();
+        let crs = CRS::<F>::generate_crs_per_slot(&mut rng, 3, 2);
+
+        // Get bases for different X slots
+        let (_u0_rand, u0_var) = crs.u_for_slot(0);
+        let (_u1_rand, u1_var) = crs.u_for_slot(1);
+        let (_u2_rand, u2_var) = crs.u_for_slot(2);
+
+        // Variable rows should differ (different t_i scalars)
+        // Note: Randomizer rows use the same generator (p1, q1), but that's OK
+        // What matters is the full 2D structure per slot
+        assert_ne!(u0_var.0, u1_var.0, "Slot 0 and 1 var rows should differ");
+        assert_ne!(u1_var.0, u2_var.0, "Slot 1 and 2 var rows should differ");
+        assert_ne!(u0_var.0, u2_var.0, "Slot 0 and 2 var rows should differ");
+
+        // Get bases for different Y slots
+        let (_v0_rand, v0_var) = crs.v_for_slot(0);
+        let (_v1_rand, v1_var) = crs.v_for_slot(1);
+
+        assert_ne!(v0_var.0, v1_var.0, "Y slot 0 and 1 var rows should differ");
+
+        println!("Per-slot CRS independence: variable rows are independent");
+    }
+
+    #[test]
+    fn test_slot_accessor_methods() {
+        use ark_bls12_381::Bls12_381 as F;
+        use ark_std::test_rng;
+
+        let mut rng = test_rng();
+        let crs = CRS::<F>::generate_crs_per_slot(&mut rng, 2, 2);
+
+        // Access X slots
+        let (u0_rand, u0_var) = crs.u_for_slot(0);
+        assert_eq!(u0_rand, &crs.u[0], "Slot 0 rand row should be at index 0");
+        assert_eq!(u0_var, &crs.u[1], "Slot 0 var row should be at index 1");
+
+        let (u1_rand, u1_var) = crs.u_for_slot(1);
+        assert_eq!(u1_rand, &crs.u[2], "Slot 1 rand row should be at index 2");
+        assert_eq!(u1_var, &crs.u[3], "Slot 1 var row should be at index 3");
+
+        // Access Y slots
+        let (v0_rand, v0_var) = crs.v_for_slot(0);
+        assert_eq!(v0_rand, &crs.v[0], "Slot 0 rand row should be at index 0");
+        assert_eq!(v0_var, &crs.v[1], "Slot 0 var row should be at index 1");
+
+        let (v1_rand, v1_var) = crs.v_for_slot(1);
+        assert_eq!(v1_rand, &crs.v[2], "Slot 1 rand row should be at index 2");
+        assert_eq!(v1_var, &crs.v[3], "Slot 1 var row should be at index 3");
+
+        println!("Slot accessor methods: correct indexing");
+    }
+
+    #[test]
+    #[should_panic(expected = "X slot index 2 out of bounds")]
+    fn test_slot_accessor_bounds_x() {
+        use ark_bls12_381::Bls12_381 as F;
+        use ark_std::test_rng;
+
+        let mut rng = test_rng();
+        let crs = CRS::<F>::generate_crs_per_slot(&mut rng, 2, 2);
+
+        // This should panic - only slots 0 and 1 exist
+        let _ = crs.u_for_slot(2);
+    }
+
+    #[test]
+    #[should_panic(expected = "Y slot index 3 out of bounds")]
+    fn test_slot_accessor_bounds_y() {
+        use ark_bls12_381::Bls12_381 as F;
+        use ark_std::test_rng;
+
+        let mut rng = test_rng();
+        let crs = CRS::<F>::generate_crs_per_slot(&mut rng, 2, 2);
+
+        // This should panic - only slots 0 and 1 exist
+        let _ = crs.v_for_slot(3);
+    }
+
+    #[test]
+    fn test_backward_compatibility_global_crs() {
+        use ark_bls12_381::Bls12_381 as F;
+        use ark_std::test_rng;
+        use super::AbstractCrs;
+
+        let mut rng = test_rng();
+        
+        // Old style CRS (2 global rows)
+        let crs_old = CRS::<F>::generate_crs(&mut rng);
+        assert_eq!(crs_old.u.len(), 2, "Old CRS should have 2 u rows");
+        assert_eq!(crs_old.v.len(), 2, "Old CRS should have 2 v rows");
+        assert_eq!(crs_old.num_x_slots(), 1, "Old CRS interpreted as 1 X slot");
+        assert_eq!(crs_old.num_y_slots(), 1, "Old CRS interpreted as 1 Y slot");
+
+        // Can access slot 0
+        let (_u_rand, _u_var) = crs_old.u_for_slot(0);
+        let (_v_rand, _v_var) = crs_old.v_for_slot(0);
+
+        println!("Backward compatibility: old CRS works with new accessors");
+    }
+
+    #[test]
+    fn test_crs_binding_structure() {
+        use ark_bls12_381::Bls12_381 as F;
+        use ark_ec::{AffineRepr, CurveGroup};
+        use ark_std::test_rng;
+
+        let mut rng = test_rng();
+        let m = 3; // X slots
+        let n = 2; // Y slots
+        let crs = CRS::<F>::generate_crs_per_slot(&mut rng, m, n);
+
+        println!("\nCRS Binding Structure Test");
+        println!("CRS binding tags: a1={}, a2={}", crs.a1, crs.a2);
+
+        // Verify binding structure: u_{i,1} = a1 * u_{i,0} for all X slots
+        for i in 0..m {
+            let (u_rand, u_var) = crs.u_for_slot(i);
+            
+            // Check rand row: u_rand.1 == a1 * u_rand.0
+            let expected_rand_1 = (u_rand.0.into_group() * crs.a1).into_affine();
+            assert_eq!(
+                u_rand.1, expected_rand_1,
+                "X-slot {} rand row fails binding: u_rand.1 != a1 * u_rand.0", i
+            );
+            
+            // Check var row: u_var.1 == a1 * u_var.0
+            let expected_var_1 = (u_var.0.into_group() * crs.a1).into_affine();
+            assert_eq!(
+                u_var.1, expected_var_1,
+                "X-slot {} var row fails binding: u_var.1 != a1 * u_var.0", i
+            );
+        }
+
+        // Verify binding structure: v_{j,1} = a2 * v_{j,0} for all Y slots
+        for j in 0..n {
+            let (v_rand, v_var) = crs.v_for_slot(j);
+            
+            // Check rand row: v_rand.1 == a2 * v_rand.0
+            let expected_rand_1 = (v_rand.0.into_group() * crs.a2).into_affine();
+            assert_eq!(
+                v_rand.1, expected_rand_1,
+                "Y-slot {} rand row fails binding: v_rand.1 != a2 * v_rand.0", j
+            );
+            
+            // Check var row: v_var.1 == a2 * v_var.0
+            let expected_var_1 = (v_var.0.into_group() * crs.a2).into_affine();
+            assert_eq!(
+                v_var.1, expected_var_1,
+                "Y-slot {} var row fails binding: v_var.1 != a2 * v_var.0", j
+            );
+        }
+
+        println!("All slots satisfy binding structure:");
+        println!("  - u_{{i,1}} = a1 * u_{{i,0}} for all {} X slots", m);
+        println!("  - v_{{j,1}} = a2 * v_{{j,0}} for all {} Y slots", n);
+    }
 }
+

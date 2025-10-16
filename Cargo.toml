@@ -1,3 +1,6 @@
+[workspace]
+members = [".", "groth-sahai"]
+
 [package]
 name = "arkworks_groth16"
 version = "0.1.0"

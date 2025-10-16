@@ -28,7 +28,7 @@ use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use ark_std::{
     fmt::Debug,
     iter::Sum,
-    ops::{Add, AddAssign, Neg, Sub, SubAssign},
+    ops::{Add, AddAssign, Mul, Neg, Sub, SubAssign},
 };
 use rayon::prelude::*;
 
@@ -108,6 +108,8 @@ pub trait BT<E: Pairing, C1: B1<E>, C2: B2<E>>: B<E> + From<Matrix<PairingOutput
     fn pairing(x: C1, y: C2) -> Self;
     /// The entry-wise sum of bilinear pairings over the GS commitment group.
     fn pairing_sum(x_vec: &[C1], y_vec: &[C2]) -> Self;
+    /// Canonical 2×2 pairing layout from one C1 pair and one C2 pair
+    fn comt_of_pair(x: &C1, y: &C2) -> Self;
 
     /// The linear map from GT to BT for pairing-sum equations.
     #[allow(non_snake_case)]
@@ -342,6 +344,13 @@ impl<E: Pairing> B1<E> for Com1<E> {
     }
 }
 
+impl<E: Pairing> Com1<E> {
+    /// Returns the zero element (identity) for Com1
+    pub fn zero() -> Self {
+        Self(E::G1Affine::zero(), E::G1Affine::zero())
+    }
+}
+
 impl<E: Pairing> B2<E> for Com2<E> {
     fn as_col_vec(&self) -> Matrix<E::G2Affine> {
         vec![vec![self.0], vec![self.1]]
@@ -384,6 +393,13 @@ impl<E: Pairing> B2<E> for Com2<E> {
         s1p *= *rhs;
         s2p *= *rhs;
         Self(s1p.into_affine(), s2p.into_affine())
+    }
+}
+
+impl<E: Pairing> Com2<E> {
+    /// Returns the zero element (identity) for Com2
+    pub fn zero() -> Self {
+        Self(E::G2Affine::zero(), E::G2Affine::zero())
     }
 }
 
@@ -442,6 +458,20 @@ impl<E: Pairing> Neg for ComT<E> {
         Self(-self.0, -self.1, -self.2, -self.3)
     }
 }
+
+impl<E: Pairing> Mul<E::ScalarField> for ComT<E> {
+    type Output = Self;
+
+    #[inline]
+    fn mul(self, scalar: E::ScalarField) -> Self::Output {
+        Self(
+            self.0 * scalar,
+            self.1 * scalar,
+            self.2 * scalar,
+            self.3 * scalar,
+        )
+    }
+}
 impl<E: Pairing> Sub<ComT<E>> for ComT<E> {
     type Output = Self;
 
@@ -490,15 +520,27 @@ impl<E: Pairing> BT<E, Com1<E>, Com2<E>> for ComT<E> {
         )
     }
 
+    /// Canonical 2×2 pairing layout from one Com1 pair and one Com2 pair
+    /// M[0][0] = e(x0, y0)    M[0][1] = e(x0, y1)
+    /// M[1][0] = e(x1, y0)    M[1][1] = e(x1, y1)
+    fn comt_of_pair(x: &Com1<E>, y: &Com2<E>) -> Self {
+        let (x0, x1) = (x.0, x.1);
+        let (y0, y1) = (y.0, y.1);
+        Self(
+            E::pairing(x0, y0),  // [0][0]
+            E::pairing(x0, y1),  // [0][1]
+            E::pairing(x1, y0),  // [1][0]
+            E::pairing(x1, y1),  // [1][1]
+        )
+    }
+
     #[inline]
     fn pairing_sum(x_vec: &[Com1<E>], y_vec: &[Com2<E>]) -> Self {
         assert_eq!(x_vec.len(), y_vec.len());
-        Self(
-            E::multi_pairing(x_vec.iter().map(|x| x.0), y_vec.iter().map(|y| y.0)),
-            E::multi_pairing(x_vec.iter().map(|x| x.0), y_vec.iter().map(|y| y.1)),
-            E::multi_pairing(x_vec.iter().map(|x| x.1), y_vec.iter().map(|y| y.0)),
-            E::multi_pairing(x_vec.iter().map(|x| x.1), y_vec.iter().map(|y| y.1)),
-        )
+        x_vec.iter()
+            .zip(y_vec.iter())
+            .map(|(x, y)| Self::comt_of_pair(x, y))
+            .sum()
     }
 
     fn as_matrix(&self) -> Matrix<PairingOutput<E>> {
@@ -511,7 +553,7 @@ impl<E: Pairing> BT<E, Com1<E>, Com2<E>> for ComT<E> {
             PairingOutput::zero(),
             PairingOutput::zero(),
             PairingOutput::zero(),
-            *z,
+            *z,  // [1][1] only - original behavior
         )
     }
 

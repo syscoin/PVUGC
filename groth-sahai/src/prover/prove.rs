@@ -14,6 +14,7 @@
 
 use ark_ec::pairing::Pairing;
 use ark_ec::pairing::PairingOutput;
+use ark_ec::AffineRepr;
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use ark_std::{rand::Rng, UniformRand};
 
@@ -58,6 +59,30 @@ pub struct EquProof<E: Pairing> {
     pub theta: Vec<Com1<E>>,
     pub equ_type: EquType,
     rand: Matrix<E::ScalarField>,
+    /// Auxiliary X randomizer legs for full-GS block verifier: A_i = r_i * u_{i,0}
+    pub aux_x: Vec<E::G1Affine>,
+    /// Auxiliary Y randomizer legs for full-GS block verifier: B_j = s_j * v_{j,0}
+    pub aux_y: Vec<E::G2Affine>,
+}
+
+impl<E: Pairing> EquProof<E> {
+    /// Public constructor for creating an `EquProof` (used by external crates).
+    pub fn new(
+        theta: Vec<Com1<E>>,
+        pi: Vec<Com2<E>>,
+        equ_type: EquType,
+        aux_x: Vec<E::G1Affine>,
+        aux_y: Vec<E::G2Affine>,
+    ) -> Self {
+        Self {
+            theta,
+            pi,
+            equ_type,
+            rand: vec![],
+            aux_x,
+            aux_y,
+        }
+    }
 }
 
 /// A collection of committed variables and proofs for Groth-Sahai compatible bilinear equations.
@@ -167,6 +192,8 @@ impl<E: Pairing> Provable<E, E::G1Affine, E::G2Affine, PairingOutput<E>> for PPE
             theta,
             equ_type: EquType::PairingProduct,
             rand: pf_rand,
+            aux_x: vec![],
+            aux_y: vec![],
         }
     }
 }
@@ -270,6 +297,8 @@ impl<E: Pairing> Provable<E, E::G1Affine, E::ScalarField, E::G1Affine> for MSMEG
             theta,
             equ_type: EquType::MultiScalarG1,
             rand: pf_rand,
+            aux_x: vec![],
+            aux_y: vec![],
         }
     }
 }
@@ -375,6 +404,8 @@ impl<E: Pairing> Provable<E, E::ScalarField, E::G2Affine, E::G2Affine> for MSMEG
             theta,
             equ_type: EquType::MultiScalarG2,
             rand: pf_rand,
+            aux_x: vec![],
+            aux_y: vec![],
         }
     }
 }
@@ -484,6 +515,8 @@ impl<E: Pairing> Provable<E, E::ScalarField, E::ScalarField, E::ScalarField> for
             theta,
             equ_type: EquType::Quadratic,
             rand: pf_rand,
+            aux_x: vec![],
+            aux_y: vec![],
         }
     }
 }
@@ -971,6 +1004,79 @@ mod tests {
     }
 }
 
+/// Binding-aware prover for PPE with rank-1 binding CRS and kernel-constrained randomness
+/// Uses T = λ·k_U·k_V^T (rank-1 structure) for correct extraction
+pub fn prove_ppe_binding_1d<E: Pairing, CR: Rng>(
+    ppe: &PPE<E>,
+    xvars: &[E::G1Affine],
+    yvars: &[E::G2Affine],
+    xcoms: &Commit1<E>,
+    ycoms: &Commit2<E>,
+    crs: &CRS<E>,
+    kernel_u: &[E::ScalarField; 2],
+    kernel_v: &[E::ScalarField; 2],
+    rng: &mut CR,
+) -> EquProof<E> {
+    let m = xvars.len();
+    let n = yvars.len();
+    let is_parallel = true;
+    
+    assert_eq!(ppe.gamma.len(), m);
+    assert_eq!(ppe.gamma[0].len(), n);
+    assert_eq!(xcoms.rand.len(), m);
+    assert_eq!(ycoms.rand.len(), n);
+    
+    // Randomness is already kernel-constrained (R^T: 2×m, S^T: 2×n)
+    let x_rand_trans = xcoms.rand.transpose();
+    let y_rand_trans = ycoms.rand.transpose();
+    
+    // Structured T (rank-1): T = λ·k_U·k_V^T
+    let lambda = E::ScalarField::rand(rng);
+    let pf_rand: Matrix<E::ScalarField> = vec![
+        vec![kernel_u[0] * kernel_v[0] * lambda, kernel_u[0] * kernel_v[1] * lambda],
+        vec![kernel_u[1] * kernel_v[0] * lambda, kernel_u[1] * kernel_v[1] * lambda],
+    ];
+    
+    // Build π (same structure as standard prover, but with kernel-constrained randomness)
+    let x_rand_lin_b = vec_to_col_vec(&Com2::<E>::batch_linear_map(&ppe.b_consts))
+        .left_mul(&x_rand_trans, is_parallel);
+    
+    let x_rand_stmt = x_rand_trans.right_mul(&ppe.gamma, is_parallel);
+    let x_rand_stmt_lin_y =
+        vec_to_col_vec(&Com2::<E>::batch_linear_map(yvars)).left_mul(&x_rand_stmt, is_parallel);
+    
+    let pf_rand_stmt = x_rand_trans
+        .right_mul(&ppe.gamma, is_parallel)
+        .right_mul(&ycoms.rand, is_parallel)
+        .add(&pf_rand.transpose().neg());
+    let pf_rand_stmt_com2 = vec_to_col_vec(&crs.v).left_mul(&pf_rand_stmt, is_parallel);
+    
+    let pi = col_vec_to_vec(&x_rand_lin_b.add(&x_rand_stmt_lin_y).add(&pf_rand_stmt_com2));
+    assert_eq!(pi.len(), 2);
+    
+    // Build θ
+    let y_rand_lin_a = vec_to_col_vec(&Com1::<E>::batch_linear_map(&ppe.a_consts))
+        .left_mul(&y_rand_trans, is_parallel);
+    
+    let y_rand_stmt = y_rand_trans.right_mul(&ppe.gamma.transpose(), is_parallel);
+    let y_rand_stmt_lin_x =
+        vec_to_col_vec(&Com1::<E>::batch_linear_map(xvars)).left_mul(&y_rand_stmt, is_parallel);
+    
+    let pf_rand_com1 = vec_to_col_vec(&crs.u).left_mul(&pf_rand, is_parallel);
+    
+    let theta = col_vec_to_vec(&y_rand_lin_a.add(&y_rand_stmt_lin_x).add(&pf_rand_com1));
+    assert_eq!(theta.len(), 2);
+    
+    EquProof::<E> {
+        pi,
+        theta,
+        equ_type: EquType::PairingProduct,
+        rand: pf_rand,
+        aux_x: vec![],
+        aux_y: vec![],
+    }
+}
+
 /*
  * NOTE:
  *
@@ -978,3 +1084,140 @@ mod tests {
  *
  * See tests/prover.rs for more details.
  */
+
+#[cfg(test)]
+mod binding_prover_tests {
+
+}
+
+// Rank-decomposition PPE prover (for offline PVUGC ARMER)
+impl<E: Pairing> PPE<E> {
+    /// Commit and prove using rank-decomposition PPE structure.
+    ///
+    /// This prover generates θ/π that are compatible with the four-bucket verifier,
+    /// enabling offline PVUGC ARMER. The proof elements are:
+    ///
+    /// - θ_a = Σ_i u^(a)_i · r_i · u_{i,0} (G1, rank elements)
+    /// - π_j = s_j · v_{j,0} (G2, n elements)
+    ///
+    /// These work with the statement-only bases (U, V, W, Z) to achieve randomizer cancellation.
+    ///
+    /// # Arguments
+    /// * `xvars` - Witness X variables (G1, length m)
+    /// * `yvars` - Witness Y variables (G2, length n)
+    /// * `crs` - Per-slot CRS (must have m X-slots and n Y-slots)
+    /// * `rng` - Random number generator
+    ///
+    /// # Returns
+    /// `CProof` with commitments and rank-decomp proof elements
+    pub fn commit_and_prove_rank_decomp<R: Rng>(
+        &self,
+        xvars: &[E::G1Affine],
+        yvars: &[E::G2Affine],
+        crs: &CRS<E>,
+        rng: &mut R,
+    ) -> CProof<E> {
+        use crate::rank_decomp::RankDecomp;
+        use crate::base_construction::{build_P_slots, build_Q_slots};
+        use super::commit::{batch_commit_G1_per_slot, batch_commit_G2_per_slot};
+
+        let m = xvars.len();
+        let n = yvars.len();
+
+        // Verify dimensions
+        assert_eq!(self.gamma.len(), m, "Γ rows must match X variables");
+        assert_eq!(self.gamma[0].len(), n, "Γ cols must match Y variables");
+        assert_eq!(crs.num_x_slots(), m, "CRS must have m X-slots");
+        assert_eq!(crs.num_y_slots(), n, "CRS must have n Y-slots");
+
+        // 1. Commit using per-slot CRS
+        let (xcoms, r_randomizers) = batch_commit_G1_per_slot(xvars, crs, rng);
+        let (ycoms, s_randomizers) = batch_commit_G2_per_slot(yvars, crs, rng);
+
+        // 2. Compute rank decomposition
+        let decomp = RankDecomp::decompose(&self.gamma);
+
+        // 3. Generate rank-decomp proof elements
+        // θ = P slots (rank elements in G1)
+        let theta = build_P_slots(crs, &decomp, &r_randomizers);
+
+        // π = Q slots (n elements in G2)
+        let pi = build_Q_slots(crs, &s_randomizers);
+
+        // 4. Return proof
+        CProof {
+            xcoms,
+            ycoms,
+            equ_proofs: vec![EquProof {
+                theta,
+                pi,
+                equ_type: EquType::PairingProduct,
+                rand: vec![], // Not used in rank-decomp verification
+                aux_x: vec![], // Not used in rank-decomp path
+                aux_y: vec![], // Not used in rank-decomp path
+            }],
+        }
+    }
+    
+    /// Commit and prove for full-GS block verifier (Phase 7, Groth16 integration).
+    ///
+    /// This method creates commitments using VAR-row bases and explicit randomizers,
+    /// compatible with the block-based full-GS verifier. No θ/π proof elements are
+    /// generated since B3/B4 are disabled in the block verifier.
+    ///
+    /// # Arguments
+    /// * `xvars` - G1 variables
+    /// * `yvars` - G2 variables
+    /// * `r` - Explicit randomizers for X (use 0 for constants)
+    /// * `s` - Explicit randomizers for Y (use 0 for constants)
+    /// * `crs` - Per-slot CRS
+    ///
+    /// # Returns
+    /// Proof with commitments, empty θ/π
+    pub fn commit_and_prove_full_gs<R: Rng>(
+        &self,
+        xvars: &[E::G1Affine],
+        yvars: &[E::G2Affine],
+        r: &[E::ScalarField],
+        s: &[E::ScalarField],
+        crs: &CRS<E>,
+        _rng: &mut R,
+    ) -> CProof<E> {
+        use super::commit::{commit_g1_full_gs, commit_g2_full_gs};
+        use ark_ec::CurveGroup;
+        
+        let m = xvars.len();
+        let n = yvars.len();
+        
+        let (xcoms, _) = commit_g1_full_gs(xvars, crs, r);
+        let (ycoms, _) = commit_g2_full_gs(yvars, crs, s);
+        
+        // Compute auxiliary randomizer legs for proper telescoping cancellation
+        let mut aux_x = Vec::with_capacity(m);
+        for i in 0..m {
+            let (_, u_var) = crs.u_for_slot(i);
+            aux_x.push((u_var.0.into_group() * r[i]).into_affine());  // r_i * u_{i,0}
+        }
+        
+        let mut aux_y = Vec::with_capacity(n);
+        for j in 0..n {
+            let (_, v_var) = crs.v_for_slot(j);
+            aux_y.push((v_var.0.into_group() * s[j]).into_affine());  // s_j * v_{j,0}
+        }
+        
+        // For full-GS block verifier, θ and π are not needed (B3/B4 disabled)
+        // but aux_x and aux_y are required for complete telescoping
+        CProof {
+            xcoms,
+            ycoms,
+            equ_proofs: vec![EquProof {
+                theta: vec![],
+                pi: vec![],
+                equ_type: EquType::PairingProduct,
+                rand: vec![],
+                aux_x,
+                aux_y,
+            }],
+        }
+    }
+}

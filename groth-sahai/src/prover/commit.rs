@@ -3,6 +3,8 @@
 #![allow(non_snake_case)]
 
 use ark_ec::pairing::Pairing;
+use ark_ec::AffineRepr;
+use ark_ff::Zero;
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use ark_std::{fmt::Debug, rand::Rng, UniformRand};
 
@@ -546,4 +548,246 @@ mod tests {
 
         assert_eq!(exp, res);
     }
+}
+
+/// Commit G1 elements with rank-1 binding CRS: randomness along kernel_u = [-t, 1]
+/// This is the CORRECT binding-aware commitment for PVUGC
+pub fn batch_commit_G1_binding_1d<CR, E>(
+    xvars: &[E::G1Affine], 
+    crs: &CRS<E>,
+    kernel_u: &[E::ScalarField; 2],
+    rng: &mut CR
+) -> Commit1<E>
+where
+    E: Pairing,
+    CR: Rng,
+{
+    let mut coms = Vec::with_capacity(xvars.len());
+    let mut rand = Vec::with_capacity(xvars.len());
+    
+    for x in xvars {
+        let r = E::ScalarField::rand(rng);
+        // Randomness constrained to kernel: R_i = (-k_u[0] * r, k_u[1] * r)
+        let r0 = -kernel_u[0] * r;  // == t * r (if kernel_u = [-t, 1])
+        let r1 = kernel_u[1] * r;   // == 1 * r
+        
+        // C¹ = ι(x) + r0·U[0] + r1·U[1]
+        let com = Com1::<E>::linear_map(x)
+            + crs.u[0].scalar_mul(&r0)
+            + crs.u[1].scalar_mul(&r1);
+        
+        coms.push(com);
+        rand.push(vec![r0, r1]); // Store 2D row for compatibility
+    }
+    
+    Commit1::<E> { coms, rand }
+}
+/// Commit G1 elements using per-slot CRS (for rank-decomposition PPE).
+///
+/// Each X variable gets its own slot with independent (rand_row, var_row).
+/// Commitment: C^1_i = x_i·u_{i,1} + r_i·u_{i,0}
+///
+/// Returns (commitments, per-slot randomizers)
+pub fn batch_commit_G1_per_slot<CR, E>(
+    xvars: &[E::G1Affine],
+    crs: &CRS<E>,
+    rng: &mut CR,
+) -> (Commit1<E>, Vec<E::ScalarField>)
+where
+    E: Pairing,
+    CR: Rng,
+{
+    let m = xvars.len();
+    assert_eq!(crs.num_x_slots(), m, "CRS must have one slot per X variable");
+    
+    let randomizers: Vec<E::ScalarField> = (0..m).map(|_| E::ScalarField::rand(rng)).collect();
+    batch_commit_G1_per_slot_with_randomizers(xvars, crs, &randomizers)
+}
+
+/// Commit G1 elements using per-slot CRS with explicit randomizers.
+/// 
+/// Allows zero-randomness commitments for constant slots.
+pub fn batch_commit_G1_per_slot_with_randomizers<E>(
+    xvars: &[E::G1Affine],
+    crs: &CRS<E>,
+    randomizers: &[E::ScalarField],
+) -> (Commit1<E>, Vec<E::ScalarField>)
+where
+    E: Pairing,
+{
+    use ark_ec::CurveGroup;
+    
+    let m = xvars.len();
+    assert_eq!(crs.num_x_slots(), m, "CRS must have one slot per X variable");
+    assert_eq!(randomizers.len(), m, "Must have one randomizer per X variable");
+    
+    let mut coms = Vec::with_capacity(m);
+    let mut rand_matrix = Vec::with_capacity(m);
+    
+    for (i, x) in xvars.iter().enumerate() {
+        let r_i = randomizers[i];
+        let (u_rand, _u_var) = crs.u_for_slot(i);
+        
+        let c1_0 = u_rand.0.into_group() * r_i;
+        let c1_1 = u_rand.1.into_group() * r_i + x.into_group();
+        let com = Com1::<E>(c1_0.into_affine(), c1_1.into_affine());
+        
+        coms.push(com);
+        rand_matrix.push(vec![r_i, E::ScalarField::zero()]);
+    }
+    
+    (Commit1::<E> { coms, rand: rand_matrix }, randomizers.to_vec())
+}
+
+/// Commit G2 elements using per-slot CRS (for rank-decomposition PPE).
+///
+/// Each Y variable gets its own slot with independent (rand_row, var_row).
+/// Commitment: C^2_j = y_j·v_{j,1} + s_j·v_{j,0}
+///
+/// Returns (commitments, per-slot randomizers)
+pub fn batch_commit_G2_per_slot<CR, E>(
+    yvars: &[E::G2Affine],
+    crs: &CRS<E>,
+    rng: &mut CR,
+) -> (Commit2<E>, Vec<E::ScalarField>)
+where
+    E: Pairing,
+    CR: Rng,
+{
+    let n = yvars.len();
+    assert_eq!(crs.num_y_slots(), n, "CRS must have one slot per Y variable");
+    
+    let randomizers: Vec<E::ScalarField> = (0..n).map(|_| E::ScalarField::rand(rng)).collect();
+    batch_commit_G2_per_slot_with_randomizers(yvars, crs, &randomizers)
+}
+
+/// Commit G2 elements using per-slot CRS with explicit randomizers.
+/// 
+/// Allows zero-randomness commitments for constant slots.
+pub fn batch_commit_G2_per_slot_with_randomizers<E>(
+    yvars: &[E::G2Affine],
+    crs: &CRS<E>,
+    randomizers: &[E::ScalarField],
+) -> (Commit2<E>, Vec<E::ScalarField>)
+where
+    E: Pairing,
+{
+    use ark_ec::CurveGroup;
+    
+    let n = yvars.len();
+    assert_eq!(crs.num_y_slots(), n, "CRS must have one slot per Y variable");
+    assert_eq!(randomizers.len(), n, "Must have one randomizer per Y variable");
+    
+    let mut coms = Vec::with_capacity(n);
+    let mut rand_matrix = Vec::with_capacity(n);
+    
+    for (j, y) in yvars.iter().enumerate() {
+        let s_j = randomizers[j];
+        let (v_rand, _v_var) = crs.v_for_slot(j);
+        
+        let c2_0 = v_rand.0.into_group() * s_j;
+        let c2_1 = v_rand.1.into_group() * s_j + y.into_group();
+        let com = Com2::<E>(c2_0.into_affine(), c2_1.into_affine());
+        
+        coms.push(com);
+        rand_matrix.push(vec![s_j, E::ScalarField::zero()]);
+    }
+    
+    (Commit2::<E> { coms, rand: rand_matrix }, randomizers.to_vec())
+}
+
+/// Commit G1 elements for full-GS block verifier using VAR-row bases.
+///
+/// For the block-based full-GS construction, commitments must use the VAR row
+/// for BOTH the randomizer and variable limbs to match the block algebra.
+/// This ensures proper telescoping cancellation with the block bases.
+///
+/// Commitment structure: C^1_i = (r_i * u_{i,0}, r_i * u_{i,1} + X_i)
+/// where (u_{i,0}, u_{i,1}) are from the VAR row with u_{i,1} = a1 * u_{i,0}
+///
+/// # Arguments
+/// * `xvars` - G1 variables to commit
+/// * `crs` - Per-slot CRS
+/// * `randomizers` - Explicit randomizers (use 0 for constant slots)
+///
+/// # Returns
+/// (commitments, randomizers)
+pub fn commit_g1_full_gs<E>(
+    xvars: &[E::G1Affine],
+    crs: &CRS<E>,
+    randomizers: &[E::ScalarField],
+) -> (Commit1<E>, Vec<E::ScalarField>)
+where
+    E: Pairing,
+{
+    use ark_ec::CurveGroup;
+    
+    let m = xvars.len();
+    assert_eq!(crs.num_x_slots(), m, "CRS must have one slot per X variable");
+    assert_eq!(randomizers.len(), m, "Must have one randomizer per X variable");
+    
+    let mut coms = Vec::with_capacity(m);
+    let mut rand_matrix = Vec::with_capacity(m);
+    
+    for (i, x) in xvars.iter().enumerate() {
+        let r_i = randomizers[i];
+        let (_, u_var) = crs.u_for_slot(i);  // Use VAR row for full-GS
+        
+        let c1_0 = u_var.0.into_group() * r_i;                      // r_i * u_{i,0}
+        let c1_1 = u_var.1.into_group() * r_i + x.into_group();    // r_i * u_{i,1} + X_i
+        let com = Com1::<E>(c1_0.into_affine(), c1_1.into_affine());
+        
+        coms.push(com);
+        rand_matrix.push(vec![r_i, E::ScalarField::zero()]);
+    }
+    
+    (Commit1::<E> { coms, rand: rand_matrix }, randomizers.to_vec())
+}
+
+/// Commit G2 elements for full-GS block verifier using VAR-row bases.
+///
+/// For the block-based full-GS construction, commitments must use the VAR row
+/// for BOTH the randomizer and variable limbs to match the block algebra.
+/// This ensures proper telescoping cancellation with the block bases.
+///
+/// Commitment structure: C^2_j = (s_j * v_{j,0}, s_j * v_{j,1} + Y_j)
+/// where (v_{j,0}, v_{j,1}) are from the VAR row with v_{j,1} = a2 * v_{j,0}
+///
+/// # Arguments
+/// * `yvars` - G2 variables to commit
+/// * `crs` - Per-slot CRS
+/// * `randomizers` - Explicit randomizers (use 0 for constant slots)
+///
+/// # Returns
+/// (commitments, randomizers)
+pub fn commit_g2_full_gs<E>(
+    yvars: &[E::G2Affine],
+    crs: &CRS<E>,
+    randomizers: &[E::ScalarField],
+) -> (Commit2<E>, Vec<E::ScalarField>)
+where
+    E: Pairing,
+{
+    use ark_ec::CurveGroup;
+    
+    let n = yvars.len();
+    assert_eq!(crs.num_y_slots(), n, "CRS must have one slot per Y variable");
+    assert_eq!(randomizers.len(), n, "Must have one randomizer per Y variable");
+    
+    let mut coms = Vec::with_capacity(n);
+    let mut rand_matrix = Vec::with_capacity(n);
+    
+    for (j, y) in yvars.iter().enumerate() {
+        let s_j = randomizers[j];
+        let (_, v_var) = crs.v_for_slot(j);  // Use VAR row for full-GS
+        
+        let c2_0 = v_var.0.into_group() * s_j;                      // s_j * v_{j,0}
+        let c2_1 = v_var.1.into_group() * s_j + y.into_group();    // s_j * v_{j,1} + Y_j
+        let com = Com2::<E>(c2_0.into_affine(), c2_1.into_affine());
+        
+        coms.push(com);
+        rand_matrix.push(vec![s_j, E::ScalarField::zero()]);
+    }
+    
+    (Commit2::<E> { coms, rand: rand_matrix }, randomizers.to_vec())
 }
