@@ -39,7 +39,7 @@ pub struct CRS<E: Pairing> {
     pub g1_gen: E::G1Affine,
     pub g2_gen: E::G2Affine,
     pub gt_gen: PairingOutput<E>,
-    
+
     /// G1 binding tag (public): u_{i,1} = a1 * u_{i,0}
     pub a1: E::ScalarField,
     /// G2 binding tag (public): v_{j,1} = a2 * v_{j,0}
@@ -150,7 +150,7 @@ impl<E: Pairing> CRS<E> {
         let p2 = E::G2::rand(rng);
         let a1 = E::ScalarField::rand(rng);
         let a2 = E::ScalarField::rand(rng);
-        
+
         let q1 = p1.mul(a1);
         let q2 = p2.mul(a2);
 
@@ -160,8 +160,9 @@ impl<E: Pairing> CRS<E> {
         for _slot_i in 0..m {
             let t_i = E::ScalarField::rand(rng);
             let u_i_0 = p1.mul(t_i);
-            let (u_i_1, _) = Self::prepare_real_binding_key(p1, p2, q1, t_i, q2, E::ScalarField::zero());
-            
+            let (u_i_1, _) =
+                Self::prepare_real_binding_key(p1, p2, q1, t_i, q2, E::ScalarField::zero());
+
             // Randomizer row for slot i: (p1, q1) where q1 = a1*p1
             u.push(Com1::<E>(p1.into_affine(), q1.into_affine()));
             // Variable row for slot i: (u_{i,0}, u_{i,1}) where u_{i,1} = a1*u_{i,0}
@@ -174,8 +175,9 @@ impl<E: Pairing> CRS<E> {
         for _slot_j in 0..n {
             let t_j = E::ScalarField::rand(rng);
             let v_j_0 = p2.mul(t_j);
-            let (_, v_j_1) = Self::prepare_real_binding_key(p1, p2, q1, E::ScalarField::zero(), q2, t_j);
-            
+            let (_, v_j_1) =
+                Self::prepare_real_binding_key(p1, p2, q1, E::ScalarField::zero(), q2, t_j);
+
             // Randomizer row for slot j: (p2, q2) where q2 = a2*p2
             v.push(Com2::<E>(p2.into_affine(), q2.into_affine()));
             // Variable row for slot j: (v_{j,0}, v_{j,1}) where v_{j,1} = a2*v_{j,0}
@@ -349,8 +351,18 @@ mod tests {
         assert_eq!(crs.num_y_slots(), n, "Should have {} Y slots", n);
 
         // Check raw vector lengths
-        assert_eq!(crs.u.len(), 2 * m, "Should have {} u rows (2 per slot)", 2 * m);
-        assert_eq!(crs.v.len(), 2 * n, "Should have {} v rows (2 per slot)", 2 * n);
+        assert_eq!(
+            crs.u.len(),
+            2 * m,
+            "Should have {} u rows (2 per slot)",
+            2 * m
+        );
+        assert_eq!(
+            crs.v.len(),
+            2 * n,
+            "Should have {} v rows (2 per slot)",
+            2 * n
+        );
 
         println!("Per-slot CRS generation: correct dimensions");
     }
@@ -441,12 +453,12 @@ mod tests {
 
     #[test]
     fn test_backward_compatibility_global_crs() {
+        use super::AbstractCrs;
         use ark_bls12_381::Bls12_381 as F;
         use ark_std::test_rng;
-        use super::AbstractCrs;
 
         let mut rng = test_rng();
-        
+
         // Old style CRS (2 global rows)
         let crs_old = CRS::<F>::generate_crs(&mut rng);
         assert_eq!(crs_old.u.len(), 2, "Old CRS should have 2 u rows");
@@ -478,38 +490,42 @@ mod tests {
         // Verify binding structure: u_{i,1} = a1 * u_{i,0} for all X slots
         for i in 0..m {
             let (u_rand, u_var) = crs.u_for_slot(i);
-            
+
             // Check rand row: u_rand.1 == a1 * u_rand.0
             let expected_rand_1 = (u_rand.0.into_group() * crs.a1).into_affine();
             assert_eq!(
                 u_rand.1, expected_rand_1,
-                "X-slot {} rand row fails binding: u_rand.1 != a1 * u_rand.0", i
+                "X-slot {} rand row fails binding: u_rand.1 != a1 * u_rand.0",
+                i
             );
-            
+
             // Check var row: u_var.1 == a1 * u_var.0
             let expected_var_1 = (u_var.0.into_group() * crs.a1).into_affine();
             assert_eq!(
                 u_var.1, expected_var_1,
-                "X-slot {} var row fails binding: u_var.1 != a1 * u_var.0", i
+                "X-slot {} var row fails binding: u_var.1 != a1 * u_var.0",
+                i
             );
         }
 
         // Verify binding structure: v_{j,1} = a2 * v_{j,0} for all Y slots
         for j in 0..n {
             let (v_rand, v_var) = crs.v_for_slot(j);
-            
+
             // Check rand row: v_rand.1 == a2 * v_rand.0
             let expected_rand_1 = (v_rand.0.into_group() * crs.a2).into_affine();
             assert_eq!(
                 v_rand.1, expected_rand_1,
-                "Y-slot {} rand row fails binding: v_rand.1 != a2 * v_rand.0", j
+                "Y-slot {} rand row fails binding: v_rand.1 != a2 * v_rand.0",
+                j
             );
-            
+
             // Check var row: v_var.1 == a2 * v_var.0
             let expected_var_1 = (v_var.0.into_group() * crs.a2).into_affine();
             assert_eq!(
                 v_var.1, expected_var_1,
-                "Y-slot {} var row fails binding: v_var.1 != a2 * v_var.0", j
+                "Y-slot {} var row fails binding: v_var.1 != a2 * v_var.0",
+                j
             );
         }
 
@@ -518,4 +534,3 @@ mod tests {
         println!("  - v_{{j,1}} = a2 * v_{{j,0}} for all {} Y slots", n);
     }
 }
-

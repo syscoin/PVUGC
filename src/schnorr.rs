@@ -5,16 +5,15 @@ This module provides a wrapper around schnorr_fun for adaptor signatures and MuS
 All cryptographic operations are handled by the schnorr_fun library.
 */
 
+use ark_std::{rand::Rng, vec::Vec};
+use bitcoin::secp256k1::PublicKey;
 use schnorr_fun::{
     adaptor::{Adaptor, EncryptedSign, EncryptedSignature},
-    fun::{marker::*, nonce, Scalar, Point},
-    musig,
-    Message, Schnorr,
+    fun::{marker::*, nonce, Point, Scalar},
+    musig, Message, Schnorr,
 };
-use bitcoin::secp256k1::PublicKey;
-use sha2::{Sha256, Digest};
+use sha2::{Digest, Sha256};
 use thiserror::Error;
-use ark_std::{vec::Vec, rand::Rng};
 
 /// Errors that can occur during Schnorr operations
 #[derive(Error, Debug)]
@@ -47,20 +46,19 @@ pub struct AdaptorSignature {
 /// Schnorr adaptor signature implementation using schnorr_fun
 pub struct SchnorrAdaptor {
     pub schnorr: Schnorr<Sha256, nonce::Synthetic<Sha256, nonce::GlobalRng<rand::rngs::ThreadRng>>>,
-    pub musig: musig::MuSig<Sha256, nonce::Synthetic<Sha256, nonce::GlobalRng<rand::rngs::ThreadRng>>>,
+    pub musig:
+        musig::MuSig<Sha256, nonce::Synthetic<Sha256, nonce::GlobalRng<rand::rngs::ThreadRng>>>,
 }
 
 impl SchnorrAdaptor {
     /// Create a new SchnorrAdaptor instance
     pub fn new() -> Self {
-        let nonce_gen = nonce::Synthetic::<Sha256, nonce::GlobalRng<rand::rngs::ThreadRng>>::default();
+        let nonce_gen =
+            nonce::Synthetic::<Sha256, nonce::GlobalRng<rand::rngs::ThreadRng>>::default();
         let schnorr = Schnorr::<Sha256, _>::new(nonce_gen.clone());
         let musig = musig::MuSig::new(schnorr.clone());
-        
-        Self {
-            schnorr,
-            musig,
-        }
+
+        Self { schnorr, musig }
     }
 
     /// BIP-340 tagged hash function
@@ -76,26 +74,32 @@ impl SchnorrAdaptor {
     /// Aggregate public keys using schnorr_fun MuSig
     pub fn aggregate_pubkeys(&self, pubkeys: &[[u8; 33]]) -> Result<[u8; 33], SchnorrError> {
         if pubkeys.is_empty() {
-            return Err(SchnorrError::InvalidPublicKey("No public keys to aggregate".to_string()));
+            return Err(SchnorrError::InvalidPublicKey(
+                "No public keys to aggregate".to_string(),
+            ));
         }
 
         // Convert pubkeys to schnorr_fun format
         let mut verification_keys = Vec::new();
         for (i, pubkey_bytes) in pubkeys.iter().enumerate() {
-            let pubkey = PublicKey::from_slice(pubkey_bytes)
-                .map_err(|e| SchnorrError::InvalidPublicKey(format!("Invalid pubkey {}: {:?}", i, e)))?;
-            
+            let pubkey = PublicKey::from_slice(pubkey_bytes).map_err(|e| {
+                SchnorrError::InvalidPublicKey(format!("Invalid pubkey {}: {:?}", i, e))
+            })?;
+
             // Convert to schnorr_fun verification key (Normal point for MuSig)
-            let x_bytes: [u8; 32] = pubkey.serialize()[1..33].try_into()
+            let x_bytes: [u8; 32] = pubkey.serialize()[1..33]
+                .try_into()
                 .map_err(|_| SchnorrError::Serialization("Invalid pubkey format".to_string()))?;
-            
+
             // Convert x-only bytes to compressed format for Normal point
             let mut compressed_bytes = [0u8; 33];
             compressed_bytes[0] = 0x02; // Even y-coordinate
             compressed_bytes[1..].copy_from_slice(&x_bytes);
             let verification_key = Point::<Normal, Public>::from_bytes(compressed_bytes)
-                .ok_or_else(|| SchnorrError::InvalidPublicKey("Invalid verification key".to_string()))?;
-            
+                .ok_or_else(|| {
+                    SchnorrError::InvalidPublicKey("Invalid verification key".to_string())
+                })?;
+
             verification_keys.push(verification_key);
         }
 
@@ -107,9 +111,14 @@ impl SchnorrAdaptor {
     }
 
     /// Aggregate adaptor points: T = Σ T_i using schnorr_fun
-    pub fn aggregate_adaptor_points(&self, t_points: &[[u8; 33]]) -> Result<[u8; 33], SchnorrError> {
+    pub fn aggregate_adaptor_points(
+        &self,
+        t_points: &[[u8; 33]],
+    ) -> Result<[u8; 33], SchnorrError> {
         if t_points.is_empty() {
-            return Err(SchnorrError::InvalidPublicKey("No adaptor points".to_string()));
+            return Err(SchnorrError::InvalidPublicKey(
+                "No adaptor points".to_string(),
+            ));
         }
 
         // Parse first adaptor point
@@ -118,12 +127,14 @@ impl SchnorrAdaptor {
 
         // Add remaining adaptor points using secp256k1 point addition
         for (i, t_bytes) in t_points.iter().enumerate().skip(1) {
-            let t_point = PublicKey::from_slice(t_bytes)
-                .map_err(|e| SchnorrError::InvalidPublicKey(format!("Invalid T point {}: {:?}", i, e)))?;
-            
+            let t_point = PublicKey::from_slice(t_bytes).map_err(|e| {
+                SchnorrError::InvalidPublicKey(format!("Invalid T point {}: {:?}", i, e))
+            })?;
+
             // Perform elliptic curve point addition: T_agg = T_agg + T_i
-            aggregated_point = aggregated_point.combine(&t_point)
-                .map_err(|e| SchnorrError::Crypto(format!("T point combination failed: {:?}", e)))?;
+            aggregated_point = aggregated_point.combine(&t_point).map_err(|e| {
+                SchnorrError::Crypto(format!("T point combination failed: {:?}", e))
+            })?;
         }
 
         // Serialize as compressed public key
@@ -149,35 +160,37 @@ impl SchnorrAdaptor {
         // In a real MuSig2, each participant would create partial signatures
         // Here we simulate a trusted dealer who knows all secrets
         let mut aggregated_secret = Scalar::<Secret, Zero>::zero();
-        
+
         for (i, secret_bytes) in participants_secrets.iter().enumerate() {
             let secret_key = Scalar::<Secret, NonZero>::from_bytes(*secret_bytes)
                 .ok_or_else(|| SchnorrError::InvalidPrivateKey(format!("Invalid secret {}", i)))?;
             aggregated_secret = schnorr_fun::fun::op::scalar_add(aggregated_secret, secret_key);
         }
-        
+
         // Ensure the aggregated secret is non-zero
-        let aggregated_secret_nonzero = Scalar::<Secret, NonZero>::from_bytes(aggregated_secret.to_bytes())
-            .ok_or_else(|| SchnorrError::InvalidPrivateKey("Aggregated secret is zero".to_string()))?;
-        
+        let aggregated_secret_nonzero = Scalar::<Secret, NonZero>::from_bytes(
+            aggregated_secret.to_bytes(),
+        )
+        .ok_or_else(|| SchnorrError::InvalidPrivateKey("Aggregated secret is zero".to_string()))?;
+
         // Create keypair from aggregated secret
         let aggregated_keypair = self.schnorr.new_keypair(aggregated_secret_nonzero);
-        
+
         // Verify that the aggregated keypair's public key matches the provided aggregate_pubkey
         // This is a sanity check to ensure our key aggregation is correct
         let derived_pubkey = aggregated_keypair.public_key();
         let derived_pubkey_bytes = derived_pubkey.to_bytes();
-        
+
         // The derived key might have different parity, so we compare x-coordinates only
         let provided_x = &aggregate_pubkey[1..];
         let derived_x = &derived_pubkey_bytes[1..];
-        
+
         if provided_x != derived_x {
             return Err(SchnorrError::InvalidPublicKey(
-                "Aggregated secret doesn't match aggregated pubkey".to_string()
+                "Aggregated secret doesn't match aggregated pubkey".to_string(),
             ));
         }
-        
+
         // Create encrypted signature using the aggregated keypair
         let encrypted_signature = self.schnorr.encrypted_sign(
             &aggregated_keypair,
@@ -201,12 +214,15 @@ impl SchnorrAdaptor {
         // Convert public key to schnorr_fun format
         let pubkey_point = PublicKey::from_slice(pubkey)
             .map_err(|e| SchnorrError::InvalidPublicKey(format!("Invalid pubkey: {:?}", e)))?;
-        
-        let x_bytes: [u8; 32] = pubkey_point.serialize()[1..33].try_into()
+
+        let x_bytes: [u8; 32] = pubkey_point.serialize()[1..33]
+            .try_into()
             .map_err(|_| SchnorrError::Serialization("Invalid pubkey format".to_string()))?;
-        
-        let verification_key = Point::<EvenY, Public>::from_xonly_bytes(x_bytes)
-            .ok_or_else(|| SchnorrError::InvalidPublicKey("Invalid verification key".to_string()))?;
+
+        let verification_key =
+            Point::<EvenY, Public>::from_xonly_bytes(x_bytes).ok_or_else(|| {
+                SchnorrError::InvalidPublicKey("Invalid verification key".to_string())
+            })?;
 
         // Convert adaptor point to schnorr_fun format
         let t_point = Point::<Normal, Public>::from_bytes(adaptor.t)
@@ -234,10 +250,9 @@ impl SchnorrAdaptor {
             .ok_or_else(|| SchnorrError::InvalidSecret("Invalid alpha".to_string()))?;
 
         // Complete the signature using schnorr_fun
-        let signature = self.schnorr.decrypt_signature(
-            alpha_scalar,
-            adaptor.encrypted_signature.clone(),
-        );
+        let signature = self
+            .schnorr
+            .decrypt_signature(alpha_scalar, adaptor.encrypted_signature.clone());
 
         // Extract r and s from the signature
         let (r_point, s_scalar) = signature.as_tuple();
@@ -259,20 +274,24 @@ impl SchnorrAdaptor {
         // Convert public key to schnorr_fun format
         let pubkey_point = PublicKey::from_slice(pubkey)
             .map_err(|e| SchnorrError::InvalidPublicKey(format!("Invalid pubkey: {:?}", e)))?;
-        
-        let x_bytes: [u8; 32] = pubkey_point.serialize()[1..33].try_into()
+
+        let x_bytes: [u8; 32] = pubkey_point.serialize()[1..33]
+            .try_into()
             .map_err(|_| SchnorrError::Serialization("Invalid pubkey format".to_string()))?;
-        
-        let verification_key = Point::<EvenY, Public>::from_xonly_bytes(x_bytes)
-            .ok_or_else(|| SchnorrError::InvalidPublicKey("Invalid verification key".to_string()))?;
+
+        let verification_key =
+            Point::<EvenY, Public>::from_xonly_bytes(x_bytes).ok_or_else(|| {
+                SchnorrError::InvalidPublicKey("Invalid verification key".to_string())
+            })?;
 
         // Create signature object from bytes
         let mut sig_bytes = [0u8; 64];
         sig_bytes[0..32].copy_from_slice(&r_bytes);
         sig_bytes[32..64].copy_from_slice(&s_bytes);
-        
-        let signature_obj = schnorr_fun::Signature::from_bytes(sig_bytes)
-            .ok_or_else(|| SchnorrError::InvalidSignature("Invalid signature format".to_string()))?;
+
+        let signature_obj = schnorr_fun::Signature::from_bytes(sig_bytes).ok_or_else(|| {
+            SchnorrError::InvalidSignature("Invalid signature format".to_string())
+        })?;
 
         // Verify signature using schnorr_fun
         let is_valid = self.schnorr.verify(
@@ -298,10 +317,10 @@ mod tests {
         let tag = b"BIP0340/challenge";
         let data = b"test_data";
         let hash = SchnorrAdaptor::tagged_hash(tag, data);
-        
+
         // Should produce a 32-byte hash
         assert_eq!(hash.len(), 32);
-        
+
         // Should be deterministic
         let hash2 = SchnorrAdaptor::tagged_hash(tag, data);
         assert_eq!(hash, hash2);
@@ -313,35 +332,37 @@ mod tests {
         let message = b"Hello, World!";
         let schnorr = SchnorrAdaptor::new();
         let secp = Secp256k1::new();
-        
+
         // Create a single keypair and adaptor point
         let (sk, pk) = secp.generate_keypair(&mut rng);
         let (_, alpha_pk) = secp.generate_keypair(&mut rng);
-        
+
         // Convert to schnorr_fun format
-        let sk_scalar = Scalar::<Secret, NonZero>::from_bytes(sk.secret_bytes())
-            .expect("Invalid secret key");
+        let sk_scalar =
+            Scalar::<Secret, NonZero>::from_bytes(sk.secret_bytes()).expect("Invalid secret key");
         let alpha_point = Point::<Normal, Public>::from_bytes(alpha_pk.serialize())
             .expect("Invalid adaptor point");
-        
+
         // Create signing keypair
         let signing_keypair = schnorr.schnorr.new_keypair(sk_scalar);
-        
+
         // Create encrypted signature directly
         let encrypted_signature = schnorr.schnorr.encrypted_sign(
             &signing_keypair,
             &alpha_point,
             Message::<Public>::raw(message),
         );
-        
+
         // Create our AdaptorSignature wrapper
         let adaptor_sig = AdaptorSignature {
             encrypted_signature,
             t: alpha_pk.serialize(),
         };
-        
+
         // Test verification
-        let is_valid = schnorr.verify_presignature(message, &pk.serialize(), &adaptor_sig).unwrap();
+        let is_valid = schnorr
+            .verify_presignature(message, &pk.serialize(), &adaptor_sig)
+            .unwrap();
         assert!(is_valid);
     }
 
@@ -351,93 +372,102 @@ mod tests {
         let schnorr = SchnorrAdaptor::new();
         let message = b"Test message for completion";
         let secp = Secp256k1::new();
-        
+
         // Create a real adaptor signature first
         let (sk, pk) = secp.generate_keypair(&mut rng);
         let (alpha_sk, alpha_pk) = secp.generate_keypair(&mut rng);
-        
+
         // Convert to schnorr_fun format
-        let sk_scalar = Scalar::<Secret, NonZero>::from_bytes(sk.secret_bytes())
-            .expect("Invalid secret key");
+        let sk_scalar =
+            Scalar::<Secret, NonZero>::from_bytes(sk.secret_bytes()).expect("Invalid secret key");
         let alpha_point = Point::<Normal, Public>::from_bytes(alpha_pk.serialize())
             .expect("Invalid adaptor point");
-        
+
         // Create signing keypair
         let signing_keypair = schnorr.schnorr.new_keypair(sk_scalar);
-        
+
         // Create encrypted signature directly
         let encrypted_signature = schnorr.schnorr.encrypted_sign(
             &signing_keypair,
             &alpha_point,
             Message::<Public>::raw(message),
         );
-        
+
         // Create our AdaptorSignature wrapper
         let adaptor_sig = AdaptorSignature {
             encrypted_signature,
             t: alpha_pk.serialize(),
         };
-        
+
         // Test completion with real alpha
         let alpha = alpha_sk.secret_bytes();
-        
+
         let result = schnorr.complete_signature(&adaptor_sig, &alpha);
         assert!(result.is_ok());
-        
+
         let (r, s) = result.unwrap();
         assert_eq!(r.len(), 32);
         assert_eq!(s.len(), 32);
-        
+
         // Verify the completed signature
-        let is_valid = schnorr.verify_schnorr(message, &pk.serialize(), (r, s)).unwrap();
+        let is_valid = schnorr
+            .verify_schnorr(message, &pk.serialize(), (r, s))
+            .unwrap();
         assert!(is_valid);
     }
-    
+
     #[test]
     fn test_verify_schnorr() {
         let mut rng = test_rng();
         let schnorr = SchnorrAdaptor::new();
         let secp = Secp256k1::new();
         let message = b"Test message for Schnorr verification";
-        
+
         // Create a simple keypair and adaptor point
         let (sk, pk) = secp.generate_keypair(&mut rng);
         let (alpha_sk, alpha_pk) = secp.generate_keypair(&mut rng);
-        
+
         // Convert to schnorr_fun format
-        let sk_scalar = Scalar::<Secret, NonZero>::from_bytes(sk.secret_bytes())
-            .expect("Invalid secret key");
+        let sk_scalar =
+            Scalar::<Secret, NonZero>::from_bytes(sk.secret_bytes()).expect("Invalid secret key");
         let alpha_point = Point::<Normal, Public>::from_bytes(alpha_pk.serialize())
             .expect("Invalid adaptor point");
-        
+
         // Create signing keypair
         let signing_keypair = schnorr.schnorr.new_keypair(sk_scalar);
-        
+
         // Create encrypted signature directly
         let encrypted_signature = schnorr.schnorr.encrypted_sign(
             &signing_keypair,
             &alpha_point,
             Message::<Public>::raw(message),
         );
-        
+
         // Create our AdaptorSignature wrapper
         let adaptor_sig = AdaptorSignature {
             encrypted_signature,
             t: alpha_pk.serialize(),
         };
-        
+
         // Complete the signature
         let alpha = alpha_sk.secret_bytes();
         let (r, s) = schnorr.complete_signature(&adaptor_sig, &alpha).unwrap();
-        
+
         // Verify the completed signature
-        let is_valid = schnorr.verify_schnorr(message, &pk.serialize(), (r, s)).unwrap();
+        let is_valid = schnorr
+            .verify_schnorr(message, &pk.serialize(), (r, s))
+            .unwrap();
         assert!(is_valid, "Schnorr signature verification should succeed");
-        
+
         // Test with wrong message
         let wrong_message = b"Wrong message";
-        let is_invalid = schnorr.verify_schnorr(wrong_message, &pk.serialize(), (r, s)).unwrap();
-        assert!(!is_invalid, "Schnorr signature verification should fail with wrong message");
+        let is_invalid = schnorr
+            .verify_schnorr(wrong_message, &pk.serialize(), (r, s))
+            .unwrap();
+        assert!(
+            !is_invalid,
+            "Schnorr signature verification should fail with wrong message"
+        );
     }
 
     #[test]
@@ -446,46 +476,53 @@ mod tests {
         let schnorr = SchnorrAdaptor::new();
         let secp = Secp256k1::new();
         let message = b"Simple test message";
-        
+
         // Create a single keypair (no MuSig aggregation)
         let (sk, pk) = secp.generate_keypair(&mut rng);
-        
+
         // Create adaptor keypair
         let (alpha_sk, alpha_pk) = secp.generate_keypair(&mut rng);
-        
+
         // Convert to schnorr_fun format
-        let sk_scalar = Scalar::<Secret, NonZero>::from_bytes(sk.secret_bytes())
-            .expect("Invalid secret key");
+        let sk_scalar =
+            Scalar::<Secret, NonZero>::from_bytes(sk.secret_bytes()).expect("Invalid secret key");
         let alpha_point = Point::<Normal, Public>::from_bytes(alpha_pk.serialize())
             .expect("Invalid adaptor point");
-        
+
         // Create signing keypair
         let signing_keypair = schnorr.schnorr.new_keypair(sk_scalar);
-        
+
         // Create encrypted signature directly
         let encrypted_signature = schnorr.schnorr.encrypted_sign(
             &signing_keypair,
             &alpha_point,
             Message::<Public>::raw(message),
         );
-        
+
         // Create our AdaptorSignature wrapper
         let adaptor_sig = AdaptorSignature {
             encrypted_signature,
             t: alpha_pk.serialize(),
         };
-        
+
         // Test presignature verification
-        let is_valid = schnorr.verify_presignature(message, &pk.serialize(), &adaptor_sig).unwrap();
+        let is_valid = schnorr
+            .verify_presignature(message, &pk.serialize(), &adaptor_sig)
+            .unwrap();
         assert!(is_valid, "Presignature verification should succeed");
-        
+
         // Test signature completion
         let alpha = alpha_sk.secret_bytes();
         let (r, s) = schnorr.complete_signature(&adaptor_sig, &alpha).unwrap();
-        
+
         // Test final signature verification
-        let is_final_valid = schnorr.verify_schnorr(message, &pk.serialize(), (r, s)).unwrap();
-        assert!(is_final_valid, "Final signature verification should succeed");
+        let is_final_valid = schnorr
+            .verify_schnorr(message, &pk.serialize(), (r, s))
+            .unwrap();
+        assert!(
+            is_final_valid,
+            "Final signature verification should succeed"
+        );
     }
 
     #[test]
@@ -493,18 +530,18 @@ mod tests {
         let mut rng = test_rng();
         let schnorr = SchnorrAdaptor::new();
         let secp = Secp256k1::new();
-        
+
         // Create multiple keypairs
         let (_sk1, pk1) = secp.generate_keypair(&mut rng);
         let (_sk2, pk2) = secp.generate_keypair(&mut rng);
         let (_sk3, pk3) = secp.generate_keypair(&mut rng);
-        
+
         let pubkeys = vec![pk1.serialize(), pk2.serialize(), pk3.serialize()];
-        
+
         // Test key aggregation
         let aggregate_pubkey = schnorr.aggregate_pubkeys(&pubkeys).unwrap();
         assert_eq!(aggregate_pubkey.len(), 33);
-        
+
         // Test that aggregation is deterministic
         let aggregate_pubkey2 = schnorr.aggregate_pubkeys(&pubkeys).unwrap();
         assert_eq!(aggregate_pubkey, aggregate_pubkey2);
@@ -512,14 +549,15 @@ mod tests {
 
     /// Test Schnorr adaptor signatures
     #[test]
-    fn test_schnorr_adaptor_basic() {        // Test tagged hash
+    fn test_schnorr_adaptor_basic() {
+        // Test tagged hash
         let tag = b"BIP0340/challenge";
         let data = b"test_message";
         let hash = SchnorrAdaptor::tagged_hash(tag, data);
         assert_eq!(hash.len(), 32);
-        
+
         // Test hash determinism
         let hash2 = SchnorrAdaptor::tagged_hash(tag, data);
         assert_eq!(hash, hash2);
-    } 
+    }
 }

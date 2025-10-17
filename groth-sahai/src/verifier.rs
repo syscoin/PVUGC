@@ -79,8 +79,8 @@ impl<E: Pairing> PPE<E> {
     /// # Returns
     /// `true` if verification passes, `false` otherwise
     pub fn verify_rank_decomp(&self, com_proof: &CProof<E>, crs: &CRS<E>) -> bool {
-        use crate::rank_decomp::RankDecomp;
         use crate::base_construction::RankDecompPpeBases;
+        use crate::rank_decomp::RankDecomp;
         use ark_ec::pairing::PairingOutput;
         use ark_ff::Zero;
 
@@ -95,7 +95,7 @@ impl<E: Pairing> PPE<E> {
 
         // Four-bucket verification
         let mut M = PairingOutput::<E>::zero();
-        
+
         // DEBUG: Track each bucket
         let mut B1 = PairingOutput::<E>::zero();
         let mut B2 = PairingOutput::<E>::zero();
@@ -132,7 +132,7 @@ impl<E: Pairing> PPE<E> {
 
         // Check against target
         // linear_map_PPE places value at [1][1] position, so compare M directly
-        
+
         // DEBUG: Print M and target
         println!("DEBUG verify_rank_decomp:");
         println!("  B1 == zero? {}", B1.is_zero());
@@ -144,7 +144,7 @@ impl<E: Pairing> PPE<E> {
         println!("  M (all 4 buckets): {:?}", M);
         println!("  target:            {:?}", self.target);
         println!("  M == target? {}", M == self.target);
-        
+
         M == self.target
     }
 
@@ -175,7 +175,12 @@ impl<E: Pairing> PPE<E> {
     /// Result: M = ∏ e(X_i, Y_j)^{Γ_ij} with all randomizer terms cancelled.
     /// Verifies a full-GS proof and returns (verifies, extracted_value).
     /// The extracted_value is Σ Γ_ij * e(X_i, Y_j), which equals the target if verification passes.
-    pub fn verify_full_gs(&self, com_proof: &CProof<E>, crs: &CRS<E>, _bases: &crate::base_construction::FullGSPpeBases<E>) -> (bool, ark_ec::pairing::PairingOutput<E>) {
+    pub fn verify_full_gs(
+        &self,
+        com_proof: &CProof<E>,
+        crs: &CRS<E>,
+        _bases: &crate::base_construction::FullGSPpeBases<E>,
+    ) -> (bool, ark_ec::pairing::PairingOutput<E>) {
         use ark_ec::pairing::PairingOutput;
         use ark_ff::Zero;
 
@@ -191,53 +196,57 @@ impl<E: Pairing> PPE<E> {
         // Recovery: X = C1.1 - a1*aux_x, Y = C2.1 - a2*aux_y
         // Pairings: e(X,Y) = e(C1.1, C2.1) * e(C1.1, -a2*aux_y) * e(-a1*aux_x, C2.1) * e(-a1*aux_x, -a2*aux_y)
         use ark_ec::CurveGroup;
-        
+
         for i in 0..self.gamma.len() {
             for j in 0..self.gamma[0].len() {
                 let gamma_ij = self.gamma[i][j];
                 if gamma_ij.is_zero() {
                     continue;
                 }
-                
+
                 let c1 = &com_proof.xcoms.coms[i];
                 let c2 = &com_proof.ycoms.coms[j];
-                
+
                 // In full-GS path, commitments use VAR row for both limbs:
                 // C1[i] = (r_i * u_{i,0}, r_i * u_{i,1} + X_i)
                 // C2[j] = (s_j * v_{j,0}, s_j * v_{j,1} + Y_j)
                 // So aux legs are directly the first limb of the commitment:
                 let aux_x_i = c1.0;
                 let aux_y_j = c2.0;
-                
+
                 // If aux_x/aux_y were provided in the proof, verify they match (constant-time PoCE)
                 if !com_proof.equ_proofs[0].aux_x.is_empty() {
                     assert_eq!(
                         com_proof.equ_proofs[0].aux_x[i], aux_x_i,
-                        "aux_x[{}] mismatch: provided != C1[{}].0", i, i
+                        "aux_x[{}] mismatch: provided != C1[{}].0",
+                        i, i
                     );
                 }
                 if !com_proof.equ_proofs[0].aux_y.is_empty() {
                     assert_eq!(
                         com_proof.equ_proofs[0].aux_y[j], aux_y_j,
-                        "aux_y[{}] mismatch: provided != C2[{}].0", j, j
+                        "aux_y[{}] mismatch: provided != C2[{}].0",
+                        j, j
                     );
                 }
-                
+
                 // Precompute scaled aux legs
                 let a1_aux_x = (aux_x_i.into_group() * crs.a1).into_affine();
                 let a2_aux_y = (aux_y_j.into_group() * crs.a2).into_affine();
-                
+
                 // Four pairings that telescope to e(X, Y)
                 let r1 = E::pairing(c1.1, c2.1);
                 let r2 = E::pairing(c1.1, (-a2_aux_y.into_group()).into_affine());
                 let r3 = E::pairing((-a1_aux_x.into_group()).into_affine(), c2.1);
-                let r4 = E::pairing((-a1_aux_x.into_group()).into_affine(), 
-                                    (-a2_aux_y.into_group()).into_affine());
-                
+                let r4 = E::pairing(
+                    (-a1_aux_x.into_group()).into_affine(),
+                    (-a2_aux_y.into_group()).into_affine(),
+                );
+
                 M += (r1 + r2 + r3 + r4) * gamma_ij;
             }
         }
-        
+
         (M == self.target, M)
     }
 }

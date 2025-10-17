@@ -1020,53 +1020,59 @@ pub fn prove_ppe_binding_1d<E: Pairing, CR: Rng>(
     let m = xvars.len();
     let n = yvars.len();
     let is_parallel = true;
-    
+
     assert_eq!(ppe.gamma.len(), m);
     assert_eq!(ppe.gamma[0].len(), n);
     assert_eq!(xcoms.rand.len(), m);
     assert_eq!(ycoms.rand.len(), n);
-    
+
     // Randomness is already kernel-constrained (R^T: 2×m, S^T: 2×n)
     let x_rand_trans = xcoms.rand.transpose();
     let y_rand_trans = ycoms.rand.transpose();
-    
+
     // Structured T (rank-1): T = λ·k_U·k_V^T
     let lambda = E::ScalarField::rand(rng);
     let pf_rand: Matrix<E::ScalarField> = vec![
-        vec![kernel_u[0] * kernel_v[0] * lambda, kernel_u[0] * kernel_v[1] * lambda],
-        vec![kernel_u[1] * kernel_v[0] * lambda, kernel_u[1] * kernel_v[1] * lambda],
+        vec![
+            kernel_u[0] * kernel_v[0] * lambda,
+            kernel_u[0] * kernel_v[1] * lambda,
+        ],
+        vec![
+            kernel_u[1] * kernel_v[0] * lambda,
+            kernel_u[1] * kernel_v[1] * lambda,
+        ],
     ];
-    
+
     // Build π (same structure as standard prover, but with kernel-constrained randomness)
     let x_rand_lin_b = vec_to_col_vec(&Com2::<E>::batch_linear_map(&ppe.b_consts))
         .left_mul(&x_rand_trans, is_parallel);
-    
+
     let x_rand_stmt = x_rand_trans.right_mul(&ppe.gamma, is_parallel);
     let x_rand_stmt_lin_y =
         vec_to_col_vec(&Com2::<E>::batch_linear_map(yvars)).left_mul(&x_rand_stmt, is_parallel);
-    
+
     let pf_rand_stmt = x_rand_trans
         .right_mul(&ppe.gamma, is_parallel)
         .right_mul(&ycoms.rand, is_parallel)
         .add(&pf_rand.transpose().neg());
     let pf_rand_stmt_com2 = vec_to_col_vec(&crs.v).left_mul(&pf_rand_stmt, is_parallel);
-    
+
     let pi = col_vec_to_vec(&x_rand_lin_b.add(&x_rand_stmt_lin_y).add(&pf_rand_stmt_com2));
     assert_eq!(pi.len(), 2);
-    
+
     // Build θ
     let y_rand_lin_a = vec_to_col_vec(&Com1::<E>::batch_linear_map(&ppe.a_consts))
         .left_mul(&y_rand_trans, is_parallel);
-    
+
     let y_rand_stmt = y_rand_trans.right_mul(&ppe.gamma.transpose(), is_parallel);
     let y_rand_stmt_lin_x =
         vec_to_col_vec(&Com1::<E>::batch_linear_map(xvars)).left_mul(&y_rand_stmt, is_parallel);
-    
+
     let pf_rand_com1 = vec_to_col_vec(&crs.u).left_mul(&pf_rand, is_parallel);
-    
+
     let theta = col_vec_to_vec(&y_rand_lin_a.add(&y_rand_stmt_lin_x).add(&pf_rand_com1));
     assert_eq!(theta.len(), 2);
-    
+
     EquProof::<E> {
         pi,
         theta,
@@ -1086,9 +1092,7 @@ pub fn prove_ppe_binding_1d<E: Pairing, CR: Rng>(
  */
 
 #[cfg(test)]
-mod binding_prover_tests {
-
-}
+mod binding_prover_tests {}
 
 // Rank-decomposition PPE prover (for offline PVUGC ARMER)
 impl<E: Pairing> PPE<E> {
@@ -1117,9 +1121,9 @@ impl<E: Pairing> PPE<E> {
         crs: &CRS<E>,
         rng: &mut R,
     ) -> CProof<E> {
-        use crate::rank_decomp::RankDecomp;
-        use crate::base_construction::{build_P_slots, build_Q_slots};
         use super::commit::{batch_commit_G1_per_slot, batch_commit_G2_per_slot};
+        use crate::base_construction::{build_P_slots, build_Q_slots};
+        use crate::rank_decomp::RankDecomp;
 
         let m = xvars.len();
         let n = yvars.len();
@@ -1152,13 +1156,13 @@ impl<E: Pairing> PPE<E> {
                 theta,
                 pi,
                 equ_type: EquType::PairingProduct,
-                rand: vec![], // Not used in rank-decomp verification
+                rand: vec![],  // Not used in rank-decomp verification
                 aux_x: vec![], // Not used in rank-decomp path
                 aux_y: vec![], // Not used in rank-decomp path
             }],
         }
     }
-    
+
     /// Commit and prove for full-GS block verifier (Phase 7, Groth16 integration).
     ///
     /// This method creates commitments using VAR-row bases and explicit randomizers,
@@ -1185,26 +1189,26 @@ impl<E: Pairing> PPE<E> {
     ) -> CProof<E> {
         use super::commit::{commit_g1_full_gs, commit_g2_full_gs};
         use ark_ec::CurveGroup;
-        
+
         let m = xvars.len();
         let n = yvars.len();
-        
+
         let (xcoms, _) = commit_g1_full_gs(xvars, crs, r);
         let (ycoms, _) = commit_g2_full_gs(yvars, crs, s);
-        
+
         // Compute auxiliary randomizer legs for proper telescoping cancellation
         let mut aux_x = Vec::with_capacity(m);
         for i in 0..m {
             let (_, u_var) = crs.u_for_slot(i);
-            aux_x.push((u_var.0.into_group() * r[i]).into_affine());  // r_i * u_{i,0}
+            aux_x.push((u_var.0.into_group() * r[i]).into_affine()); // r_i * u_{i,0}
         }
-        
+
         let mut aux_y = Vec::with_capacity(n);
         for j in 0..n {
             let (_, v_var) = crs.v_for_slot(j);
-            aux_y.push((v_var.0.into_group() * s[j]).into_affine());  // s_j * v_{j,0}
+            aux_y.push((v_var.0.into_group() * s[j]).into_affine()); // s_j * v_{j,0}
         }
-        
+
         // For full-GS block verifier, θ and π are not needed (B3/B4 disabled)
         // but aux_x and aux_y are required for complete telescoping
         CProof {

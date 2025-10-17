@@ -527,17 +527,18 @@ impl<E: Pairing> BT<E, Com1<E>, Com2<E>> for ComT<E> {
         let (x0, x1) = (x.0, x.1);
         let (y0, y1) = (y.0, y.1);
         Self(
-            E::pairing(x0, y0),  // [0][0]
-            E::pairing(x0, y1),  // [0][1]
-            E::pairing(x1, y0),  // [1][0]
-            E::pairing(x1, y1),  // [1][1]
+            E::pairing(x0, y0), // [0][0]
+            E::pairing(x0, y1), // [0][1]
+            E::pairing(x1, y0), // [1][0]
+            E::pairing(x1, y1), // [1][1]
         )
     }
 
     #[inline]
     fn pairing_sum(x_vec: &[Com1<E>], y_vec: &[Com2<E>]) -> Self {
         assert_eq!(x_vec.len(), y_vec.len());
-        x_vec.iter()
+        x_vec
+            .iter()
             .zip(y_vec.iter())
             .map(|(x, y)| Self::comt_of_pair(x, y))
             .sum()
@@ -553,7 +554,7 @@ impl<E: Pairing> BT<E, Com1<E>, Com2<E>> for ComT<E> {
             PairingOutput::zero(),
             PairingOutput::zero(),
             PairingOutput::zero(),
-            *z,  // [1][1] only - original behavior
+            *z, // [1][1] only - original behavior
         )
     }
 

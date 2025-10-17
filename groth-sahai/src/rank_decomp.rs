@@ -16,8 +16,8 @@
 //! And the prover generates proof slots that cancel randomizers:
 //! - P_a = Σ_i u^(a)_i · r_i · u_{i,0}
 
-use ark_ff::Field;
 use crate::data_structures::Matrix;
+use ark_ff::Field;
 
 /// Rank decomposition of a matrix Γ
 ///
@@ -26,18 +26,18 @@ use crate::data_structures::Matrix;
 pub struct RankDecomp<F: Field> {
     /// Rank of the matrix
     pub rank: usize,
-    
+
     /// Column vectors u^(a) ∈ F^m (one per rank component)
     /// Each u_vecs[a] is a vector of length m
     pub u_vecs: Vec<Vec<F>>,
-    
+
     /// Column vectors v^(a) ∈ F^n (one per rank component)
     /// Each v_vecs[a] is a vector of length n
     pub v_vecs: Vec<Vec<F>>,
-    
+
     /// Original matrix dimensions
-    pub m: usize,  // rows
-    pub n: usize,  // cols
+    pub m: usize, // rows
+    pub n: usize, // cols
 }
 
 impl<F: Field> RankDecomp<F> {
@@ -62,7 +62,7 @@ impl<F: Field> RankDecomp<F> {
     /// ];
     /// let decomp = RankDecomp::decompose(&gamma);
     /// assert!(decomp.rank <= 2);
-    /// 
+    ///
     /// // Verify reconstruction
     /// let reconstructed = decomp.reconstruct();
     /// assert_eq!(reconstructed, gamma);
@@ -70,7 +70,7 @@ impl<F: Field> RankDecomp<F> {
     pub fn decompose(gamma: &Matrix<F>) -> Self {
         let m = gamma.len();
         let n = if m > 0 { gamma[0].len() } else { 0 };
-        
+
         if m == 0 || n == 0 {
             return Self {
                 rank: 0,
@@ -80,14 +80,14 @@ impl<F: Field> RankDecomp<F> {
                 n,
             };
         }
-        
+
         // Transpose Γ to work with columns as vectors
         let gamma_t = transpose(gamma);
-        
+
         // Find linearly independent columns using Gaussian elimination
         let (pivot_cols, coefficients) = find_pivot_columns(&gamma_t);
         let rank = pivot_cols.len();
-        
+
         if rank == 0 {
             return Self {
                 rank: 0,
@@ -97,24 +97,24 @@ impl<F: Field> RankDecomp<F> {
                 n,
             };
         }
-        
+
         // Extract u^(a) and v^(a) from the pivot structure
         // For each pivot column j:
         //   u^(a) = column j of Γ
         //   v^(a) = canonical basis vector e_j extended with coefficients for other columns
-        
+
         let mut u_vecs = Vec::with_capacity(rank);
         let mut v_vecs = Vec::with_capacity(rank);
-        
+
         for (a, &pivot_j) in pivot_cols.iter().enumerate() {
             // u^(a) = Γ[:, pivot_j] (column pivot_j of Γ)
             let u_a: Vec<F> = (0..m).map(|i| gamma[i][pivot_j]).collect();
             u_vecs.push(u_a);
-            
+
             // v^(a) has coefficient 1 at pivot_j, and coefficients for dependent columns
             let mut v_a = vec![F::zero(); n];
             v_a[pivot_j] = F::one();
-            
+
             // For each non-pivot column k, add the coefficient from k's expression
             for (k, coeff_vec) in coefficients.iter().enumerate() {
                 if !pivot_cols.contains(&k) && !coeff_vec.is_empty() {
@@ -122,10 +122,10 @@ impl<F: Field> RankDecomp<F> {
                     v_a[k] = coeff_vec[a];
                 }
             }
-            
+
             v_vecs.push(v_a);
         }
-        
+
         Self {
             rank,
             u_vecs,
@@ -134,7 +134,7 @@ impl<F: Field> RankDecomp<F> {
             n,
         }
     }
-    
+
     /// Reconstruct the original matrix from the decomposition.
     ///
     /// Computes Γ = Σ_a u^(a) · v^(a)^T
@@ -143,21 +143,21 @@ impl<F: Field> RankDecomp<F> {
     /// The reconstructed m×n matrix
     pub fn reconstruct(&self) -> Matrix<F> {
         let mut gamma = vec![vec![F::zero(); self.n]; self.m];
-        
+
         for a in 0..self.rank {
             let u_a = &self.u_vecs[a];
             let v_a = &self.v_vecs[a];
-            
+
             for i in 0..self.m {
                 for j in 0..self.n {
                     gamma[i][j] += u_a[i] * v_a[j];
                 }
             }
         }
-        
+
         gamma
     }
-    
+
     /// Verify that the decomposition correctly reconstructs Γ.
     ///
     /// # Arguments
@@ -178,7 +178,7 @@ fn transpose<F: Field>(matrix: &Matrix<F>) -> Matrix<F> {
         return vec![];
     }
     let n = matrix[0].len();
-    
+
     let mut result = vec![vec![F::zero(); m]; n];
     for i in 0..m {
         for j in 0..n {
@@ -193,22 +193,20 @@ fn transpose<F: Field>(matrix: &Matrix<F>) -> Matrix<F> {
 /// Returns (pivot_indices, coefficients) where:
 /// - pivot_indices: indices of linearly independent columns
 /// - coefficients[j]: expresses column j as linear combo of pivot columns
-fn find_pivot_columns<F: Field>(
-    columns: &Matrix<F>,
-) -> (Vec<usize>, Vec<Vec<F>>) {
-    let n = columns.len();  // number of columns
+fn find_pivot_columns<F: Field>(columns: &Matrix<F>) -> (Vec<usize>, Vec<Vec<F>>) {
+    let n = columns.len(); // number of columns
     if n == 0 {
         return (vec![], vec![]);
     }
-    let _m = columns[0].len();  // dimension of each column vector
-    
+    let _m = columns[0].len(); // dimension of each column vector
+
     let mut pivot_cols = Vec::new();
     let mut coefficients = vec![vec![]; n];
-    
+
     // Try each column as a potential pivot
     for j in 0..n {
         let col_j = &columns[j];
-        
+
         // Try to express col_j as a linear combination of existing pivots
         if let Some(coeff) = express_as_linear_combination(col_j, &columns, &pivot_cols) {
             // col_j is dependent - store coefficients
@@ -216,10 +214,10 @@ fn find_pivot_columns<F: Field>(
         } else {
             // col_j is independent - add as new pivot
             pivot_cols.push(j);
-            coefficients[j] = vec![];  // No coefficients for pivots
+            coefficients[j] = vec![]; // No coefficients for pivots
         }
     }
-    
+
     (pivot_cols, coefficients)
 }
 
@@ -239,13 +237,13 @@ fn express_as_linear_combination<F: Field>(
             return None;
         }
     }
-    
+
     let dim = vec.len();
     let basis_size = basis_indices.len();
-    
+
     // Build linear system: basis^T · c = vec
     // We'll use a simple Gaussian elimination approach
-    
+
     // Create augmented matrix [basis | vec]
     let mut aug = vec![vec![F::zero(); basis_size + 1]; dim];
     for i in 0..dim {
@@ -254,20 +252,19 @@ fn express_as_linear_combination<F: Field>(
         }
         aug[i][basis_size] = vec[i];
     }
-    
+
     // Gaussian elimination
     for col in 0..basis_size.min(dim) {
         // Find pivot
-        let pivot_row = (col..dim)
-            .find(|&row| !aug[row][col].is_zero())?;
-        
+        let pivot_row = (col..dim).find(|&row| !aug[row][col].is_zero())?;
+
         if pivot_row != col {
             aug.swap(pivot_row, col);
         }
-        
+
         let pivot = aug[col][col];
         let pivot_inv = pivot.inverse()?;
-        
+
         // Eliminate column
         for row in 0..dim {
             if row != col {
@@ -280,7 +277,7 @@ fn express_as_linear_combination<F: Field>(
             }
         }
     }
-    
+
     // Extract solution
     let mut coeffs = vec![F::zero(); basis_size];
     for col in 0..basis_size.min(dim) {
@@ -288,7 +285,7 @@ fn express_as_linear_combination<F: Field>(
             coeffs[col] = aug[col][basis_size] * aug[col][col].inverse()?;
         }
     }
-    
+
     // Verify solution
     let mut reconstructed = vec![F::zero(); dim];
     for (b_idx, &basis_j) in basis_indices.iter().enumerate() {
@@ -296,13 +293,13 @@ fn express_as_linear_combination<F: Field>(
             reconstructed[i] += coeffs[b_idx] * all_vecs[basis_j][i];
         }
     }
-    
+
     for i in 0..dim {
         if reconstructed[i] != vec[i] {
-            return None;  // Not in span
+            return None; // Not in span
         }
     }
-    
+
     Some(coeffs)
 }
 
@@ -337,18 +334,18 @@ mod tests {
             vec![Fr::from(2u64), Fr::zero()],
             vec![Fr::zero(), Fr::from(4u64)],
         ];
-        
+
         let decomp = RankDecomp::decompose(&gamma);
-        
+
         println!("Diagonal Γ:");
         println!("  Original rank: 2");
         println!("  Computed rank: {}", decomp.rank);
         assert!(decomp.rank <= 2);
-        
+
         let reconstructed = decomp.reconstruct();
         assert!(decomp.verify(&gamma), "Reconstruction failed");
         assert_eq!(reconstructed, gamma);
-        
+
         println!("  PASS: Reconstruction verified");
     }
 
@@ -359,15 +356,15 @@ mod tests {
             vec![Fr::from(1u64), Fr::from(2u64)],
             vec![Fr::from(3u64), Fr::from(4u64)],
         ];
-        
+
         let decomp = RankDecomp::decompose(&gamma);
-        
+
         println!("Full-rank Γ:");
         println!("  Computed rank: {}", decomp.rank);
         assert_eq!(decomp.rank, 2, "Should be full rank");
-        
+
         assert!(decomp.verify(&gamma), "Reconstruction failed");
-        
+
         println!("  PASS: Full rank decomposition verified");
     }
 
@@ -376,36 +373,33 @@ mod tests {
         // Rank-1 matrix: all rows are multiples of first row
         let gamma = vec![
             vec![Fr::from(1u64), Fr::from(2u64)],
-            vec![Fr::from(2u64), Fr::from(4u64)],  // 2× first row
+            vec![Fr::from(2u64), Fr::from(4u64)], // 2× first row
         ];
-        
+
         let decomp = RankDecomp::decompose(&gamma);
-        
+
         println!("Rank-1 Γ:");
         println!("  Computed rank: {}", decomp.rank);
         assert_eq!(decomp.rank, 1, "Should be rank 1");
-        
+
         assert!(decomp.verify(&gamma), "Reconstruction failed");
-        
+
         println!("  PASS: Rank-1 decomposition verified");
     }
 
     #[test]
     fn test_rank_decomp_zero_matrix() {
-        let gamma = vec![
-            vec![Fr::zero(), Fr::zero()],
-            vec![Fr::zero(), Fr::zero()],
-        ];
-        
+        let gamma = vec![vec![Fr::zero(), Fr::zero()], vec![Fr::zero(), Fr::zero()]];
+
         let decomp = RankDecomp::decompose(&gamma);
-        
+
         println!("Zero Γ:");
         println!("  Computed rank: {}", decomp.rank);
         assert_eq!(decomp.rank, 0, "Zero matrix should have rank 0");
-        
+
         let reconstructed = decomp.reconstruct();
         assert_eq!(reconstructed, gamma);
-        
+
         println!("  PASS: Zero matrix handled correctly");
     }
 
@@ -417,15 +411,15 @@ mod tests {
             vec![Fr::zero(), Fr::one(), Fr::zero()],
             vec![Fr::zero(), Fr::zero(), Fr::one()],
         ];
-        
+
         let decomp = RankDecomp::decompose(&gamma);
-        
+
         println!("Identity 3×3:");
         println!("  Computed rank: {}", decomp.rank);
         assert_eq!(decomp.rank, 3, "Identity should have full rank");
-        
+
         assert!(decomp.verify(&gamma), "Reconstruction failed");
-        
+
         println!("  PASS: Identity decomposition verified");
     }
 
@@ -435,16 +429,15 @@ mod tests {
             vec![Fr::from(1u64), Fr::from(2u64), Fr::from(3u64)],
             vec![Fr::from(4u64), Fr::from(5u64), Fr::from(6u64)],
         ];
-        
+
         let transposed = transpose(&matrix);
-        
+
         assert_eq!(transposed.len(), 3);
         assert_eq!(transposed[0].len(), 2);
         assert_eq!(transposed[0][0], Fr::from(1u64));
         assert_eq!(transposed[0][1], Fr::from(4u64));
         assert_eq!(transposed[2][1], Fr::from(6u64));
-        
+
         println!("PASS: Transpose works correctly");
     }
 }
-

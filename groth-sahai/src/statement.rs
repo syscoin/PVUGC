@@ -136,13 +136,16 @@ impl<E: Pairing> PPE<E> {
     /// For Groth16 integration, the block-based verifier produces:
     /// M = e(X_i, Y_j) * e(u_{i,1}, v_{j,1})^{-1} per pair.
     /// This computes: target * ∏ e(u_{i,1}, v_{j,1})^{-Γ_ij}
-    pub fn corrected_target_for_block_verifier(&self, crs: &crate::generator::CRS<E>) -> PairingOutput<E> {
+    pub fn corrected_target_for_block_verifier(
+        &self,
+        crs: &crate::generator::CRS<E>,
+    ) -> PairingOutput<E> {
         use ark_std::ops::Neg;
-        
+
         let mut target = self.target;
         let m = self.gamma.len();
         let n = if m > 0 { self.gamma[0].len() } else { 0 };
-        
+
         // For each (i,j) with Γ_ij ≠ 0, multiply target by e(u_{i,1}, v_{j,1})^{-Γ_ij}
         for i in 0..m {
             for j in 0..n {
@@ -150,16 +153,16 @@ impl<E: Pairing> PPE<E> {
                 if !gamma_ij.is_zero() {
                     let (_, u_var) = crs.u_for_slot(i);
                     let (_, v_var) = crs.v_for_slot(j);
-                    let u_i_1 = u_var.1;  // u_{i,1}
-                    let v_j_1 = v_var.1;  // v_{j,1}
-                    
+                    let u_i_1 = u_var.1; // u_{i,1}
+                    let v_j_1 = v_var.1; // v_{j,1}
+
                     // Multiply target by e(u_{i,1}, v_{j,1})^{-Γ_ij}
                     let correction = E::pairing(u_i_1, v_j_1);
                     target += correction * gamma_ij.neg();
                 }
             }
         }
-        
+
         target
     }
 }
