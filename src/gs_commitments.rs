@@ -721,20 +721,15 @@ impl GrothSahaiCommitments {
         ppe: &PPE<Bls12_381>,
         crs_per_slot: &CRS<Bls12_381>,
     ) -> Result<(bool, PairingOutput<Bls12_381>), GSCommitmentError> {
-        use groth_sahai::base_construction::RankDecompPpeBases;
+        use groth_sahai::base_construction::FullGSPpeBases;
         use groth_sahai::rank_decomp::RankDecomp;
 
-        // Build rank-decomp bases for verification
+        // Build full-GS bases for verification
         let decomp = RankDecomp::decompose(&ppe.gamma);
-        let bases = RankDecompPpeBases::build(crs_per_slot, ppe, &decomp);
+        let bases = FullGSPpeBases::build(crs_per_slot, ppe, &decomp);
 
-        // Use rank-decomp verifier; extracted M equals ppe.target if ok
-        let ok = ppe.verify_rank_decomp(&attestation.cproof, crs_per_slot);
-        let m_extracted = if ok {
-            ppe.target
-        } else {
-            PairingOutput::<Bls12_381>::zero()
-        };
+        // Use full-GS verifier and extract M
+        let (ok, m_extracted) = ppe.verify_full_gs(&attestation.cproof, crs_per_slot, &bases);
         Ok((ok, m_extracted))
     }
 
