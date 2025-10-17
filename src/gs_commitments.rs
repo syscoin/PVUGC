@@ -485,33 +485,15 @@ impl GrothSahaiCommitments {
         let bases2 = RankDecompPpeBases::build(crs2, &ppe2, &decomp2);
 
         use groth_sahai::pvugc::pvugc_arm as gs_pvugc_arm;
-        // Build full-GS bases and arm both rand/var limbs (same for both headers)
-        use groth_sahai::base_construction::FullGSPpeBases;
-        let bases_full = FullGSPpeBases::build(crs1, &ppe1, &decomp1);
-        let d1a: Vec<G2Affine> = bases_full
-            .U_var
-            .iter()
-            .map(|g| (g.into_group() * rho).into_affine())
-            .collect();
-        let d1ra: Vec<G2Affine> = bases_full
-            .U_rand
-            .iter()
-            .map(|g| (g.into_group() * rho).into_affine())
-            .collect();
-        let d2a: Vec<G1Affine> = bases_full
-            .V_var
-            .iter()
-            .map(|g| (g.into_group() * rho).into_affine())
-            .collect();
-        let d2ra: Vec<G1Affine> = bases_full
-            .V_rand
-            .iter()
-            .map(|g| (g.into_group() * rho).into_affine())
-            .collect();
-        let d1b = d1a.clone();
-        let d1rb = d1ra.clone();
-        let d2b = d2a.clone();
-        let d2rb = d2ra.clone();
+        // Rank-decomp statement-only bases (U,V,W,Z). Use only U,V here; W,Z added below.
+        let d1a: Vec<G2Affine> = bases1.U.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
+        let d2a: Vec<G1Affine> = bases1.V.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
+        let d1ra: Vec<G2Affine> = Vec::new();
+        let d2ra: Vec<G1Affine> = Vec::new();
+        let d1b: Vec<G2Affine> = bases2.U.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
+        let d2b: Vec<G1Affine> = bases2.V.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
+        let d1rb: Vec<G2Affine> = Vec::new();
+        let d2rb: Vec<G1Affine> = Vec::new();
 
         let rho_bigint = rho.into_bigint();
 
@@ -540,12 +522,10 @@ impl GrothSahaiCommitments {
 
         let rho_bytes = rho_bigint.to_bytes_be();
         let rho_link = rho_tag(&rho_bytes);
-        let bases_full1 = FullGSPpeBases::build(crs1, &ppe1, &decomp1);
-        let bases_full2 = FullGSPpeBases::build(crs2, &ppe2, &decomp2);
-        let dpa: Vec<G2Affine> = bases_full1.W.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
-        let dqa: Vec<G1Affine> = bases_full1.Z.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
-        let dpb: Vec<G2Affine> = bases_full2.W.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
-        let dqb: Vec<G1Affine> = bases_full2.Z.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
+        let dpa: Vec<G2Affine> = bases1.W.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
+        let dqa: Vec<G1Affine> = bases1.Z.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
+        let dpb: Vec<G2Affine> = bases2.W.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
+        let dqb: Vec<G1Affine> = bases2.Z.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
         let hdr_a = serialize_mask_header(&d1a, &d2a, &dpa, &dqa)?;
         let hdr_b = serialize_mask_header(&d1b, &d2b, &dpb, &dqb)?;
         let ada = Sha256::digest(&[ctx_hash, &hdr_a, &rho_link].concat());
