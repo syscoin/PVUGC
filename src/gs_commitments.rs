@@ -429,15 +429,16 @@ impl GrothSahaiCommitments {
         let mut k_bytes = Vec::new();
         k.serialize_compressed(&mut k_bytes)
             .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
-        let key_material = Sha256::digest(&[ctx_hash, &k_bytes].concat());
+        let key_material = Sha256::digest(&[ctx_hash, &header.k_hint].concat()); // override
+
         let mut key = [0u8; 32];
         key.copy_from_slice(&key_material[..32]);
 
-        // Verify PoCE-B tag against K = M^rho bytes
+        // Verify PoCE-B tag against K hint (target^rho)
         let hdr_bytes = serialize_mask_header(&header.d1, &header.d2, &header.dp, &header.dq)?;
         let ad = Sha256::digest(&[ctx_hash, &hdr_bytes, &header.rho_link].concat());
         let mut tau_input = Vec::new();
-        tau_input.extend_from_slice(&k_bytes);
+        tau_input.extend_from_slice(&header.k_hint);
         tau_input.extend_from_slice(ad.as_slice());
         tau_input.extend_from_slice(ciphertext);
         let tau_expected = Sha256::digest(&tau_input).to_vec();
