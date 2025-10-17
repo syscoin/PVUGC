@@ -2,9 +2,9 @@
 // Tests PoCE-B tag and D-mask decapsulation
 use ark_bls12_381::Fr;
 use ark_std::test_rng;
-use sha2::{Sha256, Digest};
-use arkworks_groth16::{GrothSahaiCommitments, groth16_wrapper::ArkworksGroth16};
+use arkworks_groth16::{groth16_wrapper::ArkworksGroth16, GrothSahaiCommitments};
 use groth_sahai::generator::CRS;
+use sha2::{Digest, Sha256};
 
 #[test]
 fn test_pvugc_masks_arm_decap_same_x() {
@@ -26,13 +26,19 @@ fn test_pvugc_masks_arm_decap_same_x() {
     let rho = Fr::from(7u64);
     let ctx_hash = Sha256::digest(b"CTX(vk,x)").to_vec();
     let secret = b"secret-share-32-bytes__________"; // 32 bytes
-    let (header, ct) = gs.pvugc_arm(&vk, &x, &crs, rho, secret, &ctx_hash, &mut rng).expect("arm");
+    let (header, ct) = gs
+        .pvugc_arm(&vk, &x, &crs, rho, secret, &ctx_hash, &mut rng)
+        .expect("arm");
 
     // Prover attests (full-GS)
-    let att = gs.commit_arkworks_proof(&proof, &vk, &x, &crs, &mut rng).expect("att");
+    let att = gs
+        .commit_arkworks_proof(&proof, &vk, &x, &crs, &mut rng)
+        .expect("att");
 
     // Decap with masks
-    let pt = gs.pvugc_decapsulate_with_masks(&att, &vk, &x, &crs, &header, &ct, &ctx_hash).expect("decap");
+    let pt = gs
+        .pvugc_decapsulate_with_masks(&att, &vk, &x, &crs, &header, &ct, &ctx_hash)
+        .expect("decap");
     assert_eq!(pt, secret);
 }
 
@@ -52,14 +58,24 @@ fn test_pvugc_masks_proof_agnostic_same_vk_x() {
     let rho = Fr::from(11u64);
     let ctx_hash = Sha256::digest(b"CTX(vk,x)").to_vec();
     let secret = b"________________secret-32-bytes";
-    let (header, ct) = gs.pvugc_arm(&vk, &x, &crs, rho, secret, &ctx_hash, &mut rng).expect("arm");
+    let (header, ct) = gs
+        .pvugc_arm(&vk, &x, &crs, rho, secret, &ctx_hash, &mut rng)
+        .expect("arm");
 
-    let att1 = gs.commit_arkworks_proof(&proof1, &vk, &x, &crs, &mut rng).expect("att1");
-    let att2 = gs.commit_arkworks_proof(&proof2, &vk, &x, &crs, &mut rng).expect("att2");
+    let att1 = gs
+        .commit_arkworks_proof(&proof1, &vk, &x, &crs, &mut rng)
+        .expect("att1");
+    let att2 = gs
+        .commit_arkworks_proof(&proof2, &vk, &x, &crs, &mut rng)
+        .expect("att2");
 
     // Both decrypt to same key
-    let pt1 = gs.pvugc_decapsulate_with_masks(&att1, &vk, &x, &crs, &header, &ct, &ctx_hash).expect("decap1");
-    let pt2 = gs.pvugc_decapsulate_with_masks(&att2, &vk, &x, &crs, &header, &ct, &ctx_hash).expect("decap2");
+    let pt1 = gs
+        .pvugc_decapsulate_with_masks(&att1, &vk, &x, &crs, &header, &ct, &ctx_hash)
+        .expect("decap1");
+    let pt2 = gs
+        .pvugc_decapsulate_with_masks(&att2, &vk, &x, &crs, &header, &ct, &ctx_hash)
+        .expect("decap2");
     assert_eq!(pt1, secret);
     assert_eq!(pt2, secret);
 }
@@ -77,16 +93,23 @@ fn test_pvugc_masks_wrong_x_fails() {
     let rho = Fr::from(13u64);
     let ctx1 = Sha256::digest(b"CTX(vk,x=5)").to_vec();
     let secret = b"mask share for x=5 32bytes____";
-    let (_h1, ct) = gs.pvugc_arm(&vk, &x1, &crs, rho, secret, &ctx1, &mut rng).expect("arm");
+    let (_h1, ct) = gs
+        .pvugc_arm(&vk, &x1, &crs, rho, secret, &ctx1, &mut rng)
+        .expect("arm");
 
     // Prover for x=10
     let proof2 = g16.prove(Fr::from(4u64), Fr::from(6u64)).expect("p2"); // 10
     let x2 = vec![Fr::from(10u64)];
-    let att2 = gs.commit_arkworks_proof(&proof2, &vk, &x2, &crs, &mut rng).expect("att2");
+    let att2 = gs
+        .commit_arkworks_proof(&proof2, &vk, &x2, &crs, &mut rng)
+        .expect("att2");
 
     // Using different ctx (x2) should fail to decrypt original ct
     let ctx2 = Sha256::digest(b"CTX(vk,x=10)").to_vec();
-    let header_wrong = gs.pvugc_arm(&vk, &x2, &crs, rho, secret, &ctx2, &mut rng).expect("arm2").0;
+    let header_wrong = gs
+        .pvugc_arm(&vk, &x2, &crs, rho, secret, &ctx2, &mut rng)
+        .expect("arm2")
+        .0;
     // Decap with attestation for x2 + header for x2 on ciphertext for x1 should fail
     let res = gs.pvugc_decapsulate_with_masks(&att2, &vk, &x2, &crs, &header_wrong, &ct, &ctx2);
     assert!(res.is_err(), "decryption should fail for different x");

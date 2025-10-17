@@ -8,7 +8,7 @@ Implements GS attestation per PVUGC spec.
 use ark_bls12_381::{Bls12_381, Fq12, Fr, G1Affine, G2Affine};
 use ark_ec::CurveGroup;
 use ark_ec::{pairing::Pairing, pairing::PairingOutput, AffineRepr, PrimeGroup};
-use ark_ff::{One, Zero, UniformRand};
+use ark_ff::{One, UniformRand, Zero};
 use ark_serialize::CanonicalSerialize;
 use ark_std::rand::Rng;
 use groth_sahai::prover::CProof;
@@ -55,16 +55,15 @@ pub struct GSAttestation {
 /// Offline mask header published at arming time (per share)
 #[derive(Clone, Debug)]
 pub struct MaskedHeader {
-    pub d1: Vec<G2Affine>,   // U_j(x)^rho in G2
-    pub d2: Vec<G1Affine>,   // V_k(x)^rho in G1
-    pub rho_link: Vec<u8>,   // domain-separated hash of rho
-    pub tau: Vec<u8>,        // PoCE-B tag binding K, header meta and ct
-    pub nonce: [u8; 12],     // AEAD nonce used for the ciphertext
-    pub dp: Vec<G2Affine>,   // theta mask bases (W^rho)
-    pub dq: Vec<G1Affine>,   // pi mask bases (Z^rho)
-    pub k_hint: Vec<u8>,     // serialized K = target^rho
-    pub t_point: Vec<u8>,    // optional PoCE-A adaptor point (secp256k1)
-    pub h_tag: Vec<u8>,      // optional PoCE-A hash binding statement/context
+    pub d1: Vec<G2Affine>,  // U_var^rho (G2)
+    pub d2: Vec<G1Affine>,  // V_var^rho (G1)
+    pub d1r: Vec<G2Affine>, // U_rand^rho (G2)
+    pub d2r: Vec<G1Affine>, // V_rand^rho (G1)
+    pub rho_link: Vec<u8>,  // domain-separated hash of rho
+    pub tau: Vec<u8>,       // PoCE-B tag binding K, header meta and ct
+    pub nonce: [u8; 12],    // AEAD nonce used for the ciphertext
+    pub t_point: Vec<u8>,   // optional PoCE-A adaptor point (secp256k1)
+    pub h_tag: Vec<u8>,     // optional PoCE-A hash binding statement/context
 }
 
 fn serialize_mask_header(d1: &[G2Affine], d2: &[G1Affine]) -> Result<Vec<u8>, GSCommitmentError> {
@@ -121,27 +120,30 @@ impl GrothSahaiCommitments {
         &self.crs
     }
 
-
     /// Get CRS elements
     pub fn get_crs_elements(&self) -> (Vec<Com1<Bls12_381>>, Vec<Com2<Bls12_381>>) {
         (self.crs.u.clone(), self.crs.v.clone())
     }
 
     /// Compute target for Groth16 verification
-    pub fn compute_target(&self, vk: &ArkworksVK, public_input: &[Fr]) -> Result<Fq12, GSCommitmentError> {
+    pub fn compute_target(
+        &self,
+        vk: &ArkworksVK,
+        public_input: &[Fr],
+    ) -> Result<Fq12, GSCommitmentError> {
         let ppe = self.groth16_verify_as_ppe(vk, public_input, &self.crs);
         Ok(ppe.target.0)
     }
 
     /// Commit to real arkworks Groth16 proof using full-GS (with CRS parameter)
-    /// 
+    ///
     /// # Arguments
     /// * `proof` - The Groth16 proof to commit
     /// * `vk` - The verification key
     /// * `public_input` - Public inputs to the circuit
     /// * `crs_per_slot` - The per-slot CRS to use (must be 3x3 for Groth16)
     /// * `rng` - Random number generator
-    /// 
+    ///
     /// # Notes
     /// The CRS must be the same one used by ARMER for offline setup to ensure
     /// DECAPPER can extract with the armed bases.
@@ -154,42 +156,42 @@ impl GrothSahaiCommitments {
         crs_per_slot: &CRS<Bls12_381>,
         rng: &mut R,
     ) -> Result<GSAttestation, GSCommitmentError> {
-        
         // Get the PPE with actual Groth16 target e(α, β)
         let ppe = self.groth16_verify_as_ppe(vk, public_input, crs_per_slot);
-        
+
         // Compute constants
         let ic = compute_ic_from_vk_and_inputs(vk, public_input);
         let delta_neg = (-vk.delta_g2.into_group()).into_affine();
         let gamma_neg = (-vk.gamma_g2.into_group()).into_affine();
-        
+
         // Build all 3 X-slots and 3 Y-slots
         // For Groth16: A and C are witnesses (randomized), L(x) is constant (zero randomizer)
         //              B is witness (randomized), δ⁻¹ and γ⁻¹ are constants (zero randomizers)
         let x_vars = vec![
-            proof.pi_a,  // A (witness)
-            proof.pi_c,  // C (witness)
-            ic,          // L(x) (constant)
+            proof.pi_a,       // A (witness)
+            proof.pi_c,       // C (witness)
+            G1Affine::zero(), // unused slot for alignment
         ];
         let y_vars = vec![
             proof.pi_b,  // B (witness)
-            delta_neg,   // δ⁻¹ (constant)
-            gamma_neg,   // γ⁻¹ (constant)
+            vk.delta_g2, // +δ
+            vk.gamma_g2, // +γ
         ];
 
         // Use randomness for witness slots, zero for constant slots
         let r_a = Fr::rand(rng);
         let r_c = Fr::rand(rng);
-        let r_l = Fr::zero();  // L(x) is constant
+        let r_l = Fr::zero(); // L(x) is constant
         let r = vec![r_a, r_c, r_l];
-        
+
         let s_b = Fr::rand(rng);
-        let s_delta = Fr::zero();  // δ⁻¹ is constant
-        let s_gamma = Fr::zero();  // γ⁻¹ is constant
+        let s_delta = Fr::zero(); // δ⁻¹ is constant
+        let s_gamma = Fr::zero(); // γ⁻¹ is constant
         let s = vec![s_b, s_delta, s_gamma];
-        
-        // Use the PPE's built-in full-GS prover (same as GS library test)
-        let attestation_proof = ppe.commit_and_prove_full_gs(&x_vars, &y_vars, &r, &s, crs_per_slot, rng);
+
+        // Use rank-decomposition prover (decap-compatible)
+        let attestation_proof =
+            ppe.commit_and_prove_rank_decomp(&x_vars, &y_vars, crs_per_slot, rng);
 
         // Extract commitments and proof elements from the proof
         let c1_commitments = attestation_proof.xcoms.coms.clone();
@@ -258,11 +260,29 @@ impl GrothSahaiCommitments {
 
         // Compute statement-only D masks evaluated at rho
         use groth_sahai::pvugc::pvugc_arm as gs_pvugc_arm;
-        let armed = gs_pvugc_arm(&bases, &rho);
-        let d1 = armed.D1.clone();
-        let d2 = armed.D2.clone();
-        let dp = armed.DP.clone();
-        let dq = armed.DQ.clone();
+        // Build full-GS bases and arm both rand/var limbs
+        use groth_sahai::base_construction::FullGSPpeBases;
+        let bases_full = FullGSPpeBases::build(crs_per_slot, &ppe, &decomp);
+        let d1: Vec<G2Affine> = bases_full
+            .U_var
+            .iter()
+            .map(|g| (g.into_group() * rho).into_affine())
+            .collect();
+        let d1r: Vec<G2Affine> = bases_full
+            .U_rand
+            .iter()
+            .map(|g| (g.into_group() * rho).into_affine())
+            .collect();
+        let d2: Vec<G1Affine> = bases_full
+            .V_var
+            .iter()
+            .map(|g| (g.into_group() * rho).into_affine())
+            .collect();
+        let d2r: Vec<G1Affine> = bases_full
+            .V_rand
+            .iter()
+            .map(|g| (g.into_group() * rho).into_affine())
+            .collect();
 
         // Offline key: K = target^rho
         let rho_bigint = rho.into_bigint();
@@ -277,8 +297,8 @@ impl GrothSahaiCommitments {
         // Encrypt share with random nonce
         let nonce_bytes: [u8; 12] = rng.gen();
         let nonce = Nonce::from_slice(&nonce_bytes);
-        let cipher =
-            ChaCha20Poly1305::new_from_slice(&key).map_err(|e| GSCommitmentError::Encryption(e.to_string()))?;
+        let cipher = ChaCha20Poly1305::new_from_slice(&key)
+            .map_err(|e| GSCommitmentError::Encryption(e.to_string()))?;
         let ciphertext = cipher
             .encrypt(nonce, share_bytes)
             .map_err(|e| GSCommitmentError::Encryption(e.to_string()))?;
@@ -299,12 +319,11 @@ impl GrothSahaiCommitments {
             MaskedHeader {
                 d1,
                 d2,
+                d1r,
+                d2r,
                 rho_link,
                 tau,
                 nonce: nonce_bytes,
-                dp,
-                dq,
-                k_hint: k_bytes.clone(),
                 t_point: Vec::new(),
                 h_tag: Vec::new(),
             },
@@ -325,8 +344,15 @@ impl GrothSahaiCommitments {
         adaptor_tag: &[u8],
         rng: &mut R,
     ) -> Result<(MaskedHeader, Vec<u8>), GSCommitmentError> {
-        let (mut header, ct) =
-            self.pvugc_arm(vk, public_input, crs_per_slot, rho, share_bytes, ctx_hash, rng)?;
+        let (mut header, ct) = self.pvugc_arm(
+            vk,
+            public_input,
+            crs_per_slot,
+            rho,
+            share_bytes,
+            ctx_hash,
+            rng,
+        )?;
         header.t_point = adaptor_point.to_vec();
         header.h_tag = adaptor_tag.to_vec();
         Ok((header, ct))
@@ -350,9 +376,12 @@ impl GrothSahaiCommitments {
 
         // Verify attestation under full GS and extract M
         let ppe = self.groth16_verify_as_ppe(vk, public_input, crs_per_slot);
-        let (verifies, _extracted_target) = self.verify_and_extract(attestation, &ppe, crs_per_slot)?;
+        let (verifies, _extracted_target) =
+            self.verify_and_extract(attestation, &ppe, crs_per_slot)?;
         if !verifies {
-            return Err(GSCommitmentError::Verification("GS attestation failed".into()));
+            return Err(GSCommitmentError::Verification(
+                "GS attestation failed".into(),
+            ));
         }
 
         if attestation.c1_commitments.len() != header.d1.len()
@@ -363,8 +392,24 @@ impl GrothSahaiCommitments {
             ));
         }
 
-        // Use K provided in header by ARMER (target^rho)
-        let k_bytes = header.k_hint.clone();
+        // Full-GS decap: reconstruct K via 4-term telescoping with ρ-armed rand/var bases
+        use ark_ec::pairing::PairingOutput;
+        let mut k = PairingOutput::<Bls12_381>::zero();
+        for i in 0..header.d1.len() {
+            let c1 = &attestation.cproof.xcoms.coms[i];
+            // B1 limbs
+            k += Bls12_381::pairing(c1.1, header.d1[i]); // var vs U_var^ρ
+            k += Bls12_381::pairing(c1.0, header.d1r[i]); // rand vs U_rand^ρ
+        }
+        for j in 0..header.d2.len() {
+            let c2 = &attestation.cproof.ycoms.coms[j];
+            // B2 limbs
+            k += Bls12_381::pairing(header.d2[j], c2.1); // V_var^ρ vs var
+            k += Bls12_381::pairing(header.d2r[j], c2.0); // V_rand^ρ vs rand
+        }
+        let mut k_bytes = Vec::new();
+        k.serialize_compressed(&mut k_bytes)
+            .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
         let key_material = Sha256::digest(&[ctx_hash, &k_bytes].concat());
         let mut key = [0u8; 32];
         key.copy_from_slice(&key_material[..32]);
@@ -373,17 +418,19 @@ impl GrothSahaiCommitments {
         let hdr_bytes = serialize_mask_header(&header.d1, &header.d2)?;
         let ad = Sha256::digest(&[ctx_hash, &hdr_bytes, &header.rho_link].concat());
         let mut tau_input = Vec::new();
-        tau_input.extend_from_slice(&header.k_hint);
+        tau_input.extend_from_slice(&k_bytes);
         tau_input.extend_from_slice(ad.as_slice());
         tau_input.extend_from_slice(ciphertext);
         let tau_expected = Sha256::digest(&tau_input).to_vec();
         if tau_expected != header.tau {
-            return Err(GSCommitmentError::Verification("PoCE-B check failed".into()));
+            return Err(GSCommitmentError::Verification(
+                "PoCE-B check failed".into(),
+            ));
         }
 
         // Decrypt the share
-        let cipher =
-            ChaCha20Poly1305::new_from_slice(&key).map_err(|e| GSCommitmentError::Decryption(e.to_string()))?;
+        let cipher = ChaCha20Poly1305::new_from_slice(&key)
+            .map_err(|e| GSCommitmentError::Decryption(e.to_string()))?;
         let nonce = Nonce::from_slice(&header.nonce);
         let plaintext = cipher
             .decrypt(nonce, ciphertext)
@@ -421,26 +468,40 @@ impl GrothSahaiCommitments {
         let bases2 = RankDecompPpeBases::build(crs2, &ppe2, &decomp2);
 
         use groth_sahai::pvugc::pvugc_arm as gs_pvugc_arm;
-        let armed1 = gs_pvugc_arm(&bases1, &rho);
-        // For compatibility with full-GS attestation, derive both headers from the same bases
-        // so that DECAPPER pairs the same commitment layout.
-        let armed2 = gs_pvugc_arm(&bases1, &rho);
-        let d1a = armed1.D1.clone();
-        let d2a = armed1.D2.clone();
-        let dp_a = armed1.DP.clone();
-        let dq_a = armed1.DQ.clone();
-        let d1b = armed2.D1.clone();
-        let d2b = armed2.D2.clone();
-        let dp_b = armed2.DP.clone();
-        let dq_b = armed2.DQ.clone();
+        // Build full-GS bases and arm both rand/var limbs (same for both headers)
+        use groth_sahai::base_construction::FullGSPpeBases;
+        let bases_full = FullGSPpeBases::build(crs1, &ppe1, &decomp1);
+        let d1a: Vec<G2Affine> = bases_full
+            .U_var
+            .iter()
+            .map(|g| (g.into_group() * rho).into_affine())
+            .collect();
+        let d1ra: Vec<G2Affine> = bases_full
+            .U_rand
+            .iter()
+            .map(|g| (g.into_group() * rho).into_affine())
+            .collect();
+        let d2a: Vec<G1Affine> = bases_full
+            .V_var
+            .iter()
+            .map(|g| (g.into_group() * rho).into_affine())
+            .collect();
+        let d2ra: Vec<G1Affine> = bases_full
+            .V_rand
+            .iter()
+            .map(|g| (g.into_group() * rho).into_affine())
+            .collect();
+        let d1b = d1a.clone();
+        let d1rb = d1ra.clone();
+        let d2b = d2a.clone();
+        let d2rb = d2ra.clone();
 
         let rho_bigint = rho.into_bigint();
 
         // K = target^rho (single K used for both headers)
         let k_bytes = {
             let mut tmp = Vec::new();
-            ppe1
-                .target
+            ppe1.target
                 .mul_bigint(rho_bigint.clone())
                 .serialize_compressed(&mut tmp)
                 .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
@@ -453,8 +514,8 @@ impl GrothSahaiCommitments {
 
         let nonce_bytes: [u8; 12] = rng.gen();
         let nonce = Nonce::from_slice(&nonce_bytes);
-        let cipher =
-            ChaCha20Poly1305::new_from_slice(&key).map_err(|e| GSCommitmentError::Encryption(e.to_string()))?;
+        let cipher = ChaCha20Poly1305::new_from_slice(&key)
+            .map_err(|e| GSCommitmentError::Encryption(e.to_string()))?;
         eprintln!("AND2 arm: key[0..8]={:x?}", &key[..8]);
         let ciphertext = cipher
             .encrypt(nonce, share_bytes)
@@ -484,24 +545,22 @@ impl GrothSahaiCommitments {
         let header_a = MaskedHeader {
             d1: d1a,
             d2: d2a,
+            d1r: d1ra,
+            d2r: d2ra,
             rho_link: rho_link.clone(),
             tau: tau_a,
             nonce: nonce_bytes,
-            dp: dp_a,
-            dq: dq_a,
-            k_hint: k_bytes.clone(),
             t_point: Vec::new(),
             h_tag: Vec::new(),
         };
         let header_b = MaskedHeader {
             d1: d1b,
             d2: d2b,
+            d1r: d1rb,
+            d2r: d2rb,
             rho_link,
             tau: tau_b,
             nonce: nonce_bytes,
-            dp: dp_b,
-            dq: dq_b,
-            k_hint: k_bytes.clone(),
             t_point: Vec::new(),
             h_tag: Vec::new(),
         };
@@ -546,9 +605,36 @@ impl GrothSahaiCommitments {
             ));
         }
 
-        // Use K hints from headers (both equal)
-        let k1_bytes = header1.k_hint.clone();
-        let k2_bytes = header2.k_hint.clone();
+        // Full-GS armed decap on both headers to get K1,K2
+        use ark_ec::pairing::PairingOutput;
+        let mut k1 = PairingOutput::<Bls12_381>::zero();
+        for i in 0..header1.d1.len() {
+            let c1 = &attestation.cproof.xcoms.coms[i];
+            k1 += Bls12_381::pairing(c1.1, header1.d1[i]);
+            k1 += Bls12_381::pairing(c1.0, header1.d1r[i]);
+        }
+        for j in 0..header1.d2.len() {
+            let c2 = &attestation.cproof.ycoms.coms[j];
+            k1 += Bls12_381::pairing(header1.d2[j], c2.1);
+            k1 += Bls12_381::pairing(header1.d2r[j], c2.0);
+        }
+        let mut k2 = PairingOutput::<Bls12_381>::zero();
+        for i in 0..header2.d1.len() {
+            let c1 = &attestation.cproof.xcoms.coms[i];
+            k2 += Bls12_381::pairing(c1.1, header2.d1[i]);
+            k2 += Bls12_381::pairing(c1.0, header2.d1r[i]);
+        }
+        for j in 0..header2.d2.len() {
+            let c2 = &attestation.cproof.ycoms.coms[j];
+            k2 += Bls12_381::pairing(header2.d2[j], c2.1);
+            k2 += Bls12_381::pairing(header2.d2r[j], c2.0);
+        }
+        let mut k1_bytes = Vec::new();
+        k1.serialize_compressed(&mut k1_bytes)
+            .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
+        let mut k2_bytes = Vec::new();
+        k2.serialize_compressed(&mut k2_bytes)
+            .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
 
         // Verify per-header PoCE-B tags
         let hdr1 = serialize_mask_header(&header1.d1, &header1.d2)?;
@@ -562,7 +648,9 @@ impl GrothSahaiCommitments {
         tau1_input.extend_from_slice(ciphertext);
         let tau1_expected = Sha256::digest(&tau1_input).to_vec();
         if tau1_expected != header1.tau {
-            return Err(GSCommitmentError::Verification("PoCE-B check failed (header1)".into()));
+            return Err(GSCommitmentError::Verification(
+                "PoCE-B check failed (header1)".into(),
+            ));
         }
 
         let mut tau2_input = Vec::new();
@@ -571,7 +659,9 @@ impl GrothSahaiCommitments {
         tau2_input.extend_from_slice(ciphertext);
         let tau2_expected = Sha256::digest(&tau2_input).to_vec();
         if tau2_expected != header2.tau {
-            return Err(GSCommitmentError::Verification("PoCE-B check failed (header2)".into()));
+            return Err(GSCommitmentError::Verification(
+                "PoCE-B check failed (header2)".into(),
+            ));
         }
 
         if header1.nonce != header2.nonce {
@@ -585,8 +675,8 @@ impl GrothSahaiCommitments {
         let mut key = [0u8; 32];
         key.copy_from_slice(&key_material[..32]);
 
-        let cipher =
-            ChaCha20Poly1305::new_from_slice(&key).map_err(|e| GSCommitmentError::Decryption(e.to_string()))?;
+        let cipher = ChaCha20Poly1305::new_from_slice(&key)
+            .map_err(|e| GSCommitmentError::Decryption(e.to_string()))?;
         let nonce = Nonce::from_slice(&header1.nonce);
         let plaintext = cipher
             .decrypt(nonce, ciphertext)
@@ -595,12 +685,12 @@ impl GrothSahaiCommitments {
     }
 
     /// Verify GS attestation using full-GS verifier
-    /// 
+    ///
     /// # Arguments
     /// * `attestation` - The GS attestation to verify
     /// * `ppe` - The PPE equation (must match the one used for proving)
     /// * `crs_per_slot` - The per-slot CRS (must match the one used for proving)
-    /// 
+    ///
     /// # Returns
     /// `Ok(true)` if attestation is valid, `Ok(false)` otherwise
     pub fn verify_attestation(
@@ -609,20 +699,20 @@ impl GrothSahaiCommitments {
         ppe: &PPE<Bls12_381>,
         crs_per_slot: &CRS<Bls12_381>,
     ) -> Result<bool, GSCommitmentError> {
-        use groth_sahai::rank_decomp::RankDecomp;
         use groth_sahai::base_construction::FullGSPpeBases;
-        
+        use groth_sahai::rank_decomp::RankDecomp;
+
         // Build full-GS bases for verification
         let decomp = RankDecomp::decompose(&ppe.gamma);
         let bases = FullGSPpeBases::build(crs_per_slot, ppe, &decomp);
-        
+
         // Use full-GS verifier
         let (ok, _extracted_m) = ppe.verify_full_gs(&attestation.cproof, crs_per_slot, &bases);
         Ok(ok)
     }
-    
+
     /// Verify attestation and extract M for KEM decapsulation
-    /// 
+    ///
     /// # Returns
     /// `Ok((verifies, M))` where M is the extracted pairing target
     pub fn verify_and_extract(
@@ -631,20 +721,25 @@ impl GrothSahaiCommitments {
         ppe: &PPE<Bls12_381>,
         crs_per_slot: &CRS<Bls12_381>,
     ) -> Result<(bool, PairingOutput<Bls12_381>), GSCommitmentError> {
+        use groth_sahai::base_construction::RankDecompPpeBases;
         use groth_sahai::rank_decomp::RankDecomp;
-        use groth_sahai::base_construction::FullGSPpeBases;
-        
-        // Build full-GS bases for verification
+
+        // Build rank-decomp bases for verification
         let decomp = RankDecomp::decompose(&ppe.gamma);
-        let bases = FullGSPpeBases::build(crs_per_slot, ppe, &decomp);
-        
-        // Use full-GS verifier and extract M
-        let (ok, m_extracted) = ppe.verify_full_gs(&attestation.cproof, crs_per_slot, &bases);
+        let bases = RankDecompPpeBases::build(crs_per_slot, ppe, &decomp);
+
+        // Use rank-decomp verifier; extracted M equals ppe.target if ok
+        let ok = ppe.verify_rank_decomp(&attestation.cproof, crs_per_slot);
+        let m_extracted = if ok {
+            ppe.target
+        } else {
+            PairingOutput::<Bls12_381>::zero()
+        };
         Ok((ok, m_extracted))
     }
-    
+
     /// KEM Encapsulate: Create attestation and encrypt share
-    /// 
+    ///
     /// # Arguments
     /// * `proof` - The Groth16 proof
     /// * `vk` - The verification key
@@ -654,9 +749,9 @@ impl GrothSahaiCommitments {
     /// * `rho` - The KEM secret scalar
     /// * `ctx_hash` - Context hash for key derivation
     /// * `rng` - Random number generator
-    /// 
+    ///
     /// # Returns
-    /// `Ok((attestation, ciphertext))` 
+    /// `Ok((attestation, ciphertext))`
     pub fn kem_encapsulate<R: Rng>(
         &self,
         proof: &ArkworksProof,
@@ -668,41 +763,47 @@ impl GrothSahaiCommitments {
         ctx_hash: &[u8],
         rng: &mut R,
     ) -> Result<(GSAttestation, Vec<u8>), GSCommitmentError> {
-        use chacha20poly1305::{aead::{Aead, KeyInit}, ChaCha20Poly1305, Nonce};
-        use ark_serialize::CanonicalSerialize;
         use ark_ff::BigInteger;
-        
+        use ark_serialize::CanonicalSerialize;
+        use chacha20poly1305::{
+            aead::{Aead, KeyInit},
+            ChaCha20Poly1305, Nonce,
+        };
+
         // Create GS attestation
         let attestation = self.commit_arkworks_proof(proof, vk, public_input, crs_per_slot, rng)?;
-        
+
         // Compute target^rho for key derivation
         let ppe = self.groth16_verify_as_ppe(vk, public_input, crs_per_slot);
         let target_rho = ppe.target * rho;
-        
+
         // Derive encryption key from target^rho
         let mut target_rho_bytes = Vec::new();
-        target_rho.serialize_compressed(&mut target_rho_bytes)
+        target_rho
+            .serialize_compressed(&mut target_rho_bytes)
             .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
-        
+
         let key_material = Sha256::digest(&[ctx_hash, &target_rho_bytes].concat()).to_vec();
-        let key: [u8; 32] = key_material[..32].try_into()
+        let key: [u8; 32] = key_material[..32]
+            .try_into()
             .map_err(|_| GSCommitmentError::Crypto("Key derivation failed".into()))?;
-        
+
         // Encrypt the share
         let cipher = ChaCha20Poly1305::new_from_slice(&key)
             .map_err(|e| GSCommitmentError::Encryption(e.to_string()))?;
         let nonce = Nonce::from_slice(&[0u8; 12]);
-        
+
         use ark_ff::PrimeField;
         let share_bytes = share.into_bigint().to_bytes_be();
-        let ciphertext = cipher.encrypt(nonce, share_bytes.as_ref())
+        let ciphertext = cipher
+            .encrypt(nonce, share_bytes.as_ref())
             .map_err(|e| GSCommitmentError::Encryption(e.to_string()))?;
-        
+
         Ok((attestation, ciphertext))
     }
-    
+
     /// KEM Decapsulate: Verify attestation and decrypt share
-    /// 
+    ///
     /// # Arguments
     /// * `attestation` - The GS attestation
     /// * `vk` - The verification key
@@ -711,10 +812,10 @@ impl GrothSahaiCommitments {
     /// * `ciphertext` - The encrypted share
     /// * `target_rho` - The pre-computed target^rho (K = M^rho), provided by ARMER
     /// * `ctx_hash` - Context hash for key derivation
-    /// 
+    ///
     /// # Returns
     /// `Ok(share)` as Fr
-    /// 
+    ///
     /// # Note
     /// In the full PVUGC protocol, the DECAPPER receives K = target^rho from the ARMER
     /// without ever learning rho itself. For full-GS, the ARMER can compute this offline
@@ -729,54 +830,61 @@ impl GrothSahaiCommitments {
         target_rho: PairingOutput<Bls12_381>,
         ctx_hash: &[u8],
     ) -> Result<Fr, GSCommitmentError> {
-        use chacha20poly1305::{aead::{Aead, KeyInit}, ChaCha20Poly1305, Nonce};
         use ark_serialize::CanonicalSerialize;
-        
+        use chacha20poly1305::{
+            aead::{Aead, KeyInit},
+            ChaCha20Poly1305, Nonce,
+        };
+
         // Build PPE and verify, extracting M
         let ppe = self.groth16_verify_as_ppe(vk, public_input, crs_per_slot);
         let (verifies, m_extracted) = self.verify_and_extract(attestation, &ppe, crs_per_slot)?;
-        
+
         if !verifies || m_extracted != ppe.target {
-            return Err(GSCommitmentError::Verification("Attestation verification failed".into()));
+            return Err(GSCommitmentError::Verification(
+                "Attestation verification failed".into(),
+            ));
         }
-        
+
         // DECAPPER: Use the pre-computed K = target^rho for key derivation
         // Note: DECAPPER never learns rho, only K
         let extracted = target_rho;
-        
+
         // Derive decryption key
         let mut extracted_bytes = Vec::new();
-        extracted.serialize_compressed(&mut extracted_bytes)
+        extracted
+            .serialize_compressed(&mut extracted_bytes)
             .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
-        
+
         let key_material = Sha256::digest(&[ctx_hash, &extracted_bytes].concat()).to_vec();
-        let key: [u8; 32] = key_material[..32].try_into()
+        let key: [u8; 32] = key_material[..32]
+            .try_into()
             .map_err(|_| GSCommitmentError::Crypto("Key derivation failed".into()))?;
-        
+
         // Decrypt the share
         let cipher = ChaCha20Poly1305::new_from_slice(&key)
             .map_err(|e| GSCommitmentError::Decryption(e.to_string()))?;
         let nonce = Nonce::from_slice(&[0u8; 12]);
-        
-        let plaintext = cipher.decrypt(nonce, ciphertext)
+
+        let plaintext = cipher
+            .decrypt(nonce, ciphertext)
             .map_err(|e| GSCommitmentError::Decryption(e.to_string()))?;
-        
+
         // Convert back to Fr
         use ark_ff::PrimeField;
         let recovered_fr = Fr::from_be_bytes_mod_order(&plaintext);
         Ok(recovered_fr)
     }
 
-
     /// Commit to real arkworks Groth16 proof using rank-decomposition (backward compatibility)
-    /// 
+    ///
     /// # Arguments
     /// * `proof` - The Groth16 proof to commit
     /// * `vk` - The verification key
     /// * `public_input` - Public inputs to the circuit
     /// * `_use_default_crs` - Boolean flag (ignored, uses internal CRS)
     /// * `rng` - Random number generator
-    /// 
+    ///
     /// # Notes
     /// This is a backward compatibility method that uses the internal CRS.
     /// For new code, use the version that takes a CRS parameter explicitly.
@@ -794,22 +902,27 @@ impl GrothSahaiCommitments {
     /// Encode Groth16 verification equation into GS PPE for specific (vk, x)
     /// Groth16 verification: e(π_A, π_B) · e(π_C, δ) = e(α, β) · e(IC, γ)
     /// 2-variable PPE: X=[π_A, π_C], Y=[π_B, δ_neg]; target = e(α,β)·e(IC,γ)
-    pub fn groth16_verify_as_ppe(&self, vk: &ArkworksVK, public_input: &[Fr], _crs: &CRS<Bls12_381>) -> PPE<Bls12_381> {
+    pub fn groth16_verify_as_ppe(
+        &self,
+        vk: &ArkworksVK,
+        public_input: &[Fr],
+        _crs: &CRS<Bls12_381>,
+    ) -> PPE<Bls12_381> {
         use ark_ec::AffineRepr;
-        // Full-GS encoding targets the Groth16 constant pairing e(α, β).
-        // The IC term is enforced through the commitments and Γ matrix.
-        let _ic = compute_ic_from_vk_and_inputs(vk, public_input);
-        let _delta_neg = (-vk.delta_g2.into_group()).into_affine();
-        let _gamma_neg = (-vk.gamma_g2.into_group()).into_affine();
+        // Rank-decomp PPE encoding for Groth16:
+        // M = e(A,B) + e(C, δ) + e(IC(x), γ) should equal e(α, β)
+        let ic = compute_ic_from_vk_and_inputs(vk, public_input);
         let target = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2);
-        
+
         PPE::<Bls12_381> {
-            a_consts: vec![G1Affine::zero(); 3],
+            // V and Z use a_consts; set third slot to IC(x) to produce e(IC, γ)
+            a_consts: vec![G1Affine::zero(), G1Affine::zero(), ic],
             b_consts: vec![G2Affine::zero(); 3],
+            // Γ encodes e(A,B) and e(C, δ) only; third row/col zero
             gamma: vec![
                 vec![Fr::one(), Fr::zero(), Fr::zero()],
                 vec![Fr::zero(), Fr::one(), Fr::zero()],
-                vec![Fr::zero(), Fr::zero(), Fr::one()],
+                vec![Fr::zero(), Fr::zero(), Fr::zero()],
             ],
             target,
         }
@@ -834,11 +947,11 @@ pub fn compute_ic_from_vk_and_inputs(vk: &ArkworksVK, public_input: &[Fr]) -> G1
 
 #[cfg(test)]
 mod tests {
-    use ark_std::test_rng;
+    use super::GrothSahaiCommitments;
+    use ark_bls12_381::{Bls12_381, Fr};
     use ark_ec::AffineRepr;
     use ark_ff::Zero;
-    use ark_bls12_381::{Bls12_381, Fr};
-    use super::GrothSahaiCommitments;
+    use ark_std::test_rng;
 
     #[test]
     fn test_gs_commitments_new() {
@@ -854,17 +967,19 @@ mod tests {
 
         use crate::groth16_wrapper::ArkworksGroth16;
         use groth_sahai::generator::CRS;
-        
+
         let mut groth16 = ArkworksGroth16::new();
         let vk = groth16.setup().expect("Setup should succeed");
 
         let witness1 = Fr::from(3u64);
         let witness2 = Fr::from(2u64); // 3 + 2 = 5
-        let proof = groth16.prove(witness1, witness2).expect("Prove should succeed");
+        let proof = groth16
+            .prove(witness1, witness2)
+            .expect("Prove should succeed");
 
         let mut rng = test_rng();
         let crs_per_slot = CRS::<Bls12_381>::generate_crs_per_slot(&mut rng, 3, 3);
-        
+
         let _attestation = gs
             .commit_arkworks_proof(&proof, &vk, &vec![], &crs_per_slot, &mut rng)
             .expect("Commit should succeed");
@@ -880,7 +995,10 @@ mod tests {
             "Should have 3 Y commitments (B, δ⁻¹, γ⁻¹)"
         );
         // For full-GS proofs (real Groth16), pi_elements and theta_elements are empty
-        assert!(_attestation.pi_elements.is_empty(), "Full-GS doesn't use pi_elements");
+        assert!(
+            _attestation.pi_elements.is_empty(),
+            "Full-GS doesn't use pi_elements"
+        );
     }
 
     #[test]
@@ -894,7 +1012,9 @@ mod tests {
 
         let witness1 = Fr::from(3u64);
         let witness2 = Fr::from(2u64); // 3 + 2 = 5
-        let _proof = groth16.prove(witness1, witness2).expect("Prove should succeed");
+        let _proof = groth16
+            .prove(witness1, witness2)
+            .expect("Prove should succeed");
 
         // Public input is witness1 + witness2 = 5
         let public_input = vec![Fr::from(5u64)];
@@ -913,9 +1033,17 @@ mod tests {
         // Get CRS elements for canonical evaluation
         let (_u_elements, _v_elements) = gs.get_crs_elements();
 
-        // Per-slot CRS has m slots, each with u_rand and u_var  
+        // Per-slot CRS has m slots, each with u_rand and u_var
         // For m=3, we get 6 U elements total (2 per slot)
-        assert_eq!(_u_elements.len(), 6, "Should have 6 U elements (2 per slot for m=3)");
-        assert_eq!(_v_elements.len(), 6, "Should have 6 V elements (2 per slot for n=3)");
+        assert_eq!(
+            _u_elements.len(),
+            6,
+            "Should have 6 U elements (2 per slot for m=3)"
+        );
+        assert_eq!(
+            _v_elements.len(),
+            6,
+            "Should have 6 V elements (2 per slot for n=3)"
+        );
     }
 }

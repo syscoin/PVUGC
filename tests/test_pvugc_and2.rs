@@ -1,9 +1,9 @@
 #![allow(non_snake_case)]
 use ark_bls12_381::Fr;
 use ark_std::test_rng;
-use sha2::{Sha256, Digest};
-use arkworks_groth16::{GrothSahaiCommitments, groth16_wrapper::ArkworksGroth16};
+use arkworks_groth16::{groth16_wrapper::ArkworksGroth16, GrothSahaiCommitments};
 use groth_sahai::generator::CRS;
+use sha2::{Digest, Sha256};
 
 #[test]
 fn test_pvugc_and2_masks_flow() {
@@ -21,11 +21,16 @@ fn test_pvugc_and2_masks_flow() {
     let ctx_hash = Sha256::digest(b"CTX_AND2").to_vec();
     let secret = b"and2 secret 32 bytes long________";
 
-    let ((h1,h2), ct) = gs.pvugc_arm_and2(&vk, &x, &crs1, &crs2, rho, secret, &ctx_hash, &mut rng).expect("arm and2");
+    let ((h1, h2), ct) = gs
+        .pvugc_arm_and2(&vk, &x, &crs1, &crs2, rho, secret, &ctx_hash, &mut rng)
+        .expect("arm and2");
 
-    let att = gs.commit_arkworks_proof(&proof, &vk, &x, &crs1, &mut rng).expect("att");
+    let att = gs
+        .commit_arkworks_proof(&proof, &vk, &x, &crs1, &mut rng)
+        .expect("att");
 
-    let pt = gs.pvugc_decapsulate_with_masks_and2(&att, &vk, &x, &crs1, &crs2, &h1, &h2, &ct, &ctx_hash)
+    let pt = gs
+        .pvugc_decapsulate_with_masks_and2(&att, &vk, &x, &crs1, &crs2, &h1, &h2, &ct, &ctx_hash)
         .expect("decap and2");
     assert_eq!(pt, secret);
 }
