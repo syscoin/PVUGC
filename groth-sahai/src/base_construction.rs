@@ -241,10 +241,10 @@ impl<E: Pairing> FullGSPpeBases<E> {
 
             // Build blocks with var-row bases
             U_var.push(v_j_1.into_affine()); // +1 * v_{j,1}
-            U_rand.push((v_j_1 * (-a1)).into_affine()); // -a1 * v_{j,1}
+            U_rand.push((-v_j_1).into_affine()); // -1 * v_{j,1} = -a2 * v_{j,0}
 
             V_var.push((-u_i_1).into_affine()); // -1 * u_{i,1}
-            V_rand.push((u_i_1 * a2).into_affine()); // +a2 * u_{i,1}
+            V_rand.push((u_i_1 * a2).into_affine()); // +a2 * u_{i,1} = +a1*a2 * u_{i,0}
         }
 
         // Build rank bases (unchanged)

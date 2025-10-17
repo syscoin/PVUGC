@@ -55,10 +55,12 @@ pub struct GSAttestation {
 /// Offline mask header published at arming time (per share)
 #[derive(Clone, Debug)]
 pub struct MaskedHeader {
-    pub d1: Vec<G2Affine>,  // U_var^rho (G2)
-    pub d2: Vec<G1Affine>,  // V_var^rho (G1)
-    pub d1r: Vec<G2Affine>, // U_rand^rho (G2)
-    pub d2r: Vec<G1Affine>, // V_rand^rho (G1)
+    pub d1: Vec<G2Affine>,  // U^rho (G2) or U_var^rho if full-GS
+    pub d2: Vec<G1Affine>,  // V^rho (G1) or V_var^rho if full-GS
+    pub d1r: Vec<G2Affine>, // U_rand^rho (G2) for full-GS; zero for rank-decomp
+    pub d2r: Vec<G1Affine>, // V_rand^rho (G1) for full-GS; zero for rank-decomp
+    pub dp: Vec<G2Affine>,  // W^rho (G2) rank-bases for B3
+    pub dq: Vec<G1Affine>,  // Z^rho (G1) rank/slot-bases for B4
     pub rho_link: Vec<u8>,  // domain-separated hash of rho
     pub tau: Vec<u8>,       // PoCE-B tag binding K, header meta and ct
     pub nonce: [u8; 12],    // AEAD nonce used for the ciphertext
@@ -66,18 +68,30 @@ pub struct MaskedHeader {
     pub h_tag: Vec<u8>,     // optional PoCE-A hash binding statement/context
 }
 
-fn serialize_mask_header(d1: &[G2Affine], d2: &[G1Affine]) -> Result<Vec<u8>, GSCommitmentError> {
+fn serialize_mask_header(d1: &[G2Affine], d2: &[G1Affine], dp: &[G2Affine], dq: &[G1Affine]) -> Result<Vec<u8>, GSCommitmentError> {
     use ark_serialize::CanonicalSerialize;
     let mut out = Vec::new();
     let mut len_u = (d1.len() as u32).to_be_bytes().to_vec();
-    let mut len_v = (d2.len() as u32).to_be_bytes().to_vec();
     out.append(&mut len_u);
     for p in d1 {
         p.serialize_compressed(&mut out)
             .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
     }
+    let mut len_v = (d2.len() as u32).to_be_bytes().to_vec();
     out.append(&mut len_v);
     for p in d2 {
+        p.serialize_compressed(&mut out)
+            .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
+    }
+    let mut len_p = (dp.len() as u32).to_be_bytes().to_vec();
+    out.append(&mut len_p);
+    for p in dp {
+        p.serialize_compressed(&mut out)
+            .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
+    }
+    let mut len_q = (dq.len() as u32).to_be_bytes().to_vec();
+    out.append(&mut len_q);
+    for p in dq {
         p.serialize_compressed(&mut out)
             .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
     }
@@ -303,7 +317,9 @@ impl GrothSahaiCommitments {
             .map_err(|e| GSCommitmentError::Encryption(e.to_string()))?;
 
         // PoCE-B binding tag
-        let hdr_bytes = serialize_mask_header(&d1, &d2)?;
+        // Include dp,dq in header serialization for PoCE-B
+        // For single-header, no DP/DQ published; include empty
+        let hdr_bytes = serialize_mask_header(&d1, &d2, &[], &[])?;
         let rho_bytes = rho_bigint.to_bytes_be();
         let rho_link = rho_tag(&rho_bytes);
         let ad = Sha256::digest(&[ctx_hash, &hdr_bytes, &rho_link].concat());
@@ -320,6 +336,8 @@ impl GrothSahaiCommitments {
                 d2,
                 d1r,
                 d2r,
+                dp: Vec::new(),
+                dq: Vec::new(),
                 rho_link,
                 tau,
                 nonce: nonce_bytes,
@@ -414,7 +432,7 @@ impl GrothSahaiCommitments {
         key.copy_from_slice(&key_material[..32]);
 
         // Verify PoCE-B tag against K = M^rho bytes
-        let hdr_bytes = serialize_mask_header(&header.d1, &header.d2)?;
+        let hdr_bytes = serialize_mask_header(&header.d1, &header.d2, &header.dp, &header.dq)?;
         let ad = Sha256::digest(&[ctx_hash, &hdr_bytes, &header.rho_link].concat());
         let mut tau_input = Vec::new();
         tau_input.extend_from_slice(&k_bytes);
@@ -522,8 +540,14 @@ impl GrothSahaiCommitments {
 
         let rho_bytes = rho_bigint.to_bytes_be();
         let rho_link = rho_tag(&rho_bytes);
-        let hdr_a = serialize_mask_header(&d1a, &d2a)?;
-        let hdr_b = serialize_mask_header(&d1b, &d2b)?;
+        let bases_full1 = FullGSPpeBases::build(crs1, &ppe1, &decomp1);
+        let bases_full2 = FullGSPpeBases::build(crs2, &ppe2, &decomp2);
+        let dpa: Vec<G2Affine> = bases_full1.W.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
+        let dqa: Vec<G1Affine> = bases_full1.Z.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
+        let dpb: Vec<G2Affine> = bases_full2.W.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
+        let dqb: Vec<G1Affine> = bases_full2.Z.iter().map(|g| (g.into_group() * rho).into_affine()).collect();
+        let hdr_a = serialize_mask_header(&d1a, &d2a, &dpa, &dqa)?;
+        let hdr_b = serialize_mask_header(&d1b, &d2b, &dpb, &dqb)?;
         let ada = Sha256::digest(&[ctx_hash, &hdr_a, &rho_link].concat());
         let adb = Sha256::digest(&[ctx_hash, &hdr_b, &rho_link].concat());
 
@@ -546,6 +570,8 @@ impl GrothSahaiCommitments {
             d2: d2a,
             d1r: d1ra,
             d2r: d2ra,
+            dp: dpa,
+            dq: dqa,
             rho_link: rho_link.clone(),
             tau: tau_a,
             nonce: nonce_bytes,
@@ -557,6 +583,8 @@ impl GrothSahaiCommitments {
             d2: d2b,
             d1r: d1rb,
             d2r: d2rb,
+            dp: dpb,
+            dq: dqb,
             rho_link,
             tau: tau_b,
             nonce: nonce_bytes,
@@ -604,19 +632,20 @@ impl GrothSahaiCommitments {
             ));
         }
 
-        // Full-GS armed decap on both headers to get K1,K2
+        // Full-GS decap per header: K = B1 + B2 with rand/var limbs
         use ark_ec::pairing::PairingOutput;
         let mut k1 = PairingOutput::<Bls12_381>::zero();
         for i in 0..header1.d1.len() {
             let c1 = &attestation.cproof.xcoms.coms[i];
-            k1 += Bls12_381::pairing(c1.1, header1.d1[i]);
-            k1 += Bls12_381::pairing(c1.0, header1.d1r[i]);
+            k1 += Bls12_381::pairing(c1.1, header1.d1[i]); // var vs U_var^ρ
+            k1 += Bls12_381::pairing(c1.0, header1.d1r[i]); // rand vs U_rand^ρ
         }
         for j in 0..header1.d2.len() {
             let c2 = &attestation.cproof.ycoms.coms[j];
-            k1 += Bls12_381::pairing(header1.d2[j], c2.1);
-            k1 += Bls12_381::pairing(header1.d2r[j], c2.0);
+            k1 += Bls12_381::pairing(header1.d2[j], c2.1); // V_var^ρ vs var
+            k1 += Bls12_381::pairing(header1.d2r[j], c2.0); // V_rand^ρ vs rand
         }
+
         let mut k2 = PairingOutput::<Bls12_381>::zero();
         for i in 0..header2.d1.len() {
             let c1 = &attestation.cproof.xcoms.coms[i];
@@ -636,8 +665,8 @@ impl GrothSahaiCommitments {
             .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
 
         // Verify per-header PoCE-B tags
-        let hdr1 = serialize_mask_header(&header1.d1, &header1.d2)?;
-        let hdr2 = serialize_mask_header(&header2.d1, &header2.d2)?;
+        let hdr1 = serialize_mask_header(&header1.d1, &header1.d2, &header1.dp, &header1.dq)?;
+        let hdr2 = serialize_mask_header(&header2.d1, &header2.d2, &header2.dp, &header2.dq)?;
         let ad1 = Sha256::digest(&[ctx_hash, &hdr1, &header1.rho_link].concat());
         let ad2 = Sha256::digest(&[ctx_hash, &hdr2, &header2.rho_link].concat());
 
@@ -889,9 +918,8 @@ impl GrothSahaiCommitments {
         self.commit_arkworks_proof(proof, vk, public_input, &self.crs, rng)
     }
 
-    /// Encode Groth16 verification equation into GS PPE for specific (vk, x)
-    /// Groth16 verification: e(π_A, π_B) · e(π_C, δ) = e(α, β) · e(IC, γ)
-    /// 2-variable PPE: X=[π_A, π_C], Y=[π_B, δ_neg]; target = e(α,β)·e(IC,γ)
+    /// Encode Groth16 verification into GS PPE (full-GS form)
+    /// X = [A, C, L(x)], Y = [B, δ⁻¹, γ⁻¹], Γ = I₃, target = e(α,β)
     pub fn groth16_verify_as_ppe(
         &self,
         vk: &ArkworksVK,
@@ -899,20 +927,16 @@ impl GrothSahaiCommitments {
         _crs: &CRS<Bls12_381>,
     ) -> PPE<Bls12_381> {
         use ark_ec::AffineRepr;
-        // Rank-decomp PPE encoding for Groth16:
-        // M = e(A,B) + e(C, δ) + e(IC(x), γ) should equal e(α, β)
-        let ic = compute_ic_from_vk_and_inputs(vk, public_input);
+        let _ic = compute_ic_from_vk_and_inputs(vk, public_input);
         let target = Bls12_381::pairing(vk.alpha_g1, vk.beta_g2);
 
         PPE::<Bls12_381> {
-            // V and Z use a_consts; set third slot to IC(x) to produce e(IC, γ)
-            a_consts: vec![G1Affine::zero(), G1Affine::zero(), ic],
+            a_consts: vec![G1Affine::zero(); 3],
             b_consts: vec![G2Affine::zero(); 3],
-            // Γ encodes e(A,B) and e(C, δ) only; third row/col zero
             gamma: vec![
                 vec![Fr::one(), Fr::zero(), Fr::zero()],
                 vec![Fr::zero(), Fr::one(), Fr::zero()],
-                vec![Fr::zero(), Fr::zero(), Fr::zero()],
+                vec![Fr::zero(), Fr::zero(), Fr::one()],
             ],
             target,
         }
