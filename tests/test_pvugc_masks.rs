@@ -1,4 +1,5 @@
 #![allow(non_snake_case)]
+// Tests PoCE-B tag and D-mask decapsulation
 use ark_bls12_381::Fr;
 use ark_std::test_rng;
 use sha2::{Sha256, Digest};
@@ -85,7 +86,7 @@ fn test_pvugc_masks_wrong_x_fails() {
 
     // Using different ctx (x2) should fail to decrypt original ct
     let ctx2 = Sha256::digest(b"CTX(vk,x=10)").to_vec();
-    let header_wrong = gs.pvugc_arm(&vk, &x2, &crs, rho, secret, &ctx2, &mut rng).expect("arm2").0; // only masks shape
+    let header_wrong = gs.pvugc_arm(&vk, &x2, &crs, rho, secret, &ctx2, &mut rng).expect("arm2").0;
     // Decap with attestation for x2 + header for x2 on ciphertext for x1 should fail
     let res = gs.pvugc_decapsulate_with_masks(&att2, &vk, &x2, &crs, &header_wrong, &ct, &ctx2);
     assert!(res.is_err(), "decryption should fail for different x");
