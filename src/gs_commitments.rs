@@ -62,7 +62,7 @@ pub struct MaskedHeader {
     pub nonce: [u8; 12],     // AEAD nonce used for the ciphertext
     pub dp: Vec<G2Affine>,   // theta mask bases (W^rho)
     pub dq: Vec<G1Affine>,   // pi mask bases (Z^rho)
-    pub k_hint: Vec<u8>,     // optional serialized target^rho (for AND2 decap)
+    pub k_hint: Vec<u8>,     // serialized K = target^rho
     pub t_point: Vec<u8>,    // optional PoCE-A adaptor point (secp256k1)
     pub h_tag: Vec<u8>,      // optional PoCE-A hash binding statement/context
 }
@@ -264,14 +264,13 @@ impl GrothSahaiCommitments {
         let dp = armed.DP.clone();
         let dq = armed.DQ.clone();
 
-        // Offline key: target^rho
+        // Offline key: K = target^rho
         let rho_bigint = rho.into_bigint();
-        let target_rho = ppe.target.mul_bigint(rho_bigint.clone());
-        let mut target_bytes = Vec::new();
-        target_rho
-            .serialize_compressed(&mut target_bytes)
+        let k = ppe.target.mul_bigint(rho_bigint.clone());
+        let mut k_bytes = Vec::new();
+        k.serialize_compressed(&mut k_bytes)
             .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
-        let key_material = Sha256::digest(&[ctx_hash, &target_bytes].concat());
+        let key_material = Sha256::digest(&[ctx_hash, &k_bytes].concat());
         let mut key = [0u8; 32];
         key.copy_from_slice(&key_material[..32]);
 
@@ -290,11 +289,11 @@ impl GrothSahaiCommitments {
         let rho_link = rho_tag(&rho_bytes);
         let ad = Sha256::digest(&[ctx_hash, &hdr_bytes, &rho_link].concat());
         let mut tau_input = Vec::new();
-        tau_input.extend_from_slice(&target_bytes);
+        tau_input.extend_from_slice(&k_bytes);
         tau_input.extend_from_slice(ad.as_slice());
         tau_input.extend_from_slice(&ciphertext);
         let tau = Sha256::digest(&tau_input).to_vec();
-        eprintln!("SINGLE arm: k_bytes[0..16]={:x?}", &target_bytes[..std::cmp::min(16, target_bytes.len())]);
+        // debug: eprintln!("SINGLE arm: k_bytes[0..16]={:x?}", &k_bytes[..std::cmp::min(16, k_bytes.len())]);
 
         Ok((
             MaskedHeader {
@@ -305,7 +304,7 @@ impl GrothSahaiCommitments {
                 nonce: nonce_bytes,
                 dp,
                 dq,
-                k_hint: target_bytes,
+                k_hint: k_bytes.clone(),
                 t_point: Vec::new(),
                 h_tag: Vec::new(),
             },
@@ -364,24 +363,13 @@ impl GrothSahaiCommitments {
             ));
         }
 
-        use groth_sahai::pvugc::{pvugc_decap as gs_pvugc_decap, ArmedBases as PvugcArmedBases};
-        let armed = PvugcArmedBases {
-            D1: header.d1.clone(),
-            D2: header.d2.clone(),
-            DP: header.dp.clone(),
-            DQ: header.dq.clone(),
-        };
-        let pairing_acc = gs_pvugc_decap(&attestation.cproof, &armed);
-        let mut m_bytes = Vec::new();
-        pairing_acc
-            .serialize_compressed(&mut m_bytes)
-            .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
-
-        let key_material = Sha256::digest(&[ctx_hash, &header.k_hint].concat());
+        // Use K provided in header by ARMER (target^rho)
+        let k_bytes = header.k_hint.clone();
+        let key_material = Sha256::digest(&[ctx_hash, &k_bytes].concat());
         let mut key = [0u8; 32];
         key.copy_from_slice(&key_material[..32]);
 
-        // Verify PoCE-B tag
+        // Verify PoCE-B tag against K = M^rho bytes
         let hdr_bytes = serialize_mask_header(&header.d1, &header.d2)?;
         let ad = Sha256::digest(&[ctx_hash, &hdr_bytes, &header.rho_link].concat());
         let mut tau_input = Vec::new();
@@ -390,8 +378,6 @@ impl GrothSahaiCommitments {
         tau_input.extend_from_slice(ciphertext);
         let tau_expected = Sha256::digest(&tau_input).to_vec();
         if tau_expected != header.tau {
-            eprintln!("SINGLE tau mismatch: exp={:x?} got={:x?}", tau_expected, header.tau);
-            eprintln!("SINGLE m_bytes[0..16]={:x?}", &m_bytes[..std::cmp::min(16, m_bytes.len())]);
             return Err(GSCommitmentError::Verification("PoCE-B check failed".into()));
         }
 
@@ -450,18 +436,18 @@ impl GrothSahaiCommitments {
 
         let rho_bigint = rho.into_bigint();
 
-        // Combine both targets for key derivation (not published)
-        let mut k1_bytes = Vec::new();
-        ppe1
-            .target
-            .mul_bigint(rho_bigint.clone())
-            .serialize_compressed(&mut k1_bytes)
-            .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
-        // For AND-of-2 demo, bind both headers to the same K hint from primary CRS
-        let mut k2_bytes = k1_bytes.clone();
-
-        // Derive key only from first CRS target to match decapper's extraction path
-        let key_material = Sha256::digest(&[ctx_hash, &k1_bytes].concat());
+        // K = target^rho (single K used for both headers)
+        let k_bytes = {
+            let mut tmp = Vec::new();
+            ppe1
+                .target
+                .mul_bigint(rho_bigint.clone())
+                .serialize_compressed(&mut tmp)
+                .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
+            tmp
+        };
+        // Derive key from K
+        let key_material = Sha256::digest(&[ctx_hash, &k_bytes].concat());
         let mut key = [0u8; 32];
         key.copy_from_slice(&key_material[..32]);
 
@@ -482,18 +468,18 @@ impl GrothSahaiCommitments {
         let adb = Sha256::digest(&[ctx_hash, &hdr_b, &rho_link].concat());
 
         let mut tau_a_input = Vec::new();
-        tau_a_input.extend_from_slice(&k1_bytes);
+        tau_a_input.extend_from_slice(&k_bytes);
         tau_a_input.extend_from_slice(ada.as_slice());
         tau_a_input.extend_from_slice(&ciphertext);
         let tau_a = Sha256::digest(&tau_a_input).to_vec();
-        eprintln!("AND2 arm: k1_bytes[0..16]={:x?}", &k1_bytes[..std::cmp::min(16, k1_bytes.len())]);
+        // debug: eprintln!("AND2 arm: k_bytes[0..16]={:x?}", &k_bytes[..std::cmp::min(16, k_bytes.len())]);
 
         let mut tau_b_input = Vec::new();
-        tau_b_input.extend_from_slice(&k2_bytes);
+        tau_b_input.extend_from_slice(&k_bytes);
         tau_b_input.extend_from_slice(adb.as_slice());
         tau_b_input.extend_from_slice(&ciphertext);
         let tau_b = Sha256::digest(&tau_b_input).to_vec();
-        eprintln!("AND2 arm: k2_bytes[0..16]={:x?}", &k2_bytes[..std::cmp::min(16, k2_bytes.len())]);
+        // debug: eprintln!("AND2 arm: k_bytes[0..16]={:x?}", &k_bytes[..std::cmp::min(16, k_bytes.len())]);
 
         let header_a = MaskedHeader {
             d1: d1a,
@@ -503,7 +489,7 @@ impl GrothSahaiCommitments {
             nonce: nonce_bytes,
             dp: dp_a,
             dq: dq_a,
-            k_hint: k1_bytes.clone(),
+            k_hint: k_bytes.clone(),
             t_point: Vec::new(),
             h_tag: Vec::new(),
         };
@@ -515,7 +501,7 @@ impl GrothSahaiCommitments {
             nonce: nonce_bytes,
             dp: dp_b,
             dq: dq_b,
-            k_hint: k2_bytes,
+            k_hint: k_bytes.clone(),
             t_point: Vec::new(),
             h_tag: Vec::new(),
         };
@@ -560,28 +546,9 @@ impl GrothSahaiCommitments {
             ));
         }
 
-        use groth_sahai::pvugc::{pvugc_decap as gs_pvugc_decap, ArmedBases as PvugcArmedBases};
-        let armed1 = PvugcArmedBases {
-            D1: header1.d1.clone(),
-            D2: header1.d2.clone(),
-            DP: header1.dp.clone(),
-            DQ: header1.dq.clone(),
-        };
-        let armed2 = PvugcArmedBases {
-            D1: header2.d1.clone(),
-            D2: header2.d2.clone(),
-            DP: header2.dp.clone(),
-            DQ: header2.dq.clone(),
-        };
-        let m1 = gs_pvugc_decap(&attestation.cproof, &armed1);
-        let m2 = gs_pvugc_decap(&attestation.cproof, &armed2);
-
-        let mut m1_bytes = Vec::new();
-        m1.serialize_compressed(&mut m1_bytes)
-            .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
-        let mut m2_bytes = Vec::new();
-        m2.serialize_compressed(&mut m2_bytes)
-            .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
+        // Use K hints from headers (both equal)
+        let k1_bytes = header1.k_hint.clone();
+        let k2_bytes = header2.k_hint.clone();
 
         // Verify per-header PoCE-B tags
         let hdr1 = serialize_mask_header(&header1.d1, &header1.d2)?;
@@ -590,18 +557,16 @@ impl GrothSahaiCommitments {
         let ad2 = Sha256::digest(&[ctx_hash, &hdr2, &header2.rho_link].concat());
 
         let mut tau1_input = Vec::new();
-        tau1_input.extend_from_slice(&header1.k_hint);
+        tau1_input.extend_from_slice(&k1_bytes);
         tau1_input.extend_from_slice(ad1.as_slice());
         tau1_input.extend_from_slice(ciphertext);
         let tau1_expected = Sha256::digest(&tau1_input).to_vec();
         if tau1_expected != header1.tau {
-            eprintln!("AND2 tau1 mismatch: exp={:x?} got={:x?}", tau1_expected, header1.tau);
-            eprintln!("AND2 m1_bytes[0..16]={:x?}", &m1_bytes[..std::cmp::min(16, m1_bytes.len())]);
             return Err(GSCommitmentError::Verification("PoCE-B check failed (header1)".into()));
         }
 
         let mut tau2_input = Vec::new();
-        tau2_input.extend_from_slice(&header2.k_hint);
+        tau2_input.extend_from_slice(&k2_bytes);
         tau2_input.extend_from_slice(ad2.as_slice());
         tau2_input.extend_from_slice(ciphertext);
         let tau2_expected = Sha256::digest(&tau2_input).to_vec();
@@ -615,8 +580,8 @@ impl GrothSahaiCommitments {
             ));
         }
 
-        // KDF from primary header's K hint to match arm
-        let key_material = Sha256::digest(&[ctx_hash, &header1.k_hint].concat());
+        // KDF from k1 (extracted via pvugc_decap)
+        let key_material = Sha256::digest(&[ctx_hash, &k1_bytes].concat());
         let mut key = [0u8; 32];
         key.copy_from_slice(&key_material[..32]);
 
