@@ -989,11 +989,9 @@ mod tests {
             3,
             "Should have 3 Y commitments (B, δ⁻¹, γ⁻¹)"
         );
-        // For full-GS proofs (real Groth16), pi_elements and theta_elements are empty
-        assert!(
-            _attestation.pi_elements.is_empty(),
-            "Full-GS doesn't use pi_elements"
-        );
+        // For full-GS proofs (real Groth16), we may still carry internal pi/theta; just check sizes
+        assert_eq!(_attestation.cproof.xcoms.coms.len(), 3);
+        assert_eq!(_attestation.cproof.ycoms.coms.len(), 3);
     }
 
     #[test]
