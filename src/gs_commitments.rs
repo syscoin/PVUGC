@@ -165,17 +165,17 @@ impl GrothSahaiCommitments {
         let gamma_neg = (-vk.gamma_g2.into_group()).into_affine();
 
         // Build all 3 X-slots and 3 Y-slots
-        // For Groth16: A and C are witnesses (randomized), L(x) is constant (zero randomizer)
-        //              B is witness (randomized), δ⁻¹ and γ⁻¹ are constants (zero randomizers)
+        // X: [A (witness), C (witness), L(x) (constant)]
+        // Y: [B (witness), δ⁻¹ (constant), γ⁻¹ (constant)]
         let x_vars = vec![
-            proof.pi_a,       // A (witness)
-            proof.pi_c,       // C (witness)
-            G1Affine::zero(), // unused slot for alignment
+            proof.pi_a,  // A
+            proof.pi_c,  // C
+            ic,          // L(x)
         ];
         let y_vars = vec![
-            proof.pi_b,  // B (witness)
-            vk.delta_g2, // +δ
-            vk.gamma_g2, // +γ
+            proof.pi_b,   // B
+            delta_neg,    // δ⁻¹
+            gamma_neg,    // γ⁻¹
         ];
 
         // Use randomness for witness slots, zero for constant slots
@@ -189,9 +189,8 @@ impl GrothSahaiCommitments {
         let s_gamma = Fr::zero(); // γ⁻¹ is constant
         let s = vec![s_b, s_delta, s_gamma];
 
-        // Use rank-decomposition prover (decap-compatible)
-        let attestation_proof =
-            ppe.commit_and_prove_rank_decomp(&x_vars, &y_vars, crs_per_slot, rng);
+        // Use full-GS prover to match full-GS verifier
+        let attestation_proof = ppe.commit_and_prove_full_gs(&x_vars, &y_vars, &r, &s, crs_per_slot, rng);
 
         // Extract commitments and proof elements from the proof
         let c1_commitments = attestation_proof.xcoms.coms.clone();
@@ -701,13 +700,9 @@ impl GrothSahaiCommitments {
     ) -> Result<bool, GSCommitmentError> {
         use groth_sahai::base_construction::FullGSPpeBases;
         use groth_sahai::rank_decomp::RankDecomp;
-
-        // Build full-GS bases for verification
         let decomp = RankDecomp::decompose(&ppe.gamma);
         let bases = FullGSPpeBases::build(crs_per_slot, ppe, &decomp);
-
-        // Use full-GS verifier
-        let (ok, _extracted_m) = ppe.verify_full_gs(&attestation.cproof, crs_per_slot, &bases);
+        let (ok, _) = ppe.verify_full_gs(&attestation.cproof, crs_per_slot, &bases);
         Ok(ok)
     }
 
