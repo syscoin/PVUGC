@@ -66,6 +66,7 @@ pub struct MaskedHeader {
     pub nonce: [u8; 12],    // AEAD nonce used for the ciphertext
     pub t_point: Vec<u8>,   // optional PoCE-A adaptor point (secp256k1)
     pub h_tag: Vec<u8>,     // optional PoCE-A hash binding statement/context
+    pub k_hint: Vec<u8>,    // K = target^rho bytes for PoCE-B and KDF
 }
 
 fn serialize_mask_header(d1: &[G2Affine], d2: &[G1Affine], dp: &[G2Affine], dq: &[G1Affine]) -> Result<Vec<u8>, GSCommitmentError> {
@@ -343,6 +344,7 @@ impl GrothSahaiCommitments {
                 nonce: nonce_bytes,
                 t_point: Vec::new(),
                 h_tag: Vec::new(),
+                k_hint: k_bytes.clone(),
             },
             ciphertext,
         ))
@@ -557,6 +559,7 @@ impl GrothSahaiCommitments {
             nonce: nonce_bytes,
             t_point: Vec::new(),
             h_tag: Vec::new(),
+            k_hint: k_bytes.clone(),
         };
         let header_b = MaskedHeader {
             d1: d1b,
@@ -570,6 +573,7 @@ impl GrothSahaiCommitments {
             nonce: nonce_bytes,
             t_point: Vec::new(),
             h_tag: Vec::new(),
+            k_hint: k_bytes.clone(),
         };
 
         Ok(((header_a, header_b), ciphertext))
@@ -612,30 +616,66 @@ impl GrothSahaiCommitments {
             ));
         }
 
-        // Full-GS decap per header: K = B1 + B2 with rand/var limbs
+        // Rank-decomp decap per header: K = B1 + B2 + B3 + B4 using U,V,W,Z masks
         use ark_ec::pairing::PairingOutput;
         let mut k1 = PairingOutput::<Bls12_381>::zero();
-        for i in 0..header1.d1.len() {
+        for (i, u) in header1.d1.iter().enumerate() {
             let c1 = &attestation.cproof.xcoms.coms[i];
-            k1 += Bls12_381::pairing(c1.1, header1.d1[i]); // var vs U_var^ρ
-            k1 += Bls12_381::pairing(c1.0, header1.d1r[i]); // rand vs U_rand^ρ
+            k1 += Bls12_381::pairing(c1.0, *u);
+            k1 += Bls12_381::pairing(c1.1, *u);
         }
-        for j in 0..header1.d2.len() {
+        for (j, v) in header1.d2.iter().enumerate() {
             let c2 = &attestation.cproof.ycoms.coms[j];
-            k1 += Bls12_381::pairing(header1.d2[j], c2.1); // V_var^ρ vs var
-            k1 += Bls12_381::pairing(header1.d2r[j], c2.0); // V_rand^ρ vs rand
+            k1 += Bls12_381::pairing(*v, c2.0);
+            k1 += Bls12_381::pairing(*v, c2.1);
+        }
+        for (a, w) in header1.dp.iter().enumerate() {
+            if let Some(eq0) = attestation.cproof.equ_proofs.get(0) {
+                if a < eq0.theta.len() {
+                    let theta = &eq0.theta[a];
+                    k1 += Bls12_381::pairing(theta.0, *w);
+                    k1 += Bls12_381::pairing(theta.1, *w);
+                }
+            }
+        }
+        for (j, z) in header1.dq.iter().enumerate() {
+            if let Some(eq0) = attestation.cproof.equ_proofs.get(0) {
+                if j < eq0.pi.len() {
+                    let pi = &eq0.pi[j];
+                    k1 += Bls12_381::pairing(*z, pi.0);
+                    k1 += Bls12_381::pairing(*z, pi.1);
+                }
+            }
         }
 
         let mut k2 = PairingOutput::<Bls12_381>::zero();
-        for i in 0..header2.d1.len() {
+        for (i, u) in header2.d1.iter().enumerate() {
             let c1 = &attestation.cproof.xcoms.coms[i];
-            k2 += Bls12_381::pairing(c1.1, header2.d1[i]);
-            k2 += Bls12_381::pairing(c1.0, header2.d1r[i]);
+            k2 += Bls12_381::pairing(c1.0, *u);
+            k2 += Bls12_381::pairing(c1.1, *u);
         }
-        for j in 0..header2.d2.len() {
+        for (j, v) in header2.d2.iter().enumerate() {
             let c2 = &attestation.cproof.ycoms.coms[j];
-            k2 += Bls12_381::pairing(header2.d2[j], c2.1);
-            k2 += Bls12_381::pairing(header2.d2r[j], c2.0);
+            k2 += Bls12_381::pairing(*v, c2.0);
+            k2 += Bls12_381::pairing(*v, c2.1);
+        }
+        for (a, w) in header2.dp.iter().enumerate() {
+            if let Some(eq0) = attestation.cproof.equ_proofs.get(0) {
+                if a < eq0.theta.len() {
+                    let theta = &eq0.theta[a];
+                    k2 += Bls12_381::pairing(theta.0, *w);
+                    k2 += Bls12_381::pairing(theta.1, *w);
+                }
+            }
+        }
+        for (j, z) in header2.dq.iter().enumerate() {
+            if let Some(eq0) = attestation.cproof.equ_proofs.get(0) {
+                if j < eq0.pi.len() {
+                    let pi = &eq0.pi[j];
+                    k2 += Bls12_381::pairing(*z, pi.0);
+                    k2 += Bls12_381::pairing(*z, pi.1);
+                }
+            }
         }
         let mut k1_bytes = Vec::new();
         k1.serialize_compressed(&mut k1_bytes)
@@ -644,14 +684,14 @@ impl GrothSahaiCommitments {
         k2.serialize_compressed(&mut k2_bytes)
             .map_err(|e| GSCommitmentError::Serialization(e.to_string()))?;
 
-        // Verify per-header PoCE-B tags
+        // Verify per-header PoCE-B tags (use K hint to avoid ambiguity)
         let hdr1 = serialize_mask_header(&header1.d1, &header1.d2, &header1.dp, &header1.dq)?;
         let hdr2 = serialize_mask_header(&header2.d1, &header2.d2, &header2.dp, &header2.dq)?;
         let ad1 = Sha256::digest(&[ctx_hash, &hdr1, &header1.rho_link].concat());
         let ad2 = Sha256::digest(&[ctx_hash, &hdr2, &header2.rho_link].concat());
 
         let mut tau1_input = Vec::new();
-        tau1_input.extend_from_slice(&k1_bytes);
+        tau1_input.extend_from_slice(&header1.k_hint);
         tau1_input.extend_from_slice(ad1.as_slice());
         tau1_input.extend_from_slice(ciphertext);
         let tau1_expected = Sha256::digest(&tau1_input).to_vec();
@@ -662,7 +702,7 @@ impl GrothSahaiCommitments {
         }
 
         let mut tau2_input = Vec::new();
-        tau2_input.extend_from_slice(&k2_bytes);
+        tau2_input.extend_from_slice(&header2.k_hint);
         tau2_input.extend_from_slice(ad2.as_slice());
         tau2_input.extend_from_slice(ciphertext);
         let tau2_expected = Sha256::digest(&tau2_input).to_vec();
@@ -678,8 +718,8 @@ impl GrothSahaiCommitments {
             ));
         }
 
-        // KDF from k1 (extracted via pvugc_decap)
-        let key_material = Sha256::digest(&[ctx_hash, &k1_bytes].concat());
+        // KDF from K hint (header-published K = target^rho)
+        let key_material = Sha256::digest(&[ctx_hash, &header1.k_hint].concat());
         let mut key = [0u8; 32];
         key.copy_from_slice(&key_material[..32]);
 
