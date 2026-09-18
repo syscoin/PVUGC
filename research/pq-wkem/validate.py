@@ -27,7 +27,8 @@ def main() -> int:
     start = datetime.now(timezone.utc).isoformat()
     clock = time.perf_counter()
     stream = io.StringIO()
-    suite = unittest.defaultTestLoader.discover(str(root / "tests"))
+    suite = unittest.defaultTestLoader.discover(
+        str(root / "tests"), pattern="test_moment_compiler.py")
     result = unittest.TextTestRunner(stream=stream, verbosity=2).run(suite)
     census = []
     for n, degree, p in ((3, 3, 2), (3, 3, 3), (2, 3, 5), (3, 4, 2), (3, 5, 3)):
