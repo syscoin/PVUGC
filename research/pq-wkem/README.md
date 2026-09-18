@@ -1,6 +1,6 @@
 # PQ witness-KEM research ledger
 
-**Status: a proved semantic compiler component; no completed secure WKEM.**
+**Status: semantic compiler and restricted projection lemmas; no completed secure WKEM.**
 
 This draft was opened at the repository owner's request. It records the ongoing
 research, actual tests, and unresolved obligations rather than presenting an
@@ -59,7 +59,8 @@ The requested missing implication is:
 
 through an actual reduction or a separately justified hardness result. These are
 not the same statement. This directory deliberately contains no `Encap` function,
-no use of the rejected projection encoders, and no suggested deployment parameters.
+no deployment encoder built from the experimental projection maps, and no
+suggested deployment parameters.
 
 A completed design must also establish full public-output QPT hiding, common-key
 correctness, concrete practical costs, and a compatible distributed setup. Passing
@@ -86,3 +87,34 @@ included. No live capsules, signing keys, credentials, private correspondence, o
 unrelated files are included. Nothing here claims literature priority or changes
 ownership of the research. Do not merge this draft as a secure cryptographic
 implementation.
+
+## Continuation from checkpoint 8
+
+Commit `076a98acf1f0da3e6a92e8882e5172d2332e6b8c` adds the previously uncommitted
+quotient work and a restricted recovery-to-witness theorem. See
+[QUOTIENT_AND_PROBE.md](QUOTIENT_AND_PROBE.md) for complete proofs and limits.
+
+- `constraint_quotient.py`: public quotient maps, exact uniform-mask resimulation,
+  and coefficient/moment identities.
+- `linear_probe.py`: exact fixed-character probabilities and witness extraction
+  from supplied matrix-valued modes below the strict rank threshold.
+- The two new test modules check these identities and include negative controls:
+  mask-correlated auxiliary information, the strict false-instance threshold,
+  and negligible linear biases coexisting with a nonlinear rank distinguisher.
+- `validate_quotient_probe.py` records all 19 current test groups. The captured
+  [quotient-probe-validation.json](quotient-probe-validation.json) has zero
+  failures/errors and records the exact source hashes and execution times.
+
+Run the current suite and produce a separate latest validation file:
+
+```sh
+python -m unittest discover -s research/pq-wkem/tests -v
+python research/pq-wkem/validate_quotient_probe.py
+```
+
+The original six-group record remains historical evidence, not additive coverage.
+The new proof states that a sufficiently biased **fixed linear probe** yields a
+witness. It does not transform arbitrary nonlinear or quantum key recovery into
+such a probe. The nonlinear polynomial proposal tested here is exactly equivalent
+to the earlier rank capsule after taking its public constraint quotient; uniform
+constraint masking is not a new secrecy layer. There is still no completed WKEM.
