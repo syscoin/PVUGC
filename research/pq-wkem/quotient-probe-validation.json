@@ -1,0 +1,63 @@
+{
+  "status": "algebraic validation only; not a completed or secure WKEM",
+  "started_utc": "2026-09-18T22:58:27.371862+00:00",
+  "finished_utc": "2026-09-18T22:58:29.654378+00:00",
+  "python": "3.13.5",
+  "base_commit": "9489a2a246018ae673a148c18a302fcf235dfceb",
+  "tests_run": 19,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "success": true,
+  "source_hashes": {
+    "moment_compiler.py": {
+      "sha256": "c6e9de52bd850379cd4a8a696fadb75a14a2a94dcd78f5be83598b18e4d38b42",
+      "git_blob_sha1": "f99ae640a951b3d395292391abf7ca4031f95216",
+      "bytes": 10941
+    },
+    "constraint_quotient.py": {
+      "sha256": "1694d836bccaacc4c9d2064c5356b547c60c873ea5c6c42756300629efb77e8b",
+      "git_blob_sha1": "2721793c16c792b7a1298c4ab8ef0b37ee715176",
+      "bytes": 5561
+    },
+    "linear_probe.py": {
+      "sha256": "691d940421032b9d37f96c703a06351bb14df44a23172468c677d3c6471e819f",
+      "git_blob_sha1": "1fc0dcc9a64bb662abce3b0ae8c367b436974010",
+      "bytes": 3938
+    },
+    "tests/test_moment_compiler.py": {
+      "sha256": "a6d42e930a81d1452306055bffd466ebac029406b453808b1e0ea40f4093e150",
+      "git_blob_sha1": "9115205c69292f64e85a1515dffa92b982c459ac",
+      "bytes": 4861
+    },
+    "tests/test_constraint_quotient.py": {
+      "sha256": "e690b0ad62fadbc23dff34754ce0fded292e73f14946fa92b22c5239fb69463c",
+      "git_blob_sha1": "9d9ffd7fdc50766b6201aadadd7ac2cc6b7ee321",
+      "bytes": 9040
+    },
+    "tests/test_linear_probe.py": {
+      "sha256": "ee14d32decdb7181d2e5d212e9689159202b822506ad97c0d9957f7869073e65",
+      "git_blob_sha1": "055cd799400f81a4fbe9d44888da94fbf2a7dc36",
+      "bytes": 8021
+    },
+    "QUOTIENT_AND_PROBE.md": {
+      "sha256": "95dddd4f9388b568f14c188cb92199b37543e59fcd1a1dfdd54aacbea2bed382",
+      "git_blob_sha1": "81e2c51e512afeba8359de29eb4e4daa7b23169b",
+      "bytes": 11464
+    },
+    "validate_quotient_probe.py": {
+      "sha256": "7ce7df841caf726a66f5c99531b8ffefa129a6477dde0baec5cb26fd3bcbf7cc",
+      "git_blob_sha1": "676988e270f50246fdd0170dd1d0a32ab4d7968f",
+      "bytes": 2469
+    }
+  },
+  "test_output": "test_all_small_cosets (test_constraint_quotient.QuotientTests.test_all_small_cosets) ... ok\ntest_bilinear_moment_identity (test_constraint_quotient.QuotientTests.test_bilinear_moment_identity) ... ok\ntest_mask_independence_is_necessary (test_constraint_quotient.QuotientTests.test_mask_independence_is_necessary) ... ok\ntest_matrix_polynomial_equals_rank_projection (test_constraint_quotient.QuotientTests.test_matrix_polynomial_equals_rank_projection) ... ok\ntest_moment_dual_basis_and_witness_evaluation (test_constraint_quotient.QuotientTests.test_moment_dual_basis_and_witness_evaluation) ... ok\ntest_nonlinear_precursor_and_auxiliary_input (test_constraint_quotient.QuotientTests.test_nonlinear_precursor_and_auxiliary_input) ... ok\ntest_shapes_and_fields_rejected (test_constraint_quotient.QuotientTests.test_shapes_and_fields_rejected) ... ok\ntest_all_binary_matrix_modes (test_linear_probe.LinearProbeTests.test_all_binary_matrix_modes) ... ok\ntest_correctness_compatible_output_width (test_linear_probe.LinearProbeTests.test_correctness_compatible_output_width) ... ok\ntest_false_instance_strict_boundary (test_linear_probe.LinearProbeTests.test_false_instance_strict_boundary) ... ok\ntest_odd_field_character_counts (test_linear_probe.LinearProbeTests.test_odd_field_character_counts) ... ok\ntest_small_linear_bias_does_not_imply_hiding (test_linear_probe.LinearProbeTests.test_small_linear_bias_does_not_imply_hiding) ... ok\ntest_target_nonzero_and_input_checks (test_linear_probe.LinearProbeTests.test_target_nonzero_and_input_checks) ... ok\ntest_affine_lift_and_multiple_witnesses (test_moment_compiler.MomentCompilerTests.test_affine_lift_and_multiple_witnesses) ... ok\ntest_all_small_field_moment_vectors (test_moment_compiler.MomentCompilerTests.test_all_small_field_moment_vectors) ... ok\ntest_boundary_rank_is_not_accepted (test_moment_compiler.MomentCompilerTests.test_boundary_rank_is_not_accepted) ... ok\ntest_every_small_constrained_coefficient_vector (test_moment_compiler.MomentCompilerTests.test_every_small_constrained_coefficient_vector) ... ok\ntest_malformed_and_inconsistent_inputs (test_moment_compiler.MomentCompilerTests.test_malformed_and_inconsistent_inputs) ... ok\ntest_nonzero_homogeneous_normalization_is_not_assumed (test_moment_compiler.MomentCompilerTests.test_nonzero_homogeneous_normalization_is_not_assumed) ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 2.278s\n\nOK\n",
+  "scope": {
+    "external_research": "none; requested GitHub reads/writes only",
+    "prime_fields_only": true,
+    "full_security_reduction": false,
+    "general_key_recovery_extractor": false,
+    "historical_checkpoint8_counts": "independently reconstructed, not additive coverage",
+    "randomness": "fixed-seed public algebra fixtures, not cryptographic sampling"
+  }
+}
