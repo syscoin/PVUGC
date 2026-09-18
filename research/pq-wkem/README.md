@@ -1,54 +1,88 @@
 # PQ witness-KEM research ledger
 
-**Status: incomplete research, not a secure WKEM and not production cryptography.**
+**Status: a proved semantic compiler component; no completed secure WKEM.**
 
-This branch was opened at the repository owner's request to make the ongoing
-witness-encryption work reviewable in GitHub rather than leaving progress only
-inside a chat. It starts from `fcc7929e04a913eca73ae176279d0021f0d88fad`.
-Existing Rust code, protocol paths, and repository security claims are not changed.
+This draft was opened at the repository owner's request. It records the ongoing
+research, actual tests, and unresolved obligations rather than presenting an
+unproved encryption primitive as production code. Base inspected:
+`fcc7929e04a913eca73ae176279d0021f0d88fad`.
 
-## Required endpoint
+All changes are isolated in this directory. Existing Rust code, protocol paths,
+and repository security claims are unchanged.
 
-- Statement-only encapsulation: `(header, K) <- Encap(x)` without a witness.
-- Every valid witness for the same statement recovers the same key.
-- Public, offline decapsulation, with no authority required after setup.
-- Security against quantum polynomial-time processing of the entire public view.
-- An adversary-based extraction theorem for unauthorized early key recovery,
-  distinct from extracting a witness from a submitted low-rank representation.
-- Concrete, defensible setup, storage, and decapsulation costs.
-- A separately specified distributed setup and same-secret binding to any
-  encrypted-signature wrapper.
+## What is implemented
 
-## Starting evidence and its limits
+`moment_compiler.py` independently implements, using only the Python standard
+library, an explicit degree-D Boolean-moment compiler over small prime fields.
+It provides:
 
-The preceding conversation supplied a Boolean-moment compiler, rank-metric
-correctness tests, and counterexamples for some projection encoders. Its latest
-archive is `wkem_one_hour_review.zip`. Prior validation counts are not being
-claimed as independently reproduced in this new run.
+- Statement-only affine parameterization of all localizing solutions.
+- A rank-one lift for every valid Boolean wire assignment.
+- An exact extractor for every submitted nonzero solution of rank strictly below D.
+- Checks that the extracted atoms are Boolean, satisfy all constraints, and
+  reconstruct the submitted moments.
 
-The rank-one lifting identity and a low-rank-to-witness theorem do not establish
-that an arbitrary key-recovery algorithm yields a low-rank representation.
-That missing implication must be a proved reduction, not a renamed assumption.
+The theorem in [PROOFS.md](PROOFS.md) holds over arbitrary fields. The executable
+reference deliberately accepts only primes from 2 through 65537. It is a public
+mathematical fixture, not a cryptographic field implementation or security level.
 
-Historical notes in the conversation include claims later withdrawn. They are
-not imported as current security claims. Original third-party papers have not
-been re-reviewed during this no-web continuation.
+## Run the committed tests
 
-## Checkpoint 0 — repository access
+From the repository root, with Python 3.10 or newer:
 
-- Read repository metadata and the exact `main` head.
-- Confirmed there were no open pull requests at this checkpoint.
-- Created this isolated research branch; no production source was modified.
-- Next: inspect the saved proof package, rerun relevant validations, and record
-  exact claims, hypotheses, and failures before adding them here.
+```sh
+python -m unittest discover -s research/pq-wkem/tests -v
+python research/pq-wkem/validate.py
+```
 
-## Publication discipline
+The second command writes `research/pq-wkem/validation-latest.json`. It does not
+overwrite the captured [validation.json](validation.json), which records the
+source SHA-256 hashes and actual test interval. There are no network requests or
+nonstandard dependencies in these committed scripts.
 
-Only public research notes, mathematical fixtures, and deliberately non-secret
-reproducibility data will be committed. No signing keys, live capsules, credentials,
-private correspondence, or unrelated user files belong in this branch.
+The captured run passed all six test groups. The exhaustive census checks
+14,259 complete small-field moment vectors; 6,942 satisfy the theorem's nonzero
+rank bound, and all extract. The census repeats the same unit-test fixtures; it
+must not be added to them as distinct coverage. Additional tests cover all small
+constrained coefficient vectors, multiple witnesses, the strict rank boundary,
+homogeneous inputs with zero constant moment, and malformed inputs.
 
-Progress comments describe completed actions. They are not a claim that work
-continues after the active session ends, and no fixed-duration uninterrupted run
-is promised. The final session checkpoint will explicitly record what remains
-unproved. This draft must not be merged as a secure cryptographic implementation.
+## What is NOT established
+
+The proved implication is:
+
+    submitted admissible low-rank representation -> valid witness.
+
+The requested missing implication is:
+
+    arbitrary unauthorized key recovery -> a valid witness,
+
+through an actual reduction or a separately justified hardness result. These are
+not the same statement. This directory deliberately contains no `Encap` function,
+no use of the rejected projection encoders, and no suggested deployment parameters.
+
+A completed design must also establish full public-output QPT hiding, common-key
+correctness, concrete practical costs, and a compatible distributed setup. Passing
+these semantic tests establishes none of those encryption properties.
+
+## Provenance and checkpoints
+
+[PROVENANCE.json](PROVENANCE.json) identifies the saved conversation archive by
+SHA-256 and records exactly which older scripts were rerun. Three completed; a
+combined call timed out during a fourth, which is not counted as a passed run.
+The independent implementation and tests in this directory were run separately.
+
+Historical conversation drafts include withdrawn claims. They are not imported as
+current security claims. No original third-party paper was fetched or re-reviewed;
+GitHub access was used for the expressly requested repository work.
+
+Checkpoint comments on the draft PR record completed actions, including the tool
+timeout. They do not imply autonomous research after the active session ends.
+
+## Publication boundary
+
+Only public research mathematics, code, and non-secret reproducibility data are
+included. No live capsules, signing keys, credentials, private correspondence, or
+unrelated files are included. Nothing here claims literature priority or changes
+ownership of the research. Do not merge this draft as a secure cryptographic
+implementation.
