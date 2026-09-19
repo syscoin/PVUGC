@@ -1,0 +1,40 @@
+{
+  "source_archive": "wkem_one_hour_review.zip",
+  "source_archive_sha256": "2ecb0dab1d1dff9100a57de0bdf1d295f5f52eebb944cc2f8e938997ea08f927",
+  "source_theorem": "wkem_one_hour_review/THEOREMS.md supplied in this conversation",
+  "current_new_implementation": "moment_compiler.py; independent standard-library implementation, not copied from archived code",
+  "current_mathematical_basis": "Low-rank Boolean-moment theorem in the supplied note, independently reviewed in PROOFS.md",
+  "third_party_source_scope": "No original paper was re-fetched or re-reviewed. GitHub access used only for the requested repository work.",
+  "prior_archive_scripts_completed_this_session": [
+    {
+      "script": "cubic_compiler.py",
+      "start_utc": "2026-09-18T20:43:04.313194+00:00",
+      "returncode": 0,
+      "wall_seconds": 4.92779153699999
+    },
+    {
+      "script": "cubic_any_field.py",
+      "start_utc": "2026-09-18T20:43:09.241320+00:00",
+      "returncode": 0,
+      "wall_seconds": 19.918755495
+    },
+    {
+      "script": "boolean_encoder.py",
+      "start_utc": "2026-09-18T20:43:29.160445+00:00",
+      "returncode": 0,
+      "wall_seconds": 0.8161687829999948
+    }
+  ],
+  "interrupted_run": {
+    "script": "moment_degree_compiler.py",
+    "status": "combined tool invocation timed out; not counted as a successful script run",
+    "partial_log_sha256": "5410d355425806e663629c51281a9daa7fb8fd9e481f8b371b0ec1412a8e761a"
+  },
+  "limitations": [
+    "No production Rust tests executed or Rust source changes made",
+    "No hiding or arbitrary-key-recovery extractor established",
+    "No PQ parameter set or security estimate",
+    "Earlier claimed test totals are not all rerun here",
+    "Independent census repeats unit-test fixtures; not additive coverage"
+  ]
+}
