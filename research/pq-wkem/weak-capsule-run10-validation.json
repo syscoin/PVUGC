@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "scope": "Run-10 outer-layer algebra, exhaustive small distributions, RS coset recovery, and illustrative formula evaluation only.",
+  "starting_head": "f92f69b89c870fc4d503b362fddc4cf56001be0a",
+  "results": {
+    "exact_small_security": {
+      "L": 4,
+      "Pguess_after_helper": 0.27462499999999995,
+      "Pguess_before_helper": 0.17850625,
+      "avg_hash_statistical_distance": 0.1373125,
+      "bsc_cross": 0.35,
+      "helper_leakage_bound": 0.3570125,
+      "leftover_bound": 0.37055701315721984,
+      "single_bit_guess": 0.65
+    },
+    "fourier_to_guess": {
+      "TV": 0.7777777777777777,
+      "guess_bound": 0.9581228472908516,
+      "odd_spectral_mass": 0.8395061728395078,
+      "optimal_guess": 0.8888888888888888,
+      "q": 8,
+      "sqrt_mass_bound": 0.9162456945817032
+    },
+    "illustrative_outer_parameters": {
+      "GF_symbol_bits": 8,
+      "RS_k": 223,
+      "RS_n": 255,
+      "RS_t": 16,
+      "correctness_bits": 127.63767411170728,
+      "correctness_failure_upper": 3.7777352241040924e-39,
+      "helper_bits": 256,
+      "hypothetical_false_guess_bound_g": 0.75,
+      "hypothetical_honest_bit_error": 2e-05,
+      "key_bits": 256,
+      "raw_bits": 2040,
+      "statistical_distance_log2_upper": -168.3382492644207,
+      "statistical_security_bits": 168.3382492644207,
+      "symbol_error_upper": 0.0001599888004480965
+    },
+    "rs_coset_recovery": {
+      "field": 17,
+      "k": 4,
+      "n": 8,
+      "recovered": 200,
+      "t": 2,
+      "trials": 200
+    }
+  },
+  "local_sha256": {
+    "weak_capsule_outer_check.py": "e1e920050229d088010c7f871d6aee351e5752ea3e8e2550d229a975f0d129a7",
+    "WEAK_CAPSULE_AMPLIFICATION.md": "6ce9b7a15fd3d60f6b901af38aeb38ff05512713e001b235537fe3395dfe6601"
+  },
+  "claims_not_made": [
+    "No current OHLC capsule is claimed to satisfy g<=0.75 or p_b<=2e-5.",
+    "No key-recovery-to-source-witness reduction is claimed.",
+    "No production security parameters or malicious-secure setup are claimed."
+  ],
+  "external_web_or_literature_used": false
+}
