@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "scope": "Fresh exact small-field/native-projective algebra checks plus a repetition-attack control; not cryptographic security evidence.",
+  "results": {
+    "annihilator_basis_checks": 220,
+    "macwilliams_exact_cases": 20,
+    "native_projective_duality_cases": 20,
+    "replication_simulation": {
+      "L": 9,
+      "honest_witness_recoveries": 3986,
+      "p": 0.08,
+      "projective_weight": 2,
+      "public_key_recoveries": 4584,
+      "trials": 5000
+    },
+    "single_reject_span_cases": 28
+  },
+  "distinctions": {
+    "proved": [
+      "conditional native/projective Fourier duality",
+      "exact projective/native weight-enumerator transform",
+      "linear perfect-correctness accepting-span barrier",
+      "single-reject failed pseudostate is XOR of all accepting canonical states",
+      "column repetition preserves a projective preimage support while repeating the native codeword"
+    ],
+    "implemented": [
+      "exact rational conditioned-distribution checker",
+      "exact integer enumerator-transform checker",
+      "single-reject annihilator checker",
+      "public repetition/majority native decoder control"
+    ],
+    "not_proved": [
+      "security of any nonlinear replacement",
+      "complete-public-view hiding for Gap-OHLC",
+      "arbitrary true-instance key recovery to witness/LWE reduction",
+      "practical WKEM parameters"
+    ]
+  },
+  "notes": [
+    "No external literature or web search.",
+    "No production source changed.",
+    "Simulation counts are controls only and are not security proofs."
+  ]
+}
