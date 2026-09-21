@@ -1,0 +1,88 @@
+{
+  "notes": [
+    "No external literature or web search was used.",
+    "The QPT phase-sandwich theorem assumes coherent access to the predictor circuit and its inverse; it is not an oracle-only black-box extractor.",
+    "The target harmonic filter removes odd projective scalars other than +/-1 in the exact distribution. Rational approximation adds an explicitly bounded spectral tail.",
+    "No complete bound on the nonextractable projective/native spectral mass is proved.",
+    "Production repository code was not modified."
+  ],
+  "results": {
+    "capsule_extraction": {
+      "epsilon": 0.421875,
+      "full_fourier_sampler_mass": 0.625,
+      "max_support_formula_error": 5.658612230502692e-17,
+      "minimum_subset_bound_slack": 0.015625,
+      "subset_bounds_checked": 255,
+      "support_size": 8
+    },
+    "extremal_target": [
+      {"Cq":0.6035533905932738,"first_harmonic":0.82842712474619,"max_other_odd_harmonic":2.237726045655905e-16,"q":8},
+      {"Cq":0.6472135954999579,"first_harmonic":0.7725424859373686,"max_other_odd_harmonic":1.6653345369377348e-16,"q":10},
+      {"Cq":0.6220084679281462,"first_harmonic":0.803847577293368,"max_other_odd_harmonic":3.4314066987089125e-16,"q":12},
+      {"Cq":0.6284174365157311,"first_harmonic":0.7956494695186321,"max_other_odd_harmonic":2.387624894196368e-16,"q":16},
+      {"Cq":0.6313751514675043,"first_harmonic":0.791922201622681,"max_other_odd_harmonic":2.3263411494723067e-16,"q":20}
+    ],
+    "qpt_phase_sandwich": {
+      "clean_measurement_probability": 0.185167395154823,
+      "dimension": 2,
+      "max_clean_amplitude_error": 0.0,
+      "parseval_expected": 0.185167395154823,
+      "points": 25,
+      "q": 5
+    },
+    "rational_approximation": {
+      "certified_bound": 1.5255175300332387e-06,
+      "denominator": 1048576,
+      "l1_error": 1.5255175300332387e-06,
+      "max_unwanted_odd_harmonic": 9.165605096210616e-07,
+      "q": 16
+    },
+    "status": "PASS",
+    "witness_residual_cases": [
+      {"B":1,"expected":0.85,"q":8,"rho":0.7,"success":0.85},
+      {"B":2,"expected":0.745,"q":8,"rho":0.7,"success":0.745},
+      {"B":5,"expected":0.584035,"q":8,"rho":0.7,"success":0.584035},
+      {"B":9,"expected":0.5201768035,"q":8,"rho":0.7,"success":0.5201768035},
+      {"B":1,"expected":0.925,"q":8,"rho":0.85,"success":0.925},
+      {"B":2,"expected":0.86125,"q":8,"rho":0.85,"success":0.8612500000000001},
+      {"B":5,"expected":0.72185265625,"q":8,"rho":0.85,"success":0.7218526562500001},
+      {"B":9,"expected":0.6158084731416016,"q":8,"rho":0.85,"success":0.6158084731416016},
+      {"B":1,"expected":0.9650000000000001,"q":8,"rho":0.93,"success":0.9650000000000001},
+      {"B":2,"expected":0.93245,"q":8,"rho":0.93,"success":0.9324500000000002},
+      {"B":5,"expected":0.8478441846500001,"q":8,"rho":0.93,"success":0.8478441846500002},
+      {"B":9,"expected":0.7602055414942438,"q":8,"rho":0.93,"success":0.7602055414942439},
+      {"B":1,"expected":0.85,"q":12,"rho":0.7,"success":0.85},
+      {"B":2,"expected":0.745,"q":12,"rho":0.7,"success":0.745},
+      {"B":5,"expected":0.584035,"q":12,"rho":0.7,"success":0.584035},
+      {"B":9,"expected":0.5201768035,"q":12,"rho":0.7,"success":0.5201768035000001},
+      {"B":1,"expected":0.925,"q":12,"rho":0.85,"success":0.925},
+      {"B":2,"expected":0.86125,"q":12,"rho":0.85,"success":0.8612499999999998},
+      {"B":5,"expected":0.72185265625,"q":12,"rho":0.85,"success":0.7218526562499998},
+      {"B":9,"expected":0.6158084731416016,"q":12,"rho":0.85,"success":0.6158084731416015},
+      {"B":1,"expected":0.9650000000000001,"q":12,"rho":0.93,"success":0.9650000000000001},
+      {"B":2,"expected":0.93245,"q":12,"rho":0.93,"success":0.93245},
+      {"B":5,"expected":0.8478441846500001,"q":12,"rho":0.93,"success":0.8478441846500002},
+      {"B":9,"expected":0.7602055414942438,"q":12,"rho":0.93,"success":0.7602055414942439},
+      {"B":1,"expected":0.85,"q":16,"rho":0.7,"success":0.8500000000000001},
+      {"B":2,"expected":0.745,"q":16,"rho":0.7,"success":0.745},
+      {"B":5,"expected":0.584035,"q":16,"rho":0.7,"success":0.584035},
+      {"B":9,"expected":0.5201768035,"q":16,"rho":0.7,"success":0.5201768035},
+      {"B":1,"expected":0.925,"q":16,"rho":0.85,"success":0.925},
+      {"B":2,"expected":0.86125,"q":16,"rho":0.85,"success":0.8612500000000001},
+      {"B":5,"expected":0.72185265625,"q":16,"rho":0.85,"success":0.7218526562500001},
+      {"B":9,"expected":0.6158084731416016,"q":16,"rho":0.85,"success":0.6158084731416016},
+      {"B":1,"expected":0.9650000000000001,"q":16,"rho":0.93,"success":0.9650000000000001},
+      {"B":2,"expected":0.93245,"q":16,"rho":0.93,"success":0.93245},
+      {"B":5,"expected":0.8478441846500001,"q":16,"rho":0.93,"success":0.8478441846500001},
+      {"B":9,"expected":0.7602055414942438,"q":16,"rho":0.93,"success":0.7602055414942438}
+    ]
+  },
+  "scope": "Fresh finite-group/Fourier algebra and phase-sandwich validation; not a cryptographic security experiment or parameter claim.",
+  "source_sha256": {
+    "QPT_FOURIER_EXTRACTION.md": "9728973ac5974922d1f8308db7389d037318830a47cd00f68a76d2f5fe8f4a73",
+    "RUN.json": "b35662b6d0998de52068c9d8607478a22ceab4dbc5ac38b1cf235d6769c843e5",
+    "qpt_fourier_extraction_check.py": "a1376cf9b1fbb0ffad0fe936e2d6af57abac07e648434ffb9b3f10c783e67f9f"
+  },
+  "starting_pr_head": "8ed258fa934f27ba5f4e7974ad319b8eb8420aac",
+  "status": "PASS"
+}
