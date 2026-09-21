@@ -80,7 +80,7 @@
   "scope": "Fresh finite-group/Fourier algebra and phase-sandwich validation; not a cryptographic security experiment or parameter claim.",
   "source_sha256": {
     "QPT_FOURIER_EXTRACTION.md": "9728973ac5974922d1f8308db7389d037318830a47cd00f68a76d2f5fe8f4a73",
-    "RUN.json": "b35662b6d0998de52068c9d8607478a22ceab4dbc5ac38b1cf235d6769c843e5",
+    "qpt-fourier-run12.json": "b35662b6d0998de52068c9d8607478a22ceab4dbc5ac38b1cf235d6769c843e5",
     "qpt_fourier_extraction_check.py": "a1376cf9b1fbb0ffad0fe936e2d6af57abac07e648434ffb9b3f10c783e67f9f"
   },
   "starting_pr_head": "8ed258fa934f27ba5f4e7974ad319b8eb8420aac",
