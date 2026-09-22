@@ -1,0 +1,74 @@
+{
+  "degree5_basis_dimension_n8": 219,
+  "efficient_constant_degree_attack": {
+    "basis_dim": 93,
+    "n": 8,
+    "public_evaluations_per_attack": 1024,
+    "q": 101,
+    "r": 3,
+    "recoveries": 200,
+    "support_each": 512
+  },
+  "exhaustive_degree_n_parity_character_control": {
+    "all_key_distributions_identical": true,
+    "distinct_transcripts": 25,
+    "n": 4,
+    "q": 5,
+    "setups_per_key": 25
+  },
+  "exhaustive_low_degree_false_distribution": {
+    "basis_dim": 7,
+    "decoder_checks": 19683,
+    "distinct_transcripts_per_key": [
+      2187,
+      2187,
+      2187
+    ],
+    "n": 3,
+    "q": 3,
+    "r": 2,
+    "setups_per_key": 6561,
+    "support_intersections": {
+      "0-1": 0,
+      "0-2": 0,
+      "1-2": 0
+    }
+  },
+  "general_function_space_theorem_random_checks": 480,
+  "missing_point_certificate_monomial_checks": 501,
+  "parity_degree_n_differences_checked": 24,
+  "parity_low_degree_moment_equalities": 132,
+  "random_degree5_false_key_recoveries": 500,
+  "rwise_even_odd_generator_fixtures": [
+    {
+      "d": 3,
+      "moment_subsets_checked": 37,
+      "n": 8,
+      "r": 2,
+      "support": 64
+    },
+    {
+      "d": 3,
+      "moment_subsets_checked": 93,
+      "n": 8,
+      "r": 3,
+      "support": 512
+    },
+    {
+      "d": 3,
+      "moment_subsets_checked": 163,
+      "n": 8,
+      "r": 4,
+      "support": 4096
+    },
+    {
+      "d": 4,
+      "moment_subsets_checked": 137,
+      "n": 16,
+      "r": 2,
+      "support": 256
+    }
+  ],
+  "seed": 270927,
+  "status": "algebraic validation only; no security claim"
+}
