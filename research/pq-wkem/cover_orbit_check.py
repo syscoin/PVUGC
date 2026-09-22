@@ -44,7 +44,9 @@ def rand_gl2(rng,q):
         if det2(A,q)!=0: return A
 
 def add_tokens_trial(rng,mod,n=7):
+    # tau_i=id except final pi
     pads=[ [rng.randrange(mod) for _ in range(5)] for _ in range(n) ]
+    # layer n aliases layer 0
     ks=[rng.randrange(mod) for _ in range(n)]
     K=sum(ks)%mod
     tok=[]
@@ -76,6 +78,7 @@ def add_tokens_trial(rng,mod,n=7):
     return K,sums,rec
 
 def mul_tokens_trial(rng,q,n=7):
+    # group F_q^*
     pads=[[rng.randrange(1,q) for _ in range(5)] for _ in range(n)]
     ks=[rng.randrange(1,q) for _ in range(n)]
     K=1
@@ -108,23 +111,28 @@ def mul_tokens_trial(rng,q,n=7):
     return K,vals,rec
 
 def eigvals_2x2(A,q):
+    # brute roots of charpoly for tiny validation fields
     tr=(A[0][0]+A[1][1])%q
     det=det2(A,q)
     vals=[]
     for x in range(q):
         if (x*x-tr*x+det)%q==0:
             vals.append(x)
+    # distinct semisimple fixture must have exactly two roots
     assert len(vals)==2 and vals[0]!=vals[1], (A,tr,det,vals)
     return sorted(vals)
 
 def matrix_trial(rng,q=101,n=5):
+    # choose eigenvalues nonzero, distinct, distinct sixth powers
     while True:
         l1,l2=rng.sample(range(1,q),2)
         if pow(l1,6,q)!=pow(l2,6,q):
             break
     K=[[l1,0],[0,l2]]
     I=eye(2)
+    # choose factors K0=K, others I
     factors=[K]+[I for _ in range(n-1)]
+    # frames per layer,state
     frames=[[rand_gl2(rng,q) for _ in range(5)] for _ in range(n)]
     tok=[]
     for i in range(n):
@@ -145,6 +153,7 @@ def matrix_trial(rng,q=101,n=5):
     powers=[]
     for O in ORBITS:
         V=eye(2)
+        # multiply laps in orbit order so conjugating frames telescope
         s=O[0]
         for _ in range(len(O)):
             L,end=lap(s)
@@ -161,6 +170,7 @@ def matrix_trial(rng,q=101,n=5):
         powers.append(V)
     A=eigvals_2x2(powers[0],q)
     B=eigvals_2x2(powers[1],q)
+    # unique matching a^3=b^2
     pairs=[]
     for a in A:
         matches=[b for b in B if pow(a,3,q)==pow(b,2,q)]
