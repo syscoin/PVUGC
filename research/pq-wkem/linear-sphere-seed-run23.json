@@ -49,21 +49,81 @@
     }
   },
   "orthogonal_blocks": [
-    {"d": 2, "det_I_plus_O": 2, "q": 3},
-    {"d": 4, "det_I_plus_O": 2, "q": 3},
-    {"d": 8, "det_I_plus_O": 2, "q": 3},
-    {"d": 2, "det_I_plus_O": 2, "q": 5},
-    {"d": 4, "det_I_plus_O": 3, "q": 5},
-    {"d": 8, "det_I_plus_O": 3, "q": 5},
-    {"d": 2, "det_I_plus_O": 2, "q": 7},
-    {"d": 4, "det_I_plus_O": 1, "q": 7},
-    {"d": 8, "det_I_plus_O": 2, "q": 7},
-    {"d": 2, "det_I_plus_O": 2, "q": 11},
-    {"d": 4, "det_I_plus_O": 8, "q": 11},
-    {"d": 8, "det_I_plus_O": 7, "q": 11},
-    {"d": 2, "det_I_plus_O": 2, "q": 101},
-    {"d": 4, "det_I_plus_O": 8, "q": 101},
-    {"d": 8, "det_I_plus_O": 27, "q": 101}
+    {
+      "d": 2,
+      "det_I_plus_O": 2,
+      "q": 3
+    },
+    {
+      "d": 4,
+      "det_I_plus_O": 2,
+      "q": 3
+    },
+    {
+      "d": 8,
+      "det_I_plus_O": 2,
+      "q": 3
+    },
+    {
+      "d": 2,
+      "det_I_plus_O": 2,
+      "q": 5
+    },
+    {
+      "d": 4,
+      "det_I_plus_O": 3,
+      "q": 5
+    },
+    {
+      "d": 8,
+      "det_I_plus_O": 3,
+      "q": 5
+    },
+    {
+      "d": 2,
+      "det_I_plus_O": 2,
+      "q": 7
+    },
+    {
+      "d": 4,
+      "det_I_plus_O": 1,
+      "q": 7
+    },
+    {
+      "d": 8,
+      "det_I_plus_O": 2,
+      "q": 7
+    },
+    {
+      "d": 2,
+      "det_I_plus_O": 2,
+      "q": 11
+    },
+    {
+      "d": 4,
+      "det_I_plus_O": 8,
+      "q": 11
+    },
+    {
+      "d": 8,
+      "det_I_plus_O": 7,
+      "q": 11
+    },
+    {
+      "d": 2,
+      "det_I_plus_O": 2,
+      "q": 101
+    },
+    {
+      "d": 4,
+      "det_I_plus_O": 8,
+      "q": 101
+    },
+    {
+      "d": 8,
+      "det_I_plus_O": 27,
+      "q": 101
+    }
   ],
   "status": "PASS"
 }
