@@ -1,0 +1,21 @@
+{
+  "run": 34,
+  "starting_head": "dbd58f53bfbd7d3e404c2f046b24f2348f29583d",
+  "local_rerun_byte_identical": true,
+  "local_sha256": {
+    "PADIC_COUPLED_ROOT_FILTER_BARRIER.md": "4521778dbda536e92bb53ecc499fc3c37b8d8692c7d54b6208ceadf6ed02d341",
+    "coupled_root_filter_check.py": "e567c09259365e76bd43fdd97cf73dd746d15ab21a06f183391c7e4a78be98d7",
+    "coupled-root-filter-run34.json": "e9481f3edd7156bf6d8fc84d4362719e2e9df2a2887dc620a2051f88a917f817"
+  },
+  "local_git_blobs": {
+    "PADIC_COUPLED_ROOT_FILTER_BARRIER.md": "c0c5097a78df63d18386af79cc925df131e88045",
+    "coupled_root_filter_check.py": "3e4dc7c90e6e669ff13904b457e3617ed786e9bd",
+    "coupled-root-filter-run34.json": "159b2f1f485f97028e8380c22b5a7cb6523eee9e"
+  },
+  "published_git_blobs": {
+    "PADIC_COUPLED_ROOT_FILTER_BARRIER.md": "c0c5097a78df63d18386af79cc925df131e88045",
+    "coupled_root_filter_check.py": "3e4dc7c90e6e669ff13904b457e3617ed786e9bd",
+    "coupled-root-filter-run34.json": "be3ac3004cbbac331ac6545135100ec6573c78c1"
+  },
+  "note": "The proof and checker Git blob IDs match the locally tested bytes exactly. The captured validation was reserialized through the connector and therefore has a different Git blob from the local pretty-printed JSON; its published values were copied from the locally captured result. No byte-identity claim is made for that JSON file."
+}
