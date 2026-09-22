@@ -1,0 +1,12 @@
+{
+  "starting_head": "93c57b1e54708a52b1296706cae10efb0276e344",
+  "local_tested_source_sha256": "9a6ef59c0ac491f6ad658697db854ed280b6d3c2da8f8f048c84385359556223",
+  "local_proof_sha256": "ed1e16adff7a578e1abf12fe7969dd6050a7e2b4cccec824b658d59f92e8a199",
+  "captured_result_semantic_json_sha256": "f7dfcf23cfdebec43c69c203eed4ff7b37c6d27f1ea90dd7c17047470e0cf5ee",
+  "local_pretty_result_sha256": "31ed8625789087e4bbfff5e4959b42c055755f2a57a78a97e48af0ffbf11b5a8",
+  "second_local_run_pretty_result_sha256": "31ed8625789087e4bbfff5e4959b42c055755f2a57a78a97e48af0ffbf11b5a8",
+  "published_proof_git_blob": "8b630ef9f0bbafeb2eaa153745aff49ad66ea121",
+  "published_checker_git_blob_after_manual_write": "361a53dbfdebdb007be8da25376509385a804f58",
+  "published_result_git_blob": "887dc21731d1a1b81486b52b05827b5e0618d222",
+  "note": "Tests were executed twice on the local source identified by local_tested_source_sha256 and produced identical pretty JSON. The published checker was written manually through the connector and is recorded by its Git blob ID; no claim of byte identity with the local tested source is made. The published result is a whitespace-normalized serialization of the same captured JSON object."
+}
