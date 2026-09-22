@@ -4,7 +4,6 @@ import json
 import math
 import random
 from collections import Counter
-from itertools import product
 
 SEED = 202609221641
 RNG = random.Random(SEED)
