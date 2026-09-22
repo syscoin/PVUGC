@@ -1,0 +1,92 @@
+{
+  "exact_false_attack_noise": [
+    {
+      "Q": 48,
+      "failure_prob": 0.0,
+      "success_den": 177147,
+      "success_num": 177147,
+      "support_max": 8,
+      "support_min": -8,
+      "t": 1
+    },
+    {
+      "Q": 80,
+      "failure_prob": 0.0,
+      "success_den": 1162261467,
+      "success_num": 1162261467,
+      "support_max": 14,
+      "support_min": -14,
+      "t": 2
+    },
+    {
+      "Q": 144,
+      "failure_prob": 0.0,
+      "success_den": 50031545098999707,
+      "success_num": 50031545098999707,
+      "support_max": 26,
+      "support_min": -26,
+      "t": 4
+    },
+    {
+      "Q": 272,
+      "failure_prob": 0.0,
+      "success_den": 92709463147897837085761925410587,
+      "success_num": 92709463147897837085761925410587,
+      "support_max": 50,
+      "support_min": -50,
+      "t": 8
+    },
+    {
+      "Q": 528,
+      "failure_prob": 0.0,
+      "success_den": 318334983598941745631063567258138003973311712991447709945617947,
+      "success_num": 318334983598941745631063567258138003973311712991447709945617947,
+      "support_max": 98,
+      "support_min": -98,
+      "t": 16
+    },
+    {
+      "Q": 1040,
+      "failure_prob": 0.0,
+      "success_den": 3753228214182907784653374243320855184083908971830286725773330259610973961003693770407047767160959457088914969594820284759067,
+      "success_num": 3753228214182907784653374243320855184083908971830286725773330259610973961003693770407047767160959457088914969594820284759067,
+      "support_max": 194,
+      "support_min": -194,
+      "t": 32
+    }
+  ],
+  "exhaustive_short_extract_vectors": 6,
+  "false_family": [
+    {"false_l1":8,"false_norm2":10,"good_B2":6,"pairs":5,"ratio2":1.6666666666666667,"t":1},
+    {"false_l1":14,"false_norm2":18,"good_B2":10,"pairs":9,"ratio2":1.8,"t":2},
+    {"false_l1":26,"false_norm2":34,"good_B2":18,"pairs":17,"ratio2":1.8888888888888888,"t":4},
+    {"false_l1":50,"false_norm2":66,"good_B2":34,"pairs":33,"ratio2":1.9411764705882353,"t":8},
+    {"false_l1":98,"false_norm2":130,"good_B2":66,"pairs":65,"ratio2":1.9696969696969697,"t":16},
+    {"false_l1":194,"false_norm2":258,"good_B2":130,"pairs":129,"ratio2":1.9846153846153847,"t":32},
+    {"false_l1":386,"false_norm2":514,"good_B2":258,"pairs":257,"ratio2":1.9922480620155039,"t":64}
+  ],
+  "false_minimum_controls": [
+    {"good_B2":6,"min_h1_norm2_in_range":10,"t":1,"witness_exists_below_B":false}
+  ],
+  "honest_compiler_cases": 100,
+  "kem_trials": [
+    {"Q":48,"false_attack":200,"false_fourier_abs":0.9443139289594088,"honest":200,"t":1,"trials":200},
+    {"Q":144,"false_attack":200,"false_fourier_abs":0.978645965024899,"honest":200,"t":4,"trials":200},
+    {"Q":528,"false_attack":200,"false_fourier_abs":0.9938822063644459,"honest":200,"t":16,"trials":200},
+    {"Q":1040,"false_attack":200,"false_fourier_abs":0.9968658964297983,"honest":200,"t":32,"trials":200}
+  ],
+  "modulus_bounds": [
+    {"B":2.449489742783178,"q_no_wrap_sufficient":24,"t":1},
+    {"B":4.242640687119285,"q_no_wrap_sufficient":42,"t":4},
+    {"B":8.12403840463596,"q_no_wrap_sufficient":80,"t":16},
+    {"B":11.40175425099138,"q_no_wrap_sufficient":112,"t":32}
+  ],
+  "padded_false_gap": [
+    {"Q":48,"dummies":0,"false_fourier_abs":0.9443139289594088,"false_l1":8,"false_norm2":10,"good_B2":6,"l1_ratio":1.3333333333333333,"pairs":5,"ratio2":1.6666666666666667},
+    {"Q":80,"dummies":4,"false_fourier_abs":0.9715972648224495,"false_l1":12,"false_norm2":14,"good_B2":10,"l1_ratio":1.2,"pairs":9,"ratio2":1.4},
+    {"Q":176,"dummies":16,"false_fourier_abs":0.9890135531057371,"false_l1":24,"false_norm2":26,"good_B2":22,"l1_ratio":1.0909090909090908,"pairs":21,"ratio2":1.1818181818181819},
+    {"Q":560,"dummies":64,"false_fourier_abs":0.9968995458291138,"false_l1":72,"false_norm2":74,"good_B2":70,"l1_ratio":1.0285714285714285,"pairs":69,"ratio2":1.0571428571428572},
+    {"Q":2096,"dummies":256,"false_fourier_abs":0.9992035383025519,"false_l1":264,"false_norm2":266,"good_B2":262,"l1_ratio":1.0076335877862594,"pairs":261,"ratio2":1.015267175572519},
+    {"Q":8240,"dummies":1024,"false_fourier_abs":0.9997996168946162,"false_l1":1032,"false_norm2":1034,"good_B2":1030,"l1_ratio":1.0019417475728156,"pairs":1029,"ratio2":1.003883495145631}
+  ]
+}
