@@ -1,0 +1,50 @@
+{
+  "balanced_orbit": {
+    "m": 1,
+    "mask_counts": [
+      145,
+      120,
+      120,
+      120,
+      120
+    ],
+    "nonzero_character_magnitudes": [
+      0.03999999999999995,
+      0.04,
+      0.04000000000000002,
+      0.04000000000000011
+    ],
+    "pairwise_key_tv": "1/25",
+    "q": 5,
+    "t": 4,
+    "tv_to_uniform": "4/125",
+    "tv_uniform_bound": 0.04
+  },
+  "exhaustive_small_joint": {
+    "complete_cases": 3125,
+    "m": 2,
+    "q": 5,
+    "t": 2
+  },
+  "full_padded_attack": {
+    "all_seed_and_key_recoveries": 400,
+    "m": 6,
+    "q": 101,
+    "t": 5,
+    "trials": 400
+  },
+  "general_rank_recovery": {
+    "c": 7,
+    "m": 4,
+    "q": 103,
+    "t": 5,
+    "trials": 300
+  },
+  "same_key": {
+    "m": 7,
+    "q": 101,
+    "t": 6,
+    "trials": 600
+  },
+  "status": "PASS"
+}
