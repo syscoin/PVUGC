@@ -1,0 +1,191 @@
+{
+  "checks": {
+    "complete_view_false_key_extractions": {
+      "failures": 0,
+      "trials": 500
+    },
+    "exact_degree_thresholds": [
+      {
+        "n": 1,
+        "rows": [
+          {
+            "D": 1,
+            "ambient_monomials": 4,
+            "one_in_span": false,
+            "span_rank": 2
+          },
+          {
+            "D": 2,
+            "ambient_monomials": 10,
+            "one_in_span": true,
+            "span_rank": 8
+          }
+        ]
+      },
+      {
+        "n": 2,
+        "rows": [
+          {
+            "D": 1,
+            "ambient_monomials": 6,
+            "one_in_span": false,
+            "span_rank": 2
+          },
+          {
+            "D": 2,
+            "ambient_monomials": 21,
+            "one_in_span": false,
+            "span_rank": 13
+          },
+          {
+            "D": 3,
+            "ambient_monomials": 56,
+            "one_in_span": true,
+            "span_rank": 44
+          }
+        ]
+      },
+      {
+        "n": 3,
+        "rows": [
+          {
+            "D": 1,
+            "ambient_monomials": 8,
+            "one_in_span": false,
+            "span_rank": 2
+          },
+          {
+            "D": 2,
+            "ambient_monomials": 36,
+            "one_in_span": false,
+            "span_rank": 18
+          },
+          {
+            "D": 3,
+            "ambient_monomials": 120,
+            "one_in_span": false,
+            "span_rank": 82
+          },
+          {
+            "D": 4,
+            "ambient_monomials": 330,
+            "one_in_span": true,
+            "span_rank": 264
+          }
+        ]
+      },
+      {
+        "n": 4,
+        "rows": [
+          {
+            "D": 1,
+            "ambient_monomials": 10,
+            "one_in_span": false,
+            "span_rank": 2
+          },
+          {
+            "D": 2,
+            "ambient_monomials": 55,
+            "one_in_span": false,
+            "span_rank": 23
+          },
+          {
+            "D": 3,
+            "ambient_monomials": 220,
+            "one_in_span": false,
+            "span_rank": 132
+          },
+          {
+            "D": 4,
+            "ambient_monomials": 715,
+            "one_in_span": false,
+            "span_rank": 523
+          },
+          {
+            "D": 5,
+            "ambient_monomials": 2002,
+            "one_in_span": true,
+            "span_rank": 1642
+          }
+        ]
+      }
+    ],
+    "false_hiding_shift_invariance_controls": [
+      {
+        "D": 2,
+        "ambient_monomials": 10,
+        "n": 1,
+        "one_in_span": true,
+        "span_rank": 8
+      },
+      {
+        "D": 3,
+        "ambient_monomials": 56,
+        "n": 2,
+        "one_in_span": true,
+        "span_rank": 44
+      },
+      {
+        "D": 4,
+        "ambient_monomials": 330,
+        "n": 3,
+        "one_in_span": true,
+        "span_rank": 264
+      },
+      {
+        "D": 5,
+        "ambient_monomials": 2002,
+        "n": 4,
+        "one_in_span": true,
+        "span_rank": 1642
+      }
+    ],
+    "honest_decapsulations": {
+      "failures": 0,
+      "trials": 500
+    },
+    "laurent_dual_generator_multiples": {
+      "checked": 1753578,
+      "failures": 0,
+      "n_max": 8
+    },
+    "telescoping_certificates": {
+      "checked": 64,
+      "failures": 0,
+      "n_max": 64
+    }
+  },
+  "field": 101,
+  "resource_counts": {
+    "128": {
+      "ambient_monomials": 2737971771864695794450940107620784166876133838143018558059081542849845786866013090252588199003561955280990,
+      "log2_ambient": 350.25555753584604,
+      "minimum_degree": 129,
+      "variables": 257
+    },
+    "16": {
+      "ambient_monomials": 9847379391150,
+      "log2_ambient": 43.16287698073845,
+      "minimum_degree": 17,
+      "variables": 33
+    },
+    "32": {
+      "ambient_monomials": 131629284070068266150382462,
+      "log2_ambient": 86.7666109537341,
+      "minimum_degree": 33,
+      "variables": 65
+    },
+    "64": {
+      "ambient_monomials": 32396896691800088197207600427764643934651706893686046,
+      "log2_ambient": 174.43611655769175,
+      "minimum_degree": 65,
+      "variables": 129
+    },
+    "8": {
+      "ambient_monomials": 3124550,
+      "log2_ambient": 21.57521699605371,
+      "minimum_degree": 9,
+      "variables": 17
+    }
+  }
+}
