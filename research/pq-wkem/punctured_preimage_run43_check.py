@@ -219,7 +219,7 @@ for d in (0,1,4,8,16,32,64):
         # At q/4=L+1, nearest-half decoding fails exactly when |noise| >= L+1.
         noise=eps0-dot(y,eps)
         expected=K if abs(noise)<L+1 else 1-K
-        # tie at exactly threshold nearest distances equal; avoid asserting got on ties
+        # tie at exactly threshold nearest distances equal; define attack decoder tie by direct threshold around K? avoid asserting got on ties
         if abs(noise)!=L+1:
             assert got==expected
         if got==K:
