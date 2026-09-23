@@ -1,0 +1,29 @@
+{
+  "run": 56,
+  "starting_head": "d8effe94f5bc54f6509baffdd89e7f3bf3e3bd66",
+  "scope": "research/pq-wkem only; no production changes",
+  "external_literature_or_web_search": false,
+  "executions": {
+    "checker_runs_after_finalization": 2,
+    "byte_identical_stdout": true
+  },
+  "local_sha256": {
+    "noisy_affine_transport_run56_check.py": "8ea0b4ccbeb4b1daa3bd45ba2d99f2ab81eebe44a039e5356e66e0d1d4f7155a",
+    "noisy-affine-transport-run56-validation.json": "4051201f172ec563cd0767cb9c08515bc14f324cf856454ee4c18c7597417ac3"
+  },
+  "claims": {
+    "proved": [
+      "exact common-valid-path telescoping identity",
+      "complete-output branch-difference frame equation",
+      "exact noiseless recovery when endpoint branch differences are invertible",
+      "deterministic noisy attack bounds for the signed-permutation fixture"
+    ],
+    "not_claimed": [
+      "generic impossibility of all noisy affine program encodings",
+      "standard-LWE reduction for ill-conditioned branch differences",
+      "generic-NP compiler with the required transition condition",
+      "security from finite testing"
+    ]
+  },
+  "stopping_condition_met": false
+}
