@@ -146,6 +146,7 @@ def induced_rows(hash_rows, basis_masks):
 
 def add_basis(q, basis, solmask):
     z = list(q)
+    bit = 0
     s = solmask
     while s:
         lsb = s & -s
