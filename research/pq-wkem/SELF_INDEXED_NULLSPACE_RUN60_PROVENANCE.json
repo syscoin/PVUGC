@@ -41,15 +41,15 @@
   },
   "local_artifacts": {
     "SELF_INDEXED_NULLSPACE_RUN60.md": {
-      "bytes": 17908,
+      "bytes": 17912,
       "sha256": "66c8f7d448aa4bc119c2efd4f852fcb4f10a86eebc39d8884fec0e478dafc1d0"
     },
     "self-indexed-nullspace-run60-validation.json": {
-      "bytes": 6693,
+      "bytes": 6972,
       "sha256": "7b160610cb1bd8e4aa4420984a40c9c6f83b79132cad324c6c1685a9f01f6768"
     },
     "self_indexed_nullspace_run60_check.py": {
-      "bytes": 12456,
+      "bytes": 12461,
       "sha256": "925bb645126083f8acd1548c60e14c63436c8658231172f56d63a854046d02e9"
     }
   },
