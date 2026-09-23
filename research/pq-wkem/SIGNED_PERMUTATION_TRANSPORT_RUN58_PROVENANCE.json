@@ -1,0 +1,35 @@
+{
+  "external_web_or_literature_used": false,
+  "not_claimed": [
+    "generic impossibility of modular affine transport",
+    "attack on standard LWE or SIS",
+    "security inference from passing tests",
+    "arbitrary-QPT key-recovery to source-witness extraction",
+    "completed generic PQ witness KEM"
+  ],
+  "production_code_changed": false,
+  "proved_claims": [
+    "column-wise signed-basis routing gives a public 0,±1 endpoint evaluator whenever each target column is individually reachable",
+    "every true signed-permutation target satisfies individual reachability",
+    "an explicit false d=2,L=2 target has all columns individually reachable but no common witness word",
+    "for iid symmetric scalar transcript errors, each public routed output coordinate has the same L-fold marginal error law as an honest signed-permutation path",
+    "full-rank integer matrices with Euclidean operator norm at most one are signed permutations"
+  ],
+  "publication_commits": {
+    "checker": "38a9de495a2ceda6f17fcb72dd51925a15b4d97b",
+    "proof": "b7f29e11a69388bdb805755393104f21d1ea70bd",
+    "validation": "ccb69dd67fab39ba572b9a4ac53601053a9151dd"
+  },
+  "research_scope": "signed-permutation affine transport; modular short-evaluator follow-up to Run 57",
+  "run": 58,
+  "starting_verified_head": "c0ade8c974beb595148f4fae73b878a3b7263e87",
+  "stopping_condition_met": false,
+  "tests": {
+    "byte_identical_outputs": true,
+    "checker": "signed_permutation_transport_run58_check.py",
+    "checker_sha256": "5a1534d31ad6cc233315c1355e91e19fc1a11bdfd8c05d1a3c73e33f46c90843",
+    "executions": 2,
+    "proof_sha256": "4df38687a289233ca3f45974e0d875b14e93050e1aaeeb0f92ad57acbe2df8fa",
+    "validation_sha256": "d2cc101ef8c2fb6b2008acfaec6664ff2b7137eca9e2005693e661329211152d"
+  }
+}
