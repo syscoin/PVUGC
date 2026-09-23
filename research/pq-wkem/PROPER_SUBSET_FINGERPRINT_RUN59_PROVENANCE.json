@@ -13,14 +13,17 @@
   },
   "captured_validation": {
     "path": "research/pq-wkem/proper-subset-fingerprint-run59-validation.json",
-    "sha256": "37e2887a53f27469b58aa4d18e719fbb7fe4e2e09f04c9493bf5b4a96c4796f3"
+    "sha256": "37e2887a53f27469b58aa4d18e719fbb7fe4e2e09f04c9493bf5b4a96c4796f3",
+    "remote_git_blob_sha": "5dc7d3330edbecd757c57090e1e11ae16bb59984"
   },
   "checkpoint_comment_id": 5803997243,
   "executed_checker": {
     "captures_byte_identical": true,
-    "executions_after_finalization": 2,
+    "executions_after_finalization": 3,
     "path": "research/pq-wkem/proper_subset_fingerprint_run59_check.py",
-    "sha256": "106c593bc4ce75c7a23e0b14b418504e805b272cf4021efc68536dccb4dddf62"
+    "sha256": "106c593bc4ce75c7a23e0b14b418504e805b272cf4021efc68536dccb4dddf62",
+    "publication_time_recheck_sha256": "37e2887a53f27469b58aa4d18e719fbb7fe4e2e09f04c9493bf5b4a96c4796f3",
+    "remote_git_blob_sha": "d913777174a5a873c447ae2b1ec92286b782eb65"
   },
   "external_literature_or_web_search": false,
   "not_claimed": [
@@ -34,7 +37,9 @@
   "production_code_changed": false,
   "proof_note": {
     "path": "research/pq-wkem/PROPER_SUBSET_FINGERPRINT_RUN59.md",
-    "sha256": "a8cebb34dea62c4310e1dec59e2e44d4d2d92ba4db05725ba25c71f62b42e54b"
+    "local_sha256": "a8cebb34dea62c4310e1dec59e2e44d4d2d92ba4db05725ba25c71f62b42e54b",
+    "remote_git_blob_sha": "742bdb56187c6a52e91236befa5fe8a53341542f",
+    "byte_identity_note": "GitHub readback verified the published text/path; the connector Git blob id is recorded separately rather than claiming SHA-256 byte identity for the proof note."
   },
   "proved_claim_scopes": [
     "The signed-diagonal false target has no global word but every proper target-column subset has a local word.",
