@@ -93,56 +93,206 @@
     "attempts": 1081,
     "count": 50,
     "pairs": [
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 3},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4},
-      {"delta_one": 3, "delta_r": 4},
-      {"delta_one": 4, "delta_r": 4}
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 3
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      }
     ]
   }
 }
