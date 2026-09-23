@@ -1,0 +1,42 @@
+{
+  "run": 46,
+  "starting_pr_head": "d7f9b8959e0052b621e236689e6743f0397d0700",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "scope": "research/pq-wkem only; no production changes",
+  "external_web_or_literature_browsing": false,
+  "local_execution": {
+    "checker": "linear_ideal_sketch_run46_check.py",
+    "command_1": "python linear_ideal_sketch_run46_check.py > out1.json",
+    "command_2": "python linear_ideal_sketch_run46_check.py > out2.json",
+    "byte_identical_outputs": true,
+    "comparison": "cmp out1.json out2.json exited 0",
+    "deterministic_seed": 460045001
+  },
+  "local_sha256": {
+    "LINEAR_IDEAL_SKETCH_RUN46.md": "e84bd5eefb15156f3869499f000b2b808ac2de24a84ca008427c344fe8366fd0",
+    "linear_ideal_sketch_run46_check.py": "9e4afd63c299a84f9ee39596d2d1a291bf0698fd31a4cea29cdb02f7012260ad",
+    "linear-ideal-sketch-run46.json": "24bfae68b668c244cfb4323eeef71c7472badad3fe27e49b7db65e7be6a3212f"
+  },
+  "classification": {
+    "proved": [
+      "For uniform rho, c=A rho+K b has identical key-conditioned distributions iff b is in col(A); otherwise a public left separator recovers K exactly.",
+      "A normalized linear decoder has success exactly 1 or exactly 1/q depending on whether lambda^T A is zero.",
+      "Randomized-setup completeness forces public exposure-event probability; false hiding bounds the same publicly testable event.",
+      "For a uniform random linear sketch of an independent key direction and d-dimensional mask space, exact exposure probability follows the finite-matrix rank distribution."
+    ],
+    "implemented": [
+      "GF(5) Gaussian elimination and separator extraction",
+      "Exact small distribution enumeration",
+      "All-or-uniform linear-decoder census",
+      "Degree-32 two-witness source-ideal sketch with invertible public row mixing",
+      "Exact random-matrix rank-count probabilities"
+    ],
+    "not_claimed": [
+      "No impossibility theorem for nonlinear or computational compression.",
+      "No security claim merely because tests pass.",
+      "No arbitrary-QPT extraction theorem for a surviving efficient WKEM.",
+      "No complete generic-NP PQ witness KEM."
+    ]
+  }
+}
