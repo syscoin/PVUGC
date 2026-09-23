@@ -1,0 +1,38 @@
+{
+  "exact_lsss_distributions": {
+    "authorized_patterns": 5,
+    "enumerated_transcripts_with_multiplicity": 60000,
+    "patterns": 16
+  },
+  "random_component_quotient": {
+    "exposed": 597,
+    "fixtures": 600,
+    "hidden": 3,
+    "hidden_support_shift_checks": 21,
+    "separator_extractions": 4179
+  },
+  "randomized_setup": {
+    "authorized_setup_probability": "9/10",
+    "tv": "9/10"
+  },
+  "run": 51,
+  "scope": "finite-field validation only; not a security proof",
+  "seed": 510051001,
+  "threshold_reconstruction": {
+    "shamir_2_of_3_reconstructions": 1000
+  },
+  "true_containment": {
+    "false_exposed": [],
+    "random_containment_checks": 1000,
+    "true_accessible": [
+      0,
+      1,
+      2
+    ],
+    "true_exposed": [
+      0,
+      1,
+      2
+    ]
+  }
+}
