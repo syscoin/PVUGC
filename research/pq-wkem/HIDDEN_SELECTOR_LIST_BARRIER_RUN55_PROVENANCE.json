@@ -23,6 +23,7 @@
     "HIDDEN_SELECTOR_LIST_BARRIER_RUN55.md": {
       "bytes": 15944,
       "git_blob_sha1": "15f94a0db7a82e7575214745d4ed980fe44a0897",
+      "note": "local artifact proof; remote proof is substantively identical but differs in whitespace; see remote_blobs for canonical GitHub blob",
       "sha256": "0b38993fed25e82df01f5c7f9893b8f04d97d71b4c01cf99b5caeb5ee7cf339a"
     },
     "hidden-selector-run55-validation.json": {
@@ -50,6 +51,11 @@
     "No full false-instance hiding proof for a surviving practical construction.",
     "No completed malicious-secure setup/auxiliary-input composition or practical end-to-end parameters."
   ],
+  "remote_blobs": {
+    "HIDDEN_SELECTOR_LIST_BARRIER_RUN55.md": "03c89dbaca39deb2232b2dd12b0f410de24c08f0",
+    "hidden-selector-run55-validation.json": "7f7681fd4c5a09d709d5654fa93bd7ed2606e1d3",
+    "hidden_selector_run55_check.py": "e122cdab6adb1191d381bee38bd0a217e5383529"
+  },
   "repository": "syscoin/PVUGC",
   "run": "55",
   "scope": "research/pq-wkem only; no production-code edits",
