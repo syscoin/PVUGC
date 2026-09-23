@@ -1,0 +1,36 @@
+{
+  "claims": {
+    "implemented": [
+      "independent 3CNF short-kernel fixture compiler",
+      "Run-42 random lift and puncturing",
+      "public affine transfer synthetic check",
+      "native preimage capsule and decapsulation",
+      "exact ternary convolution",
+      "continuous Gaussian diagnostic"
+    ],
+    "not_claimed": [
+      "LWE security for the structured punctured matrix",
+      "arbitrary QPT key recovery implies a short preimage",
+      "generic impossibility for all nonlinear or anisotropic release channels",
+      "completed witness KEM",
+      "concrete production security parameters"
+    ],
+    "proved": [
+      "normalization-column puncturing equivalence M*iota(y)=0 iff Abar*y=u",
+      "supplied sufficiently-short punctured preimage inherits Run-42 source-witness-or-SIS reduction",
+      "public affine syndrome transfer maps every normalized semantic kernel pseudomode",
+      "Run-32 false family remains an exact public punctured preimage with +4 squared-L2 and +2 L1 additive gap",
+      "exact conservative ternary false-recovery lower bound 1-2(L+1)/3^(L+1) at q=4(L+1)"
+    ]
+  },
+  "external_web_or_literature": false,
+  "local_execution": {
+    "checker_runs": 2,
+    "checker_sha256": "d5aa8e6d9d826c50c280a645ce6fc88eadaa3f0c05e0f3fd7e3cb35334fcfa5a",
+    "results_sha256": "af04e224316100014a82780fc34433748659c6f5e83fb81d93c25f62807dbb46",
+    "stdout_byte_identical": true
+  },
+  "run": 43,
+  "scope": "research/pq-wkem only; no production files",
+  "starting_head": "def4c09bc8f506593dca217739c5327965dcb713"
+}
