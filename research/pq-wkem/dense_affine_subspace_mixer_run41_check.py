@@ -27,6 +27,7 @@ def rref_basis(vecs, n):
         if piv == len(rows):
             break
     rows = [r for r in rows if r]
+    # deterministic sort by highest bit descending
     rows.sort(key=lambda x: x.bit_length(), reverse=True)
     return rows
 
@@ -62,6 +63,7 @@ def sum_basis(a,b,n):
 
 
 def exact_single_distribution(n,R,S,a,delta,k):
+    # direct enumeration of U_R + (a+U_S) + k delta
     RR=enum_span(R); SS=enum_span(S)
     den=len(RR)*len(SS)
     d=defaultdict(Fraction)
@@ -89,6 +91,7 @@ def normalize_weights(ints):
 
 
 def direct_mixture_distribution(n,R,components,delta,k):
+    # component = (weight, a, S_basis)
     out=defaultdict(Fraction)
     RR=enum_span(R)
     for weight,a,S in components:
@@ -118,10 +121,12 @@ def formula_mixture_distribution(n,R,components,delta,k):
 
 def map_success(P0,P1):
     keys=set(P0)|set(P1)
+    # uniform prior
     return sum(max(P0.get(x,Fraction(0)),P1.get(x,Fraction(0))) for x in keys)/2
 
 
 def decoder_success(P0,P1,dec):
+    # uniform prior K
     s=Fraction(0)
     for x,p in P0.items():
         if dec(x)==0: s += p/2
@@ -173,6 +178,7 @@ for n in range(4,10):
         else:
             assert v==1
             single_disjoint += 1
+            # Public decoder: membership in a+T versus a+delta+T
             for x in P0:
                 assert in_span(x^a,T,n)
                 assert not in_span(x^a^delta,T,n)
@@ -210,6 +216,7 @@ for n in range(5,9):
             assert public_likelihood(x,1,n,R,components,delta)==P1.get(x,Fraction(0))
             mixture_likelihood_points += 2
         ms=map_success(P0,P1)
+        # Compare to random public/witness-like deterministic decoders.
         decs=[]
         for __ in range(12):
             table=[rng.randrange(2) for _ in range(1<<n)]
@@ -222,11 +229,13 @@ for n in range(5,9):
             assert ds <= ms
             mixture_decoder_comparisons += 1
             if ds < ms: mixture_strict_map += 1
+        # public invertible scramble preserves exact TV and MAP
         cols=random_invertible_cols(n); inv=inverse_map_table(cols,n)
         Q0={apply_linear(cols,x):p for x,p in P0.items()}
         Q1={apply_linear(cols,x):p for x,p in P1.items()}
         assert tv(Q0,Q1)==tv(P0,P1)
         assert map_success(Q0,Q1)==ms
+        # exact likelihood after inverse agrees
         for y in set(Q0)|set(Q1):
             x=inv[y]
             assert Q0.get(y,Fraction(0))==public_likelihood(x,0,n,R,components,delta)
@@ -239,9 +248,12 @@ for n in range(5,9):
                 'support0':len(P0),'support1':len(P1)})
         mixture_cases += 1
 
+# A deterministic dense example: n=16, R dim 4, S dim 10, so each key law has 2^rank(T)
+# support. We don't enumerate pair representation; enumerate T only.
 n=16
 R=random_basis(n,4); S=random_basis(n,10); a=rng.randrange(1<<n)
 T=sum_basis(R,S,n)
+# choose delta outside T to ensure the all-or-nothing public break
 while True:
     delta=rng.randrange(1,1<<n)
     if not in_span(delta,T,n): break
