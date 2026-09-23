@@ -1,0 +1,35 @@
+Run 38 provenance
+
+Starting verified PR head:
+5c0398955fe33cbc1f17ba8f7ace0a4c1f33ce82
+
+Local execution:
+- Standard-library checker executed to completion twice.
+- The two captured stdout JSON files compared byte-identical with cmp.
+- No external literature browsing or web search was used.
+- Repository reads/writes are limited to syscoin/PVUGC PR #1 research record.
+- Production code was not intentionally modified.
+
+Local execution UTC:
+2026-09-23T00:16:49Z
+
+Local SHA-256:
+4509957ced8aa9ccae78348093aeb6aa3975ae6f4d6b313539413a55b8263791  GLOBAL_NOTCHED_MIXTURE_RUN38.md
+d254b8e409c309a94e4dabd58d9ab162bddddea9bb62918526e4fe604861a67c  global_notched_mixture_run38_check.py
+70921c91c6e3f372bc2d7e2ad4575f433c73f91f9dd9cdfd53ee3c7bfab6a821  global-notched-mixture-run38.json
+
+Executed validation highlights:
+- 6,266 exact rational fixed-mode points plus exact endpoint/root/vertex assertions.
+- 30,874 exhaustive false two-proof-bit predicate tuples with source gap >= 1/4:
+  7,194 no-odd-mode cases and 23,680 nontrivial quotient cases.
+- Worst nontrivial small-census complete TV: 3/20.
+- Deterministic 4-proof-bit/8-test stress fixture complete TV: 29/160.
+- Two true-source exact MAP fixtures: public success 13/20 and 7/10 versus witness raw success 13/20.
+- Bounded-distance outer controls at n=7,15,31.
+- Logarithmic notch-cycle exact resource table through six cycles.
+
+Claim discipline:
+- Tests validate finite algebra/implementation only; they do not establish QPT security.
+- The source-transfer MAP barrier is a mathematical consequence of exact public likelihood computation plus Bayes optimality and independent bounded-distance reconciliation.
+- The logarithmic-walk candidate still lacks a complete-output hardness/source-extraction reduction.
+- The stopping condition is not met.
