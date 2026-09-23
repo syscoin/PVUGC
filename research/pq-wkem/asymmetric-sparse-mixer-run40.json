@@ -1,0 +1,57 @@
+{
+  "claims_not_established": [
+    "security of any dense non-factorizing channel",
+    "generic impossibility of witness encryption",
+    "arbitrary-QPT key-recovery-to-witness extraction",
+    "a complete practical PQ witness KEM"
+  ],
+  "owner_partition_validation": {
+    "exact_assignment_mass_controls": 30
+  },
+  "random_asymmetric_validation": {
+    "endpoint_likelihood_equalities": 1742,
+    "fixtures": 20,
+    "invertible_scramble_tv_equalities": 20,
+    "max_public_endpoint_support": 512,
+    "sample_rows": [
+      {"H": 1, "fixture": 0, "m": 1, "public_endpoints": 8, "tv_den": 35, "tv_num": 33},
+      {"H": 1, "fixture": 1, "m": 2, "public_endpoints": 14, "tv_den": 1488, "tv_num": 703},
+      {"H": 1, "fixture": 2, "m": 3, "public_endpoints": 20, "tv_den": 26845, "tv_num": 12104},
+      {"H": 1, "fixture": 3, "m": 4, "public_endpoints": 26, "tv_den": 115584, "tv_num": 55777},
+      {"H": 2, "fixture": 4, "m": 1, "public_endpoints": 8, "tv_den": 76088025, "tv_num": 29130691},
+      {"H": 2, "fixture": 5, "m": 2, "public_endpoints": 32, "tv_den": 12452713740147450, "tv_num": 2685716585126053},
+      {"H": 2, "fixture": 6, "m": 3, "public_endpoints": 74, "tv_den": 3097995352457549544000, "tv_num": 427985633505248599223},
+      {"H": 2, "fixture": 7, "m": 4, "public_endpoints": 134, "tv_den": 60036166260083102210601480, "tv_num": 7319793208733091011993317}
+    ]
+  },
+  "resource_boundary": {
+    "asymptotic": [
+      {"honest_inverse_poly_exponent_a": 0.25, "max_C_over_log2_lambda": 0.14392916062336122, "max_H_over_log2_lambda": 0.28785832124672245, "subset_3H_lambda_exponent": 0.4562446446965991},
+      {"honest_inverse_poly_exponent_a": 0.5, "max_C_over_log2_lambda": 0.28785832124672245, "max_H_over_log2_lambda": 0.5757166424934449, "subset_3H_lambda_exponent": 0.9124892893931982},
+      {"honest_inverse_poly_exponent_a": 1.0, "max_C_over_log2_lambda": 0.5757166424934449, "max_H_over_log2_lambda": 1.1514332849868898, "subset_3H_lambda_exponent": 1.8249785787863964},
+      {"honest_inverse_poly_exponent_a": 2.0, "max_C_over_log2_lambda": 1.1514332849868898, "max_H_over_log2_lambda": 2.3028665699737796, "subset_3H_lambda_exponent": 3.6499571575727927}
+    ],
+    "finite_C_equals_ceil_log2lambda_over4": [
+      {"C": 2, "H": 4, "lambda": 256, "three_pow_H": 81},
+      {"C": 3, "H": 6, "lambda": 1024, "three_pow_H": 729},
+      {"C": 4, "H": 8, "lambda": 16384, "three_pow_H": 6561},
+      {"C": 5, "H": 10, "lambda": 1048576, "three_pow_H": 59049}
+    ],
+    "log2_10_over_3": 1.7369655941662063,
+    "three_pow_H_exponent_per_honest_a": 1.8249785787863964
+  },
+  "run": 40,
+  "run39_asymmetric_controls": {
+    "base_gadget_choice_tv": [1, 1000],
+    "fixtures": 5,
+    "rows": [
+      {"C": 1, "abs_tv_change": [997, 10000000], "all_gadget_weights_distinct": true, "asymmetric_tv": [1750997, 10000000], "m": 2, "proved_two_key_tv_change_bound": [9, 2500], "uniform_tv": [7, 40]},
+      {"C": 1, "abs_tv_change": [1, 2000000], "all_gadget_weights_distinct": true, "asymmetric_tv": [1299997, 6000000], "m": 3, "proved_two_key_tv_change_bound": [9, 2500], "uniform_tv": [13, 60]},
+      {"C": 1, "abs_tv_change": [1, 3200000], "all_gadget_weights_distinct": true, "asymmetric_tv": [759999, 3200000], "m": 4, "proved_two_key_tv_change_bound": [9, 2500], "uniform_tv": [19, 80]},
+      {"C": 2, "abs_tv_change": [250001, 50000000000000], "all_gadget_weights_distinct": true, "asymmetric_tv": [874999749999, 50000000000000], "m": 2, "proved_two_key_tv_change_bound": [9, 1250], "uniform_tv": [7, 400]},
+      {"C": 2, "abs_tv_change": [496745467, 150000000000000], "all_gadget_weights_distinct": true, "asymmetric_tv": [26004470709203, 1350000000000000], "m": 3, "proved_two_key_tv_change_bound": [9, 1250], "uniform_tv": [13, 675]}
+    ]
+  },
+  "seed": 86678848,
+  "theorem_scope": "public H-slot sparse direct-sum mixer; arbitrary public slot/gadget probabilities and local stochastic kernels"
+}
