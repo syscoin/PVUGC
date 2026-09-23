@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
-import itertools, json, random
+import itertools, json, math, random, hashlib
 from collections import Counter
 
 SEED = 550055
 rng = random.Random(SEED)
 Q = 4093
 MU = 2046
+W = 10000
+ACCEPT = 15000
+REPS = 20
+
+# Run 55 checker: hidden local selectors, public pseudowitness-list enumeration,
+# public residual landscape, and dense-test tradeoff.
 TARGET_COMPLETENESS = 1 - 2**-20
 TRIALS = 20000
 
@@ -27,7 +33,8 @@ def allowed_rows(clause):
     rows=[]
     for bits in itertools.product((0,1), repeat=len(vs)):
         a={v:b for v,b in zip(vs,bits)}
-        if clause_satisfied(a, clause): rows.append(bits)
+        if clause_satisfied(a, clause):
+            rows.append(bits)
     return vs, rows
 
 
@@ -100,7 +107,8 @@ def min_threshold(n,target):
     c,den=ternary_dist(n)
     for T in range(n+1):
         good=sum(v for x,v in c.items() if abs(x)<=T)
-        if good/den >= target: return T,good,den
+        if good/den >= target:
+            return T,good,den
     raise AssertionError
 
 
@@ -242,4 +250,5 @@ def main():
 
     print(json.dumps(result,sort_keys=True,indent=2))
 
-if __name__=='__main__': main()
+if __name__=='__main__':
+    main()
