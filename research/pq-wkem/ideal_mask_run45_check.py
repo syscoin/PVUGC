@@ -43,6 +43,7 @@ def eval_poly(poly, point,p=P):
     return z
 
 def sparse_basis(rows, index, p=P):
+    # rows are dict mon->coef; return pivot->normalized row basis
     basis={}
     for poly in rows:
         row={index[m]:c%p for m,c in poly.items() if c%p}
@@ -74,6 +75,7 @@ def reduce_vec(poly,basis,index,p=P):
     return row
 
 def chain_constraints(n,p=P):
+    # vars x0..xn, y1..yn ; total 2n+1
     nv=2*n+1
     def unit(idx):
         m=[0]*nv;m[idx]=1;return tuple(m)
@@ -98,7 +100,9 @@ def truncated_generators(gs,nvars,D,p=P):
     return out
 
 def psi_monom_chain(mon,n):
+    # Laurent exponents in y1..yn after x_i -> prod_{k=i+1}^n y_k^-1, y_j -> y_j
     e=[0]*n
+    # direct y variables at index n+j, j=1..n
     for j in range(1,n+1):
         e[j-1]+=mon[n+j]
     for i in range(0,n+1):
@@ -119,6 +123,7 @@ def telescoping_certificate(n,p=P):
     gs=chain_constraints(n,p)
     nv=2*n+1
     total={}
+    # g_n + y_n g_{n-1}+...+(prod y_2..y_n)g_1 +(prod y_1..y_n)g0 - g_end
     for j in range(n,0,-1):
         m=[0]*nv
         for k in range(j+1,n+1): m[n+k]=1
@@ -131,6 +136,7 @@ def telescoping_certificate(n,p=P):
 
 def random_combination(gens,rng,p=P):
     out={}
+    # sparse random combo enough to test annihilator
     for g in gens:
         if rng.randrange(8)==0:
             c=rng.randrange(p)
@@ -140,6 +146,7 @@ def random_combination(gens,rng,p=P):
 def run():
     rng=random.Random(0x45A1DEA1)
     report={"field":P,"checks":{},"resource_counts":{}}
+    # 1. exact chain degree threshold by span membership n=1..4
     degree_rows=[]
     for n in range(1,5):
         nv=2*n+1
@@ -157,6 +164,7 @@ def run():
         degree_rows.append({"n":n,"rows":[{"D":D,"one_in_span":b,"ambient_monomials":M,"span_rank":r} for D,b,M,r in found]})
     report["checks"]["exact_degree_thresholds"]=degree_rows
 
+    # 2. Laurent dual annihilation exhaustive over every allowed monomial multiple for n=1..8, D=n
     dual_count=0
     for n in range(1,9):
         nv=2*n+1; D=n; gs=chain_constraints(n)
@@ -171,6 +179,7 @@ def run():
                     dual_count+=1
     report["checks"]["laurent_dual_generator_multiples"]={"n_max":8,"checked":dual_count,"failures":0}
 
+    # 3. telescoping certificate identity n=1..64
     cert_count=0
     for n in range(1,65):
         cert=telescoping_certificate(n)
@@ -178,6 +187,7 @@ def run():
         cert_count+=1
     report["checks"]["telescoping_certificates"]={"n_max":64,"checked":cert_count,"failures":0}
 
+    # 4. false-key extraction from complete coefficient output at subcritical D
     attacks=0
     for n in range(2,7):
         D=n; nv=2*n+1; gs=chain_constraints(n)
@@ -191,6 +201,8 @@ def run():
             attacks+=1
     report["checks"]["complete_view_false_key_extractions"]={"trials":attacks,"failures":0}
 
+    # 5. honest correctness on a true quadratic system; any ideal mask evaluates to zero at witness.
+    # vars z0,z1 ; constraints z0-1=0, z1=0, z0*z1=0; witness (1,0)
     nv=2; zero=(0,0)
     gtrue=[{(1,0):1,zero:-1%P},{(0,1):1},{(1,1):1}]
     gens=truncated_generators(gtrue,nv,4)
@@ -203,6 +215,7 @@ def run():
         honest+=1
     report["checks"]["honest_decapsulations"]={"trials":honest,"failures":0}
 
+    # 6. shift-invariance control when 1 enters span: if B is a basis and const in span, affine cosets same.
     shift_controls=[]
     for n in range(1,5):
         D=n+1; nv=2*n+1; mons=monomials_leq(nv,D);idx={m:i for i,m in enumerate(mons)}
@@ -213,6 +226,7 @@ def run():
         shift_controls.append({"n":n,"D":D,"ambient_monomials":len(mons),"span_rank":len(basis),"one_in_span":True})
     report["checks"]["false_hiding_shift_invariance_controls"]=shift_controls
 
+    # 7. resource counts
     for n in [8,16,32,64,128]:
         N=2*n+1; D=n+1; M=math.comb(N+D,D)
         report["resource_counts"][str(n)]={"variables":N,"minimum_degree":D,"ambient_monomials":M,"log2_ambient":math.log2(M)}
