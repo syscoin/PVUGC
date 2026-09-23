@@ -1,0 +1,91 @@
+{
+  "accept_radius": 15000,
+  "canonical_result_sha256_without_self_field": "df1df498c2b38d402b977f5b46419470c00f6b2c9405b85b5e95cd45b2c941e5",
+  "component_switching_capsule_attack": {
+    "accept_radius": 15000,
+    "forced_malformed_all_repetitions_accept_probability": 1.2189243610837672e-06,
+    "forced_malformed_one_repeat_accept_denominator": 2187,
+    "forced_malformed_one_repeat_accept_numerator": 1107,
+    "max_observed_abs_noise": 10011,
+    "repetitions_per_share": 20,
+    "residual_identities": 16000,
+    "share_decodes": 800,
+    "share_total": 800,
+    "switching_deterministic_abs_noise_bound": 10018,
+    "trials": 100,
+    "xor_key_decodes": 100
+  },
+  "honest_capsule_control": {
+    "component_decodes": 700,
+    "component_total": 700,
+    "repetitions_per_share": 20,
+    "trials": 100
+  },
+  "inclusion_exclusion_identity": {
+    "cases": 124,
+    "status": "pass"
+  },
+  "integer_block_gap": {
+    "bad_norm1": 0,
+    "min_nononehot_norm2": {
+      "2": 5,
+      "3": 3,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "7": 3
+    },
+    "norm2_vectors": 0,
+    "vectors_checked": 10028
+  },
+  "larger_unsat_fixtures": {
+    "exact_relation_checks": 400,
+    "fixtures": 20,
+    "target_components_checked": 400
+  },
+  "mu": 200000,
+  "q": 1000003,
+  "repetitions": 20,
+  "resources_3cnf": [
+    {
+      "clauses": 100,
+      "linear_equations": 400,
+      "matrix_nonzeros_upper_bound": 2200,
+      "representation_coordinates": 760,
+      "variables": 60
+    },
+    {
+      "clauses": 1000,
+      "linear_equations": 4000,
+      "matrix_nonzeros_upper_bound": 22000,
+      "representation_coordinates": 7600,
+      "variables": 600
+    },
+    {
+      "clauses": 10000,
+      "linear_equations": 40000,
+      "matrix_nonzeros_upper_bound": 220000,
+      "representation_coordinates": 76000,
+      "variables": 6000
+    }
+  ],
+  "seed": 530053,
+  "target_weight": 10000,
+  "true_extractor_control": {
+    "blocks": 7,
+    "status": "pass",
+    "witness": [
+      0,
+      0,
+      0
+    ]
+  },
+  "unsat_core": {
+    "assignments_lifted": 8,
+    "block_norm_histogram": {
+      "1": 56,
+      "7": 8
+    },
+    "target_onehot_switching_representations": 56
+  }
+}
