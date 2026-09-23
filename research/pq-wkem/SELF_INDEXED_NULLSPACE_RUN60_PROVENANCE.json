@@ -1,0 +1,59 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "classification": {
+    "implemented": [
+      "deterministic standard-library checker for integer kernel basis, GF(2) selector solve, stacked controls, and ideal share reconstruction"
+    ],
+    "not_claimed": [
+      "generic deterministic-hash impossibility",
+      "random-oracle theorem",
+      "implemented witness-selective local release primitive",
+      "LWE/SIS break",
+      "arbitrary-QPT source extraction for a surviving construction",
+      "completed WKEM"
+    ],
+    "proved": [
+      "explicit unimodular malformed-block kernel basis with D=2^k-k-2",
+      "full-rank affine self-selector can be solved inside exact false fiber",
+      "uniform restricted selector full-rank probability formula and union bound",
+      "per-round public share reconstruction does not enforce same representation"
+    ]
+  },
+  "constraints": {
+    "external_literature_or_web_search_used": false,
+    "github_scope": "syscoin/PVUGC PR #1 research record only",
+    "intended_pr_state": "draft/unmerged",
+    "production_code_changed": false
+  },
+  "executed_validation": {
+    "byte_identical_stdout": true,
+    "captured_stdout_sha256": "7b160610cb1bd8e4aa4420984a40c9c6f83b79132cad324c6c1685a9f01f6768",
+    "command": "python3 /mnt/data/self_indexed_nullspace_run60_check.py",
+    "executions_after_finalization": 2,
+    "summary": [
+      "integral/nullspace construction checked for k=3..8",
+      "k=8,B=256,D=246,R=128: 128/128 selector systems full-rank and solved",
+      "all adaptive malformed-block solutions exact and self-selector output exactly 0^8",
+      "128/128 idealized round shares and XOR key recovered",
+      "stacked same-representation selector system became inconsistent after 31 rounds",
+      "2000 rank/solvability controls each for k=3,4,5,6"
+    ]
+  },
+  "local_artifacts": {
+    "SELF_INDEXED_NULLSPACE_RUN60.md": {
+      "bytes": 17908,
+      "sha256": "66c8f7d448aa4bc119c2efd4f852fcb4f10a86eebc39d8884fec0e478dafc1d0"
+    },
+    "self-indexed-nullspace-run60-validation.json": {
+      "bytes": 6693,
+      "sha256": "7b160610cb1bd8e4aa4420984a40c9c6f83b79132cad324c6c1685a9f01f6768"
+    },
+    "self_indexed_nullspace_run60_check.py": {
+      "bytes": 12456,
+      "sha256": "925bb645126083f8acd1548c60e14c63436c8658231172f56d63a854046d02e9"
+    }
+  },
+  "run": 60,
+  "starting_verified_pr_head": "eccc555d71f2eb3cf77f5a037c0ce9e1b4bb44f9",
+  "title": "public self-indexing challenge: exact nullspace grinding and roundwise switching"
+}
