@@ -1,0 +1,83 @@
+{
+  "checker_output_sha256": "195670f424ae44b92528c7b264654257f35d58d6d8592df9edbf7930a1fe0570",
+  "checker_sha256": "8cbe36b09a12b48dcd1e72204fc8d5464d3456ac90b143cf8ff2b155e277ee37",
+  "claims_scope": {
+    "not_proved": [
+      "No general impossibility for opaque or arbitrary nonlinear public operations.",
+      "No arbitrary modular/discrete-noise short-dual lower bound.",
+      "No arbitrary-QPT early-recovery to source-witness reduction for a surviving construction.",
+      "No completed generic-NP PQ witness KEM."
+    ],
+    "proved": [
+      "Boolean Möbius interpolation exactly reconstructs known downward-closed multilinear support from |M| Boolean evaluations.",
+      "Known local scopes of width R require at most T*2^R evaluations.",
+      "After reconstruction, every true instance admits a publicly synthesized linear functional lambda with lambda(1)=1 and lambda(h_j)=0.",
+      "Noiseless K is recovered exactly; with fixed coefficient noise the exact residual is K+lambda(e)."
+    ]
+  },
+  "external_literature_or_web_search": false,
+  "production_code_changed": false,
+  "proof_sha256": "5dccd1f364651c5ef27eb6d61e093c219b99203deb05e47b527b734308036b0d",
+  "repeat_execution_byte_identical": true,
+  "results": {
+    "dense_reconstruction": {
+      "cases": 108,
+      "coefficient_equalities": 8964
+    },
+    "false_span_control": {
+      "field": 17,
+      "hidden_coefficients_per_key": 17,
+      "identical_histograms": true,
+      "keys_checked": 17,
+      "support_points_per_key": 17
+    },
+    "local_scope_reconstruction": {
+      "cases": 3,
+      "coefficient_equalities": 4745,
+      "details": [
+        {
+          "R": 5,
+          "T": 12,
+          "bound": 384,
+          "n": 24,
+          "q": 101,
+          "support_size": 289
+        },
+        {
+          "R": 6,
+          "T": 8,
+          "bound": 512,
+          "n": 32,
+          "q": 257,
+          "support_size": 456
+        },
+        {
+          "R": 10,
+          "T": 4,
+          "bound": 4096,
+          "n": 40,
+          "q": 257,
+          "support_size": 4000
+        }
+      ],
+      "max_support_size": 4000
+    },
+    "noisy_identity": {
+      "exact_residual_identities": 1200,
+      "noise_support": "centered integers -3..3 reduced mod q",
+      "trials": 1200
+    },
+    "seed": 670067,
+    "true_instance_key_recovery": {
+      "exact_key_recoveries": 400,
+      "public_dual_solutions": 400,
+      "queries_per_interpolation": 93,
+      "support_size": 93,
+      "synthesized_dual_not_any_boolean_evaluation": 385,
+      "trials": 400
+    }
+  },
+  "run": "67",
+  "starting_head": "55ebb031d6767407d0a77a41fbf5fa4855aab3f0",
+  "title": "transparent nonlinear evaluator interpolation"
+}
