@@ -23,13 +23,22 @@
   ],
   "checker": {
     "path": "research/pq-wkem/multiplicative_matrix_binder_run70_check.py",
-    "sha256": "e82ba0076f5695aec940c4812b94131d5ff614fa276e9bf0020d33250186a93e",
-    "executions": 2,
-    "byte_identical_outputs": true
+    "executed_local_sha256": "e82ba0076f5695aec940c4812b94131d5ff614fa276e9bf0020d33250186a93e",
+    "published_git_blob": "a4e540b695d499110d6e53d86d70e3ea5f68cbd9",
+    "published_byte_identity_with_executed_local": false,
+    "publication_note": "The connector-published checker removes unused helpers/comments relative to the executed local checker. Its complete public algorithms were read back, but the published bytes were not rerun locally; no remote/local byte-identity claim is made.",
+    "executions_of_local_checker": 2,
+    "byte_identical_local_outputs": true
   },
   "validation": {
     "path": "research/pq-wkem/multiplicative-matrix-binder-run70-validation.json",
-    "sha256": "417be1788636405ab519fb6094cae6e8c313812312dda42eeb128337171d81a1"
+    "sha256": "417be1788636405ab519fb6094cae6e8c313812312dda42eeb128337171d81a1",
+    "published_git_blob": "a0e6c3c46519971cf855035fb1f00712e88486c2",
+    "published_byte_identity_with_local": true
+  },
+  "proof": {
+    "path": "research/pq-wkem/MULTIPLICATIVE_MATRIX_BINDER_RUN70.md",
+    "published_git_blob": "e80486f2c37ff9a8500bde7b5eb92246492719c3"
   },
   "test_counts": {
     "all_exclusions_false_trials": 300,
