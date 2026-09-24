@@ -1,0 +1,40 @@
+{
+  "candidate": "erased-secret additive incidence tags entangled into native capsule plus ideal nonlinear quadratic checksum control",
+  "checker": {
+    "byte_identical_outputs": true,
+    "executions_after_finalization": 2,
+    "file": "erased_linear_tag_run66_check.py",
+    "modulus": 257,
+    "seed": 660066,
+    "sha256": "f06c262ed947133dcd6c98bae80070ddece9f429d149986d7ea22cfdbeaaa252"
+  },
+  "external_literature_or_web_search": false,
+  "generated_utc": "2026-09-24T05:33:12.784158+00:00",
+  "github_scope": "syscoin/PVUGC PR #1 research record only",
+  "not_claimed": [
+    "no complete WKEM",
+    "no LWE/SIS reduction",
+    "no impossibility theorem for genuinely nonlinear/nonadditive PQ binders",
+    "no security inference from tests",
+    "no arbitrary-QPT key-recovery extraction theorem",
+    "no malicious-secure setup composition proof"
+  ],
+  "proof": {
+    "file": "ERASED_LINEAR_TAG_RUN66.md",
+    "sha256": "476da950cdb83fe98192a0daa1374c3b98b1af4df4e6dbe58617d52d697b2c07"
+  },
+  "proved_claims": [
+    "shared-marginal signed pseudolifts cancel the hidden incidence tag for every tag randomness",
+    "secret linear checkers constant on source lifts are constant on their affine hull",
+    "genuine quadratic one-hot checksum has fixed-malformed zero probability exactly 1/q per independent hidden check",
+    "linearized quadratic/polynomial lifts admit support-three affine forgeries",
+    "Run-53 signed falsifying lift matches every multilinear moment of degree < local arity k"
+  ],
+  "run": "66",
+  "scope": "research/pq-wkem only; production code unchanged",
+  "starting_head": "839ed4460948e5c550c115aaf762fa75482addd9",
+  "validation": {
+    "file": "erased-linear-tag-run66-validation.json",
+    "sha256": "4be3db48fe467b3074f7482c603ab8a0be03251508c9b795165d940f08e69dfb"
+  }
+}
