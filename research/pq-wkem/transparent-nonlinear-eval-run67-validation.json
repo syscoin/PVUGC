@@ -9,7 +9,7 @@
       "No completed generic-NP PQ witness KEM."
     ],
     "proved": [
-      "Boolean Möbius interpolation exactly reconstructs known downward-closed multilinear support from |M| Boolean evaluations.",
+      "Boolean M\u00f6bius interpolation exactly reconstructs known downward-closed multilinear support from |M| Boolean evaluations.",
       "Known local scopes of width R require at most T*2^R evaluations.",
       "After reconstruction, every true instance admits a publicly synthesized linear functional lambda with lambda(1)=1 and lambda(h_j)=0.",
       "Noiseless K is recovered exactly; with fixed coefficient noise the exact residual is K+lambda(e)."
