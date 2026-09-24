@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 import json, random, hashlib
 from math import ceil, log2
