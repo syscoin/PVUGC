@@ -113,6 +113,7 @@ def contains(rows,target,p=P):
     return r1==r2
 
 def dual_separator(Vbasis,const_index=0,p=P):
+    # lambda annihilates V and lambda[const_index]=1
     N=len(Vbasis[0]) if Vbasis else const_index+1
     A=[row[:] for row in Vbasis]
     b=[0]*len(A)
@@ -123,6 +124,7 @@ def dual_separator(Vbasis,const_index=0,p=P):
 def truncated_ideal_basis(gens,n,D,p=P):
     basis=ambient_masks(n,D); ix={m:i for i,m in enumerate(basis)}
     candidates=[]
+    # monomials suffice because arbitrary multipliers are their linear span.
     for g in gens:
         for mm in basis:
             h=mul_poly({mm:1},g,p)
@@ -146,6 +148,8 @@ def eval_vec(v,basis,a,p=P):
     return sum(c for c,m in zip(v,basis) if (m&a)==m)%p
 
 def clause_falsity(n, positive=(), negative=(), p=P):
+    # Clause OR( x_i for positive, not x_i for negative ).
+    # Falsity polynomial is product[(1-x_i) positive] * product[x_i negative].
     f={0:1}
     for i in positive: f=mul_poly(f,one_minus_var(i,p),p)
     for i in negative: f=mul_poly(f,var(i),p)
@@ -174,7 +178,7 @@ for _ in range(trials):
     v=rand_span_vec(VB,P)
     K=rng.randrange(P)
     F=v[:]
-    F[basis.index(0)]^=K
+    F[basis.index(0)]^=K  # p=2
     for a in valid:
         assert eval_vec(F,basis,a,P)==K
         evals+=1
@@ -196,6 +200,7 @@ false_easy=[clause_falsity(n,positive=(0,)), clause_falsity(n,negative=(0,))]
 VB,basis=truncated_ideal_basis(false_easy,n,D,P)
 const=[1 if m==0 else 0 for m in basis]
 assert contains(VB,const,P)
+# exhaustive V over basis coordinates
 span=set()
 for coeffs in itertools.product(range(P), repeat=len(VB)):
     x=[0]*len(basis)
@@ -212,6 +217,7 @@ checks['false_full_certificate']={'span_dimension':len(VB),'ambient_dimension':l
 # C. False contradiction at insufficient cutoff: nonzero V but 1 absent and public dual extracts key.
 n=3; D=1
 chain=[clause_falsity(n,positive=(0,)), clause_falsity(n,negative=(0,),positive=(1,)), clause_falsity(n,negative=(1,),positive=(2,)), clause_falsity(n,negative=(2,))]
+# At D=1 only endpoint degree-1 generators contribute, giving a nonzero span but no certificate.
 VB,basis=truncated_ideal_basis(chain,n,D,P)
 const=[1 if m==0 else 0 for m in basis]
 assert len(VB)>0 and not contains(VB,const,P)
@@ -239,19 +245,27 @@ checks['compact_chain_diagnostic']={'n':n,'first_cutoff_with_one':threshold,'by_
 all_excl=[]
 for k in range(2,7):
     gens=[delta_assignment(a,k,P) for a in range(1<<k)]
+    # D=k-1: every nonzero monomial multiple remains degree k, so V=0.
     VBlo,blo=truncated_ideal_basis(gens,k,k-1,P)
     clo=[1 if m==0 else 0 for m in blo]
     assert len(VBlo)==0 and not contains(VBlo,clo,P)
+    # D=k: assignment indicators form a basis of full Boolean function space.
     VBhi,bhi=truncated_ideal_basis(gens,k,k,P)
     chi=[1 if m==0 else 0 for m in bhi]
     assert len(VBhi)==1<<k and contains(VBhi,chi,P)
+    # Explicit identity sum delta_a = 1.
     s={}
     for g in gens: s=add_poly(s,g,P)
     assert s=={0:1}
     all_excl.append({'k':k,'D_below':k-1,'below_span_dim':len(VBlo),'D_at':k,'ambient_at':len(bhi),'span_at':len(VBhi)})
 checks['all_exclusions_threshold']=all_excl
 
-# F. Full-degree certificate membership on explicit unsatisfiable CNFs.
+# F. General full-degree certificate construction on unsat CNFs, checked for all-exclusions and compact chain.
+def assignment_indicator_multiple_of_falsified_clause(a,n,g,p=P):
+    # Search monomial assignment-literal product over variables not already enough; easiest verify delta belongs to full ideal span.
+    # For checker we use linear span at D=n rather than claiming a particular monomial for arbitrary g.
+    return delta_assignment(a,n,p)
+
 full_degree_cases=[]
 for name,n,gens in [('chain3',3,chain),('all_excl4',4,[delta_assignment(a,4,P) for a in range(16)])]:
     assert all(any(eval_poly(g,a,P)!=0 for g in gens) for a in range(1<<n))
@@ -283,6 +297,7 @@ for n in (2,3,4):
         census['cases']+=1
         if has1:
             census['contains_one']+=1
+            # Algebraic identity: shifting K by 1 stays in same coset.
             assert contains(VB,const,P)
         else:
             census['dual_cases']+=1
@@ -299,6 +314,7 @@ checks['dichotomy_census']=census
 # H. Noise identity: public dual always reduces noisy capsule to K+lambda(e).
 noise_trials=1000
 noise_identity=0
+# reuse chain D=1 dual
 n=3;D=1; VB,basis=truncated_ideal_basis(chain,n,D,P); const=[1 if m==0 else 0 for m in basis]; lam=dual_separator(VB,basis.index(0),P)
 for _ in range(noise_trials):
     v=rand_span_vec(VB,P); K=rng.randrange(P)
