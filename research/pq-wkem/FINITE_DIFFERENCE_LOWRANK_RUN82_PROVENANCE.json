@@ -1,0 +1,44 @@
+{
+  "classification": {
+    "arbitrary_qpt_source_extraction": "UNPROVED",
+    "attack_adversary": "classical PPT, hence also valid against QPT security claims",
+    "honest_algorithms": "classical polynomial time",
+    "qpt_false_hiding": "refuted for t > r(R+2) in the Run-81 common-eigenvalue family; otherwise unproved",
+    "result": "explicit low-rank source-family theorem + classical false-instance distinguisher + false pseudo-witness attack for a parameter region"
+  },
+  "new_claims": [
+    "For false q_N(b)=sum b_i-(N+1), finite differences over R+1 free bits produce actual source codewords.",
+    "Each such codeword has nonzero public anchor and rank in {R+1,R+2}.",
+    "For fixed free coordinate set there are at least 2^(N-R-1) distinct efficiently constructible such codewords.",
+    "The scalar key-shift statistic has exact pairwise TV q^(-r rho), hence at least q^(-r(R+2)).",
+    "The explicit family contributes at least 2^(N-R-1) q^(-2r(R+2)) to the key-sensitive squared spectral mass.",
+    "Run-81 common-eigenvalue decapsulation is explicitly false-instance vulnerable whenever t > r(R+2)."
+  ],
+  "pr_number": 1,
+  "production_code_modified": false,
+  "publication": {
+    "github_checkpoint_attempted": true,
+    "github_checkpoint_result": "blocked by OpenAI safety checks before reaching GitHub",
+    "github_files_published_this_run": false,
+    "local_artifacts_preserved": true,
+    "publication_retried_or_rerouted": false
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 82,
+  "source": {
+    "arxiv": "2609.18275v1",
+    "authors": "Isaac M. Hair, Amit Sahai",
+    "title": "Witness Encryption via Prime-Order Generic Groups",
+    "used_for": "actual weighted-table source construction, degree bound, false-instance minimum-rank theorem; generic-group encryption security not imported"
+  },
+  "starting_verified_head": "c4a33a018607bda7d8e8b1d646d54df9c399e22e",
+  "stopping_condition_met": false,
+  "tests": {
+    "byte_identical_stdout": true,
+    "checker_sha256": "cc3da9d118d83ee51a6adb931d7f78671834eb73e6b816d69801414f85b4be67",
+    "executions": 2,
+    "scope": "finite algebra/attack controls only",
+    "status": "PASS",
+    "validation_sha256": "8466183019a58128f8e3bd2a65246cbfe90c43102f8abdffd6442acec7838c93"
+  }
+}
