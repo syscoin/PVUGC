@@ -1,0 +1,57 @@
+{
+  "all_exclusions": {
+    "blocks": 8,
+    "false_instances_verified": 300,
+    "k": 3,
+    "public_key_recoveries": 300,
+    "uses_discrete_log": false
+  },
+  "claim_boundary": {
+    "commutative_result": "exact public algebraic attacks on two false families for the explicit multiplicative telescope",
+    "matrix_result": "exact public alternating-gauge attack on the explicit transparent matrix-unit telescope",
+    "not_claimed": [
+      "generic impossibility for all noncommutative encodings",
+      "LWE/SIS break",
+      "completed witness KEM"
+    ],
+    "tests_prove_security": false
+  },
+  "matrix_unit_false_complete_output": {
+    "aggregate_reached_scale_vertices": 2160,
+    "aggregate_same_state_matches": 360,
+    "attack_uses_hidden_state_labels": false,
+    "attack_uses_matrix_inverse_of_tokens": false,
+    "dimensions": [
+      2,
+      3,
+      4
+    ],
+    "directed_accepting_paths": 0,
+    "primes": [
+      101,
+      103,
+      107
+    ],
+    "public_key_recoveries": 360,
+    "trials": 360
+  },
+  "matrix_unit_true_control": {
+    "trials": 180,
+    "valid_path_key_recoveries": 180
+  },
+  "odd_cycle_fractional": {
+    "coefficient_half_mod_101": 51,
+    "cycle_length": 5,
+    "public_key_recoveries": 300,
+    "source_witnesses": 0,
+    "trials": 300,
+    "uses_discrete_log": false,
+    "uses_negative_token_power": false
+  },
+  "seed": 481575700772,
+  "subgroup": {
+    "exponent_order": 101,
+    "field_modulus": 607,
+    "generator": 64
+  }
+}
