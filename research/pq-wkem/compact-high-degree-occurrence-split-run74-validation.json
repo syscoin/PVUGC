@@ -1,0 +1,18 @@
+{
+  "claim_scope": "exact semantics/algebra tests only; no cryptographic security is inferred from passing tests",
+  "compact_high_degree_false_families_r_2_through_12": 11,
+  "compact_semantics_assignment_checks": 9920,
+  "explicit_false_consistent_assignment_checks": 14,
+  "local_equality_repair_cases": 68,
+  "max_direct_degree_proxy_in_family": 24,
+  "max_literal_occurrences_in_resource_cases": 41,
+  "n_of_n_operator_controls": 300,
+  "operator_shares_released_under_split": 2700,
+  "prime_for_share_control": 257,
+  "random_guaranteed_false_formulas": 500,
+  "random_local_blocks_satisfied": 3027,
+  "random_occurrence_split_accepts": 500,
+  "resource_accounting_cases": 480,
+  "seed": 740074001,
+  "status": "PASS"
+}
