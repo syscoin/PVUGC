@@ -21,7 +21,10 @@
   ],
   "proof": {
     "file": "ERASED_LINEAR_TAG_RUN66.md",
-    "sha256": "476da950cdb83fe98192a0daa1374c3b98b1af4df4e6dbe58617d52d697b2c07"
+    "local_prepublication_sha256": "476da950cdb83fe98192a0daa1374c3b98b1af4df4e6dbe58617d52d697b2c07",
+    "note": "The connector-published proof text is the authoritative PR record; no remote/local byte-identity claim is made for this file.",
+    "remote_git_blob": "97d8615ae1a7e40f00335b2c81e11eb63aa3b10d",
+    "remote_local_byte_identity": false
   },
   "proved_claims": [
     "shared-marginal signed pseudolifts cancel the hidden incidence tag for every tag randomness",
@@ -30,6 +33,11 @@
     "linearized quadratic/polynomial lifts admit support-three affine forgeries",
     "Run-53 signed falsifying lift matches every multilinear moment of degree < local arity k"
   ],
+  "remote_verification": {
+    "checker_and_validation_match_local_git_blobs": true,
+    "checker_git_blob": "5cdba96091543c11d43715014700f4fe3fde151c",
+    "validation_git_blob": "6520855c2ae04a3b3b52f52d8bc4ab582668355a"
+  },
   "run": "66",
   "scope": "research/pq-wkem only; production code unchanged",
   "starting_head": "839ed4460948e5c550c115aaf762fa75482addd9",
