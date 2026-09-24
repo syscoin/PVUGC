@@ -1,0 +1,73 @@
+{
+  "and_branch_credential_accept_hits": 300,
+  "and_branch_credential_graphs": 300,
+  "and_reachable_capability_matches": 7153,
+  "bits_per_coordinate": 12,
+  "bounded_error": 3,
+  "claim_scope": "finite correctness/closure/resource validation only; cryptographic edge one-wayness is inherited from the written Run-72 reduction",
+  "dim": 4,
+  "edge_correctness_checks": 1200,
+  "false_accept_hits": 0,
+  "false_explicit_graphs": 350,
+  "implicit_tree_resources": {
+    "128": {
+      "edges": 680564733841876926926749214863536422910,
+      "lwe_samples_per_edge": 48,
+      "minimum_residue_elements_for_tokens": 163335536122050462462419811567248741498400,
+      "nodes": 680564733841876926926749214863536422911
+    },
+    "16": {
+      "edges": 131070,
+      "lwe_samples_per_edge": 48,
+      "minimum_residue_elements_for_tokens": 31456800,
+      "nodes": 131071
+    },
+    "24": {
+      "edges": 33554430,
+      "lwe_samples_per_edge": 48,
+      "minimum_residue_elements_for_tokens": 8053063200,
+      "nodes": 33554431
+    },
+    "32": {
+      "edges": 8589934590,
+      "lwe_samples_per_edge": 48,
+      "minimum_residue_elements_for_tokens": 2061584301600,
+      "nodes": 8589934591
+    },
+    "64": {
+      "edges": 36893488147419103230,
+      "lwe_samples_per_edge": 48,
+      "minimum_residue_elements_for_tokens": 8854437155380584775200,
+      "nodes": 36893488147419103231
+    },
+    "8": {
+      "edges": 510,
+      "lwe_samples_per_edge": 48,
+      "minimum_residue_elements_for_tokens": 122400,
+      "nodes": 511
+    }
+  },
+  "q": 4093,
+  "raw_bit_credential_candidate_trials": 2000,
+  "reachable_capability_matches": 10772,
+  "seed": 770077001,
+  "separated_equality_required_widths": {
+    "1": 2,
+    "10": 1024,
+    "11": 2048,
+    "12": 4096,
+    "2": 4,
+    "3": 8,
+    "4": 16,
+    "5": 32,
+    "6": 64,
+    "7": 128,
+    "8": 256,
+    "9": 512
+  },
+  "separated_equality_total_cut_states_checked": 8190,
+  "status": "PASS",
+  "true_accept_hits": 350,
+  "true_explicit_graphs": 350,
+  "true_path_replays": 350
+}
