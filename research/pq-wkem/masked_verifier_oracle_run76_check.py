@@ -37,6 +37,7 @@ def guaranteed_true_formula(n, extra, rng):
         width=rng.randint(1,min(3,n))
         vs=rng.sample(range(n), width)
         lits=[]
+        # choose arbitrary signs, then if all false, flip first sign
         for i in vs:
             lits.append((i,bool(rng.getrandbits(1))))
         if not clause_sat(tuple(lits),w):
@@ -68,16 +69,19 @@ def extend_prefix(prefix,n,fill=0):
     return prefix + (fill,)*(n-len(prefix))
 
 def grover_two_dim(N, M, Q):
+    # Two-dimensional Grover amplitudes: |good>, |bad>.
+    # O0 leaves uniform invariant under the diffusion step.
     assert 0 < M < N
     a=math.sqrt(M/N)
     b=math.sqrt((N-M)/N)
     theta=math.asin(a)
+    # after Q Grover iterations (oracle then diffusion)
     good1=math.sin((2*Q+1)*theta)
     bad1=math.cos((2*Q+1)*theta)
     good0=a
     bad0=b
     normdiff=math.hypot(good1-good0,bad1-bad0)
-    S=Q*(M/N)
+    S=Q*(M/N)  # sum of O0 query masses on good set
     hybrid=2*math.sqrt(Q*S) if Q else 0.0
     p1=good1*good1
     p0=M/N
@@ -88,6 +92,7 @@ def grover_two_dim(N, M, Q):
 def run():
     report={"seed":SEED, "claim_scope":"finite semantic/combinatorial/numerical validation only; theorems are proved separately"}
 
+    # Ideal one-pad false complete-table hiding.
     false_cases=0
     false_table_key_pairs=0
     for n in range(1,7):
@@ -106,6 +111,7 @@ def run():
             false_cases+=1
             false_table_key_pairs += len(keys)-1
 
+    # True completeness: every satisfying witness receives same K.
     true_cases=0
     satisfying_evals=0
     for n in range(1,8):
@@ -120,6 +126,7 @@ def run():
                 satisfying_evals+=1
             true_cases+=1
 
+    # Minimal pure-prefix cover for parity, both accepting and rejecting.
     parity_rows=[]
     parity_prefix_checks=0
     for n in range(1,11):
@@ -128,16 +135,19 @@ def run():
         assert len(acc)==2**(n-1)
         assert len(rej)==2**(n-1)
         assert all(len(p)==n for p in acc+rej)
+        # Every proper prefix is mixed.
         for d in range(n):
             for p in itertools.product((0,1),repeat=d):
                 assert pure_prefix(p,n,parity_accept) is None
                 parity_prefix_checks += 1
         parity_rows.append({"n":n,"accept_tokens":len(acc),"reject_tokens":len(rej)})
 
+    # Witness extraction from any explicit nonempty accepting prefix cover.
     explicit_cover_extractions=0
     cover_size_total=0
     for n in range(2,9):
         for _ in range(40):
+            # Easy nonempty predicate: CNF known to have a planted witness.
             F,w0=guaranteed_true_formula(n,rng.randint(1,6),rng)
             fn=lambda w,F=F: formula_sat(F,w)
             cover=minimal_prefix_cover(tuple(),n,fn,True)
@@ -148,6 +158,7 @@ def run():
             explicit_cover_extractions += 1
             cover_size_total += len(cover)
 
+    # Numerical controls for the quantum query hybrid / extractor loss.
     grover_controls=0
     worst_norm_slack=1e9
     worst_extract_slack=1e9
@@ -156,12 +167,16 @@ def run():
             if M>=N: continue
             for Q in range(1,8):
                 nd,hb,p1,p0,lb,actual=grover_two_dim(N,M,Q)
+                # Hybrid state bound.
                 assert nd <= hb + 1e-12
+                # Random-query measurement under O0 finds a witness with actual M/N,
+                # which must exceed theorem lower bound based on this event gap.
                 assert actual + 1e-12 >= lb
                 worst_norm_slack=min(worst_norm_slack,hb-nd)
                 worst_extract_slack=min(worst_extract_slack,actual-lb)
                 grover_controls+=1
 
+    # Resource estimates for parity prefix programming.
     estimates=[]
     for n in (32,64,128,256):
         tokens=1<<(n-1)
