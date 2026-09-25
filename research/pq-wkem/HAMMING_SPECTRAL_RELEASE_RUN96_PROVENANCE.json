@@ -1,0 +1,101 @@
+{
+  "artifacts": {
+    "HAMMING_SPECTRAL_RELEASE_RUN96.md": {
+      "sha256": "46a98112ec1ed1115dd5b8981c2976505e62172e183cc525030447e1c11752d7"
+    },
+    "hamming-spectral-release-run96-validation.json": {
+      "sha256": "d9a9ca9729c2718c604c0806a9f53bbea641e0f41a90b39e5e5a36ea6a1b824f"
+    },
+    "hamming_spectral_release_run96_check.py": {
+      "sha256": "b8d908ded1df94500bdd2cbd380951a4f8410e545d6d7ba17d1934b55e226b7a"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "external_sources_checked": [
+    {
+      "author": "Zhengzhong Jin",
+      "evidence": "current public metadata/abstract only; full proof not audited",
+      "id": "ePrint 2026/2063",
+      "title": "Witness Encryption for NP from SNARGs and Groups"
+    },
+    {
+      "authors": "Ohad Barta, Yuval Ishai, Rafail Ostrovsky, David J. Wu",
+      "evidence": "public paper snippet/metadata confirming GapMDP-to-generic-group WE precursor",
+      "id": "ePrint 2020/1319 / CRYPTO 2020",
+      "title": "On Succinct Arguments and Witness Encryption from Groups"
+    },
+    {
+      "authors": "Matthieu R. Bloch, J. Nicholas Laneman",
+      "evidence": "abstract/metadata only; used only for outer-coding context, not core theorem",
+      "id": "arXiv 1105.5419 / IEEE TIT 2013",
+      "title": "Strong Secrecy from Channel Resolvability"
+    },
+    {
+      "authors": "Talha Cihad Gulcu, Alexander Barg",
+      "evidence": "abstract/metadata only; used only for outer-coding context, not core theorem",
+      "id": "arXiv 1410.3422",
+      "title": "Achieving Secrecy Capacity of the Wiretap Channel and Broadcast Channel with a Confidential Component"
+    },
+    {
+      "authors": "Riddhi Ghosal, Paul Lou, Amit Sahai",
+      "evidence": "fresh listing/abstract only; no theorem used",
+      "id": "ePrint 2026/2113",
+      "title": "Post-Quantum PKE and More from a Noisy Unstructured Linear Algebraic Assumption: Beyond LWE and LPN"
+    }
+  ],
+  "pr": 1,
+  "publication": {
+    "attempted_path": "research/pq-wkem/HAMMING_SPECTRAL_RELEASE_RUN96.md",
+    "branch": "research/pq-wkem-validation-20260918",
+    "comment_id": null,
+    "commit_sha": null,
+    "final_verified_sha": "f127e33fb43ed2898bcc0a67ddbc944c5f514ca9",
+    "further_write_attempts_after_block": 0,
+    "invoked_write_action": "mcp__GitHub__create_file",
+    "post_block_readback": "PR remained open/draft/unmerged at the same head; attempted Run-96 path returned GitHub 404.",
+    "pr": 1,
+    "repository": "syscoin/PVUGC",
+    "request_or_correlation_id": null,
+    "returned_error": "This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "starting_sha": "f127e33fb43ed2898bcc0a67ddbc944c5f514ca9",
+    "status": "BLOCKED_BEFORE_GITHUB",
+    "tool_timestamp": null
+  },
+  "publication_status_before_attempt": "SUPERSEDED_BY_publication",
+  "repository": "syscoin/PVUGC",
+  "run_id": "96",
+  "security_scope": {
+    "false_statement_hiding": "information-theoretic/statistical under the stated source-code spectral bound; therefore QPT-safe",
+    "jin_full_source_parameters": "UNVERIFIED",
+    "malicious_setup_composition": "UNPROVED if chosen source compiler needs setup randomness",
+    "practical_final_parameters": "UNPROVED",
+    "true_instance_arbitrary_qpt_source_extraction": "UNPROVED"
+  },
+  "source_files_read": {
+    "research/pq-wkem/GAPMDP_SHORT_KERNEL_BRIDGE_RUN92.md": "5fc79b25e140d2fba30e00c6fd168b619beabd45",
+    "research/pq-wkem/QPT_TSABARY_AUDIT_RUN80.md": "read at starting head",
+    "research/pq-wkem/SPECTRAL_DIMENSION_FLOOR_RUN89.md": "0f93693ad51f7d84c249fd02ffa361bcadd3dd84",
+    "research/pq-wkem/literature-20260924/ASSESSMENT.md": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924"
+  },
+  "starting_head": "f127e33fb43ed2898bcc0a67ddbc944c5f514ca9",
+  "title": "q-ary symmetric-noise spectral release from a Hamming-gap source",
+  "validation": {
+    "byte_identical_stdout": true,
+    "claims_checked": {
+      "asymptotic_exponent_identities": 20,
+      "exact_code_spectral_chi2": 40,
+      "message_shift_invariance": 10,
+      "min_distance_coarse_bounds": 40,
+      "plurality_exact_vs_hoeffding": 9,
+      "product_chi2_identity": 12,
+      "q_symmetric_scaling_and_convolution": 37,
+      "short_witness_channel_law": 15
+    },
+    "return_codes": [
+      0,
+      0
+    ],
+    "runs": 2,
+    "stderr_note": "The environment emitted an unrelated artifact_tool spreadsheet warmup traceback on Python startup; checker itself exited 0 both times and stdout was byte-identical."
+  }
+}

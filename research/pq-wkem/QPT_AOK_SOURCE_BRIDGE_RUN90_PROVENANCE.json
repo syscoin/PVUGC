@@ -1,0 +1,123 @@
+{
+  "artifacts": {
+    "QPT_AOK_SOURCE_BRIDGE_RUN90.md": {
+      "sha256": "1c78302abd4fd17b388239156c4fd9d626e42d04d0ee23e22a3888eda3d91c0a"
+    },
+    "qpt-aok-source-bridge-run90-validation.json": {
+      "sha256": "d4f66a7e9304c12241d6e0c4ad4957434f9d978a14934a289c9068ee4b6112ed"
+    },
+    "qpt_aok_source_bridge_run90_check.py": {
+      "sha256": "13bead36e60d4eae9f541f3ab5b6009dc754583e2ef1fcc3bb78888de23a3f52"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_execution": {
+    "byte_identical_stdout": true,
+    "command": "python3 qpt_aok_source_bridge_run90_check.py",
+    "python_syntax_check": "PASS",
+    "runs": 2,
+    "validation_json_parse": "PASS"
+  },
+  "created_utc": "2026-09-25",
+  "external_primary_sources": [
+    {
+      "accessible_source": "https://menghao303.github.io/eprint-venue/",
+      "author": "Zhengzhong Jin",
+      "claims_used": [
+        "SNARG premise: subexponential soundness and polylogarithmic online verification after input preprocessing",
+        "Karp-Levin reduction for polylog-size circuit SAT to GapMDP",
+        "extractable WE for polylog-size circuits in generic-group model"
+      ],
+      "identifier": "ePrint 2026/2063",
+      "status": "abstract/venue metadata only in this run; full manuscript not retrieved",
+      "title": "Witness Encryption for NP from SNARGs and Groups"
+    },
+    {
+      "authors": [
+        "Alessandro Chiesa",
+        "Peter Manohar",
+        "Nicholas Spooner"
+      ],
+      "claims_used": [
+        "QROM SNARG proof of knowledge against t-query quantum oracle algorithms",
+        "quantum extractor definition with black-box access",
+        "Micali PoK failure bound O(t^2 k + t^3/2^kappa)",
+        "extraction success Omega(mu - t^2 k - t^3/2^kappa)"
+      ],
+      "identifier": "TCC 2019 / ePrint 2019/834",
+      "source": "https://www.iacr.org/archive/tcc2019/11891143/11891143.pdf",
+      "status": "full primary PDF inspected",
+      "title": "Succinct Arguments in the Quantum Random Oracle Model"
+    },
+    {
+      "authors": [
+        "Alessandro Chiesa",
+        "Dev Ojha",
+        "Nicholas Spooner"
+      ],
+      "claims_used": [
+        "preprocessing non-interactive argument from holographic IOP",
+        "QROM adaptive knowledge error O(t^2*k_rbr + t^3*2^-kappa)",
+        "R1CS preprocessing zkSNARK online verifier O_kappa(|x|+log^2 m)",
+        "explicit caveat about quantum knowledge soundness with auxiliary output"
+      ],
+      "identifier": "EUROCRYPT 2020 / ePrint 2019/1076",
+      "source": "https://eprint.iacr.org/2019/1076.pdf",
+      "status": "primary PDF text inspected; screenshot endpoint returned 403 for selected pages",
+      "title": "Fractal: Post-Quantum and Transparent Recursive Proofs from Holography"
+    },
+    {
+      "claims_used": [
+        "4-message public-coin state-preserving succinct argument of knowledge from collapsing hashes; interactive, not an offline replacement"
+      ],
+      "identifier": "ePrint 2021/1543",
+      "source": "https://eprint.iacr.org/2021/1543.pdf",
+      "status": "supporting source only",
+      "title": "Post-Quantum Zero Knowledge, Revisited"
+    }
+  ],
+  "github_inputs": [
+    {
+      "blob_sha": "0f93693ad51f7d84c249fd02ffa361bcadd3dd84",
+      "path": "research/pq-wkem/SPECTRAL_DIMENSION_FLOOR_RUN89.md"
+    },
+    {
+      "blob_sha": "4fefd6c364a76fd12fe76169ddbec47e486c786b",
+      "path": "research/pq-wkem/LWE_DIRECTIONAL_TRANSPORT_RUN72.md"
+    },
+    {
+      "blob_sha": "1de16fa3048233c4bbad2af6e746d20033a811de",
+      "path": "research/pq-wkem/MASKED_VERIFIER_ORACLE_RUN76.md"
+    },
+    {
+      "blob_sha": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924",
+      "path": "research/pq-wkem/literature-20260924/ASSESSMENT.md"
+    },
+    {
+      "blob_sha": "e3c51bff4a8f3817f70b1368190b8b35893cafa2",
+      "path": "research/pq-wkem/literature-20260924/rank_field_extensions.py"
+    }
+  ],
+  "limitations": [
+    "Full Jin 2026/2063 manuscript was not retrieved, so exact interface and subexponential-security convention remain unaudited.",
+    "Composition of a future release extractor with a QROM AoK extractor requires compatible quantum state/auxiliary-output handling.",
+    "No random-oracle instantiation theorem is supplied.",
+    "No practical complete WKEM construction or malicious setup proof is supplied.",
+    "In the composition bound, T is the total QROM query count of the induced proof generator, including the release-to-proof reduction."
+  ],
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "research_scope": "QPT argument-of-knowledge source bridge; no production code",
+  "run": 90,
+  "security_classification": {
+    "adversary": "t-query quantum/QPT oracle prover with superposition RO queries",
+    "arbitrary_qpt_final_key_recovery_to_original_witness_or_pq_break": "UNPROVED",
+    "conclusion": "conditional accepting-proof-to-original-witness bridge only",
+    "false_statement_qpt_hiding": "UNPROVED",
+    "hardness_assumption": "none inside ideal QROM extraction theorem; QROM is not a standard-model QPT-hard assumption",
+    "honest_algorithms": "classical PPT for the QROM argument/indexer/prover/verifier",
+    "reduction": "quantum black-box extractor; no silent classical-rewinding substitution",
+    "standard_model_release": "UNPROVED"
+  },
+  "starting_verified_head": "ff14c55c7d3449d692d0f1da0243239f2472bd21"
+}
