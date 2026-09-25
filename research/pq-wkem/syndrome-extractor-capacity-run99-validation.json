@@ -1,0 +1,204 @@
+{
+  "counts": {
+    "exact_small_code_fixtures": 4,
+    "geometry_preserving_invariance_checks": 4,
+    "parameter_tradeoff_rows": 4,
+    "q_symmetric_entropy_formula_checks": 16,
+    "random_linear_extractor_benchmarks": 3
+  },
+  "fixtures": [
+    {
+      "S": "13/32",
+      "active_columns": 3,
+      "beta": "1/2",
+      "chi2": "13/32",
+      "entropy_source_lower_nats": -0.40546510810816416,
+      "k": 2,
+      "m": 3,
+      "macwilliams_zero_word_lower": "1/8",
+      "noise_entropy_per_coordinate_nats": 0.8675632284814612,
+      "q": 3,
+      "r": 1,
+      "random_direction_key_tv": "1/4",
+      "syndrome_entropy_nats": 2.043033964527649,
+      "tv_masked_to_uniform": "7/36",
+      "tv_syndrome_to_uniform": "7/36"
+    },
+    {
+      "S": "729/512",
+      "active_columns": 4,
+      "beta": "3/4",
+      "chi2": "729/512",
+      "entropy_source_lower_nats": -0.06711837850229596,
+      "k": 2,
+      "m": 4,
+      "macwilliams_zero_word_lower": "46657/36864",
+      "noise_entropy_per_coordinate_nats": 0.5660857389596289,
+      "q": 3,
+      "r": 2,
+      "random_direction_key_tv": "3/8",
+      "syndrome_entropy_nats": 1.7613632318242236,
+      "tv_masked_to_uniform": "3/8",
+      "tv_syndrome_to_uniform": "3/8"
+    },
+    {
+      "S": "832/243",
+      "active_columns": 3,
+      "beta": "2/3",
+      "chi2": "832/243",
+      "entropy_source_lower_nats": 0.3700948217179856,
+      "k": 2,
+      "m": 3,
+      "macwilliams_zero_word_lower": "2396/729",
+      "noise_entropy_per_coordinate_nats": 0.9495936677167384,
+      "q": 5,
+      "r": 1,
+      "random_direction_key_tv": "592/1125",
+      "syndrome_entropy_nats": 2.480486040651913,
+      "tv_masked_to_uniform": "16/45",
+      "tv_syndrome_to_uniform": "16/45"
+    },
+    {
+      "S": "2162688/390625",
+      "active_columns": 4,
+      "beta": "4/5",
+      "chi2": "2162688/390625",
+      "entropy_source_lower_nats": 0.5729679161460992,
+      "k": 2,
+      "m": 4,
+      "macwilliams_zero_word_lower": "52976616/9765625",
+      "noise_entropy_per_coordinate_nats": 0.6614769771805253,
+      "q": 5,
+      "r": 2,
+      "random_direction_key_tv": "44032/78125",
+      "syndrome_entropy_nats": 2.222095899853877,
+      "tv_masked_to_uniform": "7168/15625",
+      "tv_syndrome_to_uniform": "7168/15625"
+    }
+  ],
+  "limitations": [
+    "rate/entropy conditions are necessary, not sufficient, for statement-derived source codes",
+    "large chi-square does not alone prove large TV; the actual-TV barrier comes from syndrome equivalence plus entropy continuity",
+    "no claim Jin 2026/2063 satisfies or violates these rate conditions without its exact source parameters",
+    "arbitrary-QPT true-instance final-key recovery to ORIGINAL witness remains unproved",
+    "checks validate exact finite-field probability identities and parameter arithmetic, not cryptographic hardness",
+    "random-linear extraction is only a benchmark: the statement-derived syndrome map cannot be replaced by an independent random map without preserving true witness relations"
+  ],
+  "parameter_tradeoff": [
+    {
+      "beta": 0.6484197773255048,
+      "c": 2,
+      "coarse_small_chi2_ceiling": 0.07812489251181116,
+      "d": 64,
+      "eta_nonzero_noise_mass": 0.35157485806789623,
+      "lambda": 1048576,
+      "necessary_actual_TV_rate_ceiling": 0.41004096132218715,
+      "necessary_small_chi2_rate_ceiling": 0.07812299605663597,
+      "q": 65537,
+      "t=lambda^-c": 9.094947017729282e-13
+    },
+    {
+      "beta": 0.8973545375015536,
+      "c": 2,
+      "coarse_small_chi2_ceiling": 0.01953122312795279,
+      "d": 256,
+      "eta_nonzero_noise_mass": 0.10264389627688457,
+      "lambda": 1048576,
+      "necessary_actual_TV_rate_ceiling": 0.13247627359950087,
+      "necessary_small_chi2_rate_ceiling": 0.01953089037132083,
+      "q": 65537,
+      "t=lambda^-c": 9.094947017729282e-13
+    },
+    {
+      "beta": 0.921983284479313,
+      "c": 3,
+      "coarse_small_chi2_ceiling": 0.011758981652197673,
+      "d": 512,
+      "eta_nonzero_noise_mass": 0.07801663750420554,
+      "lambda": 1048576,
+      "necessary_actual_TV_rate_ceiling": 0.09784205370785966,
+      "necessary_small_chi2_rate_ceiling": 0.011758968884199805,
+      "q": 1000003,
+      "t=lambda^-c": 8.67361737988405e-19
+    },
+    {
+      "beta": 0.9732872087896166,
+      "c": 2,
+      "coarse_small_chi2_ceiling": 0.002613107600367169,
+      "d": 1024,
+      "eta_nonzero_noise_mass": 0.0267127911836706,
+      "lambda": 1048576,
+      "necessary_actual_TV_rate_ceiling": 0.03265407879576433,
+      "necessary_small_chi2_rate_ceiling": 0.002613107597681963,
+      "q": 1000000007,
+      "t=lambda^-c": 9.094947017729282e-13
+    }
+  ],
+  "random_linear_extractor_benchmarks": [
+    {
+      "beta": "1/2",
+      "expected_chi2": "125/512",
+      "k": 1,
+      "m": 3,
+      "matrices_enumerated": 8,
+      "mean_chi2": "125/512",
+      "product_collision_probability": "125/512",
+      "q": 2
+    },
+    {
+      "beta": "2/3",
+      "expected_chi2": "578/729",
+      "k": 1,
+      "m": 2,
+      "matrices_enumerated": 9,
+      "mean_chi2": "578/729",
+      "product_collision_probability": "289/729",
+      "q": 3
+    },
+    {
+      "beta": "3/4",
+      "expected_chi2": "46875/32768",
+      "k": 2,
+      "m": 3,
+      "matrices_enumerated": 64,
+      "mean_chi2": "46875/32768",
+      "product_collision_probability": "15625/32768",
+      "q": 2
+    }
+  ],
+  "repetition_invariance": [
+    {
+      "beta_inner": "1/2",
+      "beta_outer": "1/4",
+      "chi2": "1/128",
+      "ell": 2,
+      "k": 1,
+      "m": 2,
+      "q": 3
+    },
+    {
+      "beta_inner": "1/2",
+      "beta_outer": "1/4",
+      "chi2": "3/256",
+      "ell": 2,
+      "k": 2,
+      "m": 3,
+      "q": 2
+    }
+  ],
+  "run": 99,
+  "seed_tag": "run99-deterministic-no-rng",
+  "status": "PASS",
+  "validated": [
+    "masked capsule distribution is exactly a uniform lift of the q-ary symmetric noise syndrome",
+    "TV and chi-square to uniform are exactly preserved by passing to the quotient syndrome",
+    "random-direction one-bit key TV equals average syndrome shift-TV and lies between syndrome-TV and twice syndrome-TV",
+    "Run-96/98 spectral sum S is exactly syndrome chi-square",
+    "MacWilliams identity gives an exact dual expression and a zero-dual-word lower bound on S+1",
+    "actual negligible statistical hiding requires active-column source rate no larger than normalized q-ary symmetric noise entropy up to continuity slack",
+    "small-chi-square certification imposes the stronger exact rate ceiling 1-log_q(1+(q-1)beta^2)",
+    "a uniformly random linear syndrome map meets the Renyi-2 threshold in expectation: E chi2=(q^k-1) CP(E)^m",
+    "row-space basis changes/monomial coordinate isometries preserve the q-symmetric syndrome law, and zero-column padding does not improve it",
+    "coordinate repetition with beta_inner^ell fixed exactly preserves the syndrome distribution"
+  ]
+}
