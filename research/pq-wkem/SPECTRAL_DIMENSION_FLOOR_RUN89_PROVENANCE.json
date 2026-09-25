@@ -1,0 +1,68 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "execution": {
+    "byte_identical_stdout": true,
+    "checker_runs": 2,
+    "cwd_shape": "repository-shaped local directory containing the already-published rank_field_extensions.py dependency",
+    "seed": 20260925061319,
+    "tests_are_security_evidence": false
+  },
+  "limitations": [
+    "A_sigma>1 falsifies the Run-88 sufficient Parseval/additive-share contraction condition; it is not by itself a lower bound on total variation or an efficient key-recovery attack.",
+    "No concrete QPT-hard public release assumption/reduction is established.",
+    "Jin ePrint 2026/2063 was available only at abstract/listing level in this run; its full extraction chain is not claimed verified.",
+    "Runs 86-88 previously denied publication are not retried or republished here."
+  ],
+  "local_immediate_handoff": {
+    "checker_sha256": "07f1a9c7b84a438283f1b4ffa1b80a99fd06ba7ae11c6c966070060f7f986276",
+    "note": "Run 88 remains local-only due its previously reported denied publication; this run does not retry or reroute it.",
+    "proof_sha256": "a1f2e274a6d428ad72195055b56fbec3ce416d7abd2be493a8eb3aa682bf669f",
+    "run": 88,
+    "validation_sha256": "92b25cc6311d3ad26cddecec49395bf2c06162bd1cdbd41943aabe6882d0ba27"
+  },
+  "new_result_scope": "Unconditional finite-field algebra: global rank ceiling plus an explicit source-dimension lower bound makes the Run-88 fixed-frequency squared Fourier bucket exceed one on the Hair-Sahai false family for N>=5, R=floor(log2 N), 2r<t. This kills that sufficient spectral contraction proof, not the underlying capsule itself.",
+  "pr": 1,
+  "primary_sources": [
+    {
+      "authors": "Isaac M. Hair; Amit Sahai",
+      "title": "Witness Encryption via Prime-Order Generic Groups",
+      "url": "https://arxiv.org/abs/2609.18275",
+      "used_for": "Sections 4.3-4.6 source construction: constant weight, common right factor, m x (N+1) rectangular matrices padded by zero columns, polynomial-time source-basis computation. Classical generic-group WE security is NOT imported.",
+      "version": "arXiv:2609.18275v1 (16 Sep 2026)"
+    },
+    {
+      "author": "Zhengzhong Jin",
+      "title": "Witness Encryption for NP from SNARGs and Groups",
+      "url": "https://eprint.iacr.org/2026/2063",
+      "used_for": "abstract-level next-lead only; full proof was not accessible/audited in this run",
+      "version": "IACR ePrint 2026/2063, listing last updated 19 Sep 2026"
+    }
+  ],
+  "quantum_status": {
+    "adversary_model_for_new_result": "none required; unconditional algebra/counting",
+    "arbitrary_qpt_final_key_to_original_witness_or_pq_break": "UNPROVED",
+    "hardness_assumption": "none for the new barrier",
+    "honest_algorithms": "classical PPT as in the candidate construction; unchanged by this run",
+    "qpt_false_hiding": "UNPROVED; Run-88 sufficient statistical/QPT hiding route falsified on the explicit family",
+    "reduction_model": "direct linear algebra and counting; no rewinding, QROM, extraction, superposition-query or auxiliary-quantum-state argument"
+  },
+  "repository": "syscoin/PVUGC",
+  "repository_dependencies": [
+    {
+      "blob": "6430557fd1596308db029d17b48549f9ed9490c8",
+      "path": "research/pq-wkem/FINITE_DIFFERENCE_LOWRANK_RUN82.md"
+    },
+    {
+      "blob": "e3c51bff4a8f3817f70b1368190b8b35893cafa2",
+      "path": "research/pq-wkem/literature-20260924/rank_field_extensions.py"
+    }
+  ],
+  "run": 89,
+  "sha256": {
+    "checker": "b5f96e1f651f30ba2926c7a8eeea3ab62ec1bc5197d129ffb8ae6be0404a9ff5",
+    "proof": "8376bea39a949685665f956cee77686e82942105b53e26a13478ea379f74f4fd",
+    "validation": "2eb355d2e39cbe1606f64fc72dfcfe03c3a0835aa782dcf92dfe00b0804e15e9"
+  },
+  "starting_verified_pr_head": "52b5cc0d3650ed6c29dbf2225ecbfc9c08208503",
+  "title": "source-dimension / common-support floor for the Run-88 additive-share spectral bucket"
+}
