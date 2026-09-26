@@ -1,0 +1,49 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checkpoint_comment_id": 5814070930,
+  "external_web_or_literature_used": false,
+  "github_scope": "requested PQ WKEM research record only",
+  "local_sha256": {
+    "checker": "9e501f2bfb86dcee347ff0c2b3ab41e29095a42615f40b70f09514e7fc6073b8",
+    "proof": "62363e7ea984b8ed459fee23a150850447e102d5619165e4ca19664f60e7c73f",
+    "validation": "fb3c2530d9267240801dd0d854e04e2b91907268fa46c493a4c8c808fc1121f3"
+  },
+  "pr_number": 1,
+  "production_code_modified": false,
+  "publication_plan": [
+    "research/pq-wkem/SOURCE_GATE_PRODUCT_RUN73.md",
+    "research/pq-wkem/source_gate_product_run73_check.py",
+    "research/pq-wkem/source-gate-product-run73-validation.json",
+    "research/pq-wkem/SOURCE_GATE_PRODUCT_RUN73_PROVENANCE.json"
+  ],
+  "repository": "syscoin/PVUGC",
+  "run": 73,
+  "starting_pr_head": "fec61cb879180f4f4c833300cbd904e9694e3984",
+  "status": {
+    "completed_generic_np_wkem": false,
+    "proved_negative_or_boundary": [
+      "zero-witness CNF (not x) AND (not y) AND (x OR y) gives exact public affine target recovery from three invalid full assignments",
+      "all linear clause-defect embeddings preserve that recovery",
+      "false family (AND_i not x_i) AND (OR_i x_i) defeats every explicit multilinear feature lift of degree below r by inclusion-exclusion"
+    ],
+    "proved_positive": [
+      "polynomial CNF product compiler gives one global terminal target shared by every satisfying assignment",
+      "hidden-basis target is uniform over nonzero vectors and therefore negligibly close to a uniform LWE parent at cryptographic dimension",
+      "candidate composes semantically with the Run-72 standard-LWE transport"
+    ],
+    "remaining": [
+      "compact computationally hidden nonlinear source encoder with source-witness extraction/PQ reduction",
+      "arbitrary-QPT final-key recovery to source witness or independent PQ break",
+      "false-statement complete-output hiding for a completed construction",
+      "malicious-secure distributed setup/erasure and auxiliary-input composition",
+      "concrete secure parameters and resource estimates"
+    ],
+    "stopping_condition_met": false
+  },
+  "tests": {
+    "byte_identical_validation_outputs": true,
+    "checker_executions": 2,
+    "claims": "finite algebra/correctness validation only; security conclusions come from explicit algebra/reductions",
+    "deterministic_seed": 730073001
+  }
+}

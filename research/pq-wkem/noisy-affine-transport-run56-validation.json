@@ -1,0 +1,19 @@
+{
+  "general_exact_telescoping": 600,
+  "general_fullrank_noiseless_attacks": 500,
+  "general_fullrank_sampling_attempts": 523,
+  "seed": 5678689,
+  "signed_permutation": {
+    "L": 12,
+    "all_even_parity_witness_decodes": 368640,
+    "d": 2,
+    "delta_key": 8192,
+    "max_observed_attack_entry_noise": 4,
+    "max_observed_honest_entry_noise": 22,
+    "proved_attack_entry_bound": 6,
+    "proved_honest_entry_bound": 24,
+    "public_attack_recoveries": 180,
+    "q": 65537,
+    "setups": 180
+  }
+}

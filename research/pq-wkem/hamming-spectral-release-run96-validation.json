@@ -1,0 +1,223 @@
+{
+  "claims_checked": {
+    "asymptotic_exponent_identities": 20,
+    "exact_code_spectral_chi2": 40,
+    "message_shift_invariance": 10,
+    "min_distance_coarse_bounds": 40,
+    "plurality_exact_vs_hoeffding": 9,
+    "product_chi2_identity": 12,
+    "q_symmetric_scaling_and_convolution": 37,
+    "short_witness_channel_law": 15
+  },
+  "parameter_examples": [
+    {
+      "L": 2015166,
+      "c": 1,
+      "coarse_single_chi2": 5.659713062581144e-73,
+      "correctness_upper": 2.103492778589499e-07,
+      "gamma": 16,
+      "k": 16,
+      "lambda": 256,
+      "pairwise_tv_upper": 1.0679541812956862e-33,
+      "q": 2,
+      "ratio_klogq_over_gaploglambda": 0.13333333333333333,
+      "t": 0.00390625
+    },
+    {
+      "L": 132065918851,
+      "c": 2,
+      "coarse_single_chi2": 3.2033329515471274e-145,
+      "correctness_upper": 2.1034928091993478e-07,
+      "gamma": 16,
+      "k": 32,
+      "lambda": 256,
+      "pairwise_tv_upper": 2.0568206281340074e-67,
+      "q": 2,
+      "ratio_klogq_over_gaploglambda": 0.26666666666666666,
+      "t": 1.52587890625e-05
+    },
+    {
+      "L": 2015166,
+      "c": 1,
+      "coarse_single_chi2": 3.2033329515471274e-145,
+      "correctness_upper": 2.103492778589499e-07,
+      "gamma": 32,
+      "k": 32,
+      "lambda": 256,
+      "pairwise_tv_upper": 8.03445558245076e-70,
+      "q": 2,
+      "ratio_klogq_over_gaploglambda": 0.12903225806451613,
+      "t": 0.00390625
+    },
+    {
+      "L": 2015166,
+      "c": 1,
+      "coarse_single_chi2": 1.0261342003245941e-289,
+      "correctness_upper": 2.103492778589499e-07,
+      "gamma": 64,
+      "k": 64,
+      "lambda": 256,
+      "pairwise_tv_upper": 4.547340708514495e-142,
+      "q": 2,
+      "ratio_klogq_over_gaploglambda": 0.12698412698412698,
+      "t": 0.00390625
+    }
+  ],
+  "plurality_examples": [
+    {
+      "L": 8,
+      "bias": "1/4",
+      "exact_tie_as_error": 0.3974609375,
+      "hoeffding_union_bound": 1.5576015661428098
+    },
+    {
+      "L": 12,
+      "bias": "1/4",
+      "exact_tie_as_error": 0.28851318359375,
+      "hoeffding_union_bound": 1.3745785575819445
+    },
+    {
+      "L": 20,
+      "bias": "1/4",
+      "exact_tie_as_error": 0.18898811377584934,
+      "hoeffding_union_bound": 1.0705228570379806
+    },
+    {
+      "L": 8,
+      "bias": "1/2",
+      "exact_tie_as_error": 0.10928212162780064,
+      "hoeffding_union_bound": 0.7357588823428847
+    },
+    {
+      "L": 12,
+      "bias": "1/2",
+      "exact_tie_as_error": 0.04384494233602601,
+      "hoeffding_union_bound": 0.44626032029685964
+    },
+    {
+      "L": 20,
+      "bias": "1/2",
+      "exact_tie_as_error": 0.009029942743511774,
+      "hoeffding_union_bound": 0.1641699972477976
+    },
+    {
+      "L": 8,
+      "bias": "3/4",
+      "exact_tie_as_error": 0.00786474408436214,
+      "hoeffding_union_bound": 0.21079844912372867
+    },
+    {
+      "L": 12,
+      "bias": "3/4",
+      "exact_tie_as_error": 0.000878012568547414,
+      "hoeffding_union_bound": 0.06843623662333206
+    },
+    {
+      "L": 20,
+      "bias": "3/4",
+      "exact_tie_as_error": 1.3888561511418525e-05,
+      "hoeffding_union_bound": 0.007213126272031461
+    }
+  ],
+  "run": "96",
+  "scope": [
+    "Algebra/probability validation only.",
+    "No claim that Jin 2026/2063 has the required code dimension/source-extraction parameters.",
+    "No arbitrary-QPT true-instance key-recovery extractor is implemented or proved.",
+    "No deployment parameters are claimed."
+  ],
+  "seed": 960096,
+  "spectral_examples": [
+    {
+      "chi2": "47/128",
+      "coarse_bound": "7/4",
+      "cols": 5,
+      "kernel_dimension": 3,
+      "min_distance": 1,
+      "q": 2,
+      "rows": 2
+    },
+    {
+      "chi2": "421/1024",
+      "coarse_bound": "7/4",
+      "cols": 5,
+      "kernel_dimension": 3,
+      "min_distance": 1,
+      "q": 2,
+      "rows": 2
+    },
+    {
+      "chi2": "169/256",
+      "coarse_bound": "7/4",
+      "cols": 5,
+      "kernel_dimension": 3,
+      "min_distance": 1,
+      "q": 2,
+      "rows": 2
+    },
+    {
+      "chi2": "169/256",
+      "coarse_bound": "7/4",
+      "cols": 5,
+      "kernel_dimension": 3,
+      "min_distance": 1,
+      "q": 2,
+      "rows": 2
+    },
+    {
+      "chi2": "49/256",
+      "coarse_bound": "7/16",
+      "cols": 5,
+      "kernel_dimension": 3,
+      "min_distance": 2,
+      "q": 2,
+      "rows": 2
+    },
+    {
+      "chi2": "47/128",
+      "coarse_bound": "7/4",
+      "cols": 5,
+      "kernel_dimension": 3,
+      "min_distance": 1,
+      "q": 2,
+      "rows": 2
+    },
+    {
+      "chi2": "47/128",
+      "coarse_bound": "7/4",
+      "cols": 5,
+      "kernel_dimension": 3,
+      "min_distance": 1,
+      "q": 2,
+      "rows": 2
+    },
+    {
+      "chi2": "47/128",
+      "coarse_bound": "7/4",
+      "cols": 5,
+      "kernel_dimension": 3,
+      "min_distance": 1,
+      "q": 2,
+      "rows": 2
+    },
+    {
+      "chi2": "421/1024",
+      "coarse_bound": "7/4",
+      "cols": 5,
+      "kernel_dimension": 3,
+      "min_distance": 1,
+      "q": 2,
+      "rows": 2
+    },
+    {
+      "chi2": "31/64",
+      "coarse_bound": "7/4",
+      "cols": 5,
+      "kernel_dimension": 3,
+      "min_distance": 1,
+      "q": 2,
+      "rows": 2
+    }
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,117 @@
+{
+  "artifact_sha256": {
+    "NOISY_GADGET_PROJECTION_BARRIER_RUN110.md": "e98f408911c3dd298fb4cc3be9fdad84c04b136fafd41a8f1a6bb68f9fb75097",
+    "noisy-gadget-projection-run110-validation.json": "f25ee414e22493d353a10d31bbaacf2bb9280a69b57b8ca8551d279d1a6033f4",
+    "noisy_gadget_projection_run110_check.py": "40144fd6dccea256661c4745d76c66e86804ac18ceb1ae0138bc25e4ca0dd8c8"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "byte_identical_stdout": true,
+    "executions": 3,
+    "path": "research/pq-wkem/noisy_gadget_projection_run110_check.py",
+    "status": "PASS",
+    "total_assertions": 59662
+  },
+  "exact_repository_inputs": [
+    {
+      "blob_sha": "91ebfdb8d712bc9a092b30af21048ea7bd04a109",
+      "path": "research/pq-wkem/HIDDEN_INPUT_EPHF_BOUNDARY_RUN109.md"
+    },
+    {
+      "blob_sha": "5ec37cfcf47fcdc68d279af1dc1b6c90a7287c8d",
+      "path": "research/pq-wkem/FULL_KEY_ONE_COPY_QPT_EXTRACTION_RUN102.md"
+    },
+    {
+      "blob_sha": "82d89e7b519118e3ab375713dbed431753ddde11",
+      "path": "research/pq-wkem/AFFINE_COMMON_TARGET_RTLWE_BARRIER_RUN95.md"
+    },
+    {
+      "blob_sha": "5fc79b25e140d2fba30e00c6fd168b619beabd45",
+      "path": "research/pq-wkem/GAPMDP_SHORT_KERNEL_BRIDGE_RUN92.md"
+    },
+    {
+      "blob_sha": "4fefd6c364a76fd12fe76169ddbec47e486c786b",
+      "path": "research/pq-wkem/LWE_DIRECTIONAL_TRANSPORT_RUN72.md"
+    },
+    {
+      "blob_sha": "f8634c5dd2bc29796f152ebde67064fe55045cc9",
+      "path": "research/pq-wkem/SIS_RANDOMIZED_SHORT_KERNEL_LIFT_RUN42.md"
+    }
+  ],
+  "latest_substantive_comment": {
+    "id": 5842442762,
+    "scope": "Run 109 published and verified"
+  },
+  "literature": [
+    {
+      "pdf_screenshot": "Attempted as required; ePrint screenshot returned cache-miss error, while parsed primary PDF text was available.",
+      "verified_scope": [
+        "powers-of-two gadget g=(1,2,4,...), ell=ceil(log2 q)",
+        "public binary gadget decomposition g^-1(u)",
+        "verification equation uses C-x^T tensor g^T and short opening S",
+        "selective evaluation binding theorem is PPT/SIS"
+      ],
+      "version": "ePrint 2022/1368 / EUROCRYPT 2023",
+      "work": "de Castro\u2013Peikert, Functional Commitments for All Functions, with Transparent Setup and from SIS"
+    },
+    {
+      "verified_scope": "standard public powers-of-two gadget/trapdoor lineage; no security theorem imported into this run",
+      "version": "EUROCRYPT 2012 / ePrint 2011/501",
+      "work": "Micciancio\u2013Peikert, Trapdoors for Lattices: Simpler, Tighter, Faster, Smaller"
+    }
+  ],
+  "local_predecessor": {
+    "archive": "/mnt/data/wkem_sis_fc_common_target_run108.zip",
+    "archive_sha256": "d28d4440e19fbd77391954b30cecbf017f87058977bc005fbf8aa1e3c955fda4",
+    "note": "Not retried or republished; Run 110 upgrades its finite noisy-gadget control to a general theorem.",
+    "publication_status": "PARTIALLY_PUBLISHED_WITH_ZERO_BRANCH_VISIBLE_PATHS",
+    "run": 108
+  },
+  "new_results": [
+    "full powers-of-two gadget code has centered l_infinity minimum distance at least q/3",
+    "bounded error B<q/6 gives deterministic unique recovery of every hidden gadget-projection key coordinate",
+    "for polynomial modulus q the recovery is classical PPT by candidate enumeration",
+    "ordinary worst-case correctness with at least one selected gadget block and opening l1 norm >=1 forces B<q/8<q/6",
+    "public short well-conditioned gadget randomization links preserve the noisy recovery attack"
+  ],
+  "pr": 1,
+  "publication": {
+    "attempted_action": "mcp__GitHub__create_blob",
+    "attempted_path": "research/pq-wkem/NOISY_GADGET_PROJECTION_BARRIER_RUN110.md",
+    "comment_id": null,
+    "commit_sha": null,
+    "outstanding_local_only_paths": [
+      "research/pq-wkem/NOISY_GADGET_PROJECTION_BARRIER_RUN110.md",
+      "research/pq-wkem/noisy_gadget_projection_run110_check.py",
+      "research/pq-wkem/noisy-gadget-projection-run110-validation.json",
+      "research/pq-wkem/NOISY_GADGET_PROJECTION_BARRIER_RUN110_PROVENANCE.json"
+    ],
+    "post_block_write_attempts": 0,
+    "pr_state_after_block": {
+      "draft": true,
+      "merged": false,
+      "state": "open"
+    },
+    "request_or_correlation_id": null,
+    "returned_error": "Script error: This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "starting_and_final_head": "568446e21cedb83c07c20227cd9c443f51fabb82",
+    "status": "BLOCKED_BEFORE_GITHUB",
+    "tool_timestamp": null,
+    "verified_path_absent_after_block": true
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 110,
+  "security_classification": {
+    "attack_model": "classical PPT for q=poly(lambda); therefore QPT-available",
+    "general_hidden_input_ephf": "UNPROVED",
+    "hardness_assumptions": "none",
+    "scope": "natural full powers-of-two noisy universal projection with sufficiently bounded noise",
+    "stopping_condition": "UNMET"
+  },
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "state": "open"
+  },
+  "starting_sha": "568446e21cedb83c07c20227cd9c443f51fabb82"
+}

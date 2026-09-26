@@ -1,0 +1,66 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "created_utc": "2026-09-25T09:19:08Z",
+  "exact_inputs": {
+    "research/pq-wkem/GAPMDP_SHORT_KERNEL_BRIDGE_RUN92.md": "5fc79b25e140d2fba30e00c6fd168b619beabd45",
+    "research/pq-wkem/SIS_RANDOMIZED_SHORT_KERNEL_LIFT_RUN42.md": "f8634c5dd2bc29796f152ebde67064fe55045cc9",
+    "research/pq-wkem/literature-20260924/rank_field_extensions.py": "e3c51bff4a8f3817f70b1368190b8b35893cafa2"
+  },
+  "file_sha256": {
+    "IDENTITY_TAIL_STRUCTURED_TARGET_RUN93.md": "6bec94bb38f000ee9ab9919b79830fe8b81b4baf763dcc9a20facbc3b0411785",
+    "identity-tail-structured-target-run93-validation.json": "263aabe62e6f9ff92d1726312c669b8545ad48d299fad61bfc0f879eaa652bc0",
+    "identity_tail_source_transfer_run93_check.py": "fceedc88a3daef2b32724e420b5baa0a97e10206f8705ec486b51fbff54de155"
+  },
+  "new_claim_scope": [
+    "identity-tail K=[K0;I] gives exact left inverse from supplied image decoder to source relation and norm lower bound",
+    "one-bit witness correctness algebra is exact conditional on short K0/error parameters",
+    "K^T public projection collapses capsule to noisy linear sample over statement target T_x",
+    "WWW22 Theorem 4.2 transversality gate excludes same-direction M=u^T query; theorem does not prove this candidate",
+    "no false-statement QPT hiding or arbitrary-QPT source extraction theorem"
+  ],
+  "pr": 1,
+  "primary_literature": [
+    {
+      "author": "Rotem Tsabary",
+      "title": "Candidate Witness Encryption from Lattice Techniques",
+      "url": "https://crypto.iacr.org/2022/papers/530630_1_En_19_Chapter_OnlinePDF.pdf",
+      "used": "Section 3.2 Assumption 31; trapdoor target/prefix correlated-LWE boundary; construction context",
+      "venue": "CRYPTO 2022"
+    },
+    {
+      "authors": "Brent Waters; Hoeteck Wee; David J. Wu",
+      "eprint": "2022/1194",
+      "title": "Multi-Authority ABE from Lattices without Random Oracles",
+      "url": "https://eprint.iacr.org/2022/1194.pdf",
+      "used": "Assumption 4.1, Theorem 4.2, Lemmas 4.3-4.7; transverse generalized related-trapdoor LWE from plain LWE"
+    }
+  ],
+  "publication_attempt": {
+    "action": "mcp__GitHub__create_file",
+    "correlation_id": null,
+    "error": "This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "note": "No further GitHub write attempt was made after the explicit safety block.",
+    "path": "research/pq-wkem/IDENTITY_TAIL_STRUCTURED_TARGET_RUN93.md",
+    "post_block_readback": {
+      "head": "f127e33fb43ed2898bcc0a67ddbc944c5f514ca9",
+      "path_present": false,
+      "pr_draft": true,
+      "pr_merged": false
+    },
+    "request_id": null,
+    "status": "BLOCKED_BEFORE_GITHUB",
+    "tool_timestamp": null
+  },
+  "publication_status": "BLOCKED_BEFORE_GITHUB",
+  "run": 93,
+  "starting_head": "f127e33fb43ed2898bcc0a67ddbc944c5f514ca9",
+  "starting_repository": "syscoin/PVUGC",
+  "validation": {
+    "byte_identical": true,
+    "captured_json_sha256": "263aabe62e6f9ff92d1726312c669b8545ad48d299fad61bfc0f879eaa652bc0",
+    "checker_sha256": "fceedc88a3daef2b32724e420b5baa0a97e10206f8705ec486b51fbff54de155",
+    "command": "python identity_tail_source_transfer_run93_check.py",
+    "note": "toy modular solver is not a lattice trapdoor Gaussian sampler; no practical noise parameters inferred",
+    "runs": 2
+  }
+}

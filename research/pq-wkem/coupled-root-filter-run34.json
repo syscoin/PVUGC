@@ -1,0 +1,75 @@
+{
+  "construction": "p-adically coupled affine-root share filter over Z_(p^2)",
+  "experiments": {
+    "11": {
+      "components": 90,
+      "false_decode_kinds": {"unit": 22000, "zero": 500},
+      "false_final_recoveries": 250,
+      "false_local_decodes": 22500,
+      "false_trials": 250,
+      "lift_identity": {"adjusted_kernel_mod_p2": true, "adjusted_t0_e": 110, "adjusted_t1_e": 0, "base_t0_e": 0, "base_t1_e": 11, "same_mod_p": true},
+      "old_run33_splice_control_trials": 2200,
+      "old_run33_splice_error_histogram": {"0": 179, "1": 212, "10": 208, "2": 186, "3": 197, "4": 205, "5": 193, "6": 210, "7": 196, "8": 238, "9": 176},
+      "residues_per_capsule": 11,
+      "true_final_recoveries": 250,
+      "true_local_decodes": 22500,
+      "true_trials": 250
+    },
+    "13": {
+      "components": 110,
+      "false_decode_kinds": {"unit": 27000, "zero": 500},
+      "false_final_recoveries": 250,
+      "false_local_decodes": 27500,
+      "false_trials": 250,
+      "lift_identity": {"adjusted_kernel_mod_p2": true, "adjusted_t0_e": 156, "adjusted_t1_e": 0, "base_t0_e": 0, "base_t1_e": 13, "same_mod_p": true},
+      "old_run33_splice_control_trials": 2600,
+      "old_run33_splice_error_histogram": {"0": 189, "1": 198, "10": 207, "11": 205, "12": 192, "2": 202, "3": 207, "4": 212, "5": 199, "6": 190, "7": 213, "8": 196, "9": 190},
+      "residues_per_capsule": 11,
+      "true_final_recoveries": 250,
+      "true_local_decodes": 27500,
+      "true_trials": 250
+    },
+    "5": {
+      "components": 30,
+      "false_decode_kinds": {"unit": 7000, "zero": 500},
+      "false_final_recoveries": 250,
+      "false_local_decodes": 7500,
+      "false_trials": 250,
+      "lift_identity": {"adjusted_kernel_mod_p2": true, "adjusted_t0_e": 20, "adjusted_t1_e": 0, "base_t0_e": 0, "base_t1_e": 5, "same_mod_p": true},
+      "old_run33_splice_control_trials": 1000,
+      "old_run33_splice_error_histogram": {"0": 187, "1": 204, "2": 186, "3": 199, "4": 224},
+      "residues_per_capsule": 11,
+      "true_final_recoveries": 250,
+      "true_local_decodes": 7500,
+      "true_trials": 250
+    },
+    "7": {
+      "components": 50,
+      "false_decode_kinds": {"unit": 12000, "zero": 500},
+      "false_final_recoveries": 250,
+      "false_local_decodes": 12500,
+      "false_trials": 250,
+      "lift_identity": {"adjusted_kernel_mod_p2": true, "adjusted_t0_e": 42, "adjusted_t1_e": 0, "base_t0_e": 0, "base_t1_e": 7, "same_mod_p": true},
+      "old_run33_splice_control_trials": 1400,
+      "old_run33_splice_error_histogram": {"0": 209, "1": 166, "2": 207, "3": 192, "4": 203, "5": 190, "6": 233},
+      "residues_per_capsule": 11,
+      "true_final_recoveries": 250,
+      "true_local_decodes": 12500,
+      "true_trials": 250
+    }
+  },
+  "false_base_pair_differences": [-1, -1, 3, 1, -1],
+  "false_boolean_witnesses": [],
+  "local_channel_exhaustive": [
+    {"nonzero_p_multiple_cases": 2, "nonzero_p_multiple_hidden_cases": 2, "p": 3, "unit_e_cases": 6, "unit_e_partition_cases": 6, "zero_e_cases": 1, "zero_e_exposes_q_cases": 1},
+    {"nonzero_p_multiple_cases": 4, "nonzero_p_multiple_hidden_cases": 4, "p": 5, "unit_e_cases": 20, "unit_e_partition_cases": 20, "zero_e_cases": 1, "zero_e_exposes_q_cases": 1},
+    {"nonzero_p_multiple_cases": 6, "nonzero_p_multiple_hidden_cases": 6, "p": 7, "unit_e_cases": 42, "unit_e_partition_cases": 42, "zero_e_cases": 1, "zero_e_exposes_q_cases": 1}
+  ],
+  "old_splice_pair_differences": [-1, 3, 1, 1, -1],
+  "pad_coupling_exhaustive": [
+    {"equal_character_cases": 3, "equal_character_exact": 3, "m": 3, "p": 3, "unequal_character_cases": 24, "unequal_character_uniform": 24},
+    {"equal_character_cases": 5, "equal_character_exact": 5, "m": 3, "p": 5, "unequal_character_cases": 120, "unequal_character_uniform": 120}
+  ],
+  "run": 34,
+  "seed": 2026092214
+}

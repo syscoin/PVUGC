@@ -1,0 +1,178 @@
+{
+  "common_correctness": {
+    "n": 8,
+    "passed": 2000,
+    "q": 101,
+    "trials": 2000
+  },
+  "exhaustive_false_partition_attack": {
+    "R_zero_cases": 1250,
+    "cross_key_support_intersection": 0,
+    "keys_checked": [
+      0,
+      1
+    ],
+    "n": 3,
+    "q": 5,
+    "setups_checked": 6250,
+    "support_sizes": {
+      "0": 2505,
+      "1": 2505
+    },
+    "tv": "1"
+  },
+  "finite_difference_identities": {
+    "n_values": [
+      3,
+      4,
+      8,
+      16
+    ],
+    "passed": 1000,
+    "q": 101,
+    "trials": 1000
+  },
+  "random_false_partition_attack": [
+    {
+      "R_zero_cases": 7,
+      "n": 3,
+      "passed": 1000,
+      "q": 101,
+      "trials": 1000
+    },
+    {
+      "R_zero_cases": 134,
+      "n": 8,
+      "passed": 2000,
+      "q": 101,
+      "trials": 2000
+    },
+    {
+      "R_zero_cases": 114,
+      "n": 16,
+      "passed": 1000,
+      "q": 101,
+      "trials": 1000
+    },
+    {
+      "R_zero_cases": 14,
+      "n": 12,
+      "passed": 1000,
+      "q": 1009,
+      "trials": 1000
+    }
+  ],
+  "schwartz_zippel_controls": [
+    {
+      "bound": "2/5",
+      "n": 3,
+      "p_zero": "6/25",
+      "q": 5,
+      "u": "000",
+      "v": "111"
+    },
+    {
+      "bound": "2/5",
+      "n": 3,
+      "p_zero": "9/25",
+      "q": 5,
+      "u": "100",
+      "v": "010"
+    },
+    {
+      "bound": "2/5",
+      "n": 3,
+      "p_zero": "6/25",
+      "q": 5,
+      "u": "010",
+      "v": "101"
+    },
+    {
+      "bound": "3/7",
+      "n": 4,
+      "p_zero": "11/49",
+      "q": 7,
+      "u": "0000",
+      "v": "1111"
+    },
+    {
+      "bound": "3/7",
+      "n": 4,
+      "p_zero": "127/343",
+      "q": 7,
+      "u": "1000",
+      "v": "0100"
+    },
+    {
+      "bound": "3/7",
+      "n": 4,
+      "p_zero": "11/49",
+      "q": 7,
+      "u": "0101",
+      "v": "1010"
+    },
+    {
+      "bound": "4/11",
+      "n": 5,
+      "p_zero": "2364/14641",
+      "q": 11,
+      "u": "00000",
+      "v": "11111"
+    },
+    {
+      "bound": "4/11",
+      "n": 5,
+      "p_zero": "4641/14641",
+      "q": 11,
+      "u": "10000",
+      "v": "01000"
+    },
+    {
+      "bound": "4/11",
+      "n": 5,
+      "p_zero": "2364/14641",
+      "q": 11,
+      "u": "01010",
+      "v": "10101"
+    }
+  ],
+  "scope_notes": [
+    "Tests validate the stated finite-field identities and explicit false-instance attack; they do not prove security for a surviving WKEM.",
+    "The attack assumes the same complete local-evaluation interface used in Runs 26-27; noisy decoding only changes success by the probability that required local evaluations decode incorrectly.",
+    "No external literature or network source is used by this checker."
+  ],
+  "seed": "0x28C0FFEE",
+  "singleton_false_pair": {
+    "exact_delta_zero_probability": "9/25",
+    "exact_tv": "9/25",
+    "n": 3,
+    "q": 5,
+    "schwartz_zippel_bound": "2/5",
+    "setups_per_key": 3125,
+    "support_sizes": {
+      "0": 25,
+      "1": 25
+    },
+    "u": [
+      0,
+      0,
+      0
+    ],
+    "v": [
+      1,
+      0,
+      0
+    ]
+  },
+  "statement_independent_feature_lower_bound": {
+    "dimension_range": [
+      1,
+      8
+    ],
+    "false_key_recoveries": 1200,
+    "max_certificate_points": 10,
+    "q": 101,
+    "random_feature_maps": 400
+  },
+  "status": "PASS"
+}

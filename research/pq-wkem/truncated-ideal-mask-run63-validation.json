@@ -1,0 +1,161 @@
+{
+  "checks": {
+    "all_exclusions_threshold": [
+      {
+        "D_at": 2,
+        "D_below": 1,
+        "ambient_at": 4,
+        "below_span_dim": 0,
+        "k": 2,
+        "span_at": 4
+      },
+      {
+        "D_at": 3,
+        "D_below": 2,
+        "ambient_at": 8,
+        "below_span_dim": 0,
+        "k": 3,
+        "span_at": 8
+      },
+      {
+        "D_at": 4,
+        "D_below": 3,
+        "ambient_at": 16,
+        "below_span_dim": 0,
+        "k": 4,
+        "span_at": 16
+      },
+      {
+        "D_at": 5,
+        "D_below": 4,
+        "ambient_at": 32,
+        "below_span_dim": 0,
+        "k": 5,
+        "span_at": 32
+      },
+      {
+        "D_at": 6,
+        "D_below": 5,
+        "ambient_at": 64,
+        "below_span_dim": 0,
+        "k": 6,
+        "span_at": 64
+      }
+    ],
+    "compact_chain_diagnostic": {
+      "by_cutoff": {
+        "0": {
+          "ambient": 1,
+          "contains_one": false,
+          "span": 0
+        },
+        "1": {
+          "ambient": 4,
+          "contains_one": false,
+          "span": 2
+        },
+        "2": {
+          "ambient": 7,
+          "contains_one": true,
+          "span": 7
+        },
+        "3": {
+          "ambient": 8,
+          "contains_one": true,
+          "span": 8
+        }
+      },
+      "first_cutoff_with_one": 2,
+      "n": 3
+    },
+    "dichotomy_census": {
+      "cases": 90,
+      "contains_one": 11,
+      "dual_cases": 79,
+      "dual_recoveries": 632,
+      "false_formulas": 23,
+      "true_formulas": 67
+    },
+    "false_full_certificate": {
+      "ambient_dimension": 2,
+      "key_supports_identical": true,
+      "span_dimension": 2,
+      "support_size": 4
+    },
+    "full_degree_unsat_certificate": [
+      {
+        "ambient": 8,
+        "n": 3,
+        "name": "chain3",
+        "span": 8
+      },
+      {
+        "ambient": 16,
+        "n": 4,
+        "name": "all_excl4",
+        "span": 16
+      }
+    ],
+    "insufficient_cutoff_dual_attack": {
+      "ambient_dimension": 4,
+      "dual_weight": 2,
+      "recoveries": 500,
+      "span_dimension": 2
+    },
+    "noisy_dual_identity": {
+      "statement": "lambda(F)=K+lambda(e) exactly; no hardness conclusion",
+      "trials": 1000
+    },
+    "resource_table": [
+      {
+        "D": 3,
+        "ambient_coefficients": 43745,
+        "bytes_at_16_bits_each": 87490,
+        "n": 64
+      },
+      {
+        "D": 4,
+        "ambient_coefficients": 679121,
+        "bytes_at_16_bits_each": 1358242,
+        "n": 64
+      },
+      {
+        "D": 4,
+        "ambient_coefficients": 11017633,
+        "bytes_at_16_bits_each": 22035266,
+        "n": 128
+      },
+      {
+        "D": 5,
+        "ambient_coefficients": 275584033,
+        "bytes_at_16_bits_each": 551168066,
+        "n": 128
+      },
+      {
+        "D": 4,
+        "ambient_coefficients": 177589057,
+        "bytes_at_16_bits_each": 355178114,
+        "n": 256
+      }
+    ],
+    "true_multi_witness": {
+      "capsules": 300,
+      "public_dual_weight": 2,
+      "public_no_witness_recoveries": 300,
+      "span_dimension": 1,
+      "valid_witnesses": 3,
+      "witness_evaluations": 900
+    }
+  },
+  "claims_scope": [
+    "Finite tests validate the implemented Boolean-quotient algebra and exact identities only.",
+    "Security is not inferred from passing tests.",
+    "The noiseless coset dichotomy is an algebraic theorem for this candidate.",
+    "The noisy dual identity does not provide an LWE/SIS reduction.",
+    "No arbitrary-QPT early-key-recovery-to-source-witness reduction is claimed."
+  ],
+  "field_prime": 2,
+  "run": 63,
+  "seed": 630063,
+  "status": "PASS"
+}

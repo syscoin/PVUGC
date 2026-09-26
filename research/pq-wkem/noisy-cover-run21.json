@@ -1,0 +1,91 @@
+{
+  "exact_binary": {
+    "enumerated_noise_vectors_false": 1024,
+    "enumerated_noise_vectors_honest": 4,
+    "eta": "1/2",
+    "false_bias": "1/1024",
+    "false_success": 0.50048828125,
+    "honest_bias": "1/4",
+    "honest_bias_power_5": "1/1024",
+    "honest_success": 0.625,
+    "n": 2,
+    "p": "1/4"
+  },
+  "explicit_cover_table": {
+    "n": 7,
+    "q": 101,
+    "trials": 500
+  },
+  "gaussian_analytic": [
+    {
+      "false_cover_success": 0.6289066304773024,
+      "honest_success": 0.9544997361036416,
+      "t": 2.0
+    },
+    {
+      "false_cover_success": 0.8202875051210001,
+      "honest_success": 0.9973002039367398,
+      "t": 3.0
+    },
+    {
+      "false_cover_success": 0.9263617298796973,
+      "honest_success": 0.9999366575163338,
+      "t": 4.0
+    },
+    {
+      "false_cover_success": 0.9927096419084643,
+      "honest_success": 0.9999999980268247,
+      "t": 6.0
+    },
+    {
+      "false_cover_success": 0.9999995799606024,
+      "honest_success": 1.0,
+      "t": 11.313708498984761
+    }
+  ],
+  "gaussian_monte_carlo": {
+    "analytic_false_cover": 0.8202875051210001,
+    "analytic_honest": 0.9973002039367398,
+    "empirical_false_cover": 0.81963,
+    "empirical_honest": 0.997285,
+    "n": 64,
+    "sigma": 1.0,
+    "t": 3.0,
+    "trials": 200000
+  },
+  "inverse_polynomial_bias_exponents": [
+    {"a": 1, "false_exponent": 5, "honest_exponent": 1},
+    {"a": 2, "false_exponent": 10, "honest_exponent": 2},
+    {"a": 3, "false_exponent": 15, "honest_exponent": 3},
+    {"a": 4, "false_exponent": 20, "honest_exponent": 4},
+    {"a": 5, "false_exponent": 25, "honest_exponent": 5},
+    {"a": 6, "false_exponent": 30, "honest_exponent": 6},
+    {"a": 7, "false_exponent": 35, "honest_exponent": 7},
+    {"a": 8, "false_exponent": 40, "honest_exponent": 8}
+  ],
+  "multi_operator": {
+    "checks": 500,
+    "sample_cases": [
+      {
+        "false_bias": "0/1",
+        "honest_bias": "0/1",
+        "n": 6,
+        "operators": 5
+      },
+      {
+        "false_bias": "1/1048576",
+        "honest_bias": "1/16",
+        "n": 2,
+        "operators": 1
+      },
+      {
+        "false_bias": "515377520732011331036461129765621272702107522001/56061846576641933068511861128435847024473459936647893758520097689829376",
+        "honest_bias": "3486784401/141167095653376",
+        "n": 10,
+        "operators": 4
+      }
+    ]
+  },
+  "rational_identity_checks": 1000,
+  "status": "PASS"
+}

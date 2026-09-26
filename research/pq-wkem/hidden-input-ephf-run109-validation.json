@@ -1,0 +1,49 @@
+{
+  "gadget": {
+    "ell": 9,
+    "g": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "max_binary_preimage_hamming": 8,
+    "q": 257
+  },
+  "general_universal_projection": {
+    "cases": 175,
+    "claim": "Any published projection of a basis matrix with a public target preimage reveals the projected target hash."
+  },
+  "hidden_input_linearization": {
+    "bits": 3,
+    "cases": 72,
+    "claim": "Linearizing Zi=wi*S yields a public gadget-only solution when product consistency is dropped."
+  },
+  "product_consistency": {
+    "claim": "The set {(w,s,z): w in {0,1}, z=w*s} contains zero but is not closed under addition, hence is not a linear subspace.",
+    "fields": [
+      3,
+      5,
+      7,
+      17
+    ]
+  },
+  "run": 109,
+  "scope": [
+    "Finite algebra/functionality controls only.",
+    "The attack is on the natural hidden-input universalization of an affine/projective-hash relation, not an impossibility theorem for every nonlinear EPHF.",
+    "No pairing, SIS, or LWE security is inferred from these checks.",
+    "The cited WEFC extractor in Campanelli-Fiore-Khoshakhlagh is PPT/GGM and extracts a representation Lambda(x,w), not automatically the ORIGINAL NP witness."
+  ],
+  "status": "PASS",
+  "total_assertions": 9727,
+  "universal_projection": {
+    "cases": 4096,
+    "claim": "For relation (C-wG)S=t, publishing hC and hG to defer w makes H=h*t publicly computable as (hG) g^{-1}(t)."
+  }
+}

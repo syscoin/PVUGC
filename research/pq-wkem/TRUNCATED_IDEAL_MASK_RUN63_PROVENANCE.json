@@ -1,0 +1,40 @@
+{
+  "run": 63,
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "run_start_head": "5ee9a92f0f22f7817a5c6980e6ade29c37d7c3d2",
+  "scope": "research/pq-wkem only; no production files",
+  "external_literature_or_web_search": false,
+  "construction": "single global Boolean-quotient bounded-product subspace mask F = K*1 + v, with complete-output public-dual audit",
+  "proved_claims": [
+    "Every valid Boolean witness evaluates every bounded generator multiple to zero and therefore obtains the same K from F.",
+    "On every satisfiable instance 1 is not in the public mask subspace, hence public linear algebra constructs lambda with lambda(V)=0 and lambda(1)=1, yielding lambda(F)=K without a witness.",
+    "For false instances, if 1 is in V then all key-conditioned noiseless output distributions are identical cosets; if 1 is not in V the same public dual exactly extracts K.",
+    "Every unsatisfiable CNF has 1 in the full-degree Boolean ideal span via assignment indicators, but the degree-n ambient basis has size 2^n.",
+    "For the all-exclusions family, V_D=0 below D=k and V_k is the full 2^k-dimensional Boolean function space.",
+    "With additive coefficient noise, any public annihilator obeys lambda(F)=K+lambda(e) exactly."
+  ],
+  "not_claimed": [
+    "No completed generic-NP witness KEM.",
+    "No security inference from tests.",
+    "No generic polynomial-degree certificate bound.",
+    "No LWE or SIS reduction for the noisy dual-functional problem.",
+    "No arbitrary-QPT early-key-recovery to source-witness reduction.",
+    "No malicious-secure ceremony or auxiliary-input composition for a surviving inner primitive.",
+    "No impossibility theorem for all noisy or nonlinear witness binders."
+  ],
+  "validation": {
+    "commands": [
+      "python /mnt/data/truncated_ideal_mask_run63_check.py > /mnt/data/truncated-ideal-mask-run63-validation.json",
+      "python /mnt/data/truncated_ideal_mask_run63_check.py > /mnt/data/truncated-ideal-mask-run63-validation-2.json",
+      "cmp /mnt/data/truncated-ideal-mask-run63-validation.json /mnt/data/truncated-ideal-mask-run63-validation-2.json"
+    ],
+    "executions_after_finalization": 2,
+    "byte_identical": true,
+    "checker_sha256": "b733cee7fe71c1684082a1dda2bb1611756dc93072ec9dceece157f9cca8b0e3",
+    "captured_validation_sha256": "8bed792cad95687b900243099abb545dc1b055bc3e6bb4b08ea75b5a8bf22a60",
+    "proof_sha256": "081bb5b2eadf31744280ba828d1074a7ad754f75fa5efaed0153dde3b9f6f7d0"
+  },
+  "publication_note": "Final GitHub commit SHA and PR result-comment ID are intentionally reported in the run result after publication rather than recursively embedded in this provenance file."
+}

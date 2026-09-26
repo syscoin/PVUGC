@@ -1,0 +1,67 @@
+{
+  "external_primary_sources": [
+    {
+      "authors": "Isaac M. Hair, Amit Sahai",
+      "title": "Witness Encryption via Prime-Order Generic Groups",
+      "url": "https://arxiv.org/abs/2609.18275",
+      "use": "constant weight/right-factor anchor; MinRank source interface; generic-group scope",
+      "version": "arXiv:2609.18275v1"
+    },
+    {
+      "author": "Rotem Tsabary",
+      "title": "Candidate Witness Encryption from Lattice Techniques",
+      "url": "https://crypto.iacr.org/2022/papers/530630_1_En_19_Chapter_OnlinePDF.pdf",
+      "use": "Assumption 31 and trapdoor branching-program architecture",
+      "venue": "CRYPTO 2022"
+    },
+    {
+      "authors": "Rohit Chatterjee, Changrui Mu, Prashant Nalini Vasudevan",
+      "title": "Public-Key Encryption from the MinRank Problem",
+      "url": "https://arxiv.org/abs/2510.03752",
+      "use": "blockwise inner-product/duality architecture and uniform-generator boundary",
+      "version": "arXiv:2510.03752"
+    },
+    {
+      "authors": "Tzu-Hsiang Huang, Wei-Hsiang Hung, Shota Yamada",
+      "title": "A Note on Obfuscation-based Attacks on Private-coin Evasive LWE",
+      "url": "https://eprint.iacr.org/2025/421",
+      "use": "context that evasive-LWE variants are significant strengthenings; not used to claim Tsabary Assumption 31 is broken",
+      "version": "ePrint 2025/421"
+    }
+  ],
+  "local_sha256": {
+    "checker": "e5ae70b206bb39f2b0f1728925961c5bc6cee55e3d1a07b409049214c65f4933",
+    "proof": "e4f43c7d2b1d69768e311935ac3d8a3249b472cfd01a7fdc249dd5f505dbefcd",
+    "validation": "14213525ccbb88d2ccde8beb00e7bb56ca1eb63ce50b14e8f32784208ab48b7c"
+  },
+  "pr_number": 1,
+  "production_code_modified": false,
+  "publication_plan": [
+    "research/pq-wkem/ANCHOR_SHIFT_MINRANK_RUN79.md",
+    "research/pq-wkem/anchor_shift_minrank_run79_check.py",
+    "research/pq-wkem/anchor-shift-minrank-run79-validation.json",
+    "research/pq-wkem/ANCHOR_SHIFT_MINRANK_RUN79_PROVENANCE.json"
+  ],
+  "remaining": [
+    "rank-weight spectrum or computational hiding for complete anchor-shift output",
+    "standard-PQ reduction for statement-derived distribution",
+    "arbitrary-QPT early-key recovery to original source witness or standard-PQ break",
+    "auxiliary-input/multiple-capsule composition",
+    "malicious-secure erased ceremony/abort proof",
+    "practical end-to-end parameters"
+  ],
+  "repository": "syscoin/PVUGC",
+  "run": 79,
+  "run78_publication_retried": false,
+  "run79_checkpoint_write_status": "blocked_by_tool_safety; not retried/rerouted",
+  "stopping_condition_met": false,
+  "tests": {
+    "byte_identical_outputs": true,
+    "checker_executions": 2,
+    "checker_sha256": "e5ae70b206bb39f2b0f1728925961c5bc6cee55e3d1a07b409049214c65f4933",
+    "scope": "finite algebra/distribution identities only",
+    "seed": 790079001,
+    "validation_sha256": "14213525ccbb88d2ccde8beb00e7bb56ca1eb63ce50b14e8f32784208ab48b7c"
+  },
+  "verified_starting_head": "78a64c95f241814673f1ffbe76a4047033a7331c"
+}

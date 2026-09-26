@@ -1,0 +1,35 @@
+{
+  "run": 69,
+  "starting_pr_head": "ad7e9f460884ac2b0b25db704349f2c4eff57a72",
+  "pr": "https://github.com/syscoin/PVUGC/pull/1",
+  "checkpoint_comment_id": 5810515280,
+  "scope": "research/pq-wkem only; statement-aware Boolean-vanishing correlated noise plus public bounded-zonotope complete-output audit",
+  "external_literature_or_web_search": false,
+  "production_code_changed": false,
+  "tests": {
+    "checker": "statement_aware_zonotope_run69_check.py",
+    "captured_validation": "statement-aware-zonotope-run69-validation.json",
+    "executions_after_finalization": 2,
+    "byte_identical": true,
+    "checker_sha256": "54576bf43797cd0c12a9d45900bf847293fcb176cfc5b30041d4c2b56cdc802e",
+    "validation_sha256": "231890b25d01c6d95b455e879d903291eb61e735b328c7f66a688ab56341faa7",
+    "proof_sha256": "9d9698b4a32be0e606a327617df52a02e25206edb54807a9f56b01b5ef3c1b59"
+  },
+  "proved_claims": [
+    "For Y=K u+G r+N eta with N drawn from public Boolean-vanishing polynomial generators, every valid Boolean witness recovers K exactly, while each fixed invalid Boolean assignment has an exactly uniform constraint-mask phase.",
+    "On every true statement, u is outside the public mask span W=colspan(G,N), so Gaussian elimination computes lambda with lambda^T W=0 and lambda^T u=1, giving lambda^T Y=K with no source witness.",
+    "If the public dual affine space has dimension d, a uniformly sampled dual is a Boolean evaluation vector with probability at most 2^n/q^d; the attacker can test and reject evaluation vectors without solving the source instance.",
+    "There exists an explicit unsatisfiable four-variable nine-clause fixture in the degree-4 feature space for which every Boolean candidate has perfect marginal hiding but rank(W)=37, rank([W,u])=38, so the complete public vector reveals K.",
+    "For public bounded zonotope noise H xi with ||xi||_infinity<=B, the public LP minimizing ||H^T lambda||_1 over all exact-mask annihilators has worst-case support radius no larger than every legitimate witness evaluation."
+  ],
+  "not_claimed": [
+    "No impossibility result for hidden nonlinear noise geometry.",
+    "No theorem for arbitrary high-probability distributional decoding metrics beyond the stated deterministic support-radius model.",
+    "No generic modular-wraparound short-dual impossibility theorem.",
+    "No break of LWE or SIS.",
+    "No arbitrary-QPT final-key recovery to source-witness reduction.",
+    "No completed generic PQ witness KEM.",
+    "Tests are not a security proof."
+  ],
+  "stopping_condition_met": false
+}

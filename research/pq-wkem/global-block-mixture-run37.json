@@ -1,0 +1,81 @@
+{
+  "convolution_fourier_cases": 96,
+  "exponents": {
+    "false_lambda_exponent_per_c": 0.6780719051126377,
+    "false_over_honest_exponent_gap_per_c": 0.26303440583379406,
+    "honest_lambda_exponent_per_c": 0.41503749927884376
+  },
+  "gap_control": {
+    "G": 8,
+    "L": 4,
+    "delta": "1/4",
+    "false_min_gap_bias": "5/8",
+    "honest_bias": "3/4",
+    "p": "1/2"
+  },
+  "log_walk_table": [
+    {
+      "T": 6,
+      "false_fixed_mode_bound": 0.059604644775390625,
+      "false_to_honest_bias_ratio": 0.33489797668038407,
+      "honest_bias": 0.177978515625,
+      "honest_constant_snr_samples_approx": 31.569291793444616,
+      "lambda": 64
+    },
+    {
+      "T": 7,
+      "false_fixed_mode_bound": 0.03725290298461914,
+      "false_to_honest_bias_ratio": 0.2790816472336534,
+      "honest_bias": 0.13348388671875,
+      "honest_constant_snr_samples_approx": 56.123185410568205,
+      "lambda": 128
+    },
+    {
+      "T": 8,
+      "false_fixed_mode_bound": 0.023283064365386963,
+      "false_to_honest_bias_ratio": 0.23256803936137785,
+      "honest_bias": 0.1001129150390625,
+      "honest_constant_snr_samples_approx": 99.77455184101014,
+      "lambda": 256
+    },
+    {
+      "T": 9,
+      "false_fixed_mode_bound": 0.014551915228366852,
+      "false_to_honest_bias_ratio": 0.19380669946781487,
+      "honest_bias": 0.07508468627929688,
+      "honest_constant_snr_samples_approx": 177.3769810506847,
+      "lambda": 512
+    },
+    {
+      "T": 10,
+      "false_fixed_mode_bound": 0.009094947017729282,
+      "false_to_honest_bias_ratio": 0.16150558288984573,
+      "honest_bias": 0.056313514709472656,
+      "honest_constant_snr_samples_approx": 315.33685520121725,
+      "lambda": 1024
+    },
+    {
+      "T": 12,
+      "false_fixed_mode_bound": 0.003552713678800501,
+      "false_to_honest_bias_ratio": 0.11215665478461509,
+      "honest_bias": 0.03167635202407837,
+      "honest_constant_snr_samples_approx": 996.6201843396495,
+      "lambda": 4096
+    }
+  ],
+  "map_fixtures": [
+    {
+      "map_success": "7/8",
+      "rowspace_dim": 4,
+      "witness_success": "7/8"
+    },
+    {
+      "map_success": "1",
+      "rowspace_dim": 3,
+      "witness_success": "7/8"
+    }
+  ],
+  "one_step_fourier_cases": 1008,
+  "random_fixtures_with_map_strictly_better_than_witness": 81,
+  "random_public_likelihood_coordinates": 16728
+}

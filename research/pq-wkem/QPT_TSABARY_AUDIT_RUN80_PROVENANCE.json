@@ -1,0 +1,51 @@
+{
+  "classification": {
+    "adversary_target": "QPT",
+    "derived_qpt_lift": "conditional proof-skeleton lemma only; not an established theorem for Tsabary",
+    "honest_algorithm_target": "classical PPT",
+    "tsabary_original_extra_assumption": "classical PPT relative hardness; later broad private-coin form counterexampled",
+    "tsabary_published_adversary": "PPT"
+  },
+  "external_primary_sources_used": [
+    {
+      "author": "Rotem Tsabary",
+      "role": "primary construction/security model",
+      "title": "Candidate Witness Encryption from Lattice Techniques",
+      "venue": "CRYPTO 2022"
+    },
+    {
+      "authors": "Chris Brzuska, Akin \u00dcnal, Ivy K. Y. Woo",
+      "eprint": "2024/2000",
+      "role": "primary later cryptanalysis/classification",
+      "title": "Evasive LWE Assumptions: Definitions, Classes, and Counterexamples"
+    }
+  ],
+  "pr_number": 1,
+  "production_code_modified": false,
+  "publication": {
+    "github_checkpoint_attempted": true,
+    "github_checkpoint_result": "blocked by OpenAI safety checks before reaching GitHub",
+    "github_files_published_this_run": false,
+    "local_artifacts_preserved": true,
+    "publication_retried_or_rerouted": false
+  },
+  "remaining": [
+    "QPT-secure standard-assumption proof for exact construction-specific trapdoor/prefix transition",
+    "full-public-output QPT false-statement hiding",
+    "arbitrary-QPT early final-key recovery to original source witness or independent PQ break",
+    "auxiliary-input/multiple-capsule composition",
+    "malicious-secure erased setup/abort",
+    "practical parameters"
+  ],
+  "repository": "syscoin/PVUGC",
+  "run": 80,
+  "starting_verified_head": "c4a33a018607bda7d8e8b1d646d54df9c399e22e",
+  "stopping_condition_met": false,
+  "tests": {
+    "byte_identical": true,
+    "checker_sha256": "8aa48cab75a6872088de8de1b993967127be6d53f8b9b9bd32e40094d789f842",
+    "claim_scope": "arithmetic/model-boundary validation only",
+    "executions": 2,
+    "validation_sha256": "3d8865356d15d02d5f863a43b43e702b7faf6beecd5fdff162b47e55fda4a6ef"
+  }
+}

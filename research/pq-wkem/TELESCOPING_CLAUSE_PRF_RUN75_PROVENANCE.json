@@ -1,0 +1,47 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checkpoint_comment_id": 5816484482,
+  "external_web_or_literature_used": false,
+  "github_scope": "requested PQ WKEM research record only",
+  "local_sha256": {
+    "checker": "ea15218b1f28b6ca095e8e15b31118d3038417aa8a18eef71b4c84faeab573f5",
+    "proof": "02c736f5d26889a1519c2f3ff6a584e12c19597c5901cdbeced6b87d914c946d",
+    "validation": "e41cd1fdcbd227876556c14661ee2a4602f458454dc407b4d1fb86e6e348e90c"
+  },
+  "pr_number": 1,
+  "production_code_modified": false,
+  "publication_plan": [
+    "research/pq-wkem/TELESCOPING_CLAUSE_PRF_RUN75.md",
+    "research/pq-wkem/telescoping_clause_prf_run75_check.py",
+    "research/pq-wkem/telescoping-clause-prf-run75-validation.json",
+    "research/pq-wkem/TELESCOPING_CLAUSE_PRF_RUN75_PROVENANCE.json"
+  ],
+  "repository": "syscoin/PVUGC",
+  "result": {
+    "completed_generic_np_wkem": false,
+    "proved_negative_or_boundary": [
+      "ordinary component-wise constrained GGM keys expose component masks and recover the key even on false instances",
+      "exact XOR-key-homomorphic PRFs with explicit bitstring coordinates have a public transcript-image distinguisher"
+    ],
+    "proved_positive": [
+      "ideal difference-only clause telescoping gives same-key correctness for every satisfying witness",
+      "for false CNF the complete allowed difference table is perfectly key-independent by an explicit mask-shift bijection",
+      "3CNF clause domains admit at most 24 GGM prefix-cover nodes per adjacent mask function after a six-variable ordering"
+    ],
+    "remaining": [
+      "practical PQ difference-only clause-constrained evaluator with full collusion security and ordinary-assumption reduction",
+      "arbitrary-QPT final-key recovery to source witness or independent PQ break",
+      "malicious-secure distributed setup/erasure and auxiliary-input composition",
+      "concrete end-to-end parameters and resource estimates"
+    ],
+    "stopping_condition_met": false
+  },
+  "run": 75,
+  "starting_verified_head": "e38d109a74bda5050840135800f4fe3a8d156aea",
+  "tests": {
+    "byte_identical_validation_outputs": true,
+    "checker_executions": 2,
+    "claim_scope": "finite algebra/semantics validation only; exact cryptographic statements are in the proof",
+    "deterministic_seed": 750075001
+  }
+}

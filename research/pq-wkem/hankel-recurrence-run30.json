@@ -1,0 +1,115 @@
+{
+  "candidate": "hidden exponential-sum / finite-Hankel-rank zero-sum binder",
+  "claim_scope": "finite-field algebra/reconstruction validation only; no security claim",
+  "exact_one_pair_uniformity": {
+    "0": {
+      "multiplicity": 7,
+      "support": 49
+    },
+    "1": {
+      "multiplicity": 7,
+      "support": 49
+    },
+    "2": {
+      "multiplicity": 7,
+      "support": 49
+    },
+    "6": {
+      "multiplicity": 7,
+      "support": 49
+    }
+  },
+  "exhaustive_false_support": {
+    "intersections": {
+      "0-1": 0,
+      "0-2": 0,
+      "1-2": 0
+    },
+    "max_attack_index": 15,
+    "multiplicative_period": 22,
+    "q": 23,
+    "r": 1,
+    "setups_per_key": 11109,
+    "support_sizes": {
+      "0": 10649,
+      "1": 10649,
+      "2": 10649
+    }
+  },
+  "forced_zero_degeneracy_cases": 64,
+  "honest_same_key_decodes": 1600,
+  "long_recurrence_prediction_trials": 500,
+  "random_false_recovery": [
+    {
+      "max_order0": 2,
+      "max_order1": 2,
+      "min_order0": 1,
+      "min_order1": 1,
+      "q": 101,
+      "r": 1,
+      "recovered": 500,
+      "trials": 500
+    },
+    {
+      "max_order0": 3,
+      "max_order1": 3,
+      "min_order0": 2,
+      "min_order1": 2,
+      "q": 101,
+      "r": 2,
+      "recovered": 500,
+      "trials": 500
+    },
+    {
+      "max_order0": 4,
+      "max_order1": 4,
+      "min_order0": 3,
+      "min_order1": 3,
+      "q": 101,
+      "r": 3,
+      "recovered": 500,
+      "trials": 500
+    },
+    {
+      "max_order0": 6,
+      "max_order1": 6,
+      "min_order0": 4,
+      "min_order1": 4,
+      "q": 101,
+      "r": 5,
+      "recovered": 500,
+      "trials": 500
+    },
+    {
+      "max_order0": 9,
+      "max_order1": 9,
+      "min_order0": 7,
+      "min_order1": 7,
+      "q": 101,
+      "r": 8,
+      "recovered": 500,
+      "trials": 500
+    },
+    {
+      "max_order0": 13,
+      "max_order1": 13,
+      "min_order0": 12,
+      "min_order1": 12,
+      "q": 257,
+      "r": 12,
+      "recovered": 350,
+      "trials": 350
+    },
+    {
+      "max_order0": 21,
+      "max_order1": 21,
+      "min_order0": 20,
+      "min_order1": 20,
+      "q": 1009,
+      "r": 20,
+      "recovered": 250,
+      "trials": 250
+    }
+  ],
+  "seed": 202609220930
+}
