@@ -1,0 +1,328 @@
+{
+  "gaussian_constant_gap": {
+    "claim": "In an ideal zero-centered Gaussian threshold decoder, a constant standard-deviation factor cannot make honest rejection negligible while source-invalid rejection tends to one; both rejection probabilities tend to zero as the correctness threshold diverges in honest-sigma units.",
+    "rows": [
+      {
+        "C_squared": 1.25,
+        "honest_fail": 2.730147852186146e-11,
+        "invalid_accept": 0.9999999974352288,
+        "invalid_fail": 2.5647711702779638e-09,
+        "lambda": 32,
+        "tail_exponent_proxy": 25.6,
+        "threshold_sigma_h": 6.6604368892615815
+      },
+      {
+        "C_squared": 1.25,
+        "honest_fail": 4.54190960875022e-21,
+        "invalid_accept": 1.0,
+        "invalid_fail": 3.611808801155227e-17,
+        "lambda": 64,
+        "tail_exponent_proxy": 51.2,
+        "threshold_sigma_h": 9.419280180123797
+      },
+      {
+        "C_squared": 1.25,
+        "honest_fail": 1.7504672304856147e-40,
+        "invalid_accept": 1.0,
+        "invalid_fail": 9.939935018133865e-33,
+        "lambda": 128,
+        "tail_exponent_proxy": 102.4,
+        "threshold_sigma_h": 13.320873778523163
+      },
+      {
+        "C_squared": 1.25,
+        "honest_fail": 3.6475245554925876e-79,
+        "invalid_accept": 1.0,
+        "invalid_fail": 1.0541145601880747e-63,
+        "lambda": 256,
+        "tail_exponent_proxy": 204.8,
+        "threshold_sigma_h": 18.838560360247595
+      },
+      {
+        "C_squared": 1.5,
+        "honest_fail": 2.730147852186146e-11,
+        "invalid_accept": 0.9999999461856925,
+        "invalid_fail": 5.3814307509218476e-08,
+        "lambda": 32,
+        "tail_exponent_proxy": 21.333333333333332,
+        "threshold_sigma_h": 6.6604368892615815
+      },
+      {
+        "C_squared": 1.5,
+        "honest_fail": 4.54190960875022e-21,
+        "invalid_accept": 0.9999999999999853,
+        "invalid_fail": 1.4620634873124264e-14,
+        "lambda": 64,
+        "tail_exponent_proxy": 42.666666666666664,
+        "threshold_sigma_h": 9.419280180123797
+      },
+      {
+        "C_squared": 1.5,
+        "honest_fail": 1.7504672304856147e-40,
+        "invalid_accept": 1.0,
+        "invalid_fail": 1.4926683615571647e-27,
+        "lambda": 128,
+        "tail_exponent_proxy": 85.33333333333333,
+        "threshold_sigma_h": 13.320873778523163
+      },
+      {
+        "C_squared": 1.5,
+        "honest_fail": 3.6475245554925876e-79,
+        "invalid_accept": 1.0,
+        "invalid_fail": 2.1743800161620703e-53,
+        "lambda": 256,
+        "tail_exponent_proxy": 170.66666666666666,
+        "threshold_sigma_h": 18.838560360247595
+      },
+      {
+        "C_squared": 2.0,
+        "honest_fail": 2.730147852186146e-11,
+        "invalid_accept": 0.9999975184539827,
+        "invalid_fail": 2.4815460173329973e-06,
+        "lambda": 32,
+        "tail_exponent_proxy": 16.0,
+        "threshold_sigma_h": 6.6604368892615815
+      },
+      {
+        "C_squared": 2.0,
+        "honest_fail": 4.54190960875022e-21,
+        "invalid_accept": 0.9999999999726985,
+        "invalid_fail": 2.730147852186146e-11,
+        "lambda": 64,
+        "tail_exponent_proxy": 32.0,
+        "threshold_sigma_h": 9.419280180123797
+      },
+      {
+        "C_squared": 2.0,
+        "honest_fail": 1.7504672304856147e-40,
+        "invalid_accept": 1.0,
+        "invalid_fail": 4.541909608750328e-21,
+        "lambda": 128,
+        "tail_exponent_proxy": 64.0,
+        "threshold_sigma_h": 13.320873778523163
+      },
+      {
+        "C_squared": 2.0,
+        "honest_fail": 3.6475245554925876e-79,
+        "invalid_accept": 1.0,
+        "invalid_fail": 1.7504672304856147e-40,
+        "lambda": 256,
+        "tail_exponent_proxy": 128.0,
+        "threshold_sigma_h": 18.838560360247595
+      },
+      {
+        "C_squared": 3.0,
+        "honest_fail": 2.730147852186146e-11,
+        "invalid_accept": 0.9998796465279411,
+        "invalid_fail": 0.00012035347205883593,
+        "lambda": 32,
+        "tail_exponent_proxy": 10.666666666666666,
+        "threshold_sigma_h": 6.6604368892615815
+      },
+      {
+        "C_squared": 3.0,
+        "honest_fail": 4.54190960875022e-21,
+        "invalid_accept": 0.9999999461856925,
+        "invalid_fail": 5.3814307509218476e-08,
+        "lambda": 64,
+        "tail_exponent_proxy": 21.333333333333332,
+        "threshold_sigma_h": 9.419280180123797
+      },
+      {
+        "C_squared": 3.0,
+        "honest_fail": 1.7504672304856147e-40,
+        "invalid_accept": 0.9999999999999853,
+        "invalid_fail": 1.4620634873124406e-14,
+        "lambda": 128,
+        "tail_exponent_proxy": 42.666666666666664,
+        "threshold_sigma_h": 13.320873778523163
+      },
+      {
+        "C_squared": 3.0,
+        "honest_fail": 3.6475245554925876e-79,
+        "invalid_accept": 1.0,
+        "invalid_fail": 1.4926683615571647e-27,
+        "lambda": 256,
+        "tail_exponent_proxy": 85.33333333333333,
+        "threshold_sigma_h": 18.838560360247595
+      },
+      {
+        "C_squared": 4.0,
+        "honest_fail": 2.730147852186146e-11,
+        "invalid_accept": 0.9991322212413024,
+        "invalid_fail": 0.0008677787586975925,
+        "lambda": 32,
+        "tail_exponent_proxy": 8.0,
+        "threshold_sigma_h": 6.6604368892615815
+      },
+      {
+        "C_squared": 4.0,
+        "honest_fail": 4.54190960875022e-21,
+        "invalid_accept": 0.9999975184539827,
+        "invalid_fail": 2.481546017332982e-06,
+        "lambda": 64,
+        "tail_exponent_proxy": 16.0,
+        "threshold_sigma_h": 9.419280180123797
+      },
+      {
+        "C_squared": 4.0,
+        "honest_fail": 1.7504672304856147e-40,
+        "invalid_accept": 0.9999999999726985,
+        "invalid_fail": 2.730147852186146e-11,
+        "lambda": 128,
+        "tail_exponent_proxy": 32.0,
+        "threshold_sigma_h": 13.320873778523163
+      },
+      {
+        "C_squared": 4.0,
+        "honest_fail": 3.6475245554925876e-79,
+        "invalid_accept": 1.0,
+        "invalid_fail": 4.54190960875022e-21,
+        "lambda": 256,
+        "tail_exponent_proxy": 64.0,
+        "threshold_sigma_h": 18.838560360247595
+      }
+    ]
+  },
+  "hair_sahai_norm_transfer": {
+    "claim": "The advertised M^epsilon lp gap with epsilon<(p-2)/(4p) cannot be converted black-box to a polynomial l2 gap via generic norm comparison, whose dimension exponent is theta=1/2-1/p.",
+    "rows": [
+      {
+        "epsilon_cap": 0.011904761904761915,
+        "naive_l2_exponent": -0.011916666666666683,
+        "p": 2.1,
+        "tested_epsilon": 0.011892857142857153,
+        "theta": 0.023809523809523836
+      },
+      {
+        "epsilon_cap": 0.05,
+        "naive_l2_exponent": -0.050049999999999976,
+        "p": 2.5,
+        "tested_epsilon": 0.04995,
+        "theta": 0.09999999999999998
+      },
+      {
+        "epsilon_cap": 0.08333333333333333,
+        "naive_l2_exponent": -0.0834166666666667,
+        "p": 3,
+        "tested_epsilon": 0.08324999999999999,
+        "theta": 0.16666666666666669
+      },
+      {
+        "epsilon_cap": 0.125,
+        "naive_l2_exponent": -0.125125,
+        "p": 4,
+        "tested_epsilon": 0.124875,
+        "theta": 0.25
+      },
+      {
+        "epsilon_cap": 0.125,
+        "naive_l2_exponent": -0.20845833333333336,
+        "p": 6,
+        "tested_epsilon": 0.124875,
+        "theta": 0.33333333333333337
+      },
+      {
+        "epsilon_cap": 0.125,
+        "naive_l2_exponent": -0.275125,
+        "p": 10,
+        "tested_epsilon": 0.124875,
+        "theta": 0.4
+      },
+      {
+        "epsilon_cap": 0.125,
+        "naive_l2_exponent": -0.35512499999999997,
+        "p": 50,
+        "tested_epsilon": 0.124875,
+        "theta": 0.48
+      },
+      {
+        "epsilon_cap": 0.125,
+        "naive_l2_exponent": -0.375125,
+        "p": "inf",
+        "tested_epsilon": 0.124875,
+        "theta": 0.5
+      }
+    ]
+  },
+  "offset_half": {
+    "claim": "For M=mu I, any sampler output K with A_top K=D and A_bot K=mu D+Z is an exact short preimage BK=Z for B=A_bot-mu A_top. Publishing K therefore defeats source-witness gating for a hash projected through B.",
+    "identity_cases": 172692,
+    "nontrivial_invertible_K_cases": 384
+  },
+  "partial_trapdoor_parameter_ledger": {
+    "claim": "Arithmetic record only for the m^(3/2)*max(sigma'_i) noise-loss factor in the cited integer kappa-LWE reduction.",
+    "rows": [
+      {
+        "chi0_over_chi_asymptotic_factor": 1024.0,
+        "m": 64,
+        "max_sigma_prime": 2
+      },
+      {
+        "chi0_over_chi_asymptotic_factor": 2048.0,
+        "m": 64,
+        "max_sigma_prime": 4
+      },
+      {
+        "chi0_over_chi_asymptotic_factor": 4096.0,
+        "m": 64,
+        "max_sigma_prime": 8
+      },
+      {
+        "chi0_over_chi_asymptotic_factor": 2896.309375740099,
+        "m": 128,
+        "max_sigma_prime": 2
+      },
+      {
+        "chi0_over_chi_asymptotic_factor": 5792.618751480198,
+        "m": 128,
+        "max_sigma_prime": 4
+      },
+      {
+        "chi0_over_chi_asymptotic_factor": 11585.237502960395,
+        "m": 128,
+        "max_sigma_prime": 8
+      },
+      {
+        "chi0_over_chi_asymptotic_factor": 8192.0,
+        "m": 256,
+        "max_sigma_prime": 2
+      },
+      {
+        "chi0_over_chi_asymptotic_factor": 16384.0,
+        "m": 256,
+        "max_sigma_prime": 4
+      },
+      {
+        "chi0_over_chi_asymptotic_factor": 32768.0,
+        "m": 256,
+        "max_sigma_prime": 8
+      },
+      {
+        "chi0_over_chi_asymptotic_factor": 23170.47500592079,
+        "m": 512,
+        "max_sigma_prime": 2
+      },
+      {
+        "chi0_over_chi_asymptotic_factor": 46340.95001184158,
+        "m": 512,
+        "max_sigma_prime": 4
+      },
+      {
+        "chi0_over_chi_asymptotic_factor": 92681.90002368316,
+        "m": 512,
+        "max_sigma_prime": 8
+      }
+    ]
+  },
+  "run": 119,
+  "scope": [
+    "Algebraic and continuous-Gaussian model checks only; no computational hardness is inferred.",
+    "Wee's T_{1/2}-LWE and Albrecht-Lai-Lapiha-Woo kappa-LWE theorems are stated for PPT adversaries in the cited papers; QPT security is not silently imported.",
+    "The straight-line shape of Wee's proof is a research lead for a possible QPT lift under QPT-LWE, not a completed quantum theorem here.",
+    "Hair-Sahai worst-case NP-hardness is not average-case LWE/SIS hardness and their lp theorem alone does not supply an l2 gap.",
+    "Stopping condition not met."
+  ],
+  "status": "PASS",
+  "total_assertions": 346906
+}

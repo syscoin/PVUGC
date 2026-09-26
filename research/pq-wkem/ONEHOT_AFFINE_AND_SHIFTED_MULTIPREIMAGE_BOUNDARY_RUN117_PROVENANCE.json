@@ -1,0 +1,35 @@
+{
+  "artifact_sha256": {
+    "ONEHOT_AFFINE_AND_SHIFTED_MULTIPREIMAGE_BOUNDARY_RUN117.md": "0e79581bcc505d15683b8abe65fb48457c57370c766b8d0a9e41fb686ec14137",
+    "onehot-shifted-multipreimage-run117-validation.json": "df30e375e3d4bbf52abd5341a3ff5610a300f23f68c2243cc3274b557b12b4dd",
+    "onehot_shifted_multipreimage_run117_check.py": "58a29494f953406cfaee9ef583cd6d52ee4159ad355c68236f1381cc9d24b681"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "execution": {
+    "assertions": 1265,
+    "byte_identical": true,
+    "checker_runs": 3
+  },
+  "pr": 1,
+  "primary_sources": [
+    {
+      "title": "Waters-Wee-Wu, New Techniques for Preimage Sampling: Improved NIZKs and More from LWE",
+      "url": "https://eprint.iacr.org/2024/1401",
+      "version_note": "primary ePrint PDF inspected; construction A_i=[A|B-u_i^T tensor G], shifted sampler, Theorem 4.7"
+    },
+    {
+      "title": "Nguyen-Siemer, Tight Reductions for SIS-with-Hints Assumptions with Applications to Anonymous Credentials",
+      "url": "https://eprint.iacr.org/2026/291",
+      "version_note": "primary ePrint page inspected as related SIS-with-hints lead; not used as a security theorem for Run 117"
+    }
+  ],
+  "repository": "syscoin/PVUGC",
+  "run": 117,
+  "scope": [
+    "No production/workflow edits.",
+    "One-hot compiler extraction is unconditional supplied-representation extraction.",
+    "W-W-W same-secret attack is a derived attack on a naive composition, not a claimed break of the paper.",
+    "No QPT theorem is inferred merely from lattice terminology or finite validation."
+  ],
+  "starting_pr_head": "a0803edfa691f184e33ca92620471a81c17c611c"
+}

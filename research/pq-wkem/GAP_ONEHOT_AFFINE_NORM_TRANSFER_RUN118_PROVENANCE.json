@@ -1,0 +1,66 @@
+{
+  "artifact_sha256": {
+    "GAP_ONEHOT_AFFINE_NORM_TRANSFER_RUN118.md": "08c0a309c3cff44bb57c73b6256772eda6dc9d57bd2aef0bde3e2e0acd6e0ce8",
+    "gap-onehot-run118-validation.json": "0c7bcd8f5656470095c7ae3d51b068d4afc9ee52857e607298896fd4f3c21281",
+    "gap_onehot_run118_check.py": "eff0b4c436e2eceab8af9f07b620db00d3aa72dc79645e63c970416ecefba9e6"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "executions": {
+    "byte_identical": true,
+    "checker": "gap_onehot_run118_check.py",
+    "count": 3,
+    "status": "PASS",
+    "total_assertions": 52242
+  },
+  "latest_substantive_pr_comment_id": 5843580758,
+  "literature": [
+    {
+      "author": "Irit Dinur",
+      "evidence": "primary bibliographic/abstract page; used only for existence and structure of gap amplification, not for exact Run-118 constants",
+      "title": "The PCP theorem by gap amplification",
+      "url": "https://doi.org/10.1145/1236457.1236459",
+      "year": 2007
+    },
+    {
+      "authors": "Piotr Berman; Marek Karpinski; Alexander D. Scott",
+      "evidence": "primary ECCC abstract; records inapproximability for exact 3-literal instances with each variable occurring exactly four times",
+      "title": "Approximation Hardness and Satisfiability of Bounded Occurrence Instances of SAT",
+      "url": "https://eccc.weizmann.ac.il/report/2003/022/",
+      "year": 2003
+    },
+    {
+      "authors": "Isaac Hair; Amit Sahai",
+      "evidence": "current arXiv abstract/result boundary used only for comparison; not imported as LWE/SIS hardness",
+      "title": "Polynomial-Factor Deterministic NP-Hardness for SVP in Every lp Norm with p > 2",
+      "url": "https://arxiv.org/abs/2608.14529",
+      "year": 2026
+    }
+  ],
+  "local_handoff": {
+    "archive": "wkem_onehot_shifted_multipreimage_run117.zip",
+    "sha256": "f752fcbeb48030e09f9e87a4d43993c0f43e02c120ea739fc4623211dcefed19"
+  },
+  "pr": 1,
+  "relevant_published_inputs": {
+    "research/pq-wkem/ANCHOR_SHIFT_MINRANK_RUN79.md": "30084603c3b35c449be4e154f6d214533526d3c5",
+    "research/pq-wkem/NOISY_GADGET_PROJECTION_BARRIER_RUN110.md": "e7431a4e67257069352e6b28012d94f1dbb1d09a",
+    "research/pq-wkem/SIS_FC_COMMON_TARGET_LINEARIZATION_RUN108.md": "46c28f366d5c17902ac3050f560011496906e06b",
+    "research/pq-wkem/literature-20260924/ASSESSMENT.md": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924"
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 118,
+  "security_scope": [
+    "Algebraic/combinatorial source-gap theorem only.",
+    "No claim that classical PCP or approximation-hardness results imply QPT cryptographic security.",
+    "No claim that the structured affine matrix is a standard-LWE distribution.",
+    "No claim that a future public trapdoor lift preserves LWE hardness with auxiliary lifting data.",
+    "Stopping condition not met."
+  ],
+  "starting_head": "a0803edfa691f184e33ca92620471a81c17c611c",
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  },
+  "title": "bounded-occurrence gap transfer for the one-hot affine compiler"
+}
