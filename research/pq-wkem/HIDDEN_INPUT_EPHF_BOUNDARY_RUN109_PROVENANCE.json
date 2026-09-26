@@ -1,0 +1,143 @@
+{
+  "artifact_sha256": {
+    "HIDDEN_INPUT_EPHF_BOUNDARY_RUN109.md": "8c455c7a0af8d10909a36fd4f9008b97b5f31b7d2a986c82c0f4fbd3bf5e010d",
+    "hidden-input-ephf-run109-validation.json": "2347c91063b7cf0661564936f21f82826ef6242fd523298f9c511bbba7fc3d83",
+    "hidden_input_ephf_run109_check.py": "65122f02150efb2ed3a5e661ee9e00d265eaca9bd17dd823e7659496c0eac28c"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "byte_identical_stdout": true,
+    "executions": 2,
+    "path": "research/pq-wkem/hidden_input_ephf_run109_check.py",
+    "status": "PASS",
+    "total_assertions": 9727
+  },
+  "exact_repository_inputs": [
+    {
+      "blob_sha": "5ec37cfcf47fcdc68d279af1dc1b6c90a7287c8d",
+      "path": "research/pq-wkem/FULL_KEY_ONE_COPY_QPT_EXTRACTION_RUN102.md"
+    },
+    {
+      "blob_sha": "a803478c59af2abdaeeaef35d1952b50a6dd721b",
+      "path": "research/pq-wkem/HIDDEN_SUBSPACE_CONSISTENCY_BUNDLE_RUN103.md"
+    },
+    {
+      "blob_sha": "5fc79b25e140d2fba30e00c6fd168b619beabd45",
+      "path": "research/pq-wkem/GAPMDP_SHORT_KERNEL_BRIDGE_RUN92.md"
+    },
+    {
+      "blob_sha": "f8634c5dd2bc29796f152ebde67064fe55045cc9",
+      "path": "research/pq-wkem/SIS_RANDOMIZED_SHORT_KERNEL_LIFT_RUN42.md"
+    }
+  ],
+  "latest_substantive_comment": {
+    "id": 5839832728,
+    "scope": "Runs 100-103 published and verified"
+  },
+  "literature": [
+    {
+      "pdf_screenshot": "Attempted as required; ePrint screenshot returned cache-miss error. Parsed primary PDF text was available.",
+      "verified_scope": [
+        "WEFC requires public statement (cm,beta,y) and opening witness op",
+        "verification must be affine in opening proof for generic EPHF compiler",
+        "ciphertext uses hp=[hk M(x)] and H=[hk Theta(x)]",
+        "EPHF knowledge extractor is PPT and extracts representation Lambda(x,w), not necessarily semantic w",
+        "concrete EPHF is DLog/bilinear and composed WEFC theorem is GGM",
+        "authors explicitly note WEFC loses pure nondeterministic flavor because a commitment to the decryption witness/input exists"
+      ],
+      "version": "IACR ePrint 2022/1510 / PKC 2024",
+      "work": "Campanelli\u2013Fiore\u2013Khoshakhlagh, Witness Encryption for Succinct Functional Commitments and Applications"
+    },
+    {
+      "pdf_screenshot": "Previously attempted; ePrint screenshot returned cache-miss error.",
+      "verified_scope": [
+        "transparent random SIS setup",
+        "future input x computes short S_f,x",
+        "verification equation (C-Rep(x)\u2297g^T)S=C_f-Rep(f(x))\u2297g^T",
+        "powers-of-two gadget has public short decomposition"
+      ],
+      "version": "IACR ePrint 2022/1368",
+      "work": "de Castro\u2013Peikert, Functional Commitments for All Functions, with Transparent Setup and from SIS"
+    },
+    {
+      "pdf_screenshot": "Attempted as required; ePrint screenshot returned cache-miss error.",
+      "verified_scope": [
+        "SPHFs for standard LWE ciphertext languages",
+        "word-independent lattice SPHF",
+        "relaxed witness encryption for restricted lattice languages, not NP-complete generic WE",
+        "correctness/soundness language gap"
+      ],
+      "version": "IACR ePrint 2017/997 / PKC 2018",
+      "work": "Benhamouda\u2013Blazy\u2013Ducas\u2013Quach, Hash Proof Systems over Lattices Revisited"
+    }
+  ],
+  "local_predecessor": {
+    "archive": "/mnt/data/wkem_sis_fc_common_target_run108.zip",
+    "archive_sha256": "d28d4440e19fbd77391954b30cecbf017f87058977bc005fbf8aa1e3c955fda4",
+    "note": "Not retried or republished. Run 109 builds on its witness-dependent FC equation and gadget-linearization barrier.",
+    "publication_status": "PARTIALLY_PUBLISHED_WITH_ZERO_BRANCH_VISIBLE_PATHS",
+    "run": 108
+  },
+  "new_results": [
+    "hidden future FC input turns de Castro opening verification from affine-in-opening to bilinear in (w,S)",
+    "natural universal EPHF basis projections hC,hGi let a valid witness form hM(w) but also reveal true hash through public gadget target preimages",
+    "affine linearization Zi=wiS admits public short gadget-only pseudowitnesses when nonlinear consistency is omitted",
+    "candidate missing primitive narrowed to hidden-input source-extractable EPHF / nonlinear witness-gated projection"
+  ],
+  "pr": 1,
+  "publication": {
+    "comment_id": null,
+    "commit_sha": null,
+    "diagnostic_note": "The exact proof blob exists as an unreferenced Git object but no Run-109 path is branch-visible. No timestamp or request/correlation ID was returned.",
+    "outstanding_local_only_paths": [
+      "research/pq-wkem/HIDDEN_INPUT_EPHF_BOUNDARY_RUN109.md",
+      "research/pq-wkem/hidden_input_ephf_run109_check.py",
+      "research/pq-wkem/hidden-input-ephf-run109-validation.json",
+      "research/pq-wkem/HIDDEN_INPUT_EPHF_BOUNDARY_RUN109_PROVENANCE.json"
+    ],
+    "post_block_write_attempts": 0,
+    "starting_and_final_head": "5a612472b4f5e16120a6a07097ef25788415cb94",
+    "status": "PARTIALLY_PUBLISHED",
+    "verified_readback": {
+      "head_unchanged": true,
+      "pr_draft": true,
+      "pr_open": true,
+      "pr_unmerged": true,
+      "proof_blob_read_back": true,
+      "proof_path_absent": true
+    },
+    "write_actions": [
+      {
+        "action": "mcp__GitHub__create_blob",
+        "artifact": "HIDDEN_INPUT_EPHF_BOUNDARY_RUN109.md",
+        "blob_sha": "91ebfdb8d712bc9a092b30af21048ea7bd04a109",
+        "branch_visible": false,
+        "exact_local_bytes": true,
+        "result": "success"
+      },
+      {
+        "action": "mcp__GitHub__create_blob",
+        "artifact": "hidden_input_ephf_run109_check.py",
+        "error": "Script error: This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+        "request_or_correlation_id": null,
+        "result": "SAFETY_BLOCK",
+        "tool_timestamp": null
+      }
+    ]
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 109,
+  "security_classification": {
+    "campanelli_published_model": "PPT + pairing/DLog; GGM for composed WEFC",
+    "hidden_input_source_ephf": "UNPROVED",
+    "lattice_sphf": "restricted LWE ciphertext languages; not hidden-input extractable generic NP",
+    "stopping_condition": "UNMET",
+    "universal_projection_attack": "classical/information-theoretic; therefore QPT refutation"
+  },
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "state": "open"
+  },
+  "starting_sha": "5a612472b4f5e16120a6a07097ef25788415cb94"
+}
