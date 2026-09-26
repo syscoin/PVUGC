@@ -1,0 +1,74 @@
+{
+  "artifact_sha256": {
+    "SEARCHABLE_HIDDEN_SUPPORT_BARRIER_RUN104.md": "b8248de10b9578851049de05308bb7ac146d1516f5bb1478c4efb05d717b9962",
+    "searchable-hidden-support-run104-validation.json": "80fe6349e77d562022520b766594feeec537e9d05ae3737c7647a2a808590e29",
+    "searchable_hidden_support_run104_check.py": "f3ae889dd914243a6564e96fffd16cfac479315346d0f51f79d1942e535249fa"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "byte_identical_stdout": true,
+    "executions": 3,
+    "path": "research/pq-wkem/searchable_hidden_support_run104_check.py",
+    "status": "PASS",
+    "total_assertions": 41
+  },
+  "exact_repository_inputs": [
+    {
+      "blob_sha": "16f82444983462600905668a64c3856a94b17c84",
+      "path": "research/pq-wkem/ODD_SPAN_AND_SUBSPACE_RANK_NOISE.md"
+    },
+    {
+      "blob_sha": "5d061495800bad32733298d25f1f1ac6e55779c2",
+      "path": "research/pq-wkem/literature-20260924/DEEP_DIVE_RANK_SCALAR_DESCENT.md"
+    },
+    {
+      "blob_sha": "4155a986ee4bf0d22b436dcebbe118a2c5b72ae1",
+      "path": "research/pq-wkem/MINRANK_DUAL_SYNDROME_RUN78.md"
+    },
+    {
+      "blob_sha": "0f93693ad51f7d84c249fd02ffa361bcadd3dd84",
+      "path": "research/pq-wkem/SPECTRAL_DIMENSION_FLOOR_RUN89.md"
+    },
+    {
+      "blob_sha": "e4b5dfe48e6ca05d565fbe81881f2178332abc0e",
+      "path": "research/pq-wkem/SYNDROME_EXTRACTOR_CAPACITY_RUN99.md"
+    }
+  ],
+  "immediate_local_predecessor": {
+    "archive_sha256": "d2750081024660cd9bfc3c6bf69aed0c135aa33ab85714b489833f6f916414e3",
+    "note": "Run 104 does not retry or republish the previously denied Run-103 payload.",
+    "proof_sha256": "899f1657bc192fa2fa769ac1e099aad01d02bed14adc32b665864a23f5dec613",
+    "publication_status_as_reported": "BLOCKED_BEFORE_GITHUB",
+    "run": 103
+  },
+  "latest_verified_comment": {
+    "id": 5836517821,
+    "scope": "Run 99 published and verified"
+  },
+  "new_results": [
+    "public computability of K_U from statement and freshly sampled support U",
+    "searchable-support probability p_x gives expected 1/p_x ORIGINAL-witness search",
+    "complete-public one-bundle TV <= p_x and L-bundle TV <= 1-(1-p_x)^L",
+    "correctness advantage eta forces p_x >= 1-(1-2eta)^(1/L) >= 2eta/L",
+    "generic polynomial-time instantiation implies NP subseteq RP",
+    "source compression that makes informative hidden supports inverse-polynomial cannot salvage the architecture"
+  ],
+  "pr": 1,
+  "publication": {
+    "status_at_artifact_finalization": "NOT_YET_ATTEMPTED"
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 104,
+  "security_classification": {
+    "assumptions": "none beyond the public source compiler and supplied-low-rank extractor",
+    "attack_model": "classical randomized polynomial time when p_x is inverse polynomial; therefore QPT-available",
+    "generic_np_consequence": "NP subseteq RP if polynomial correctness holds for the architecture",
+    "stopping_condition": "UNMET"
+  },
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "state": "open"
+  },
+  "starting_sha": "93ae96ba977d96e435c41c86ffeb037e8dbc2ff5"
+}

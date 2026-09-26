@@ -1,0 +1,129 @@
+{
+  "fanout": {
+    "d2_exact_probability": "1/25",
+    "d2_expected_rejections": 25,
+    "d3_expected_rejections": 625,
+    "d4_expected_rejections": 15625,
+    "formula": "q^(-m(d-1)) for d independent programmed targets with invertible scalar edge keys",
+    "q": 5,
+    "source_row_width": 2
+  },
+  "matrix_rank_spectrum": {
+    "average_chi_square": "25/16",
+    "m": 2,
+    "n": 1,
+    "q": 3,
+    "r": 2,
+    "rank_difference_probability_mass": {
+      "0": "1/16",
+      "1": "17/32",
+      "2": "13/32"
+    }
+  },
+  "reverse_posterior": {
+    "joint_tv_full_rank_A": "1/4",
+    "m": 2,
+    "marginal_tv_full_rank_A": "1/4",
+    "q": 3,
+    "reachable_conditionals_checked": 25,
+    "vector_avg_chi_square": "1/2",
+    "vector_collision_probability": "1/4"
+  },
+  "run": 105,
+  "scope": [
+    "Finite-field probability/algebra controls only.",
+    "The rank-aware chi-square theorem and Bayes reverse-sampling lemma are proved in the accompanying note.",
+    "Single-edge reverse programming does not instantiate the full branching-program witness encryption.",
+    "No computational hardness is inferred from passing tests."
+  ],
+  "single_edge": {
+    "claim": "For uniform T and any independent distribution on invertible K, A=T K^-1 is uniform and independent of K, with AK=T.",
+    "invertible_K_count": 48,
+    "matrix_size": 2,
+    "q": 3
+  },
+  "status": "PASS",
+  "total_assertions": 989,
+  "tree_expansion": [
+    {
+      "carrier_nodes": 3,
+      "depth": 1,
+      "leaves": 2
+    },
+    {
+      "carrier_nodes": 7,
+      "depth": 2,
+      "leaves": 4
+    },
+    {
+      "carrier_nodes": 15,
+      "depth": 3,
+      "leaves": 8
+    },
+    {
+      "carrier_nodes": 31,
+      "depth": 4,
+      "leaves": 16
+    },
+    {
+      "carrier_nodes": 63,
+      "depth": 5,
+      "leaves": 32
+    },
+    {
+      "carrier_nodes": 127,
+      "depth": 6,
+      "leaves": 64
+    },
+    {
+      "carrier_nodes": 255,
+      "depth": 7,
+      "leaves": 128
+    },
+    {
+      "carrier_nodes": 511,
+      "depth": 8,
+      "leaves": 256
+    },
+    {
+      "carrier_nodes": 1023,
+      "depth": 9,
+      "leaves": 512
+    },
+    {
+      "carrier_nodes": 2047,
+      "depth": 10,
+      "leaves": 1024
+    },
+    {
+      "carrier_nodes": 4095,
+      "depth": 11,
+      "leaves": 2048
+    },
+    {
+      "carrier_nodes": 8191,
+      "depth": 12,
+      "leaves": 4096
+    },
+    {
+      "carrier_nodes": 16383,
+      "depth": 13,
+      "leaves": 8192
+    },
+    {
+      "carrier_nodes": 32767,
+      "depth": 14,
+      "leaves": 16384
+    },
+    {
+      "carrier_nodes": 65535,
+      "depth": 15,
+      "leaves": 32768
+    },
+    {
+      "carrier_nodes": 131071,
+      "depth": 16,
+      "leaves": 65536
+    }
+  ]
+}

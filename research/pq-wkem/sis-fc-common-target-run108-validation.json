@@ -1,0 +1,73 @@
+{
+  "fc_linearization": {
+    "claim": "Linearizing (C-G_w)S=T into a fixed matrix [C,-G_1,...,-G_k] creates a public short preimage of every target through any gadget block.",
+    "gadget_ell": 9,
+    "input_bits": 3,
+    "input_width": 54,
+    "n": 2,
+    "output_columns": 2,
+    "q": 257,
+    "trials": 400
+  },
+  "gadget_channel": {
+    "bounded_error": 3,
+    "claim": "In this bounded-noise control, the gadget observations uniquely determine each secret coordinate.",
+    "gadget": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "q": 257,
+    "surviving_secret_deltas": [
+      0
+    ]
+  },
+  "randomized_gadget": {
+    "claim": "If a public short map R satisfies B R=G, composing R with gadget inversion again gives a public target preimage under B.",
+    "trials": 150
+  },
+  "run": 108,
+  "scope": [
+    "Finite algebra and probability controls only.",
+    "The checker does not reimplement de Castro-Peikert homomorphic Eval.",
+    "The public-preimage attack applies to the direct fixed-matrix block linearization, not to the functional commitment itself.",
+    "The selective/adaptive toy demonstrates why adaptive input choice cannot be treated as an independent uniform shift."
+  ],
+  "selective_adaptive": {
+    "adaptive_zero_probability": 0.0622568093385214,
+    "guessing_loss_rows": [
+      {
+        "guessing_loss": "2^32",
+        "input_space_log2": 32,
+        "witness_bits": 32
+      },
+      {
+        "guessing_loss": "2^64",
+        "input_space_log2": 64,
+        "witness_bits": 64
+      },
+      {
+        "guessing_loss": "2^128",
+        "input_space_log2": 128,
+        "witness_bits": 128
+      },
+      {
+        "guessing_loss": "2^256",
+        "input_space_log2": 256,
+        "witness_bits": 256
+      },
+      {
+        "guessing_loss": "2^512",
+        "input_space_log2": 512,
+        "witness_bits": 512
+      }
+    ],
+    "q": 257,
+    "shift_family_size": 16,
+    "tv_from_uniform": 0.058365758754863814,
+    "uniform_zero_probability": 0.0038910505836575876
+  },
+  "status": "PASS",
+  "total_assertions": 1965
+}
