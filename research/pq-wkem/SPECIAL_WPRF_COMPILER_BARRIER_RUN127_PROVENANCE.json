@@ -1,0 +1,49 @@
+{
+  "artifact_sha256": {
+    "SPECIAL_WPRF_COMPILER_BARRIER_RUN127.md": "003b601b2f05fc3d8054b572efc8148881979a024dc3167aa8bec9385beb0f85",
+    "special-wprf-compiler-run127-validation.json": "bef22f89983c18e02866dda7fc930edf5634fd5a29e88d0d9a8365ec73a8d172",
+    "special_wprf_compiler_run127_check.py": "37f1fb9f4c3e3a9d847ad29553312184661fd0253b7b17964327fec51de75348"
+  },
+  "checker": {
+    "assertions": 16489,
+    "byte_identical_stdout": true,
+    "executions": 2,
+    "stdout_path": "research/pq-wkem/special-wprf-compiler-run127-validation.json"
+  },
+  "external_sources": [
+    {
+      "evidence": "primary PDF accessible via web search",
+      "id": "ePrint 2014/301",
+      "title": "How to Avoid Obfuscation Using Witness PRFs"
+    },
+    {
+      "evidence": "fresh index/author/dblp/abstract-mirror verification; primary PDF not retrievable in this run",
+      "id": "ePrint 2026/1079",
+      "title": "Witness Pseudorandom Functions for Vector Commitments and Applications"
+    }
+  ],
+  "github_inputs_read": [
+    "research/pq-wkem/WPRF_PUBLIC_OPENING_SOURCE_BARRIER_RUN113.md",
+    "research/pq-wkem/VTDH_FIXED_DIGEST_MAJORITY_CANONICALIZATION_RUN121.md",
+    "research/pq-wkem/QPT_TSABARY_AUDIT_RUN80.md",
+    "research/pq-wkem/literature-20260924/ASSESSMENT.md"
+  ],
+  "head_branch": "research/pq-wkem-validation-20260918",
+  "latest_ordinary_comment_id_read": 5847380543,
+  "new_research": "source-preserving special-WPRF compiler theorem; fixed-input random-function collision barrier; one-shot fixed-statement weakening",
+  "pr_state_at_start": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  },
+  "pull_request": 1,
+  "qualifications": [
+    "No computational WPRF, pairing, LWE, SIS, MinRank, or QPT hardness was tested.",
+    "The special-WPRF compiler theorem is a reduction/interface theorem, not an impossibility theorem.",
+    "The project only needs a statement-specific one-shot object, which need not imply a reusable general-purpose WPRF.",
+    "Runs 122-126 remain local conversation checkpoints and were not historically backfilled in this run."
+  ],
+  "repository": "syscoin/PVUGC",
+  "run": 127,
+  "starting_sha": "4198b1815d3edc7be41ec1cb25c0c46fab24610e"
+}
