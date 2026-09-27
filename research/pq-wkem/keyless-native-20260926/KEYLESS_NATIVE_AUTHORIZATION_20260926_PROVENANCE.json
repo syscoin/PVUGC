@@ -1,0 +1,89 @@
+{
+  "artifacts": {
+    "KEYLESS_NATIVE_AUTHORIZATION_20260926.md": {
+      "bytes": 17287,
+      "git_blob_sha1": "dffe6c85dc3bf63652ba7927d1593e2ee6549608",
+      "sha256": "019d6f24fba1798265846b5f1e1860509060a1e045183eb97607deb510de16c6"
+    },
+    "keyless-native-20260926-validation.json": {
+      "bytes": 5414,
+      "git_blob_sha1": "389171c2b45224979230498d7ef21abe893a5aaa",
+      "sha256": "81ef2eaf9f720910fcd052aec2525141d1d954f3832c428695870ceaf2744630"
+    },
+    "keyless_native_20260926_check.py": {
+      "bytes": 10866,
+      "git_blob_sha1": "1012ea327f7704420c5eb3c0a15c16f6ac0f0825",
+      "sha256": "0a4b67a4b33854c47f40657903c744f423f1f92b63c40db3db59b43207d35802"
+    }
+  },
+  "exact_head_notes_read": [
+    "WPRF_PUBLIC_OPENING_SOURCE_BARRIER_RUN113.md",
+    "DUAL_MODE_HASH_SECRET_RESAMPLING_BARRIER_RUN126.md",
+    "UP_HASH_ISOLATION_ALL_WITNESS_BARRIER_RUN128.md"
+  ],
+  "execution": {
+    "cryptographic_security_established": false,
+    "executions": 2,
+    "historical_checkers_rerun": false,
+    "outputs_byte_identical": true,
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "run_command": "python keyless_native_20260926_check.py > keyless-native-20260926-validation.json",
+    "syntax_command": "python -m py_compile keyless_native_20260926_check.py"
+  },
+  "head_branch": "research/pq-wkem-validation-20260918",
+  "identifier": "INTERACTIVE_KEYLESS_20260926",
+  "latest_ordinary_comment_read": 5850205385,
+  "limits": [
+    "Not an implemented signature scheme or witness KEM",
+    "No QPT hiding/knowledge theorem established",
+    "Generalized native verification is outside the unchanged-verifier target",
+    "No prior denied payload retried",
+    "No production, workflow, or automation changes"
+  ],
+  "local_prior_source": {
+    "archive": "PQ_WKEM_RUN133_LOCAL_ARTIFACTS.zip",
+    "read_not_republished": true,
+    "sha256": "e43324a888590b22c605e33b8be83e8ecbf3947a0453e4944389852ce05c2052"
+  },
+  "pr": 1,
+  "publication_at_packaging": "Not yet attempted; final conversation receipt records actual outcome.",
+  "record_created_utc": "2026-09-27T04:02:08.798415+00:00",
+  "repository": "syscoin/PVUGC",
+  "sources": [
+    {
+      "scope": "Sections 2.3-2.5, MinRank and public/secret relation; not a full security audit",
+      "url": "https://arxiv.org/html/2307.08575v1",
+      "version": "2307.08575v1"
+    },
+    {
+      "scope": "Algorithms 19-21, high-level public relation, Section 7 theorem/model; primary extracted text",
+      "screenshot_status": "web screenshot returned Internal Error; container.download failed; no local PDF hash verified",
+      "url": "https://pqc-mirath.org/assets/downloads/mirath_v2.1.0.pdf",
+      "version": "v2.1.0"
+    },
+    {
+      "scope": "First-page QROM statement; no performance numbers transplanted",
+      "screenshot_status": "web screenshot returned Internal Error",
+      "url": "https://pqc-mirath.org/assets/downloads/mirath_note_05_05_26.pdf",
+      "version": "2026-05-05 author note"
+    },
+    {
+      "scope": "Primary bibliographic/abstract record only; full proof not audited",
+      "url": "https://eprint.iacr.org/2025/1999"
+    },
+    {
+      "scope": "Author interface description only; WE security and performance not adopted",
+      "url": "https://delvingbitcoin.org/t/bitcoin-pipes-v2/2249"
+    },
+    {
+      "scope": "Native signature/NUMS semantics",
+      "url": "https://bips.dev/341/"
+    },
+    {
+      "scope": "Current draft P2MR status, not an implemented witness release primitive",
+      "url": "https://bips.dev/360/"
+    }
+  ],
+  "starting_sha": "76e5b632cf00b4372955b871aadd59ded84c5167"
+}
