@@ -1,0 +1,50 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "created_utc": "2026-09-30T14:59:02.968647+00:00",
+  "execution": {
+    "command": "python conditional_image_run196_check.py",
+    "conditional_images_checked": 255,
+    "executions": 2,
+    "exit_codes": [
+      0,
+      0
+    ],
+    "full_probability_vectors_per_fixture": 6,
+    "identical_outputs": true,
+    "literal_projection_dimensions": [
+      10,
+      15
+    ],
+    "python": "3.13.5",
+    "syntax_check": "PASS"
+  },
+  "files": {
+    "CONDITIONAL_IMAGE_MIXING_RUN196.md": {
+      "bytes": 9685,
+      "git_blob_sha": "99a0538f9823bfd562b34570d7aa68dd079fa446",
+      "sha256": "aa65c9d5d5dfe06408d358d7fdf139272bee66e7bb3b0384f2f017baec53cd2d"
+    },
+    "conditional-image-run196-validation.json": {
+      "bytes": 4356,
+      "git_blob_sha": "155117b3dc2b9b9352f0b75a3d1a89751cf029a9",
+      "sha256": "33fbc406bde1478eb248b0f3c7effd922390c12beb55f1494faf22e22cdea9eb"
+    },
+    "conditional_image_run196_check.py": {
+      "bytes": 8637,
+      "git_blob_sha": "268468265009535420226b7d3f2bdee383631fe9",
+      "sha256": "1f43a756bee45f0e79fc148cbec4e13504f4f3d65f36e443c23a0787dfc25a97"
+    }
+  },
+  "latest_comment_read": 5894497334,
+  "lineage": {
+    "published_encoder_blob": "e3c51bff4a8f3817f70b1368190b8b35893cafa2",
+    "published_scalar_descent_blob": "5d061495800bad32733298d25f1f1ac6e55779c2",
+    "run195_local_archive_sha256": "6f573db01c89938c9c8d693fd5c06a9f5a5007960fa7229d0245887d78a78665",
+    "run195_status": "reported BLOCKED_BEFORE_GITHUB; no retry or republishing of its payload"
+  },
+  "pr": 1,
+  "repository": "syscoin/PVUGC",
+  "run": 196,
+  "scope": "new statistical mixing lemma and finite one-block marginal distributions, not whole-capsule security or completed WKEM",
+  "starting_sha": "0c36e9b9e4f3f1546533f3564cf3015ec7ebb890"
+}
