@@ -1,0 +1,31 @@
+{
+  "run": 209,
+  "generated_at_utc": "2026-10-01T08:01:24Z",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "10ef85d5e34186b5c7bb8bf144804925604021ea",
+  "pr_state_at_start": {"state":"open","draft":true,"merged":false},
+  "latest_substantive_ordinary_comment_id": 5913974235,
+  "exact_inputs": [
+    {"path":"research/pq-wkem/CMV_MINRANK_LACONIC_QPT_SOURCE_BRIDGE_RUN152.md","blob_sha":"398b93af491d0b11cc486e86c89295a05b714804"},
+    {"path":"research/pq-wkem/CONDITIONAL_IMAGE_MIXING_RUN196.md","blob_sha":"99a0538f9823bfd562b34570d7aa68dd079fa446"},
+    {"path":"research/pq-wkem/JOINT_LOWRANK_PROJECTION_RUN197.md","blob_sha":"6dab6c3812ebbb7c35dbe8f541698a8389a59f7a"},
+    {"path":"research/pq-wkem/CHAR2_FINITE_DIFFERENCE_REPAIR_RUN198.md","blob_sha":"958854318ddc22c78f1910d4f63a0db65e44c0e9"},
+    {"path":"research/pq-wkem/char2_finite_difference_run198_check.py","blob_sha":"b62467189f9a23c2d673c87614bd9bcf8c6dbc6e"}
+  ],
+  "artifacts": [
+    {"path":"research/pq-wkem/OFFDIAGONAL_TENSOR_SPECTRUM_RUN209.md","local_sha256":"acc5cefc4adcf68a93aae584e861fcd59f5c3f1bc37da9219589f63bb9892671","expected_git_blob_sha":"d2731c1f0ca543cf50a07c5cf781ddc294222137"},
+    {"path":"research/pq-wkem/offdiag_tensor_spectrum_run209_check.py","local_sha256":"550c027d5154f5257001ec90808d902fd501d2398b94e3e0829711ca2dfe32ef","expected_git_blob_sha":"d2f40b5a3cda258e5d533eaa710bbe62ab652a8a"},
+    {"path":"research/pq-wkem/offdiag-tensor-spectrum-run209-validation.json","local_sha256":"261a208cc7b1efd9e60a6830b836fd3ed5a64e3845d159b671d106ea21909223","expected_git_blob_sha":"4ff0bd83918b6c68862c86a822315555109b6cf1"}
+  ],
+  "validation": {
+    "python_syntax": "PASS",
+    "two_final_runs_byte_identical": true,
+    "assertions": 8284,
+    "fixtures": ["N=4,R=1,GF(16),t=2","N=5,R=2,GF(32),t=2"],
+    "nonzero_tensors_per_fixture": 4095,
+    "scope": "finite algebra/counting validation only; no QPT hardness or fixed-Syscoin-relation theorem"
+  },
+  "publication_policy": "Only new Run-209 research artifacts may be added under research/pq-wkem/ on the existing PR branch, then ordinary top-level PR comment after exact readback. Any explicit safety denial ends all GitHub writes for the run."
+}
