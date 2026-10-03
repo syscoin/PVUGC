@@ -1,0 +1,21 @@
+{
+  "run": 245,
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "b9b606cde04056e0b3766adcf4f6007951382d1e",
+  "live_pr_state": {"open": true, "draft": true, "merged": false},
+  "exact_branch_inputs": [
+    {"path": "research/pq-wkem/HAIR_SAHAI_QGGM_EFFECTIVE_SUPPORT_RUN242.md", "blob": "589f113fd63e7a3f87f9ffd1b3473f3f9c2d9612"},
+    {"path": "research/pq-wkem/hair_sahai_qggm_effective_support_run242_check.py", "blob": "49274f56f9665a839224fefffe1c0b402360bb16"},
+    {"path": "research/pq-wkem/HAIR_SAHAI_GENERALIZED_SUPPORT_RUN214.md", "blob": "6a67013fda501295e631d5bb17bb7d50c4bd8be5"},
+    {"path": "research/pq-wkem/hair_sahai_generalized_support_run214_check.py", "blob": "b38c7eea6c6a2cb387b5dcb1b97ac018c0b03f32"}
+  ],
+  "local_validation": {
+    "python": "3.13.5",
+    "py_compile": "PASS",
+    "assertions": 1729,
+    "two_byte_identical_runs": true
+  },
+  "scope": "generic post-exponent-recovery bounded-image membership at constant effective codimension; no concrete-group PQ claim and no completed WKEM"
+}
