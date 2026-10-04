@@ -1,0 +1,64 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "construction": "perfectly-hidden sparse local selector over the Run-53 block-local-view relation; audit by public enumeration of the eight exact signed pseudorepresentations",
+  "executed_validation": {
+    "byte_identical_stdout": true,
+    "checker": "python /mnt/data/hidden_selector_run55_check_executed_final.py",
+    "checks": {
+      "complete_residual_identities": 4000,
+      "correlated_full_list_monte_carlo_trials_total": 80000,
+      "dense_exact_ternary_cases": 8,
+      "exact_false_core_representations": 8,
+      "ideal_hidden_one_block_majority_trials": 4000,
+      "ideal_hidden_one_block_share_recoveries": 4000,
+      "local_rademacher_selector_patterns": 1024,
+      "pairwise_residual_difference_identities": 32000
+    },
+    "independent_runs": 2,
+    "note": "Monte Carlo counts are diagnostic only; proved statements rely on algebra/combinatorics or exact finite convolution.",
+    "stdout_matches_captured_validation": true
+  },
+  "external_literature_or_web_search": false,
+  "files": {
+    "HIDDEN_SELECTOR_LIST_BARRIER_RUN55.md": {
+      "bytes": 15944,
+      "git_blob_sha1": "15f94a0db7a82e7575214745d4ed980fe44a0897",
+      "note": "local artifact proof; remote proof is substantively identical but differs in whitespace; see remote_blobs for canonical GitHub blob",
+      "sha256": "0b38993fed25e82df01f5c7f9893b8f04d97d71b4c01cf99b5caeb5ee7cf339a"
+    },
+    "hidden-selector-run55-validation.json": {
+      "bytes": 5580,
+      "git_blob_sha1": "7f7681fd4c5a09d709d5654fa93bd7ed2606e1d3",
+      "sha256": "a27755a5ef5a368775cfdc9fc7535e6dcda37e299ebbeab8dc16c061396ea7fc"
+    },
+    "hidden_selector_run55_check.py": {
+      "bytes": 10961,
+      "git_blob_sha1": "e122cdab6adb1191d381bee38bd0a217e5383529",
+      "sha256": "4964e8b59b30d3572fd2c88a419c3dee1d92986015e66d4b88324a72671fe5c4"
+    }
+  },
+  "proved_claims": [
+    "For the all-eight 3-CNF false core, there are exactly eight public exact signed representations, each with exactly one malformed block.",
+    "With one perfectly hidden tested block, seven of eight list elements are guaranteed to return the real binary share under the candidate semantics, so strict majority recovers it without learning the selector.",
+    "For a hidden subset of s tested blocks, strict binary majority is guaranteed for all behavior of tested outputs when s<=3, and that worst-case majority guarantee ceases at s>=4.",
+    "For additive native residuals beta-y^T c with By=d, every exact pseudorepresentation residual and every pairwise residual difference are public.",
+    "For the stated ternary dense-test diagnostic, the exact malformed-representation acceptance probabilities are computed by integer convolution."
+  ],
+  "pull_request": 1,
+  "remaining_gaps": [
+    "No generic source-witness-selective public offline encoder/evaluator.",
+    "No arbitrary-QPT early-key-recovery to source-witness or independent-PQ-break reduction.",
+    "No full false-instance hiding proof for a surviving practical construction.",
+    "No completed malicious-secure setup/auxiliary-input composition or practical end-to-end parameters."
+  ],
+  "remote_blobs": {
+    "HIDDEN_SELECTOR_LIST_BARRIER_RUN55.md": "03c89dbaca39deb2232b2dd12b0f410de24c08f0",
+    "hidden-selector-run55-validation.json": "7f7681fd4c5a09d709d5654fa93bd7ed2606e1d3",
+    "hidden_selector_run55_check.py": "e122cdab6adb1191d381bee38bd0a217e5383529"
+  },
+  "repository": "syscoin/PVUGC",
+  "run": "55",
+  "scope": "research/pq-wkem only; no production-code edits",
+  "starting_pr_head": "88792d576d2699dbe0fb5e03cb76fcbca1868e0c",
+  "stopping_condition_met": false
+}

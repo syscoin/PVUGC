@@ -1,0 +1,30 @@
+{
+  "captured_stdout": {
+    "claim_scope": "finite-field algebra validation only; not a cryptographic security proof",
+    "results": {
+      "field": 101,
+      "nonlinear_exact_share_recoveries": 1200,
+      "nonlinear_support_fixtures": 1200,
+      "scramble_capsule_interpolations": 180,
+      "scramble_capsule_unmasks": 180,
+      "scramble_matrix_recoveries": 180,
+      "scramble_share_recoveries": 180,
+      "scramble_trials": 180,
+      "seed": 5200520052,
+      "threshold_key_recoveries": 600,
+      "threshold_trials": 600,
+      "unisolvent_cases": 5,
+      "unisolvent_total_dimension": 95
+    },
+    "status": "ok"
+  },
+  "checker": "nonlinear_support_scramble_run52_check.py",
+  "checker_sha256": "da9d8a0eb24677ead4fadb48fcb44a40809a6cfddfa5deaf3bb9aef1290a095b",
+  "command": "python3 research/pq-wkem/nonlinear_support_scramble_run52_check.py",
+  "executions": 2,
+  "run": 52,
+  "scope": "finite-field algebra validation only; no cryptographic security claim",
+  "starting_head": "98dfda35a4e1a00860cad41fd6ec5331e0f3dedd",
+  "stdout_byte_identical": true,
+  "stdout_sha256": "4348221a2d77c03a7538423185d9315cbafd0b9af9d0794ecb4193856c8fbb76"
+}

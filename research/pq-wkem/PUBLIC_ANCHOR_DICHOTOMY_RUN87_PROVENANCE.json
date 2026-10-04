@@ -1,0 +1,65 @@
+{
+  "classification": {
+    "arbitrary_qpt_source_extraction": "UNPROVED",
+    "attack_adversary": "classical PPT; therefore applicable a fortiori to QPT-security claims",
+    "honest_algorithms": "classical polynomial time",
+    "qpt_false_hiding": "UNPROVED",
+    "result": "public-anchor dichotomy and P/BPP decision barrier for exact/overwhelming false-anchor annihilation",
+    "standard_pq_release_reduction": "UNPROVED"
+  },
+  "new_claims": [
+    "For any explicit public linear source basis and public linear anchor, either the anchor annihilates the whole source space or an anchor-one source vector is computable by scaling one basis element.",
+    "If a deterministic polynomial-time generic compiler has anchor-one witness completeness and exact anchor annihilation on every false statement, the language is in P.",
+    "With probabilistic setup and overwhelming completeness/false-annihilation, the same public basis test puts the language in BPP.",
+    "Therefore generic exact false-anchor elimination cannot be the missing public source compiler for an NP-complete language unless the corresponding complexity collapse occurs.",
+    "Security in the non-annihilating branch cannot rely on hardness of finding anchor-one coefficients; it must rely on extra structure such as low rank/bounded factor or an independently justified computational assumption."
+  ],
+  "pr_number": 1,
+  "production_code_modified": false,
+  "publication": {
+    "attempted_path": "research/pq-wkem/PUBLIC_ANCHOR_DICHOTOMY_RUN87.md",
+    "diagnostic_note": "The tool returned no timestamp or request/correlation identifier. Per publication rules, no further GitHub write action was attempted in this run.",
+    "diagnostic_timestamp": null,
+    "github_write_attempted": true,
+    "invoked_action": "mcp__GitHub__create_file",
+    "ordinary_comment_id": null,
+    "outstanding_local_only_paths": [
+      "PUBLIC_ANCHOR_DICHOTOMY_RUN87.md",
+      "public_anchor_dichotomy_run87_check.py",
+      "public-anchor-dichotomy-run87-validation.json",
+      "PUBLIC_ANCHOR_DICHOTOMY_RUN87_PROVENANCE.json"
+    ],
+    "request_or_correlation_id": null,
+    "returned_commit_sha": null,
+    "returned_error": "This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "run86_denied_material_retried": false,
+    "status": "BLOCKED_BEFORE_GITHUB",
+    "verified_published_paths": []
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 87,
+  "source_context": [
+    {
+      "arxiv": "2609.18275v1",
+      "authors": "Isaac M. Hair, Amit Sahai",
+      "title": "Witness Encryption via Prime-Order Generic Groups",
+      "used_for": "public exact-span weighted-table compiler and rank-one/source algebra only; classical generic-group encryption theorem not imported as PQ security"
+    },
+    {
+      "blob": "4fefd6c364a76fd12fe76169ddbec47e486c786b",
+      "path": "research/pq-wkem/LWE_DIRECTIONAL_TRANSPORT_RUN72.md",
+      "used_for": "previous standard-LWE local transport boundary; no new LWE theorem claimed"
+    }
+  ],
+  "starting_branch": "research/pq-wkem-validation-20260918",
+  "starting_verified_head": "52b5cc0d3650ed6c29dbf2225ecbfc9c08208503",
+  "stopping_condition_met": false,
+  "tests": {
+    "byte_identical_stdout": true,
+    "executions": 2,
+    "generic_basis_functional_identity_checks": 14000,
+    "generic_public_normalizations": 694,
+    "scope": "finite linear algebra and tiny exhaustive oracle controls only; not cryptographic security",
+    "tiny_indicator_oracle_decision_checks": 80
+  }
+}

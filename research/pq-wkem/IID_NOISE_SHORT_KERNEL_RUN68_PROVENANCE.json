@@ -1,0 +1,32 @@
+{
+  "run": 68,
+  "starting_pr_head": "c4e7047290edceb5258a6716bc3044ed3b05cd7b",
+  "pr": "https://github.com/syscoin/PVUGC/pull/1",
+  "checkpoint_comment_id": 5809745425,
+  "scope": "research/pq-wkem only; normalized short-kernel compiler plus arbitrary public iid additive Z_q noise",
+  "external_literature_or_web_search": false,
+  "production_code_changed": false,
+  "tests": {
+    "checker": "iid_noise_short_kernel_run68_check.py",
+    "captured_validation": "iid-noise-short-kernel-run68-validation.json",
+    "executions_after_finalization": 2,
+    "byte_identical": true,
+    "checker_sha256": "c29f75048075b66ccaba825352a6cd626e080dd473752d8c12f53c1f9875b591",
+    "validation_sha256": "fc2f686574764b809c4d7f1f99cae3f8d2615ccdb40787c12b50755f2b838b85"
+  },
+  "proved_claims": [
+    "Every Boolean assignment has an exact normalized-kernel pseudovector; each violated clause contributes one +2 and one -1 while Hx=0 and h=1.",
+    "For every probability distribution on Z_q, |phi(2t)| >= max(0,2|phi(t)|^2-1).",
+    "The complete iid-noise pseudovector character magnitude is |phi(t)|^L |phi(2t)|^v for odd key-sensitive t.",
+    "Honest half-shift TV delta implies some odd harmonic beta=|phi(t)|^L >= 2delta/q.",
+    "If L>=8 ln(1/beta) and v<=L/2, the public pseudovector character amplitude is at least beta^5; hence at least (2delta/q)^5 for the selected harmonic."
+  ],
+  "not_claimed": [
+    "No generic impossibility for correlated or statement-dependent noise.",
+    "No break of LWE or SIS.",
+    "No completed final-key QPT reduction.",
+    "No completed generic PQ witness KEM.",
+    "Tests are not a security proof."
+  ],
+  "stopping_condition_met": false
+}

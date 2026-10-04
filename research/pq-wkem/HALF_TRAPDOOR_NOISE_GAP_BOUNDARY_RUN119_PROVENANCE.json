@@ -1,0 +1,68 @@
+{
+  "artifact_sha256": {
+    "HALF_TRAPDOOR_NOISE_GAP_BOUNDARY_RUN119.md": "d298e623701023c78b796a8e1d204003ac43440ce8039f9fc7d2f8bb3a381622",
+    "half-trapdoor-noise-gap-run119-validation.json": "f1fb059cbcc41f038eefbd97a43639664a9f12e27060148579cfa4709aa1ffa5",
+    "half_trapdoor_noise_gap_run119_check.py": "c36e21f505a0ad557a78416fb63c8979e000db35e675e73f1c78b79d75b68348"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "executions": {
+    "byte_identical": true,
+    "checker": "half_trapdoor_noise_gap_run119_check.py",
+    "count": 3,
+    "status": "PASS",
+    "total_assertions": 346906
+  },
+  "latest_substantive_pr_comment_id": 5843580758,
+  "literature": [
+    {
+      "author": "Hoeteck Wee",
+      "scope": "PPT theorem; restricted Gaussian preimage oracle; no QPT theorem imported",
+      "title": "ABE for DFA from LWE against Bounded Collusions, Revisited",
+      "url": "https://eprint.iacr.org/2022/1348.pdf",
+      "version": "ePrint 2022/1348 PDF as crawled; Theorem 1 and Sections 1.1, 3.1 audited",
+      "year": 2021
+    },
+    {
+      "authors": "Martin R. Albrecht; Russell W. F. Lai; Oleksandra Lapiha; Ivy K. Y. Woo",
+      "scope": "PPT kappa-SIS/kappa-LWE definitions and integer reductions; no QPT theorem imported",
+      "title": "Partial Lattice Trapdoors: How to Split Lattice Trapdoors, Literally",
+      "url": "https://olapiha.github.io/assets/pdf/TTrap.pdf",
+      "version": "author PDF / ASIACRYPT 2025; Definitions 3-5, Theorem 1, Sections 2.4 and 5 audited",
+      "year": 2025
+    },
+    {
+      "authors": "Isaac M. Hair; Amit Sahai",
+      "scope": "worst-case NP-hardness only; black-box lp-to-l2 exponent loss derived independently",
+      "title": "Polynomial-Factor Deterministic NP-Hardness for SVP in Every lp Norm with p > 2",
+      "url": "https://arxiv.org/pdf/2608.14529",
+      "version": "arXiv:2608.14529v3, 19 Aug 2026; Theorem 1.1, Lemma 2.1, geometric conversion inspected",
+      "year": 2026
+    }
+  ],
+  "local_handoff": {
+    "archive": "wkem_gap_onehot_affine_norm_transfer_run118.zip",
+    "sha256": "8006b7b5afea31fb2b896a0c45e8511d99baad78c75890e981e3e3b47dd15501"
+  },
+  "pr": 1,
+  "relevant_published_inputs": {
+    "research/pq-wkem/ADAPTOR_INVARIANT_COMMON_KEY_RUN111.md": "0e4a294539a949af5a178ed7cc5d6659ed79a42b",
+    "research/pq-wkem/HIDDEN_INPUT_EPHF_BOUNDARY_RUN109.md": "91ebfdb8d712bc9a092b30af21048ea7bd04a109"
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 119,
+  "security_scope": [
+    "New offset-half identity is unconditional algebra.",
+    "Gaussian validity result is for an ideal centered continuous-Gaussian threshold mechanism; it is not a universal impossibility for all noisy encodings.",
+    "Wee and partial-trapdoor source theorems are PPT/classical statements; QPT security is not silently inferred.",
+    "The straight-line structure of Wee Theorem 1 is recorded only as a plausible QPT-lift lead under QPT-LWE, requiring formal quantum-game proof.",
+    "Hair-Sahai lp hardness is worst-case NP-hardness, not average-case LWE/SIS or a QPT cryptographic hardness assumption.",
+    "Stopping condition not met."
+  ],
+  "starting_head": "a0803edfa691f184e33ca92620471a81c17c611c",
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  },
+  "title": "half-trapdoor offset boundary and constant-noise-gap obstruction"
+}

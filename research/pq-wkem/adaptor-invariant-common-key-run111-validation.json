@@ -1,0 +1,243 @@
+{
+  "batch_it_mac_dependency": {
+    "cases": 1799,
+    "claim": "Pre-fixing authenticator randomness does not remove the later x-dependent message in the two-message syntax."
+  },
+  "common_value": {
+    "cases": 120,
+    "claim": "A one-mask offline release C=K xor z0 is all-witness correct iff every valid completion derives the same z0."
+  },
+  "gl_common_key": {
+    "claim": "For distinct completions, k random linear/GL key bits agree with probability exactly 2^-k.",
+    "pairwise_half_checks": 10795,
+    "records": [
+      {
+        "equality_probability": 0.5,
+        "key_bits": 1,
+        "signature_bits": 1
+      },
+      {
+        "equality_probability": 0.25,
+        "key_bits": 2,
+        "signature_bits": 1
+      },
+      {
+        "equality_probability": 0.125,
+        "key_bits": 3,
+        "signature_bits": 1
+      },
+      {
+        "equality_probability": 0.0625,
+        "key_bits": 4,
+        "signature_bits": 1
+      },
+      {
+        "equality_probability": 0.03125,
+        "key_bits": 5,
+        "signature_bits": 1
+      },
+      {
+        "equality_probability": 0.015625,
+        "key_bits": 6,
+        "signature_bits": 1
+      },
+      {
+        "equality_probability": 0.5,
+        "key_bits": 1,
+        "signature_bits": 2
+      },
+      {
+        "equality_probability": 0.25,
+        "key_bits": 2,
+        "signature_bits": 2
+      },
+      {
+        "equality_probability": 0.125,
+        "key_bits": 3,
+        "signature_bits": 2
+      },
+      {
+        "equality_probability": 0.0625,
+        "key_bits": 4,
+        "signature_bits": 2
+      },
+      {
+        "equality_probability": 0.03125,
+        "key_bits": 5,
+        "signature_bits": 2
+      },
+      {
+        "equality_probability": 0.015625,
+        "key_bits": 6,
+        "signature_bits": 2
+      },
+      {
+        "equality_probability": 0.5,
+        "key_bits": 1,
+        "signature_bits": 3
+      },
+      {
+        "equality_probability": 0.25,
+        "key_bits": 2,
+        "signature_bits": 3
+      },
+      {
+        "equality_probability": 0.125,
+        "key_bits": 3,
+        "signature_bits": 3
+      },
+      {
+        "equality_probability": 0.0625,
+        "key_bits": 4,
+        "signature_bits": 3
+      },
+      {
+        "equality_probability": 0.03125,
+        "key_bits": 5,
+        "signature_bits": 3
+      },
+      {
+        "equality_probability": 0.015625,
+        "key_bits": 6,
+        "signature_bits": 3
+      },
+      {
+        "equality_probability": 0.5,
+        "key_bits": 1,
+        "signature_bits": 4
+      },
+      {
+        "equality_probability": 0.25,
+        "key_bits": 2,
+        "signature_bits": 4
+      },
+      {
+        "equality_probability": 0.125,
+        "key_bits": 3,
+        "signature_bits": 4
+      },
+      {
+        "equality_probability": 0.0625,
+        "key_bits": 4,
+        "signature_bits": 4
+      },
+      {
+        "equality_probability": 0.03125,
+        "key_bits": 5,
+        "signature_bits": 4
+      },
+      {
+        "equality_probability": 0.015625,
+        "key_bits": 6,
+        "signature_bits": 4
+      },
+      {
+        "equality_probability": 0.5,
+        "key_bits": 1,
+        "signature_bits": 5
+      },
+      {
+        "equality_probability": 0.25,
+        "key_bits": 2,
+        "signature_bits": 5
+      },
+      {
+        "equality_probability": 0.125,
+        "key_bits": 3,
+        "signature_bits": 5
+      },
+      {
+        "equality_probability": 0.0625,
+        "key_bits": 4,
+        "signature_bits": 5
+      },
+      {
+        "equality_probability": 0.03125,
+        "key_bits": 5,
+        "signature_bits": 5
+      },
+      {
+        "equality_probability": 0.015625,
+        "key_bits": 6,
+        "signature_bits": 5
+      },
+      {
+        "equality_probability": 0.5,
+        "key_bits": 1,
+        "signature_bits": 6
+      },
+      {
+        "equality_probability": 0.25,
+        "key_bits": 2,
+        "signature_bits": 6
+      },
+      {
+        "equality_probability": 0.125,
+        "key_bits": 3,
+        "signature_bits": 6
+      },
+      {
+        "equality_probability": 0.0625,
+        "key_bits": 4,
+        "signature_bits": 6
+      },
+      {
+        "equality_probability": 0.03125,
+        "key_bits": 5,
+        "signature_bits": 6
+      },
+      {
+        "equality_probability": 0.015625,
+        "key_bits": 6,
+        "signature_bits": 6
+      },
+      {
+        "equality_probability": 0.5,
+        "key_bits": 1,
+        "signature_bits": 7
+      },
+      {
+        "equality_probability": 0.25,
+        "key_bits": 2,
+        "signature_bits": 7
+      },
+      {
+        "equality_probability": 0.125,
+        "key_bits": 3,
+        "signature_bits": 7
+      },
+      {
+        "equality_probability": 0.0625,
+        "key_bits": 4,
+        "signature_bits": 7
+      },
+      {
+        "equality_probability": 0.03125,
+        "key_bits": 5,
+        "signature_bits": 7
+      },
+      {
+        "equality_probability": 0.015625,
+        "key_bits": 6,
+        "signature_bits": 7
+      }
+    ]
+  },
+  "invariant_adaptor": {
+    "cases": 23,
+    "claim": "Non-unique completions can share an invariant value, but the ordinary adaptor extractor consumes a full completion, not the invariant alone."
+  },
+  "run": 111,
+  "scope": [
+    "Finite functionality/algebra controls only; no computational security is inferred.",
+    "The unique-signature impossibility is a literature theorem; this checker validates its semantic equality/extraction skeleton.",
+    "The GL collision law refutes direct random-linear hashing as an all-witness common-key canonicalizer for distinct completions; it does not rule out a deliberately constructed invariant signature.",
+    "An invariant common value still needs QPT hiding from the pre-signature and QPT recovery-to-original-witness extraction."
+  ],
+  "status": "PASS",
+  "total_assertions": 15031,
+  "unique_adaptor": {
+    "cases": 23,
+    "claim": "Semantic control for the Erwig et al. unique-signature impossibility: uniqueness lets the signer feed its ordinary signature to the adaptor extractor without a witness."
+  }
+}

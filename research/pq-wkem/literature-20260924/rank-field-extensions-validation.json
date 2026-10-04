@@ -1,0 +1,144 @@
+{
+  "all_F7_two_subspaces_F7_4": {
+    "count": 2850,
+    "gamma": 3,
+    "max_rank_drop_sample_points": 5,
+    "order": 6,
+    "root_bound": 6
+  },
+  "base2_alias_control": {
+    "N": 5,
+    "bad_order": 5,
+    "bad_samples": 21,
+    "good_gamma": 3,
+    "good_order": 30,
+    "good_rank_drops": 1,
+    "p": 31
+  },
+  "binary_scalar_descent": [
+    {
+      "N": 2,
+      "R": 1,
+      "all_nonzero_enumerated": true,
+      "binary_space_dimension": 3,
+      "field": 8,
+      "field_space_dimension": 1,
+      "honest_binary_rank1_encodings": 0,
+      "minimum_tested_binary_rank": 3,
+      "minimum_tested_field_rank": 3,
+      "source_extractions": 0,
+      "source_has_witness": false,
+      "tested_nonzero_matrices": 7
+    },
+    {
+      "N": 3,
+      "R": 1,
+      "all_nonzero_enumerated": false,
+      "binary_space_dimension": 16,
+      "field": 16,
+      "field_space_dimension": 4,
+      "honest_binary_rank1_encodings": 0,
+      "minimum_tested_binary_rank": 4,
+      "minimum_tested_field_rank": 4,
+      "source_extractions": 0,
+      "source_has_witness": false,
+      "tested_nonzero_matrices": 128
+    },
+    {
+      "N": 5,
+      "R": 2,
+      "all_nonzero_enumerated": false,
+      "binary_space_dimension": 100,
+      "field": 32,
+      "field_space_dimension": 20,
+      "honest_binary_rank1_encodings": 16,
+      "minimum_tested_binary_rank": 6,
+      "minimum_tested_field_rank": 6,
+      "source_extractions": 16,
+      "source_has_witness": true,
+      "tested_nonzero_matrices": 128
+    }
+  ],
+  "compilers": [
+    {
+      "N": 3,
+      "R": 1,
+      "characteristic": 7,
+      "columns": 4,
+      "constrained_dimension": 5,
+      "field": 7,
+      "gamma": 3,
+      "low_rank_extractions": 30,
+      "old_p_2N_condition_met": false,
+      "order": 6,
+      "rows": 56,
+      "samples": 7,
+      "stage_dimensions": [
+        1,
+        2,
+        4,
+        8
+      ]
+    },
+    {
+      "N": 5,
+      "R": 2,
+      "characteristic": 23,
+      "columns": 6,
+      "constrained_dimension": 20,
+      "field": 23,
+      "gamma": 2,
+      "low_rank_extractions": 30,
+      "old_p_2N_condition_met": false,
+      "order": 11,
+      "rows": 756,
+      "samples": 21,
+      "stage_dimensions": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        31
+      ]
+    },
+    {
+      "N": 5,
+      "R": 2,
+      "characteristic": 2,
+      "columns": 6,
+      "constrained_dimension": 20,
+      "field": 32,
+      "gamma": 2,
+      "low_rank_extractions": 30,
+      "old_p_2N_condition_met": false,
+      "order": 31,
+      "rows": 756,
+      "samples": 21,
+      "stage_dimensions": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        31
+      ]
+    }
+  ],
+  "exact_collision_bound_checks": 100,
+  "exhaustive_false_space": {
+    "N": 3,
+    "R": 1,
+    "dimension": 4,
+    "nonzero_matrices": 2400,
+    "p": 7,
+    "ranks": {
+      "3": 84,
+      "4": 2316
+    }
+  },
+  "scope": "new algebraic extensions/controls only; no QPT or concrete WE security test",
+  "seed": 202609241701,
+  "status": "PASS",
+  "transition_identities": 52
+}

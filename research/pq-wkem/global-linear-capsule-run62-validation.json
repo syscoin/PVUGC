@@ -1,0 +1,154 @@
+{
+  "checker_sha256": "274e7b3a3a6e6af65f8a7ac171ec2e09b4e2f8fbe9274c5a6ce8596539ffd616",
+  "claims_scope": {
+    "tests_do_not_establish": [
+      "generic-NP WKEM security",
+      "LWE or SIS hardness",
+      "arbitrary-QPT key-recovery extraction",
+      "security of any nonlinear compiler"
+    ],
+    "tests_validate": [
+      "finite-field coupling and decoder identities",
+      "exact small-instance key-conditioned distribution equality",
+      "explicit separable-versus-stacked fixture",
+      "Run-53 modulo-2 false pseudolifts",
+      "one-hot affine-closure counterexamples",
+      "Gaussian-elimination membership implementation"
+    ]
+  },
+  "false_distribution_identity": {
+    "dual_separator_checks": 180,
+    "fixtures": 180,
+    "fixtures_by_field": {
+      "2": 60,
+      "3": 60,
+      "5": 60
+    },
+    "key_distribution_equalities": 420
+  },
+  "linear_membership_controls": {
+    "rank_membership_checks": 900,
+    "solvable": 544,
+    "unsolvable": 356
+  },
+  "one_hot_affine_barrier": {
+    "affine_closure_counterexamples": 10,
+    "block_sizes_checked": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "witnesses": {
+      "10": {
+        "closure_point_weight": 3,
+        "is_one_hot": false
+      },
+      "11": {
+        "closure_point_weight": 3,
+        "is_one_hot": false
+      },
+      "12": {
+        "closure_point_weight": 3,
+        "is_one_hot": false
+      },
+      "3": {
+        "closure_point_weight": 3,
+        "is_one_hot": false
+      },
+      "4": {
+        "closure_point_weight": 3,
+        "is_one_hot": false
+      },
+      "5": {
+        "closure_point_weight": 3,
+        "is_one_hot": false
+      },
+      "6": {
+        "closure_point_weight": 3,
+        "is_one_hot": false
+      },
+      "7": {
+        "closure_point_weight": 3,
+        "is_one_hot": false
+      },
+      "8": {
+        "closure_point_weight": 3,
+        "is_one_hot": false
+      },
+      "9": {
+        "closure_point_weight": 3,
+        "is_one_hot": false
+      }
+    }
+  },
+  "run": 62,
+  "run53_mod2_pseudolift": {
+    "exact_false_pseudolifts_checked": 124,
+    "global_boolean_witnesses": 0,
+    "weights": {
+      "2": {
+        "blocks": 4,
+        "false_pseudolift_weight": 6,
+        "hypothetical_all_one_hot_weight": 4,
+        "ratio": 1.5
+      },
+      "3": {
+        "blocks": 8,
+        "false_pseudolift_weight": 14,
+        "hypothetical_all_one_hot_weight": 8,
+        "ratio": 1.75
+      },
+      "4": {
+        "blocks": 16,
+        "false_pseudolift_weight": 30,
+        "hypothetical_all_one_hot_weight": 16,
+        "ratio": 1.875
+      },
+      "5": {
+        "blocks": 32,
+        "false_pseudolift_weight": 62,
+        "hypothetical_all_one_hot_weight": 32,
+        "ratio": 1.9375
+      },
+      "6": {
+        "blocks": 64,
+        "false_pseudolift_weight": 126,
+        "hypothetical_all_one_hot_weight": 64,
+        "ratio": 1.96875
+      }
+    },
+    "widths_checked": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "seed": 1656815598,
+  "separable_vs_stacked": {
+    "dual_separator": [
+      4,
+      1
+    ],
+    "separable_inconsistent_representation_key_recoveries": 1000,
+    "stacked_common_solution_exists": false,
+    "stacked_key_distribution_equalities": 4
+  },
+  "true_decoder_identity": {
+    "fixtures": 180,
+    "fixtures_by_field": {
+      "2": 60,
+      "3": 60,
+      "5": 60
+    },
+    "residual_identity_checks": 65680
+  }
+}

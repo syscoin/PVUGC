@@ -1,0 +1,44 @@
+{
+  "run": 57,
+  "starting_verified_pr_head": "89ffa533bca1ff913614814ee8dd34cb7b9de51f",
+  "pr": "syscoin/PVUGC#1",
+  "branch": "research/pq-wkem-validation-20260918",
+  "checkpoint_comment_id": 5802288566,
+  "external_literature_or_web_search_used": false,
+  "production_code_changed": false,
+  "construction_attempted": "Run-56 noisy affine transport with deliberately singular/underdetermined branch differences; complete-output endpoint row-span synthesis audit",
+  "proved_claims": [
+    "For a true targeted affine-transport instance, the endpoint functional R_L-R_0 T lies in the public row span of the complete noiseless transport operator.",
+    "Therefore a witness-free evaluator Q with Q M=L_T can be found by public Gaussian elimination and exactly recovers the programmed endpoint carrier on a noiseless transcript, without branch-difference inversion or frame recovery.",
+    "For arbitrary additive error, every such evaluator obeys Q C=S_K+Q E.",
+    "For real iid Gaussian transcript error, the public minimum-Euclidean-norm evaluator has per-output noise standard deviation no larger than any honest path evaluator."
+  ],
+  "explicit_nonclaims": [
+    "No attack on standard modular LWE is claimed.",
+    "No theorem that every modular noisy affine transport has a short public evaluator is claimed.",
+    "No generic-NP surviving compiler is claimed.",
+    "No arbitrary-QPT early-key-recovery to source-witness/SIS reduction is claimed.",
+    "Finite tests are not security evidence."
+  ],
+  "executed_validation": {
+    "checker_executed_twice_after_finalization": true,
+    "two_stdout_files_byte_identical": true,
+    "finite_field_true_fixtures": 500,
+    "finite_field_true_public_endpoint_recoveries": 500,
+    "finite_field_all_branch_differences_singular": 500,
+    "finite_field_max_branch_difference_rank": 1,
+    "finite_field_qm_scalar_checks": 31500,
+    "false_target_controls": 500,
+    "false_target_controls_with_public_evaluator": 500,
+    "rational_noiseless_public_recoveries": 300,
+    "exact_rational_constraint_checks": 81,
+    "gaussian_trials_diagnostic": 30000
+  },
+  "sha256": {
+    "AFFINE_TRANSPORT_ROWSPAN_RUN57.md": "55f8686f36b6d7e2bcc710815993a0fca5849792ab79d54385f33f87d60737e6",
+    "affine_transport_rowspan_run57_check.py": "de629afc5e0384fb4e32d80f9f5d8ddafc23b69eea2e03c0bc7c5fba3575e1da",
+    "affine-transport-rowspan-run57-validation.json": "8b9895ae60bab25ac4e93081415ff79df763deaa2dad5b37c1a2b1841f994af6"
+  },
+  "stopping_condition_met": false,
+  "handoff": "Exact affine transport is closed even when every branch difference is deliberately singular. The only potentially surviving affine direction is a modular short-evaluator gap: valid witnesses give short structured endpoint evaluators while public synthesis yields decoding-useless modular coefficients, with the complete-output gap reduced non-circularly to SIS/LWE or another independently justified PQ assumption."
+}

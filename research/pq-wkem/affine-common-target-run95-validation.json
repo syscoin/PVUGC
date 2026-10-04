@@ -1,0 +1,72 @@
+{
+  "affine_common_target_trials": {
+    "count": 500,
+    "identities": [
+      "A F = u h^T + G P",
+      "P y = 0",
+      "h^T y = 1",
+      "A(Fy)=u",
+      "tail(Fy)=y",
+      "dual-Regev residual",
+      "F^T c projection"
+    ],
+    "max_abs_decoder_coordinate": 2,
+    "max_abs_decryption_residual": 8,
+    "max_decoder_norm2": 24
+  },
+  "anchor_rowspace_equivalence_trials": {
+    "checked_equivalence": "exists y: P y=0 and h^T y=1  iff  h notin rowspan(P)",
+    "count": 1000,
+    "h_in_rowspace_cases": 480,
+    "h_outside_rowspace_cases": 520
+  },
+  "bounded_alphabet_gap_table": [
+    {
+      "d": 16,
+      "dense_public_reference_l2_upper": 64.0,
+      "ell": 4096,
+      "false_min_l2_B1": 11.313708498984761,
+      "gamma": 8,
+      "gap_sqrt_gamma": 2.8284271247461903,
+      "honest_l2_B1": 4.0
+    },
+    {
+      "d": 32,
+      "dense_public_reference_l2_upper": 128.0,
+      "ell": 16384,
+      "false_min_l2_B1": 22.627416997969522,
+      "gamma": 16,
+      "gap_sqrt_gamma": 4.0,
+      "honest_l2_B1": 5.656854249492381
+    },
+    {
+      "d": 64,
+      "dense_public_reference_l2_upper": 256.0,
+      "ell": 65536,
+      "false_min_l2_B1": 45.254833995939045,
+      "gamma": 32,
+      "gap_sqrt_gamma": 5.656854249492381,
+      "honest_l2_B1": 8.0
+    },
+    {
+      "d": 128,
+      "dense_public_reference_l2_upper": 512.0,
+      "ell": 262144,
+      "false_min_l2_B1": 90.50966799187809,
+      "gamma": 64,
+      "gap_sqrt_gamma": 8.0,
+      "honest_l2_B1": 11.313708498984761
+    }
+  ],
+  "dense_false_gap_transversality_trials": {
+    "all_no_short_normalized_relation": true,
+    "all_www_rank_gate_failed": true,
+    "count": 500,
+    "min_unique_normalized_norm2": 1630,
+    "short_norm2_cutoff": 200
+  },
+  "run": 95,
+  "scope": "finite-field algebra / toy dual-Regev correctness and WWW transversality controls only; no LWE/SIS/QPT security experiment",
+  "seed": 202609250415,
+  "status": "PASS"
+}

@@ -1,0 +1,60 @@
+{
+  "actual_test_results": {
+    "dimensions_checked": "d=2..12",
+    "exact_F17_nonzero_alpha_collision_probability": "1/16",
+    "global_witnesses_in_false_family": 0,
+    "noisy_leave_one_out_false_global_key_recoveries": 850,
+    "noisy_leave_one_out_n_of_n_trials": 850,
+    "proper_subset_routes_verified": 8177,
+    "random_distinct_alpha_exact_endpoint_recoveries": 1200,
+    "random_distinct_alpha_exact_endpoint_trials": 1200,
+    "short_noisy_fingerprint_decodes": 10000,
+    "short_noisy_fingerprint_trials": 10000
+  },
+  "captured_validation": {
+    "path": "research/pq-wkem/proper-subset-fingerprint-run59-validation.json",
+    "sha256": "37e2887a53f27469b58aa4d18e719fbb7fe4e2e09f04c9493bf5b4a96c4796f3",
+    "remote_git_blob_sha": "5dc7d3330edbecd757c57090e1e11ae16bb59984"
+  },
+  "checkpoint_comment_id": 5803997243,
+  "executed_checker": {
+    "captures_byte_identical": true,
+    "executions_after_finalization": 3,
+    "path": "research/pq-wkem/proper_subset_fingerprint_run59_check.py",
+    "sha256": "106c593bc4ce75c7a23e0b14b418504e805b272cf4021efc68536dccb4dddf62",
+    "publication_time_recheck_sha256": "37e2887a53f27469b58aa4d18e719fbb7fe4e2e09f04c9493bf5b4a96c4796f3",
+    "remote_git_blob_sha": "d913777174a5a873c447ae2b1ec92286b782eb65"
+  },
+  "external_literature_or_web_search": false,
+  "not_claimed": [
+    "No generic impossibility for full-column or nonlinear common-word binders.",
+    "No theorem that every noisy modular endpoint row-span evaluator is short.",
+    "No attack on standard LWE or SIS.",
+    "No arbitrary-QPT key-recovery-to-source-witness reduction.",
+    "No completed generic-NP PQ witness KEM.",
+    "No claim that a compiler must fingerprint semantically redundant witness bits."
+  ],
+  "production_code_changed": false,
+  "proof_note": {
+    "path": "research/pq-wkem/PROPER_SUBSET_FINGERPRINT_RUN59.md",
+    "local_sha256": "a8cebb34dea62c4310e1dec59e2e44d4d2d92ba4db05725ba25c71f62b42e54b",
+    "remote_git_blob_sha": "742bdb56187c6a52e91236befa5fe8a53341542f",
+    "byte_identity_note": "GitHub readback verified the published text/path; the connector Git blob id is recorded separately rather than claiming SHA-256 byte identity for the proof note."
+  },
+  "proved_claim_scopes": [
+    "The signed-diagonal false target has no global word but every proper target-column subset has a local word.",
+    "Independent proper-subset share release, including leave-one-out N-of-N composition, can be spliced using different local words on that false target.",
+    "For the concrete noisy restricted affine transport, each false local route has the same telescoping form and bounded signed-ternary noise as an honest local route.",
+    "In scalarized affine transport, two valid words with distinct scalar fingerprints place the bare shared endpoint functional in the public transport row span.",
+    "The explicit one-layer alpha=(1,2) fixture yields the short public noisy endpoint identity 2*C0-C1=R1+2*E0-E1."
+  ],
+  "recorded_at_utc": "2026-09-23T22:33:09Z",
+  "run": 59,
+  "starting_pr_head": "3bd0b0d1391f7061ba32fc8c07c13d3c7bd62385",
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  },
+  "title": "proper-subset path coupling and scalar fingerprint collapse"
+}

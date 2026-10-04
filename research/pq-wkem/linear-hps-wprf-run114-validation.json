@@ -1,0 +1,24 @@
+{
+  "approximate_correctness_controls": 3984,
+  "claims": [
+    "For the exact linear projective hash p=A^T a, H=a^T x, every representation Aw=x computes the same H as p^T w.",
+    "Conditioned on p, H is a point mass for x in im(A), and exactly uniform over F_q for x outside im(A).",
+    "For an intended restricted language L_S={Aw:w in S}, any false x in im(A)\\L_S has a public unrestricted pseudowitness that recovers H exactly.",
+    "Hence this plain linear HPS is smooth for every false word of L_S iff L_S=im(A); any nontrivial witness restriction creates a false-word hash leak.",
+    "Approximate HPS correctness is not by itself an exact all-witness same-key WPRF; canonical decoding is an additional obligation."
+  ],
+  "conditional_distribution_assertions": 9474,
+  "matrix_cases": 170,
+  "projection_identity_assertions": 9474,
+  "public_linear_membership_collapse_cases": 740,
+  "public_pseudowitness_leak_assertions": 41712,
+  "restricted_witness_cases": 2112,
+  "run": 114,
+  "scope": [
+    "Finite algebraic validation only; no computational-security claim is inferred.",
+    "The dichotomy applies to this public linear projective-hash form, not to all HPS/SPHF constructions.",
+    "Post-quantum security of concrete lattice/code HPS papers must be classified from their actual adversary models and hardness assumptions separately."
+  ],
+  "status": "PASS",
+  "total_assertions": 69272
+}

@@ -1,0 +1,77 @@
+{
+  "artifact_sha256": {
+    "NOISY_TARGET_STANDARD_LWE_ORBIT_RUN116.md": "3a63f6b767af2a1db386624d320d1a722e5cee1a6083f339d96ab90742d4d5c7",
+    "noisy-target-lwe-orbit-run116-validation.json": "4bd07ebbf5c8742361e826c15f1f66a1072059e87feb683c96f487d1d6145ae1",
+    "noisy_target_lwe_orbit_run116_check.py": "401d9503581e5270c6e7b3590c3907cfa4eeea85f51ba6b9539fd7c3c269d7f7"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "executions": {
+    "assertions": 56134,
+    "byte_identical": true,
+    "count": 3
+  },
+  "external_primary_sources": [
+    {
+      "author": "Oded Regev",
+      "title": "On lattices, learning with errors, random linear codes, and cryptography",
+      "url": "https://doi.org/10.1145/1060590.1060603",
+      "year": 2005
+    },
+    {
+      "authors": "Yuval Ishai; Hang Su; David J. Wu",
+      "title": "Shorter and Faster Post-Quantum Designated-Verifier zkSNARKs from Lattices",
+      "url": "https://www.cs.utexas.edu/~dwu4/papers/LatticeDVSNARKs.pdf",
+      "year": 2021
+    },
+    {
+      "authors": "Isaac M. Hair; Amit Sahai",
+      "date": "2026-08-19",
+      "title": "Polynomial-Factor Deterministic NP-Hardness for SVP in Every lp Norm with p > 2",
+      "url": "https://arxiv.org/pdf/2608.14529",
+      "version": "arXiv:2608.14529v3"
+    },
+    {
+      "authors": "Sanjam Garg; Mohammad Hajiabadi; Dimitris Kolonelos; Abhiram Kothapalli; Guru Vamsi Policharla",
+      "title": "A Framework for Witness Encryption from Linearly Verifiable SNARKs and Applications",
+      "url": "https://iacr.org/submit/files/slides/2025/crypto/crypto2025/545/545_slides.pdf",
+      "year": 2025
+    }
+  ],
+  "github_exact_sources": [
+    {
+      "blob": "0e4a294539a949af5a178ed7cc5d6659ed79a42b",
+      "path": "research/pq-wkem/ADAPTOR_INVARIANT_COMMON_KEY_RUN111.md",
+      "ref": "a0803edfa691f184e33ca92620471a81c17c611c"
+    },
+    {
+      "blob": "91ebfdb8d712bc9a092b30af21048ea7bd04a109",
+      "path": "research/pq-wkem/HIDDEN_INPUT_EPHF_BOUNDARY_RUN109.md",
+      "ref": "a0803edfa691f184e33ca92620471a81c17c611c"
+    },
+    {
+      "blob": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924",
+      "path": "research/pq-wkem/literature-20260924/ASSESSMENT.md",
+      "ref": "a0803edfa691f184e33ca92620471a81c17c611c"
+    }
+  ],
+  "limitations": [
+    "No generic-NP uniform-matrix short-preimage compiler is constructed.",
+    "No practical parameters or malicious-secure ceremony are completed.",
+    "Finite checker evidence is not computational-security evidence."
+  ],
+  "local_inputs": {
+    "run115_archive": "/mnt/data/wkem_noisy_short_preimage_hps_run115.zip",
+    "run115_archive_sha256": "90fc9cc11ed2b64131b31e2f2671c867fc5a0d411c7ced990f456a334cf2d058"
+  },
+  "pr": 1,
+  "repository": "syscoin/PVUGC",
+  "run": 116,
+  "security_classification": {
+    "adversary": "arbitrary QPT",
+    "conclusion": "conditional QPT key hiding / unauthorized exact-key recovery implies QPT DLWE break; not ORIGINAL-witness extraction",
+    "hardness": "exact-parameter decisional LWE against QPT; compiler existence separately unproved",
+    "honest_algorithms": "classical PPT conditional on a compiler",
+    "reduction": "straight-line; one adversary invocation; no rewinding, cloning, QROM programming, or extraction"
+  },
+  "starting_pr_head": "a0803edfa691f184e33ca92620471a81c17c611c"
+}

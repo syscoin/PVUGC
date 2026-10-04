@@ -1,0 +1,62 @@
+{
+  "status": "semantic-tests-only; not a WKEM or PQ security proof",
+  "start_utc": "2026-09-18T20:50:53.328611+00:00",
+  "end_utc": "2026-09-18T20:50:56.069896+00:00",
+  "wall_seconds": 2.7412899429999698,
+  "python": "3.13.5",
+  "test_groups": 6,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "source_sha256": {
+    "moment_compiler.py": "c6e9de52bd850379cd4a8a696fadb75a14a2a94dcd78f5be83598b18e4d38b42",
+    "validate.py": "88cf67eb90b91e9d584a83a3b8ed2ca1553419cd32f46f2a3ea5481d53b3c019",
+    "tests/test_moment_compiler.py": "a6d42e930a81d1452306055bffd466ebac029406b453808b1e0ea40f4093e150"
+  },
+  "census": [
+    {
+      "n": 3,
+      "degree": 3,
+      "field_prime": 2,
+      "moments_tested": 256,
+      "applicable_extractions": 36,
+      "max_atoms": 2
+    },
+    {
+      "n": 3,
+      "degree": 3,
+      "field_prime": 3,
+      "moments_tested": 6561,
+      "applicable_extractions": 128,
+      "max_atoms": 2
+    },
+    {
+      "n": 2,
+      "degree": 3,
+      "field_prime": 5,
+      "moments_tested": 625,
+      "applicable_extractions": 112,
+      "max_atoms": 2
+    },
+    {
+      "n": 3,
+      "degree": 4,
+      "field_prime": 2,
+      "moments_tested": 256,
+      "applicable_extractions": 106,
+      "max_atoms": 4
+    },
+    {
+      "n": 3,
+      "degree": 5,
+      "field_prime": 3,
+      "moments_tested": 6561,
+      "applicable_extractions": 6560,
+      "max_atoms": 8
+    }
+  ],
+  "census_total": 14259,
+  "census_note": "The census intentionally repeats unit-test fixtures; do not add them as distinct coverage.",
+  "test_log": "test_affine_lift_and_multiple_witnesses (test_moment_compiler.MomentCompilerTests.test_affine_lift_and_multiple_witnesses) ... ok\ntest_all_small_field_moment_vectors (test_moment_compiler.MomentCompilerTests.test_all_small_field_moment_vectors) ... ok\ntest_boundary_rank_is_not_accepted (test_moment_compiler.MomentCompilerTests.test_boundary_rank_is_not_accepted) ... ok\ntest_every_small_constrained_coefficient_vector (test_moment_compiler.MomentCompilerTests.test_every_small_constrained_coefficient_vector) ... ok\ntest_malformed_and_inconsistent_inputs (test_moment_compiler.MomentCompilerTests.test_malformed_and_inconsistent_inputs) ... ok\ntest_nonzero_homogeneous_normalization_is_not_assumed (test_moment_compiler.MomentCompilerTests.test_nonzero_homogeneous_normalization_is_not_assumed) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 1.333s\n\nOK\n"
+}

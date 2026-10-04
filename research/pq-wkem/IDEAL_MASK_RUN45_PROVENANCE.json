@@ -1,0 +1,40 @@
+{
+  "run": 45,
+  "starting_head": "39f3dc3ef68ee586fb91b1ea51dc7e3e8884ed68",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "progress_comment_id": 5791516592,
+  "external_web_or_literature_used": false,
+  "production_code_changed": false,
+  "local_execution": {
+    "checker": "ideal_mask_run45_check.py",
+    "checker_sha256": "e82bd44f5d1a4255dc23a2f1f5f049660246df354eebc42fa453d6e3413143c1",
+    "captured_json": "ideal-mask-run45-validation.json",
+    "captured_json_sha256": "1e00f7e90978dccfe501aff77bddc33efdafa843783b08f200469a4680bdbe47",
+    "reruns": 2,
+    "byte_identical_stdout": true,
+    "checks": {
+      "exact_degree_threshold_span_instances": "n=1..4",
+      "laurent_dual_generator_multiples": 1753578,
+      "telescoping_certificates": 64,
+      "complete_view_false_key_extractions": 500,
+      "honest_decapsulations": 500,
+      "shift_invariance_controls": "n=1..4"
+    }
+  },
+  "claim_boundary": {
+    "proved": [
+      "exact witness evaluation correctness for the explicit bounded-degree ideal-mask capsule",
+      "complete-output coset hiding versus public dual-functional recovery dichotomy",
+      "exact n+1 minimum refutation degree for the sparse quadratic chain family",
+      "exponential ambient monomial count for the direct dense coefficient realization"
+    ],
+    "not_proved": [
+      "generic impossibility for sparse or circuit ideal encodings",
+      "computational hiding of any compressed encoding",
+      "arbitrary-QPT key recovery to source-witness or independent PQ-break reduction for a surviving efficient construction",
+      "malicious-secure ceremony composition",
+      "complete practical generic-NP WKEM"
+    ]
+  }
+}

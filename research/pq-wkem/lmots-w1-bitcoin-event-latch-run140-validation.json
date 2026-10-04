@@ -1,0 +1,42 @@
+{
+  "assertions": 1559,
+  "bitcoin_p2wsh": {
+    "nonpush_ops": 8,
+    "release_item_bytes": 55,
+    "script_bytes": 108,
+    "witness_args_excluding_script": 3,
+    "witness_bytes_one_real_one_empty": 241
+  },
+  "identifier": "RUN140_LMOTS_W1_BITCOIN_EVENT_LATCH",
+  "lms_fixture": {
+    "K": "2e15fa9af02e5c60c76eb535e03c5754982502199edeb72141580b2126e39725",
+    "auth_path_nodes": 5,
+    "expanded_manifest_bytes": 8480,
+    "height": 5,
+    "q": 7,
+    "root": "cdb0588cba3b51010eb953f33f02cb7178c8f38366392da14aa9ba91ed893df3",
+    "verified": true
+  },
+  "rfc8554_w1": {
+    "all_states_reveal_one_raw_secret": true,
+    "checksum_states": 257,
+    "ls": 7,
+    "n": 32,
+    "no_single_checksum_bit_always_zero": true,
+    "p": 265,
+    "selected_indices": [
+      256,
+      257
+    ],
+    "u": 256,
+    "v": 9,
+    "w": 1
+  },
+  "scope": [
+    "Finite RFC8554/P2WSH semantics only; not Bitcoin Core.",
+    "Expanded LMOTS endpoints are extra public information beyond compact RFC8554 K.",
+    "Security inherits source-signer non-early-release and SHA256 preimage hardness.",
+    "Current P2WSH owner ECDSA is not post-quantum."
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,45 @@
+{
+  "run": 42,
+  "starting_pr_head": "e334bcb2b569905aa72f328789f9a14eb2fc241e",
+  "starting_latest_result_comment": 5788476388,
+  "checkpoint_comment": 5789045968,
+  "external_web_or_literature_used": false,
+  "production_code_changed": false,
+  "local_execution": {
+    "checker": "SIS_RANDOMIZED_SHORT_KERNEL_LIFT_RUN42_CHECK.py",
+    "runs": 2,
+    "captured_outputs_byte_identical": true,
+    "checker_sha256": "8f40cf9c6ab752460102967e053f09a60cb655b8e83a9206fd6fe9e3c94d735a",
+    "captured_result_sha256": "2906919ce5209c9290a9c191c46810d07c9cc5146a4847d511f4e19bf38e0518",
+    "counts": {
+      "lift_identity_trials": 4500,
+      "semantic_survival_trials": 1000,
+      "quotient_probe_trials": 1200,
+      "exact_noise_distribution_cases": 32,
+      "norm_bound_trials": 2000,
+      "failures": 0
+    }
+  },
+  "published_readback": {
+    "proof_git_blob": "f8634c5dd2bc29796f152ebde67064fe55045cc9",
+    "checker_git_blob": "7ffc7af16e5dcb7a68d8abcddd31e158a70c0a46",
+    "results_git_blob": "460275889d9f41963d198760f381e28426818432",
+    "checker_bytes_reproduced_locally_after_publication": true,
+    "results_bytes_match_local_capture": true
+  },
+  "claim_boundary": {
+    "proved": [
+      "M(x,z)=D(Hx,z) for the randomized lift",
+      "short lifted kernel representation maps to a semantic representation or an SIS solution, subject to the semantic extractor bound",
+      "every exact semantic kernel mode survives the lift",
+      "the natural additive capsule has public semantic quotient pi_H(c_x)=pi_H(eta_x+K e_h)"
+    ],
+    "not_proved": [
+      "arbitrary key recovery implies a short lifted representation",
+      "false-instance hiding of a complete WKEM",
+      "concrete SIS/LWE parameters",
+      "QPT source extraction",
+      "complete generic-NP witness KEM"
+    ]
+  }
+}

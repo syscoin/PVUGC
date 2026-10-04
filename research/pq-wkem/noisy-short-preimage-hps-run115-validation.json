@@ -1,0 +1,74 @@
+{
+  "anti_concentration_examples": [
+    {
+      "decode_window_probability": 1.0,
+      "max_point_probability": 0.2,
+      "support": 5,
+      "tv_from_uniform": 0.9504950495049505,
+      "u": [
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "decode_window_probability": 0.1232,
+      "max_point_probability": 0.0128,
+      "support": 101,
+      "tv_from_uniform": 0.08405544554455446,
+      "u": [
+        1,
+        7,
+        19,
+        31
+      ]
+    },
+    {
+      "decode_window_probability": 0.1456,
+      "max_point_probability": 0.0112,
+      "support": 101,
+      "tv_from_uniform": 0.02468118811881192,
+      "u": [
+        1,
+        5,
+        25,
+        24
+      ]
+    },
+    {
+      "decode_window_probability": 0.13728,
+      "max_point_probability": 0.0112,
+      "support": 101,
+      "tv_from_uniform": 0.03127762376237625,
+      "u": [
+        1,
+        4,
+        16,
+        37,
+        49
+      ]
+    }
+  ],
+  "claims": [
+    "For hp=A^T s+e and any ambient u with Au=t mod q, hp^T u=s^T t+e^T u mod q exactly.",
+    "Publishing d=c_K-s^T t gives all-witness bit correctness whenever the projected error is inside the decoder radius; exact K recovery deterministically reveals s^T t as c_K-d.",
+    "Any source-invalid ambient pseudowitness with projected error inside the correctness radius also recovers K; ||e||_inf||u||_1<=rho is a sufficient attack condition.",
+    "Noise can make selected dense ambient solutions statistically broad in finite toys, so Run114's any-ambient-solution leak becomes a quantitative short/low-noise-pseudowitness requirement; this is not a general hiding theorem.",
+    "If the hidden target value z is uniform, the offset d is exactly uniform and independent of K. Computational replacement requires an explicit QPT-valid targeted-LWE/hardcore theorem."
+  ],
+  "exact_identity_cases": 404775,
+  "limitations": [
+    "Finite algebra/functionality checks only; no computational security follows from passing.",
+    "Dense anti-concentration examples do not prove security for arbitrary ambient solutions.",
+    "Standard QPT-LWE is not silently promoted to pseudorandomness of the noiseless statement-derived inner product s^T t.",
+    "A generic-NP compiler producing short valid preimages while excluding all source-invalid short preimages remains unconstructed."
+  ],
+  "masking_hybrid_cases": 8,
+  "parallel_cases": 62,
+  "run": 115,
+  "short_pseudowitness_decode_cases": 428750,
+  "status": "PASS",
+  "total_assertions": 1312354,
+  "wrapper_correctness_cases": 40000
+}
