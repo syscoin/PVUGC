@@ -1,0 +1,57 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_live_research_files": [
+    {
+      "blob_sha": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+      "path": "research/pq-wkem/GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md"
+    }
+  ],
+  "external_source_read_only": {
+    "commit": "ffeded7ae76e8533376ee77022eb52999a679d8e",
+    "files": [
+      {
+        "blob_sha": "0bf3054e54bb769c89fc2a01df70ac33ca589979",
+        "path": "rust/src/lib.rs"
+      },
+      {
+        "blob_sha": "4dc2a207770d2c58bf167961f397635e751d38b9",
+        "path": "rust/src/circuit.rs"
+      }
+    ],
+    "repository": "phantomzone-org/obfustopia",
+    "verified_source_points": [
+      "sample_circuit_with_base_gate_fast uniform syntactic gate sampler",
+      "exact truth-table functionality check",
+      "syntactic self-exclusion",
+      "weak-connectedness requirement",
+      "width dispatch n=3..11"
+    ]
+  },
+  "latest_substantive_comment_id": 5945825660,
+  "local_validation": {
+    "absorbing_length4_sequences": 34176,
+    "assertions": 36,
+    "py_compile": "PASS",
+    "python": "/usr/bin/python3",
+    "rigid_length3_fibers": 4800,
+    "same_total_classes": 8928,
+    "two_byte_identical_runs": true
+  },
+  "pr": 1,
+  "publication_status": "NOT_YET_ATTEMPTED",
+  "repository": "syscoin/PVUGC",
+  "run": "Run 301",
+  "run259_interface": {
+    "accepted_global_representation_to_original": "verified",
+    "missing_arrow": "capability recovery / accepted forgery -> accepted witness-dependent z",
+    "sis_reduction": "straight-line; no rewinding or QROM programming"
+  },
+  "scope": [
+    "Exact finite negative result for ell_out=ell_in=3 on the three-wire BaseGate fixture.",
+    "Allows arbitrary alternation of both overlapping windows.",
+    "Does not falsify ell_in>ell_out inflation or other thermalizers.",
+    "No complete QPT WKEM security theorem is claimed."
+  ],
+  "starting_sha": "a3a61a866efad393498e2c814fa1cd1ff1be1e9a",
+  "starting_state": "open,draft,unmerged"
+}
