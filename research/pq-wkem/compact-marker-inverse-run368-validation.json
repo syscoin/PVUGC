@@ -1,0 +1,71 @@
+{
+  "assertions": 1062,
+  "cases": [
+    {
+      "d": 4,
+      "density": "1/16",
+      "public_inverse_gates": 40,
+      "released_on_false_source": true,
+      "seed": 7
+    },
+    {
+      "d": 4,
+      "density": "1/16",
+      "public_inverse_gates": 40,
+      "released_on_false_source": true,
+      "seed": 19
+    },
+    {
+      "d": 4,
+      "density": "1/16",
+      "public_inverse_gates": 40,
+      "released_on_false_source": true,
+      "seed": 37
+    },
+    {
+      "d": 6,
+      "density": "1/64",
+      "public_inverse_gates": 40,
+      "released_on_false_source": true,
+      "seed": 7
+    },
+    {
+      "d": 6,
+      "density": "1/64",
+      "public_inverse_gates": 40,
+      "released_on_false_source": true,
+      "seed": 19
+    },
+    {
+      "d": 6,
+      "density": "1/64",
+      "public_inverse_gates": 40,
+      "released_on_false_source": true,
+      "seed": 37
+    },
+    {
+      "d": 8,
+      "density": "1/256",
+      "public_inverse_gates": 40,
+      "released_on_false_source": true,
+      "seed": 7
+    },
+    {
+      "d": 8,
+      "density": "1/256",
+      "public_inverse_gates": 40,
+      "released_on_false_source": true,
+      "seed": 19
+    },
+    {
+      "d": 8,
+      "density": "1/256",
+      "public_inverse_gates": 40,
+      "released_on_false_source": true,
+      "seed": 37
+    }
+  ],
+  "run": 368,
+  "scope": "finite seam attack only; sealed gate is an ideal attacked abstraction",
+  "status": "PASS"
+}
