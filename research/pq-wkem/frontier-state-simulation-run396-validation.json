@@ -1,0 +1,23 @@
+{
+  "assertions": 242082,
+  "exact_honest_frontier_states_tested": 967680,
+  "honest_release_success": 0.875,
+  "individual_marginal_checks": 128,
+  "qpt_security_proven": false,
+  "real_kem": false,
+  "requires_frontier_independent_callability": true,
+  "reversible_three_bit_permutations": 40320,
+  "run": 396,
+  "secure_signature": false,
+  "state_space_size": 8,
+  "status": "PASS",
+  "two_share_independent_authorization": 0.125,
+  "two_share_joint_tv": 0.875,
+  "two_share_real_authorization": 1,
+  "valid_original_witness_labels": [
+    1,
+    3,
+    5
+  ],
+  "witness_free_release_success": 0.875
+}
