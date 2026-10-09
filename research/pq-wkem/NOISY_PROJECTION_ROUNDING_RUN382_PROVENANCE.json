@@ -1,0 +1,21 @@
+{
+  "run": 382,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "39ec6bda791a72f9915b73f989719860947b22c4",
+  "source_run381_blob": "7d616ae34d0ec60c76e76749841bad75d421f931",
+  "source_run380_blob": "99b96e918d93dfce2df8d3915e33a18933b9e7bb",
+  "source_run259_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "latest_existing_comment_id": 6067040320,
+  "checker_sha256": "5c27733313bb730d8dd9ca8ba1aac4a0f4f381005b058f4380751d38528bb3e8",
+  "validation_sha256": "1f1a4e179192cdba0c0311a5d2b586df5fb1193c82463ff507e55215704ad260",
+  "expected_checker_blob": "c58c1e4abb116f5451ff2f9822436dd878fbc9ec",
+  "expected_validation_blob": "eed22529668d548bdf0c9cd0b02eba7f3dd94da8",
+  "assertions": 69392,
+  "python_syntax": "PASS",
+  "byte_identical_executions": 2,
+  "security_scope": "Toy noisy projection bypass only; no standard LWE or QPT security",
+  "complete_wkem": false,
+  "production_changed": false
+}
