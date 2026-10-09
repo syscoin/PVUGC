@@ -1,0 +1,22 @@
+{
+  "run": 393,
+  "date": "2026-10-09",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "48037d3a11556f5dd2a702973622094dd3badb47",
+  "exact_dependencies": [
+    "GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md:c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "TRUE_INSTANCE_EXTRACTION_SEPARATION_BRIEF_RUN390.md:a1efd75071fb530aa09ffd4ac1b8145778467139",
+    "CHECKING_KEY_GROVER_BRIEF_RUN388.md:0a01c1a5d7a12af4ab8cab9c7edae3fa05be88ce"
+  ],
+  "checker": "exact source published as zero_world_query_run393_check.js, independently executed twice in the JS runtime",
+  "execution": "new Function(checker)() twice, identical output; all assertion checks passed",
+  "claim": "O2H-derived ideal XOR-release query extraction; not concrete white-box WKEM security",
+  "production_changed": false,
+  "full_public_security": false,
+  "citations": [
+    "https://www.iacr.org/archive/crypto2019/116940359/116940359.pdf",
+    "https://github.com/syscoin/PVUGC/pull/1"
+  ]
+}
