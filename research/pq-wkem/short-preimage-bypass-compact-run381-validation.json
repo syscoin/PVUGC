@@ -1,0 +1,1 @@
+{"QPT_security": false, "assertions": 452895, "claim": "public linear projection releases K via unrestricted field preimage", "complete_WKEM": false, "false_short_matrix_word_cases": 520, "run": 381, "status": "PASS"}
