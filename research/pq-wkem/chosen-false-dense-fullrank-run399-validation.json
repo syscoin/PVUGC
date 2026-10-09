@@ -1,0 +1,52 @@
+{
+  "run": 399,
+  "status": "PASS",
+  "checks": 31869,
+  "fixtures": [
+    {
+      "q": 31,
+      "n": 3,
+      "m": 6,
+      "A_rank": 3,
+      "augmented_rank": 4,
+      "nonzero_A_entries": 18,
+      "distinct_nonzero_b": 6,
+      "exhausted_candidate_secrets": 29791,
+      "ciphertexts_evaluated": 128,
+      "recovered_all_256_key_bits": true,
+      "original_relation": false,
+      "cryptographic_security": false
+    },
+    {
+      "q": 12289,
+      "n": 3,
+      "m": 512,
+      "A_rank": 3,
+      "augmented_rank": 4,
+      "nonzero_A_entries": 1536,
+      "distinct_nonzero_b": 512,
+      "exhausted_candidate_secrets": 0,
+      "ciphertexts_evaluated": 256,
+      "recovered_all_256_key_bits": true,
+      "original_relation": false,
+      "cryptographic_security": false
+    },
+    {
+      "q": 12289,
+      "n": 8,
+      "m": 512,
+      "A_rank": 8,
+      "augmented_rank": 9,
+      "nonzero_A_entries": 4096,
+      "distinct_nonzero_b": 512,
+      "exhausted_candidate_secrets": 0,
+      "ciphertexts_evaluated": 256,
+      "recovered_all_256_key_bits": true,
+      "original_relation": false,
+      "cryptographic_security": false
+    }
+  ],
+  "scope": "chosen-false dense fullrank Regev frontier, public frame T=I+J",
+  "concrete_qpt_security": false,
+  "actual_native_signing": false
+}
