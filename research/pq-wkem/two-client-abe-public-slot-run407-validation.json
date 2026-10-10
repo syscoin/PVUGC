@@ -1,0 +1,18 @@
+{
+  "run": 407,
+  "status": "PASS",
+  "assertions": 16200,
+  "fixtures": 900,
+  "recovered_without_witness": 1800,
+  "prime_fields": [
+    17,
+    257,
+    65537
+  ],
+  "dimensions": [
+    2,
+    3,
+    4
+  ],
+  "scope": "Noiseless modular algebra with adversary-supplied common left-kernel mask. Not CLW lattice TrapGen, LWE, QROM, or PQ signature benchmark"
+}
