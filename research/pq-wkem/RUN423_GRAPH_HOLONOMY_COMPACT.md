@@ -1,0 +1,29 @@
+# Run 423 — full-table local frame mixing: forest hiding vs cycle holonomy
+
+Date: 2026-10-11. Actual starting PR head \`f60b924be6b03caf9c6808eca7c832fed7851de7\`; branch \`research/pq-wkem-validation-20260918\`; most recent substantive ordinary comment \`6067040320\`. New focused theorem only; not a rewrite of previously denied Run 422.
+
+## Exact model and iff theorem
+
+Fix a graph H=(V,E), d>=2 and unknown fixed edge permutations F_e in S_d. Honest classical PPT setup independently samples uniform masks M_v in S_d at every vertex and publishes complete permutation tables G_(u,v)=M_v o F_(u,v) o M_u^{-1}. The public adversary knows the graph, every G table and its inverse, and any efficiently generated auxiliary inputs, native checking keys, related capsules and chosen evaluation inputs.
+
+**Theorem (full-table universal assignment hiding):** The joint distribution of all G_e is independent of *every* possible assignment of F_e if and only if the underlying undirected multigraph is a forest.
+
+**Forest proof.** In each connected tree, choose a root mask freely. Every desired edge table uniquely determines the child mask from the known parent mask and F_e (also when traversing against edge orientation). Thus exactly |S_d|^{components} vertex-mask assignments yield any specified public edge tuple. Dividing by |S_d|^{|V|} gives probability |S_d|^{-|E|} independently of the underlying edge permutations. The public tables are jointly uniform and independent, an unconditional statement also against QPT observers.
+
+**Cycle proof.** Traverse any undirected cycle, inverting G_e on backwards edges. The public ordered product equals M_root o (product of underlying F_e along the cycle, inverted where needed) o M_root^{-1}. Thus the underlying product's *conjugacy class* survives. Select identity F_e throughout, then in a comparison change one edge to a transposition. The publicly computable cycle product has different permutation parity with certainty. The two full public transcript supports are disjoint, even though EACH G_e is independently marginally uniform. For d=3, identity versus a three-cycle additionally shows cycle type leaks information even when parity agrees. This establishes the iff claim for **universal** hiding of arbitrary F assignments in this specific model, not an impossibility of other mixers.
+
+**DAG reconvergence warning.** Directed edges 0->1,0->2,1->3,2->3 contain no directed cycle, yet complete edge tables enable H=G_02^{-1} o G_23^{-1} o G_13 o G_01, conjugate to the corresponding F product. A single secret permutation parity on edge 1->3 is readable from H. The graph-theoretic criterion uses undirected shared-frame cycles, including reconvergence, not only directed execution loops.
+
+## Relation to the target release interface
+
+A toy defective release representation can encode 256 bits of a native signing seed as 256 cycle parities. Its independent uniform local masks do not prevent witness-free reconstruction of the seed and accepted native signing, EVEN for a false ORIGINAL statement with no valid witness. A separate independently executed local Python checker confirms this using 16 Ed25519 seeds (NON-PQ demonstration). One may also define two valid toy ORIGINAL witnesses recovering the same seed for a true statement; this cannot repair premature recovery. The local checker is a negative-control, not a secure design.
+
+The source-binding Run 259 only gives accepted-complete-representation -> ORIGINAL source under its stated statistical/SIS conditions. Holonomy recovery never passes through an accepted representation, so the downstream theorem does not apply. Independent UTXO signing keys/salts do not eliminate shared-frame cycles; this precise model does not show they are present in any real construction.
+
+## Literature/model/attack ledger
+
+CCMR, *Towards General-Purpose Program Obfuscation via Local Mixing* (TCC 2024), https://doi.org/10.1007/978-3-031-78023-3_2, discusses different recursive local perturbations and conditional RIO/iO arguments. Gheorghiu et al., https://arxiv.org/abs/2609.40289, discuss quantum analogues. Neither paper is shown to publish the full edge permutations G_e of this theorem. The theorem does NOT break CCMR, RIO, CLZ, or any concrete post-quantum primitive; their full proofs were not audited in this run.
+
+Honest sampling/evaluation: classical PPT, independent uniform vertex frames. Attacker: classical PPT, hence arbitrary QPT; full public gate tables and checking keys, related capsules, all efficiently simulatable auxiliary data, with coherent public evaluation allowed. No QROM or rewinding. Tested (1) exact seam cancellation, (2) global gauge/holonomy, (3) parity/conjugacy fingerprint, (4) shared-frame multiview correlations, (5) unrestricted public evaluator inputs, (6) attack succeeds even with honest randomness; malicious setups unproved, (7) possible cross-UTXO reused-frame paths but no actual bridge graph analyzed, (8) native verification-key toy correlation, (9) quantum security fails from classical attack alone; additional coherent attacks against OTHER mixer models not analyzed. The forest positive result requires independent proper masks and excludes boundary/output label disclosure; it is NOT a WE security result.
+
+**Scope/hand-off:** Do not expose unprotected edge transformations across a shared-frame undirected cycle and claim security from uniform local marginals. Even a forest's statistical table hiding alone does not create witness-authenticated late insertion or same-K protected release. Mandatory full-public false-instance QPT hiding, unauthorized true-instance recovery/forgery -> ORIGINAL witness or independent QPT break, malicious N-of-N setup/abort, multi-capsule composition, concrete 128-bit practicality and conditional P2MR/native-SLH Bitcoin endpoint all remain UNPROVED. No WE/iO/RIO-equivalent assumption introduced; no complete PQ witness-KEM.
