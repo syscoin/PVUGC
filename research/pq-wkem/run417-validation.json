@@ -1,0 +1,27 @@
+{
+  "run": 417,
+  "check": "GL predictor and reused-key rank cosets",
+  "predictors": 504,
+  "listSizes": {
+    "3": 504
+  },
+  "exhaustive": {
+    "n2_t4": {
+      "matrices": 256,
+      "separated": 211,
+      "tv": 0.82421875
+    },
+    "n3_t4": {
+      "matrices": 4096,
+      "separated": 2619,
+      "tv": 0.639404296875
+    },
+    "n3_t5": {
+      "matrices": 32768,
+      "separated": 26251,
+      "tv": 0.801116943359375
+    }
+  },
+  "assertions": 300609,
+  "security": "toy identities only"
+}
