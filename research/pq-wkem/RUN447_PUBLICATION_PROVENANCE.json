@@ -1,0 +1,20 @@
+{
+  "run": 447,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "3f006f610f69c1837df1bfd913c56e9f69d83483",
+  "checked_latest_comment_id": 6067040320,
+  "exact_dependencies": {
+    "run446_note": "889cc3806dec900822f5d25177bcc13ead8099dc",
+    "run259_note": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  },
+  "checker": "run447_compact_check.js",
+  "validation": "run447_compact_validation.json",
+  "assertions": 57,
+  "execution": "run447Check() evaluated in GitHub orchestration V8 isolate; file is the function source plus Node stdout invocation",
+  "independent_local_checker": "run447_check.py, 2122 assertions; repeated byte-identical; local-only",
+  "no_signature_or_obfuscator_implemented": true,
+  "theorem_scope": "QPT conditional false-instance only, adaptive order exact classical counterexample",
+  "production_unchanged": true
+}
