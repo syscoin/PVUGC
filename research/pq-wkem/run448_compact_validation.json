@@ -1,0 +1,114 @@
+{
+  "run": 448,
+  "assertions": 33,
+  "kind": "finite probability proof checker and ideal Grover amplitude diagnostic",
+  "finite": [
+    {
+      "n": 1,
+      "functions": 4,
+      "fixed_bad_probability": 0.5,
+      "global_bad_probability": 0.75,
+      "adaptive_counts": [
+        2,
+        3
+      ]
+    },
+    {
+      "n": 2,
+      "functions": 256,
+      "fixed_bad_probability": 0.25,
+      "global_bad_probability": 0.68359375,
+      "adaptive_counts": [
+        64,
+        112,
+        148,
+        175
+      ]
+    }
+  ],
+  "large": [
+    {
+      "n": 3,
+      "per_statement_delta": 0.125,
+      "global_bad_probability": 0.6563910841941833
+    },
+    {
+      "n": 4,
+      "per_statement_delta": 0.0625,
+      "global_bad_probability": 0.6439258695482072
+    },
+    {
+      "n": 6,
+      "per_statement_delta": 0.015625,
+      "global_bad_probability": 0.6350134757560926
+    },
+    {
+      "n": 8,
+      "per_statement_delta": 0.00390625,
+      "global_bad_probability": 0.6328402451084638
+    },
+    {
+      "n": 10,
+      "per_statement_delta": 0.0009765625,
+      "global_bad_probability": 0.6323002605887288
+    },
+    {
+      "n": 12,
+      "per_statement_delta": 0.000244140625,
+      "global_bad_probability": 0.6321654705556539
+    },
+    {
+      "n": 16,
+      "per_statement_delta": 0.0000152587890625,
+      "global_bad_probability": 0.632123365543799
+    }
+  ],
+  "grover": [
+    {
+      "mark_bits": 5,
+      "marked_density": 0.03125,
+      "iterations": 4,
+      "quantum_probability": 0.9991823155432941,
+      "classical_equal_queries": 0.1192617416381836
+    },
+    {
+      "mark_bits": 8,
+      "marked_density": 0.00390625,
+      "iterations": 12,
+      "quantum_probability": 0.9999470421032736,
+      "classical_equal_queries": 0.045880918409605065
+    },
+    {
+      "mark_bits": 10,
+      "marked_density": 0.0009765625,
+      "iterations": 25,
+      "quantum_probability": 0.9994612447444079,
+      "classical_equal_queries": 0.024130090788927472
+    },
+    {
+      "mark_bits": 12,
+      "marked_density": 0.000244140625,
+      "iterations": 50,
+      "quantum_probability": 0.9999453461091142,
+      "classical_equal_queries": 0.012134299961333084
+    },
+    {
+      "mark_bits": 16,
+      "marked_density": 0.0000152587890625,
+      "iterations": 201,
+      "quantum_probability": 0.9999882596461666,
+      "classical_equal_queries": 0.003062341438882621
+    }
+  ],
+  "findings": [
+    "pointwise false-instance delta does not imply universal global good CRS",
+    "independent per-context oracle classical Q+1 query success <=(Q+1)delta",
+    "coherent mark-oracle grinding cost Theta(1/sqrt(delta)); general QPT hiding unproved"
+  ],
+  "not_established": [
+    "local-mixing compiler",
+    "QPT-secure witness-KEM",
+    "native PQ signing",
+    "full QROM upper bound"
+  ]
+}
