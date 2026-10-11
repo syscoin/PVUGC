@@ -1,0 +1,15 @@
+{
+  "run": 429,
+  "checker": "finite coherent Fourier law, full Simon fibers",
+  "assertions": 19600,
+  "oracles": 35,
+  "collision_pairs": 18662,
+  "measurement_probabilities": 868,
+  "scopes": [
+    "n=2..6; seven random permutations each",
+    "exact amplitudes, no rounding",
+    "quantum coherent oracle model only; no public PPT protected program",
+    "no all-witness SAME-K construction or QPT security proof"
+  ],
+  "complete_pq_wkem": false
+}
