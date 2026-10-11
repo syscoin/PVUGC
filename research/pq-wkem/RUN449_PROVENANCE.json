@@ -1,0 +1,35 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "executed_commands": [
+    "node --check run449_compact_check.js",
+    "node run449_compact_check.js > run449_compact_validation.json",
+    "node run449_compact_check.js > run449_compact_validation2.json",
+    "cmp run449_compact_validation.json run449_compact_validation2.json"
+  ],
+  "files": {
+    "RUN449_AFFINE_FOLD_COMPACT.md": {
+      "bytes": 4465,
+      "git_blob_sha1": "fcf895daa010d6e134c9ccd6a039bfb121d79095",
+      "sha256": "51046c40c839d361ed776097a41ca1b2f7dcc4e31843d030c4c6584f4853110e"
+    },
+    "run449_compact_check.js": {
+      "bytes": 1414,
+      "git_blob_sha1": "038fd000495a8334986089898caaa6bcece34106",
+      "sha256": "1f26f9fe21d8e534ca189a1137c120aede9f8200c8beb558a75faf18bbc1e1df"
+    },
+    "run449_compact_validation.json": {
+      "bytes": 673,
+      "git_blob_sha1": "74c0abefaffa2d16855ebe06aabeae0dccbe6d82",
+      "sha256": "e7c25fc8306e4bd2d9930c45f648353d29acaa692c1aed7472785b84caa81798"
+    }
+  },
+  "full_local_checker": "run449_affine_fold_check.js (6053 assertions; not included in compact publication)",
+  "pr": 1,
+  "repository": "syscoin/PVUGC",
+  "research_status": "new finite affine-coset theorem and explicit post-CRS classical solver; no practical WKEM",
+  "run": 449,
+  "runtime": "v22.16.0",
+  "scope_note": "no production changes; statistical source-binding shortcut only; primary-literature proof audit not performed",
+  "starting_draft": true,
+  "starting_sha": "1d5962a12a7f355b3de83778cb75c816db78a579"
+}
