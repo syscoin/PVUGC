@@ -1,0 +1,12 @@
+{
+  "run": 418,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "563082f51b908c52e8f50c559a714562f37262f7",
+  "previous_note_blob": "368d0e86a4cbead552df856598ac05f3c309493e",
+  "run259_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "literature": "https://doi.org/10.1007/978-3-032-35367-2_18",
+  "published_checker": "Node JS finite algebra; 29032 assertions; repeatable",
+  "extended_local_checker": "Python with Ed25519; 28555 assertions; local archive only",
+  "conclusion_scope": "one polynomial public control family with no other late witness input; not a CLZ or PQ security break",
+  "repo_scope": "research/pq-wkem/ only"
+}

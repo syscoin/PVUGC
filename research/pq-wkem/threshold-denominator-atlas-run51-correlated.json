@@ -1,0 +1,9 @@
+{
+  "enumerated_transcripts_with_multiplicity": 125320,
+  "exposed": 378,
+  "fixtures": 400,
+  "hidden": 22,
+  "run": 51,
+  "scope": "correlated public linear-mask validation only; not a security proof",
+  "seed": 510051002
+}

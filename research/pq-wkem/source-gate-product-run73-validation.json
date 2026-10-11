@@ -1,0 +1,26 @@
+{
+  "claims": "finite algebra/correctness validation only; cryptographic claims require the written reductions/theorems",
+  "compiler_identity_cases": 16,
+  "degree_r_threshold_separations": 6,
+  "false_affine_parent_recoveries": 500,
+  "false_formula": "(not x) AND (not y) AND (x OR y)",
+  "false_formula_witness_count": 0,
+  "false_lwe_root_recoveries": 500,
+  "gl2_f3_count": 48,
+  "gl2_f3_nonzero_target_counts": {
+    "(0, 1)": 6,
+    "(0, 2)": 6,
+    "(1, 0)": 6,
+    "(1, 1)": 6,
+    "(1, 2)": 6,
+    "(2, 0)": 6,
+    "(2, 1)": 6,
+    "(2, 2)": 6
+  },
+  "low_degree_feature_coordinate_equalities": 1290,
+  "q": 257,
+  "random_clause_defect_affine_checks": 1000,
+  "satisfying_witness_common_target_checks": 200,
+  "seed": 730073001,
+  "status": "PASS"
+}

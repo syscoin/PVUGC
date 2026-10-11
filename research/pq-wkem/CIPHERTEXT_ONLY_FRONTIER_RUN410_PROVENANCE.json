@@ -1,0 +1,21 @@
+{
+  "run": 410,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "2a745f9035f1f5e8412b686426ea98b0a4a086b4",
+  "dependencies": {
+    "RUN259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "RUN405": "314686b02acec45f57cc21acee677dea61b41b89",
+    "RUN406": "cb5ec5144694669d7134d3759a18972745e1530f",
+    "RUN409": "7fb3310e3a808aea4b523211c2f9ed242fbc8c46"
+  },
+  "exact_checker_sha256": "a88b19b1fa70482731888c7eb689e2eaba3b12927c654c0a16d8a29b85e88a26",
+  "exact_checker_git_blob_expected": "abf72873f2e205a29a27cefa82d14b142e732ac2",
+  "checker_assertions": 41004,
+  "checker_fixtures": 13310,
+  "exact_captured_validation_sha256": "8b3c6823114314f9270bdb715fd245732a53c8b78316ec51353e3e763b438d0e",
+  "extended_local_note_sha256": "e287c14a7ed815ae36ac88376a6fddf9d0fb53666ffa454f8b5a2b0655ea602e",
+  "claim_scope": "ciphertext-only QPT IND-CPA/EUF-CMA conditional bound; NOT local mixing no-go",
+  "production_changed": false
+}

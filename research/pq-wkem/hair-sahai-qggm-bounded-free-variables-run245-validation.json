@@ -1,0 +1,40 @@
+{
+  "assertions": 1729,
+  "python": "3.13.5",
+  "run": 245,
+  "scope": {
+    "not_proved": "a concrete-group PQ attack; generic DLOG outside QGGM; hardness or easiness when effective codimension grows; full WKEM QPT hiding/extraction/setup composition",
+    "proved": "generic classical post-exponent-recovery membership algorithm and its exact finite validation; polynomial-time when effective codimension n-k is constant and m is polynomial in the security/circuit parameter"
+  },
+  "status": "PASS",
+  "theorem_checked": {
+    "combined": "structured acceptance is 1 for every A; uniform false accept is <= max(1/p, m^n/p^k) when rank deficiency is at least one",
+    "complexity": "O(m^(n-k) * poly(n,k,log p)) on the full-row-rank branch",
+    "full_row_rank": "choose k pivot columns; enumerate all m^(n-k) free box coordinates; solve pivot coordinates uniquely; this is exact membership in A*[0,m)^n",
+    "rank_deficient": "span membership is exact for the structured image; uniform false accept is p^(rank-k)"
+  },
+  "toy_full_rank": {
+    "codimension": 2,
+    "false_accept": "69/169",
+    "k": 2,
+    "m": 3,
+    "max_enumeration_iterations": 9,
+    "n": 4,
+    "p": 13,
+    "rank": 2,
+    "support_size": 69,
+    "universal_upper_bound": "81/169"
+  },
+  "toy_rank_deficient": {
+    "codimension": 3,
+    "false_accept": "1/13",
+    "k": 2,
+    "m": 3,
+    "max_enumeration_iterations": 0,
+    "n": 4,
+    "p": 13,
+    "rank": 1,
+    "support_size": 13,
+    "universal_upper_bound": "1/13"
+  }
+}

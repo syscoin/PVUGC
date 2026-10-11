@@ -1,0 +1,50 @@
+{
+  "affine_span_rank_checks": [
+    {
+      "hiding_families": 264,
+      "leaking_families": 320,
+      "mask_dimension": 2,
+      "max_capsules": 3,
+      "q": 3
+    },
+    {
+      "hiding_families": 528,
+      "leaking_families": 72,
+      "mask_dimension": 2,
+      "max_capsules": 2,
+      "q": 5
+    }
+  ],
+  "assertions": 398945,
+  "concrete_QPT_security": false,
+  "hard_NP_source_relation": false,
+  "models": [
+    {
+      "false_single_pad": "exactly uniform",
+      "fresh_joint_support": 25,
+      "honest_openings_per_true_word": 5,
+      "q": 5,
+      "reused_false_pairs_checked": 3125,
+      "same_mask_two_distinct_false_words": "key disclosed"
+    },
+    {
+      "false_single_pad": "exactly uniform",
+      "fresh_joint_support": 49,
+      "honest_openings_per_true_word": 7,
+      "q": 7,
+      "reused_false_pairs_checked": 16807,
+      "same_mask_two_distinct_false_words": "key disclosed"
+    },
+    {
+      "false_single_pad": "exactly uniform",
+      "fresh_joint_support": 121,
+      "honest_openings_per_true_word": 11,
+      "q": 11,
+      "reused_false_pairs_checked": 161051,
+      "same_mask_two_distinct_false_words": "key disclosed"
+    }
+  ],
+  "run": 380,
+  "status": "PASS",
+  "triple_only_attack": "C1+C2-C3 equals K after subtracting public a*s_i"
+}

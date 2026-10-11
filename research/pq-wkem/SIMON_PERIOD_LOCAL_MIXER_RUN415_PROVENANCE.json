@@ -1,0 +1,22 @@
+{
+  "run": 415,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "5b7371611bc96cc6286d5ad02babf48476ecfd16",
+  "ordinary_comment_id": 6067040320,
+  "checked_with": "new Function(checker) in Javascript V8 Code Mode",
+  "assertions": 301499,
+  "observations": "Simon-period negative control only; actual RIO and QPT WE not audited",
+  "literature": [
+    "https://eprint.iacr.org/2024/006",
+    "https://arxiv.org/abs/2609.40289"
+  ],
+  "local_extended_proof": "Local archive PQ_WKEM_RUN415_LOCAL_RESEARCH.zip; independently executed Python checker 308754 assertions",
+  "items": [
+    "SIMON_PERIOD_LOCAL_MIXER_RUN415.md",
+    "simon_period_local_mixer_run415_check.js",
+    "simon-period-local-mixer-run415-validation.json",
+    "SIMON_PERIOD_LOCAL_MIXER_RUN415_PROVENANCE.json"
+  ]
+}

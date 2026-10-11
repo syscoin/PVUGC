@@ -1,0 +1,283 @@
+{
+  "actual_weighted_table_source_control": {
+    "N": 3,
+    "R": 1,
+    "false_has_public_nonzero_anchor": true,
+    "false_source_dimension": 4,
+    "field": 7,
+    "indicator_oracle_false_dimension": 1,
+    "indicator_oracle_false_has_anchor": false,
+    "indicator_oracle_true_dimension": 3,
+    "indicator_oracle_true_has_anchor": true,
+    "normalized_false_basis_index": 0,
+    "normalized_false_matrix_rank": 3,
+    "true_has_public_nonzero_anchor": true,
+    "true_source_dimension": 4
+  },
+  "generic_basis_functional_identity_checks": 14000,
+  "generic_public_normalizations": 694,
+  "scope": "finite linear algebra and tiny exhaustive oracle controls only; no cryptographic/QPT security inferred",
+  "seed": 870087001,
+  "status": "PASS",
+  "tiny_indicator_oracle_decision_checks": 80,
+  "tiny_indicator_oracle_sample_cases": [
+    {
+      "equations": [
+        [
+          1,
+          4,
+          0,
+          1
+        ],
+        [
+          0,
+          4,
+          4,
+          1
+        ],
+        [
+          6,
+          3,
+          2,
+          2
+        ]
+      ],
+      "indicator_augmented_dimension": 1,
+      "public_anchor_test": false,
+      "satisfying_assignments": 0
+    },
+    {
+      "equations": [
+        [
+          0,
+          5,
+          5,
+          5
+        ],
+        [
+          4,
+          5,
+          2,
+          0
+        ],
+        [
+          4,
+          4,
+          0,
+          1
+        ]
+      ],
+      "indicator_augmented_dimension": 1,
+      "public_anchor_test": false,
+      "satisfying_assignments": 0
+    },
+    {
+      "equations": [
+        [
+          1,
+          1,
+          1,
+          4
+        ],
+        [
+          6,
+          3,
+          2,
+          3
+        ]
+      ],
+      "indicator_augmented_dimension": 1,
+      "public_anchor_test": true,
+      "satisfying_assignments": 1
+    },
+    {
+      "equations": [
+        [
+          6,
+          5,
+          6,
+          3
+        ]
+      ],
+      "indicator_augmented_dimension": 1,
+      "public_anchor_test": true,
+      "satisfying_assignments": 1
+    },
+    {
+      "equations": [
+        [
+          6,
+          1,
+          2,
+          6
+        ],
+        [
+          0,
+          6,
+          4,
+          2
+        ]
+      ],
+      "indicator_augmented_dimension": 1,
+      "public_anchor_test": false,
+      "satisfying_assignments": 0
+    },
+    {
+      "equations": [
+        [
+          0,
+          2,
+          2,
+          0
+        ],
+        [
+          5,
+          6,
+          1,
+          4
+        ],
+        [
+          5,
+          4,
+          6,
+          4
+        ]
+      ],
+      "indicator_augmented_dimension": 1,
+      "public_anchor_test": false,
+      "satisfying_assignments": 0
+    },
+    {
+      "equations": [
+        [
+          2,
+          0,
+          2,
+          4
+        ],
+        [
+          3,
+          4,
+          6,
+          2
+        ]
+      ],
+      "indicator_augmented_dimension": 1,
+      "public_anchor_test": false,
+      "satisfying_assignments": 0
+    },
+    {
+      "equations": [
+        [
+          1,
+          4,
+          5,
+          2
+        ],
+        [
+          1,
+          2,
+          3,
+          3
+        ],
+        [
+          6,
+          4,
+          1,
+          1
+        ]
+      ],
+      "indicator_augmented_dimension": 1,
+      "public_anchor_test": false,
+      "satisfying_assignments": 0
+    },
+    {
+      "equations": [
+        [
+          5,
+          6,
+          0,
+          6
+        ],
+        [
+          4,
+          3,
+          3,
+          5
+        ],
+        [
+          1,
+          1,
+          3,
+          4
+        ]
+      ],
+      "indicator_augmented_dimension": 1,
+      "public_anchor_test": false,
+      "satisfying_assignments": 0
+    },
+    {
+      "equations": [
+        [
+          6,
+          3,
+          4,
+          2
+        ],
+        [
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          1,
+          6,
+          6,
+          2
+        ]
+      ],
+      "indicator_augmented_dimension": 1,
+      "public_anchor_test": false,
+      "satisfying_assignments": 0
+    },
+    {
+      "equations": [
+        [
+          2,
+          2,
+          1,
+          0
+        ],
+        [
+          4,
+          5,
+          6,
+          2
+        ]
+      ],
+      "indicator_augmented_dimension": 1,
+      "public_anchor_test": false,
+      "satisfying_assignments": 0
+    },
+    {
+      "equations": [
+        [
+          5,
+          0,
+          6,
+          3
+        ],
+        [
+          6,
+          3,
+          0,
+          6
+        ]
+      ],
+      "indicator_augmented_dimension": 1,
+      "public_anchor_test": false,
+      "satisfying_assignments": 0
+    }
+  ]
+}

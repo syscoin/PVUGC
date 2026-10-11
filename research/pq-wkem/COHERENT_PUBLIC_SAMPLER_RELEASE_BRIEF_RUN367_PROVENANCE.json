@@ -1,0 +1,19 @@
+{
+  "run": 367,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "e64820d82318765ec36360caf11370c4d8c03f82",
+  "run366_blob": "b1b184d81d1be3bd2b675e275dfa99acaeb839b4",
+  "run259_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "checker_sha256": "f174a897478a8290062ca8f2e5da4955c6e7c6c7f26755376b7ed6e9e8d6f2c3",
+  "validation_sha256": "f206ef5da8c5f9f576ea236e64eb464fe4cdcc863cd8528479a445d7748a42c7",
+  "assertions": 232,
+  "syntax": "PASS",
+  "two_byte_identical_runs": true,
+  "result": "conditional public-sampler coherent amplification, not source security",
+  "full_local_checker_assertions": 4136,
+  "full_local_archive": "not branch-published unless separately verified",
+  "literature": "arxiv:2609.40289v2 sections 6.1-6.3; quant-ph/0005055",
+  "complete_wkem": "UNPROVED"
+}

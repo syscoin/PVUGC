@@ -1,0 +1,120 @@
+{
+  "artifact_sha256": {
+    "TRAPDOOR_REVERSE_SAMPLING_RUN105.md": "50facf5051a0570190271f70cb8cdc986acffd7d4e4ac68ae3338f11ab7062d5",
+    "trapdoor-reverse-sampling-run105-validation.json": "75070effea9d31e993284a81a568a0b507da9cf35e9bbdfb6ac943fa7ed4b2d2",
+    "trapdoor_reverse_sampling_run105_check.py": "cd036534267c74fcc93168ffafcb1d0ee889a8a27c7bb17659721698de7fce6a"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "byte_identical_stdout": true,
+    "executions": 3,
+    "path": "research/pq-wkem/trapdoor_reverse_sampling_run105_check.py",
+    "status": "PASS",
+    "total_assertions": 989
+  },
+  "exact_repository_inputs": [
+    {
+      "blob_sha": "d95cdf58479f0bea5219e5e3c15290cfc5172b13",
+      "path": "research/pq-wkem/QPT_TSABARY_AUDIT_RUN80.md"
+    },
+    {
+      "blob_sha": "5d061495800bad32733298d25f1f1ac6e55779c2",
+      "path": "research/pq-wkem/literature-20260924/DEEP_DIVE_RANK_SCALAR_DESCENT.md"
+    },
+    {
+      "blob_sha": "4155a986ee4bf0d22b436dcebbe118a2c5b72ae1",
+      "path": "research/pq-wkem/MINRANK_DUAL_SYNDROME_RUN78.md"
+    },
+    {
+      "blob_sha": "a803478c59af2abdaeeaef35d1952b50a6dd721b",
+      "path": "research/pq-wkem/HIDDEN_SUBSPACE_CONSISTENCY_BUNDLE_RUN103.md"
+    },
+    {
+      "blob_sha": "5ec37cfcf47fcdc68d279af1dc1b6c90a7287c8d",
+      "path": "research/pq-wkem/FULL_KEY_ONE_COPY_QPT_EXTRACTION_RUN102.md"
+    }
+  ],
+  "latest_substantive_comment": {
+    "id": 5839832728,
+    "scope": "Runs 100-103 published and verified"
+  },
+  "literature": [
+    {
+      "verified_points": [
+        "trapdoor/preimage transitions are generated before the LWE secret used in the ciphertext",
+        "ciphertext publishes start-layer LWE vectors, branching program, and transition preimages",
+        "published security is for PPT adversaries under Assumption 31 plus decisional LWE"
+      ],
+      "version": "CRYPTO 2022 proceedings PDF",
+      "work": "Rotem Tsabary, Candidate Witness Encryption from Lattice Techniques"
+    },
+    {
+      "verified_points": [
+        "defines S-oblivious regime",
+        "refutes the VWW attack in that regime",
+        "states then-known private-coin attacks do not give an S-oblivious attack",
+        "security of S-oblivious private-coin evasive LWE remains open"
+      ],
+      "version": "IACR Communications in Cryptology 2(4), 2026",
+      "work": "Huang\u2013Hung\u2013Yamada, A Note on Obfuscation-Based Attacks on Private-Coin Evasive LWE"
+    },
+    {
+      "verified_points": [
+        "abstract advertises zeroizing counterexamples to all known private-coin variants",
+        "later 2026 literature classifies its private-coin attack outside the S-oblivious regime"
+      ],
+      "version": "CRYPTO 2025 / ePrint 2025/374",
+      "work": "D\u00f6ttling\u2013Jain\u2013Malavolta\u2013Mathialagan\u2013Vaikuntanathan, Simple and General Counterexamples for Private-Coin Evasive LWE"
+    },
+    {
+      "limitation": "full primary PDF was not retrievable in this run",
+      "verified_points": [
+        "abstract advertises depth-unbounded bounded-space CP-ABE from Decomposed LWE",
+        "explicitly contrasts with earlier insecure evasive-LWE routes"
+      ],
+      "version": "ePrint 2026/2094, listing updated 2026-09-22",
+      "work": "Abram\u2013Malavolta\u2013Roy, Tree Encodings IV: Depth-Unbounded Attribute-Based Encryption and Delay Encryption"
+    },
+    {
+      "limitation": "does not turn either assumption into ordinary LWE",
+      "verified_points": [
+        "abstract states equivalence under appropriate parameter settings"
+      ],
+      "version": "ePrint 2026/1829 / author listing August 2026",
+      "work": "Abram\u2013Arnon\u2013Cini\u2013Lou\u2013Malavolta\u2013Roy, Decomposed LWE is Equivalent to Succinct LWE"
+    }
+  ],
+  "local_predecessor": {
+    "archive": "/mnt/data/wkem_searchable_hidden_support_run104.zip",
+    "archive_sha256": "138b5cc579d266575d85470acdcc1e2daceb3a63dc2380ebc845132312783339",
+    "note": "Run 105 does not retry or republish Run 104.",
+    "publication_status": "BLOCKED_BEFORE_GITHUB",
+    "run": 104
+  },
+  "new_results": [
+    "Bayes reverse-preimage identity",
+    "exact joint-TV reduction to the target marginal",
+    "rank-aware chi-square formula for matrix reverse sampling",
+    "exact trapdoor-free single-edge programming with invertible short edge key",
+    "multi-target fanout compatibility probability q^{-nm(d-1)}",
+    "compact branch/merge identified as the structural point where trapdoor programmability is needed"
+  ],
+  "pr": 1,
+  "publication": {
+    "status_at_artifact_finalization": "NOT_YET_ATTEMPTED"
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 105,
+  "security_classification": {
+    "compact_branch_merge": "UNPROVED under standard QPT assumptions",
+    "reverse_sampling": "information-theoretic; arbitrary QPT",
+    "single_edge": "straight-line reduction to exact-parameter QPT-hard decisional LWE",
+    "true_source_extraction": "UNPROVED for any complete compact construction"
+  },
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "state": "open"
+  },
+  "starting_sha": "5a612472b4f5e16120a6a07097ef25788415cb94"
+}

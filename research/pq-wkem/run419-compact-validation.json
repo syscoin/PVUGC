@@ -1,0 +1,11 @@
+{
+  "run": 419,
+  "assertions": 4249584,
+  "unary_traces": 292968,
+  "boolean_seam_fixtures": 256,
+  "scope": "root lineage and bare-verdict negative control ONLY",
+  "security_claims": [
+    "no cryptographic scheme",
+    "no QPT hiding or extraction"
+  ]
+}

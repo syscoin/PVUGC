@@ -1,0 +1,76 @@
+{
+  "run": 426,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "expected_start_sha": "784f005cdfc6925505e58ecddd1e76e2fa13cda1",
+  "exact_sources_read": {
+    "research/pq-wkem/RUN425_ONE_POINT_PINS_PUBLISH.md": "511cfd34cee890a7ac338c6fcf871b6b735ca73d",
+    "research/pq-wkem/RUN424_PINNED_BOUNDARY_COMPACT.md": "7c8bbbd205dadc3431044588daebdf13ed20b811"
+  },
+  "checker_engine": "new Function executed inside connected-tools V8 runtime before publication",
+  "validation": {
+    "run": 426,
+    "status": "all finite assertions passed",
+    "assertions": 205856,
+    "exhaustive_orbits": [
+      {
+        "n": 3,
+        "m": 3,
+        "source_functions": 27,
+        "mask_pairs_per_source": 36,
+        "classes": {
+          "3,0,0": 3,
+          "2,1,0": 18,
+          "1,1,1": 6
+        }
+      },
+      {
+        "n": 4,
+        "m": 3,
+        "source_functions": 81,
+        "mask_pairs_per_source": 144,
+        "classes": {
+          "4,0,0": 3,
+          "3,1,0": 24,
+          "2,2,0": 18,
+          "2,1,1": 36
+        }
+      },
+      {
+        "n": 4,
+        "m": 4,
+        "source_functions": 256,
+        "mask_pairs_per_source": 576,
+        "classes": {
+          "4,0,0,0": 4,
+          "3,1,0,0": 48,
+          "2,2,0,0": 36,
+          "2,1,1,0": 144,
+          "1,1,1,1": 24
+        }
+      }
+    ],
+    "reversible_lift_source_maps": 364,
+    "secret_bit_no_pin_mask_pairs": 1152,
+    "security_claim": "none; exact finite orbit theorem only",
+    "quantum": "classical attack, therefore available to QPT",
+    "native_signatures": "separate local Python checker tests 12 non-PQ Ed25519 cases",
+    "complete_practical_wkem": false
+  },
+  "independent_local_python_checker": {
+    "name": "run426_fiber_orbit_check.py",
+    "assertions": 37622,
+    "executed_twice_identical": true,
+    "diagnostic_ed25519_fixtures": 12,
+    "signature_model": "non-PQ"
+  },
+  "limitations": [
+    "no concrete PQ witness-KEM",
+    "no full CCMR/RIO proof audit",
+    "only full enumerable nonbijections",
+    "no false or true instance release security theorem"
+  ],
+  "published_paths_prefix": "research/pq-wkem/",
+  "production_modified": false
+}

@@ -1,0 +1,41 @@
+{
+  "actions_done": "connected get_pr_info, fetch, fetch_file; web primary abstracts; local node and python executed twice",
+  "artifacts": {
+    "FRONTIER_STATE_SIMULATION_BARRIER_RUN396.md": {
+      "bytes": 10675,
+      "sha256": "f976919f8eb13e8c0c5c6a11fae9049f69373dfbc5df031021465864b4026dad"
+    },
+    "frontier-state-simulation-run396-js-validation.json": {
+      "bytes": 523,
+      "sha256": "e142c6a0c1fc6a0a7d6e0a73bbbc9f2e86fd0b5185239f6c49127864e1fdee8a"
+    },
+    "frontier-state-simulation-run396-validation.json": {
+      "bytes": 607,
+      "sha256": "5b5aa3b1ca11db0c647bc9d864a285b871820a7c6d4c408a768bef8f61c26d2d"
+    },
+    "frontier_state_simulation_run396_check.js": {
+      "bytes": 2091,
+      "sha256": "012788507081393fcdf2bea9245cec991a99d911d27da92ec10f8f5abde21cd6"
+    },
+    "frontier_state_simulation_run396_check.py": {
+      "bytes": 4033,
+      "sha256": "c19602374182acf53c920763578aa280ead721c47ed61a67761e8865363e407b"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "external_refs": [
+    "https://eprint.iacr.org/2024/006",
+    "https://arxiv.org/abs/2609.40289"
+  ],
+  "head_verified_from_connected_GitHub": true,
+  "latest_substantive_comment_id": 6067040320,
+  "pr": 1,
+  "production_modified": false,
+  "remote_publication": "not yet attempted at generation; see final separate receipt",
+  "repository": "syscoin/PVUGC",
+  "run": 396,
+  "scope": "exact finite conditional-interface falsifier; no cryptographic security or implementation",
+  "starting_head": "bba5c4bb4e37144a390b40f0b58a7ff633d7a1f1",
+  "stopping_condition_met": false,
+  "timestamp_utc": "2026-10-09T18:54:04.367832+00:00"
+}

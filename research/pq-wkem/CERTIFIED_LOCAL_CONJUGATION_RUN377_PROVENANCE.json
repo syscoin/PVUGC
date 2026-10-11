@@ -1,0 +1,24 @@
+{
+  "run": 377,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "49a1d084724766d46ae7fad7b929de57c1612516",
+  "dependency_blobs": {
+    "run376": "727c59155061c758ab6efc5c0f31ed359f10e5fe",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "clz": "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  },
+  "note": "CERTIFIED_LOCAL_CONJUGATION_SETUP_RUN377.md",
+  "compact_checker_sha256": "17166d5665326b218d37b74d18d032a402a0d7d2f1b9ace57f528500e27285cc",
+  "compact_validation_sha256": "2039739205c3769a999008bf6f69c183a3e1c9b8e0bc33801fe72bdd8dd6180a",
+  "syntax": "PASS",
+  "repeat_identical": true,
+  "assertions": 59776,
+  "fixtures": 2752,
+  "full_WKEM": false,
+  "all_witness_compiler_semantics_only": true,
+  "proof_system_implemented": false,
+  "distributed_setup_implemented": false,
+  "local_extended_assertions": 83328
+}

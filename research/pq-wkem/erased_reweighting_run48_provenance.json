@@ -1,0 +1,43 @@
+{
+  "claims_not_made": [
+    "complete WKEM",
+    "PQ hiding proof",
+    "generic impossibility of secret right reweighting",
+    "arbitrary-QPT key-recovery extractor",
+    "security from passing tests"
+  ],
+  "executions": [
+    {
+      "checker": "check_erased_reweighting_run48.py",
+      "exit_code": 0,
+      "stdout_byte_identical_to_execution_2": true
+    },
+    {
+      "checker": "check_erased_reweighting_run48.py",
+      "exit_code": 0,
+      "stdout_byte_identical_to_execution_1": true
+    }
+  ],
+  "external_web_or_literature_used": false,
+  "local_files": {
+    "ERASED_REWEIGHTING_PSEUDOZERO_RUN48.md": {
+      "sha256": "46a53932227f3b1d02dcd6c045d01f663865c8520a91de1588acc57722277fa7"
+    },
+    "check_erased_reweighting_run48.py": {
+      "sha256": "f46a685c04088e5573b15e62eaeef2438cd7f35a5fb8562f5794c469649dfe74"
+    },
+    "erased_reweighting_run48_validation.json": {
+      "sha256": "a2324389c8c8c871a327be48f9dfa3075dd3873e6f5c98fe9236ee6b0778e119"
+    }
+  },
+  "production_code_modified": false,
+  "remaining": [
+    "zero-sound polynomial-size source representation or independently justified PQ source-witness-selective evaluator",
+    "arbitrary-QPT early recovery to source witness or independent PQ break",
+    "complete false-instance hiding with auxiliary data",
+    "malicious-secure ceremony composition for a surviving primitive",
+    "practical end-to-end parameters"
+  ],
+  "run": 48,
+  "starting_head": "7eaddcfac437d377d9476e2b49a3387914abc185"
+}

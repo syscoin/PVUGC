@@ -1,0 +1,67 @@
+{
+  "artifact_hashes": {
+    "HAIR_SAHAI_GENERALIZED_SUPPORT_RUN214.md": {
+      "bytes": 10710,
+      "sha256": "14b5cf33f2c8e609acbab71b6afb0a7fdcf8c46b234ec209e841732257d6a8ed"
+    },
+    "hair-sahai-generalized-support-run214-validation.json": {
+      "bytes": 1651,
+      "sha256": "764312805ca7735a9cb5d0f37581c510dcab771da285f657931908e2cac624d9"
+    },
+    "hair_sahai_generalized_support_run214_check.py": {
+      "bytes": 17392,
+      "sha256": "0b62aeec5caeeb365eb0c117e4fba0668e5997aefb05db359bbbb95c4b23c37c"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "assertions": 455,
+    "byte_identical_outputs": true,
+    "environment_warning": "Spreadsheet-runtime warmup emitted an unrelated startup warning; checker subprocesses completed successfully.",
+    "executions": 2,
+    "network_used_by_checker": false,
+    "python_version": "3.13.5",
+    "syntax_check": "passed"
+  },
+  "connected_github_reads": [
+    "get_pr_info",
+    "fetch_pr_comments",
+    "list_pr_changed_filenames",
+    "fetch_file at exact head"
+  ],
+  "conversation_handoff": {
+    "run_213": "used only as a problem statement; no unpublished Run-213 file was treated as repository evidence"
+  },
+  "created_utc": "2026-10-01T13:36:35.978868+00:00",
+  "exact_version_inputs": {
+    "research/pq-wkem/CMV_MINRANK_LACONIC_QPT_SOURCE_BRIDGE_RUN152.md": "398b93af491d0b11cc486e86c89295a05b714804",
+    "research/pq-wkem/HAIR_SAHAI_PUBLIC_ANCHOR_QUOTIENT_BARRIER_RUN129.md": "cb74329d418b365abd325270185673b29fb10560",
+    "research/pq-wkem/literature-20260924/rank_field_extensions.py": "e3c51bff4a8f3817f70b1368190b8b35893cafa2"
+  },
+  "latest_substantive_ordinary_comment_id": 5913974235,
+  "publication_status": "pending permitted GitHub publication attempt",
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "run_id": 214,
+  "scope": "One bounded exact generalized-column-support iteration on the literal N=3,R=1 GF(16) false source.",
+  "starting_head_sha": "45185f59e519753d611d2bcf45af88348ff7f16d",
+  "starting_state": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  },
+  "web_literature_checked": [
+    {
+      "arxiv": "1410.7207",
+      "author": "Alberto Ravagnani",
+      "title": "Generalized weights: an anticode approach",
+      "use": "terminology/context for Delsarte generalized weights only"
+    },
+    {
+      "arxiv": "1612.01888",
+      "authors": "Umberto Martinez-Penas, Ryutaroh Matsumoto",
+      "title": "Relative generalized matrix weights of matrix codes for universal security on wire-tap networks",
+      "use": "terminology/context for matrix support profiles only"
+    }
+  ]
+}

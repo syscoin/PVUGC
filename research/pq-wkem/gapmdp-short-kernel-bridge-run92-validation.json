@@ -1,0 +1,74 @@
+{
+  "checks": {
+    "centered_norm_support_bridge": {
+      "cases": 7200,
+      "failures": 0
+    },
+    "exhaustive_short_implies_sparse": {
+      "failures": 0,
+      "triggered_threshold_checks": 6012,
+      "vectors": 198650
+    },
+    "gap_criterion": {
+      "B2_lt_gamma_cases": 15,
+      "cases": 24,
+      "minimum_ratio_when_B2_lt_gamma": 1.3333333333333333
+    },
+    "gap_tables": {
+      "bounded_symbol_B1_cases": 36,
+      "bounded_symbol_ratio_independent_of_p": true,
+      "raw_cases_with_guaranteed_gap_gt_1": 2,
+      "raw_prime_field_cases": 20
+    },
+    "linear_encoder_amplitude": {
+      "cases": 480,
+      "failures": 0
+    },
+    "radix_linearization_barrier": [
+      {
+        "B": 2,
+        "L": 4,
+        "canonical_span_rank": 4,
+        "kernel_l2_sq": 5,
+        "kernel_support": 2,
+        "p": 17
+      },
+      {
+        "B": 2,
+        "L": 5,
+        "canonical_span_rank": 5,
+        "kernel_l2_sq": 5,
+        "kernel_support": 2,
+        "p": 37
+      },
+      {
+        "B": 3,
+        "L": 3,
+        "canonical_span_rank": 3,
+        "kernel_l2_sq": 10,
+        "kernel_support": 2,
+        "p": 29
+      },
+      {
+        "B": 4,
+        "L": 3,
+        "canonical_span_rank": 3,
+        "kernel_l2_sq": 17,
+        "kernel_support": 2,
+        "p": 67
+      },
+      {
+        "B": 5,
+        "L": 3,
+        "canonical_span_rank": 3,
+        "kernel_l2_sq": 26,
+        "kernel_support": 2,
+        "p": 131
+      }
+    ]
+  },
+  "claim_scope": "finite algebra and norm/interface checks only; no cryptographic security claim",
+  "report_sha256": "e9747f7015c3ccbefc98dada04b2c2b98f3f41ba85148a37f51ccce042de119a",
+  "run": 92,
+  "seed": 920092
+}

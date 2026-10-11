@@ -1,0 +1,43 @@
+{
+  "run": 242,
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "8762a99c66b2a48f7edffc207cf5a49060d948b6",
+  "status_before_publication": "LOCAL_VALIDATED",
+  "live_reads": [
+    "PR metadata at 8762a99c66b2a48f7edffc207cf5a49060d948b6",
+    "latest substantive PR comments through 5945825660",
+    "research/pq-wkem/FULL_KEY_ONE_COPY_QPT_EXTRACTION_RUN102.md",
+    "research/pq-wkem/CONDITIONAL_IMAGE_MIXING_RUN196.md",
+    "research/pq-wkem/JOINT_LOWRANK_PROJECTION_RUN197.md",
+    "research/pq-wkem/OFFDIAGONAL_TENSOR_SPECTRUM_RUN209.md",
+    "research/pq-wkem/HAIR_SAHAI_GENERALIZED_SUPPORT_RUN214.md",
+    "research/pq-wkem/HAIR_SAHAI_ADJOINT_DUAL_RUN219.md",
+    "research/pq-wkem/HAIR_SAHAI_CLOSURE_BARRIER_RUN220.md"
+  ],
+  "primary_external_records": [
+    "Hair and Sahai, arXiv:2609.18275v1, HTML Sections 3.1, 3.4, 4.4-4.7",
+    "Hhan, Yamakawa, Yun, ePrint 2023/1054 rev. 2024-07-05, Quantum Complexity for Discrete Logarithms and Related Problems"
+  ],
+  "new_result_scope": "quantum-generic exponent recovery followed by effective-column support and linear-span distinguishers; no standard-model PQ claim",
+  "local_failures": [
+    {
+      "stage": "development checker",
+      "message": "Command failed because it timed out.",
+      "error_code": null,
+      "request_id": null,
+      "correlation_id": null,
+      "counted_as_validation": false
+    }
+  ],
+  "final_validation": {
+    "syntax": "PASS",
+    "executions": 2,
+    "byte_identical": true,
+    "assertions_per_execution": 632,
+    "checker_sha256": "0bfcfa589dc7ab5b8f101e6a153e58f9bd1415dbc1bbf364d4819e2f09fca86d",
+    "validation_sha256": "e5626d4f57b741dca0e9bb4bdfa8a4f30a5f34766d6d78d57e879eb907573dfd"
+  },
+  "stopping_condition_met": false
+}

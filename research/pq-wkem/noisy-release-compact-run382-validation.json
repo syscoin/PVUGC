@@ -1,0 +1,1 @@
+{"all_valid_witnesses_same_key": true, "assertions": 69392, "attack_probability": 1, "delta": 128, "false_original_x": 3, "false_unauthorized_recoveries": 4626, "honest_witness_checks": 27756, "public_invalid_opening": [3, 0], "q": 257, "run": 382, "scope": "algebraic toy only, no practical LWE/QPT/WKEM security", "status": "PASS"}

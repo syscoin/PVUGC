@@ -1,0 +1,19 @@
+{
+  "assertions": 7082,
+  "boolean_functions_exhausted": 278,
+  "classical_exact_single_needle_hit_probability": "q/2^n",
+  "classical_probability_tests": 45,
+  "coherent_full_state_tests": 105,
+  "hidden_prefix_family_fixtures": 126,
+  "max_coherent_probability_error": 4.440892098500626e-16,
+  "not_claimed": [
+    "concrete obfuscation",
+    "QPT security proof",
+    "real signer",
+    "valid bridge implementation"
+  ],
+  "quantum_single_needle_search": "sin^2((2t+1)*asin(2^(-n/2)))",
+  "run": 376,
+  "scope": "opaque black-box release-testing oracle; adversarial puncture independent of auditor public side info",
+  "status": "PASS"
+}

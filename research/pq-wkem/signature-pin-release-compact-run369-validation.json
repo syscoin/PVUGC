@@ -1,0 +1,1 @@
+{"assertions": 86, "different_message_valid": false, "false_source_gate_release": false, "joint_signature_leak": true, "message_bits": 8, "run": 369, "scope": "finite algebra only; no QPT OWF or actual SLH proof", "status": "PASS"}

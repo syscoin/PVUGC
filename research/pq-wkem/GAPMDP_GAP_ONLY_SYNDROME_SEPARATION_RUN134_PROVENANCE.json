@@ -1,0 +1,100 @@
+{
+  "run": 134,
+  "created_utc": "2026-09-27T03:28:31Z",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head_sha": "76e5b632cf00b4372955b871aadd59ded84c5167",
+  "starting_pr_state": {
+    "state": "open",
+    "draft": true,
+    "merged": false
+  },
+  "latest_substantive_comment": 5850205385,
+  "exact_repository_sources": [
+    {
+      "path": "research/pq-wkem/ANCHOR_SHIFT_MINRANK_RUN79.md",
+      "blob_sha": "30084603c3b35c449be4e154f6d214533526d3c5"
+    },
+    {
+      "path": "research/pq-wkem/FINITE_DIFFERENCE_LOWRANK_RUN82.md",
+      "blob_sha": "6430557fd1596308db029d17b48549f9ed9490c8"
+    },
+    {
+      "path": "research/pq-wkem/SYNDROME_EXTRACTOR_CAPACITY_RUN99.md",
+      "ref": "76e5b632cf00b4372955b871aadd59ded84c5167"
+    },
+    {
+      "path": "research/pq-wkem/FULL_KEY_ONE_COPY_QPT_EXTRACTION_RUN102.md",
+      "ref": "76e5b632cf00b4372955b871aadd59ded84c5167"
+    },
+    {
+      "path": "research/pq-wkem/DUAL_MODE_HASH_SECRET_RESAMPLING_BARRIER_RUN126.md",
+      "blob_sha": "94d1a6246da77f561ecacd84ce78917d6121dc33"
+    },
+    {
+      "path": "research/pq-wkem/UP_HASH_ISOLATION_ALL_WITNESS_BARRIER_RUN128.md",
+      "blob_sha": "a534790501f9996bf5af45708d8c16a6267f9569"
+    },
+    {
+      "path": "research/pq-wkem/literature-20260924/ASSESSMENT.md",
+      "blob_sha": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924"
+    }
+  ],
+  "external_primary_or_current_sources": [
+    {
+      "title": "Witness Encryption for NP from SNARGs and Groups",
+      "author": "Zhengzhong Jin",
+      "identifier": "IACR ePrint 2026/2063",
+      "url": "https://eprint.iacr.org/2026/2063",
+      "evidence_used": "current public abstract/metadata only; full current PDF was not used in this run",
+      "verified_claims_used": [
+        "Karp-Levin reduction from polylog(lambda)-size circuit satisfiability to GapMDP",
+        "prime field size lambda^{omega(1)}",
+        "approximation factor omega(log lambda)",
+        "generic-group extractable-WE consequence for polylog-size circuits"
+      ]
+    },
+    {
+      "title": "Witness Encryption via Prime-Order Generic Groups",
+      "authors": ["Isaac M. Hair", "Amit Sahai"],
+      "identifier": "arXiv:2609.18275",
+      "url": "https://arxiv.org/abs/2609.18275",
+      "evidence_used": "current arXiv abstract plus exact prior repository assessment",
+      "classification": "classical generic-group WE; not treated as concrete PQ security"
+    }
+  ],
+  "new_result_scope": {
+    "type": "information-theoretic focused falsification",
+    "claim": "GapMDP minimum-distance gap alone, even omega(log lambda), does not certify q-symmetric full-syndrome hiding; explicit same-(q,m,D,n_act) low-rate and high-rate code families have opposite statistical behavior.",
+    "hardness_assumptions": [],
+    "adversary_model": "unbounded; therefore includes arbitrary QPT distinguishers",
+    "honest_algorithm_model": "classical polynomial time for polynomial dimensions",
+    "jin_actual_source_status": "UNPROVED/UNAUDITED for Run-99 syndrome extraction; this run does not claim failure of Jin's actual construction"
+  },
+  "checker": {
+    "path": "research/pq-wkem/gapmdp_gap_only_syndrome_run134_check.py",
+    "standard_library_only": true,
+    "syntax_check": "passed",
+    "executions": 2,
+    "byte_identical_stdout": true,
+    "assertions": 33
+  },
+  "artifacts": {
+    "research/pq-wkem/GAPMDP_GAP_ONLY_SYNDROME_SEPARATION_RUN134.md": {
+      "sha256": "31a965a02b61204898f6efef3c0daf777cf8b3f9f88aae673a72dda7667a190c"
+    },
+    "research/pq-wkem/gapmdp_gap_only_syndrome_run134_check.py": {
+      "sha256": "68d8cc9c089666b12af5f1d585a28c36423afb1d835b7b3bd5233cc474b8b345"
+    },
+    "research/pq-wkem/gapmdp-gap-only-syndrome-run134-validation.json": {
+      "sha256": "d95a7029bd42be9aa3c390539ca37280b709af3f2bd26e4c623be3978e22d0de"
+    }
+  },
+  "limitations": [
+    "The finite checker validates algebra/probability and exact small-code enumerations, not cryptographic hardness.",
+    "The current Jin full PDF/proof was not available through the primary fetch path used in this run, so no exact Jin code-rate/enumerator claim is made.",
+    "Run 134 concerns the false-mode syndrome-hiding shortcut only; it does not instantiate the true-mode Run-102 source extractor.",
+    "The practical generic-NP PQ WKEM stopping condition remains unmet."
+  ]
+}

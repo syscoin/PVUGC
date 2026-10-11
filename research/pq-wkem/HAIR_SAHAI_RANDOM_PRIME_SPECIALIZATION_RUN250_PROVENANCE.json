@@ -1,0 +1,35 @@
+{
+  "run_id": 250,
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head_sha": "978e75331da43e8bd80586f74d9eb7813e982b26",
+  "starting_state": {"open": true, "draft": true, "merged": false},
+  "latest_substantive_ordinary_comment_id": 5945825660,
+  "exact_version_inputs": {
+    "research/pq-wkem/HAIR_SAHAI_QGGM_BOUNDED_FREE_VARIABLES_RUN245.md": "0ce778ac35e74f92dd77c8e96279dcea9f6b7d06",
+    "research/pq-wkem/hair_sahai_qggm_bounded_free_variables_run245_check.py": "cf109612d606f1979fd9b1a1003de99db5af23c7",
+    "research/pq-wkem/HAIR_SAHAI_GENERALIZED_SUPPORT_RUN214.md": "6a67013fda501295e631d5bb17bb7d50c4bd8be5",
+    "research/pq-wkem/hair_sahai_generalized_support_run214_check.py": "b38c7eea6c6a2cb387b5dcb1b97ac018c0b03f32"
+  },
+  "literature": {
+    "hair_sahai": {
+      "url": "https://arxiv.org/html/2609.18275v1",
+      "version": "v1",
+      "submitted": "2026-09-16",
+      "checked_sections": ["Theorem 1.1", "Theorem 3.1", "Section 3.1", "Section 4.1", "Section 4.4", "Section 4.6", "Corollary 4.4"],
+      "scope": "classical prime-order generic-group theorem; supplied-prime deterministic compiler; sampled-prime interval and density; exact weighted-table forms"
+    }
+  },
+  "scope": "One bounded specialization/height iteration: show that modular-only common-right-kernel geometry can occur only at prime divisors of a fixed integer minor certificate, then bound its probability under the paper's random-prime sampler.",
+  "connected_github_reads": ["get_pr_info", "fetch_issue_comments", "compare_commits", "fetch_file exact head", "fetch_commit restored dependency"],
+  "checker": {
+    "python_version": "3.13.5",
+    "python_syntax_check": "passed",
+    "executions": 2,
+    "byte_identical_outputs": true,
+    "assertions": 139,
+    "network_used": false
+  },
+  "publication_intent": "Publish only these new Run-250 research artifacts to the existing draft PR branch, then attempt one ordinary top-level PR conversation comment; no production/workflow/review/merge action. Publication outcome is recorded separately after the write attempt."
+}

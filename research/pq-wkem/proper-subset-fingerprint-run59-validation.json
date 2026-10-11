@@ -1,0 +1,145 @@
+{
+  "claim_scope": "Finite algebra/implementation checks for the proper-subset signed-diagonal transport counterexample and scalar-fingerprint endpoint identities. Not a security proof for a surviving WKEM.",
+  "noisy_leave_one_out_n_of_n": {
+    "dimensions": {
+      "3": {
+        "deterministic_per_share_bound": 2,
+        "false_global_key_recoveries": 250,
+        "max_abs_centered_share_error": 2,
+        "trials": 250
+      },
+      "4": {
+        "deterministic_per_share_bound": 3,
+        "false_global_key_recoveries": 250,
+        "max_abs_centered_share_error": 3,
+        "trials": 250
+      },
+      "6": {
+        "deterministic_per_share_bound": 5,
+        "false_global_key_recoveries": 200,
+        "max_abs_centered_share_error": 5,
+        "trials": 200
+      },
+      "8": {
+        "deterministic_per_share_bound": 7,
+        "false_global_key_recoveries": 150,
+        "max_abs_centered_share_error": 7,
+        "trials": 150
+      }
+    },
+    "max_observed_abs_error": 7,
+    "phase": 128,
+    "proof_note": "Each local route is an actual witness for its restricted target, so its residual is the programmed share carrier plus a sum of L=d-1 signed ternary errors. The simulation checks the full matrix telescoping identity on every share.",
+    "q": 257,
+    "ternary_error": [
+      -1,
+      0,
+      1
+    ],
+    "total_false_global_key_recoveries": 850,
+    "total_trials": 850
+  },
+  "proper_subset_census": {
+    "dimensions": {
+      "10": {
+        "global_witness_count": 0,
+        "leave_one_out_component_count": 10,
+        "leave_one_out_joint_witness_count": 0,
+        "proper_subsets_checked": 1023
+      },
+      "11": {
+        "global_witness_count": 0,
+        "leave_one_out_component_count": 11,
+        "leave_one_out_joint_witness_count": 0,
+        "proper_subsets_checked": 2047
+      },
+      "12": {
+        "global_witness_count": 0,
+        "leave_one_out_component_count": 12,
+        "leave_one_out_joint_witness_count": 0,
+        "proper_subsets_checked": 4095
+      },
+      "2": {
+        "global_witness_count": 0,
+        "leave_one_out_component_count": 2,
+        "leave_one_out_joint_witness_count": 0,
+        "proper_subsets_checked": 3
+      },
+      "3": {
+        "global_witness_count": 0,
+        "leave_one_out_component_count": 3,
+        "leave_one_out_joint_witness_count": 0,
+        "proper_subsets_checked": 7
+      },
+      "4": {
+        "global_witness_count": 0,
+        "leave_one_out_component_count": 4,
+        "leave_one_out_joint_witness_count": 0,
+        "proper_subsets_checked": 15
+      },
+      "5": {
+        "global_witness_count": 0,
+        "leave_one_out_component_count": 5,
+        "leave_one_out_joint_witness_count": 0,
+        "proper_subsets_checked": 31
+      },
+      "6": {
+        "global_witness_count": 0,
+        "leave_one_out_component_count": 6,
+        "leave_one_out_joint_witness_count": 0,
+        "proper_subsets_checked": 63
+      },
+      "7": {
+        "global_witness_count": 0,
+        "leave_one_out_component_count": 7,
+        "leave_one_out_joint_witness_count": 0,
+        "proper_subsets_checked": 127
+      },
+      "8": {
+        "global_witness_count": 0,
+        "leave_one_out_component_count": 8,
+        "leave_one_out_joint_witness_count": 0,
+        "proper_subsets_checked": 255
+      },
+      "9": {
+        "global_witness_count": 0,
+        "leave_one_out_component_count": 9,
+        "leave_one_out_joint_witness_count": 0,
+        "proper_subsets_checked": 511
+      }
+    },
+    "total_local_routes_verified": 8177,
+    "total_proper_subsets_checked": 8177
+  },
+  "scalar_fingerprint_endpoint_collapse": {
+    "dummy_branch_collision_control": {
+      "equal_pairs": 16,
+      "exact_collision_probability": "16/256",
+      "field": 17,
+      "ordered_nonzero_alpha_pairs": 256,
+      "reduced_probability": "1/16"
+    },
+    "exact_endpoint_recoveries": 1200,
+    "random_distinct_alpha_exact_trials": 1200,
+    "short_noisy_fixture": {
+      "alpha0": 1,
+      "alpha1": 2,
+      "decoded_endpoint_bits": 10000,
+      "deterministic_abs_error_bound": 3,
+      "exact_two_error_histogram": {
+        "-1": 2,
+        "-2": 1,
+        "-3": 1,
+        "0": 1,
+        "1": 2,
+        "2": 1,
+        "3": 1
+      },
+      "field": 257,
+      "identity": "2*C0-C1 = R1 + 2*E0-E1",
+      "max_observed_abs_error": 3,
+      "trials": 10000
+    }
+  },
+  "seed": 1505820654
+}

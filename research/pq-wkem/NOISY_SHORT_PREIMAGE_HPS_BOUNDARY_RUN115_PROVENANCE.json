@@ -1,0 +1,83 @@
+{
+  "artifacts": {
+    "NOISY_SHORT_PREIMAGE_HPS_BOUNDARY_RUN115.md": {
+      "bytes": 16400,
+      "sha256": "e25502e1fb824f9e39f8d87b2887de76b0c5ef20f3593bf89d36094b9ddec819"
+    },
+    "noisy-short-preimage-hps-run115-validation.json": {
+      "bytes": 2558,
+      "sha256": "27ffcb9023a31f169027c8e938ea5ee0cd683b0d850b132947eef65145f3d625"
+    },
+    "noisy_short_preimage_hps_run115_check.py": {
+      "bytes": 9341,
+      "sha256": "76c8851af59c4b4bc7221ee9527c7667a5f125c1deb5a538614e134ad4a8e27c"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "execution": {
+    "assertions": 1312354,
+    "byte_identical": true,
+    "checker_runs": 3,
+    "output_sha256": "27ffcb9023a31f169027c8e938ea5ee0cd683b0d850b132947eef65145f3d625"
+  },
+  "limitations": [
+    "No new external author code was executed.",
+    "Finite algebra/functionality tests do not establish computational security.",
+    "Targeted statement-derived inner-product pseudorandomness against QPT adversaries remains unproved.",
+    "A generic-NP affine short-preimage compiler with source soundness and a quantitative norm gap remains unconstructed.",
+    "Stopping condition not met."
+  ],
+  "publication_attempt": {
+    "blocked_action": {
+      "action": "mcp__GitHub__create_blob",
+      "diagnostic": "Script error: This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+      "path": "research/pq-wkem/noisy_short_preimage_hps_run115_check.py",
+      "request_or_correlation_id": "unavailable",
+      "timestamp": "unavailable"
+    },
+    "branch_visible_paths": [],
+    "post_block_write_attempts": [],
+    "read_only_verification": {
+      "head_unchanged": true,
+      "pr_open_draft_unmerged": true,
+      "proof_path_branch_visible": false,
+      "proof_unreferenced_blob_read_back": true
+    },
+    "starting_and_final_verified_head": "a0803edfa691f184e33ca92620471a81c17c611c",
+    "status": "PARTIALLY_PUBLISHED",
+    "successful_unreferenced_blob": {
+      "action": "mcp__GitHub__create_blob",
+      "path": "research/pq-wkem/NOISY_SHORT_PREIMAGE_HPS_BOUNDARY_RUN115.md",
+      "sha": "cf2ec9575948e16b58acbd870208686759f14e44",
+      "verified_exact_local_git_blob_match": true
+    }
+  },
+  "repo_pr": "syscoin/PVUGC#1",
+  "run": 115,
+  "sources": [
+    {
+      "eprint": "2025/1364",
+      "evidence": "current abstract/metadata inspected; gadgets induced by linearly verifiable arguments and compositional framework; no PQ theorem imported",
+      "title": "A Framework for Witness Encryption from Linearly Verifiable SNARKs and Applications",
+      "year": 2025
+    },
+    {
+      "eprint": "2021/977",
+      "evidence": "current metadata/implementation description inspected; linear PCP plus linear-only vector encryption over lattices; not treated as a public/offline WPRF theorem",
+      "title": "Shorter and Faster Post-Quantum Designated-Verifier zkSNARKs from Lattices",
+      "year": 2021
+    },
+    {
+      "doi": "10.62056/ah89ksuc2",
+      "evidence": "abstract inspected; noisy low-norm secret/error leakage under LWE with polynomial losses; not equated with noiseless statement-derived target-value pseudorandomness",
+      "title": "Leaky LWE: Learning with Errors with Semi-Adaptive Secret- and Error-Leakage",
+      "year": 2025
+    },
+    {
+      "evidence": "abstract inspected; secret leakage/auxiliary-input robustness under sufficient entropy; not used as exact targeted-value theorem",
+      "title": "Robustness of the Learning with Errors Assumption",
+      "year": 2010
+    }
+  ],
+  "starting_pr_head": "a0803edfa691f184e33ca92620471a81c17c611c"
+}

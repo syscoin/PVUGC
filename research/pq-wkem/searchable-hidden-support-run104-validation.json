@@ -1,0 +1,233 @@
+{
+  "correctness_search_rows": [
+    {
+      "L": 1,
+      "eta": "1/10",
+      "expected_trials_upper_from_simple": 5.0,
+      "p_search_exact_lower": 0.19999999999999996,
+      "p_search_simple_lower": 0.2
+    },
+    {
+      "L": 1,
+      "eta": "1/4",
+      "expected_trials_upper_from_simple": 2.0,
+      "p_search_exact_lower": 0.5,
+      "p_search_simple_lower": 0.5
+    },
+    {
+      "L": 1,
+      "eta": "49/100",
+      "expected_trials_upper_from_simple": 1.0204081632653061,
+      "p_search_exact_lower": 0.98,
+      "p_search_simple_lower": 0.98
+    },
+    {
+      "L": 2,
+      "eta": "1/10",
+      "expected_trials_upper_from_simple": 10.0,
+      "p_search_exact_lower": 0.10557280900008414,
+      "p_search_simple_lower": 0.1
+    },
+    {
+      "L": 2,
+      "eta": "1/4",
+      "expected_trials_upper_from_simple": 4.0,
+      "p_search_exact_lower": 0.2928932188134524,
+      "p_search_simple_lower": 0.25
+    },
+    {
+      "L": 2,
+      "eta": "49/100",
+      "expected_trials_upper_from_simple": 2.0408163265306123,
+      "p_search_exact_lower": 0.8585786437626906,
+      "p_search_simple_lower": 0.49
+    },
+    {
+      "L": 4,
+      "eta": "1/10",
+      "expected_trials_upper_from_simple": 20.0,
+      "p_search_exact_lower": 0.05425839099682417,
+      "p_search_simple_lower": 0.05
+    },
+    {
+      "L": 4,
+      "eta": "1/4",
+      "expected_trials_upper_from_simple": 8.0,
+      "p_search_exact_lower": 0.1591035847462855,
+      "p_search_simple_lower": 0.125
+    },
+    {
+      "L": 4,
+      "eta": "49/100",
+      "expected_trials_upper_from_simple": 4.081632653061225,
+      "p_search_exact_lower": 0.6239396906913606,
+      "p_search_simple_lower": 0.245
+    },
+    {
+      "L": 8,
+      "eta": "1/10",
+      "expected_trials_upper_from_simple": 40.0,
+      "p_search_exact_lower": 0.027507527533926934,
+      "p_search_simple_lower": 0.025
+    },
+    {
+      "L": 8,
+      "eta": "1/4",
+      "expected_trials_upper_from_simple": 16.0,
+      "p_search_exact_lower": 0.08299595679532878,
+      "p_search_simple_lower": 0.0625
+    },
+    {
+      "L": 8,
+      "eta": "49/100",
+      "expected_trials_upper_from_simple": 8.16326530612245,
+      "p_search_exact_lower": 0.38676243648269604,
+      "p_search_simple_lower": 0.1225
+    },
+    {
+      "L": 16,
+      "eta": "1/10",
+      "expected_trials_upper_from_simple": 80.0,
+      "p_search_exact_lower": 0.013849670452788954,
+      "p_search_simple_lower": 0.0125
+    },
+    {
+      "L": 16,
+      "eta": "1/4",
+      "expected_trials_upper_from_simple": 32.0,
+      "p_search_exact_lower": 0.0423967193014263,
+      "p_search_simple_lower": 0.03125
+    },
+    {
+      "L": 16,
+      "eta": "49/100",
+      "expected_trials_upper_from_simple": 16.3265306122449,
+      "p_search_exact_lower": 0.21690513759998153,
+      "p_search_simple_lower": 0.06125
+    },
+    {
+      "L": 64,
+      "eta": "1/10",
+      "expected_trials_upper_from_simple": 320.0,
+      "p_search_exact_lower": 0.0034805467948112456,
+      "p_search_simple_lower": 0.003125
+    },
+    {
+      "L": 64,
+      "eta": "1/4",
+      "expected_trials_upper_from_simple": 128.0,
+      "p_search_exact_lower": 0.010771986806024536,
+      "p_search_simple_lower": 0.0078125
+    },
+    {
+      "L": 64,
+      "eta": "49/100",
+      "expected_trials_upper_from_simple": 65.3061224489796,
+      "p_search_exact_lower": 0.05929469392490283,
+      "p_search_simple_lower": 0.0153125
+    },
+    {
+      "fixture_L": 1,
+      "fixture_success_upper": 0.5714285714285714,
+      "fixture_tv_upper": 0.1428571428571428
+    },
+    {
+      "fixture_L": 2,
+      "fixture_success_upper": 0.6326530612244897,
+      "fixture_tv_upper": 0.26530612244897944
+    },
+    {
+      "fixture_L": 4,
+      "fixture_success_upper": 0.7301124531445231,
+      "fixture_tv_upper": 0.4602249062890461
+    },
+    {
+      "fixture_L": 8,
+      "fixture_success_upper": 0.8543214241046655,
+      "fixture_tv_upper": 0.7086428482093309
+    }
+  ],
+  "fixture": {
+    "D": 2,
+    "bundle_tv": [
+      {
+        "T": 1,
+        "TV": "3/28",
+        "search_probability": "1/7"
+      },
+      {
+        "T": 2,
+        "TV": "3/28",
+        "search_probability": "1/7"
+      }
+    ],
+    "c": 2,
+    "false_search_probability": "0",
+    "hidden_subspace_dim": 2,
+    "n": 3,
+    "q": 2,
+    "true_search_probability": "1/7"
+  },
+  "hair_sahai_benchmark": [
+    {
+      "N": 8,
+      "R": 3,
+      "alpha_rank1": 0.0136986301369863,
+      "bundles_needed_for_2_over_3_if_only_alpha_events_carry_signal": 79.64812813967582,
+      "public_search_expected_trials_if_p_equals_alpha": 73.0
+    },
+    {
+      "N": 16,
+      "R": 4,
+      "alpha_rank1": 0.0001144417910903251,
+      "bundles_needed_for_2_over_3_if_only_alpha_events_carry_signal": 9599.19810257899,
+      "public_search_expected_trials_if_p_equals_alpha": 8738.066666666666
+    },
+    {
+      "N": 32,
+      "R": 5,
+      "alpha_rank1": 3.6088749770551076e-09,
+      "bundles_needed_for_2_over_3_if_only_alpha_events_carry_signal": 304419602.6935285,
+      "public_search_expected_trials_if_p_equals_alpha": 277094664.2258065
+    },
+    {
+      "N": 64,
+      "R": 6,
+      "alpha_rank1": 1.7076184216646695e-18,
+      "bundles_needed_for_2_over_3_if_only_alpha_events_carry_signal": 6.433593563585061e+17,
+      "public_search_expected_trials_if_p_equals_alpha": 5.856109229749064e+17
+    }
+  ],
+  "rp_rows": [
+    {
+      "L": 10,
+      "eta": 0.25,
+      "p_lower": 0.05,
+      "success_from_lower_bound": 0.8714878434348969,
+      "trials": 40
+    },
+    {
+      "L": 100,
+      "eta": 0.25,
+      "p_lower": 0.005,
+      "success_from_lower_bound": 0.8653419570739866,
+      "trials": 400
+    },
+    {
+      "L": 1000,
+      "eta": 0.25,
+      "p_lower": 0.0005,
+      "success_from_lower_bound": 0.8647323900439456,
+      "trials": 4000
+    }
+  ],
+  "run": 104,
+  "scope": [
+    "Finite controls for the searchable-support theorem and exact tiny bundle distributions.",
+    "The theorem itself is linear-algebraic and proved in the accompanying note.",
+    "NP subset RP is a conditional complexity consequence of a generic polynomial-time instantiation, not a claimed established collapse.",
+    "This run does not retry previously safety-blocked Run 100-103 publication payloads."
+  ],
+  "status": "PASS",
+  "total_assertions": 41
+}

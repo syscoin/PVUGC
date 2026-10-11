@@ -1,0 +1,1 @@
+{"QPT_security_proven": false, "assertions": 37800, "cases": 1080, "chosen_message_oracles_equal": true, "coherent_oracle_basis_equal": true, "ideal_release_is_implemented": false, "run": 378, "status": "PASS", "toy_affine_is_oneway": false, "two_original_witnesses": true}

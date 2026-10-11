@@ -1,0 +1,120 @@
+{
+  "assertions": 22064,
+  "multi_witness": [
+    {
+      "accepted_states": 8,
+      "output_bits": 4,
+      "public_uniform_success_den": 16,
+      "public_uniform_success_num": 8,
+      "seed_bits": 2,
+      "witness_branches": 3
+    },
+    {
+      "accepted_states": 24,
+      "output_bits": 6,
+      "public_uniform_success_den": 64,
+      "public_uniform_success_num": 24,
+      "seed_bits": 3,
+      "witness_branches": 3
+    },
+    {
+      "accepted_states": 48,
+      "output_bits": 8,
+      "public_uniform_success_den": 256,
+      "public_uniform_success_num": 48,
+      "seed_bits": 4,
+      "witness_branches": 3
+    },
+    {
+      "accepted_states": 96,
+      "output_bits": 10,
+      "public_uniform_success_den": 1024,
+      "public_uniform_success_num": 96,
+      "seed_bits": 5,
+      "witness_branches": 3
+    },
+    {
+      "accepted_states": 192,
+      "output_bits": 12,
+      "public_uniform_success_den": 4096,
+      "public_uniform_success_num": 192,
+      "seed_bits": 6,
+      "witness_branches": 3
+    }
+  ],
+  "run": 358,
+  "scope": "finite combinatorics only; no PRG/WE/LWE/SIS hardness or source extraction",
+  "single_branch": [
+    {
+      "offsets": 16,
+      "output_bits": 4,
+      "prg_case_success": {
+        "den": 1,
+        "num": 1
+      },
+      "seed_bits": 2,
+      "tester_advantage": {
+        "den": 16,
+        "num": 12
+      },
+      "uniform_case_success": {
+        "den": 16,
+        "num": 4
+      }
+    },
+    {
+      "offsets": 64,
+      "output_bits": 6,
+      "prg_case_success": {
+        "den": 1,
+        "num": 1
+      },
+      "seed_bits": 3,
+      "tester_advantage": {
+        "den": 64,
+        "num": 56
+      },
+      "uniform_case_success": {
+        "den": 64,
+        "num": 8
+      }
+    },
+    {
+      "offsets": 256,
+      "output_bits": 8,
+      "prg_case_success": {
+        "den": 1,
+        "num": 1
+      },
+      "seed_bits": 4,
+      "tester_advantage": {
+        "den": 256,
+        "num": 240
+      },
+      "uniform_case_success": {
+        "den": 256,
+        "num": 16
+      }
+    },
+    {
+      "offsets": 147,
+      "output_bits": 10,
+      "prg_case_success": {
+        "den": 1,
+        "num": 1
+      },
+      "seed_bits": 5,
+      "tester_advantage": {
+        "den": 1024,
+        "num": 992
+      },
+      "uniform_case_success": {
+        "den": 1024,
+        "num": 32
+      }
+    }
+  ],
+  "status": "PASS",
+  "toy_noncryptographic": true,
+  "tv_test_cases": 19600
+}

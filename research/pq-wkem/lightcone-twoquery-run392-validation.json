@@ -1,0 +1,65 @@
+{
+  "run": 392,
+  "status": "PASS",
+  "assertions": 101277,
+  "exhaustive_outside_cone_pairs": 98304,
+  "even_A8": 20160,
+  "even_flip_A8": 11520,
+  "samples": [
+    {
+      "n": 27,
+      "L": 2,
+      "pairs": 180,
+      "flips": 13,
+      "outside": 135,
+      "max_cone": 9,
+      "certified_advantage_lower_bound": 0.16666666666666669
+    },
+    {
+      "n": 81,
+      "L": 3,
+      "pairs": 180,
+      "flips": 11,
+      "outside": 124,
+      "max_cone": 27,
+      "certified_advantage_lower_bound": 0.16666666666666669
+    },
+    {
+      "n": 243,
+      "L": 4,
+      "pairs": 180,
+      "flips": 1,
+      "outside": 141,
+      "max_cone": 81,
+      "certified_advantage_lower_bound": 0.16666666666666669
+    },
+    {
+      "n": 512,
+      "L": 4,
+      "pairs": 180,
+      "flips": 3,
+      "outside": 153,
+      "max_cone": 81,
+      "certified_advantage_lower_bound": 0.341796875
+    },
+    {
+      "n": 512,
+      "L": 5,
+      "pairs": 180,
+      "flips": 6,
+      "outside": 108,
+      "max_cone": 222,
+      "certified_advantage_lower_bound": 0.025390625
+    },
+    {
+      "n": 1024,
+      "L": 5,
+      "pairs": 180,
+      "flips": 3,
+      "outside": 138,
+      "max_cone": 238,
+      "certified_advantage_lower_bound": 0.2626953125
+    }
+  ],
+  "scope": "isolated forward 3-local random reversible circuit; no WKEM/RIO/security result"
+}

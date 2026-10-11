@@ -1,0 +1,98 @@
+{
+  "checker_sha256": "dc6ddb1da4bc9211730556dfba569f3dafb255a061b86a4a66c7770dfdc6f713",
+  "complete_view": {
+    "capsule_trials": 500,
+    "deterministic_false_noise_bound": 242,
+    "deterministic_honest_noise_bound": 152,
+    "false_key_recoveries": 500,
+    "max_observed_abs_aggregate_noise": 79,
+    "public_linear_reencoding_checks": 400,
+    "quarter_modulus_floor": 1023
+  },
+  "field_q": 4093,
+  "phase_mu": 2046,
+  "relation": {
+    "columns": 59,
+    "rows": 32,
+    "source_checks": 72
+  },
+  "run": 54,
+  "scope": "Finite algebra/combinatorics and an explicit bounded-noise candidate break only; not a PQ security proof or generic impossibility theorem.",
+  "seed": 1421934574,
+  "semantic_edge_pad": {
+    "exact_nonzero_boolean_difference_uniformity_checks_F5": 56,
+    "random_telescoping_and_incidence_checks": 2000
+  },
+  "strong_noise_scale": 8,
+  "switching_sequences": {
+    "mismatch_histogram": {
+      "1": 84,
+      "2": 2268,
+      "3": 29394,
+      "4": 217724,
+      "5": 947274,
+      "6": 2264118,
+      "7": 2303939
+    },
+    "total": 5764801,
+    "zero_mismatch": 0
+  },
+  "target_only_exact_diagnostic_honest_ge_1_minus_2^-20": [
+    {
+      "false_failure": 0.004159759346129999,
+      "false_success": 0.99584024065387,
+      "honest_failure": 0.0,
+      "honest_success": 1.0,
+      "m": 8,
+      "threshold": 8
+    },
+    {
+      "false_failure": 7.884966380455882e-05,
+      "false_success": 0.9999211503361954,
+      "honest_failure": 7.89839486259325e-07,
+      "honest_success": 0.9999992101605137,
+      "m": 16,
+      "threshold": 14
+    },
+    {
+      "false_failure": 3.755170946084796e-06,
+      "false_success": 0.9999962448290539,
+      "honest_failure": 2.8628196779845183e-07,
+      "honest_success": 0.9999997137180322,
+      "m": 32,
+      "threshold": 22
+    },
+    {
+      "false_failure": 2.6358032600981574e-06,
+      "false_success": 0.9999973641967399,
+      "honest_failure": 8.088712973863821e-07,
+      "honest_success": 0.9999991911287026,
+      "m": 64,
+      "threshold": 31
+    },
+    {
+      "false_failure": 1.1517529638904733e-06,
+      "false_success": 0.9999988482470361,
+      "honest_failure": 6.298496932899411e-07,
+      "honest_success": 0.9999993701503067,
+      "m": 128,
+      "threshold": 45
+    },
+    {
+      "false_failure": 9.276255813484013e-07,
+      "false_success": 0.9999990723744187,
+      "honest_failure": 6.873552833575047e-07,
+      "honest_success": 0.9999993126447166,
+      "m": 256,
+      "threshold": 64
+    },
+    {
+      "false_failure": 1.0452821320727779e-06,
+      "false_success": 0.9999989547178679,
+      "honest_failure": 9.025882782287553e-07,
+      "honest_success": 0.9999990974117218,
+      "m": 512,
+      "threshold": 90
+    }
+  ]
+}

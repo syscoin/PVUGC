@@ -1,0 +1,10 @@
+{
+  "run": 415,
+  "assertions": 301499,
+  "promise_pair_cases": 294128,
+  "hadamard_exact_cases": 5332,
+  "simulated_simons": 896,
+  "all_witness_same_K_cases": 256,
+  "false_original_instance_key_recoveries": 256,
+  "scope": "Finite algebra and ideal Simon samples; no concrete WE, obfuscation, PQ or Bitcoin implementation"
+}

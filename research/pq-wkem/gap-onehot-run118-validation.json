@@ -1,0 +1,291 @@
+{
+  "claims": [
+    "For the Run-117 one-hot affine compiler, every integer solution has ||z||_1 = B + 2*N where N is total signed negative mass across variable and clause groups.",
+    "If U is the minimum number of violated clauses of the 3CNF and Delta is maximum variable occurrence, every integer affine preimage satisfies ||z||_1 >= B + 2*ceil(U/Delta), and ||z||_2^2 obeys the same lower bound.",
+    "Every Boolean assignment violating V clauses has an explicit signed affine preimage with ||z||_1 = ||z||_2^2 = B + 2V, using a 3-term representation of each falsifying local triple.",
+    "Therefore bounded-occurrence constant-gap 3SAT transfers to a constant multiplicative l1 and squared-l2 affine-preimage gap. This is a semantic/source-gap theorem, not a standard-LWE carrier or QPT security proof."
+  ],
+  "contradictory_fixture": {
+    "B": 3,
+    "Delta": 6,
+    "exact_solutions_with_group_negative_mass_at_most_1": 48,
+    "explicit_upper_l1": 5,
+    "minimum_boolean_violations": 1,
+    "minimum_l1": 5,
+    "minimum_l2_squared": 5,
+    "theorem_lower_l1": 5
+  },
+  "gap_parameter_rows": [
+    {
+      "B_worst": 256,
+      "Delta": 3,
+      "coarse_ratio": "193/192",
+      "epsilon": "1/32",
+      "l1_l2sq_lower": 258,
+      "m": 64,
+      "negative_mass_floor": 1,
+      "ratio": "129/128",
+      "unsat_floor": 2
+    },
+    {
+      "B_worst": 1024,
+      "Delta": 3,
+      "coarse_ratio": "193/192",
+      "epsilon": "1/32",
+      "l1_l2sq_lower": 1030,
+      "m": 256,
+      "negative_mass_floor": 3,
+      "ratio": "515/512",
+      "unsat_floor": 8
+    },
+    {
+      "B_worst": 256,
+      "Delta": 3,
+      "coarse_ratio": "97/96",
+      "epsilon": "1/16",
+      "l1_l2sq_lower": 260,
+      "m": 64,
+      "negative_mass_floor": 2,
+      "ratio": "65/64",
+      "unsat_floor": 4
+    },
+    {
+      "B_worst": 1024,
+      "Delta": 3,
+      "coarse_ratio": "97/96",
+      "epsilon": "1/16",
+      "l1_l2sq_lower": 1036,
+      "m": 256,
+      "negative_mass_floor": 6,
+      "ratio": "259/256",
+      "unsat_floor": 16
+    },
+    {
+      "B_worst": 256,
+      "Delta": 3,
+      "coarse_ratio": "49/48",
+      "epsilon": "1/8",
+      "l1_l2sq_lower": 262,
+      "m": 64,
+      "negative_mass_floor": 3,
+      "ratio": "131/128",
+      "unsat_floor": 8
+    },
+    {
+      "B_worst": 1024,
+      "Delta": 3,
+      "coarse_ratio": "49/48",
+      "epsilon": "1/8",
+      "l1_l2sq_lower": 1046,
+      "m": 256,
+      "negative_mass_floor": 11,
+      "ratio": "523/512",
+      "unsat_floor": 32
+    },
+    {
+      "B_worst": 256,
+      "Delta": 4,
+      "coarse_ratio": "257/256",
+      "epsilon": "1/32",
+      "l1_l2sq_lower": 258,
+      "m": 64,
+      "negative_mass_floor": 1,
+      "ratio": "129/128",
+      "unsat_floor": 2
+    },
+    {
+      "B_worst": 1024,
+      "Delta": 4,
+      "coarse_ratio": "257/256",
+      "epsilon": "1/32",
+      "l1_l2sq_lower": 1028,
+      "m": 256,
+      "negative_mass_floor": 2,
+      "ratio": "257/256",
+      "unsat_floor": 8
+    },
+    {
+      "B_worst": 256,
+      "Delta": 4,
+      "coarse_ratio": "129/128",
+      "epsilon": "1/16",
+      "l1_l2sq_lower": 258,
+      "m": 64,
+      "negative_mass_floor": 1,
+      "ratio": "129/128",
+      "unsat_floor": 4
+    },
+    {
+      "B_worst": 1024,
+      "Delta": 4,
+      "coarse_ratio": "129/128",
+      "epsilon": "1/16",
+      "l1_l2sq_lower": 1032,
+      "m": 256,
+      "negative_mass_floor": 4,
+      "ratio": "129/128",
+      "unsat_floor": 16
+    },
+    {
+      "B_worst": 256,
+      "Delta": 4,
+      "coarse_ratio": "65/64",
+      "epsilon": "1/8",
+      "l1_l2sq_lower": 260,
+      "m": 64,
+      "negative_mass_floor": 2,
+      "ratio": "65/64",
+      "unsat_floor": 8
+    },
+    {
+      "B_worst": 1024,
+      "Delta": 4,
+      "coarse_ratio": "65/64",
+      "epsilon": "1/8",
+      "l1_l2sq_lower": 1040,
+      "m": 256,
+      "negative_mass_floor": 8,
+      "ratio": "65/64",
+      "unsat_floor": 32
+    },
+    {
+      "B_worst": 256,
+      "Delta": 5,
+      "coarse_ratio": "321/320",
+      "epsilon": "1/32",
+      "l1_l2sq_lower": 258,
+      "m": 64,
+      "negative_mass_floor": 1,
+      "ratio": "129/128",
+      "unsat_floor": 2
+    },
+    {
+      "B_worst": 1024,
+      "Delta": 5,
+      "coarse_ratio": "321/320",
+      "epsilon": "1/32",
+      "l1_l2sq_lower": 1028,
+      "m": 256,
+      "negative_mass_floor": 2,
+      "ratio": "257/256",
+      "unsat_floor": 8
+    },
+    {
+      "B_worst": 256,
+      "Delta": 5,
+      "coarse_ratio": "161/160",
+      "epsilon": "1/16",
+      "l1_l2sq_lower": 258,
+      "m": 64,
+      "negative_mass_floor": 1,
+      "ratio": "129/128",
+      "unsat_floor": 4
+    },
+    {
+      "B_worst": 1024,
+      "Delta": 5,
+      "coarse_ratio": "161/160",
+      "epsilon": "1/16",
+      "l1_l2sq_lower": 1032,
+      "m": 256,
+      "negative_mass_floor": 4,
+      "ratio": "129/128",
+      "unsat_floor": 16
+    },
+    {
+      "B_worst": 256,
+      "Delta": 5,
+      "coarse_ratio": "81/80",
+      "epsilon": "1/8",
+      "l1_l2sq_lower": 260,
+      "m": 64,
+      "negative_mass_floor": 2,
+      "ratio": "65/64",
+      "unsat_floor": 8
+    },
+    {
+      "B_worst": 1024,
+      "Delta": 5,
+      "coarse_ratio": "81/80",
+      "epsilon": "1/8",
+      "l1_l2sq_lower": 1038,
+      "m": 256,
+      "negative_mass_floor": 7,
+      "ratio": "519/512",
+      "unsat_floor": 32
+    },
+    {
+      "B_worst": 256,
+      "Delta": 8,
+      "coarse_ratio": "513/512",
+      "epsilon": "1/32",
+      "l1_l2sq_lower": 258,
+      "m": 64,
+      "negative_mass_floor": 1,
+      "ratio": "129/128",
+      "unsat_floor": 2
+    },
+    {
+      "B_worst": 1024,
+      "Delta": 8,
+      "coarse_ratio": "513/512",
+      "epsilon": "1/32",
+      "l1_l2sq_lower": 1026,
+      "m": 256,
+      "negative_mass_floor": 1,
+      "ratio": "513/512",
+      "unsat_floor": 8
+    },
+    {
+      "B_worst": 256,
+      "Delta": 8,
+      "coarse_ratio": "257/256",
+      "epsilon": "1/16",
+      "l1_l2sq_lower": 258,
+      "m": 64,
+      "negative_mass_floor": 1,
+      "ratio": "129/128",
+      "unsat_floor": 4
+    },
+    {
+      "B_worst": 1024,
+      "Delta": 8,
+      "coarse_ratio": "257/256",
+      "epsilon": "1/16",
+      "l1_l2sq_lower": 1028,
+      "m": 256,
+      "negative_mass_floor": 2,
+      "ratio": "257/256",
+      "unsat_floor": 16
+    },
+    {
+      "B_worst": 256,
+      "Delta": 8,
+      "coarse_ratio": "129/128",
+      "epsilon": "1/8",
+      "l1_l2sq_lower": 258,
+      "m": 64,
+      "negative_mass_floor": 1,
+      "ratio": "129/128",
+      "unsat_floor": 8
+    },
+    {
+      "B_worst": 1024,
+      "Delta": 8,
+      "coarse_ratio": "129/128",
+      "epsilon": "1/8",
+      "l1_l2sq_lower": 1032,
+      "m": 256,
+      "negative_mass_floor": 4,
+      "ratio": "129/128",
+      "unsat_floor": 32
+    }
+  ],
+  "group_negative_mass_cases": 25807,
+  "local_forbidden_representations": 8,
+  "modular_no_wrap_controls": 12,
+  "run": 118,
+  "status": "PASS",
+  "total_assertions": 52242,
+  "upper_assignment_lifts": 78
+}

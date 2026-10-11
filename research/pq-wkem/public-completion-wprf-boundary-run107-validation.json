@@ -1,0 +1,77 @@
+{
+  "run": 107,
+  "scope": [
+    "Finite functionality/size controls only; no computational security follows.",
+    "Transparent-circuit check does not rule out obfuscation or another compiler.",
+    "The exponential table is intentionally outside the practical/PPT target.",
+    "The public-completion equivalence is proved in the accompanying note."
+  ],
+  "sms_completion": {
+    "cases": 1104,
+    "claim": "A reusable Alice first message does not eliminate the later witness-dependent Alice share; public completion is exactly the relation-indexed release map."
+  },
+  "status": "PASS",
+  "total_assertions": 15189,
+  "transparent_compression": {
+    "cases": 4,
+    "claim": "The direct transparent circuit contains K and r as literal constants; hiding them requires additional cryptographic machinery."
+  },
+  "truth_table_release": {
+    "claim": "Direct public completion is all-witness correct and perfectly false-statement hiding, but has 2^n entries.",
+    "false_statement_independence_checks": 8,
+    "relations_checked": 305,
+    "valid_witness_decapsulation_checks": 4456
+  },
+  "vc_adapter": [
+    {
+      "log2_entries": 4.0,
+      "truth_vector_entries": 16,
+      "witness_bits": 4
+    },
+    {
+      "log2_entries": 8.0,
+      "truth_vector_entries": 256,
+      "witness_bits": 8
+    },
+    {
+      "log2_entries": 12.0,
+      "truth_vector_entries": 4096,
+      "witness_bits": 12
+    },
+    {
+      "log2_entries": 16.0,
+      "truth_vector_entries": 65536,
+      "witness_bits": 16
+    },
+    {
+      "log2_entries": 20.0,
+      "truth_vector_entries": 1048576,
+      "witness_bits": 20
+    },
+    {
+      "log2_entries": 24.0,
+      "truth_vector_entries": 16777216,
+      "witness_bits": 24
+    },
+    {
+      "log2_entries": 28.0,
+      "truth_vector_entries": 268435456,
+      "witness_bits": 28
+    },
+    {
+      "log2_entries": 32.0,
+      "truth_vector_entries": 4294967296,
+      "witness_bits": 32
+    },
+    {
+      "log2_entries": 36.0,
+      "truth_vector_entries": 68719476736,
+      "witness_bits": 36
+    },
+    {
+      "log2_entries": 40.0,
+      "truth_vector_entries": 1099511627776,
+      "witness_bits": 40
+    }
+  ]
+}
