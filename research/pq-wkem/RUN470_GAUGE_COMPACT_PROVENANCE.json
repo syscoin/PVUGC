@@ -1,0 +1,27 @@
+{
+  "run": 470,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "start_sha": "c7e94437ae08d01dc1ac82b195ea053ac81e9c1e",
+  "branch": "research/pq-wkem-validation-20260918",
+  "run470_checker": "run470_gauge_compact_check.js",
+  "validation": {
+    "run": 470,
+    "fixtures": 16,
+    "fields": [
+      7,
+      11
+    ],
+    "true_witnesses_per_fixture": 2,
+    "false_witnesses_per_fixture": 0,
+    "all_secret_targets_recovered": true,
+    "checks": 608
+  },
+  "proof_scope": "finite gauge-mask falsification, not secure WE",
+  "exact_checker_executed": true,
+  "verified_dependencies": {
+    "Run469": "265c6c9a7058e2724f93313faa6f017604970549",
+    "Run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "CLZ": "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  }
+}
