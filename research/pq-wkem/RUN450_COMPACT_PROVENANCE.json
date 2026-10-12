@@ -1,0 +1,31 @@
+{
+  "assertions": 72,
+  "branch": "research/pq-wkem-validation-20260918",
+  "executed": [
+    "python run450_compact_check.py > run450_compact_validation.json",
+    "python run450_compact_check.py > repeat.json",
+    "cmp run450_compact_validation.json repeat.json"
+  ],
+  "files": {
+    "RUN450_HASH_FOLD_COMPACT.md": {
+      "bytes": 4794,
+      "git_blob_sha1": "45cca54a8a9c085bf843250619c33b566a8df895",
+      "sha256": "0b01853b13db16c9a3d427f187e02848f4f988d390e638532209a983763cc6ad"
+    },
+    "run450_compact_check.py": {
+      "bytes": 1200,
+      "git_blob_sha1": "899b4be5c7a6e4e06ac042c062d4887d8478e1a0",
+      "sha256": "b3c8165fe1843dcdea204c9989c1163e119f60f45a3eee2be4e775f5c34ce44e"
+    },
+    "run450_compact_validation.json": {
+      "bytes": 773,
+      "git_blob_sha1": "02bde9f5d0ef9540fc72d2713c44888fa8fdeeff",
+      "sha256": "992e186c6b15a383fcbcfb87cbaefae1c305423cb9838ceef06dd73761f7f50d"
+    }
+  },
+  "note": "Exact ideal-QRO finite model; no native PQ signing or quantum security proof.",
+  "pr": 1,
+  "repository": "syscoin/PVUGC",
+  "run": 450,
+  "starting_sha": "944be053d576d0b8aee845db1a5290b01635d10b"
+}
