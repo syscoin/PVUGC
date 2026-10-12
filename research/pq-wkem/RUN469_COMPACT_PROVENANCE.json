@@ -1,0 +1,22 @@
+{
+  "run": 469,
+  "date": "2026-10-13",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "3f783bc09426db59b8ec810c2ca4494e392824d6",
+  "live_dependencies": [
+    "RUN468_PROJECTION_COMPACT.md",
+    "CLZ_APPLICABILITY_20261008.md",
+    "GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md"
+  ],
+  "executed_checker": "node research/pq-wkem/run469_compact_check.js",
+  "assertions": 9513,
+  "correct_recoveries": [
+    13,
+    18,
+    21
+  ],
+  "output_reproducible": true,
+  "theorem": "conditional sparse-projection QPT attack; no positive WKEM security"
+}
