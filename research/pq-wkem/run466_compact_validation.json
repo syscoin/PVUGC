@@ -1,0 +1,9 @@
+{
+  "run": 466,
+  "status": "PASS",
+  "assertions": 275,
+  "nonempty_acceptance_fixtures": 270,
+  "total_candidate_evaluations": 528,
+  "binary_control_states": 4096,
+  "conclusion": "finite enumerability only; not cryptographic security"
+}
