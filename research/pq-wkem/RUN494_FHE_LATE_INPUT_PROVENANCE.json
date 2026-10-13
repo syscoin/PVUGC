@@ -1,0 +1,19 @@
+{
+  "run": 494,
+  "repository": "syscoin/PVUGC",
+  "pr_number": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "87ad2011f64f9e957c3b78d3de634b49b0f80f1b",
+  "starting_tree": "548a8489dad04b8bd4472ff568b5bf4810bd77fe",
+  "date": "2026-10-13 America/Vancouver",
+  "compact_checker_command": "node run494_compact_frontier_check.js",
+  "compact_checker_assertions": 643,
+  "repeated_exact_output": true,
+  "independent_extended_checker": "run494_fhe_frontier_check.py (local-only, 963 assertions)",
+  "exact_compact_git_blobs": {
+    "RUN494_FHE_LATE_INPUT_COMPACT.md": "93dce0c266a599474723198ec6ee1792879bb8cf",
+    "run494_compact_frontier_check.js": "94cfda408c7750905e50b93c2c7cfcae0b26951a",
+    "run494_compact_validation.json": "f95256f7f8444b23a7faf0938c3c2be1b6aa35ed"
+  },
+  "scope": "Symbolic FHE correctness and unconditional attack on bit-only ideal release. Not actual FHE, post-quantum signature or WE security."
+}

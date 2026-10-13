@@ -1,0 +1,9 @@
+{
+  "run": 494,
+  "assertions": 643,
+  "contexts": 64,
+  "false_original_contexts": 32,
+  "valid_witness_releases": 64,
+  "public_eval_override_key_recoveries": 64,
+  "scope": "Exact symbolic semantics only; no actual ciphertext security or PQ claim."
+}
