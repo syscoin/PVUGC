@@ -1,0 +1,23 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "byte_identical_repeats": true,
+  "compact_assertions": 437,
+  "compact_checker_command": "node run495_compact_check.js",
+  "compact_sha256": {
+    "RUN495_CHOSEN_COIN_PROVENANCE_COMPACT.md": "a43666581ce5cbd2346d741482e1a8a4fe84c4ba19762ba53ce74352b769d332",
+    "run495_compact_check.js": "fff80a7391536621d20adc8c962b961b035ea0fca448bfa67bfd41a949a3ffa6",
+    "run495_compact_validation.json": "9d81cdecf57de57165bc21840f184582a1893542f73b9bb27d49f71f6ca360ab"
+  },
+  "date": "2026-10-14",
+  "independent_sources": [
+    "https://arxiv.org/abs/2301.07041"
+  ],
+  "local_extended_assertions": 501,
+  "local_extended_checker_command": "python3 run495_chosen_coins_check.py",
+  "model_limitations": "Symbolic FHE; cryptography Ed25519 classical API only; no real FHE, SLH, quantum implementation or WKEM proof.",
+  "pr_number": 1,
+  "repository": "syscoin/PVUGC",
+  "run": 495,
+  "run259_exact_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "starting_sha": "e454e2a443e68a33855ebd012ecbab6dfa792171"
+}
