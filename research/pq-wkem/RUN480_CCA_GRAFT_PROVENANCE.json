@@ -1,0 +1,30 @@
+{
+  "run": 480,
+  "date_utc": "2026-10-13",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "1346e4ccf577d5d4a6ad3f772af3795bbbc8a1e2",
+  "published_paths": [
+    "research/pq-wkem/RUN480_CCA_GRAFT_BOUNDARY.md",
+    "research/pq-wkem/run480_cca_graft_check.js",
+    "research/pq-wkem/run480_cca_graft_validation.json",
+    "research/pq-wkem/RUN480_CCA_GRAFT_PROVENANCE.json"
+  ],
+  "checker_executed_in_v8": true,
+  "checker_checks": 6336,
+  "checker_trials": 576,
+  "exact_checker_output": "{\n  \"run\": 480,\n  \"status\": \"PASS\",\n  \"kind\": \"tiny Paillier public-graft / ordinary IND-CCA2 thought-experiment; not a secure PKE or PQ WKEM\",\n  \"trials\": 576,\n  \"assertions\": 6336,\n  \"direct_challenge_queries_rejected\": 576,\n  \"related_challenge_queries_allowed\": 576,\n  \"correct_challenge_guesses\": 576,\n  \"parameters\": \"three tiny Paillier n; four contexts; 48 trials/context\",\n  \"quantum_hardware\": false,\n  \"concrete_security\": false\n}",
+  "local_extended_only": [
+    "RUN480_CCA_GRAFT_BOUNDARY.md",
+    "run480_cca_graft_check.py",
+    "run480_cca_graft_validation.json",
+    "RUN480_CCA_GRAFT_PROVENANCE.json"
+  ],
+  "scope": "CCA2 interface falsifier only; no PQ WKEM",
+  "source_git_blob_shas": [
+    "c8572206ebc17ebb68dd6112353283f545a132dc",
+    "9441db3ad7d7732e5e8fe1c05041b0763119ed3f",
+    "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  ]
+}
