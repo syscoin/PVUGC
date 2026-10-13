@@ -1,0 +1,12 @@
+{
+  "run": 483,
+  "starting_sha": "3d26009052aa14233fbf414d18d992091c278026",
+  "date_utc": "2026-10-13",
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_reproduction": "node research/pq-wkem/run483_compact_check.js",
+  "executed_assertions": 419,
+  "verified_repeated_output": true,
+  "extended_python_assertions": 1348,
+  "extended_artifacts": "local-only, separately preserved",
+  "status": "research, NOT a PQ WKEM"
+}
