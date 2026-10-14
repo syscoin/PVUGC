@@ -1,0 +1,28 @@
+{
+  "run": 502,
+  "assertions": 86408,
+  "twoEndpointCases": 1152,
+  "threeFrameCases": 27648,
+  "exactMarginalAndJoint": {
+    "0": {
+      "framePairs": 576,
+      "marginalDistinct": 24,
+      "marginalCountEach": 24,
+      "jointSupport": 24,
+      "jointFrequencyEach": 24,
+      "fixedPoints": 4,
+      "bitRecovery": "576/576"
+    },
+    "1": {
+      "framePairs": 576,
+      "marginalDistinct": 24,
+      "marginalCountEach": 24,
+      "jointSupport": 144,
+      "jointFrequencyEach": 4,
+      "fixedPoints": 2,
+      "bitRecovery": "576/576"
+    }
+  },
+  "attack": "public reconvergent path-pair fixed-point invariant",
+  "scope": "finite exposed S4 gate truth tables, classical PPT attack (therefore QPT); no deployed RIO, native PQ, FHE, ZK or completed WKEM"
+}
