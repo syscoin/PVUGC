@@ -1,0 +1,107 @@
+{
+  "run": 526,
+  "description": "Sparse-Toffoli hidden frame; only public conjugated loader is queried",
+  "trials_per_scenario": 40,
+  "scenarios": [
+    {
+      "n": 12,
+      "r": 1,
+      "q": 3,
+      "queries": 12,
+      "sparse_bound": 2,
+      "sparse_success": 40,
+      "maximum_sparse_rank": 0,
+      "ideal_full_rank": 40,
+      "minimum_ideal_rank": 3,
+      "trials": 40
+    },
+    {
+      "n": 12,
+      "r": 2,
+      "q": 5,
+      "queries": 20,
+      "sparse_bound": 4,
+      "sparse_success": 40,
+      "maximum_sparse_rank": 0,
+      "ideal_full_rank": 40,
+      "minimum_ideal_rank": 5,
+      "trials": 40
+    },
+    {
+      "n": 12,
+      "r": 3,
+      "q": 7,
+      "queries": 28,
+      "sparse_bound": 6,
+      "sparse_success": 40,
+      "maximum_sparse_rank": 1,
+      "ideal_full_rank": 37,
+      "minimum_ideal_rank": 6,
+      "trials": 40
+    },
+    {
+      "n": 16,
+      "r": 1,
+      "q": 3,
+      "queries": 12,
+      "sparse_bound": 2,
+      "sparse_success": 40,
+      "maximum_sparse_rank": 0,
+      "ideal_full_rank": 40,
+      "minimum_ideal_rank": 3,
+      "trials": 40
+    },
+    {
+      "n": 16,
+      "r": 2,
+      "q": 5,
+      "queries": 20,
+      "sparse_bound": 4,
+      "sparse_success": 40,
+      "maximum_sparse_rank": 0,
+      "ideal_full_rank": 40,
+      "minimum_ideal_rank": 5,
+      "trials": 40
+    },
+    {
+      "n": 16,
+      "r": 3,
+      "q": 7,
+      "queries": 28,
+      "sparse_bound": 6,
+      "sparse_success": 40,
+      "maximum_sparse_rank": 0,
+      "ideal_full_rank": 39,
+      "minimum_ideal_rank": 6,
+      "trials": 40
+    },
+    {
+      "n": 16,
+      "r": 4,
+      "q": 9,
+      "queries": 36,
+      "sparse_bound": 8,
+      "sparse_success": 40,
+      "maximum_sparse_rank": 2,
+      "ideal_full_rank": 39,
+      "minimum_ideal_rank": 8,
+      "trials": 40
+    },
+    {
+      "n": 16,
+      "r": 5,
+      "q": 11,
+      "queries": 44,
+      "sparse_bound": 10,
+      "sparse_success": 40,
+      "maximum_sparse_rank": 1,
+      "ideal_full_rank": 36,
+      "minimum_ideal_rank": 10,
+      "trials": 40
+    }
+  ],
+  "sparse_rank_checks": 320,
+  "ideal_full_rank": 311,
+  "ideal_trials": 320,
+  "pass": true
+}
