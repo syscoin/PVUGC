@@ -1,0 +1,13 @@
+{
+  "run": 565,
+  "status": "PASS",
+  "assertions_passed": 127008,
+  "true_instance_early_release_fixtures": 36288,
+  "false_instance_nonrelease_fixtures": 36288,
+  "genuine_source_correctness_fixtures": 4536,
+  "checked": "affine ciphertext-state closure yields zero residual from two public invalid-witness evaluations",
+  "implementation": "symbolic field triples, not encrypted ciphertexts",
+  "original_witness_extracted": false,
+  "qpt_security_proved": false,
+  "source_one_way_permutation_instantiated": false
+}
