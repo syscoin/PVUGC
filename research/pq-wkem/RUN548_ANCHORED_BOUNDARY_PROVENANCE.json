@@ -1,0 +1,12 @@
+{
+  "run": 548,
+  "pr": "syscoin/PVUGC#1",
+  "starting_sha": "16b3b9235cb1821c7f80ed77d304edb4ffb98c70",
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_executed_checker": "run548_anchor_joint_check.js",
+  "checker_outcome": "PASS",
+  "runs": "two byte-identical in connected V8",
+  "local_independent_checker": "Python standard-library, executed twice; local archive",
+  "scope": "anchored explicit invertible tables and partial endpoint labels; negative result; not WKEM",
+  "status": "scientific checkpoint only"
+}
