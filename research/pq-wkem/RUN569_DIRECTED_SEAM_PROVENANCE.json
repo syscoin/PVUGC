@@ -1,0 +1,20 @@
+{
+  "run": 569,
+  "date": "2026-10-16",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head_sha": "8c8600aeb47aa44f910877915c615dd8e85150ff",
+  "base_tree_sha": "08a75ad4d6d3c7b394b26636654aab0b99384f2c",
+  "note": "Condensed published proof; extended local-only note is in /mnt/data/pq_wkem_run569.",
+  "checker_sha256_local_executed": "570e04299e6d30723fcdee6d4569542831165a2f52dce7db0e9f91c734c9aa1c",
+  "validation_sha256_local": "d1dba99767a5d9a761e629d70ec27832899faf2cb72b591bdda08c5eb9a136cd",
+  "checker_command": "node run569_directed_seam_hidden_shift_check.js",
+  "checker_exit_code": 0,
+  "reference_blobs": {
+    "run568": "b0e7ddc93d047efd70059c5e9a581baf43d3d1db",
+    "CLZ": "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  },
+  "security_claim": "Only ideal-oracle QPT falsification of directed public seam; no practical construction or quantum implementation",
+  "publication_scope": "only four additions under research/pq-wkem/; no production modifications"
+}
