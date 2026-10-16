@@ -1,0 +1,12 @@
+{
+  "run": 561,
+  "status": "PASS",
+  "assertions_passed": 269317,
+  "otp_independence_grids": 21,
+  "all_valid_witness_fixture_checks": 2048,
+  "shared_pad_cross_branch_exposures": 27,
+  "public_checking_key_matches_out_of_1024": 64,
+  "QPT_security_proved": false,
+  "release_primitive_instantiated": false,
+  "exact_scope": "finite OTP distribution and correctness only; conditional false-instance theorem is mathematical"
+}
