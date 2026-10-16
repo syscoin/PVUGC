@@ -1,0 +1,45 @@
+{
+  "run": 555,
+  "assertions_passed": 2360,
+  "checker": "run555_perfect_binding_fs_grinding_check.js",
+  "statement": "Finite arithmetic checker. Ideal random-oracle and quantum-query claims are mathematical, not measured.",
+  "samples": [
+    {
+      "t": 4,
+      "N": 256,
+      "M": 10,
+      "first": 1,
+      "q": 3,
+      "grover_probability": 0.968603681,
+      "ideal_existence_probability": 0.999999933
+    },
+    {
+      "t": 6,
+      "N": 1024,
+      "M": 19,
+      "first": 0,
+      "q": 5,
+      "grover_probability": 0.995416678,
+      "ideal_existence_probability": 0.999999901
+    },
+    {
+      "t": 8,
+      "N": 4096,
+      "M": 12,
+      "first": 74,
+      "q": 14,
+      "grover_probability": 0.999999872,
+      "ideal_existence_probability": 0.999999891
+    },
+    {
+      "t": 10,
+      "N": 16384,
+      "M": 19,
+      "first": 437,
+      "q": 23,
+      "grover_probability": 0.999097486,
+      "ideal_existence_probability": 0.999999888
+    }
+  ],
+  "pointwise_FE_violation_on_winning_proof": true
+}
