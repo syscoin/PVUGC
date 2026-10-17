@@ -1,0 +1,32 @@
+{
+  "run": 586,
+  "model": "Restricted LWE-key decryption; far-false selected-key attack",
+  "honestChecks": 42912,
+  "distinctTrueFixtureKeys": 5121,
+  "multiWitnessFixtureCount": 162,
+  "chosenFalseMinDistance": 29,
+  "chosenFalseMatrixRank": 3,
+  "chosenFalseAllMatrixEntriesNonzero": true,
+  "chosenFalseCiphertextSupport": [
+    0,
+    1,
+    2,
+    3,
+    32,
+    33,
+    34,
+    35,
+    128,
+    129,
+    130,
+    131,
+    160,
+    161,
+    162,
+    163
+  ],
+  "falseCiphertextChecks": 32,
+  "full128BitCapabilityRecovery": true,
+  "totalAssertions": 48157,
+  "claim": "NO practical WKEM; false-instance hiding defeated by classical PPT"
+}
