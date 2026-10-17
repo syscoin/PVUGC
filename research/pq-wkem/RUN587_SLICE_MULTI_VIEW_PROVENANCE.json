@@ -1,0 +1,14 @@
+{
+  "run": 587,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "a3a9c27b10a176b0b3ca5743f1a3f97d7b27490c",
+  "starting_tree": "4dd481eaec45cc795b5827cadb5238a5e9c23fcd",
+  "read_run586_blob": "94c39b554c801dc924f651563fa08c7784d1c7d5",
+  "exact_published_checker": "run587_slice_multiview_check.js",
+  "checker_invoked": "new Function(checker+'\\nreturn result;')()",
+  "validation_capture": "run587_slice_multiview_validation_js.json",
+  "independent_local_python_checks": 53703,
+  "disclaimer": "average-case single-bit hiding without public checking-key correlations only; false-instance reused-r attack classical; no practical WKEM"
+}
