@@ -1,0 +1,13 @@
+{
+  "run": 511,
+  "frames": 40320,
+  "attacks": 80640,
+  "loader": 80640,
+  "couplings": 40320,
+  "independent": 40320,
+  "model": "toy shared ideal frame; false target; known true reference",
+  "sharedFrameBitRecovery": "perfect",
+  "independentFrameBitBias": "zero",
+  "independentFrameNonfixProbability": "1/4",
+  "practicalSecurity": "UNPROVED"
+}

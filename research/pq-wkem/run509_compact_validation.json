@@ -1,0 +1,10 @@
+{
+  "run": 509,
+  "model": "black-box framed guarded-terminal oracle",
+  "fixture_count": 544,
+  "assertions": 4449,
+  "nonzero_event_gaps": 461,
+  "max_event_gap": 1,
+  "max_bound_violation": 0,
+  "status": "PASS; does not establish concrete QPT security"
+}

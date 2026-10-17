@@ -1,0 +1,25 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": "planted_binary_preimage_run352_check.py",
+  "checker_checks": 531394,
+  "checker_model": "deterministic small finite fields, standard library only",
+  "checker_sha256": "cd7fbdf1e86bd0831101835765ef851a34ed7837f07ab84fcf771c3bc18b55e7",
+  "exact_fetched_dependencies": {
+    "research/pq-wkem/GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "research/pq-wkem/NOISY_SHORT_PREIMAGE_HPS_BOUNDARY_RUN115.md": "cf2ec9575948e16b58acbd870208686759f14e44"
+  },
+  "latest_substantive_comment": 5945825660,
+  "pr": 1,
+  "pr_start_state": "open/draft/unmerged",
+  "rejected_claims": [
+    "Does not claim a public-only adversary finds a short preimage efficiently",
+    "Does not claim honest-erasure N-of-N setup is broken under its stated honest-party model",
+    "Does not claim a complete practical PQ witness-KEM or a new QPT assumption"
+  ],
+  "repository": "syscoin/PVUGC",
+  "run": 352,
+  "scope": "unconditional exact moments and setup-coin leakage, not a quantum SIS/LWE hardness proof",
+  "source_theorems": "Ajtai/LHL universal linear hashes; Run-115 HPS equation; Run-259 SIS source-binding interface",
+  "starting_sha": "a4e17a16e9c34f0754dca8e5af4d5b93bb272cb8",
+  "validation_sha256": "7144b4aa4d13376ee6a13d6ffb4e201ee2e5dd61d7a60e93e33f6b353d50e9b8"
+}

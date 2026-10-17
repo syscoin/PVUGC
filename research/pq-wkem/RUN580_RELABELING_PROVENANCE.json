@@ -1,0 +1,25 @@
+{
+  "run": 580,
+  "date": "2026-10-17",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start": "7765732ee2c78764cbd282a72dd62fa5511077e5",
+  "last_exact_dependency": "research/pq-wkem/RUN579_TWO_CAPSULE_RELATIVE_SHIFT_SEAM.md",
+  "last_dependency_blob": "9a92803e3eb700e3a363c82e3085843518bb62b1",
+  "validation": {
+    "run": 580,
+    "result": "PASS",
+    "assertions": 304073,
+    "exhaustive_relabeling_views": 221184,
+    "latent_equality_checks": 6144,
+    "affine_transparent_checks": 74880,
+    "affine_translator_recoveries": 1360,
+    "grover_n8_rounds": 12,
+    "grover_n8_success": 0.999947042103,
+    "scope": "Finite identities and known search formula; not a practical WKEM or quantum implementation"
+  },
+  "checker": "run580Checker() executed in V8; exact source obtained from Function.prototype.toString",
+  "status": "conditional oracle separation, no practical release",
+  "production_changed": false
+}

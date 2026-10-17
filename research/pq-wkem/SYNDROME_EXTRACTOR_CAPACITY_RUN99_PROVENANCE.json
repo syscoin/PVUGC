@@ -1,0 +1,85 @@
+{
+  "artifacts_sha256": {
+    "SYNDROME_EXTRACTOR_CAPACITY_RUN99.md": "399db98ac3833ab5605540c79f08bfa0d36d46c1a0a09ff3d5a1991f2208b321",
+    "syndrome-extractor-capacity-run99-validation.json": "6fb8e2d398fb6b4d995b2e65f7876d9ad0fa61ad615f4b5c986a9dabc73cb52e",
+    "syndrome_extractor_capacity_run99_check.py": "dbf401b0cd40b68990c383f0ee272d3c2726015c68b0de25fb50633d88fa24d0"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "claims_scope": {
+    "adversary_model_for_false_hiding": "information-theoretic; therefore arbitrary QPT when statistical distance is negligible",
+    "hardness_assumption_for_new_results": "none",
+    "honest_algorithm_model": "classical PPT conditional on polynomial source dimensions/repetition",
+    "proved": "exact syndrome-lift/TV/chi2 equivalence; random-direction shift-TV sandwich; exact spectral=syndrome-chi2 identity; MacWilliams/Renyi-2 bound; Shannon entropy necessary condition; random-linear extraction benchmark; isometry/padding/repetition invariances",
+    "reduction_model": "straight finite-field probability/information theory; no rewinding, QROM, or extraction",
+    "unproved": "arbitrary-QPT true-instance final-key recovery to ORIGINAL witness or independently justified QPT-hardness break; actual Jin parameters; generic-NP source satisfying both source extraction and false syndrome extraction; final practical construction"
+  },
+  "created_utc": "2026-09-25T16:32:29+00:00",
+  "execution": {
+    "byte_identical_outputs": true,
+    "captured_output": "syndrome-extractor-capacity-run99-validation.json",
+    "checker": "syndrome_extractor_capacity_run99_check.py",
+    "deterministic": true,
+    "py_compile": "PASS",
+    "runs": 2,
+    "standard_library_only": true
+  },
+  "external_sources": [
+    {
+      "citation": "F. J. MacWilliams, A Theorem on the Distribution of Weights in a Systematic Code, Bell System Technical Journal 42(1), 79-94 (1963)",
+      "doi": "10.1002/j.1538-7305.1963.tb04003.x",
+      "use": "classical dual weight-enumerator identity"
+    },
+    {
+      "arxiv": "quant-ph/0610146",
+      "citation": "K. M. R. Audenaert, A sharp continuity estimate for the von Neumann entropy, J. Phys. A 40(28), 8127-8136 (2007)",
+      "doi": "10.1088/1751-8113/40/28/S18",
+      "use": "entropy-continuity inequality, specialized to classical distributions"
+    },
+    {
+      "citation": "Zhengzhong Jin, Witness Encryption for NP from SNARGs and Groups, ePrint 2026/2063",
+      "evidence_level": "current public metadata/abstract only; full proof not retrieved in this run",
+      "use": "source-reduction research target only"
+    }
+  ],
+  "latest_verified_pr_comment_id_before_run": 5834712868,
+  "local_prior_checkpoint": {
+    "proof_sha256": "30404741c895400b521ead50e9e98ed6d23b5ce0ab6a6b9386c96c24e1133c5c",
+    "run": 98,
+    "status": "local-only due to explicit prior safety block; not retried in Run 99"
+  },
+  "pr": 1,
+  "publication": {
+    "blocked_payload_role": "Run-99 checker source blob",
+    "branch": "research/pq-wkem-validation-20260918",
+    "comment_id": null,
+    "commit_sha": null,
+    "exact_diagnostic_availability": "No request/correlation ID or tool timestamp was returned by the blocked action.",
+    "final_verified_sha": "0f8c44db5f1d11e1a7fea7fa8b92f42dcfc0e230",
+    "first_blob_role": "Run-99 proof bytes; orphan/unreferenced Git object only, not a branch-visible published file",
+    "first_blob_sha": "e4b5dfe48e6ca05d565fbe81881f2178332abc0e",
+    "further_write_attempts_after_block": 0,
+    "invoked_write_actions": [
+      "mcp__GitHub__create_blob",
+      "mcp__GitHub__create_blob"
+    ],
+    "post_block_readback": "PR remained open/draft/unmerged at the same head; research/pq-wkem/SYNDROME_EXTRACTOR_CAPACITY_RUN99.md returned GitHub 404. The first proof blob was readable by its Git object SHA but is not referenced by the branch.",
+    "pr": 1,
+    "repository": "syscoin/PVUGC",
+    "request_or_correlation_id": null,
+    "second_write_error": "This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "starting_sha": "0f8c44db5f1d11e1a7fea7fa8b92f42dcfc0e230",
+    "status": "PARTIALLY_PUBLISHED",
+    "tool_timestamp": null,
+    "verified_branch_paths": []
+  },
+  "repository": "syscoin/PVUGC",
+  "repository_inputs": {
+    "research/pq-wkem/DECODER_FOURIER_RIGIDITY_RUN97.md": "b37f02d10111eb158aed7c769ca61effaeae6040",
+    "research/pq-wkem/GAPMDP_SHORT_KERNEL_BRIDGE_RUN92.md": "5fc79b25e140d2fba30e00c6fd168b619beabd45",
+    "research/pq-wkem/HAMMING_SPECTRAL_RELEASE_RUN96.md": "abb556df59acf2f13894017343d4f79ca9a25975",
+    "research/pq-wkem/literature-20260924/ASSESSMENT.md": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924"
+  },
+  "run": 99,
+  "starting_verified_head": "0f8c44db5f1d11e1a7fea7fa8b92f42dcfc0e230",
+  "title": "syndrome-extractor equivalence and entropy/capacity barrier for the Hamming release"
+}

@@ -1,0 +1,14 @@
+{
+  "run": 526,
+  "date_utc": "2026-10-15",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "b97e62d5435913290da03df15a7e25963af805e3",
+  "claim": "public-loader differential span distinguisher only",
+  "checker": "run526_sparse_loader_check.js",
+  "execution": "local node checker executed twice with byte-identical output",
+  "local_checker_sha256": "1add48c175d5159b855c58a2a96c8cd92fefaf79da9f33c6e4ee38fa38c28316",
+  "local_validation_sha256": "1b0ff3b7f3b349d472305114b07d128d55785dbcf940ffb1f405033173b4075c",
+  "production_changed": false
+}

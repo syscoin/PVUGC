@@ -1,0 +1,46 @@
+{
+  "run": 400,
+  "status": "PASS",
+  "checks": 6210,
+  "fixtures": [
+    {
+      "b": 8,
+      "k": 3,
+      "acceptance_fraction": "2^-3",
+      "coset_size": "2^5",
+      "exact_states": 32,
+      "honest_success": 96,
+      "source_free_success": 96
+    },
+    {
+      "b": 12,
+      "k": 5,
+      "acceptance_fraction": "2^-5",
+      "coset_size": "2^7",
+      "exact_states": 128,
+      "honest_success": 96,
+      "source_free_success": 96
+    },
+    {
+      "b": 64,
+      "k": 24,
+      "acceptance_fraction": "2^-24",
+      "coset_size": "2^40",
+      "exact_states": 0,
+      "honest_success": 96,
+      "source_free_success": 96
+    },
+    {
+      "b": 256,
+      "k": 128,
+      "acceptance_fraction": "2^-128",
+      "coset_size": "2^128",
+      "exact_states": 0,
+      "honest_success": 96,
+      "source_free_success": 96
+    }
+  ],
+  "model": "public systematic affine projection and ideal sealed release",
+  "does_not_prove_one_wayness": true,
+  "does_not_implement_wkem": true
+}

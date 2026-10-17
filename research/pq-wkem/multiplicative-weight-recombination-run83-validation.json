@@ -1,0 +1,259 @@
+{
+  "arbitrary_L_block_survivor_controls": [
+    {
+      "N": 6,
+      "R": 2,
+      "extra_blocks_L": 1,
+      "family_members_used": 2,
+      "kernel_dimension": 1,
+      "p": 29,
+      "survivor_anchor_nonzero": true,
+      "survivor_rank": 5,
+      "theorem_rank_upper_bound": 5
+    },
+    {
+      "N": 7,
+      "R": 2,
+      "extra_blocks_L": 2,
+      "family_members_used": 3,
+      "kernel_dimension": 1,
+      "p": 31,
+      "survivor_anchor_nonzero": true,
+      "survivor_rank": 5,
+      "theorem_rank_upper_bound": 6
+    },
+    {
+      "N": 8,
+      "R": 2,
+      "extra_blocks_L": 3,
+      "family_members_used": 4,
+      "kernel_dimension": 1,
+      "p": 37,
+      "survivor_anchor_nonzero": true,
+      "survivor_rank": 5,
+      "theorem_rank_upper_bound": 7
+    },
+    {
+      "N": 9,
+      "R": 2,
+      "extra_blocks_L": 4,
+      "family_members_used": 5,
+      "kernel_dimension": 2,
+      "p": 43,
+      "survivor_anchor_nonzero": true,
+      "survivor_rank": 5,
+      "theorem_rank_upper_bound": 8
+    }
+  ],
+  "exact_small_augmented_space_census": [
+    {
+      "case": "base",
+      "dimension": 4,
+      "rank_histogram": {
+        "3": 84,
+        "4": 2316
+      }
+    },
+    {
+      "case": "one_mult",
+      "dimension": 3,
+      "rank_histogram": {
+        "3": 6,
+        "4": 336
+      }
+    }
+  ],
+  "generic_rank_upper_bound_ledger": [
+    {
+      "N": 256,
+      "R": 8,
+      "explicit_false_minrank_upper_bound": 11,
+      "extra_scalar_blocks_L": 1,
+      "overhead_blocks": 1
+    },
+    {
+      "N": 256,
+      "R": 8,
+      "explicit_false_minrank_upper_bound": 14,
+      "extra_scalar_blocks_L": 4,
+      "overhead_blocks": 4
+    },
+    {
+      "N": 256,
+      "R": 8,
+      "explicit_false_minrank_upper_bound": 26,
+      "extra_scalar_blocks_L": 16,
+      "overhead_blocks": 16
+    },
+    {
+      "N": 256,
+      "R": 8,
+      "explicit_false_minrank_upper_bound": 74,
+      "extra_scalar_blocks_L": 64,
+      "overhead_blocks": 64
+    },
+    {
+      "N": 1024,
+      "R": 10,
+      "explicit_false_minrank_upper_bound": 13,
+      "extra_scalar_blocks_L": 1,
+      "overhead_blocks": 1
+    },
+    {
+      "N": 1024,
+      "R": 10,
+      "explicit_false_minrank_upper_bound": 16,
+      "extra_scalar_blocks_L": 4,
+      "overhead_blocks": 4
+    },
+    {
+      "N": 1024,
+      "R": 10,
+      "explicit_false_minrank_upper_bound": 28,
+      "extra_scalar_blocks_L": 16,
+      "overhead_blocks": 16
+    },
+    {
+      "N": 1024,
+      "R": 10,
+      "explicit_false_minrank_upper_bound": 76,
+      "extra_scalar_blocks_L": 64,
+      "overhead_blocks": 64
+    },
+    {
+      "N": 1024,
+      "R": 10,
+      "explicit_false_minrank_upper_bound": 268,
+      "extra_scalar_blocks_L": 256,
+      "overhead_blocks": 256
+    },
+    {
+      "N": 4096,
+      "R": 12,
+      "explicit_false_minrank_upper_bound": 15,
+      "extra_scalar_blocks_L": 1,
+      "overhead_blocks": 1
+    },
+    {
+      "N": 4096,
+      "R": 12,
+      "explicit_false_minrank_upper_bound": 18,
+      "extra_scalar_blocks_L": 4,
+      "overhead_blocks": 4
+    },
+    {
+      "N": 4096,
+      "R": 12,
+      "explicit_false_minrank_upper_bound": 30,
+      "extra_scalar_blocks_L": 16,
+      "overhead_blocks": 16
+    },
+    {
+      "N": 4096,
+      "R": 12,
+      "explicit_false_minrank_upper_bound": 78,
+      "extra_scalar_blocks_L": 64,
+      "overhead_blocks": 64
+    },
+    {
+      "N": 4096,
+      "R": 12,
+      "explicit_false_minrank_upper_bound": 270,
+      "extra_scalar_blocks_L": 256,
+      "overhead_blocks": 256
+    },
+    {
+      "N": 16384,
+      "R": 14,
+      "explicit_false_minrank_upper_bound": 17,
+      "extra_scalar_blocks_L": 1,
+      "overhead_blocks": 1
+    },
+    {
+      "N": 16384,
+      "R": 14,
+      "explicit_false_minrank_upper_bound": 20,
+      "extra_scalar_blocks_L": 4,
+      "overhead_blocks": 4
+    },
+    {
+      "N": 16384,
+      "R": 14,
+      "explicit_false_minrank_upper_bound": 32,
+      "extra_scalar_blocks_L": 16,
+      "overhead_blocks": 16
+    },
+    {
+      "N": 16384,
+      "R": 14,
+      "explicit_false_minrank_upper_bound": 80,
+      "extra_scalar_blocks_L": 64,
+      "overhead_blocks": 64
+    },
+    {
+      "N": 16384,
+      "R": 14,
+      "explicit_false_minrank_upper_bound": 272,
+      "extra_scalar_blocks_L": 256,
+      "overhead_blocks": 256
+    }
+  ],
+  "multiplicative_block_linear_transition_checks": 360,
+  "scope": "actual Hair-Sahai false-family algebra plus compact multiplicative-weight repair audit; classical attacks imply QPT attacks; no security proof",
+  "seed": 202609242316,
+  "single_multiplicative_challenge_anchor_sensitive_recombination": [
+    {
+      "N": 5,
+      "R": 2,
+      "anchor_nonzero": true,
+      "anchor_ratio": 3,
+      "attack_rank": 5,
+      "challenge_ratio": 5,
+      "chosen_outside_weight": 1,
+      "individual_challenge_violations_nonzero": true,
+      "outside_bits": 2,
+      "p": 23,
+      "rank_upper_bound": 5
+    },
+    {
+      "N": 6,
+      "R": 2,
+      "anchor_nonzero": true,
+      "anchor_ratio": 12,
+      "attack_rank": 5,
+      "challenge_ratio": 3,
+      "chosen_outside_weight": 1,
+      "individual_challenge_violations_nonzero": true,
+      "outside_bits": 3,
+      "p": 29,
+      "rank_upper_bound": 5
+    },
+    {
+      "N": 8,
+      "R": 3,
+      "anchor_nonzero": true,
+      "anchor_ratio": 19,
+      "attack_rank": 6,
+      "challenge_ratio": 3,
+      "chosen_outside_weight": 1,
+      "individual_challenge_violations_nonzero": true,
+      "outside_bits": 4,
+      "p": 67,
+      "rank_upper_bound": 6
+    },
+    {
+      "N": 10,
+      "R": 3,
+      "anchor_nonzero": true,
+      "anchor_ratio": 71,
+      "attack_rank": 6,
+      "challenge_ratio": 3,
+      "chosen_outside_weight": 1,
+      "individual_challenge_violations_nonzero": true,
+      "outside_bits": 6,
+      "p": 83,
+      "rank_upper_bound": 6
+    }
+  ],
+  "status": "PASS"
+}

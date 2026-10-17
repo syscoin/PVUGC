@@ -1,0 +1,10 @@
+{
+  "run": 576,
+  "status": "PASS",
+  "assertions": 322996,
+  "projection_families_and_targets": 16418,
+  "joint_determined": 307911,
+  "joint_smooth": 15047,
+  "two_false_capsule_recoveries": 38,
+  "scope": "finite-field algebra only; not LWE or a QPT construction"
+}

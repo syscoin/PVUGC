@@ -1,0 +1,142 @@
+{
+  "run": 447,
+  "assertions": 57,
+  "order": [
+    {
+      "lambda": 1,
+      "crs_count": 2,
+      "fixed_bad": 1,
+      "adaptive_bad": 2
+    },
+    {
+      "lambda": 2,
+      "crs_count": 4,
+      "fixed_bad": 1,
+      "adaptive_bad": 4
+    },
+    {
+      "lambda": 3,
+      "crs_count": 8,
+      "fixed_bad": 1,
+      "adaptive_bad": 8
+    },
+    {
+      "lambda": 4,
+      "crs_count": 16,
+      "fixed_bad": 1,
+      "adaptive_bad": 16
+    },
+    {
+      "lambda": 5,
+      "crs_count": 32,
+      "fixed_bad": 1,
+      "adaptive_bad": 32
+    },
+    {
+      "lambda": 6,
+      "crs_count": 64,
+      "fixed_bad": 1,
+      "adaptive_bad": 64
+    },
+    {
+      "lambda": 7,
+      "crs_count": 128,
+      "fixed_bad": 1,
+      "adaptive_bad": 128
+    },
+    {
+      "lambda": 8,
+      "crs_count": 256,
+      "fixed_bad": 1,
+      "adaptive_bad": 256
+    },
+    {
+      "lambda": 9,
+      "crs_count": 512,
+      "fixed_bad": 1,
+      "adaptive_bad": 512
+    },
+    {
+      "lambda": 10,
+      "crs_count": 1024,
+      "fixed_bad": 1,
+      "adaptive_bad": 1024
+    }
+  ],
+  "folds": [
+    {
+      "q": 2,
+      "t": 1,
+      "crs_count": 4,
+      "bad_setups": 3,
+      "accepted_invalid_pairs": 4,
+      "union_bound": "2/2"
+    },
+    {
+      "q": 2,
+      "t": 2,
+      "crs_count": 16,
+      "bad_setups": 7,
+      "accepted_invalid_pairs": 8,
+      "union_bound": "2/4"
+    },
+    {
+      "q": 2,
+      "t": 3,
+      "crs_count": 64,
+      "bad_setups": 15,
+      "accepted_invalid_pairs": 16,
+      "union_bound": "2/8"
+    },
+    {
+      "q": 3,
+      "t": 1,
+      "crs_count": 9,
+      "bad_setups": 7,
+      "accepted_invalid_pairs": 9,
+      "union_bound": "3/3"
+    },
+    {
+      "q": 3,
+      "t": 2,
+      "crs_count": 81,
+      "bad_setups": 25,
+      "accepted_invalid_pairs": 27,
+      "union_bound": "3/9"
+    },
+    {
+      "q": 3,
+      "t": 3,
+      "crs_count": 729,
+      "bad_setups": 79,
+      "accepted_invalid_pairs": 81,
+      "union_bound": "3/27"
+    },
+    {
+      "q": 5,
+      "t": 1,
+      "crs_count": 25,
+      "bad_setups": 21,
+      "accepted_invalid_pairs": 25,
+      "union_bound": "5/5"
+    },
+    {
+      "q": 5,
+      "t": 2,
+      "crs_count": 625,
+      "bad_setups": 121,
+      "accepted_invalid_pairs": 125,
+      "union_bound": "5/25"
+    },
+    {
+      "q": 5,
+      "t": 3,
+      "crs_count": 15625,
+      "bad_setups": 621,
+      "accepted_invalid_pairs": 625,
+      "union_bound": "5/125"
+    }
+  ],
+  "theorem": "Fixed-before-CRS existential statistical soundness can justify a conditional iO false-claim zero hybrid; adaptive-after-CRS choice cannot.",
+  "limits": "Finite algebra only; no QPT security, native signature, iO, SNARG, or actual bridge construction."
+}

@@ -1,0 +1,71 @@
+{
+  "exhaustive_bounded_error_decapsulation": {
+    "false_pseudo": {
+      "success": 4374,
+      "total": 4374
+    },
+    "true_witnesses": {
+      "success": 8748,
+      "total": 8748
+    }
+  },
+  "five_operator_false_capsule_recoveries": 300,
+  "five_operator_left_mix_checks": 300,
+  "hidden_relation_false_capsule_recoveries": 1000,
+  "max_abs_false_residual_noise": 6,
+  "nonlinear_metric_gap": [
+    {
+      "L": 2,
+      "max_valid_norm2": 2,
+      "min_invalid_norm2_in_box": 5,
+      "ratio": 2.5
+    },
+    {
+      "L": 3,
+      "max_valid_norm2": 2,
+      "min_invalid_norm2_in_box": 10,
+      "ratio": 5.0
+    },
+    {
+      "L": 4,
+      "max_valid_norm2": 2,
+      "min_invalid_norm2_in_box": 17,
+      "ratio": 8.5
+    },
+    {
+      "L": 8,
+      "max_valid_norm2": 2,
+      "min_invalid_norm2_in_box": 65,
+      "ratio": 32.5
+    },
+    {
+      "L": 16,
+      "max_valid_norm2": 2,
+      "min_invalid_norm2_in_box": 257,
+      "ratio": 128.5
+    }
+  ],
+  "phase": 25,
+  "pseudo_centered": [
+    1,
+    -1,
+    -1,
+    -1,
+    0,
+    -1
+  ],
+  "pseudo_linearized_residuals": [
+    0,
+    0,
+    0
+  ],
+  "public_linear_column_helper_noiseless_false_recoveries": 300,
+  "q": 101,
+  "random_integer_gap_checks": 21600,
+  "rectangular_left_transform_checks": 500,
+  "rectangular_transform_false_capsule_recoveries": 500,
+  "residual_monomials_zero_through_degree_6": 83,
+  "secret_invertible_left_mix_checks": 1000,
+  "seed": 480048,
+  "weighted_pseudopreimage_checks": 2000
+}

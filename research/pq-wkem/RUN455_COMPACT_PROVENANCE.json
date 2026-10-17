@@ -1,0 +1,21 @@
+{
+  "run": 455,
+  "starting_sha": "f07a33bbdaa38225cf442a4cb4f3a28f2d70669f",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "checks": {
+    "compact_assertions": 228,
+    "compact_execution": "functions.exec V8 eval of exact source",
+    "extended_node22_assertions": 440,
+    "extended_repeated_byte_identical": true
+  },
+  "scope": "public reversible pre-frontier seam only; no QPT protection theorem",
+  "paths": [
+    "research/pq-wkem/RUN455_REVERSIBLE_SEAM_INVERSION_COMPACT.md",
+    "research/pq-wkem/run455_reverse_frontier_compact_check.js",
+    "research/pq-wkem/run455_reverse_frontier_compact_validation.json",
+    "research/pq-wkem/RUN455_COMPACT_PROVENANCE.json"
+  ],
+  "date_utc": "2026-10-12"
+}

@@ -1,0 +1,46 @@
+{
+  "run": 407,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "e987e879948177e8098df4e9fd444b361841c4a2",
+  "starting_tree": "071598d0de0b375b5a94edfe3f26471476c93d94",
+  "run406_blob": "cb5ec5144694669d7134d3759a18972745e1530f",
+  "latest_substantive_comment_id": 6067040320,
+  "source_pdf": "https://acris.aalto.fi/ws/portalfiles/portal/173764034/Lattice-based_Multi-Authority_Client_Attribute-based_Encryption_for_Circuits.pdf",
+  "source_pages": [
+    9,
+    10,
+    11,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    67
+  ],
+  "checker_validation": {
+    "run": 407,
+    "status": "PASS",
+    "assertions": 16200,
+    "fixtures": 900,
+    "recovered_without_witness": 1800,
+    "prime_fields": [
+      17,
+      257,
+      65537
+    ],
+    "dimensions": [
+      2,
+      3,
+      4
+    ],
+    "scope": "Noiseless modular algebra with adversary-supplied common left-kernel mask. Not CLW lattice TrapGen, LWE, QROM, or PQ signature benchmark"
+  },
+  "checker_execution": "executed new Function(checker) in research JS runtime before Git tree creation",
+  "scope": "compact published math/checker plus separate extended locally preserved Python evidence",
+  "security_status": "no WKEM, no honest arbitrary-QPT/QROM theorem",
+  "file_contents": "submitted as direct UTF-8 Git tree blobs; exact Git readback required"
+}

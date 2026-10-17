@@ -1,0 +1,24 @@
+{
+  "checkpoint_comment_id": 5795506813,
+  "claim_boundary": "Tests validate finite algebra only. The result is a theorem for independent affine ideal-mask components combined by a perfect monotone secret-sharing access structure; it is not a generic impossibility theorem or a completed WKEM.",
+  "external_literature_or_web_search": false,
+  "local_execution": {
+    "byte_identical_results": true,
+    "captured_result": "/mnt/data/threshold-denominator-atlas-run51.json",
+    "checker": "/mnt/data/threshold_denominator_atlas_run51_check.py",
+    "command": "python threshold_denominator_atlas_run51_check.py",
+    "executions": 2,
+    "seed": 510051001
+  },
+  "local_sha256": {
+    "captured_result": "1d2a25e521db07f3e6694db7765164f604b56649eb7fe28a231dea589637a11b",
+    "checker": "9cfa8782d038cfb90df9f6af7351abff759935074d1cb84b19906732ac5743f4",
+    "proof": "516d78afa219dfb956b631bc3731977041e1c04334ee3c1c5776a43275f579f0"
+  },
+  "production_code_modified": false,
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "run": 51,
+  "scope": "threshold denominator atlas plus perfect secret-sharing complete-output audit",
+  "starting_head": "075ad0438ff06556cdae8c239e29c1ae9b06edc9"
+}

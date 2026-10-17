@@ -1,0 +1,376 @@
+{
+  "checks": {
+    "fixed_linear_kappa_not_universal": "PASS",
+    "poly_kappa_and_log_outer_stays_polylog_outer": "PASS",
+    "quadratic_kappa_superlog_negligibility_exponent": "PASS"
+  },
+  "classification": "deterministic_parameter_algebra_only",
+  "exact_negativity_thresholds": {
+    "1": {
+      "t2_negative_for_all_L_gt": 2,
+      "t3_negative_for_all_L_gt": 3
+    },
+    "16": {
+      "t2_negative_for_all_L_gt": 32,
+      "t3_negative_for_all_L_gt": 48
+    },
+    "2": {
+      "t2_negative_for_all_L_gt": 4,
+      "t3_negative_for_all_L_gt": 6
+    },
+    "32": {
+      "t2_negative_for_all_L_gt": 64,
+      "t3_negative_for_all_L_gt": 96
+    },
+    "4": {
+      "t2_negative_for_all_L_gt": 8,
+      "t3_negative_for_all_L_gt": 12
+    },
+    "8": {
+      "t2_negative_for_all_L_gt": 16,
+      "t3_negative_for_all_L_gt": 24
+    }
+  },
+  "fixed_linear_kappa_counterexample": {
+    "C": 24,
+    "interpretation": "kappa=C*L cannot suppress T^3/2^kappa for all fixed polynomial degrees d",
+    "rows": [
+      {
+        "C": 24,
+        "L": 128,
+        "d": 1,
+        "e_t2": -2816,
+        "e_t3": -2688,
+        "kappa": 3072
+      },
+      {
+        "C": 24,
+        "L": 128,
+        "d": 2,
+        "e_t2": -2560,
+        "e_t3": -2304,
+        "kappa": 3072
+      },
+      {
+        "C": 24,
+        "L": 128,
+        "d": 4,
+        "e_t2": -2048,
+        "e_t3": -1536,
+        "kappa": 3072
+      },
+      {
+        "C": 24,
+        "L": 128,
+        "d": 8,
+        "e_t2": -1024,
+        "e_t3": 0,
+        "kappa": 3072
+      },
+      {
+        "C": 24,
+        "L": 128,
+        "d": 9,
+        "e_t2": -768,
+        "e_t3": 384,
+        "kappa": 3072
+      },
+      {
+        "C": 24,
+        "L": 128,
+        "d": 16,
+        "e_t2": 1024,
+        "e_t3": 3072,
+        "kappa": 3072
+      }
+    ]
+  },
+  "model": {
+    "assumed_inner_knowledge_error_for_sufficient_bound": "k <= 2^-kappa",
+    "inner_qrom_output_bits": "kappa=L^2",
+    "outer_parameter": "Lambda=2^L",
+    "qrom_loss_terms": [
+      "T^2*k <= 2^(2dL-kappa)",
+      "T^3/2^kappa = 2^(3dL-kappa)"
+    ],
+    "query_bound": "T <= Lambda^d = 2^(dL), fixed d"
+  },
+  "normalized_t3_exponents_e_over_L": {
+    "1": [
+      -61,
+      -125,
+      -253,
+      -509,
+      -1021
+    ],
+    "16": [
+      -16,
+      -80,
+      -208,
+      -464,
+      -976
+    ],
+    "2": [
+      -58,
+      -122,
+      -250,
+      -506,
+      -1018
+    ],
+    "4": [
+      -52,
+      -116,
+      -244,
+      -500,
+      -1012
+    ],
+    "8": [
+      -40,
+      -104,
+      -232,
+      -488,
+      -1000
+    ]
+  },
+  "polylog_verifier_identities": [
+    {
+      "L_power": 0,
+      "kappa_power": 1,
+      "result_L_power": 2
+    },
+    {
+      "L_power": 2,
+      "kappa_power": 1,
+      "result_L_power": 4
+    },
+    {
+      "L_power": 1,
+      "kappa_power": 2,
+      "result_L_power": 5
+    },
+    {
+      "L_power": 4,
+      "kappa_power": 3,
+      "result_L_power": 10
+    },
+    {
+      "L_power": 0,
+      "kappa_power": 5,
+      "result_L_power": 10
+    }
+  ],
+  "quadratic_kappa_rows": [
+    {
+      "L": 16,
+      "d": 1,
+      "e_t2": -224,
+      "e_t3": -208,
+      "kappa": 256
+    },
+    {
+      "L": 16,
+      "d": 2,
+      "e_t2": -192,
+      "e_t3": -160,
+      "kappa": 256
+    },
+    {
+      "L": 16,
+      "d": 4,
+      "e_t2": -128,
+      "e_t3": -64,
+      "kappa": 256
+    },
+    {
+      "L": 16,
+      "d": 8,
+      "e_t2": 0,
+      "e_t3": 128,
+      "kappa": 256
+    },
+    {
+      "L": 16,
+      "d": 16,
+      "e_t2": 256,
+      "e_t3": 512,
+      "kappa": 256
+    },
+    {
+      "L": 32,
+      "d": 1,
+      "e_t2": -960,
+      "e_t3": -928,
+      "kappa": 1024
+    },
+    {
+      "L": 32,
+      "d": 2,
+      "e_t2": -896,
+      "e_t3": -832,
+      "kappa": 1024
+    },
+    {
+      "L": 32,
+      "d": 4,
+      "e_t2": -768,
+      "e_t3": -640,
+      "kappa": 1024
+    },
+    {
+      "L": 32,
+      "d": 8,
+      "e_t2": -512,
+      "e_t3": -256,
+      "kappa": 1024
+    },
+    {
+      "L": 32,
+      "d": 16,
+      "e_t2": 0,
+      "e_t3": 512,
+      "kappa": 1024
+    },
+    {
+      "L": 64,
+      "d": 1,
+      "e_t2": -3968,
+      "e_t3": -3904,
+      "kappa": 4096
+    },
+    {
+      "L": 64,
+      "d": 2,
+      "e_t2": -3840,
+      "e_t3": -3712,
+      "kappa": 4096
+    },
+    {
+      "L": 64,
+      "d": 4,
+      "e_t2": -3584,
+      "e_t3": -3328,
+      "kappa": 4096
+    },
+    {
+      "L": 64,
+      "d": 8,
+      "e_t2": -3072,
+      "e_t3": -2560,
+      "kappa": 4096
+    },
+    {
+      "L": 64,
+      "d": 16,
+      "e_t2": -2048,
+      "e_t3": -1024,
+      "kappa": 4096
+    },
+    {
+      "L": 128,
+      "d": 1,
+      "e_t2": -16128,
+      "e_t3": -16000,
+      "kappa": 16384
+    },
+    {
+      "L": 128,
+      "d": 2,
+      "e_t2": -15872,
+      "e_t3": -15616,
+      "kappa": 16384
+    },
+    {
+      "L": 128,
+      "d": 4,
+      "e_t2": -15360,
+      "e_t3": -14848,
+      "kappa": 16384
+    },
+    {
+      "L": 128,
+      "d": 8,
+      "e_t2": -14336,
+      "e_t3": -13312,
+      "kappa": 16384
+    },
+    {
+      "L": 128,
+      "d": 16,
+      "e_t2": -12288,
+      "e_t3": -10240,
+      "kappa": 16384
+    },
+    {
+      "L": 256,
+      "d": 1,
+      "e_t2": -65024,
+      "e_t3": -64768,
+      "kappa": 65536
+    },
+    {
+      "L": 256,
+      "d": 2,
+      "e_t2": -64512,
+      "e_t3": -64000,
+      "kappa": 65536
+    },
+    {
+      "L": 256,
+      "d": 4,
+      "e_t2": -63488,
+      "e_t3": -62464,
+      "kappa": 65536
+    },
+    {
+      "L": 256,
+      "d": 8,
+      "e_t2": -61440,
+      "e_t3": -59392,
+      "kappa": 65536
+    },
+    {
+      "L": 256,
+      "d": 16,
+      "e_t2": -57344,
+      "e_t3": -53248,
+      "kappa": 65536
+    },
+    {
+      "L": 512,
+      "d": 1,
+      "e_t2": -261120,
+      "e_t3": -260608,
+      "kappa": 262144
+    },
+    {
+      "L": 512,
+      "d": 2,
+      "e_t2": -260096,
+      "e_t3": -259072,
+      "kappa": 262144
+    },
+    {
+      "L": 512,
+      "d": 4,
+      "e_t2": -258048,
+      "e_t3": -256000,
+      "kappa": 262144
+    },
+    {
+      "L": 512,
+      "d": 8,
+      "e_t2": -253952,
+      "e_t3": -249856,
+      "kappa": 262144
+    },
+    {
+      "L": 512,
+      "d": 16,
+      "e_t2": -245760,
+      "e_t3": -237568,
+      "kappa": 262144
+    }
+  ],
+  "run": 90,
+  "security_disclaimer": "These arithmetic identities do not establish a witness-KEM, QPT hiding, key-recovery extraction, a standard-model random-oracle instantiation, or compatibility with Jin 2026/2063's exact unpublished-in-this-run theorem interface."
+}

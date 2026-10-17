@@ -1,0 +1,83 @@
+{
+  "fixtures": [
+    {
+      "N": 3,
+      "R": 1,
+      "all_anchor_zero": true,
+      "all_column0_nonzero": true,
+      "binary_rank_histogram": {
+        "3": 2
+      },
+      "family_size": 2,
+      "field_bits": 3,
+      "field_size": 8,
+      "gamma": 2,
+      "gamma_order": 7,
+      "r_demo": 1,
+      "rank_event_advantages": [
+        "315/1024"
+      ],
+      "t_demo": 4
+    },
+    {
+      "N": 4,
+      "R": 1,
+      "all_anchor_zero": true,
+      "all_column0_nonzero": true,
+      "binary_rank_histogram": {
+        "3": 4
+      },
+      "family_size": 4,
+      "field_bits": 4,
+      "field_size": 16,
+      "gamma": 2,
+      "gamma_order": 15,
+      "r_demo": 1,
+      "rank_event_advantages": [
+        "315/1024"
+      ],
+      "t_demo": 4
+    },
+    {
+      "N": 5,
+      "R": 2,
+      "all_anchor_zero": true,
+      "all_column0_nonzero": true,
+      "binary_rank_histogram": {
+        "4": 4
+      },
+      "family_size": 4,
+      "field_bits": 5,
+      "field_size": 32,
+      "gamma": 2,
+      "gamma_order": 31,
+      "r_demo": 1,
+      "rank_event_advantages": [
+        "9765/32768"
+      ],
+      "t_demo": 5
+    },
+    {
+      "N": 6,
+      "R": 2,
+      "all_anchor_zero": true,
+      "all_column0_nonzero": true,
+      "binary_rank_histogram": {
+        "4": 8
+      },
+      "family_size": 8,
+      "field_bits": 5,
+      "field_size": 32,
+      "gamma": 2,
+      "gamma_order": 31,
+      "r_demo": 1,
+      "rank_event_advantages": [
+        "9765/32768"
+      ],
+      "t_demo": 5
+    }
+  ],
+  "run": 198,
+  "scope": "characteristic-two finite-difference false family for the binary scalar-descent source; generic-NP false-source attack only",
+  "status": "PASS"
+}

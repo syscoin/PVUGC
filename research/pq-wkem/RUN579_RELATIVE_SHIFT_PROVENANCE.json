@@ -1,0 +1,31 @@
+{
+  "artifacts": {
+    "RUN579_TWO_CAPSULE_RELATIVE_SHIFT_SEAM.md": {
+      "bytes": 5464,
+      "sha256": "d553d50adb35edb6d7a368bf47c822099d4ba1fdf714dc3993cba39e53f8f326"
+    },
+    "run579_two_capsule_check.js": {
+      "bytes": 2713,
+      "sha256": "37354b1e5efc56521a90fd62208f4ecda54b77015de461a83272269a291f04a7"
+    },
+    "run579_two_capsule_validation.json": {
+      "bytes": 200,
+      "sha256": "8c8a981a446368c610f12708fa9f69d4e2b5e0bdfc5f893ff4288e19c5799b4f"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "date": "2026-10-17",
+  "exact_checker": "node run579_two_capsule_check.js",
+  "node_version": "22.16.0",
+  "pr": 1,
+  "repository": "syscoin/PVUGC",
+  "rerun_byte_identical": true,
+  "run": 579,
+  "scope": "finite identities and quantum Simon oracle theorem; no actual quantum execution or completed practical WKEM",
+  "source_blobs": {
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run570": "fd35828a0c397c4e98cc7d9eca15eb0be9277aff",
+    "run576": "da186c9b8f42e047d7f795f59a5294517bd1fb57"
+  },
+  "starting_sha": "11c4e541f2197b788a54a1d142b4b51c5e4ae2f3"
+}

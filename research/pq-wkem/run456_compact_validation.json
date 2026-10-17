@@ -1,0 +1,196 @@
+{
+  "run": 456,
+  "diagnostic": "toy bijective public-key map, not cryptographic",
+  "assertions": 79,
+  "single_master": [
+    {
+      "bits": 4,
+      "candidates": 16,
+      "marked": 1,
+      "generic_quantum_query_scale": 4
+    },
+    {
+      "bits": 5,
+      "candidates": 32,
+      "marked": 1,
+      "generic_quantum_query_scale": 5.656854249492381
+    },
+    {
+      "bits": 6,
+      "candidates": 64,
+      "marked": 1,
+      "generic_quantum_query_scale": 8
+    },
+    {
+      "bits": 7,
+      "candidates": 128,
+      "marked": 1,
+      "generic_quantum_query_scale": 11.313708498984761
+    },
+    {
+      "bits": 8,
+      "candidates": 256,
+      "marked": 1,
+      "generic_quantum_query_scale": 16
+    },
+    {
+      "bits": 9,
+      "candidates": 512,
+      "marked": 1,
+      "generic_quantum_query_scale": 22.627416997969522
+    },
+    {
+      "bits": 10,
+      "candidates": 1024,
+      "marked": 1,
+      "generic_quantum_query_scale": 32
+    }
+  ],
+  "coherent_statevector": [
+    {
+      "bits": 4,
+      "marked": 15,
+      "trace": [
+        {
+          "iterations": 0,
+          "success": 0.0625
+        },
+        {
+          "iterations": 1,
+          "success": 0.47265625
+        },
+        {
+          "iterations": 2,
+          "success": 0.908447265625
+        },
+        {
+          "iterations": 4,
+          "success": 0.581704139709
+        }
+      ]
+    },
+    {
+      "bits": 5,
+      "marked": 6,
+      "trace": [
+        {
+          "iterations": 0,
+          "success": 0.03125
+        },
+        {
+          "iterations": 1,
+          "success": 0.25830078125
+        },
+        {
+          "iterations": 2,
+          "success": 0.602424621582
+        },
+        {
+          "iterations": 4,
+          "success": 0.999182315543
+        }
+      ]
+    },
+    {
+      "bits": 6,
+      "marked": 45,
+      "trace": [
+        {
+          "iterations": 0,
+          "success": 0.015625
+        },
+        {
+          "iterations": 1,
+          "success": 0.134826660156
+        },
+        {
+          "iterations": 2,
+          "success": 0.343895196915
+        },
+        {
+          "iterations": 4,
+          "success": 0.816377019397
+        },
+        {
+          "iterations": 8,
+          "success": 0.71804210109
+        }
+      ]
+    },
+    {
+      "bits": 7,
+      "marked": 52,
+      "trace": [
+        {
+          "iterations": 0,
+          "success": 0.0078125
+        },
+        {
+          "iterations": 1,
+          "success": 0.068855285645
+        },
+        {
+          "iterations": 2,
+          "success": 0.183370120823
+        },
+        {
+          "iterations": 4,
+          "success": 0.511135504162
+        },
+        {
+          "iterations": 8,
+          "success": 0.995619865694
+        }
+      ]
+    },
+    {
+      "bits": 8,
+      "marked": 59,
+      "trace": [
+        {
+          "iterations": 0,
+          "success": 0.00390625
+        },
+        {
+          "iterations": 1,
+          "success": 0.034790992737
+        },
+        {
+          "iterations": 2,
+          "success": 0.09463772201
+        },
+        {
+          "iterations": 4,
+          "success": 0.284742802033
+        },
+        {
+          "iterations": 8,
+          "success": 0.763722144019
+        }
+      ]
+    }
+  ],
+  "independent_targets": [
+    {
+      "targets": 1,
+      "marked": 1,
+      "generic_quantum_query_scale": 22.62741699797
+    },
+    {
+      "targets": 2,
+      "marked": 2,
+      "generic_quantum_query_scale": 16
+    },
+    {
+      "targets": 4,
+      "marked": 4,
+      "generic_quantum_query_scale": 11.313708498985
+    },
+    {
+      "targets": 8,
+      "marked": 8,
+      "generic_quantum_query_scale": 8
+    }
+  ],
+  "claim": "public checking keys enable coherent candidate-seed search; tests do not prove PQ security"
+}

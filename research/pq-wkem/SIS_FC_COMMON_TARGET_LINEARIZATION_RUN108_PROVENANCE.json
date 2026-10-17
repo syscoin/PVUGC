@@ -1,0 +1,153 @@
+{
+  "artifact_sha256": {
+    "SIS_FC_COMMON_TARGET_LINEARIZATION_RUN108.md": "9b2080de42fe2d681d0a7d866b359ceda1a6fc5eb93c5c211831477b11f65f2c",
+    "sis-fc-common-target-run108-validation.json": "5b1f92debbf9c6144648c2c2fe9434c9bfd0e455852b23757b4b0f5ed40b1bc6",
+    "sis_fc_common_target_run108_check.py": "c06a8c9b8ee79a70cb346e0d7a87334cce6ceaebf1a90813913c069f2f75d592"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "byte_identical_stdout": true,
+    "executions": 3,
+    "path": "research/pq-wkem/sis_fc_common_target_run108_check.py",
+    "status": "PASS",
+    "total_assertions": 1965
+  },
+  "correction_to_run107": "A polynomial-size generic-NP witness-local opening adapter does exist via standard-SIS functional commitments; the missing step is secure public release from the witness-dependent opening equation.",
+  "exact_repository_inputs": [
+    {
+      "blob_sha": "82d89e7b519118e3ab375713dbed431753ddde11",
+      "path": "research/pq-wkem/AFFINE_COMMON_TARGET_RTLWE_BARRIER_RUN95.md"
+    },
+    {
+      "blob_sha": "5fc79b25e140d2fba30e00c6fd168b619beabd45",
+      "path": "research/pq-wkem/GAPMDP_SHORT_KERNEL_BRIDGE_RUN92.md"
+    },
+    {
+      "blob_sha": "f8634c5dd2bc29796f152ebde67064fe55045cc9",
+      "path": "research/pq-wkem/SIS_RANDOMIZED_SHORT_KERNEL_LIFT_RUN42.md"
+    },
+    {
+      "blob_sha": "4fefd6c364a76fd12fe76169ddbec47e486c786b",
+      "path": "research/pq-wkem/LWE_DIRECTIONAL_TRANSPORT_RUN72.md"
+    },
+    {
+      "blob_sha": "5ec37cfcf47fcdc68d279af1dc1b6c90a7287c8d",
+      "path": "research/pq-wkem/FULL_KEY_ONE_COPY_QPT_EXTRACTION_RUN102.md"
+    },
+    {
+      "blob_sha": "a803478c59af2abdaeeaef35d1952b50a6dd721b",
+      "path": "research/pq-wkem/HIDDEN_SUBSPACE_CONSISTENCY_BUNDLE_RUN103.md"
+    }
+  ],
+  "latest_substantive_comment": {
+    "id": 5839832728,
+    "scope": "Runs 100-103 published and verified"
+  },
+  "literature": [
+    {
+      "verified_scope": [
+        "Construction 3.5 transparent uniform setup C",
+        "Open(C,f,x)=Eval(f,C,x) with no secret opening key",
+        "verification equation (C - Rep(x) tensor g^T) S = C_f - Rep(y) tensor g^T",
+        "bounded-circuit proof norms from Theorem 3.3",
+        "base binding is selective-input and stated for PPT adversaries",
+        "adaptive binding via generic |X|-loss complexity leveraging and inverse-subexponential SIS"
+      ],
+      "version": "ePrint 2022/1368, 2023-02-28 / EUROCRYPT 2023",
+      "visual_inspection": "PDF screenshot tool was attempted on relevant pages but the ePrint cached PDF screenshot failed; parsed PDF lines were used.",
+      "work": "de Castro\u2013Peikert, Functional Commitments for All Functions, with Transparent Setup and from SIS"
+    },
+    {
+      "verified_scope": [
+        "comparison table marks Construction 4.2 adaptively secure under BASISstruct",
+        "BASISrand reduces to standard SIS",
+        "authors explicitly do not know a standard-SIS reduction for BASISstruct",
+        "Section 6 relates the structured correlated-preimage view to evasive LWE"
+      ],
+      "version": "ASIACRYPT 2023 author PDF",
+      "visual_inspection": "Relevant PDF pages 11 and 18 were successfully inspected with screenshot.",
+      "work": "Wee\u2013Wu, Lattice-Based Functional Commitments: Fast Verification and Cryptanalysis"
+    }
+  ],
+  "local_predecessors": [
+    {
+      "publication_status": "BLOCKED_BEFORE_GITHUB",
+      "run": 104
+    },
+    {
+      "publication_status": "BLOCKED_BEFORE_GITHUB",
+      "run": 105
+    },
+    {
+      "publication_status": "BLOCKED_BEFORE_GITHUB",
+      "run": 106
+    },
+    {
+      "publication_status": "BLOCKED_BEFORE_GITHUB",
+      "run": 107
+    }
+  ],
+  "new_results": [
+    "common-output FC openings give witness-dependent short equations A_w s_w=t_1 with setup knowing no witness",
+    "fixed-matrix linearization [C,-G_1,...,-G_m] is unconditionally public-preimageable via gadget inversion",
+    "randomized gadget blocks with public short maps B_i R_i=G_i preserve the public-preimage attack by composition",
+    "base standard-SIS FC security is selective-input; generic adaptive binding has exponential |X| loss for polynomial-length witnesses"
+  ],
+  "pr": 1,
+  "publication": {
+    "branch_visible_paths": [],
+    "comment_id": null,
+    "commit_sha": null,
+    "diagnostic_note": "No request/correlation ID or tool timestamp was returned. No further GitHub write action was attempted after the safety block.",
+    "outstanding_local_only_paths": [
+      "research/pq-wkem/SIS_FC_COMMON_TARGET_LINEARIZATION_RUN108.md",
+      "research/pq-wkem/sis_fc_common_target_run108_check.py",
+      "research/pq-wkem/sis-fc-common-target-run108-validation.json",
+      "research/pq-wkem/SIS_FC_COMMON_TARGET_LINEARIZATION_RUN108_PROVENANCE.json"
+    ],
+    "post_block_write_attempts": 0,
+    "starting_and_final_head": "5a612472b4f5e16120a6a07097ef25788415cb94",
+    "status": "PARTIALLY_PUBLISHED",
+    "verified_readback": {
+      "head_unchanged": true,
+      "pr_draft": true,
+      "pr_open": true,
+      "pr_unmerged": true,
+      "proof_target_path_absent": true
+    },
+    "write_actions": [
+      {
+        "action": "mcp__GitHub__create_blob",
+        "artifact": "preliminary proof text transfer",
+        "blob_sha": "a729ad360e92539bc2f7774d992a43715f7060d5",
+        "exact_local_bytes": false,
+        "note": "Unreferenced Git object only; transfer did not match finalized local proof bytes and was never attached to a tree.",
+        "result": "success"
+      },
+      {
+        "action": "mcp__GitHub__create_blob",
+        "artifact": "SIS_FC_COMMON_TARGET_LINEARIZATION_RUN108.md exact local bytes via base64",
+        "error": "Script error: This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+        "request_or_correlation_id": null,
+        "result": "SAFETY_BLOCK",
+        "tool_timestamp": null
+      }
+    ]
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 108,
+  "security_classification": {
+    "adaptive_standard_sis": "only generic complexity leverage in audited dCP result; impractical exponential input-space loss for generic witness domain",
+    "fc_correctness_source_interface": "classical PPT / unconditional correctness",
+    "fc_published_binding": "selective PPT",
+    "fixed_matrix_release": "classically broken, hence QPT-broken",
+    "selective_qpt_lift": "plausible straight-line under exact QPT-hard normal-form SIS, but UNVERIFIED",
+    "stopping_condition": "UNMET"
+  },
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "state": "open"
+  },
+  "starting_sha": "5a612472b4f5e16120a6a07097ef25788415cb94"
+}

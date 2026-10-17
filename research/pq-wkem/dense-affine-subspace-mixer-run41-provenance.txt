@@ -1,0 +1,24 @@
+Run 41 provenance
+=================
+Starting PR head inspected before work:
+1d53234dc5ae41ef09955f2b3506efaff29a4373
+
+No external literature or web search was used.
+Production code was not edited locally.
+
+Locally executed command (twice):
+python3 dense_affine_subspace_mixer_run41_check.py
+
+The two captured stdout JSON files were compared byte-for-byte with cmp and matched.
+
+Local pre-publication SHA-256:
+dd6844e4841c272f29a26dd57781ae0402f7b41bcd4053eb3ec5f80b6cf01f7e  dense_affine_subspace_mixer_run41_check.py
+b5f93e3790306d42ba7fe9c74bf07cefbe330565c3ad331b19246da868903b4f  dense-affine-subspace-mixer-run41.json
+
+Claim discipline:
+- The single-subspace TV dichotomy and polynomial-mixture likelihood formula are proved algebraically in DENSE_AFFINE_SUBSPACE_MIXER_RUN41.md.
+- The finite executions validate implementations and identities only.
+- No claim is made that passing tests proves security.
+- No claim is made that NP != BPP; the document states a reduction showing the complexity consequence if this candidate class simultaneously achieved generic completeness and false hiding.
+- No arbitrary-QPT source-extraction reduction has been obtained.
+- No complete WKEM has been obtained.

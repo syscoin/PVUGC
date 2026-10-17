@@ -1,0 +1,30 @@
+{
+  "run": 561,
+  "date_utc": "2026-10-16",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "80e9b844d9d1320af5b866eeb5628892ac13f9ef",
+  "starting_tree_sha": "b8adbb508d96ef39c5d45295f602169971a961bd",
+  "exact_sources": {
+    "run560": "bc8bcde5819519bf1519a832813ae26facf5442f",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "CLZ": "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  },
+  "primary_external": "https://csrc.nist.gov/pubs/fips/205/final",
+  "check_execution": "JavaScript source run by new Function inside this tools invocation before GitHub creation",
+  "actual_output": {
+    "run": 561,
+    "status": "PASS",
+    "assertions_passed": 269317,
+    "otp_independence_grids": 21,
+    "all_valid_witness_fixture_checks": 2048,
+    "shared_pad_cross_branch_exposures": 27,
+    "public_checking_key_matches_out_of_1024": 64,
+    "QPT_security_proved": false,
+    "release_primitive_instantiated": false,
+    "exact_scope": "finite OTP distribution and correctness only; conditional false-instance theorem is mathematical"
+  },
+  "scope": "conditional QPT false-instance composition; no concrete WE/KEM, full true-instance extraction, malicious setup, multi-capsule security or PQ Bitcoin endpoint",
+  "production_changed": false
+}

@@ -1,0 +1,56 @@
+{
+  "run": 543,
+  "checker": "exact nonlinear reversible frame / Simon conjugacy finite identities",
+  "hash": "toy SplitMix64, NOT cryptographic",
+  "cases": [
+    {
+      "n": 8,
+      "k": 37,
+      "domain": 101,
+      "inverse_checks": 256,
+      "accepted_pair_checks": 256,
+      "cosets": 128,
+      "distinct_raw_displacements": 96,
+      "visible_raw_periods": [],
+      "raw_hadamard_outcomes_outside_conjugate_hyperplane": 128,
+      "conjugate_hadamard_support": 128
+    },
+    {
+      "n": 8,
+      "k": 161,
+      "domain": 102,
+      "inverse_checks": 256,
+      "accepted_pair_checks": 256,
+      "cosets": 128,
+      "distinct_raw_displacements": 105,
+      "visible_raw_periods": [],
+      "raw_hadamard_outcomes_outside_conjugate_hyperplane": 128,
+      "conjugate_hadamard_support": 128
+    },
+    {
+      "n": 10,
+      "k": 391,
+      "domain": 103,
+      "inverse_checks": 1024,
+      "accepted_pair_checks": 1024,
+      "cosets": 512,
+      "distinct_raw_displacements": 398,
+      "visible_raw_periods": [],
+      "raw_hadamard_outcomes_outside_conjugate_hyperplane": 512,
+      "conjugate_hadamard_support": 512
+    },
+    {
+      "n": 10,
+      "k": 719,
+      "domain": 104,
+      "inverse_checks": 1024,
+      "accepted_pair_checks": 1024,
+      "cosets": 512,
+      "distinct_raw_displacements": 398,
+      "visible_raw_periods": [],
+      "raw_hadamard_outcomes_outside_conjugate_hyperplane": 512,
+      "conjugate_hadamard_support": 512
+    }
+  ],
+  "passed": true
+}

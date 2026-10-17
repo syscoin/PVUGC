@@ -1,0 +1,14 @@
+{
+  "run": 423,
+  "assertions": 11355,
+  "tree_mask_assignments": 216,
+  "forest_uniform_pair_count": 36,
+  "forest_count_per_pair": 6,
+  "cycle_supports_disjoint": true,
+  "each_cycle_edge_marginal_uniform": true,
+  "undirected_cycle_in_dag_diamond_checks": 2592,
+  "capability_bits_recovered_without_witness": 4096,
+  "scope": "complete public S3 edge tables; NOT RIO",
+  "post_quantum": "classical attack also available to QPT",
+  "complete_wkem": false
+}

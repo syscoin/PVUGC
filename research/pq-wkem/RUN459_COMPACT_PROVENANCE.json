@@ -1,0 +1,26 @@
+{
+  "blobs": {
+    "RUN459_VIRTUAL_CEREMONY_COMPACT.md": {
+      "git_sha1": "93920b2f16fcd41cbcf96eee8130bfbdf2d4389b",
+      "sha256": "a5b1e59079e3f6e7de6f62bea906a0a9ea9b1e283ab629ad21a01ad2e050b5d7"
+    },
+    "run459_compact_check.py": {
+      "git_sha1": "7e7a0cb2e3b0ffbba7489721c1a90e943e0eb0c4",
+      "sha256": "d9c362364ef33fcb101e324386a347e8e8071871998472a000d0f920dd53fa57"
+    },
+    "run459_compact_validation.json": {
+      "git_sha1": "8d72e597fae9513d86e86c5a5b767d492d38e092",
+      "sha256": "5b2cc9e2556877b70efee156e4c995ef7967e1b2e398845658897b496a7c2a5c"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "command": "python run459_compact_check.py",
+  "date_utc": "2026-10-12",
+  "pr": 1,
+  "publication_status": "pending",
+  "repeat_byte_identical": true,
+  "repo": "syscoin/PVUGC",
+  "result": "291 checks; conditional public emulation only; WE reduction depends on Run458 security premise",
+  "run": 459,
+  "start_sha": "62c3b8957f474cc899f188e003305ae2c9cda203"
+}

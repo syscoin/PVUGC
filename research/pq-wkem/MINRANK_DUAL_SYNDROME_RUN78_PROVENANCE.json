@@ -1,0 +1,72 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "date": "2026-09-24",
+  "external_primary_literature_authorized": true,
+  "not_claimed": [
+    "security of statement-derived dual syndrome under ordinary MinRank",
+    "QPT full-output source extraction",
+    "full Jin theorem audit",
+    "malicious-secure ceremony composition",
+    "practical complete WKEM"
+  ],
+  "pr_number": 1,
+  "production_code_modified": false,
+  "proved_or_derived": [
+    "rank(<R,M>_t) <= rank(R) rank(M)",
+    "complete-transcript character equals Frobenius pairing with a blockwise-spliced source matrix",
+    "for R as sum of r independent rank-one masks, Fourier coefficient is 2^(-r rank(N))",
+    "global source MinRank alone does not control blockwise character splices",
+    "Kronecker lift J_t tensor B_i preserves source ranks and forces every nonzero false character splice to rank at least D",
+    "TV sufficient bound <= 2^(k t^2/2-rD-1)",
+    "zero-column common-kernel structure survives invertible rank isometries/basis mixing and distinguishes from CMV uniform generators",
+    "plain random left projection has exact per-codeword rank-loss probability and poor union-bound parameters for the existing source fixture"
+  ],
+  "publication": {
+    "checkpoint_write_attempted": true,
+    "checkpoint_write_result": "blocked by OpenAI safety checks before publication",
+    "github_run78_publication_claimed": false,
+    "retry_or_reroute_attempted": false
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 78,
+  "sources": [
+    {
+      "authors": "Chatterjee, Mu, Vasudevan",
+      "evidence": "full HTML inspected; block-wise inner product, dual MinRank, PKE and parameter theorem",
+      "title": "Public-Key Encryption from the MinRank Problem",
+      "url": "https://arxiv.org/html/2510.03752v1",
+      "version": "arXiv:2510.03752v1"
+    },
+    {
+      "authors": "Hair, Sahai",
+      "evidence": "full HTML; prior source-gap/compiler audit retained",
+      "title": "Witness Encryption via Prime-Order Generic Groups",
+      "url": "https://arxiv.org/html/2609.18275v1",
+      "version": "arXiv:2609.18275v1"
+    },
+    {
+      "authors": "Debris-Alazard, Gaborit, Neveu, Ruatta",
+      "evidence": "full HTML inspected; stationary-MinRank/correlated-instance boundary",
+      "title": "A Minrank-based Encryption Scheme \u00e0 la Alekhnovich-Regev",
+      "url": "https://arxiv.org/html/2510.07584v1",
+      "version": "arXiv:2510.07584v1"
+    },
+    {
+      "author": "Zhengzhong Jin",
+      "evidence": "abstract/mirror only; full PDF still unavailable, no full proof audit claimed",
+      "title": "Witness Encryption for NP from SNARGs and Groups",
+      "url": "https://eprint.iacr.org/2026/2063",
+      "version": "ePrint 2026/2063"
+    }
+  ],
+  "starting_verified_head": "78a64c95f241814673f1ffbe76a4047033a7331c",
+  "stopping_condition_met": false,
+  "tests": {
+    "checker_executions": 2,
+    "checker_sha256": "c8522798f0dcb48562b0d141362c3800d51fbc563bc116ea681205b714f96cd2",
+    "claim_scope": "finite algebra/identity validation only; not cryptographic security evidence",
+    "seed": 202609241019,
+    "stdout_byte_identical": true,
+    "validation_sha256": "571086a3425f0c7f28866f0aef7cbcfe20c6a2dc95984953d4e4e0903563ec14"
+  }
+}

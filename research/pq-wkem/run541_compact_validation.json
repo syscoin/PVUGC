@@ -1,0 +1,16 @@
+{
+  "status": "PASS: finite algebraic falsifier; not cryptographic security",
+  "q": 65537,
+  "n": 4,
+  "m": 8,
+  "B": 3,
+  "eta": 2,
+  "capability_bits": 128,
+  "true_cases": 12,
+  "valid_witness_evaluations": 24,
+  "distinct_witness_states": 12,
+  "false_cases": 24,
+  "false_exhaustively_certified": 24,
+  "false_full_key_recoveries": 24,
+  "union_bound_false_becomes_true": "93/18447869999386460161"
+}

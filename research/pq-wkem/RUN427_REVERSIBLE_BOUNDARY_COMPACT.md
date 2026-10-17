@@ -1,0 +1,29 @@
+# Run 427 — reversible lift leaks original fiber profile through clean-ancilla boundaries
+
+**Scope:** An exact, information-theoretic negative result for a deliberately specified publicly evaluable reversible release-frontier candidate. This is not an attack on CCMR/RIO, and does not construct WE, iO, or a post-quantum WKEM.
+
+**Actual live PR before research:** syscoin/PVUGC#1 open, draft, unmerged; branch research/pq-wkem-validation-20260918; starting head 187e6a0b9c288212e17eee3cd88c5a94a233f45e. Exact source blobs read: Run 426 note cb9686768716f23661fe20f4507c50a3170ba6e6; Run 426 provenance a34816416b1005576ba116a154e5c6d713491142; Run 425 note 511cfd34cee890a7ac338c6fcf871b6b735ca73d. Latest substantive ordinary comment 6067040320.
+
+## Candidate and theorem
+
+Let X=[n], Y=Z_q, and C={(x,0):x in X}. Given any fixed source function f:X->Y, form the **reversible** permutation T_f(x,z)=(x,z+f(x) mod q). Honest classical PPT setup independently samples two uniform permutations U,V of X×Y, publishes the complete permutation table G=V T_f U^{-1}, the clean input **set** A=U(C), and the output block **partition** B_y=V(X×{y}) for every y. Neither full frame U,V, nor any labeled coordinate of A, is disclosed.
+
+**Exact leakage theorem:** For every choice of frames,
+|G(A) intersect B_y| = |f^{-1}(y)| for all y.
+The complete joint public transcript law depends on f **only** through this labeled vector of fiber sizes: functions with the same vector induce identical distributions; functions with different vectors induce disjoint-support distributions. If the B blocks are unlabeled, only the sorted fiber vector remains observable.
+
+**Proof:** G(A)=V T_f(C)=V({(x,f(x)):x in X}), so the intersection sizes follow by invertibility of V. For exact distribution equality, fix any G,A,(B_y) satisfying these counts. Choose V mapping each domain output block to B_y and mapping the c_y points of T_f(C) in that block onto G(A) intersect B_y; complete each block bijectively. Then U=G^{-1}VT_f has U(C)=A. Uniform independent U,V make supported transcripts equiprobable by the transitive stabilizer action, so the counts completely classify the laws.
+
+**Two independently protected marginals:** The distributions of (G,A) and of (G,(B_y)_y) each are exactly independent of f; the joint view leaks the vector with certainty. This improves the Run 426 reversible-lifting handoff: reversibility removes the *standalone nonbijective full-gate fingerprint*, but publication of both usability-boundary interfaces restores it. Merely hiding full frames is insufficient in this narrowly defined model.
+
+## Falsification and QPT audit
+
+For n=q=2, encode signing-seed bit k_j by f_j=(0,0) when zero or (0,1) when one. The attacker reads k_j=|G_j(A_j) intersect B_{1,j}|, independently of any ORIGINAL witness. An extended Python checker reconstructs eight 256-bit signing seeds and verifies eight ordinary **non-PQ Ed25519** challenge signatures under the correlated public checking keys, even for a toy relation having no ORIGINAL witnesses. The toy explicitly does **not** satisfy true-instance SAME-K completeness; this is a negative-control candidate, not a generic impossibility theorem.
+
+**Exact executed checkers:** independently written Node.js compact checker: 2,335 assertions; all four maps {0,1}^2->{0,1}, all 24² input/output frame pairs per map; exact histogram, identical single-boundary marginals, and equal/disjoint joint laws. Source maps' support sizes: 144,576,576,144. Extended Python: 5,207 assertions, including the same exhaustive laws, 800 larger random-mask checks and eight non-PQ signature fixtures; both outputs repeated byte-identically. Checker outputs prove finite algebraic claims only.
+
+**Attack taxonomy:** (1) U cancels at clean boundary; (2) no gauge-frame recovery; (3) public histogram fingerprint despite reversible gates; (4) two individually uniform boundary views fail composition; (5) only forward public evaluation and set intersection; (6) works with honestly independent masks; (7) per-UTXO unique masks do not repair an intra-capsule leak; (8) correlated native vk does not restore leaked entropy; (9) deterministic classical PPT attack, hence QPT-admissible, **not** a coherent-only quantum attack. An arbitrary QPT attacker may see all published inputs, auxiliary data and capsules and coherently evaluate the explicit tables; the attack needs no oracle programming, quantum advice, rewinding, or cryptographic hardness.
+
+**Boundary of claim:** If either A, output-block memberships, or public evaluation is unavailable before cryptographically authenticated ORIGINAL witness processing, this specific attack may fail. This does NOT show security in that case. Full CCMR/RIO/quantum-follow-up security proofs were not audited in this bounded pass. The accessible Canetti–Chamon–Mucciolo–Ruckenstein ePrint 2024/006 abstract describes reversible circuit mixing and RIO->iO under an additional random-circuit assumption; Gheorghiu–Gupte–Havlíček–Liu arXiv 2609.40289 extends related methods under quantum-analogue assumptions; neither is asserted to publish this interface. The ePrint PDF fetch gave HTTP 403.
+
+**Handoff:** Keep the local reversible design only as a proposed building block; boundary membership must be source-authenticated, and that gap cannot be renamed as a new assumption. Run 259 binds an accepted complete representation to ORIGINAL evidence, not arbitrary recovered K. Unproved: practical classical-PPT release, all valid ORIGINAL witnesses recover the SAME native K, complete-public-output false-instance QPT hiding, true-instance unauthorized recovery/accepted forgery -> ORIGINAL or independent QPT break, malicious N-of-N setup/erasure/abort, correlated multiple capsules, 128-bit resources, and conditional P2MR/native-SLH Bitcoin endpoint. No complete practical WKEM; leave research automation enabled.

@@ -1,0 +1,61 @@
+{
+  "artifact_sha256": {
+    "ONEHOT_NEAR_WITNESS_NOISE_BARRIER_RUN132.md": "77b9d22d6459c79dc368904fcef67596901592be304220f952e11548b6f9f018",
+    "onehot-near-witness-noise-run132-validation.json": "b83a0fe62c4b7dd304abc4083c80b0667927c9f9bf2490701e0b314d2cab4704",
+    "onehot_near_witness_noise_run132_check.py": "e54677079502c1b877b3e5c26f2a3cf9c977907cd253658fb2fd2195cbdb89f5"
+  },
+  "exact_head_sources": [
+    {
+      "blob": "cf2ec9575948e16b58acbd870208686759f14e44",
+      "path": "research/pq-wkem/NOISY_SHORT_PREIMAGE_HPS_BOUNDARY_RUN115.md"
+    },
+    {
+      "blob": "6f13b37b33779b36072ffc7366ae0d3a6dda6699",
+      "path": "research/pq-wkem/NOISY_TARGET_STANDARD_LWE_ORBIT_RUN116.md"
+    },
+    {
+      "blob": "ffe4a4c7fba46ac35639cb9a7260af750048de77",
+      "path": "research/pq-wkem/ONEHOT_AFFINE_AND_SHIFTED_MULTIPREIMAGE_BOUNDARY_RUN117.md"
+    },
+    {
+      "blob": "4fefd6c364a76fd12fe76169ddbec47e486c786b",
+      "path": "research/pq-wkem/LWE_DIRECTIONAL_TRANSPORT_RUN72.md"
+    },
+    {
+      "blob": "94d1a6246da77f561ecacd84ce78917d6121dc33",
+      "path": "research/pq-wkem/DUAL_MODE_HASH_SECRET_RESAMPLING_BARRIER_RUN126.md"
+    },
+    {
+      "blob": "a534790501f9996bf5af45708d8c16a6267f9569",
+      "path": "research/pq-wkem/UP_HASH_ISOLATION_ALL_WITNESS_BARRIER_RUN128.md"
+    }
+  ],
+  "execution": {
+    "assertions": 1092,
+    "byte_identical_outputs": true,
+    "checker": "python3 onehot_near_witness_noise_run132_check.py",
+    "direct_attack_recoveries": 280,
+    "direct_attack_trials": 280,
+    "executions": 2,
+    "syntax_check": "python3 -m py_compile onehot_near_witness_noise_run132_check.py"
+  },
+  "latest_substantive_comment_at_start": 5850205385,
+  "new_result": {
+    "security_classification": "unconditional algebra plus classical-PPT attacks; therefore applicable to arbitrary-QPT security claims in the attacked regime. No claim against uniform-matrix standard LWE.",
+    "stopping_condition_met": false,
+    "summary": "Direct Run-115/116/117 composition is falsified in the normal small-error regime: any Boolean assignment with u unsatisfied clauses yields an exact one-hot affine preimage of l1 norm B+2u; an explicit false family has a public u=1 preimage B+2. Every clause also yields a four-sparse +/-1 kernel vector, so arbitrary left mixing preserves a public matrix distinguisher and a noise-only LWE-sample distinguisher."
+  },
+  "publication_note": "GitHub publication outcome is intentionally recorded by the post-write publication receipt/comment rather than predicted inside these pre-publication artifact bytes.",
+  "publication_status_at_artifact_creation": "NOT_YET_ATTEMPTED",
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "research_id": "RUN132",
+  "run": 132,
+  "starting_branch": "research/pq-wkem-validation-20260918",
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  },
+  "starting_sha": "76e5b632cf00b4372955b871aadd59ded84c5167"
+}

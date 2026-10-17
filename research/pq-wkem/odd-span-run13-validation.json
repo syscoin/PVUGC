@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "starting_pr_head": "9c5c9088afabe1d98d49012fbde0e1458ad6c42d",
+  "notes": [
+    "No external literature or web search was used.",
+    "Odd-span theorem is exact for arbitrary additive binary noise; tests are validation, not proof by experiment.",
+    "Random-subspace Fourier formula is exact; exhaustive tests cover only small fields/dimensions.",
+    "Safe-boundary trace theorem concerns the saved false affine block fixture, not all false statements.",
+    "No production source was modified by local work."
+  ],
+  "executed": {
+    "odd_span_random_rational_distributions": 400,
+    "odd_span_tight_gamma": "9/10",
+    "odd_span_tight_bad_bias": "7/10",
+    "subspace_character_fixtures": 7,
+    "unsafe_completion_samples": 9551,
+    "unsafe_completion_events": 1842,
+    "safe_boundary_trace_samples": 71365,
+    "safe_boundary_trace_expected_best_guess": ["1/2", "1/2", "1/3"]
+  },
+  "raw_output_file": "odd-span-run13.json",
+  "local_sha256": {
+    "ODD_SPAN_AND_SUBSPACE_RANK_NOISE.md": "ac662d63d945b059ac1a9af3032d20ee864c928ec59d13dcdb4f73b0cdcff6ea",
+    "odd_span_subspace_check.py": "b86e352d654847456ef60eb2e1c5fadaef96fe52c86927adc1928480f1a870d2",
+    "odd-span-run13.json": "8ffda0a1ba9fb50e5be1ec07caeb090b62df2314f67d1e68c87a6932d76f68f1"
+  }
+}

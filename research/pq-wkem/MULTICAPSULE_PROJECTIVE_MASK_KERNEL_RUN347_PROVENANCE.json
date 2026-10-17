@@ -1,0 +1,49 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "assertions": 1163452,
+    "byte_identical": true,
+    "py_compile": "PASS",
+    "runs": 2,
+    "stats": {
+      "different_key_full_bit_pair_recoveries": 184768,
+      "fresh_secret_controls": 2,
+      "identical_target_no_leak_controls": 83,
+      "leaking_matrices": 13636,
+      "matrices": 17386,
+      "nonleaking_matrices": 3750,
+      "three_target_full_key_recoveries": 1826
+    }
+  },
+  "created_utc": "2026-10-07T18:50:51.523947+00:00",
+  "exact_dependency_blobs": {
+    "RUN115": "cf2ec9575948e16b58acbd870208686759f14e44",
+    "RUN259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "RUN338": "7e59daa5d718a460615188626cbde472ea173116"
+  },
+  "head_state": {
+    "draft": true,
+    "merged": false,
+    "state": "open"
+  },
+  "latest_substantive_comment": 5945825660,
+  "literature": [
+    "Current-head Run115 LWE noisy short-preimage boundary",
+    "Current-head Run259 global binding",
+    "Current-head Run338 local-release barrier",
+    "RoKoko ePrint 2026/575 (context only)",
+    "Orthus CRYPTO 2026 (context only)"
+  ],
+  "nonclaims": [
+    "Not a new witness-KEM",
+    "No positive arbitrary-QPT theorem",
+    "No inference from finite checks to LWE/SIS hardness",
+    "Mask-only nonleak does not prove full-public-view hiding",
+    "No production or protocol graph change"
+  ],
+  "proof_scope": "information-theoretic finite-field public-offset leakage, only under shared hidden s and target linear dependence",
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "run": 347,
+  "starting_sha": "2c4dde906e369421121718f81a246a1c8a0f0668"
+}

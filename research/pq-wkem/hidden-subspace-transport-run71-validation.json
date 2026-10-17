@@ -1,0 +1,96 @@
+{
+  "bounded_noisy_orthogonal_special_case": {
+    "block_rank": 2,
+    "decode_rule": "nearest sign in {-1,+1}",
+    "dimension": 8,
+    "epsilon_threshold_for_L4_bound_lt_one": 0.18920711500272103,
+    "per_epsilon": [
+      {
+        "deterministic_product_bound": 0.004006004000999486,
+        "epsilon": 0.001,
+        "false_alternating_sign_recoveries": 250,
+        "max_false_abs_error": 0.0020721059254550367,
+        "max_true_abs_error": 0.0017503787929430414,
+        "trials": 250,
+        "true_forward_sign_recoveries": 250
+      },
+      {
+        "deterministic_product_bound": 0.020150500624999568,
+        "epsilon": 0.005,
+        "false_alternating_sign_recoveries": 250,
+        "max_false_abs_error": 0.009412802960039102,
+        "max_true_abs_error": 0.010713663254650063,
+        "trials": 250,
+        "true_forward_sign_recoveries": 250
+      },
+      {
+        "deterministic_product_bound": 0.040604010000000024,
+        "epsilon": 0.01,
+        "false_alternating_sign_recoveries": 250,
+        "max_false_abs_error": 0.018775152077925794,
+        "max_true_abs_error": 0.01960442304523946,
+        "trials": 250,
+        "true_forward_sign_recoveries": 250
+      },
+      {
+        "deterministic_product_bound": 0.08243215999999998,
+        "epsilon": 0.02,
+        "false_alternating_sign_recoveries": 250,
+        "max_false_abs_error": 0.03558644049626303,
+        "max_true_abs_error": 0.041152243745936845,
+        "trials": 250,
+        "true_forward_sign_recoveries": 250
+      },
+      {
+        "deterministic_product_bound": 0.21550625000000023,
+        "epsilon": 0.05,
+        "false_alternating_sign_recoveries": 250,
+        "max_false_abs_error": 0.10283786857415333,
+        "max_true_abs_error": 0.10978447821090831,
+        "trials": 250,
+        "true_forward_sign_recoveries": 250
+      }
+    ],
+    "sign_correctness_guaranteed_when_bound_lt_one": true,
+    "walk_length": 4
+  },
+  "claim_scope": {
+    "not_proved": "No impossibility for all noncommutative encodings, no LWE/SIS break, no arbitrary-QPT key-recovery-to-witness theorem, and no claim for noise large enough to destroy the transparent transport channel.",
+    "proved": "Exact node-potential rank-r linear transports collapse directed consistency to undirected public reachability via forward multiplication and public linear-system reverse lifts. Orthogonal partial-isometry transports with bounded additive operator-norm noise give an alternating false walk the same (1+eps)^L-1 perturbation bound as an honest length-L path."
+  },
+  "finite_field_node_potential": {
+    "configs_d_r": [
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        6,
+        3
+      ]
+    ],
+    "false_instances": 450,
+    "false_public_reverse_recoveries": 450,
+    "false_zero_directed_paths": 450,
+    "primes": [
+      101,
+      103,
+      107
+    ],
+    "reverse_next_channel_equalities": 450,
+    "reverse_steps_checked": 450,
+    "true_forward_controls": 450,
+    "true_forward_recoveries": 450
+  },
+  "public_reverse_lemma": {
+    "cases": 400,
+    "reverse_solution_differed_from_hidden_row": 400,
+    "same_source_action_equalities": 400
+  },
+  "run": "71",
+  "seed": 1908473838
+}

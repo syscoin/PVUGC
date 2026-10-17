@@ -1,0 +1,56 @@
+{
+  "assertions": 8284,
+  "fixtures": [
+    {
+      "N": 4,
+      "R": 1,
+      "assembled_rank_histogram": {
+        "3": 63,
+        "4": 126,
+        "5": 126,
+        "6": 3780
+      },
+      "chi_square_r1": "2583/1024",
+      "chi_square_r1_float": 2.5224609375,
+      "d": 3,
+      "joint_mode_rank_histogram": {
+        "1,1": 63,
+        "1,2": 126,
+        "2,1": 126,
+        "2,2": 3780
+      },
+      "mobius_count_sum": 4095,
+      "nonzero_character_count": 4095,
+      "s": 2,
+      "source_rows_binary": 360,
+      "t": 2
+    },
+    {
+      "N": 5,
+      "R": 2,
+      "assembled_rank_histogram": {
+        "4": 63,
+        "5": 126,
+        "7": 126,
+        "8": 3780
+      },
+      "chi_square_r1": "7119/16384",
+      "chi_square_r1_float": 0.43450927734375,
+      "d": 3,
+      "joint_mode_rank_histogram": {
+        "1,1": 63,
+        "1,2": 126,
+        "2,1": 126,
+        "2,2": 3780
+      },
+      "mobius_count_sum": 4095,
+      "nonzero_character_count": 4095,
+      "s": 3,
+      "source_rows_binary": 3780,
+      "t": 2
+    }
+  ],
+  "run": 209,
+  "scope": "exact off-diagonal coefficient-tensor rank spectrum for the characteristic-two cube code; generic false-source family only",
+  "status": "PASS"
+}

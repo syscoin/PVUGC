@@ -1,0 +1,77 @@
+{
+  "artifact_class": "PQ witness-KEM research checkpoint",
+  "artifact_sha256": {
+    "VTDH_FIXED_DIGEST_MAJORITY_CANONICALIZATION_RUN121.md": "5a648a38db0c708e56e1830d263124b1f4e21c4e5b828ec450ac40e9bbcd3e2d",
+    "vtdh-fixed-digest-majority-run121-validation.json": "97366bef7dbcb8e592e882f003fa0c83bc93dc9fcb4d9d2b29f5c9b797670f8d",
+    "vtdh_fixed_digest_majority_run121_check.py": "222f16cab57b217339c599e480571047c38128d38fcd9e974fdc305f93b72ca4"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "byte_identical_outputs": true,
+    "captured_output_sha256": "97366bef7dbcb8e592e882f003fa0c83bc93dc9fcb4d9d2b29f5c9b797670f8d",
+    "deterministic": true,
+    "executions": 3,
+    "language": "Python 3 standard library only",
+    "total_assertions": 494480
+  },
+  "independent_result_summary": [
+    "Fixed-digest majority canonicalization: if every full valid encoding vector is within Hamming radius t of one decoded vector and 4t<k, pad p=K^k xor r formed from one honest valid opening vector lets every full valid opening vector recover the same bit K.",
+    "The published VTDH per-index hiding game is sufficient for a standard classical joint-bit hybrid for the weaker public view that omits openings, but the source paper is PPT/classical as stated; QPT lift remains unproved.",
+    "The paper's HBG transform generates a fresh digest during GenBits, so it does not provide future NP witnesses openings to a WKEM setup-fixed digest.",
+    "Because setup itself can create a valid fixed-digest opening without a source witness, source extraction cannot apply to every valid opening; the missing source gate must be simulation-aware."
+  ],
+  "latest_substantive_publication_comment_read": 5843580758,
+  "limitations": [
+    "No computational security is inferred from the checker.",
+    "No QPT theorem is claimed for the concrete VTDH LWE instantiation.",
+    "No generic-NP simulation-aware fixed-digest source-opening compiler is constructed.",
+    "No malicious-secure setup/abort proof or practical end-to-end parameter set is supplied.",
+    "Stopping condition is not met."
+  ],
+  "pr_state_at_start": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  },
+  "primary_literature": [
+    {
+      "citation": "Pedro Branco, Arka Rai Choudhuri, Nico D\u00f6ttling, Abhishek Jain, Giulio Malavolta, Akshayaram Srinivasan, Black-Box Non-Interactive Zero Knowledge from Vector Trapdoor Hash, ePrint 2024/1514",
+      "metadata_url": "https://eprint.iacr.org/2024/1514",
+      "pdf_url": "https://eprint.iacr.org/2024/1514.pdf",
+      "revision_metadata_observed": "2026-03-30 last of 3 revisions; minor revision of EUROCRYPT 2025 publication",
+      "sections_audited": [
+        "2.1",
+        "4",
+        "4.1",
+        "5",
+        "5.2",
+        "5.4",
+        "5.5"
+      ],
+      "security_scope_observed": "statistical binding is against unbounded adversaries; computational hiding/pseudorandomness definition quantifies over PPT adversaries; concrete LWE key-pseudorandomness proof includes an LWE-with-binary-matrices [BLMR13] step"
+    }
+  ],
+  "publication_attempt": {
+    "action_invoked": "mcp__GitHub__create_blob",
+    "diagnostic": "Script error: This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "followup_write_attempts_after_block": 0,
+    "note": "Per user publication rules, the explicit safety block ended all GitHub write attempts for this run. No checker/output/provenance blob, tree, commit, ref update, comment, retry, rename, split, alternate encoding, shell/API route, or workaround was attempted.",
+    "request_or_correlation_id_from_tool": null,
+    "returned_comment_id": null,
+    "returned_commit_sha": null,
+    "status": "BLOCKED_BEFORE_GITHUB",
+    "target_path": "research/pq-wkem/VTDH_FIXED_DIGEST_MAJORITY_CANONICALIZATION_RUN121.md",
+    "timestamp_from_tool": null,
+    "verified_published_paths": []
+  },
+  "publication_intent": "Publish only these four Run-121 research artifacts under research/pq-wkem/ if the normal authorized GitHub write path succeeds. No production/workflow/review/merge changes.",
+  "pull_request": 1,
+  "relevant_exact_branch_files_read": [
+    "research/pq-wkem/ADAPTOR_INVARIANT_COMMON_KEY_RUN111.md",
+    "research/pq-wkem/NOISY_GADGET_PROJECTION_BARRIER_RUN110.md",
+    "research/pq-wkem/literature-20260924/ASSESSMENT.md"
+  ],
+  "repository": "syscoin/PVUGC",
+  "run": 121,
+  "starting_head": "a0803edfa691f184e33ca92620471a81c17c611c"
+}

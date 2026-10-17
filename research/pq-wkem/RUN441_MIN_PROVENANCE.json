@@ -1,0 +1,15 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "executed_checker": "python -m py_compile run441_min_check.py && python run441_min_check.py > run441_min_validation.json && python run441_min_check.py | cmp -s run441_min_validation.json -",
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "result": "31 assertions, exact group distribution and bit-leak diagnostic",
+  "run": 441,
+  "scope": "research-only no PQ WKEM",
+  "sha256": {
+    "RUN441_MIN_PUBLICATION.md": "cd2a26e1df0c3b2a5d407c20079003ece5da83d2a8ae3a9eabf034c664405e45",
+    "run441_min_check.py": "018e9742618a59b9a072232d98712758ef3830236dd867abdcbbf439c84a8b4b",
+    "run441_min_validation.json": "53ca575b5e72e3c8bdadfdbc1d3913d7c63f93232af70ecdb060a89e39b53cf2"
+  },
+  "starting_sha": "dee3df6b977e3cee0366551917eb17f41c1f41a6"
+}

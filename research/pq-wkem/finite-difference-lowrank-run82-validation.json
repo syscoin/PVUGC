@@ -1,0 +1,341 @@
+{
+  "distinct_codewords_checked_total": 32,
+  "exact_scalar_distinguisher": {
+    "epsilon": [
+      1,
+      343
+    ],
+    "p_nonzero": [
+      342,
+      2401
+    ],
+    "p_zero": [
+      349,
+      2401
+    ],
+    "pairwise_key_shift_TV": [
+      1,
+      343
+    ],
+    "q": 7,
+    "r": 1,
+    "rho": 3
+  },
+  "false_pseudowitness_common_eigenvalue": {
+    "boundary_t4_r1_control": {
+      "ambiguous_or_missing": 395,
+      "inner_rank_factor": 4,
+      "missing_true_shift": 395,
+      "t": 4,
+      "trials": 400
+    },
+    "q": 19,
+    "source_N": 4,
+    "source_R": 2,
+    "source_rank": 4,
+    "vulnerable_t5_r1": {
+      "ambiguous_or_missing": 54,
+      "inner_rank_factor": 4,
+      "missing_true_shift": 0,
+      "t": 5,
+      "trials": 900
+    }
+  },
+  "finite_difference_family": [
+    {
+      "N": 3,
+      "R": 1,
+      "anchor_values": 2,
+      "distinct_codewords": 2,
+      "fixed_assignments": 2,
+      "free_dimension": 2,
+      "p": 7,
+      "rank_histogram": {
+        "3": 2
+      },
+      "theorem_count_lower_bound": 2
+    },
+    {
+      "N": 4,
+      "R": 2,
+      "anchor_values": 2,
+      "distinct_codewords": 2,
+      "fixed_assignments": 2,
+      "free_dimension": 3,
+      "p": 19,
+      "rank_histogram": {
+        "4": 2
+      },
+      "theorem_count_lower_bound": 2
+    },
+    {
+      "N": 5,
+      "R": 2,
+      "anchor_values": 3,
+      "distinct_codewords": 4,
+      "fixed_assignments": 4,
+      "free_dimension": 3,
+      "p": 23,
+      "rank_histogram": {
+        "4": 4
+      },
+      "theorem_count_lower_bound": 4
+    },
+    {
+      "N": 6,
+      "R": 2,
+      "anchor_values": 4,
+      "distinct_codewords": 8,
+      "fixed_assignments": 8,
+      "free_dimension": 3,
+      "p": 29,
+      "rank_histogram": {
+        "4": 8
+      },
+      "theorem_count_lower_bound": 8
+    },
+    {
+      "N": 8,
+      "R": 3,
+      "anchor_values": 5,
+      "distinct_codewords": 16,
+      "fixed_assignments": 16,
+      "free_dimension": 4,
+      "p": 67,
+      "rank_histogram": {
+        "5": 16
+      },
+      "theorem_count_lower_bound": 16
+    }
+  ],
+  "parameter_necessary_conditions": [
+    {
+      "N": 64,
+      "R": 6,
+      "log2_lowrank_family": 57,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 2,
+      "min_r_single_character_128bit": 1,
+      "qbits": 16
+    },
+    {
+      "N": 64,
+      "R": 6,
+      "log2_lowrank_family": 57,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 1,
+      "min_r_single_character_128bit": 1,
+      "qbits": 32
+    },
+    {
+      "N": 64,
+      "R": 6,
+      "log2_lowrank_family": 57,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 1,
+      "min_r_single_character_128bit": 1,
+      "qbits": 64
+    },
+    {
+      "N": 64,
+      "R": 6,
+      "log2_lowrank_family": 57,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 1,
+      "min_r_single_character_128bit": 1,
+      "qbits": 128
+    },
+    {
+      "N": 128,
+      "R": 7,
+      "log2_lowrank_family": 120,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 2,
+      "min_r_single_character_128bit": 1,
+      "qbits": 16
+    },
+    {
+      "N": 128,
+      "R": 7,
+      "log2_lowrank_family": 120,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 1,
+      "min_r_single_character_128bit": 1,
+      "qbits": 32
+    },
+    {
+      "N": 128,
+      "R": 7,
+      "log2_lowrank_family": 120,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 1,
+      "min_r_single_character_128bit": 1,
+      "qbits": 64
+    },
+    {
+      "N": 128,
+      "R": 7,
+      "log2_lowrank_family": 120,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 1,
+      "min_r_single_character_128bit": 1,
+      "qbits": 128
+    },
+    {
+      "N": 256,
+      "R": 8,
+      "log2_lowrank_family": 247,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 2,
+      "min_r_single_character_128bit": 1,
+      "qbits": 16
+    },
+    {
+      "N": 256,
+      "R": 8,
+      "log2_lowrank_family": 247,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 1,
+      "min_r_single_character_128bit": 1,
+      "qbits": 32
+    },
+    {
+      "N": 256,
+      "R": 8,
+      "log2_lowrank_family": 247,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 1,
+      "min_r_single_character_128bit": 1,
+      "qbits": 64
+    },
+    {
+      "N": 256,
+      "R": 8,
+      "log2_lowrank_family": 247,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 1,
+      "min_r_single_character_128bit": 1,
+      "qbits": 128
+    },
+    {
+      "N": 512,
+      "R": 9,
+      "log2_lowrank_family": 502,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 3,
+      "min_r_single_character_128bit": 1,
+      "qbits": 16
+    },
+    {
+      "N": 512,
+      "R": 9,
+      "log2_lowrank_family": 502,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 2,
+      "min_r_single_character_128bit": 1,
+      "qbits": 32
+    },
+    {
+      "N": 512,
+      "R": 9,
+      "log2_lowrank_family": 502,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 1,
+      "min_r_single_character_128bit": 1,
+      "qbits": 64
+    },
+    {
+      "N": 512,
+      "R": 9,
+      "log2_lowrank_family": 502,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 1,
+      "min_r_single_character_128bit": 1,
+      "qbits": 128
+    },
+    {
+      "N": 1024,
+      "R": 10,
+      "log2_lowrank_family": 1013,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 4,
+      "min_r_single_character_128bit": 1,
+      "qbits": 16
+    },
+    {
+      "N": 1024,
+      "R": 10,
+      "log2_lowrank_family": 1013,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 2,
+      "min_r_single_character_128bit": 1,
+      "qbits": 32
+    },
+    {
+      "N": 1024,
+      "R": 10,
+      "log2_lowrank_family": 1013,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 1,
+      "min_r_single_character_128bit": 1,
+      "qbits": 64
+    },
+    {
+      "N": 1024,
+      "R": 10,
+      "log2_lowrank_family": 1013,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 1,
+      "min_r_single_character_128bit": 1,
+      "qbits": 128
+    },
+    {
+      "N": 4096,
+      "R": 12,
+      "log2_lowrank_family": 4083,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 10,
+      "min_r_single_character_128bit": 1,
+      "qbits": 16
+    },
+    {
+      "N": 4096,
+      "R": 12,
+      "log2_lowrank_family": 4083,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 5,
+      "min_r_single_character_128bit": 1,
+      "qbits": 32
+    },
+    {
+      "N": 4096,
+      "R": 12,
+      "log2_lowrank_family": 4083,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 3,
+      "min_r_single_character_128bit": 1,
+      "qbits": 64
+    },
+    {
+      "N": 4096,
+      "R": 12,
+      "log2_lowrank_family": 4083,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 2,
+      "min_r_single_character_128bit": 1,
+      "qbits": 128
+    },
+    {
+      "N": 16384,
+      "R": 14,
+      "log2_lowrank_family": 16369,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 33,
+      "min_r_single_character_128bit": 1,
+      "qbits": 16
+    },
+    {
+      "N": 16384,
+      "R": 14,
+      "log2_lowrank_family": 16369,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 17,
+      "min_r_single_character_128bit": 1,
+      "qbits": 32
+    },
+    {
+      "N": 16384,
+      "R": 14,
+      "log2_lowrank_family": 16369,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 9,
+      "min_r_single_character_128bit": 1,
+      "qbits": 64
+    },
+    {
+      "N": 16384,
+      "R": 14,
+      "log2_lowrank_family": 16369,
+      "min_r_for_lowrank_spectral_submass_le_2^-256": 5,
+      "min_r_single_character_128bit": 1,
+      "qbits": 128
+    }
+  ],
+  "public_basis_coordinate_reconstructions": 4,
+  "scope": "actual Hair-Sahai source-space finite-difference algebra and explicit candidate attacks; no QPT-hardness proof",
+  "seed": 202609242215,
+  "status": "PASS"
+}

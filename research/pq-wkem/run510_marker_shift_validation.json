@@ -1,0 +1,8 @@
+{
+  "run": 510,
+  "exact_oracle_fixtures": 254,
+  "exact_fourier_checks": 74896,
+  "rank_formula_checks": 49,
+  "assertions": 96789,
+  "status": "PASS; pure algebra, no concrete security proof"
+}

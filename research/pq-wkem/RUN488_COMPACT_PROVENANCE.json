@@ -1,0 +1,26 @@
+{
+  "run": 488,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "verified_starting_sha": "96b95ce8057b75137a37bcc53a17ebdb3001c610",
+  "latest_substantive_issue_comment_id": 6067040320,
+  "published_compact_execution": "exact JavaScript source above executed with new Function in V8",
+  "assertions": 224,
+  "fixtures": 32,
+  "local_extended_proof_sha256": "a1bc64458bded42e1fa63241256c3ff8f55b148e492b489ee6ad96b1e50dab77",
+  "local_extended_python_checker_sha256": "663f9f067ba6e083ab9406a3a9b855c53f1d4797a560d017429672a21c6dc12b",
+  "local_extended_python_output_sha256": "6f2f6e1f7557cc78ff6115486622039b3588641c74901ee18517a3818dab14d0",
+  "explicit_limits": [
+    "toy JS and toy Python only",
+    "independent flat ideal root distributions NOT actual SLH guarantee",
+    "exponential quantum query upper bound, not polynomial QPT attack",
+    "honest erasure N-of-N unaffected",
+    "real 128-bit costs and standalone release unproved"
+  ],
+  "references": [
+    "NIST FIPS 205 Algorithm 18 and Table 2",
+    "BHT quantum claw 1997"
+  ],
+  "provenance_stage": "prepared before branch update"
+}

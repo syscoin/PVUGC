@@ -1,0 +1,43 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_assertions": 274,
+  "checker_command": "node research/pq-wkem/run428_compact_check.js",
+  "checker_repeat_byte_identical": true,
+  "claim": "static false-instance KU + centrally known fresh uniform seed -> one-bit WE via QPT Goldreich-Levin",
+  "extended_local_assertions": 18910,
+  "extended_local_checker": "python run428_hardcore_adapter_check.py",
+  "not_proved": [
+    "actual local mixer",
+    "true-instance ORIGINAL extraction",
+    "keyless builder",
+    "malicious setup",
+    "full quantum correlated side info",
+    "native Bitcoin PQ endpoint"
+  ],
+  "pr": 1,
+  "production_unchanged": true,
+  "published_inputs": {
+    "RUN428_SEEDED_RELEASE_WE_LOWER_BOUND.md": {
+      "bytes": 5705,
+      "git_blob_sha1": "a82a5a7efbb852462894fc62ac1d910df0e636f2",
+      "sha256": "cd247c405aa9fd31f01b0105bc7cec7ad4fec5648118d71e0f8ed66d60f27820"
+    },
+    "run428_compact_check.js": {
+      "bytes": 1332,
+      "git_blob_sha1": "de85bb497a12198ae6d242d69cae48366259ab47",
+      "sha256": "ca3006e4ad8303032a40465847cc1f36f09a272d82b5d08880f25c70a4d56e5f"
+    },
+    "run428_compact_validation.json": {
+      "bytes": 902,
+      "git_blob_sha1": "ccbf0b44d55810c5a02808b089460d04e2146dcd",
+      "sha256": "8b559da82f0fe1c91f188d531f301d5406d7f01dade2f34049b46739808f7998"
+    }
+  },
+  "repo": "syscoin/PVUGC",
+  "run": 428,
+  "source_file_blobs": {
+    "RUN427_REVERSIBLE_BOUNDARY_COMPACT.md": "02c930726393e2ffb48a5094d22bce51d02fd538",
+    "RUN427_REVERSIBLE_BOUNDARY_PROVENANCE.json": "ca3aad6edaced324047573e2e32aa3f10e65a7d7"
+  },
+  "starting_sha": "dcb9932270367d1caceb6db87829037c940cc064"
+}

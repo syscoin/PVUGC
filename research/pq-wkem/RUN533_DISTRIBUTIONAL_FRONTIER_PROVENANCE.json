@@ -1,0 +1,36 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_command": "node run533_cover_compact_check.js",
+  "date": "2026-10-15",
+  "exact_prior_blob": "23841ee6116cb5d054e70af7b7ee59a68d5c4d16",
+  "files": [
+    {
+      "blob_sha1": "58b1ae695eb40e0b382aed12c49f043efc7fc933",
+      "bytes": 5925,
+      "path": "research/pq-wkem/RUN533_DISTRIBUTIONAL_FRONTIER_COMPACT.md",
+      "sha256": "d975ff9e5c62cced80c2284cd83edfd0b79de8c5600b941928c6c7e5fcb7b30e"
+    },
+    {
+      "blob_sha1": "8c9ec35deb27915494ae2da9116218ad9fcf6316",
+      "bytes": 2413,
+      "path": "research/pq-wkem/run533_cover_compact_check.js",
+      "sha256": "d3ad092aae4574e9bfac723c62616e12b9132c766c30b3a302babe4e5d8e063a"
+    },
+    {
+      "blob_sha1": "401146a17d6349c503b52794c25f92d1112ef201",
+      "bytes": 331,
+      "path": "research/pq-wkem/run533_cover_compact_validation.json",
+      "sha256": "483a5413e991a17b564e470c5030396c89bf20a89032e9791c3781b5bf68808e"
+    }
+  ],
+  "node_version": "v22.16.0",
+  "pr": 1,
+  "production_changed": false,
+  "repeat_check": "node run533_cover_compact_check.js | cmp - run533_cover_compact_validation.json",
+  "repeat_result": "byte-identical",
+  "repository": "syscoin/PVUGC",
+  "run": 533,
+  "scope": "Conditional public-distribution-sampler capability recovery theorem; no WE construction or QPT security claim",
+  "starting_sha": "43bba9ede1cdac2f9871fae3e6f8e19adaa3eb10",
+  "starting_tree": "c284c2e7e9cb24e7d382a01c20551cb213cea96d"
+}

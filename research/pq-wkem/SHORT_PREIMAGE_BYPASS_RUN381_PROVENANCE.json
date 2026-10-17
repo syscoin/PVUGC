@@ -1,0 +1,32 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checks": 452895,
+  "extended_local_checks": 517267,
+  "files": {
+    "SHORT_PREIMAGE_BYPASS_BRIEF_RUN381.md": {
+      "git_blob_sha1": "7d616ae34d0ec60c76e76749841bad75d421f931",
+      "sha256": "244e15689fa9824103103a4c688136c9b10c1848efb957a554031a812682a8df"
+    },
+    "short-preimage-bypass-compact-run381-validation.json": {
+      "git_blob_sha1": "634c5aa0c82b522d57508ca4326a28c0fc6513b5",
+      "sha256": "9898da11b958d681e823fa8097cd2a5b6227203b88b4b19686193a4a83fdbc78"
+    },
+    "short_preimage_bypass_compact_run381_check.py": {
+      "git_blob_sha1": "cba0c8feea448e5a7aa2390d71e1fa661bed9414",
+      "sha256": "a763edf38fee22e37978bb0d02546f447ab2d5ddab57f56039a8b1e986e87611"
+    }
+  },
+  "full_qpt_security": false,
+  "identical_executions": 2,
+  "latest_comment_at_start": 6067040320,
+  "pr": 1,
+  "production_changed": false,
+  "python_syntax": "PASS",
+  "repository": "syscoin/PVUGC",
+  "run": 381,
+  "run259_note_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "run380_note_blob": "99b96e918d93dfce2df8d3915e33a18933b9e7bb",
+  "starting_sha": "feb4eb62302abfe795fb3ce3f7042dc12b4f2425",
+  "status_at_creation": "LOCAL_EXECUTED",
+  "stopping_condition_met": false
+}

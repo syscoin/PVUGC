@@ -1,0 +1,35 @@
+{
+  "run": 560,
+  "status": "PASS",
+  "assertions_passed": 20290,
+  "finite_fixtures": 90,
+  "state_coin_pairs_checked": 19656,
+  "direct_grover_amplitude_matches": 180,
+  "ideal_quantum_query_formula": "O(sqrt(2^ell/(D*p)))",
+  "public_coin_bits_cancel": true,
+  "practical_QPT_security_proved": false,
+  "actual_quantum_hardware": false,
+  "native_SLH_DSA_tested": false,
+  "examples": [
+    {
+      "ell": 128,
+      "dBits": 0,
+      "idealQuantumQueryExponent": 64
+    },
+    {
+      "ell": 256,
+      "dBits": 0,
+      "idealQuantumQueryExponent": 128
+    },
+    {
+      "ell": 256,
+      "dBits": 64,
+      "idealQuantumQueryExponent": 96
+    },
+    {
+      "ell": 320,
+      "dBits": 64,
+      "idealQuantumQueryExponent": 128
+    }
+  ]
+}

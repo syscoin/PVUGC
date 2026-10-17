@@ -1,0 +1,17 @@
+{
+  "run": 413,
+  "date_utc": "2026-10-10",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "7c639078b1d4aacbeb04bbe79b4944d1304fc528",
+  "source_blobs": {
+    "run412": "056571f6ad23c56fbc62ca6126a309035a17e080",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "clz": "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  },
+  "checker": "node --check conditional_frontier_sampler_run413_check.js && node conditional_frontier_sampler_run413_check.js",
+  "assertions": 3028,
+  "checker_repeated_byte_identically": true,
+  "scope": "finite algebra and conditional reduction, not cryptographic proof"
+}

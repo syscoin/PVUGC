@@ -1,0 +1,27 @@
+{
+  "run": 412,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "starting_sha": "f906f6039770afe041470578fd8ababaf8da5d56",
+  "branch": "research/pq-wkem-validation-20260918",
+  "base_tree_sha": "2b96f0b36de16550b63c1606716181d328f9efca",
+  "comment_id_before": 6067040320,
+  "read_actions": [
+    "get_pr_info",
+    "fetch_issue_comments",
+    "compare_commits",
+    "fetch_file",
+    "fetch"
+  ],
+  "research_scope": "public randomized independent frontier coherent density bound; not secure WE",
+  "compact_checker_language": "javascript",
+  "compact_checker_assertions": 390,
+  "compact_checker_fixtures": 64,
+  "extended_local_checker_assertions": 8717,
+  "extended_local_fixtures": 630,
+  "paper_dois": [
+    "10.1007/978-3-031-78023-3_2",
+    "10.1007/978-3-032-35367-2_18"
+  ],
+  "notes": "No cryptographic security inferred from tests; exact plain-text blob content readback required."
+}

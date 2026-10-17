@@ -1,0 +1,137 @@
+{
+  "artifact_sha256": {
+    "PUBLIC_AFFINE_PSEUDOWITNESS_NOISE_ATTACK_RUN120.md": "84d1ea31b98779e53c017fc278fd8c9333837618913fac4bcf13f92ffdbaca65",
+    "public-affine-pseudowitness-noise-run120-validation.json": "bc2b0686a4a5756e315bcc2bd926fcbfbc2de0df6a17225775d8bd691164238d",
+    "public_affine_pseudowitness_noise_run120_check.py": "816ddc7367d0259df0b0a97bb8ae3f38e7c3b5dd325ca698d8e6decb6d552996"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_execution": {
+    "assignment_lifts": 282,
+    "byte_identical_outputs": true,
+    "captured_output": "public-affine-pseudowitness-noise-run120-validation.json",
+    "executions": 3,
+    "false_formula_public_lifts": 3,
+    "projective_identity_checks": 240,
+    "python": "standard library only",
+    "total_assertions": 1727
+  },
+  "github_inputs_read": [
+    {
+      "blob": "0e4a294539a949af5a178ed7cc5d6659ed79a42b",
+      "path": "research/pq-wkem/ADAPTOR_INVARIANT_COMMON_KEY_RUN111.md"
+    },
+    {
+      "blob": "e7431a4e67257069352e6b28012d94f1dbb1d09a",
+      "path": "research/pq-wkem/NOISY_GADGET_PROJECTION_BARRIER_RUN110.md"
+    },
+    {
+      "path": "research/pq-wkem/HIDDEN_INPUT_EPHF_BOUNDARY_RUN109.md"
+    },
+    {
+      "path": "research/pq-wkem/FULL_KEY_ONE_COPY_QPT_EXTRACTION_RUN102.md"
+    },
+    {
+      "path": "research/pq-wkem/TENSOR_SOURCE_AMPLIFICATION_RUN100.md"
+    },
+    {
+      "path": "research/pq-wkem/literature-20260924/ASSESSMENT.md"
+    },
+    {
+      "blob": "e3c51bff4a8f3817f70b1368190b8b35893cafa2",
+      "path": "research/pq-wkem/literature-20260924/rank_field_extensions.py"
+    }
+  ],
+  "latest_substantive_comment_id": 5843580758,
+  "literature": [
+    {
+      "authors": [
+        "Russell Lai",
+        "Monisha Swarnakar",
+        "Ivy Woo"
+      ],
+      "doi": "10.62056/ah89ksuc2",
+      "publication": "IACR Communications in Cryptology, 2025",
+      "title": "Leaky LWE: Learning with Errors with Semi-Adaptive Secret- and Error-Leakage",
+      "url": "https://research.aalto.fi/en/publications/leaky-lwe-learning-with-errors-with-semi-adaptive-secret-and-erro/",
+      "use": "Confirms bounded noisy linear leakage can coexist with an LWE challenge in a PPT theorem; does not make the leakage itself pseudorandom; theorem not promoted to QPT."
+    },
+    {
+      "authors": [
+        "Pedro Branco",
+        "Arka Rai Choudhuri",
+        "Nico Doettling",
+        "Abhishek Jain",
+        "Giulio Malavolta",
+        "Akshayaram Srinivasan"
+      ],
+      "eprint": "2024/1514",
+      "title": "Black-Box Non-Interactive Zero Knowledge from Vector Trapdoor Hash",
+      "url": "https://eprint.iacr.org/2024/1514",
+      "use": "Surviving nonlinear/hidden-bits lead only; NIZK is not treated as a WPRF/WKEM."
+    }
+  ],
+  "local_inputs_used": [
+    {
+      "archive": "wkem_gap_onehot_affine_norm_transfer_run118.zip",
+      "role": "exact Run-118 compiler/checker semantics from previous run"
+    },
+    {
+      "archive": "wkem_half_trapdoor_noise_gap_run119.zip",
+      "role": "exact Run-119 constant-noise-gap/half-trapdoor handoff from previous run"
+    }
+  ],
+  "publication_attempt": {
+    "checker_blob": {
+      "branch_visible": false,
+      "sha": "2e490f63035fef013643fd2a7e732f4ff8f9438b",
+      "verified_exact_git_blob_hash": true
+    },
+    "commit_sha": null,
+    "ordinary_comment_id": null,
+    "outstanding_local_only_paths": [
+      "research/pq-wkem/PUBLIC_AFFINE_PSEUDOWITNESS_NOISE_ATTACK_RUN120.md",
+      "research/pq-wkem/public_affine_pseudowitness_noise_run120_check.py",
+      "research/pq-wkem/public-affine-pseudowitness-noise-run120-validation.json",
+      "research/pq-wkem/PUBLIC_AFFINE_PSEUDOWITNESS_NOISE_ATTACK_RUN120_PROVENANCE.json"
+    ],
+    "post_block_actions": "No further GitHub writes attempted. Read-only verification confirmed branch head unchanged and target path absent.",
+    "proof_blob": {
+      "branch_visible": false,
+      "sha": "46ed0d41fba7c827cb223b2bb952e45957d97a0c",
+      "verified_exact_git_blob_hash": true
+    },
+    "request_or_correlation_id": null,
+    "timestamp_from_tool": null,
+    "validation_blob_result": "BLOCKED_BEFORE_GITHUB",
+    "validation_error": "Script error: This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "verified_branch_paths": [],
+    "verified_final_head": "a0803edfa691f184e33ca92620471a81c17c611c",
+    "verified_pr_state": {
+      "draft": true,
+      "merged": false,
+      "open": true
+    },
+    "write_actions_invoked": [
+      "mcp__GitHub__create_blob",
+      "mcp__GitHub__create_blob",
+      "mcp__GitHub__create_blob"
+    ]
+  },
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "run": 120,
+  "scope": [
+    "New research result: explicit public source-invalid assignment pseudowitness attack on the direct Run-117/118 one-hot compiler + Run-115/116 centered noisy linear release.",
+    "Attack is classical polynomial-time and assumption-free once the public release is given; therefore refutes QPT security of that specific composition a fortiori.",
+    "Gaussian tail controls are functionality/distribution checks, not computational-security evidence.",
+    "Leaky-LWE source theorem is PPT/classical as stated; QPT lift is not claimed.",
+    "No production/workflow files changed and no merge/review action authorized."
+  ],
+  "starting_head": "a0803edfa691f184e33ca92620471a81c17c611c",
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  },
+  "status": "PARTIALLY_PUBLISHED_ZERO_BRANCH_VISIBLE_PATHS"
+}

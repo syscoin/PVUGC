@@ -1,0 +1,41 @@
+{
+  "run": 64,
+  "starting_pr_head": "eaa7b4d20cd266da175894e3f6a84b8b346a556e",
+  "scope": "research/pq-wkem only",
+  "external_literature_or_web_search": false,
+  "production_code_changed": false,
+  "claims": {
+    "proved": [
+      "For public positive-definite Gaussian covariance, the public minimum-variance annihilator is computable by linear algebra and has variance no larger than every valid witness functional.",
+      "For the Run-63 OR2 Boolean-quotient fixture with isotropic covariance, lambda*=(1,1/3,1/3,-1/3) has squared norm 4/3 versus witness squared norms 2,2,4.",
+      "For an r-variable OR clause and any nonempty proper T, the signed Walsh functional lambda_T(S)=(-1)^{|S intersect T|} annihilates the clause-falsity mask, maps the key direction to one, and is not a Boolean witness evaluation.",
+      "Under iid sign-symmetric coefficient noise, the signed public dual has exactly the same residual noise distribution as the valid all-ones witness.",
+      "For T={1}, lambda_T=2 ell_{[r]\\T}-ell_{[r]}."
+    ],
+    "implemented": [
+      "Exact rational linear algebra for public covariance minimization.",
+      "Exact OR-clause signed-dual checks.",
+      "Exact iid ternary histogram enumeration.",
+      "Random exact covariance controls and a Gaussian Monte Carlo diagnostic."
+    ],
+    "not_claimed": [
+      "No generic impossibility theorem for modular LWE/SIS short-dual constructions.",
+      "No arbitrary-QPT early-recovery to source-witness reduction.",
+      "No complete generic-NP WKEM.",
+      "No security conclusion from Monte Carlo tests.",
+      "No claim that the single OR-clause fixture by itself is a hard-witness counterexample."
+    ]
+  },
+  "checker_sha256": "493f2146355cfcc339ae43a8ee5b9520bc1ff20ad51042a3c09a138de2d0498c",
+  "captured_validation_sha256": "ca7856bbbee205fad0383cefff5a499d655c381df864bef19e8b2fb91b8379aa",
+  "checker_execution": {
+    "finalized_runs": 2,
+    "byte_identical_json": true,
+    "random_covariance_instances": 120,
+    "feasible_vectors_checked": 1440,
+    "gaussian_or2_trials": 100000,
+    "exact_ternary_vectors_r2": 81,
+    "exact_ternary_vectors_r3": 6561
+  },
+  "stopping_condition_met": false
+}

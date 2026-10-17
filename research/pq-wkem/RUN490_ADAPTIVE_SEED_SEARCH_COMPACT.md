@@ -1,0 +1,25 @@
+# Run 490 — seed-adaptive native-key search corrects the varying-seed escape
+
+Date 2026-10-13. Live source before this iteration: syscoin/PVUGC#1, draft branch `research/pq-wkem-validation-20260918`, head `37840b4317645ebd7cab5787bf02b2c91cee28a5`. This is a bounded **conditional ideal-model falsification**, not a practical WKEM.
+
+**Correction to Run 488:** Run 488's fixed-seed claw is still valid in its defined two-family model. Its proposed fallback of matching independent FULL `(PK.seed,PK.root)` keys, with ideal classical exponent h and quantum exponent 2h/3, **cannot** be applied to a malicious signer who can choose its native PK.seed adaptively from the builder output. Varying the builder PK.seed with coins does not prevent the attacker from copying it.
+
+Consider public classical-PPT `Build(x;r)->(P_x,S_x(r),B_x(r))` with freely selectable coins r, for an ORIGINAL-false claim template x. Native FIPS-205-like top-root computation is `G_s(z)` where s=PK.seed, z=SK.seed, and PK.root=G_s(z); independent SK.prf may be chosen later (FIPS 205 final, §9.1 Algorithm 18). For each pair (r,z) define the **public coherent-search predicate**
+
+```
+P_x(r,z) = [ B_x(r) == G_{S_x(r)}(z) ] .
+```
+
+On finding a match, an attacker publishes the false-claim keyless capsule made with r and retains (z, SK.prf, S_x(r), B_x(r)), a standard-format signing secret for the branch native key. It can issue a **fresh** accepted signature without ORIGINAL source evidence. This is pre-funding malicious selected-key construction; it neither changes an already-funded honest UTXO nor contradicts ordinary SLH-DSA security.
+
+**Exact conditional probability:** let N=2^h, root output h bits. For independently uniform builder B_x(r) and independent random native maps G_s, each pair (r,z) matches with probability 1/N, because the signer deliberately chooses s=S_x(r). With coin domain R and typical marked count M=Theta(R), Grover over the D=R*N pairs takes O(sqrt(D/M))=O(2^(h/2)) coherent evaluator calls. A known-M iteration has exact success `sin²((2t+1)arcsin(sqrt(M/D)))`; unknown-M search requires an appropriate schedule. This upper bound is about **query complexity**, not affordable reversible SLH circuits, QROM guarantees for actual FIPS 205, quantum memory, or QPT-time insecurity.
+
+Ideal root-width illustrations: 128 bits -> 2^64 adaptive quantum queries; 192 -> 2^96; 256 -> 2^128. The invalid independent full-key heuristic would instead give 2^85.33, 2^128 and 2^170.67. **Do not infer a practical attack or downgrade of the native signature standard.** Actual native root maps may not behave as random maps; a source-conditioned false-instance builder could avoid the modeled joint support. With only a single builder coin, Run 489's missing-image obstacle remains.
+
+**Executed falsification:** the attached exact compact JS checker uses 8 deterministic tiny **variable-seed** arithmetic-map fixtures (h=4,5,6,7), exhausts all r,z, checks that each fixture has unreachable as well as reachable builder roots, and numerically simulates coherent phase-marking plus Grover diffusion. It passes 56 explicit assertions, with each simulated success matching the closed form within 1e-9 and exceeding 0.90. An independent executed Python/NumPy checker (9 domain-separated SHA256-truncated fixtures, 56 assertions, repeated byte-identical) is preserved locally; see provenance. Neither checker is real FIPS 205, a quantum circuit, or a practical local mixer.
+
+**Attack taxonomy:** (5) adaptive public evaluation, (6) malicious retained construction/signing coins, (8) full public checking-key correlation and (9) coherent Grover query are decisive. (7) transaction domain separation blocks replay, not fresh signing with a retained matching secret. (4) one capsule suffices; correlated multi-capsule security is unproved. (1–3) seam/gauge/fingerprint are not instantiated in this public-key-map candidate. Honest setup/evaluation is classical PPT; arbitrary QPT security remains required but unproved. No WE/RIO/iO-equivalent assumption has been introduced.
+
+**Handoff:** Simply entangling PK.seed with builder coins is not an independently justified keyless solution. A surviving candidate must simultaneously prove native-image correctness for **all valid ORIGINAL witnesses** and false-instance builder-secret resistance with retained coins, against arbitrary QPT and all public auxiliary views. Run 259 and Run 483 can bind an **already accepted COMPLETE** source representation; neither forces a native signature to yield one. The missing local release / signature -> COMPLETE representation implication, full-public-output QPT hiding, all-witness same-key recovery, malicious N-of-N ceremony and 128-bit resources remain OPEN. Keep production untouched and the PR draft/unmerged.
+
+Primary sources: FIPS 205 Algorithm 18, https://nvlpubs.nist.gov/nistpubs/fips/nist.fips.205.pdf ; Boyer–Brassard–Høyer–Tapp, *Tight Bounds on Quantum Searching*, https://onlinelibrary.wiley.com/doi/10.1002/%28SICI%291521-3978%28199806%2946%3A4/5%3C493%3A%3AAID-PROP493%3E3.0.CO%3B2-P .
