@@ -1,0 +1,21 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "citation": "https://arxiv.org/abs/quant-ph/9605034",
+  "commands": [
+    "python run615_publish_check.py",
+    "python run615_publish_check.py (repeat; identical stdout)"
+  ],
+  "date": "2026-10-18",
+  "exact_sha256": {
+    "RUN615_PUBLISH_NOTE.md": "39f1c9122c74532eb6f7b53725e36cbd2a291f1849e7c2509f65b36e4d398d78",
+    "run615_publish_check.py": "9b7d39ddc38770a321f31aaeef8f738ae6570dcb8a8b2edba5e3a5788479c775",
+    "run615_publish_validation.json": "79b99b813a9674651ce21076eead2740efae4fca7905e94edad7b18b6a066ae1"
+  },
+  "executed_check_count": 3437,
+  "original_np_source": "NOT IMPLEMENTED",
+  "pr": 1,
+  "qpt_security": "UNPROVED",
+  "repository": "syscoin/PVUGC",
+  "run": 615,
+  "starting_sha": "e5d7d21e235b3827fe0dce9d1efd8b56bfadd2ea"
+}
