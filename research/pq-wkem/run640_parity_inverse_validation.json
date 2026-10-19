@@ -1,0 +1,120 @@
+{
+  "assertions": 325,
+  "checker": "run640_parity_inverse_check.py",
+  "conclusion": "finite identities verified; no cryptographic security inference",
+  "illustration": {
+    "R": 13107,
+    "binary_entries": 131072,
+    "m": 256,
+    "mandatory_J_Frob_norm_lower_bound": 114.49017425089369,
+    "mandatory_J_operator_norm_lower_bound": 7.1556358906808555,
+    "rho": 0.09999847412109375,
+    "t": 512,
+    "union_log2_upper_bound": -4064.4435445120034
+  },
+  "models": [
+    {
+      "fixed_U_solutions": 2,
+      "full_rank_candidate_U": 3,
+      "m": 1,
+      "matrices_D": 4,
+      "t": 2,
+      "thresholds": [
+        {
+          "R": 0,
+          "event_denominator": 1,
+          "event_numerator": 0,
+          "union_bound_den": 2,
+          "union_bound_num": 1
+        },
+        {
+          "R": 1,
+          "event_denominator": 4,
+          "event_numerator": 3,
+          "union_bound_den": 2,
+          "union_bound_num": 3
+        },
+        {
+          "R": 2,
+          "event_denominator": 4,
+          "event_numerator": 3,
+          "union_bound_den": 1,
+          "union_bound_num": 2
+        }
+      ]
+    },
+    {
+      "fixed_U_solutions": 16,
+      "full_rank_candidate_U": 210,
+      "m": 2,
+      "matrices_D": 256,
+      "t": 4,
+      "thresholds": [
+        {
+          "R": 0,
+          "event_denominator": 1,
+          "event_numerator": 0,
+          "union_bound_den": 16,
+          "union_bound_num": 1
+        },
+        {
+          "R": 1,
+          "event_denominator": 1,
+          "event_numerator": 0,
+          "union_bound_den": 16,
+          "union_bound_num": 9
+        },
+        {
+          "R": 2,
+          "event_denominator": 128,
+          "event_numerator": 55,
+          "union_bound_den": 16,
+          "union_bound_num": 37
+        },
+        {
+          "R": 3,
+          "event_denominator": 128,
+          "event_numerator": 105,
+          "union_bound_den": 16,
+          "union_bound_num": 93
+        },
+        {
+          "R": 4,
+          "event_denominator": 128,
+          "event_numerator": 105,
+          "union_bound_den": 16,
+          "union_bound_num": 163
+        },
+        {
+          "R": 5,
+          "event_denominator": 128,
+          "event_numerator": 105,
+          "union_bound_den": 16,
+          "union_bound_num": 219
+        },
+        {
+          "R": 6,
+          "event_denominator": 128,
+          "event_numerator": 105,
+          "union_bound_den": 16,
+          "union_bound_num": 247
+        },
+        {
+          "R": 7,
+          "event_denominator": 128,
+          "event_numerator": 105,
+          "union_bound_den": 16,
+          "union_bound_num": 255
+        },
+        {
+          "R": 8,
+          "event_denominator": 128,
+          "event_numerator": 105,
+          "union_bound_den": 1,
+          "union_bound_num": 16
+        }
+      ]
+    }
+  ],
+  "run": 640
+}
