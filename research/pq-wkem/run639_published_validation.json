@@ -1,0 +1,1 @@
+{"run":639,"result":"PASS","checks":631,"uniform_matrices":625,"short_target_matrices":180,"union_bound":"8/25","exact_probability":"36/125","tight_inverse_norm":8}
