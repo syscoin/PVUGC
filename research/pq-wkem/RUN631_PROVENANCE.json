@@ -1,0 +1,24 @@
+{
+  "run": 631,
+  "date_utc": "2026-10-19",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "382a68bc66c01727827fb4583d9e6693df67738b",
+  "base_tree": "26717365ccd99bf0e09689a519f096e5fa45b9f1",
+  "classification": "conditional coherent search-density necessary parameter bound; NOT WKEM or deployed endpoint",
+  "model": "honest classical PPT; arbitrary QPT coherent evaluations of complete public signature-acceptance circuit; no oracle idealization",
+  "exact_validated_checker": "run631_grover_frontier_check.py, 222 assertions, repeated stdout byte-identical, Python compile passed",
+  "blob_shas": {
+    "research/pq-wkem/RUN631_FRONTIER_SEARCH_DENSITY_BARRIER.md": "8393e7f183fd46c2ab0573b75ca7f23787d19b36",
+    "research/pq-wkem/run631_grover_frontier_check.py": "4708c81bf5ae48de1afbe8d9768f97f97ac35bf6",
+    "research/pq-wkem/run631_grover_frontier_validation.json": "1b4b816950671598059374b4e1c75c591d93de0a"
+  },
+  "expanded_local_note_sha256": "9035402274d043aaeb50726bd44e287ff7a25f4500cfa9c10a5f19ff54cc241e",
+  "limitations": [
+    "no complete-source sampler or all-witness implementation",
+    "no QPT hiding or recovery-to-ORIGINAL extraction",
+    "not a CCMR/RIO or Gaussian ciphertext attack",
+    "one-honest malicious ceremony and Bitcoin endpoint remain open"
+  ]
+}
