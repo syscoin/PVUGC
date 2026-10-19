@@ -1,0 +1,19 @@
+{
+  "classical_hash": "SHA256 toy public checker only",
+  "coherent_fixtures": 1280,
+  "coherent_nonzero_gaps": 256,
+  "counted_assertions": 3360,
+  "cross_capsule_related_key_false_B_leaks": 400,
+  "hardware": "none",
+  "max_gap": 1.0,
+  "minimum_extraction_bound_slack": 0.0,
+  "model": "two-index coherent XOR-release oracle, 5 qubits incl advice",
+  "q_range": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "real_WKEM": "unproved",
+  "run": 625
+}
