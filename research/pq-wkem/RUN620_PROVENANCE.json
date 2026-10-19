@@ -1,0 +1,29 @@
+{
+  "run": 620,
+  "date": "2026-10-18",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "5d52462fb6a11b31135722335099ba3a7ac613d6",
+  "status": "new scoped theorem, not a practical PQ WKEM",
+  "actual_live_source_blobs": {
+    "run619": "f81063d9bff265f71f53ffc48cac8cdc6fb03ea0",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run615": "6e11c2af29aa42329d46dd885e18bdbe7c0aa8ce"
+  },
+  "verified_precommit_git_blob_sha1": {
+    "RUN620_INDEPENDENT_LOCAL_MASK_BROADCAST_BOUND.md": "ed5ef4793f4252d4f3026a55e68da40d89822a6c",
+    "run620_publish_check.py": "6a55e2e7f496c467736dad01c7c576738ea9c967",
+    "run620_publish_validation.json": "cd0ae125e9a49a5afdff17576002fa9d438de2cc"
+  },
+  "checker": "python3 standard library, py_compile passed, two byte-identical runs",
+  "small_encoder_exhaustive_counts": "16 encoders => 2 valid; 256 => 0 valid; 65536 => 24 valid",
+  "cross_capsule_trials": 256,
+  "local_extended_note_sha256": "8d86061e92da1897953dbff541bea9ba79d83ac4ba6705cbefa353806b0e41f5",
+  "local_extended_checker_sha256": "8dfa65a2a5f5220cc596482be76f76595e3556ffd31a21f1b28066957a5f7aea",
+  "original_source_extraction": "unproved for public release code",
+  "real_public_key_qpt_security": "unproved",
+  "malicious_setup_security": "unproved",
+  "native_signing": "not implemented",
+  "production": "unchanged"
+}

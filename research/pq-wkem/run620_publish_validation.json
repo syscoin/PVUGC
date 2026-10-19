@@ -1,0 +1,26 @@
+{
+  "census": [
+    [
+      1,
+      1,
+      16,
+      2
+    ],
+    [
+      2,
+      1,
+      256,
+      0
+    ],
+    [
+      2,
+      2,
+      65536,
+      24
+    ]
+  ],
+  "model": "independent masks, perfect secrecy, no public native pk",
+  "reuse_checks": 256,
+  "run": 620,
+  "status": "scoped lower bound; NO PQ WKEM"
+}
