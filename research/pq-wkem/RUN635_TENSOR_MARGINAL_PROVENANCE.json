@@ -1,0 +1,24 @@
+{
+  "research_id": 635,
+  "date": "2026-10-19",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "a4116ef1ea02a22f771b61a14b2973d43d00f3fd",
+  "checker": "run635_tensor_marginal_check.js",
+  "checks_passed": 10583,
+  "checker_executed": "V8 JavaScript runCheck() returning exact reported JSON, same function bytes published",
+  "independent_local_python_checks": 17668,
+  "literature": [
+    "https://arxiv.org/abs/2505.01930",
+    "https://doi.org/10.1137/050644756",
+    "https://eprint.iacr.org/2024/006"
+  ],
+  "known_limits": [
+    "public exact tensor representation is a restrictive hypothesis",
+    "parity witnesses easy",
+    "no native signatures or hard SOURCE security",
+    "no complete QPT proof",
+    "no production changes"
+  ]
+}
