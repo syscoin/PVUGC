@@ -1,0 +1,50 @@
+{
+  "assertions": 46629,
+  "generic_grover_budget_examples": [
+    {
+      "classical_log2_random_tries": 128,
+      "distinct_marked_states_log2": 0,
+      "grover_log2_queries": 64.0,
+      "state_bits": 128
+    },
+    {
+      "classical_log2_random_tries": 256,
+      "distinct_marked_states_log2": 0,
+      "grover_log2_queries": 128.0,
+      "state_bits": 256
+    },
+    {
+      "classical_log2_random_tries": 192,
+      "distinct_marked_states_log2": 64,
+      "grover_log2_queries": 96.0,
+      "state_bits": 256
+    },
+    {
+      "classical_log2_random_tries": 128,
+      "distinct_marked_states_log2": 128,
+      "grover_log2_queries": 64.0,
+      "state_bits": 256
+    },
+    {
+      "classical_log2_random_tries": 256,
+      "distinct_marked_states_log2": 128,
+      "grover_log2_queries": 128.0,
+      "state_bits": 384
+    },
+    {
+      "classical_log2_random_tries": 256,
+      "distinct_marked_states_log2": 256,
+      "grover_log2_queries": 128.0,
+      "state_bits": 512
+    }
+  ],
+  "max_input_bits_checked": 7,
+  "periodic_oracle_fixtures": 246,
+  "reversible_gate_operations_generated": 54472,
+  "run": "647",
+  "scope": "finite checks of Simon promise, coherent measurement law, classical simulation of samples; not a QPT proof, native signing implementation or security test",
+  "seed": 20261019,
+  "simon_queries_for_2^-129_union_bound": "b+128",
+  "simulated_quantum_recovery_trials": 1476,
+  "start_sha": "93937ee77f20540fbd23c2ce851cc99c8e016f5e"
+}
