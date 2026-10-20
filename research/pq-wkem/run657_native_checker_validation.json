@@ -1,0 +1,43 @@
+{
+  "run": 657,
+  "checker": "native_public_checkability_js",
+  "result": "passed",
+  "assertions": 739,
+  "fixtures": 147,
+  "bits_tested": "2..12",
+  "examples": [
+    {
+      "seed_bits": 128,
+      "frontier_bits": 384,
+      "log2_valid_states": 128,
+      "native_query_exponent": 64,
+      "frontier_query_exponent": 128,
+      "generic_min_query_exponent": 64
+    },
+    {
+      "seed_bits": 256,
+      "frontier_bits": 384,
+      "log2_valid_states": 128,
+      "native_query_exponent": 128,
+      "frontier_query_exponent": 128,
+      "generic_min_query_exponent": 128
+    },
+    {
+      "seed_bits": 256,
+      "frontier_bits": 256,
+      "log2_valid_states": 64,
+      "native_query_exponent": 128,
+      "frontier_query_exponent": 96,
+      "generic_min_query_exponent": 96
+    },
+    {
+      "seed_bits": 384,
+      "frontier_bits": 512,
+      "log2_valid_states": 128,
+      "native_query_exponent": 192,
+      "frontier_query_exponent": 192,
+      "generic_min_query_exponent": 192
+    }
+  ],
+  "scope": "Finite accepted-seed densities and Grover amplitude trigonometry; not a cryptographic security proof"
+}
