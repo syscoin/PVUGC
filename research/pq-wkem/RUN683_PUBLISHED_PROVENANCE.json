@@ -1,0 +1,29 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_validation": {
+    "assertions": 1716,
+    "py_compile": true,
+    "repeat_byte_identical": true
+  },
+  "pr": 1,
+  "pr_draft_unmerged": true,
+  "provenance": [
+    {
+      "path": "research/pq-wkem/RUN683_PUBLISHED_SCOPE.md",
+      "sha256": "a3abffc581a1ebc1ac2c6d4c2122b2fab25bc9ae6bc7194db4fa4997781abd72"
+    },
+    {
+      "path": "research/pq-wkem/run683_published_check.py",
+      "sha256": "ac244ed02faad04d8316fc019bea6322bc161dad9e85a8ab8fbf1a3bd550815c"
+    },
+    {
+      "path": "research/pq-wkem/run683_published_validation.json",
+      "sha256": "49bf692de4a0f5129be9e0e2ddae21e9adefafba783b057ea918011a0b89ee17"
+    }
+  ],
+  "publication_at_generation": "prepared; successful branch commit and comment require independent readback",
+  "repository": "syscoin/PVUGC",
+  "research_only": true,
+  "run": 683,
+  "starting_head": "4a09972de0b383379632e7032d2e2eed0814695a"
+}
