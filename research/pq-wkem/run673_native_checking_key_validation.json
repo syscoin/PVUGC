@@ -1,0 +1,16 @@
+{
+  "accepted_seed_candidates": [
+    723
+  ],
+  "accepted_seed_count": 1,
+  "assertions": 1037,
+  "distinguishing_gap": "1023/1024",
+  "domain_size": 1024,
+  "honest_seed": 723,
+  "model": "toy deterministic Lamport OTS with 10-bit seed",
+  "native_fixed_message_bits": "1011",
+  "note": "Public-key correlation only; not WE, PQ security, or practical signing.",
+  "probability_check_accept_independent_uniform": "1/1024",
+  "probability_check_accept_real": "1",
+  "run": 673
+}
