@@ -1,0 +1,14 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checks": "python py_compile; two byte-identical runs; 63 assertions",
+  "date": "2026-10-21",
+  "limitations": "Research-only. Finite search checks; no cryptographic WKEM claim. Full extended local proof is not the published scope note.",
+  "members": {
+    "RUN688_FRONTIER_DENSITY_SCOPE.md": "b7b7093cc3c6e5ca1fcd3354a115ad3fe104eaae219f7d2a0b9414d021902c6d",
+    "run688_frontier_density_published_check.py": "0357f4d369674c46a402d03d0de76b1ed3094eaa2566a06688a7f49f1af5b6fb",
+    "run688_frontier_density_published_validation.json": "7df0a9b488d7ca2836bbeefa1ca511f29b4dfd5e7f42cc8ee4de64eb60b69352"
+  },
+  "pr": "syscoin/PVUGC#1",
+  "run": 688,
+  "start_sha": "d6bf7fe50e7b0d8b23c7d7e60e0bc17d8a81cea4"
+}
