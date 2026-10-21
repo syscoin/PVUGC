@@ -1,0 +1,32 @@
+{
+  "run_id": 680,
+  "created_utc": "2026-10-21T14:28:54.198205+00:00",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "verified_start_sha": "d2ac760d78252daaca420f82cb7b4d5b01487db2",
+  "base_tree_sha": "5b3d4b6037e50fb63ed3f704df6c752633d73670",
+  "related_ordinary_comment_id": 6241612333,
+  "exact_source_blobs": {
+    "clz_assessment": "c19d9d9cd515140e3ce62eac960cd548c0add622",
+    "run259_source_binding": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run673_native_key_game": "22c057e87e58422367557a231e2be2e7aa11b3b1"
+  },
+  "published_intended_blobs": {
+    "RUN680_PUBLISHED_SCOPE.md": "c5a019d48f7553caabdcec3812751dfe586e2253",
+    "run680_public_join_check.py": "9362199064aef53a81ddaa5f57d2b872c2fa5fd5",
+    "run680_public_join_validation.json": "111a6770181f59a08444eb070f489cb7efab5dfe"
+  },
+  "executed_validation": {
+    "assertions": 420,
+    "python_syntax_compiles": true,
+    "two_executions_byte_identical": true,
+    "exact_checker_matches_uploaded_blob": true,
+    "toy_not_cryptographic_security": true
+  },
+  "claim_scope": "IND-CPA public-processing no-go for known true witness and challenge-independent auxiliary inputs; excludes native checking-key-correlated public output",
+  "full_extended_note": "local-only /mnt/data/pq_run680/RUN680_PUBLIC_LATE_JOIN_IND_CPA_BARRIER.md",
+  "publication_state_when_written": "blobs created; commit and comment not yet verified",
+  "production_unchanged": true,
+  "complete_practical_wkem": false
+}
