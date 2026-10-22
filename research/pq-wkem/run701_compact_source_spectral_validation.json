@@ -1,0 +1,29 @@
+{
+  "run": 701,
+  "scope": "3CNF SOURCE -> typed spectral public operator -> same capability; algebra only",
+  "q": 101,
+  "positive": {
+    "variables": 2,
+    "clauses": 1,
+    "gates": 5,
+    "source_coordinates": 5,
+    "matrix_size": 11,
+    "valid_original_witnesses": 3,
+    "invalid_original_assignments": 1,
+    "common_key_recoveries": 3,
+    "distinct_valid_matrices": 3
+  },
+  "negative": {
+    "variables": 1,
+    "clauses": 2,
+    "gates": 7,
+    "source_coordinates": 6,
+    "matrix_size": 15,
+    "valid_original_witnesses": 0,
+    "invalid_original_assignments": 2,
+    "common_key_recoveries": 0,
+    "distinct_valid_matrices": 0
+  },
+  "assertions": 988,
+  "security": "QPT hiding/arbitrary extraction UNPROVED"
+}
