@@ -1,0 +1,36 @@
+{
+  "executions": {
+    "byte_identical_stdout": true,
+    "captured_validation_is_exact_stdout": true,
+    "published_checker_final_runs": 2,
+    "python": "standard library only"
+  },
+  "external_literature_or_web_search": false,
+  "github_usage": "requested repository research record only",
+  "not_claimed": [
+    "generic-NP witness KEM",
+    "LWE or SIS hardness or reduction",
+    "arbitrary-QPT key-recovery to source-witness extraction",
+    "impossibility of all metric/noisy linearizations",
+    "security of a nonlinear compiler",
+    "malicious-secure ceremony composition or deployment parameters"
+  ],
+  "proved_claims": [
+    "one stacked linear capsule requires one common solution z of Az=b",
+    "if b is outside im(A), all key-conditioned transcripts are identical for arbitrary additive noise independent of key and secret",
+    "the complete Fourier spectrum has no key-dependent target frequency when b is outside im(A)",
+    "one-hot sets of size at least 3 are not projections of affine linear systems over F2",
+    "an exact deterministic generic-NP-to-linear-solvability compiler would place the language in P; randomized high-probability version gives a randomized polynomial-time decision procedure",
+    "Run-53 all-exclusions normalization/marginal relaxation has explicit false F2 pseudolifts of weight 2(2^k-1)"
+  ],
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "run": 62,
+  "scope": "research/pq-wkem only; production code unchanged",
+  "sha256": {
+    "checker": "274e7b3a3a6e6af65f8a7ac171ec2e09b4e2f8fbe9274c5a6ce8596539ffd616",
+    "proof": "f761315771aa9bd0ab91b2e724cdd76ac5457113a5f3b6ba71b37d578dd18869",
+    "validation": "a8730ee74dd1c07648a7c1f204871b9c15f904df2559ceaf1ac09f43374f1b85"
+  },
+  "starting_pr_head": "4cc75b8b351db5e7aba142c83b750600f521b922"
+}

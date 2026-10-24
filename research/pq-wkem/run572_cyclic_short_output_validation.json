@@ -1,0 +1,16 @@
+{
+  "assertions_passed": 34392,
+  "checkpoint": "run572_cyclic_short_output",
+  "dihedral_coset_fiber_fixtures": 4960,
+  "dihedral_oracle_instances": 155,
+  "forest_graph_fixtures": 13089,
+  "model": "public coherent ideal-oracle/independent random-function distribution; exact finite checks only",
+  "pq_release_security_established": false,
+  "quantum_algorithm_executed": false,
+  "sample_kappa": 128,
+  "sample_n": 128,
+  "sample_noninjectivity_union_bound": "< 2^-129",
+  "sample_offsets": 384,
+  "sample_output_bits": 1,
+  "tiny_exact_probability_fixtures": 248
+}

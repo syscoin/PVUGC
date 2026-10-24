@@ -1,0 +1,313 @@
+{
+  "actual_source_dimension_controls": {
+    "cases": [
+      {
+        "N": 2,
+        "R": 1,
+        "actual_false_source_dimension": 1,
+        "effective_column_rank_ceiling": 3,
+        "fd_independence_lower_bound": 0,
+        "p": 7
+      },
+      {
+        "N": 3,
+        "R": 1,
+        "actual_false_source_dimension": 4,
+        "effective_column_rank_ceiling": 4,
+        "fd_independence_lower_bound": 3,
+        "p": 7
+      },
+      {
+        "N": 4,
+        "R": 2,
+        "actual_false_source_dimension": 5,
+        "effective_column_rank_ceiling": 5,
+        "fd_independence_lower_bound": 3,
+        "p": 19
+      },
+      {
+        "N": 5,
+        "R": 2,
+        "actual_false_source_dimension": 15,
+        "effective_column_rank_ceiling": 6,
+        "fd_independence_lower_bound": 6,
+        "p": 23
+      }
+    ],
+    "dependency_found": true,
+    "dependency_path": "/mnt/data/run89repo/research/pq-wkem/literature-20260924/rank_field_extensions.py"
+  },
+  "common_support_blowup_rank_controls": 120,
+  "fd_independence_controls": [
+    {
+      "N": 3,
+      "R": 1,
+      "S0": 4,
+      "S2": 3,
+      "effective_column_rank_ceiling": 4,
+      "independent_fd_matrices": 3,
+      "lower_bound_ge_ceiling": false,
+      "p": 7
+    },
+    {
+      "N": 4,
+      "R": 2,
+      "S0": 1,
+      "S2": 16,
+      "effective_column_rank_ceiling": 5,
+      "independent_fd_matrices": 3,
+      "lower_bound_ge_ceiling": false,
+      "p": 19
+    },
+    {
+      "N": 5,
+      "R": 2,
+      "S0": 5,
+      "S2": 2,
+      "effective_column_rank_ceiling": 6,
+      "independent_fd_matrices": 6,
+      "lower_bound_ge_ceiling": true,
+      "p": 23
+    },
+    {
+      "N": 6,
+      "R": 2,
+      "S0": 23,
+      "S2": 16,
+      "effective_column_rank_ceiling": 7,
+      "independent_fd_matrices": 10,
+      "lower_bound_ge_ceiling": true,
+      "p": 29
+    },
+    {
+      "N": 8,
+      "R": 3,
+      "S0": 62,
+      "S2": 37,
+      "effective_column_rank_ceiling": 9,
+      "independent_fd_matrices": 15,
+      "lower_bound_ge_ceiling": true,
+      "p": 67
+    },
+    {
+      "N": 10,
+      "R": 3,
+      "S0": 70,
+      "S2": 2,
+      "effective_column_rank_ceiling": 11,
+      "independent_fd_matrices": 28,
+      "lower_bound_ge_ceiling": true,
+      "p": 101
+    }
+  ],
+  "hair_sahai_logR_bound_cases": 124,
+  "hair_sahai_logR_first": [
+    {
+      "N": 5,
+      "R": 2,
+      "c": 6,
+      "ge_2c": false,
+      "k_lower": 6
+    },
+    {
+      "N": 6,
+      "R": 2,
+      "c": 7,
+      "ge_2c": false,
+      "k_lower": 10
+    },
+    {
+      "N": 7,
+      "R": 2,
+      "c": 8,
+      "ge_2c": false,
+      "k_lower": 15
+    },
+    {
+      "N": 8,
+      "R": 3,
+      "c": 9,
+      "ge_2c": false,
+      "k_lower": 15
+    },
+    {
+      "N": 9,
+      "R": 3,
+      "c": 10,
+      "ge_2c": true,
+      "k_lower": 21
+    }
+  ],
+  "hair_sahai_logR_last": [
+    {
+      "N": 126,
+      "R": 6,
+      "c": 127,
+      "ge_2c": true,
+      "k_lower": 7260
+    },
+    {
+      "N": 127,
+      "R": 6,
+      "c": 128,
+      "ge_2c": true,
+      "k_lower": 7381
+    },
+    {
+      "N": 128,
+      "R": 7,
+      "c": 129,
+      "ge_2c": true,
+      "k_lower": 7381
+    }
+  ],
+  "seed": 20260925061319,
+  "spectral_floor_controls": [
+    {
+      "N": 5,
+      "R": 2,
+      "bucket_floor_gt_one": true,
+      "c": 6,
+      "k_used": 6,
+      "log_q_bucket_floor": 17,
+      "log_q_floor_from_2r_lt_t": 17,
+      "q": 23,
+      "r": 1,
+      "t": 3
+    },
+    {
+      "N": 5,
+      "R": 2,
+      "bucket_floor_gt_one": true,
+      "c": 6,
+      "k_used": 6,
+      "log_q_bucket_floor": 29,
+      "log_q_floor_from_2r_lt_t": 29,
+      "q": 23,
+      "r": 2,
+      "t": 5
+    },
+    {
+      "N": 5,
+      "R": 2,
+      "bucket_floor_gt_one": true,
+      "c": 6,
+      "k_used": 6,
+      "log_q_bucket_floor": 53,
+      "log_q_floor_from_2r_lt_t": 53,
+      "q": 23,
+      "r": 4,
+      "t": 9
+    },
+    {
+      "N": 8,
+      "R": 3,
+      "bucket_floor_gt_one": true,
+      "c": 9,
+      "k_used": 15,
+      "log_q_bucket_floor": 80,
+      "log_q_floor_from_2r_lt_t": 80,
+      "q": 67,
+      "r": 1,
+      "t": 3
+    },
+    {
+      "N": 8,
+      "R": 3,
+      "bucket_floor_gt_one": true,
+      "c": 9,
+      "k_used": 15,
+      "log_q_bucket_floor": 194,
+      "log_q_floor_from_2r_lt_t": 194,
+      "q": 67,
+      "r": 2,
+      "t": 5
+    },
+    {
+      "N": 8,
+      "R": 3,
+      "bucket_floor_gt_one": true,
+      "c": 9,
+      "k_used": 15,
+      "log_q_bucket_floor": 566,
+      "log_q_floor_from_2r_lt_t": 566,
+      "q": 67,
+      "r": 4,
+      "t": 9
+    },
+    {
+      "N": 16,
+      "R": 4,
+      "bucket_floor_gt_one": true,
+      "c": 17,
+      "k_used": 78,
+      "log_q_bucket_floor": 599,
+      "log_q_floor_from_2r_lt_t": 599,
+      "q": 257,
+      "r": 1,
+      "t": 3
+    },
+    {
+      "N": 16,
+      "R": 4,
+      "bucket_floor_gt_one": true,
+      "c": 17,
+      "k_used": 78,
+      "log_q_bucket_floor": 1609,
+      "log_q_floor_from_2r_lt_t": 1609,
+      "q": 257,
+      "r": 2,
+      "t": 5
+    },
+    {
+      "N": 16,
+      "R": 4,
+      "bucket_floor_gt_one": true,
+      "c": 17,
+      "k_used": 78,
+      "log_q_bucket_floor": 5093,
+      "log_q_floor_from_2r_lt_t": 5093,
+      "q": 257,
+      "r": 4,
+      "t": 9
+    },
+    {
+      "N": 32,
+      "R": 5,
+      "bucket_floor_gt_one": true,
+      "c": 33,
+      "k_used": 378,
+      "log_q_bucket_floor": 3203,
+      "log_q_floor_from_2r_lt_t": 3203,
+      "q": 65537,
+      "r": 1,
+      "t": 3
+    },
+    {
+      "N": 32,
+      "R": 5,
+      "bucket_floor_gt_one": true,
+      "c": 33,
+      "k_used": 378,
+      "log_q_bucket_floor": 8789,
+      "log_q_floor_from_2r_lt_t": 8789,
+      "q": 65537,
+      "r": 2,
+      "t": 5
+    },
+    {
+      "N": 32,
+      "R": 5,
+      "bucket_floor_gt_one": true,
+      "c": 33,
+      "k_used": 378,
+      "log_q_bucket_floor": 28241,
+      "log_q_floor_from_2r_lt_t": 28241,
+      "q": 65537,
+      "r": 4,
+      "t": 9
+    }
+  ],
+  "status": "PASS",
+  "theorem_scope": "finite algebra/dimension/rank-ceiling validation only; no cryptographic hardness or QPT extraction claim"
+}

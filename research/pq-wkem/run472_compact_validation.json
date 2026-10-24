@@ -1,0 +1,32 @@
+{
+  "run": 472,
+  "checks": 610,
+  "rows": [
+    {
+      "hidden_bits": 2,
+      "message_tv": "1/4",
+      "optimal_exact_key_guess": "1/4",
+      "raw_key_candidate_check_tv": "15/16"
+    },
+    {
+      "hidden_bits": 3,
+      "message_tv": "1/8",
+      "optimal_exact_key_guess": "1/8",
+      "raw_key_candidate_check_tv": "7/8"
+    },
+    {
+      "hidden_bits": 4,
+      "message_tv": "1/16",
+      "optimal_exact_key_guess": "1/16",
+      "raw_key_candidate_check_tv": "3/4"
+    },
+    {
+      "hidden_bits": 5,
+      "message_tv": "1/32",
+      "optimal_exact_key_guess": "1/32",
+      "raw_key_candidate_check_tv": "1/2"
+    }
+  ],
+  "quantum_claim": "NO: exact finite checks, conditional GL reduction only",
+  "authorization_separation": "exact-key hiding does not imply native-forgery resistance"
+}

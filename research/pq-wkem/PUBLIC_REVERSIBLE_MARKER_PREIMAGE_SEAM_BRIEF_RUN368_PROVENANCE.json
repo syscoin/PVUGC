@@ -1,0 +1,16 @@
+{
+  "run": 368,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "7fec02b8102e49c23bc8e3be798eedbae4423967",
+  "published_checker": "compact_marker_inverse_run368_check.py",
+  "published_validation": "compact-marker-inverse-run368-validation.json",
+  "checker_sha256": "4040226561b129600aa4dd7cad33fc042d86c1550284fb70965e0fcb8fa552cd",
+  "captured_validation_sha256": "6296837747cee37e9a1c1ef487b48961d43113f7649212509faecaf155e911ce",
+  "checks": 1062,
+  "two_executions_identical": true,
+  "literature_pdf_fetch": "eprint 2026/1398 PDF HTTP 403",
+  "proof_scope": "publicly invertible raw prelude with public sink marker and separately injectable raw frontier; ideal endcap is attacked, not instantiated",
+  "production_changes": false
+}

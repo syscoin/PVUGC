@@ -1,0 +1,28 @@
+{
+  "counters": {
+    "assertions": 118752,
+    "branching_path_checks": 10,
+    "choices_tested": 84608,
+    "exhaustive_unary_models": 17064,
+    "fixed_orbit_successes": 42304,
+    "positive_models": 12598
+  },
+  "model": "finite-public-orbit-exhaustive",
+  "parameter_grids": [
+    [
+      2,
+      2
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      4,
+      4
+    ]
+  ],
+  "result": "PASS",
+  "run": 575,
+  "security_claim": "none; finite combinatorial verification only"
+}

@@ -1,0 +1,12 @@
+{
+  "run": 496,
+  "assertions": 5634,
+  "contexts": 512,
+  "true_contexts": 256,
+  "false_contexts": 256,
+  "valid_witness_same_key_releases": 1024,
+  "public_true_key_exposure_without_witness": 256,
+  "false_public_secret_omitted": 256,
+  "toy_map_bijection": true,
+  "limitations": "Toy affine permutation/public-key arithmetic only; NO QPT hardness, ZK implementation, PQ signing, mixer, or WKEM."
+}

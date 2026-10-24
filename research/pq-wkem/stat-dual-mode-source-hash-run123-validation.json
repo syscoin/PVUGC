@@ -1,0 +1,38 @@
+{
+  "assertions": 3107,
+  "canonical_index_negative_control": {
+    "ext_mode_recovery": "0",
+    "hash_mode_recovery": "1",
+    "public_tv": "0"
+  },
+  "checker": "stat_dual_mode_source_hash_run123_check.py",
+  "checker_sha256": "3aba4f2663ac82c01826e3fb5998c2dbd04cce490b3d0af149e4a3594422e0d9",
+  "claims_not_tested": [
+    "QPT hardness of any computational assumption",
+    "existence of generic-NP SDMSH",
+    "malicious-secure MPC/erasure ceremony"
+  ],
+  "false_hiding_cases": [
+    {
+      "best_recovery": "1/2",
+      "epsilon": "0"
+    },
+    {
+      "best_recovery": "9/16",
+      "epsilon": "1/16"
+    },
+    {
+      "best_recovery": "5/8",
+      "epsilon": "1/8"
+    },
+    {
+      "best_recovery": "11/16",
+      "epsilon": "3/16"
+    },
+    {
+      "best_recovery": "3/4",
+      "epsilon": "1/4"
+    }
+  ],
+  "run": 123
+}

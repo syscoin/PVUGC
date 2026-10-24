@@ -1,0 +1,27 @@
+{
+  "run": 427,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "187e6a0b9c288212e17eee3cd88c5a94a233f45e",
+  "sources": {
+    "RUN426_NONBIJECTIVE_FIBER_ORBIT.md": "cb9686768716f23661fe20f4507c50a3170ba6e6",
+    "RUN426_NONBIJECTIVE_FIBER_PROVENANCE.json": "a34816416b1005576ba116a154e5c6d713491142",
+    "RUN425_ONE_POINT_PINS_PUBLISH.md": "511cfd34cee890a7ac338c6fcf871b6b735ca73d"
+  },
+  "published_checker_command": "node research/pq-wkem/run427_compact_check.js",
+  "published_checker_assertions": 2335,
+  "independent_local_checker_command": "python run427_reversible_clean_boundary_check.py",
+  "independent_local_checker_assertions": 5207,
+  "independent_python_signatures": "8 Ed25519 non-PQ fixtures",
+  "independent_local_repeat_byte_identical": true,
+  "scoped_statement": "reversible lift leaks labeled fiber vector only when both public clean-input set and output partition are accessible",
+  "qpt": "information-theoretic classical attack, not a quantum-only construction",
+  "local_only_paths": [
+    "RUN427_REVERSIBLE_CLEAN_BOUNDARY_THEOREM.md",
+    "run427_reversible_clean_boundary_check.py",
+    "run427-validation.json"
+  ],
+  "production_changes": false,
+  "complete_practical_wkem": false
+}

@@ -1,0 +1,13 @@
+{
+  "run": 424,
+  "checks": 15768,
+  "functions": 36,
+  "mask_assignments_per_law": 216,
+  "anchor_sets": 4,
+  "distribution_pairs_compared": 5184,
+  "disjoint_pairs": 1080,
+  "stitched_shared_frame_cases": 1296,
+  "criterion": "forest with <=1 public frame per component hides full-table source assignment",
+  "qpt": "classical attack / unconditional finite distribution only",
+  "complete_wkem": false
+}

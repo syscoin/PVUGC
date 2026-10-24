@@ -1,0 +1,13 @@
+{
+  "run": 673,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "ebf44c677cae40bce5e09c367371979915f1c23b",
+  "previous_run672_blob": "6626bd0fa13f1349d62f3c2ce5a06f10bcee95f8",
+  "source_binding_run259_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "test": "Python py_compile, two byte-identical executions, 1037 assertions",
+  "code_sha256": "e19f5fee5506ab27398ea0a994e8ea29b49866d65ef4e49027ede7c3d371db84",
+  "validation_sha256": "2766fb973d97a2d19cf9c3615ff51b01d5381a0bedd3f3427d493b9cb82794b4",
+  "claim": "false native-key IND game is contradictory given public native key checking; NOT WKEM security"
+}

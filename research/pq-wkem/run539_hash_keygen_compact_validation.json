@@ -1,0 +1,14 @@
+{
+  "run": 539,
+  "model": "toy classical random oracle key mapping",
+  "retained_builder_queries": 256,
+  "fresh_query_trials": 50000,
+  "fresh_queries_per_trial": 4,
+  "fresh_query_hits": 216,
+  "per_trial_theorem_upper_bound": 0.0048828125,
+  "preimage_relation_trials": 192,
+  "nonunique_preimage_images": 4,
+  "all_assertions_passed": true,
+  "native_signatures": false,
+  "qpt_security": false
+}

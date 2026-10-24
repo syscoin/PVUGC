@@ -1,0 +1,37 @@
+{
+  "artifact_sha256": {
+    "RUN681_FIXED_UNARY_LATE_WITNESS_ORBIT_BYPASS.md": "a46e2c3011332a32b2caa18ca513daf648118d48e705509c1e199a63a3a53c7b",
+    "run681_unary_orbit_check.py": "188b904871ea23b9a4cd3d2840a509e7a048d071e3b860e43bf576db9ac5dafc",
+    "run681_unary_orbit_validation.json": "f6699cb0f4fa53c9d098b1819e028ce507f8b171f3fe08490e5691cd52c61103"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_assertions": 4124,
+  "date_utc": "2026-10-21T14:57:39.591388+00:00",
+  "exact_dependencies": {
+    "CLZ_APPLICABILITY_20261008.md": "c19d9d9cd515140e3ce62eac960cd548c0add622",
+    "GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "RUN680_PUBLISHED_SCOPE.md": "c5a019d48f7553caabdcec3812751dfe586e2253"
+  },
+  "latest_ordinary_substantive_comment": 6241612333,
+  "limitations": [
+    "finite toy/structural check",
+    "public witness-independent unary orbit only",
+    "not actual CLZ cryptanalysis",
+    "no security proof or protocol completion"
+  ],
+  "methods": [
+    "connected GitHub get_pr_info",
+    "connected GitHub fetch_pr_comments",
+    "connected GitHub fetch_file (exact-version)",
+    "connected GitHub fetch_commit (one latest commit only)",
+    "local Python py_compile",
+    "local Python checker twice; cmp identical",
+    "focused literature primary abstract check"
+  ],
+  "pr_number": 1,
+  "pr_state": "open/draft/unmerged",
+  "publication_status": "pending",
+  "repo": "syscoin/PVUGC",
+  "run": 681,
+  "starting_head_sha": "9248c5b31cc7772cb31b8aade30ba5e545b744ef"
+}

@@ -1,0 +1,40 @@
+{
+  "run": 44,
+  "starting_verified_head": "8122d88e0f1b4c749c752bccbe4f5e6f044fabb1",
+  "pr": "syscoin/PVUGC#1",
+  "branch": "research/pq-wkem-validation-20260918",
+  "checkpoint_comment_id": 5790800486,
+  "progress_comment_id": 5791167165,
+  "scope": "research/pq-wkem only; production code unchanged",
+  "external_literature_or_web_search": false,
+  "local_execution": {
+    "checker": "radial_preimage_gate_run44_check.py",
+    "checker_sha256": "407d05c2a119f7e1e688419278cf631783637b530a474736264e691a3983d38f",
+    "captured_json": "radial-preimage-gate-run44.json",
+    "captured_json_sha256": "e83ab1075824db28098db281c16455bd05a45270d4349d5d3649a4555e198de0",
+    "stdout_sha256_run1": "1d597a2bcd2769797a0def69c3d0511b815057b748f93c63e612001d4174995d",
+    "stdout_sha256_run2": "1d597a2bcd2769797a0def69c3d0511b815057b748f93c63e612001d4174995d",
+    "stdout_byte_identical": true,
+    "json_byte_identical_to_saved_result": true,
+    "seed": 440044,
+    "counts": {
+      "false_boolean_assignments_checked": 2,
+      "false_boolean_witnesses": 0,
+      "line_identity_checks": 65,
+      "radial_polynomial_escape_checks": 24,
+      "random_lift_preimage_checks": 600,
+      "honest_full_capsule_trials": 800,
+      "honest_full_capsule_failures": 0,
+      "false_full_capsule_trials": 800,
+      "false_full_capsule_successes": 783
+    }
+  },
+  "claim_boundaries": [
+    "The exact quadratic contraction and false affine-line attack are proved algebraically.",
+    "Exact finite noise probabilities are obtained by exhaustive dynamic programming over the implemented weighted ternary sum.",
+    "The characteristic-zero radial-polynomial escape lemma is limited to finite-degree radial polynomial gates; it is not a generic nonlinear impossibility theorem.",
+    "No LWE theorem is claimed for the structured radial capsule.",
+    "No arbitrary-QPT key-recovery-to-short-preimage reduction is claimed.",
+    "Tests validate implemented identities and attacks; they are not treated as a security proof."
+  ]
+}

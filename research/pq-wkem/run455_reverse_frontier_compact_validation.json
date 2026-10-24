@@ -1,0 +1,47 @@
+{
+  "run": 455,
+  "assertions": 228,
+  "claim": "only public-permutation seam falsified; no PQ security",
+  "cases": [
+    {
+      "bits": 16,
+      "public_gates": 80,
+      "distinct_honest_states": 8,
+      "false_witnesses": 0,
+      "accepted_false_frontier": true,
+      "acceptance_density": "2^-8",
+      "generic_grover_query_exponent": 4,
+      "structured_attack_terminal_calls": 1
+    },
+    {
+      "bits": 32,
+      "public_gates": 160,
+      "distinct_honest_states": 8,
+      "false_witnesses": 0,
+      "accepted_false_frontier": true,
+      "acceptance_density": "2^-24",
+      "generic_grover_query_exponent": 12,
+      "structured_attack_terminal_calls": 1
+    },
+    {
+      "bits": 64,
+      "public_gates": 320,
+      "distinct_honest_states": 8,
+      "false_witnesses": 0,
+      "accepted_false_frontier": true,
+      "acceptance_density": "2^-56",
+      "generic_grover_query_exponent": 28,
+      "structured_attack_terminal_calls": 1
+    },
+    {
+      "bits": 320,
+      "public_gates": 1600,
+      "distinct_honest_states": 8,
+      "false_witnesses": 0,
+      "accepted_false_frontier": true,
+      "acceptance_density": "2^-312",
+      "generic_grover_query_exponent": 156,
+      "structured_attack_terminal_calls": 1
+    }
+  ]
+}

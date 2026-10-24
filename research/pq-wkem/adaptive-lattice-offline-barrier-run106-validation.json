@@ -1,0 +1,46 @@
+{
+  "adaptive_lenc_merge": {
+    "claim": "Published adaptive-lattice multiplication identity holds exactly in the finite toy.",
+    "gadget": [
+      1,
+      2,
+      4
+    ],
+    "k": 1,
+    "multiplication_cases": 900,
+    "q": 7
+  },
+  "direct_affine_universalization": {
+    "cases": 2058,
+    "claim": "Exact affine x-coefficients expose r via r^T G because gadget blocks start with 1.",
+    "k": 2,
+    "m": 3,
+    "q": 7
+  },
+  "fully_succinct_state": {
+    "claim": "Recursive succinctness retains a final private encoder-evaluation state.",
+    "depths_checked": 16
+  },
+  "half_succinct_ote": {
+    "claim": "With E and phi public, basis x reconstructs encoder input y in the exact zero-noise algebra.",
+    "m": 2,
+    "q": 5,
+    "zero_noise_cases": 3125
+  },
+  "public_completion": {
+    "cases": 60,
+    "claim": "A public replacement for the missing encoder share on arbitrary x makes x tensor y public; basis x reveals y.",
+    "encoder_dimension": 2,
+    "m": 3,
+    "q": 7
+  },
+  "run": 106,
+  "scope": [
+    "Algebra/syntax controls only; no LWE security is inferred.",
+    "Direct affine leakage does not rule out every conceivable witness-independent compiler.",
+    "Public-completion barrier applies when encoder input y is intended to remain secret.",
+    "Published paper quantifies PPT, not QPT, attackers."
+  ],
+  "status": "PASS",
+  "total_assertions": 21433
+}

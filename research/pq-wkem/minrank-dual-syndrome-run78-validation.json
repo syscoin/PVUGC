@@ -1,0 +1,111 @@
+{
+  "blockwise_character_identity_checks": 240,
+  "blockwise_splicing_fixture": {
+    "source_minrank": 2,
+    "spliced_character_rank": 1
+  },
+  "fourier_parameter_rows": [
+    {
+      "D": 3,
+      "best_log2_TV_upper_bound_exponent": 150.0,
+      "bound_nontrivial": false,
+      "criterion_D_gt_k_t_over_2": false,
+      "k": 20,
+      "max_r": 3,
+      "t": 4
+    },
+    {
+      "D": 3,
+      "best_log2_TV_upper_bound_exponent": 618.0,
+      "bound_nontrivial": false,
+      "criterion_D_gt_k_t_over_2": false,
+      "k": 20,
+      "max_r": 7,
+      "t": 8
+    },
+    {
+      "D": 2,
+      "best_log2_TV_upper_bound_exponent": 13.0,
+      "bound_nontrivial": false,
+      "criterion_D_gt_k_t_over_2": false,
+      "k": 4,
+      "max_r": 2,
+      "t": 3
+    },
+    {
+      "D": 3,
+      "best_log2_TV_upper_bound_exponent": 790.0,
+      "bound_nontrivial": false,
+      "criterion_D_gt_k_t_over_2": false,
+      "k": 100,
+      "max_r": 3,
+      "t": 4
+    },
+    {
+      "D": 4,
+      "best_log2_TV_upper_bound_exponent": 83.0,
+      "bound_nontrivial": false,
+      "criterion_D_gt_k_t_over_2": false,
+      "k": 8,
+      "max_r": 4,
+      "t": 5
+    }
+  ],
+  "honest_rank1_preserved_by_kronecker": true,
+  "honest_rank_le_2_count": 500,
+  "kronecker_character_control": {
+    "base_nonzero_ranks": {
+      "(0, 1)": 2,
+      "(1, 0)": 2,
+      "(1, 1)": 2
+    },
+    "minimum_character_rank": 2,
+    "nonzero_characters": 255
+  },
+  "left_projection_exact_failure_rank3_to_4rows": 0.384765625,
+  "left_projection_formula_failure_rank3_to_4rows": 0.384765625,
+  "left_projection_union_bound_exponent_example_k20_D3_b6": 18,
+  "multi_witness_same_message_lowrank_checks": 600,
+  "padded_common_right_kernel_dimension": 2,
+  "rank_output_inequality_checks": 500,
+  "scalar_bias_repetition_costs": [
+    {
+      "bias": 0.5,
+      "r": 1,
+      "repetitions_for_2^-128_Hoeffding_bound": 2840
+    },
+    {
+      "bias": 0.25,
+      "r": 2,
+      "repetitions_for_2^-128_Hoeffding_bound": 11357
+    },
+    {
+      "bias": 0.0625,
+      "r": 4,
+      "repetitions_for_2^-128_Hoeffding_bound": 181705
+    },
+    {
+      "bias": 0.00390625,
+      "r": 8,
+      "repetitions_for_2^-128_Hoeffding_bound": 46516320
+    },
+    {
+      "bias": 1.52587890625e-05,
+      "r": 16,
+      "repetitions_for_2^-128_Hoeffding_bound": 3048493539144
+    }
+  ],
+  "scalar_fourier_exact_checks": 6,
+  "scalar_r1_total_variation_from_uniform": 0.1875,
+  "scope": "finite algebra/identity validation only; no cryptographic security inferred",
+  "scrambler_kernel_invariance_checks": 100,
+  "seed": 202609241019,
+  "status": "PASS",
+  "uniform_4x4_rank_le_2_exact_probability": 0.1156005859375,
+  "uniform_4x4_rank_le_2_hits": 372,
+  "uniform_4x4_trials": 3000,
+  "uniform_pair_common_kernel_nonzero_hits": 309,
+  "uniform_pair_nonzero_common_kernel_exact_probability": 0.05753277242183685,
+  "uniform_pair_nonzero_common_kernel_union_bound": 0.05859375,
+  "uniform_pair_trials": 5000
+}

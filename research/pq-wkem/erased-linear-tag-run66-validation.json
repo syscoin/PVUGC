@@ -1,0 +1,54 @@
+{
+  "affine_hull": {
+    "forge_coefficients_centered": [
+      1,
+      1,
+      -1
+    ],
+    "max_nullspace_dimension": 13,
+    "min_nullspace_dimension": 13,
+    "random_source_lift_trials": 320,
+    "secret_constant_linear_tag_checks": 1920
+  },
+  "checker_sha256": "f06c262ed947133dcd6c98bae80070ddece9f429d149986d7ea22cfdbeaaa252",
+  "hidden_incidence_tags": {
+    "exact_zero_tag_pseudolift_cases": 1600,
+    "false_assignments_with_exact_signed_pseudolifts": 8,
+    "false_formula_blocks": 8,
+    "random_erased_tag_setups": 200
+  },
+  "ideal_quadratic_checksum": {
+    "exact_single_coefficient_sweeps": 100,
+    "fixed_malformed_support": 3,
+    "normalized_non_onehot_vectors_verified": 2131,
+    "proved_zero_probability_per_independent_hidden_check": "1/257",
+    "zeros_per_q_sweep": 1
+  },
+  "linearized_lift_bypass": {
+    "dimensions_m_checked": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "forge_support": 3,
+    "polynomial_secret_tag_checks": 348,
+    "quadratic_linearized_bypasses": 8,
+    "true_quadratic_violation_nonzero": true
+  },
+  "proper_degree_hierarchy": {
+    "claim": "signed falsifying lift matches every multilinear polynomial of degree < k",
+    "full_degree_point_indicator_separations": 508,
+    "k_range": [
+      2,
+      8
+    ],
+    "proper_moment_equalities_checked": 86868
+  },
+  "q": 257,
+  "seed": 660066
+}

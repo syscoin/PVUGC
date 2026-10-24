@@ -1,0 +1,46 @@
+{
+  "run": 428,
+  "assertions": 274,
+  "rows": [
+    {
+      "n": 4,
+      "unknown": 1,
+      "key_success": "1/2",
+      "parity_success": "3/4"
+    },
+    {
+      "n": 4,
+      "unknown": 3,
+      "key_success": "1/8",
+      "parity_success": "9/16"
+    },
+    {
+      "n": 6,
+      "unknown": 2,
+      "key_success": "1/4",
+      "parity_success": "5/8"
+    },
+    {
+      "n": 6,
+      "unknown": 4,
+      "key_success": "1/16",
+      "parity_success": "17/32"
+    },
+    {
+      "n": 8,
+      "unknown": 4,
+      "key_success": "1/16",
+      "parity_success": "17/32"
+    },
+    {
+      "n": 8,
+      "unknown": 8,
+      "key_success": "1/256",
+      "parity_success": "257/512"
+    }
+  ],
+  "related_view_joint_reconstructions": 256,
+  "exact_test": "uniform K, Z=known prefix, random GL parity and bit-mask",
+  "security_claim": "none; toy finite posterior only",
+  "complete_pq_wkem": false
+}

@@ -1,0 +1,36 @@
+{
+  "run": 523,
+  "claim": "one static reference yields at most two seeds, without Q2 oracle",
+  "pass": true,
+  "total": 66560,
+  "results": [
+    {
+      "n": 4,
+      "modulus": "0x13",
+      "alpha": "0x9",
+      "checks": 256,
+      "beta_zero": 32,
+      "exactly_two_masters": 256,
+      "two_target_key_candidates": 232
+    },
+    {
+      "n": 8,
+      "modulus": "0x11b",
+      "alpha": "0x57",
+      "checks": 65536,
+      "beta_zero": 512,
+      "exactly_two_masters": 65536,
+      "two_target_key_candidates": 65270
+    },
+    {
+      "n": 16,
+      "modulus": "0x1100b",
+      "alpha": "0x947",
+      "checks": 768,
+      "beta_zero": 0,
+      "exactly_two_masters": 768,
+      "two_target_key_candidates": 768
+    }
+  ],
+  "scope": "finite algebraic fixtures; not real native signing"
+}

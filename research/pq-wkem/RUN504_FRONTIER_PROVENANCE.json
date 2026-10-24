@@ -1,0 +1,26 @@
+{
+  "assertions": 403,
+  "branch": "research/pq-wkem-validation-20260918",
+  "files": {
+    "RUN504_FRONTIER_SEARCH_COMPACT.md": {
+      "bytes": 5684,
+      "git_blob_sha1": "34789abfe1dd007be319b1781cfa48cc1d4deb40",
+      "sha256": "7c49607396904192e5aa26f408a3a1a075669a3921481810f6e72de8ce951021"
+    },
+    "run504_compact_check.js": {
+      "bytes": 1337,
+      "git_blob_sha1": "a7869522c5e0033741f7d8cc0d55780a59e5994c",
+      "sha256": "85b881cbd8c8503508a785a73397f4f4420071644d253984f0365e420ed476be"
+    },
+    "run504_compact_validation.json": {
+      "bytes": 267,
+      "git_blob_sha1": "f4ff229e44d3ef1ff9335499dfae612615186165",
+      "sha256": "86109f249305769bf643f8ac974bc87e7ebdc10f89618da70337833cd0e2d739"
+    }
+  },
+  "repeat_byte_identical": true,
+  "repro": "node research/pq-wkem/run504_compact_check.js",
+  "run": 504,
+  "scope": "frontier chosen-state Grover upper bound, not a construction",
+  "start_commit": "17fb1f7ef66cd7cd9d7dacd7e418bc81ac007b3b"
+}

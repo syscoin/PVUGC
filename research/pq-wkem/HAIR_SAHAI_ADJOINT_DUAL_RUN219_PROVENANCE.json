@@ -1,0 +1,94 @@
+{
+  "artifact_hashes": {
+    "HAIR_SAHAI_ADJOINT_DUAL_RUN219.md": {
+      "bytes": 9998,
+      "sha256": "975739f8bba67294c9803169079fc97c865a4e29254e833f5eb7e826ee6fcabd"
+    },
+    "hair-sahai-adjoint-run219-validation.json": {
+      "bytes": 4826,
+      "sha256": "1d56bf27865c14d7c765306e54354e07143602ed1cab33472843a1ee20f58574"
+    },
+    "hair_sahai_adjoint_run219_check.py": {
+      "bytes": 17152,
+      "sha256": "12d76df18371aba0a16aaae1fb1c0fbab99610556669d19833e0fdd92b5a2b54"
+    },
+    "hair_sahai_adjoint_run219_engine.cpp": {
+      "bytes": 3945,
+      "sha256": "a358c308e4143ebaed2365c91037c401d16b8f70d3806040256e49e7e7cf26a2"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "assertions": 13156,
+    "byte_identical_outputs": true,
+    "cpp17_syntax_check": "passed",
+    "environment_warning": "artifact_tool spreadsheet-runtime warmup error appeared before Python startup; checker subprocesses completed normally",
+    "execution_seconds": [
+      6.556,
+      6.567
+    ],
+    "executions": 2,
+    "network_used": false,
+    "python_syntax_check": "passed",
+    "python_version": "3.13.5",
+    "validation_sha256": "1d56bf27865c14d7c765306e54354e07143602ed1cab33472843a1ee20f58574"
+  },
+  "connected_github_reads": [
+    "get_pr_info",
+    "fetch_pr_comments",
+    "list_pr_changed_filenames",
+    "fetch_file at exact head"
+  ],
+  "conversation_handoff": {
+    "runs_215_218": "used only to select the support-8/9 next question; unpublished artifacts not treated as branch evidence"
+  },
+  "created_utc": "2026-10-01T23:05:56.351038+00:00",
+  "exact_version_inputs": {
+    "research/pq-wkem/HAIR_SAHAI_GENERALIZED_SUPPORT_RUN214.md": "6a67013fda501295e631d5bb17bb7d50c4bd8be5",
+    "research/pq-wkem/HAIR_SAHAI_GENERALIZED_SUPPORT_RUN214_PROVENANCE.json": "f0433cce9a6ee62be899ce59498660a795ae1b55",
+    "research/pq-wkem/hair-sahai-generalized-support-run214-validation.json": "21a7354f085615d8067073a5de8800616f01fd7c",
+    "research/pq-wkem/hair_sahai_generalized_support_run214_check.py": "b38c7eea6c6a2cb387b5dcb1b97ac018c0b03f32"
+  },
+  "final_read_only_verification": {
+    "draft": true,
+    "head_sha": "aa8f5b0dc257942b40930364a5f18408aca2ea50",
+    "latest_ordinary_comment_id": 5913974235,
+    "merged": false,
+    "run219_paths_present": [],
+    "state": "open"
+  },
+  "latest_substantive_ordinary_comment_id": 5913974235,
+  "literature_context_checked": [
+    {
+      "arxiv": "1410.7207",
+      "title": "Generalized weights: an anticode approach",
+      "use": "generalized matrix-weight terminology and duality context only"
+    },
+    {
+      "arxiv": "1612.01888",
+      "title": "Relative generalized matrix weights of matrix codes for universal security on wire-tap networks",
+      "use": "matrix-support profile terminology/duality context only"
+    }
+  ],
+  "publication_attempt": {
+    "correlation_id": null,
+    "error_code": null,
+    "first_write_action": "GitHub.create_blob for finalized Run-219 proof note",
+    "message": "This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "request_id": null,
+    "result": "explicit_safety_denial",
+    "tool_timestamp": null,
+    "writes_after_denial": 0
+  },
+  "publication_status": "BLOCKED_BEFORE_GITHUB",
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "run_id": 219,
+  "scope": "One bounded adjoint-dualization iteration on the literal N=3,R=1 GF(16) false source; exact rank and transported-field-line spectra.",
+  "starting_head_sha": "aa8f5b0dc257942b40930364a5f18408aca2ea50",
+  "starting_state": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  }
+}

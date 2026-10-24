@@ -1,0 +1,23 @@
+{
+  "run": 634,
+  "date": "2026-10-19",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "starting_sha": "2cc3191f671216c5a0671ec29cbbae290502517c",
+  "branch": "research/pq-wkem-validation-20260918",
+  "read_dependencies": {
+    "Run632": "e4b31f048035e8a5a27bb823025c6be088225893",
+    "Run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "Run625": "c0d570cb273a414d313b9844d238af9b4870b2da"
+  },
+  "scope": "exact-empty enumeration theorem; no WKEM security",
+  "checker_result": {
+    "run": 634,
+    "fixtures": 112,
+    "checks": 35635,
+    "maxStates": 1024,
+    "seed": 63420261019,
+    "finite_checks": "passed",
+    "security_inference": "none"
+  }
+}

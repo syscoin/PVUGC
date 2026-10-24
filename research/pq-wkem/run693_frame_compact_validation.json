@@ -1,0 +1,9 @@
+{
+  "affine_gate_pairs": 256,
+  "assertions_passed": 82307,
+  "conjugation_exhaustive_cases": 80640,
+  "ideal_full_joint_TV": 0,
+  "ideal_uniform_frame_pairs_per_class": 576,
+  "run": 693,
+  "security_claim": "finite algebra only; not concrete PQ WKEM"
+}

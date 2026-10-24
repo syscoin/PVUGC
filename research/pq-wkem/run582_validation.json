@@ -1,0 +1,1 @@
+{"run":582,"assertions":147789,"polynomials":65808,"minimum_weights":{"1":{"0":2,"1":1},"2":{"0":4,"1":2,"2":1},"3":{"0":8,"1":4,"2":2,"3":1},"4":{"0":16,"1":8,"2":4,"3":2,"4":1}},"affine_bijections":168,"affine_cases":8064,"quantum_executed":false,"practical_wkem":false}

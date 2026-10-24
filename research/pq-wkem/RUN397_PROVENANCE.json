@@ -1,0 +1,62 @@
+{
+  "actions_read": [
+    "get_pr_info",
+    "fetch paginated comments",
+    "fetch_file (4 files)"
+  ],
+  "branch": "research/pq-wkem-validation-20260918",
+  "complete_wkem": false,
+  "correlation_id": null,
+  "error_code": null,
+  "final_branch_sha": "bba5c4bb4e37144a390b40f0b58a7ff633d7a1f1",
+  "final_pr_head": "bba5c4bb4e37144a390b40f0b58a7ff633d7a1f1",
+  "first_write": "mcp__GitHub__create_tree",
+  "first_write_error": "This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+  "github_reads": [
+    "mcp__GitHub__get_pr_info (initial, prewrite, final)",
+    "mcp__GitHub__fetch paginated ordinary comments",
+    "mcp__GitHub__fetch_file Run259, Run393, Run394, CLZ applicability",
+    "mcp__GitHub__fetch exact git commit tree, branch ref",
+    "mcp__GitHub__fetch_file expected 404 for proposed Run397 note (duplicate check)"
+  ],
+  "github_writes": [
+    "mcp__GitHub__create_tree (blocked; no tree returned)"
+  ],
+  "literature_scope": "author abstracts + live exact-version assessment; no full proof audit",
+  "local_files": {
+    "UNARY_ORBIT_LATE_ADMISSION_RUN397.md": "cf1e86960abd556f0a701eb359d6ec87110d0f5bc9504881c6c82eb702850a36",
+    "unary-orbit-admission-run397-validation.json": "d0c79768d45c40ccd17df4bc14a48f8832c2e6fbae1c95808447951beb33136c",
+    "unary_orbit_admission_run397_check.py": "2e989c3953055a26e56869b2d2b6f91948d845751022534054a979b69321bd51"
+  },
+  "pr": 1,
+  "qpt_security_proven": false,
+  "repository": "syscoin/PVUGC",
+  "request_id": null,
+  "returned_comment": null,
+  "returned_commit": null,
+  "returned_tree": null,
+  "run": 397,
+  "starting_sha": "bba5c4bb4e37144a390b40f0b58a7ff633d7a1f1",
+  "status": "BLOCKED_BEFORE_GITHUB",
+  "validation": {
+    "assertions": 44072,
+    "fixtures": 3006,
+    "reproducible": true
+  },
+  "verified_checkers": [
+    {
+      "assertions": 44072,
+      "byte_identical_repeated": true,
+      "fixtures": 3006,
+      "path": "unary_orbit_admission_run397_check.py"
+    },
+    {
+      "assertions": 16764,
+      "byte_identical_repeated": true,
+      "fixtures": 3006,
+      "path": "unary_orbit_run397_compact_check.js"
+    }
+  ],
+  "verified_comment_id": 6067040320,
+  "writes_after_denial": 0
+}

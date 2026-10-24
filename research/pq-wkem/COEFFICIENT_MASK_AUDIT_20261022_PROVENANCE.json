@@ -1,0 +1,32 @@
+{
+  "artifacts": {
+    "COEFFICIENT_MASK_AUDIT_20261022.md": {
+      "bytes": 11683,
+      "git_blob_sha1": "e79820c12ee5dd1952dd42ac3973f159ff210e36",
+      "sha256": "cd40852b01d39ac4a0afabef1d57760b883c2d1ff249cca977ceec348e8620cb"
+    },
+    "coefficient_mask_audit.py": {
+      "bytes": 10765,
+      "git_blob_sha1": "36dd9e991cb86febc175505e96fb8688e15e4043",
+      "sha256": "6271786e2d6f5a228fdb3f28614f3e57ecfa9163ef72b839a9e2e1a2ae46fc68"
+    },
+    "validation.json": {
+      "bytes": 6602,
+      "git_blob_sha1": "c0f78ab67998e2d641b7751a12be70cb6e15c55c",
+      "sha256": "f1bf1294031069bd72e62e84024215c50daf935f4a57ebdc1f2e7dded57b5275"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checkpoint": "coefficient-mask-audit-20261022",
+  "mode": "interactive response to user cancellation question",
+  "pr": 1,
+  "repository": "syscoin/PVUGC",
+  "scheduler_run_id": null,
+  "scope": "new application and bounded repair; generic quotient already known",
+  "starting_sha": "9a49af0af7e8f9e7d917074f25035f2a7f877338",
+  "validation": {
+    "assertions": 1043,
+    "byte_identical_reexecution": true,
+    "py_compile_passed": true
+  }
+}

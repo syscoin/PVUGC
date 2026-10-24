@@ -1,0 +1,13 @@
+{
+  "run": 699,
+  "date": "2026-10-22",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "6c2008bda0d47c4d59b9ebb8acc9c834589beda1",
+  "scope": "same-distribution public dictionary codec; no QPT hiding or ORIGINAL extraction proof",
+  "executed_checker": "run699_public_direction_compact_check.js (source generated from exact executed JS function)",
+  "checks": 24246,
+  "validation_bytes": 442,
+  "notes": "Extended independent Python checker/validation are local-only; exact published compact code has deterministic Node-compatible stdout."
+}

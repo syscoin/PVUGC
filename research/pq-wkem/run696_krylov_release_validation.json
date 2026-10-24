@@ -1,0 +1,11 @@
+{
+  "run": 696,
+  "algorithm": "Krylov/Berlekamp-Massey plus Frobenius field-root isolation",
+  "field": 101,
+  "valid_witness_classes": 2,
+  "successful_cases": 40,
+  "retried_misses": 1,
+  "nonlinear_factors_discarded": true,
+  "assertions_passed": 46,
+  "status": "algebra/correctness only; no QPT hiding/extraction"
+}

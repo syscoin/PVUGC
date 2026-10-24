@@ -1,0 +1,36 @@
+{
+  "run": 696,
+  "date_utc": "2026-10-22",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "bce27118e804c46f3897048aa14bfdf8df02192b",
+  "exact_dependency_blobs": {
+    "run695": "50174666730b93bd20f83bb29ddb2c355ccf1a91",
+    "run593": "29b9168bfff6043810284cd1960400579f224e31",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  },
+  "executed_compact_checker": "new Function(checker + newline + return report)() in connected-code environment",
+  "compact_validation": {
+    "run": 696,
+    "algorithm": "Krylov/Berlekamp-Massey plus Frobenius field-root isolation",
+    "field": 101,
+    "valid_witness_classes": 2,
+    "successful_cases": 40,
+    "retried_misses": 1,
+    "nonlinear_factors_discarded": true,
+    "assertions_passed": 46,
+    "status": "algebra/correctness only; no QPT hiding/extraction"
+  },
+  "extended_local_checker": "/mnt/data/pq_run696/run696_krylov_release_check.py",
+  "extended_local_validation": "/mnt/data/pq_run696/run696_krylov_release_validation.json",
+  "extended_local_assertions": 653,
+  "extended_local_valid_witness_recoveries": 160,
+  "extended_file_sha256": {
+    "note": "0451ae2fd1fc1efe99ffb1079b647d6e4a5a49356ab94b59b770e3390054212c",
+    "checker": "c471832218404158b61d62311b41ab093f65bc7aa7fd0e6b9771e0133252ec2a",
+    "validation": "fa6d6541ef603cbed13b3c37aa3a417d75440a19fb6c1f0bcd8b8ecc4af3249c"
+  },
+  "status": "black-box correctness/efficiency only; no QPT hiding/extraction/compact operator",
+  "production_changed": false
+}

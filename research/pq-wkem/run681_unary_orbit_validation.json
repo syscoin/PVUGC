@@ -1,0 +1,95 @@
+{
+  "assertions": 4124,
+  "binary_public_input_control": [
+    {
+      "bits": 1,
+      "reachable_endpoints": 2,
+      "steps_per_witness": 1
+    },
+    {
+      "bits": 2,
+      "reachable_endpoints": 4,
+      "steps_per_witness": 2
+    },
+    {
+      "bits": 3,
+      "reachable_endpoints": 8,
+      "steps_per_witness": 3
+    },
+    {
+      "bits": 4,
+      "reachable_endpoints": 16,
+      "steps_per_witness": 4
+    },
+    {
+      "bits": 5,
+      "reachable_endpoints": 32,
+      "steps_per_witness": 5
+    },
+    {
+      "bits": 6,
+      "reachable_endpoints": 64,
+      "steps_per_witness": 6
+    },
+    {
+      "bits": 7,
+      "reachable_endpoints": 128,
+      "steps_per_witness": 7
+    },
+    {
+      "bits": 8,
+      "reachable_endpoints": 256,
+      "steps_per_witness": 8
+    }
+  ],
+  "grover_dense_vs_formula_probabilities": [
+    0.125,
+    0.78125,
+    0.9453125,
+    0.330078125
+  ],
+  "limitations": [
+    "Toy public release fixture is not honest witness-free WKEM setup.",
+    "No real ciphertext, iO, FHE, FE, or SLH-DSA evaluated.",
+    "Only witness-independent public opening and enumerably many public unary iterates are ruled out.",
+    "A witness-dependent protected output function is outside the theorem."
+  ],
+  "run": 681,
+  "scope": "exact finite public-orbit enumeration; not CLZ cryptanalysis",
+  "unary_examples": [
+    {
+      "credential_recovered_without_witness": true,
+      "first_publicly_recovered_step": 3,
+      "horizon": 12,
+      "public_states_checked": 13,
+      "released_slots": [
+        3,
+        7,
+        11
+      ],
+      "unary_orbit_distinct_prefixes": 13
+    },
+    {
+      "credential_recovered_without_witness": true,
+      "first_publicly_recovered_step": 23,
+      "horizon": 35,
+      "public_states_checked": 36,
+      "released_slots": [
+        23
+      ],
+      "unary_orbit_distinct_prefixes": 36
+    },
+    {
+      "credential_recovered_without_witness": true,
+      "first_publicly_recovered_step": 1,
+      "horizon": 63,
+      "public_states_checked": 64,
+      "released_slots": [
+        1,
+        19,
+        52
+      ],
+      "unary_orbit_distinct_prefixes": 64
+    }
+  ]
+}

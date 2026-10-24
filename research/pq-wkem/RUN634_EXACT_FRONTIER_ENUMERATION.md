@@ -1,0 +1,29 @@
+# Run 634: exact-empty short release frontiers imply fast SAT algorithms
+
+October 19, 2026. New research-only checkpoint on draft syscoin/PVUGC#1. Starting head 2cc3191f671216c5a0671ec29cbbae290502517c. Builds on live Run 632 / Run 259 and the local Run 633 perfect-vs-computational soundness barrier. Not a working witness-KEM.
+
+## Theorem (conditional exact-empty frontier barrier)
+Take a sparse 3CNF phi with n variables and a uniform classical PPT Gen(1^lambda,phi) that receives no satisfying witness and publishes the entire public release package P, native verification key pk, transaction digest d, and related auxiliary capsules. Let the COMPLETE input to a public classical PPT release-and-signing evaluator F(P,s;r) have ell(n,lambda) bits; indispensable ORIGINAL witness bytes still consumed by release count as part of s. Define q_P(s)=Pr_r[Verify(pk,d,F(P,s;r))=1].
+
+For 1-delta of honest generated packages, suppose (YES) if phi is satisfiable, there exists some s with q_P(s)>=alpha>=1/poly(n,lambda); and (NO) if phi is unsatisfiable, EVERY s has q_P(s)=0. Let delta<=1/10; lambda(n) is polynomial in n and Gen/F/Verify run in polynomial(n,lambda) time. Honest all-valid-ORIGINAL witness correctness implies the YES existential condition on good packages by averaging preprocessing randomness and evaluator randomness.
+
+Then a bounded-error classical randomized SAT algorithm runs in O(2^ell poly(n,lambda) ceil(log(10)/alpha)): run Gen, enumerate all s, try T=ceil(log(10)/alpha) independent evaluator coins on each, and publicly verify the signature. On a good NO package it cannot accept; on a good YES package one state succeeds with probability at least 1-(1-alpha)^T>=0.9. Including bad setup probability, false-positive probability <=0.1 and yes-acceptance probability >=0.81. The algorithm neither receives ORIGINAL evidence nor extracts setup coins or signing secrets. This is an elementary enumeration implication, not a new complexity theorem.
+
+Thus ell=O(log n) implies NP subset BPP (or RP if NO emptiness holds for every setup); ell=o(n) gives randomized 2^o(n)-time sparse 3SAT, contradicting randomized ETH (rETH). Deterministic setup/evaluation and exact behavior give analogous P/ETH consequences. For an illustrative scalable family with ell=O(lambda) and n=lambda^2, ell=o(n), provided the construction actually supports such n and remains polynomial. These claims are conditional on UNIFORM generic-NP support and growing n; a fixed Syscoin relation instance, setup given a valid witness, nonuniform exponential advice, and ell=Omega(n) escape the stated inference.
+
+Coherent public acceptance can also be searched using quantum amplitude amplification in O(2^(ell/2)/sqrt(alpha)) calls, but classical enumeration already establishes the rETH consequence. No quantum hardness or security is inferred.
+
+## Meaning after Run 633
+Run 633's computationally sound succinct verifier may have mathematically existing but infeasible false accepting proofs, invalidating an *ordinary equal-function iO* replacement by all-reject. Enforcing EXACT false-program emptiness repairs that particular equivalence but, if the full enumerable release input is very short, would imply the fast generic SAT algorithm above. Cryptographic WE-like security does NOT require exact emptiness; it requires computational false-instance QPT hiding and recovery/forgery soundness. The theorem neither breaks iO/RIO nor excludes semantic-only local mixing. Witness-dependent states need not be equal or canonical, and even accepting multiple native credentials does not evade the enumeration argument.
+
+## Interface and attack audit
+The attack is public chosen-input evaluation (taxonomy 5) using the public native verification key (8); coherent quantum search (9) is an additional observation. No seam, gauge, fingerprint or related-capsule attack (1-4) is claimed. Malicious setup/seed bias (6) and UTXO replay (7) are not solved, but are unnecessary for the theorem. Related public capsules, transaction binding and all checking-key correlations are included in P. The honest model is classical PPT; an arbitrary QPT adversary can perform the classical attack. Positive QPT hiding remains UNPROVED.
+
+Run 259 requires an accepted COMPLETE source representation z for its information-theoretic or QPT-SIS ORIGINAL-source-binding arrow. A native accepted signature is NOT that z. The missing signature/key recovery -> accepted z implication remains unproved. Run 625's ideal target-disabled release oracle does not establish security of a public white-box program.
+
+The committed checker is a finite executable diagnostic: it enumerates 3CNF truth assignments and public XOR-encoded n+2-bit toy states for n=2..8, includes explicit unsatisfiable fixtures, and tests a randomized 3/4 acceptance gate. XOR masking and this diagnostic are not cryptography; no actual native signature or real mixer is implemented. The expanded local Python checker independently checked 112 fixtures and 37,739 assertions.
+
+## Ledger and handoff
+Established: exact false emptiness + all-YES completeness + short COMPLETE public state => fast SAT decision, with rETH-based sublinear exclusion for uniform general NP. NOT established: a concrete local release mixer; all-valid-ORIGINAL-witness SAME K; full-public-output false-instance QPT hiding; unauthorized true-instance recovery / accepted native forgery -> ORIGINAL evidence or standard QPT break; N-of-N one-honest setup/erasure; multi-capsule composition; practical 128-bit resources; unrestricted SOURCE histories; conditional Bitcoin PQ-native graph. No practical PQ witness-KEM. Production unchanged; draft PR retained.
+
+Literature background: ETH/sparsification (Impagliazzo–Paturi–Zane); BBHT/amplitude amplification https://arxiv.org/abs/quant-ph/0005055 ; CCMR local mixing https://eprint.iacr.org/2024/006 . No new CCMR complete-proof audit.

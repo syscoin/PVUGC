@@ -1,0 +1,7 @@
+{
+  "run": 454,
+  "checks": 175,
+  "signatureCases": 5,
+  "coherentCases": 18,
+  "description": "public small-frontier search; synthetic opaque release; Ed25519 non-PQ; no construction/security proof"
+}

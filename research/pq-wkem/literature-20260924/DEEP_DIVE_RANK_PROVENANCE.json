@@ -1,0 +1,60 @@
+{
+  "automation": {
+    "external_primary_literature_explicitly_authorized": true,
+    "id": "6ab0ca28f9908191bddd622d23ed0eb7",
+    "is_enabled": true,
+    "original_security_and_stopping_requirements_preserved": true,
+    "same_existing_hourly_schedule": true,
+    "update_succeeded": true
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checkpoint_comment_id": 5818416969,
+  "evidence": {
+    "cryptographic_security_experiment": false,
+    "executions": 2,
+    "exhaustive_assignment_enumeration_role": "Small independent validation oracle only; the general span compiler uses polynomial linear updates.",
+    "generic_adversary_simulation_implemented": false,
+    "quantum_hardware_or_Shor_execution": false,
+    "seed": 202609241701,
+    "source": "New original standard-library checker, not author-provided code and not the preceding assessment's failed-upload checker.",
+    "stdout_byte_identical": true
+  },
+  "files": {
+    "DEEP_DIVE_RANK_SCALAR_DESCENT.md": {
+      "git_blob": "5d061495800bad32733298d25f1f1ac6e55779c2",
+      "sha256": "4af4b4325011099a844bd6a80586682d62a75e0d06c4058876e90a64ae39c4d0"
+    },
+    "rank-field-extensions-validation.json": {
+      "git_blob": "333866261959612ec86eaa035c462998bedf2f06",
+      "sha256": "5a170b5119a41f493ac7214f28156bfd950b17cc293ca4cc3dfda41cb444040c"
+    },
+    "rank_field_extensions.py": {
+      "git_blob": "e3c51bff4a8f3817f70b1368190b8b35893cafa2",
+      "sha256": "66ad8ef39170c3360cdeb0d9fca45b5506845a5ae456fd12d7af2d974355a6a2"
+    }
+  },
+  "pr": 1,
+  "publication_status_at_creation": "Prepared new files for connector publication; final success/fail status must be checked separately, not inferred from this record.",
+  "purpose": "User-authorized incorporation of new literature into existing hourly task, plus new field-flexible rank-compiler extensions, binary scalar descent and classical symbolic source-extraction argument.",
+  "repository": "syscoin/PVUGC",
+  "scope": {
+    "not_claimed": [
+      "new result priority or independent peer review",
+      "full audit of inaccessible Jin/QMA PDFs",
+      "concrete PQ group realization or PQ release compiler",
+      "random-instance hardness from worst-case rank gap",
+      "arbitrary-QPT full-key source extraction in a real implementation",
+      "malicious-secure setup and complete auxiliary-input composition",
+      "practical final parameters"
+    ],
+    "prior_failed_checker_retried_or_rerouted": false,
+    "production_code_changed": false,
+    "proved_derivations": [
+      "high-order field-element substitution in the weighted-table geometric proof",
+      "binary vertical scalar descent preserves honest rank one and false rank lower bound",
+      "classical one-challenge symbolic collision-to-source extraction under original generic-group model"
+    ],
+    "stopping_condition_met": false
+  },
+  "starting_verified_pr_head": "841b4bbe5df0db54beb7e5ce9e5e0466d6412e5a"
+}

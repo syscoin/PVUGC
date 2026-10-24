@@ -1,0 +1,53 @@
+{
+  "run": 53,
+  "scope": "PQ witness-KEM research record only",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "starting_head": "36e162ed4e2af7adbc2d8ed1274289ee5e897f87",
+  "checkpoint_comment_id": 5797749424,
+  "publication_branch": "research/pq-wkem-validation-20260918",
+  "pre_provenance_head": "631a7c592ef72b52b91ec514e4eb57f6a5045f4d",
+  "external_literature_or_web_search_used": false,
+  "production_code_changed": false,
+  "local_execution": {
+    "python": "3.13.5",
+    "checker_executions": 2,
+    "byte_identical_stdout": true,
+    "checker_sha256": "e91e0b7f8264c756cc60a365e31b2166edf17eed9b816a5e0d7cea8e4a6c0de1",
+    "captured_json_sha256": "c4469f37396a11455385514384af7b70def67cf05f34520f304c4ecef80c7ccb",
+    "proof_sha256": "b0644a098e66837477be55c7f9cd1c11fa62a0d4b6bd5f94dce7c8afa08278f1"
+  },
+  "git_blob_ids_verified_present_remotely": {
+    "BLOCK_LOCAL_VIEW_RUN53.md": "d595df16edc39f465139a375d17db48daede6660",
+    "block_local_view_run53_check.py": "4da7620f98bc63689c7d589a31dfcd245e261bc9",
+    "block-local-view-run53-validation.json": "d5a00511a827046913e5d7bfc7e3893824b48cec"
+  },
+  "executed_results": {
+    "normalized_integer_vectors_checked": 10028,
+    "inclusion_exclusion_identity_cases": 124,
+    "target_onehot_switching_representations": 56,
+    "larger_unsat_target_components_checked": 400,
+    "false_capsule_residual_identities": 16000,
+    "false_capsule_share_decodes": "800/800",
+    "false_capsule_xor_key_decodes": "100/100",
+    "honest_component_decodes": "700/700",
+    "forced_malformed_one_repeat_acceptance": "1107/2187",
+    "forced_malformed_20_repeat_acceptance_probability": 1.2189243610837672e-06
+  },
+  "proved_claims": [
+    "normalized integral non-onehot blocks have squared norm at least 3",
+    "an exact local-view representation with every block squared norm 1 yields a polynomial-time source witness",
+    "the centered modular radius-1 analogue extracts the same way for odd q>2",
+    "a falsified width-k OR clause has an exact signed inclusion-exclusion lift with matching first marginals and squared norm 2^k-1",
+    "separately checked satisfiable clause subsets admit exact signed global representations that are onehot on those checked blocks",
+    "the explicit repeated block-local N-of-N release is broken by componentwise representation switching"
+  ],
+  "not_proved": [
+    "decisional LWE security of the structured native capsule matrix",
+    "arbitrary-QPT early key recovery implies a source witness",
+    "a complete generic-NP PQ witness KEM",
+    "malicious-secure setup and auxiliary-input composition for a surviving release primitive",
+    "end-to-end concrete security parameters"
+  ],
+  "created_utc": "2026-09-23T15:38:37Z"
+}

@@ -1,0 +1,44 @@
+{
+  "classification": {
+    "arbitrary_qpt_source_extraction": "UNPROVED",
+    "attack_adversary": "classical PPT; therefore also valid against QPT claims",
+    "honest_algorithms": "classical polynomial time",
+    "qpt_false_hiding": "NOT PROVED; one-block repair retains explicit anchor-sensitive low-rank attacks",
+    "result": "compact multiplicative-weight repair falsified; arbitrary L scalar-weight rank ceiling proved"
+  },
+  "new_claims": [
+    "A multiplicative high-degree block g_c(b)=prod c_i^{b_i} has a fixed linear partial-assignment update and rejects each prior finite-difference member individually.",
+    "Every single multiplicative challenge admits an explicit false anchor-nonzero recombination of rank at most R+4 when at least two outside coordinates exist.",
+    "For any L appended scalar-weight blocks on the explicit one-equation false family, a nonzero augmented false source matrix of rank at most R+L+2 exists whenever L<=N-R-1.",
+    "The single-block survivor retains a scalar key-sensitive Fourier bias at least q^{-r(R+4)} and yields a Run-81-style pseudo-witness whenever t>r(R+4)."
+  ],
+  "pr_number": 1,
+  "production_code_modified": false,
+  "publication": {
+    "github_checkpoint_attempted": true,
+    "github_checkpoint_result": "blocked by OpenAI safety checks before reaching GitHub",
+    "github_files_published_this_run": false,
+    "local_artifacts_preserved": true,
+    "publication_retried_or_rerouted": false
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 83,
+  "source": {
+    "arxiv": "2609.18275v1",
+    "authors": "Isaac M. Hair, Amit Sahai",
+    "title": "Witness Encryption via Prime-Order Generic Groups",
+    "used_for": "actual weighted-table algebra/rank source interface only; generic-group encryption security not imported"
+  },
+  "starting_verified_head": "c4a33a018607bda7d8e8b1d646d54df9c399e22e",
+  "stopping_condition_met": false,
+  "tests": {
+    "arbitrary_L_fixtures": 4,
+    "byte_identical_stdout": true,
+    "checker_sha256": "5c87336b8cf64c9fbbaa8de6183b6291399a43875cc4705cb3c802d4491aa3ba",
+    "executions": 2,
+    "scope": "finite algebra/attack controls only",
+    "single_challenge_fixtures": 4,
+    "transition_checks": 360,
+    "validation_sha256": "9d7b8e7f6e439f2c4fdf1bd4dbb2a08f2ff1d604f65b5c8ba4c41d4ea5dbec91"
+  }
+}

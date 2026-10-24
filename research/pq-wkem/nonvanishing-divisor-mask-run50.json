@@ -1,0 +1,298 @@
+{
+  "all_checks_passed": true,
+  "candidate": "C_K(w)=K*r(w)+R(w), decap=C_K(w)/r(w)",
+  "degree_pair_histogram": {
+    "3->3": 1,
+    "3->4": 17,
+    "4->4": 32
+  },
+  "divisor": "r(w)=1+sum_i 2^i w_i",
+  "false_dichotomy": {
+    "D_attack": 2,
+    "ambient_attack": 10,
+    "delta_one": 3,
+    "delta_r": 3,
+    "rank_attack": 3,
+    "separator_trials": 300,
+    "shift_membership_trials": 300
+  },
+  "field_prime": 65537,
+  "reciprocal": {
+    "rows": [
+      {
+        "cube_points": 2,
+        "max_degree": 1,
+        "n": 1,
+        "support": 2
+      },
+      {
+        "cube_points": 4,
+        "max_degree": 2,
+        "n": 2,
+        "support": 4
+      },
+      {
+        "cube_points": 8,
+        "max_degree": 3,
+        "n": 3,
+        "support": 8
+      },
+      {
+        "cube_points": 16,
+        "max_degree": 4,
+        "n": 4,
+        "support": 16
+      },
+      {
+        "cube_points": 32,
+        "max_degree": 5,
+        "n": 5,
+        "support": 32
+      },
+      {
+        "cube_points": 64,
+        "max_degree": 6,
+        "n": 6,
+        "support": 64
+      },
+      {
+        "cube_points": 128,
+        "max_degree": 7,
+        "n": 7,
+        "support": 128
+      },
+      {
+        "cube_points": 256,
+        "max_degree": 8,
+        "n": 8,
+        "support": 256
+      },
+      {
+        "cube_points": 512,
+        "max_degree": 9,
+        "n": 9,
+        "support": 512
+      },
+      {
+        "cube_points": 1024,
+        "max_degree": 10,
+        "n": 10,
+        "support": 1024
+      }
+    ],
+    "total_cube_points": 2046
+  },
+  "seed": 500050,
+  "true_correctness": {
+    "ambient": 6,
+    "rank": 4,
+    "trials": 400,
+    "witness_decaps": 800
+  },
+  "unsat_4var_degree_pairs": {
+    "attempts": 1081,
+    "count": 50,
+    "pairs": [
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 3
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 3,
+        "delta_r": 4
+      },
+      {
+        "delta_one": 4,
+        "delta_r": 4
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "run": 707,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "c4b37ab31f18d34e5331f14c204d3388a0166784",
+  "checker": "run707_compact_diagonal_check.js",
+  "validator": "node (two byte-identical runs)",
+  "assertions": 1583,
+  "extended_local_checker": "run707_diagonal_shield_check.py, 8054 assertions; not part of this commit",
+  "scope": "mathematical SOURCE soundness and FALSE unit masking, not hard-TRUE QPT extraction"
+}

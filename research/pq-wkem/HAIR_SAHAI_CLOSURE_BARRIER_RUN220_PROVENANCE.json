@@ -1,0 +1,105 @@
+{
+  "artifact_hashes": {
+    "HAIR_SAHAI_CLOSURE_BARRIER_RUN220.md": {
+      "bytes": 10789,
+      "sha256": "bfd6a080160830d803771bef30af3ac2e254365329712474c2d2f101f1a29101"
+    },
+    "hair-sahai-closure-barrier-run220-validation.json": {
+      "bytes": 2706,
+      "sha256": "3c2581268c3f29262062d6c35bed2a691e3c49ac33bbfad4192a03d472fb68f8"
+    },
+    "hair_sahai_closure_barrier_run220_check.py": {
+      "bytes": 18273,
+      "sha256": "e5f0f5fbbdefd468f24e662a4dff5330c534e384e2d85f3f8b014a6768e915c1"
+    },
+    "hair_sahai_fieldspan2_run220_engine.cpp": {
+      "bytes": 5644,
+      "sha256": "3ec30c079dc760de07f953bfeeaa34e9f2519dc6d69b6da96d2bf3d25cca88f3"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "assertions": 65996,
+    "byte_identical_outputs": true,
+    "cpp17_syntax_check": "passed",
+    "execution_seconds": [
+      24.46,
+      24.82
+    ],
+    "executions": 2,
+    "network_used": false,
+    "python_syntax_check": "passed",
+    "python_version": "3.13.5",
+    "validation_sha256": "3c2581268c3f29262062d6c35bed2a691e3c49ac33bbfad4192a03d472fb68f8"
+  },
+  "connected_github_reads": [
+    "get_pr_info",
+    "fetch_pr_comments",
+    "list_pr_changed_filenames",
+    "fetch_file at exact head"
+  ],
+  "conversation_handoff": {
+    "run_219": "used to select the e15 question only; unpublished artifacts are not treated as branch evidence"
+  },
+  "created_utc": "2026-10-02T00:08:22.810509+00:00",
+  "development_failures": [
+    {
+      "class": "local_code_error",
+      "correlation_id": null,
+      "message": "NameError: name 'gf2_nullspace_basis' is not defined. Did you mean: 'gf2_nullspace_rows'?",
+      "request_id": null,
+      "stage": "intermediate checker"
+    },
+    {
+      "class": "local_permission_error",
+      "correlation_id": null,
+      "message": "PermissionError: [Errno 13] Permission denied: '/mnt/data/pq_wkem_run220/hair_sahai_closure_barrier_run220_check.py'",
+      "request_id": null,
+      "stage": "artifact edit via private Python runtime"
+    },
+    {
+      "class": "local_timeout",
+      "correlation_id": null,
+      "handling": "zero-byte second output discarded; second run repeated separately and matched first",
+      "message": "Command failed because it timed out.",
+      "request_id": null,
+      "stage": "compound validation wrapper"
+    }
+  ],
+  "exact_version_inputs": {
+    "research/pq-wkem/HAIR_SAHAI_GENERALIZED_SUPPORT_RUN214.md": "6a67013fda501295e631d5bb17bb7d50c4bd8be5",
+    "research/pq-wkem/HAIR_SAHAI_GENERALIZED_SUPPORT_RUN214_PROVENANCE.json": "f0433cce9a6ee62be899ce59498660a795ae1b55",
+    "research/pq-wkem/hair-sahai-generalized-support-run214-validation.json": "21a7354f085615d8067073a5de8800616f01fd7c",
+    "research/pq-wkem/hair_sahai_generalized_support_run214_check.py": "b38c7eea6c6a2cb387b5dcb1b97ac018c0b03f32"
+  },
+  "final_read_only_verification": {
+    "draft": true,
+    "head_sha": "aa8f5b0dc257942b40930364a5f18408aca2ea50",
+    "latest_ordinary_comment_id": 5913974235,
+    "merged": false,
+    "run220_paths_present": [],
+    "state": "open"
+  },
+  "latest_substantive_ordinary_comment_id": 5913974235,
+  "publication_attempt": {
+    "correlation_id": null,
+    "error_code": null,
+    "first_write_action": "GitHub.create_blob for finalized Run-220 proof note",
+    "message": "This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "request_id": null,
+    "result": "explicit_safety_denial",
+    "tool_timestamp": null,
+    "writes_after_denial": 0
+  },
+  "publication_status": "BLOCKED_BEFORE_GITHUB",
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "run_id": 220,
+  "scope": "One bounded field-closure/adjoint iteration on the literal N=3,R=1 GF(16) false source.",
+  "starting_head_sha": "aa8f5b0dc257942b40930364a5f18408aca2ea50",
+  "starting_state": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "artifact_sha256": {
+    "HIDDEN_SUBSPACE_CONSISTENCY_BUNDLE_RUN103.md": "899f1657bc192fa2fa769ac1e099aad01d02bed14adc32b665864a23f5dec613",
+    "hidden-subspace-consistency-bundle-run103-validation.json": "eec046b343f4bde96412fbcb12a98d326c2f2fe0bc2e461dc616e078b7ed3a3d",
+    "hidden_subspace_consistency_bundle_run103_check.py": "349acd398cfb488d1bca1b5b74076abbf1b91a59ba344ecb18f7ed7dab8f9711"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "byte_identical_stdout": true,
+    "executions": 2,
+    "path": "research/pq-wkem/hidden_subspace_consistency_bundle_run103_check.py",
+    "status": "PASS",
+    "total_assertions": 242
+  },
+  "exact_repository_inputs": [
+    {
+      "blob_sha": "16f82444983462600905668a64c3856a94b17c84",
+      "path": "research/pq-wkem/ODD_SPAN_AND_SUBSPACE_RANK_NOISE.md"
+    },
+    {
+      "blob_sha": "5d061495800bad32733298d25f1f1ac6e55779c2",
+      "path": "research/pq-wkem/literature-20260924/DEEP_DIVE_RANK_SCALAR_DESCENT.md"
+    },
+    {
+      "blob_sha": "4155a986ee4bf0d22b436dcebbe118a2c5b72ae1",
+      "path": "research/pq-wkem/MINRANK_DUAL_SYNDROME_RUN78.md"
+    },
+    {
+      "blob_sha": "0f93693ad51f7d84c249fd02ffa361bcadd3dd84",
+      "path": "research/pq-wkem/SPECTRAL_DIMENSION_FLOOR_RUN89.md"
+    },
+    {
+      "blob_sha": "e4b5dfe48e6ca05d565fbe81881f2178332abc0e",
+      "path": "research/pq-wkem/SYNDROME_EXTRACTOR_CAPACITY_RUN99.md"
+    }
+  ],
+  "latest_verified_comment": {
+    "id": 5836517821,
+    "scope": "Run 99 published and verified"
+  },
+  "literature": [
+    {
+      "not_imported": "no concrete PQ/QPT security theorem",
+      "source": "arXiv:2609.18275v1",
+      "verified_scope": "classical prime-order generic-group WE; logarithmic homogeneous-MinRank gap with Boolean rank-one witness",
+      "work": "Hair\u2013Sahai, Witness Encryption via Prime-Order Generic Groups"
+    },
+    {
+      "not_imported": "statement-derived source is not reduced to their random-generator distribution",
+      "source": "arXiv:2510.03752v1",
+      "verified_scope": "PKE from planted MinRank over uniformly random matrix generators",
+      "work": "Chatterjee\u2013Mu\u2013Vasudevan, Public-Key Encryption from the MinRank Problem"
+    },
+    {
+      "limitation": "full primary PDF unavailable through current fetch path; exact source parameters not claimed",
+      "source": "ePrint 2026/2063 current public metadata",
+      "verified_scope": "polylog-online-verifier SNARG + Karp\u2013Levin GapMDP metadata only",
+      "work": "Jin, Witness Encryption for NP from SNARGs and Groups"
+    }
+  ],
+  "new_results": [
+    "hidden-U consistency bundle with same public direction H across T subcapsules",
+    "perfect false-statement full-view hiding for all bundle/key repetitions",
+    "inverse-alpha rather than inverse-alpha-squared honest bundle count",
+    "exact joint Fourier support restricted to supplied source-extractable low-rank modes",
+    "exact squared-spectrum intersection-enumerator identity",
+    "public-U membership/orientation key-recovery attack"
+  ],
+  "pr": 1,
+  "publication": {
+    "attempted_action": "mcp__GitHub__create_blob",
+    "attempted_artifact": "research/pq-wkem/HIDDEN_SUBSPACE_CONSISTENCY_BUNDLE_RUN103.md",
+    "branch": "research/pq-wkem-validation-20260918",
+    "comment_id": null,
+    "commit_sha": null,
+    "error": "Script error: This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "note": "The first and only GitHub write attempt was safety-blocked. No retry, rename, encoding workaround, tree, commit, ref update, or PR comment was attempted afterward. Exact tool timestamp and request/correlation ID were not supplied.",
+    "outstanding_local_only_paths": [
+      "research/pq-wkem/HIDDEN_SUBSPACE_CONSISTENCY_BUNDLE_RUN103.md",
+      "research/pq-wkem/hidden_subspace_consistency_bundle_run103_check.py",
+      "research/pq-wkem/hidden-subspace-consistency-bundle-run103-validation.json",
+      "research/pq-wkem/HIDDEN_SUBSPACE_CONSISTENCY_BUNDLE_RUN103_PROVENANCE.json"
+    ],
+    "post_block_readback": {
+      "head_unchanged": true,
+      "pr_draft": true,
+      "pr_open": true,
+      "pr_unmerged": true,
+      "proof_path_absent": true,
+      "proof_path_readback_http_status": 404
+    },
+    "post_block_write_attempts": 0,
+    "pr": 1,
+    "repository": "syscoin/PVUGC",
+    "request_or_correlation_id": null,
+    "starting_and_final_verified_head": "93ae96ba977d96e435c41c86ffeb037e8dbc2ff5",
+    "status": "BLOCKED_BEFORE_GITHUB",
+    "tool_timestamp": null,
+    "verified_branch_visible_paths": []
+  },
+  "quantum_status": {
+    "arbitrary_qpt_key_recovery_to_supported_mode": "UNPROVED without quantitative response-mass/intersection bound",
+    "false_hiding": "perfect information-theoretic; arbitrary QPT",
+    "supported_mode_to_original_witness": "deterministic classical under source interface"
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 103,
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "state": "open"
+  },
+  "starting_sha": "93ae96ba977d96e435c41c86ffeb037e8dbc2ff5"
+}

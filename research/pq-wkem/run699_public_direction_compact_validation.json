@@ -1,0 +1,20 @@
+{
+  "run": 699,
+  "scope": "compact exact source-covered Run698-form direction codec regression; correctness only",
+  "q": 257,
+  "m": 64,
+  "p": 65,
+  "n": 129,
+  "d": 3,
+  "K": 73,
+  "assertions": 24246,
+  "S": 4771,
+  "D": 866,
+  "unit_directions": 65,
+  "primitive_overlaps": 952,
+  "old_bytes": 9961848,
+  "projective_bytes": 1853836,
+  "ratio": 5.3736,
+  "eigenvalue_security": "NOT PROVEN",
+  "native_bitcoin_endpoint": "NOT TESTED"
+}

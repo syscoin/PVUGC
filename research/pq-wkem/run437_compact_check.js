@@ -1,0 +1,13 @@
+// Run 437 exact S3 gauge-holonomy check. Node.js standard library only.
+'use strict';
+const P=[];for(let a=0;a<3;a++)for(let b=0;b<3;b++)for(let c=0;c<3;c++)if(a!==b&&b!==c&&a!==c)P.push([a,b,c]);
+const I=[0,1,2],S=[1,0,2],C=[1,2,0],S2=[2,1,0];let assertions=0;
+function eq(a,b){return JSON.stringify(a)===JSON.stringify(b)}
+function ok(v){assertions++;if(!v)throw Error('assertion '+assertions)}
+function mul(...ps){let z=I;for(const p of [...ps].reverse())z=z.map(i=>p[i]);return z}
+function inv(p){const q=[];for(let i=0;i<3;i++)q[p[i]]=i;return q}
+function kind(p){let seen=new Set(),cycles=[];for(let i=0;i<3;i++){if(seen.has(i))continue;let k=i,n=0;while(!seen.has(k)){seen.add(k);n++;k=p[k]}cycles.push(n)}return cycles.sort().join(',')}
+let forests=[];for(const [t1,t2] of [[I,I],[S,C],[C,S]]){let count=new Map();for(const u0 of P)for(const u1 of P)for(const u2 of P){let a=mul(u1,t1,inv(u0)),b=mul(u2,t2,inv(u1)),k=JSON.stringify([a,b]);count.set(k,(count.get(k)||0)+1)}ok(count.size===36);ok([...count.values()].every(n=>n===6));forests.push([...count].sort())}ok(eq(forests[0],forests[1])&&eq(forests[0],forests[2]));
+let tri={};for(const [name,source] of [['identity',I],['swap',S],['cycle',C]]){let count=new Map();for(const u0 of P)for(const u1 of P)for(const u2 of P){let a=mul(u1,I,inv(u0)),b=mul(u2,I,inv(u1)),c=mul(u2,source,inv(u0)),h=mul(inv(mul(b,a)),c);ok(eq(h,mul(u0,source,inv(u0))));let k=JSON.stringify([a,b,c]);count.set(k,(count.get(k)||0)+1)}let expect={identity:[36,6],swap:[108,2],cycle:[72,3]}[name];ok(count.size===expect[0]);ok([...count.values()].every(n=>n===expect[1]));tri[name]=count}for(const a of Object.keys(tri))for(const b of Object.keys(tri))if(a<b)ok(![...tri[a].keys()].some(x=>tri[b].has(x)));
+let pairs={};for(const [name,s1,s2] of [['same',S,S],['different',S,S2]]){let count=new Map();for(const u0 of P)for(const u1 of P)for(const u2 of P){let a=mul(u1,I,inv(u0)),b=mul(u2,I,inv(u1)),c=mul(u2,s1,inv(u0)),d=mul(u2,s2,inv(u0)),h1=mul(inv(mul(b,a)),c),h2=mul(inv(mul(b,a)),d);ok(kind(h1)==='1,2'&&kind(h2)==='1,2');ok(kind(mul(inv(h1),h2))===(name==='same'?'1,1,1':'3'));let k=JSON.stringify([a,b,c,d]);count.set(k,(count.get(k)||0)+1)}let e=name==='same'?[108,2]:[216,1];ok(count.size===e[0]);ok([...count.values()].every(n=>n===e[1]));pairs[name]=count}ok(![...pairs.same.keys()].some(x=>pairs.different.has(x)));
+console.log(JSON.stringify({run:437,status:'PASS',assertions,group:'S3',forest_support:36,triangle_support:{identity:36,swap:108,cycle:72},two_chord_support:{same:108,different:216},pairwise_disjoint:true,claim:'restricted information-theoretic falsification; no PQ WKEM'}));

@@ -1,0 +1,94 @@
+{
+  "cases": [
+    {
+      "b": 2,
+      "best_round": 1,
+      "distinct_good_states": 1,
+      "good_coins": 1,
+      "initial_rate": "1/4",
+      "maximum_rate": "1",
+      "random_bits": 0
+    },
+    {
+      "b": 4,
+      "best_round": 3,
+      "distinct_good_states": 1,
+      "good_coins": 1,
+      "initial_rate": "1/16",
+      "maximum_rate": "63001/65536",
+      "random_bits": 0
+    },
+    {
+      "b": 6,
+      "best_round": 6,
+      "distinct_good_states": 1,
+      "good_coins": 1,
+      "initial_rate": "1/64",
+      "maximum_rate": "17952891602536801/18014398509481984",
+      "random_bits": 0
+    },
+    {
+      "b": 8,
+      "best_round": 12,
+      "distinct_good_states": 1,
+      "good_coins": 1,
+      "initial_rate": "1/256",
+      "maximum_rate": "5708688434680186775332495659246923508049077121/5708990770823839524233143877797980545530986496",
+      "random_bits": 0
+    },
+    {
+      "b": 4,
+      "best_round": 2,
+      "distinct_good_states": 2,
+      "good_coins": 3,
+      "initial_rate": "3/32",
+      "maximum_rate": "131043/131072",
+      "random_bits": 2
+    },
+    {
+      "b": 6,
+      "best_round": 4,
+      "distinct_good_states": 2,
+      "good_coins": 4,
+      "initial_rate": "1/32",
+      "maximum_rate": "536431921/536870912",
+      "random_bits": 2
+    },
+    {
+      "b": 4,
+      "best_round": 1,
+      "distinct_good_states": 4,
+      "good_coins": 4,
+      "initial_rate": "1/4",
+      "maximum_rate": "1",
+      "random_bits": 2
+    }
+  ],
+  "checks": 222,
+  "irrelevant_padding_success_identical": true,
+  "model": "public deterministic accepting predicate with enumerated finite state",
+  "quantum_search_exponents": [
+    {
+      "M_log2": 0,
+      "b": 128,
+      "exponent": 64.0
+    },
+    {
+      "M_log2": 0,
+      "b": 256,
+      "exponent": 128.0
+    },
+    {
+      "M_log2": 32,
+      "b": 256,
+      "exponent": 112.0
+    },
+    {
+      "M_log2": 192,
+      "b": 256,
+      "exponent": 32.0
+    }
+  ],
+  "result": "PASS",
+  "security_claim": "exact finite search identities and a conditional generic search bound only"
+}

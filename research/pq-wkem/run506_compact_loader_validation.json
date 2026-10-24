@@ -1,0 +1,12 @@
+{
+  "run": 506,
+  "scope": "exponential ideal-frame loader only, NOT witness-KEM",
+  "checks": 208461,
+  "unaryOrbitStates": 2046,
+  "loaderWords": 2046,
+  "exhaustiveFrameCouplings": 40344,
+  "sampledFrameCouplings": 80,
+  "falseSourceReachableStates": 560,
+  "maliciousFrameLeak": true,
+  "status": "PASS"
+}

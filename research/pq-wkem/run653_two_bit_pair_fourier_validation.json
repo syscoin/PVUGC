@@ -1,0 +1,88 @@
+{
+  "assertions": 8589,
+  "claim": "field-product vectorial bent two-bit pair-profile fingerprint",
+  "results": [
+    {
+      "axis_equal_label_fibers_full_label": 2,
+      "field_size": 4,
+      "independent_product_bits_from_two_bit_profile": 2,
+      "key_shifts": 15,
+      "m": 2,
+      "mixed_equal_label_fibers_full_label_each": 1,
+      "one_bit_distinct_complete_pair_profiles": 1,
+      "state_bits": 4,
+      "two_bit_fourier_values": [
+        -4,
+        4
+      ],
+      "two_bit_mixed_character_coefficients": [
+        3,
+        2,
+        1
+      ],
+      "vector_derivative_uniform_for_all_nonzero_shifts": true
+    },
+    {
+      "axis_equal_label_fibers_full_label": 4,
+      "field_size": 8,
+      "independent_product_bits_from_two_bit_profile": 3,
+      "key_shifts": 63,
+      "m": 3,
+      "mixed_equal_label_fibers_full_label_each": 1,
+      "one_bit_distinct_complete_pair_profiles": 1,
+      "state_bits": 6,
+      "two_bit_fourier_values": [
+        -8,
+        8
+      ],
+      "two_bit_mixed_character_coefficients": [
+        7,
+        4,
+        6
+      ],
+      "vector_derivative_uniform_for_all_nonzero_shifts": true
+    },
+    {
+      "axis_equal_label_fibers_full_label": 8,
+      "field_size": 16,
+      "independent_product_bits_from_two_bit_profile": 3,
+      "key_shifts": 255,
+      "m": 4,
+      "mixed_equal_label_fibers_full_label_each": 1,
+      "one_bit_distinct_complete_pair_profiles": 1,
+      "state_bits": 8,
+      "two_bit_fourier_values": [
+        -16,
+        16
+      ],
+      "two_bit_mixed_character_coefficients": [
+        15,
+        8,
+        6
+      ],
+      "vector_derivative_uniform_for_all_nonzero_shifts": true
+    },
+    {
+      "axis_equal_label_fibers_full_label": 16,
+      "field_size": 32,
+      "independent_product_bits_from_two_bit_profile": 3,
+      "key_shifts": 1023,
+      "m": 5,
+      "mixed_equal_label_fibers_full_label_each": 1,
+      "one_bit_distinct_complete_pair_profiles": 1,
+      "state_bits": 10,
+      "two_bit_fourier_values": [
+        -32,
+        32
+      ],
+      "two_bit_mixed_character_coefficients": [
+        29,
+        19,
+        6
+      ],
+      "vector_derivative_uniform_for_all_nonzero_shifts": true
+    }
+  ],
+  "run": 653,
+  "scope": "finite exact algebra; not classical PPT/QPT security or full WKEM"
+}

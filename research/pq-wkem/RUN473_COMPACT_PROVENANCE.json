@@ -1,0 +1,22 @@
+{
+  "run": 473,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "b41c4f1f8a3382c75aae6cb34e1834f8f87836a9",
+  "source_input_blobs": {
+    "run472": "7118d863c6a7e90d2720c2d556d9be7b3f762731",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "clz": "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  },
+  "checker_execution": "JavaScript run() evaluated in V8 and source saved verbatim for Node; independent Python checker executed twice locally with byte-identical output",
+  "checks": 33,
+  "literature": "Tomamichel et al., IEEE TIT 2011, Theorem 6, actual PDF theorem and proof inspected",
+  "security_claim": "No QPT-security proof; statistical quantum side-info implication and known-message fixed-K break only",
+  "paths": [
+    "research/pq-wkem/RUN473_QUANTUM_ADVICE_COMPACT.md",
+    "research/pq-wkem/run473_compact_check.js",
+    "research/pq-wkem/run473_compact_validation.json",
+    "research/pq-wkem/RUN473_COMPACT_PROVENANCE.json"
+  ]
+}

@@ -1,0 +1,1 @@
+{"capsule_seeds": 3, "checks": 30966, "claim": "public orbit parser extracts the unique original witness from every accepted admission object; not from a signature", "delta": 128, "practical_qpt_security": false, "run": 373, "status": "PASS", "toy_q": 257, "witness_bits": 3}

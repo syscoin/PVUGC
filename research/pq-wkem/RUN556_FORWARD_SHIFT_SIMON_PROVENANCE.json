@@ -1,0 +1,23 @@
+{
+  "run": 556,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "3e7af956f0bb9de47681bf08642e7b42cce91c72",
+  "base_tree_sha": "8aec7ca447840f832488dc3d97249d2697cb364c",
+  "verified_read_actions": [
+    "get_pr_info",
+    "fetch_issue_comments",
+    "compare_commits",
+    "fetch_commit",
+    "fetch git branch ref",
+    "fetch_file Run555 note",
+    "fetch_file Run555 validation",
+    "fetch_file CLZ applicability"
+  ],
+  "committed_checker": "run556_forward_shift_check.js",
+  "executed_v8_assertions": 19535,
+  "local_independent_python_assertions": 158489,
+  "local_python_output_sha256": "91be9b16abfb7e9d5d7427883fb9de3a6638c8fb07280ef2870cbe57bce937cf",
+  "result_scope": "Forward-only ideal shifted-permutation coherent quantum period recovery; no WE or QPT release construction"
+}

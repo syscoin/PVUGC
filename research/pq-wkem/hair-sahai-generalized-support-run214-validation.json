@@ -1,0 +1,71 @@
+{
+  "assertions": 455,
+  "exact_fixture": {
+    "N": 3,
+    "R": 1,
+    "binary_matrix_shape": [
+      224,
+      4
+    ],
+    "binary_source_dimension": 16,
+    "distinct_nonzero_column_spaces": 65535,
+    "field": "GF(16), x^4+x+1",
+    "field_source_dimension": 4,
+    "gamma": 2,
+    "gamma_order": 15,
+    "global_column_support_dimension": 24,
+    "nonzero_rank_histogram": {
+      "3": 225,
+      "4": 65310
+    },
+    "rank3_GF16_projective_lines": 15
+  },
+  "generalized_column_support": {
+    "A1": {
+      "3": 225,
+      "4": 65310
+    },
+    "A2": {
+      "5": 420,
+      "6": 31710,
+      "7": 7416255,
+      "8": 708346730
+    },
+    "d1": 3,
+    "d2": 5,
+    "d3": 6,
+    "example_support6_3D_basis_coefficients": [
+      39235,
+      1002,
+      6
+    ],
+    "rank3_pair_support_histogram": {
+      "5": 1260,
+      "6": 23940
+    },
+    "support5_2D_subcode_dimensions": {
+      "2": 420
+    },
+    "support5_2D_subspaces": 420
+  },
+  "incidence_counts": {
+    "rank3_rank4_pairs_intersection_dim1": 62370,
+    "rank3_rank4_pairs_intersection_dim_ge2": 0,
+    "rank4_rank4_pairs_intersection_dim1": 7616385,
+    "rank4_rank4_pairs_intersection_dim2": 8820,
+    "rank4_rank4_pairs_intersection_dim3": 0
+  },
+  "python": "3.13.5",
+  "run": 214,
+  "status": "PASS",
+  "support_sum_known_terms": {
+    "first_r_with_t_eq_r_plus_12_below_2^-136": {
+      "log2": -136.18621880878297,
+      "r": 78,
+      "t": 90
+    },
+    "qualification": "This is only the exact j=1 and j=2 contribution; j>=3 spectrum remains unenumerated.",
+    "r74_t86_log2_j1_plus_j2": -128.18621880878297,
+    "r78_t90_log2_j1_plus_j2": -136.18621880878297
+  }
+}
