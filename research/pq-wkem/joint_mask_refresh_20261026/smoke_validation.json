@@ -1,0 +1,8 @@
+{
+  "assertions": 106,
+  "bad": true,
+  "refresh": true,
+  "safe": true,
+  "scope": "exhaustive F7 toy; no general QPT secrecy",
+  "shared_key_difference": true
+}
