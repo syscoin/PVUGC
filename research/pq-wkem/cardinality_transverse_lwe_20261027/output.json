@@ -1,0 +1,29 @@
+{
+  "record": "cardinality-transverse-lwe-20261027",
+  "fullVector": {
+    "validWitnesses": 3,
+    "allWitnessOpeningChecks": 139968
+  },
+  "pairwise": {
+    "enumeratedMatrices": 4096,
+    "cardinalityWitnesses": 20,
+    "falseMatrices": 149
+  },
+  "nullHybrid": {
+    "keys": 4,
+    "jointPairsPerKey": 16
+  },
+  "parameters": {
+    "q": 1048576,
+    "n": 4096,
+    "h": 128,
+    "d": 32,
+    "gOld": 16384,
+    "gNew": 512,
+    "ellOld": 43,
+    "ellNew": 24,
+    "pctFewerColumns": "44.186",
+    "satisfiabilitySlackBits": 176
+  },
+  "checks": 186974
+}
