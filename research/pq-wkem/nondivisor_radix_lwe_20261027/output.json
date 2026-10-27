@@ -1,0 +1,1 @@
+{"status":"ok","checks":796267,"radix":5,"columns":28,"previous_columns":29,"one_vector_saved_bytes":10240,"noise_first_term":"<2^-141","noise_coupling":"<2^-139","honest_all_witness_failure":"<2^-138","conditioned_true_failure":"<2^-137","security":"only restricted reference; QPT LWE/natives uninstantiated"}
