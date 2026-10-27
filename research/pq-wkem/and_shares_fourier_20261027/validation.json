@@ -1,0 +1,11 @@
+{
+  "record": "and-shares-fourier-20261027",
+  "kind": "exact finite-algebra only",
+  "assertions": 16530,
+  "sourceCount": 2,
+  "keyBits": 2,
+  "checkedFalseFullViews": 8,
+  "checkedNativeNullViews": 8,
+  "majorityXorError": "100/729",
+  "expectedScope": "No quantum hardness or native signature implementation tested"
+}
