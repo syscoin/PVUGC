@@ -1,0 +1,21 @@
+{
+  "run": "gaussian-transverse-tail-20261027-turn10",
+  "date": "2026-10-27",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_head": "da17fa6654ffccd6d7905302314ddedd69c3e2f4",
+  "source_blobs": [
+    "2260a962953b11dd3bbcf1b92784e73d9460e439",
+    "6cf07e0374f5d303c3528c79caeb30a3aacf7301"
+  ],
+  "independent_python_sha256": "55d7a575e23018fce49d9f0dca67e4561923c689f6f34b69920e7d2e9f6700e9",
+  "python_output_sha256": "3febfd846d62163dbb3ec9880bd2637f1dc97e57b060e6fb0d15011e31ddab25",
+  "python_checks": 113026,
+  "python_runs": 2,
+  "local_archive_sha256": "6ed4f0a3b1595e8f7a24307821bea40a5de676b8e55aed6a30912a2789b88532",
+  "published_js_assertions": 100247,
+  "published_js_execution": "functions Code Mode V8, direct runExact() invocation",
+  "external_research": false,
+  "scope": "research-only random reference LWE Gaussian-tail correctness; not complete ORIGINAL witness compiler"
+}
