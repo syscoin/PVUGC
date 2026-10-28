@@ -1,0 +1,11 @@
+{
+  "record": "lwe-syndrome-source-20261028-turn11",
+  "tests": 5177,
+  "full_seed_trials": 16,
+  "multi_original_witnesses": 2,
+  "source_compression_trials": 100,
+  "exact_hash_collision_sum": 860625,
+  "exact_hash_matrices": 15625,
+  "security": "finite algebra only; QPT DecLWE is a separate unverified assumption",
+  "status": "PASS"
+}
