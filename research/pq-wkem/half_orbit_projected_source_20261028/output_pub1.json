@@ -1,0 +1,1 @@
+{"assertions": 3119, "columns": 46, "concrete_128_bit_qpt": false, "false_full_vector_tv": "1/3^128", "hard_true_extraction": false, "m": 128, "q": 257, "r": 127, "seed_bits": 256, "status": "PASS", "true_original_witnesses": 2}
