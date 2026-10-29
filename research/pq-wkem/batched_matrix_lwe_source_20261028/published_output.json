@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "assertions": 23968,
+  "small_H_matrices": 15625,
+  "collisions_per_sphere_pair": [
+    125,
+    125,
+    125,
+    125,
+    125,
+    125
+  ],
+  "toy_distinct_SOURCE_witnesses": 2,
+  "toy_batched_digit_trials": 3993,
+  "old_ciphertext_field_elements": 18189,
+  "new_ciphertext_field_elements": 1704,
+  "old_full_view_elements_one": 224589,
+  "new_full_view_elements_one": 228904,
+  "old_full_view_elements_two": 242778,
+  "new_full_view_elements_two": 230608,
+  "statistical_term_stronger": true,
+  "not_proven": "generic NP or 128bit QPT hardness"
+}
