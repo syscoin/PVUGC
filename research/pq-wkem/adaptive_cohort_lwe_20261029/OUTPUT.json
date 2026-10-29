@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "assertions": 5336,
+  "related_capsules": 2,
+  "mock_keybits": 256,
+  "all_adaptive_corruption_orders": 41,
+  "complete_corrupt_coin_openings": 2064,
+  "exact_share_marginals": 9,
+  "toy_uniform_H": 6561,
+  "toy_mean_tv": 0.21717556605529426,
+  "toy_mean_shift_tv": 0.25727785398567293,
+  "toy_delta": 0.28867513459481287,
+  "log2_statistical_bound_adaptive": -874.830603270043,
+  "scope": "restricted TRUE-LWE source; not generic NP or calibrated QPT security"
+}
