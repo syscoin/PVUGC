@@ -1,0 +1,21 @@
+{
+  "status": "PASS (restricted distributed prime-LWE SOURCE)",
+  "assertions": 7140,
+  "params": {
+    "q": 1009,
+    "n": 2,
+    "m": 17,
+    "B": 1,
+    "N": 4,
+    "J": 2,
+    "L": 256
+  },
+  "differentAcceptedWitnesses": 6,
+  "individualContributorCiphertexts": 2048,
+  "aggregateCiphertexts": 512,
+  "samePrecommittedNativeSeed": true,
+  "anyNminus1ShareUniformityExhaustive": true,
+  "binarySubsetSumPairwiseUniversalityExhaustive": true,
+  "fixedFalseFailureDemonstrated": true,
+  "disclaimer": "Finite algebraic checks; mock checking-key fingerprint; no native SLH, QPT hardness, original NP or malicious ceremony claim"
+}
