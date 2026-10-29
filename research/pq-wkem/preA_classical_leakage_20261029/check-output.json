@@ -1,0 +1,42 @@
+{
+  "status": "PASS_RESTRICTED_LEAKAGE_NOT_GENERIC_NP",
+  "assertions": 247,
+  "toy": [
+    {
+      "bits": 0,
+      "classes": 1,
+      "tv": 0.21324448146605582,
+      "bound": 0.28867513459481287
+    },
+    {
+      "bits": 1,
+      "classes": 2,
+      "tv": 0.3127863390254061,
+      "bound": 0.408248290463863
+    },
+    {
+      "bits": 2,
+      "classes": 4,
+      "tv": 0.4541163404137165,
+      "bound": 0.5773502691896257
+    },
+    {
+      "bits": 3,
+      "classes": 7,
+      "tv": 0.582673885880883,
+      "bound": 0.7637626158259734
+    }
+  ],
+  "twoColumnsSharedA": {
+    "TV": 0.5823,
+    "bound": 0.744
+  },
+  "twoDistinctOpeningTrials": 60,
+  "illustrativeNotQPTCertified": {
+    "log2N": 2770.739395550297,
+    "log2delta0": -362.3682889040215,
+    "log2_t_d_delta0": -356.9759714812427,
+    "maxPerColumnLeakageBits": 457,
+    "log2_t_d_delta_at_457": -128.4759714812427
+  }
+}
