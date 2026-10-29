@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "assertions": 12456,
+  "source": "factor-local torsion; general bounded-arity original NP correctness, restricted XOR-certificate FALSE security",
+  "falsePasch": {
+    "rows": 10,
+    "columns": 16,
+    "certificate": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "local_onehot_choices_rejected": 256,
+    "random_inconsistent_xor_systems": 80
+  },
+  "trueFixture": {
+    "valid_original_witnesses": 8,
+    "identical_recovered_mock_key_bits": 256
+  },
+  "generic3CNF": {
+    "valid_witnesses": 24,
+    "columns": 14
+  },
+  "q": 32,
+  "radix": 16,
+  "maxLegitimateNoise": 5,
+  "relatedSameKeyFalseCapsules": 2,
+  "ciphertextPackedBytes": 8160,
+  "predecessorRawBytes": 33024,
+  "scope": "finite algebra, not generic NP security/QPT LWE/native SLH or Bitcoin verification"
+}
