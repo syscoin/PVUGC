@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "assertions": 2846,
+  "n": 3,
+  "m": 6,
+  "q": 257,
+  "N": 3,
+  "J": 2,
+  "sourcePreimages": 2,
+  "fullNativeSecretBytes": 48,
+  "individualCiphertexts": 768,
+  "relatedCapsules": 2,
+  "tamperRejections": 6,
+  "falseSourceSignedDespiteNoPreimage": true,
+  "signature": "Ed25519 mock, NOT PQ",
+  "security": "NO ORIGINAL witness reduction"
+}
