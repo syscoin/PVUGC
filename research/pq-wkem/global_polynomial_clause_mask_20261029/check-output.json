@@ -1,0 +1,16 @@
+{
+  "status": "CANDIDATE_BROKEN",
+  "q": 257,
+  "assertions": 261,
+  "distinct_valid_original_witnesses": 25,
+  "false_assignments_checked": 4,
+  "shares": 3,
+  "seed_bytes": 32,
+  "public_false_extractor": [
+    1,
+    0,
+    1,
+    1
+  ],
+  "full_key_recovered_without_any_witness": true
+}
