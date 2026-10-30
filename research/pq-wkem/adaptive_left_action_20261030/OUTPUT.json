@@ -1,0 +1,16 @@
+{
+  "assertions": 300,
+  "chi": [
+    -1,
+    0,
+    1
+  ],
+  "complete_vector_distribution_count_per_instance": 1323,
+  "d": 3,
+  "key_releases": 4,
+  "n": 2,
+  "q": 7,
+  "run": "adaptive_left_action_20261030",
+  "samples": 72,
+  "status": "restricted_joint_law_only"
+}
