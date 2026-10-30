@@ -1,0 +1,44 @@
+{
+  "bytes": {
+    "SOURCE_new": 29703168,
+    "SOURCE_old": 36864000,
+    "capsules_new": 10850400,
+    "capsules_old": 16444800,
+    "combined_new": 40553568,
+    "combined_old": 53308800,
+    "combined_saving_percent": 23.9270665,
+    "matrix_width_reduction_percent": 34.2794118
+  },
+  "decoding": {
+    "bound_twice": 512256,
+    "g": 524287,
+    "last_center_gap": 524316
+  },
+  "entropy_excess_bits": {
+    "new": 283.049685175,
+    "old": 1792.513735792,
+    "previous_width": 282.193659967
+  },
+  "exact_checks": 528,
+  "parameters": {
+    "B": 128,
+    "C": 100,
+    "J": 2,
+    "K": 5200,
+    "L": 52,
+    "N": 4,
+    "ell": 5,
+    "m_new": 4469,
+    "m_old": 6800,
+    "n": 256,
+    "q": 16777213,
+    "w": 2000
+  },
+  "record": "shared_A_min_width_20261030",
+  "status": "positive efficiency of restricted SOURCE-only construction, no ORIGINAL WKEM",
+  "toy_projection_long_outcomes": 405,
+  "toy_projection_short_outcomes": 135,
+  "toy_projection_support_size": 105,
+  "tv_log2_upper_approx": -130.18054668,
+  "zero_preimage_log2_union_upper_approx": -270.705389267
+}
