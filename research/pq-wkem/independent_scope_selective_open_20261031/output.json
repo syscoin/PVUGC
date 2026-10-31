@@ -1,0 +1,1 @@
+{"bits_per_key": 512, "checks": 2080, "chosen_false_nonwitness_bits_recovered": 512, "fresh_native_challenge_verified": true, "legitimate_witnesses": 2, "opened_sibling_keys_and_coins": 2, "related_capsules_each": 2, "scope_keys": 3, "signature": "toy factorable RSA, NOT post-quantum"}
