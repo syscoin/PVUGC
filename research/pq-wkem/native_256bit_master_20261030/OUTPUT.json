@@ -1,0 +1,39 @@
+{
+  "candidate": "Native 256-bit seed-width SOURCE packet correction, not ORIGINAL WKEM",
+  "checks": 4062,
+  "seed_bytes": 32,
+  "prf_bytes": 32,
+  "master_bytes": 64,
+  "packet_digits": 103,
+  "parameters": {
+    "q": 16777213,
+    "n": 256,
+    "m": 4469,
+    "w": 2006,
+    "g": 524287,
+    "B": 128
+  },
+  "thresholds": {
+    "old_256bit": {
+      "L": 52,
+      "J": 124800,
+      "minimum_w": 2004
+    },
+    "new_512bit": {
+      "L": 103,
+      "J": 247200,
+      "minimum_w": 2006
+    }
+  },
+  "noise_bound": 256896,
+  "digit_gap_margin": [
+    10495,
+    10524
+  ],
+  "shamir_pairs_recovered": 192,
+  "public_bytes_before": 67630992,
+  "public_bytes_after": 114816192,
+  "original_lift": false,
+  "actual_native_signature_test": false,
+  "complete_wkem_qpt_proof": false
+}
