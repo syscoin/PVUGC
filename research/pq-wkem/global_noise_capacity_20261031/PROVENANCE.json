@@ -1,0 +1,43 @@
+{
+  "checkpoint": "NGCE-20261031",
+  "status": "NO_POSITIVE_SECURE_WKEM_ADVANCE",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "d92b4968be6e6f044dfc6117fd9c726abf07a364",
+  "predecessor_comment": 6550396385,
+  "offline": true,
+  "published_checker_engine": "functions.exec V8",
+  "published_checker_output": {
+    "result": "PASS",
+    "assertions": 27021,
+    "samples": 3000,
+    "public_openers": 8,
+    "false_relation": "NAND(x,x)=0 AND NAND(x,x)=1",
+    "honest_onehot_norm2": 4,
+    "minimum_fake_integer_norm2": 6,
+    "mixed_public_norm2": "97/28",
+    "predicted_noise_variance": {
+      "single_fake": 980,
+      "honest_reference": 700,
+      "public_mix": 625
+    },
+    "observed_noise_mse": {
+      "single_fake": 967.5323333333333,
+      "honest_reference": 720.1806666666666,
+      "public_mix": 614.3564289965983
+    },
+    "bit_errors": {
+      "single_fake": 307,
+      "honest_reference": 173,
+      "public_mix": 127
+    },
+    "assumptions": "toy qary ciphertext, centered bounded independent errors; no QPT claim"
+  },
+  "local_python_runs": 2,
+  "local_python_output_identical": true,
+  "local_checker_sha256": "f1971e969dc51fa18462fc02829a344abb3106864a6b3a7df610bffcda995162",
+  "local_output_sha256": "bb510b3e5aec48d778c0e8638def82c91e8e2c6c29876f96152b0a489cdfc6ed",
+  "local_archive_sha256": "f0ecf079c31dc8e6f98fb114715770c9005afe7bf092eeabfec2eb55c828a280",
+  "disclaimer": "Negative regression only; no QPT security proof or native signing keys."
+}
