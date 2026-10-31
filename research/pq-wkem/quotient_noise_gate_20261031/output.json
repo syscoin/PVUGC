@@ -1,0 +1,1 @@
+{"candidate":"quotient-aligned structured LWE source","status":"REJECTED; no generic PQ WKEM advance","q":65537,"g":4096,"degree":3,"T":26,"rank_D":10,"original_witness_count":0,"public_nonwitness_dual_support":3,"full_joint_false_bits_recovered":512,"assertions":1039,"independent_qpt_security_proof":false,"real_native_signatures":false}
