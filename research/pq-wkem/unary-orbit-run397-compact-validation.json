@@ -1,0 +1,10 @@
+{
+  "run": 397,
+  "status": "PASS",
+  "assertions": 16764,
+  "fixtures": 3006,
+  "scope": "public bounded unary orbit only",
+  "real_CLZ": false,
+  "QPT_proven": false,
+  "WKEM_solved": false
+}

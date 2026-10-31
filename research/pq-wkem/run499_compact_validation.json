@@ -1,0 +1,188 @@
+{
+  "run": 499,
+  "title": "Key-correlated hardcore bit lemma finite diagnostic",
+  "assertions": 415,
+  "cases": [
+    {
+      "key_bits": 5,
+      "context": 0,
+      "public_vk_suffix_bits": 2,
+      "oracle_correct_fraction": 0.875,
+      "walsh_correlation": 0.75,
+      "ind_adv": 0.75,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 5,
+      "context": 1,
+      "public_vk_suffix_bits": 2,
+      "oracle_correct_fraction": 0.875,
+      "walsh_correlation": 0.75,
+      "ind_adv": 0.75,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 5,
+      "context": 2,
+      "public_vk_suffix_bits": 2,
+      "oracle_correct_fraction": 0.875,
+      "walsh_correlation": 0.75,
+      "ind_adv": 0.75,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 6,
+      "context": 0,
+      "public_vk_suffix_bits": 3,
+      "oracle_correct_fraction": 0.859375,
+      "walsh_correlation": 0.71875,
+      "ind_adv": 0.71875,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 6,
+      "context": 1,
+      "public_vk_suffix_bits": 3,
+      "oracle_correct_fraction": 0.859375,
+      "walsh_correlation": 0.71875,
+      "ind_adv": 0.71875,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 6,
+      "context": 2,
+      "public_vk_suffix_bits": 3,
+      "oracle_correct_fraction": 0.859375,
+      "walsh_correlation": 0.71875,
+      "ind_adv": 0.71875,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 7,
+      "context": 0,
+      "public_vk_suffix_bits": 3,
+      "oracle_correct_fraction": 0.859375,
+      "walsh_correlation": 0.71875,
+      "ind_adv": 0.71875,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 7,
+      "context": 1,
+      "public_vk_suffix_bits": 3,
+      "oracle_correct_fraction": 0.859375,
+      "walsh_correlation": 0.71875,
+      "ind_adv": 0.71875,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 7,
+      "context": 2,
+      "public_vk_suffix_bits": 3,
+      "oracle_correct_fraction": 0.859375,
+      "walsh_correlation": 0.71875,
+      "ind_adv": 0.71875,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 8,
+      "context": 0,
+      "public_vk_suffix_bits": 4,
+      "oracle_correct_fraction": 0.859375,
+      "walsh_correlation": 0.71875,
+      "ind_adv": 0.71875,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 8,
+      "context": 1,
+      "public_vk_suffix_bits": 4,
+      "oracle_correct_fraction": 0.859375,
+      "walsh_correlation": 0.71875,
+      "ind_adv": 0.71875,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 8,
+      "context": 2,
+      "public_vk_suffix_bits": 4,
+      "oracle_correct_fraction": 0.859375,
+      "walsh_correlation": 0.71875,
+      "ind_adv": 0.71875,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 9,
+      "context": 0,
+      "public_vk_suffix_bits": 4,
+      "oracle_correct_fraction": 0.857421875,
+      "walsh_correlation": 0.71484375,
+      "ind_adv": 0.71484375,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 9,
+      "context": 1,
+      "public_vk_suffix_bits": 4,
+      "oracle_correct_fraction": 0.857421875,
+      "walsh_correlation": 0.71484375,
+      "ind_adv": 0.71484375,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 9,
+      "context": 2,
+      "public_vk_suffix_bits": 4,
+      "oracle_correct_fraction": 0.857421875,
+      "walsh_correlation": 0.71484375,
+      "ind_adv": 0.71484375,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 10,
+      "context": 0,
+      "public_vk_suffix_bits": 5,
+      "oracle_correct_fraction": 0.857421875,
+      "walsh_correlation": 0.71484375,
+      "ind_adv": 0.71484375,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 10,
+      "context": 1,
+      "public_vk_suffix_bits": 5,
+      "oracle_correct_fraction": 0.857421875,
+      "walsh_correlation": 0.71484375,
+      "ind_adv": 0.71484375,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    },
+    {
+      "key_bits": 10,
+      "context": 2,
+      "public_vk_suffix_bits": 5,
+      "oracle_correct_fraction": 0.857421875,
+      "walsh_correlation": 0.71484375,
+      "ind_adv": 0.71484375,
+      "exact_recovery": true,
+      "distinct_valid_states": 4
+    }
+  ],
+  "limitations": "This is an intentionally biased hypothetical parity predictor with oracle access to K. It demonstrates Fourier reconstruction and an IND-to-parity identity, not key recovery from a real capsule, WE, SLH-DSA, or QPT security."
+}

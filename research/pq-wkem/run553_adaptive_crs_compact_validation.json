@@ -1,0 +1,218 @@
+{
+  "run": 553,
+  "claims": "finite exact semantics only; no protected release or QPT implementation",
+  "assertions": 2441486,
+  "results": [
+    {
+      "n": 1,
+      "parameters": 2,
+      "fixed_false_error": "1/2",
+      "adaptive_false_success": "2/2",
+      "precommitted_shared_crs": [
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "n": 2,
+      "parameters": 4,
+      "fixed_false_error": "1/4",
+      "adaptive_false_success": "4/4",
+      "precommitted_shared_crs": [
+        [
+          1,
+          1,
+          4
+        ],
+        [
+          2,
+          2,
+          4
+        ],
+        [
+          3,
+          3,
+          4
+        ],
+        [
+          4,
+          4,
+          4
+        ]
+      ]
+    },
+    {
+      "n": 3,
+      "parameters": 8,
+      "fixed_false_error": "1/8",
+      "adaptive_false_success": "8/8",
+      "precommitted_shared_crs": [
+        [
+          1,
+          1,
+          8
+        ],
+        [
+          2,
+          2,
+          8
+        ],
+        [
+          3,
+          3,
+          8
+        ],
+        [
+          4,
+          4,
+          8
+        ],
+        [
+          5,
+          5,
+          8
+        ]
+      ]
+    },
+    {
+      "n": 4,
+      "parameters": 16,
+      "fixed_false_error": "1/16",
+      "adaptive_false_success": "16/16",
+      "precommitted_shared_crs": [
+        [
+          1,
+          1,
+          16
+        ],
+        [
+          2,
+          2,
+          16
+        ],
+        [
+          3,
+          3,
+          16
+        ],
+        [
+          4,
+          4,
+          16
+        ],
+        [
+          5,
+          5,
+          16
+        ]
+      ]
+    },
+    {
+      "n": 5,
+      "parameters": 32,
+      "fixed_false_error": "1/32",
+      "adaptive_false_success": "32/32",
+      "precommitted_shared_crs": [
+        [
+          1,
+          1,
+          32
+        ],
+        [
+          2,
+          2,
+          32
+        ],
+        [
+          3,
+          3,
+          32
+        ],
+        [
+          4,
+          4,
+          32
+        ],
+        [
+          5,
+          5,
+          32
+        ]
+      ]
+    },
+    {
+      "n": 6,
+      "parameters": 64,
+      "fixed_false_error": "1/64",
+      "adaptive_false_success": "64/64",
+      "precommitted_shared_crs": [
+        [
+          1,
+          1,
+          64
+        ],
+        [
+          2,
+          2,
+          64
+        ],
+        [
+          3,
+          3,
+          64
+        ],
+        [
+          4,
+          4,
+          64
+        ],
+        [
+          5,
+          5,
+          64
+        ]
+      ]
+    },
+    {
+      "n": 7,
+      "parameters": 128,
+      "fixed_false_error": "1/128",
+      "adaptive_false_success": "128/128",
+      "precommitted_shared_crs": [
+        [
+          1,
+          1,
+          128
+        ],
+        [
+          2,
+          2,
+          128
+        ],
+        [
+          3,
+          3,
+          128
+        ],
+        [
+          4,
+          4,
+          128
+        ],
+        [
+          5,
+          5,
+          128
+        ]
+      ]
+    }
+  ]
+}

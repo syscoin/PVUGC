@@ -1,0 +1,16 @@
+{
+  "run": 499,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "ac5ff3ac6223e103acd43783cddc46ce40dd9d9a",
+  "dependency_blobs": {
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run496": "e74df16b992774dcf8022f60529e15789df63cd7"
+  },
+  "executed_checker": "run499_compact_hardcore_check.js",
+  "captured_assertions": 415,
+  "fixtures": 18,
+  "scope": "Finite diagnostic + conditional native key nonrecovery to 1-bit WE reduction; uniform QPT/repeatable advice only; not practical WKEM",
+  "reference": "https://cs.uwaterloo.ca/~cleve/pubs/goldreich_levin_stacs.pdf"
+}

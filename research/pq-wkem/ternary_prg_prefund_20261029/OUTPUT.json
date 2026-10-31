@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "assertions": 7295,
+  "toy_opposite_color_checks": 6144,
+  "simulated_three_opening_fixtures": 256,
+  "exhaustive_false_K4_colorings": 81,
+  "ideal_one_opened_bijection_cases": 12,
+  "old_bits": 7340032,
+  "new_bits": 5517312,
+  "saved_percent": 24.832589286,
+  "old_log2_binding": -372,
+  "new_log2_binding": -373.415037,
+  "limitation": "classical toy algebra only; no QPT/native PQ/ORIGINAL NP proof"
+}

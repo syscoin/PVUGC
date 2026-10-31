@@ -1,0 +1,59 @@
+{
+  "external_literature_or_web_used": false,
+  "head_read_before_work": "17d131d6d2af72ad824ac7daf23c6cc63d0cf8b1",
+  "claims_not_validated_by_testing": [
+    "No test establishes PQ hardness or arbitrary-adversary extraction.",
+    "The XOR-share identity is algebraic; a practical reconciliation/wiretap code remains unconstructed.",
+    "The direct false-key attack rejects the tested high-margin channel family, not every probabilistic threshold parameterization."
+  ],
+  "production_code_changed": false,
+  "results": {
+    "block_lower_bounds": {
+      "1": {"gate_block_min_norm2": 1, "wire_block_min_norm2": 1},
+      "2": {"gate_block_min_norm2": 2, "wire_block_min_norm2": 2},
+      "3": {"gate_block_min_norm2": 3, "wire_block_min_norm2": 5},
+      "4": {"gate_block_min_norm2": 4, "wire_block_min_norm2": 8},
+      "5": {"gate_block_min_norm2": 7, "wire_block_min_norm2": 13},
+      "6": {"gate_block_min_norm2": 10, "wire_block_min_norm2": 18},
+      "7": {"gate_block_min_norm2": 13, "wire_block_min_norm2": 25},
+      "8": {"gate_block_min_norm2": 16, "wire_block_min_norm2": 32},
+      "9": {"gate_block_min_norm2": 21, "wire_block_min_norm2": 41}
+    },
+    "direct_false_key_attack": {
+      "center_distance": 32768,
+      "delta": 32768,
+      "error_bound": 1,
+      "key_recoveries": 2000,
+      "maximum_observed_raw_noise": 16,
+      "proved_absolute_noise_bound": 21,
+      "q": 65536,
+      "trials": 2000
+    },
+    "false_fixture": {
+      "blocks": 6,
+      "ideal_scaled_onehot_norm2": 54,
+      "rows": 19,
+      "scale": 3,
+      "scaled_vector_l1": 18,
+      "scaled_vector_norm2": 32,
+      "variables": 16
+    },
+    "fourier_single_capsule": {
+      "character_checks": 1024,
+      "group_modulus": 8,
+      "max_complex_error": 1.0603451947935687e-15
+    },
+    "true_control": {
+      "blocks": 4,
+      "key_recoveries": 1000,
+      "trials": 1000
+    },
+    "xor_share_phase": {
+      "frequency_tuples_checked": 512,
+      "modulus": 8,
+      "shares": 3
+    }
+  },
+  "scope": "fresh finite-group and bounded-error checks for the projective OHLC counterexample, full-view Fourier identity, and XOR-share phase identity; not a cryptographic parameter claim",
+  "status": "PASS"
+}

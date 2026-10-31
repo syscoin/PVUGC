@@ -1,0 +1,53 @@
+{
+  "all_witness_correctness": {
+    "Delta": 16,
+    "distinct_witnesses": 4,
+    "noise_bound": 1,
+    "note": "chosen correctness fixture, NOT a random-LWE security parameter set",
+    "q": 32,
+    "setups": 40
+  },
+  "assertions": 109623,
+  "groups": {
+    "correctness": 51842,
+    "full_helper_law": 256,
+    "gcd_coset": 1312,
+    "independent_opening": 2,
+    "matrix_bijection": 257,
+    "multicolumn": 8,
+    "native_null": 1,
+    "same_capability": 51840,
+    "secret_bijection": 4096,
+    "uniform_challenge": 4,
+    "vector_entropy": 5
+  },
+  "multi_column_laws": [
+    {
+      "B": 1,
+      "a": 0,
+      "joint_support": 1024,
+      "sampling_mass": 9216
+    },
+    {
+      "B": 1,
+      "a": 1,
+      "joint_support": 1024,
+      "sampling_mass": 9216
+    },
+    {
+      "B": 3,
+      "a": 2,
+      "joint_support": 1024,
+      "sampling_mass": 9216
+    },
+    {
+      "B": 2,
+      "a": 3,
+      "joint_support": 1024,
+      "sampling_mass": 9216
+    }
+  ],
+  "scope": "exact finite algebra/distributions only; no LWE hardness, native signature, or generic-NP security test",
+  "source_sha256": "79c4106032944ae4f3074600c63ab2cd35963304990f24327228a50f9f6e66b6",
+  "status": "PASS"
+}

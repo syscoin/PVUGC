@@ -1,0 +1,21 @@
+{
+  "run": 570,
+  "date": "2026-10-16",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "cb9d042d6daeb41a09f955083f7c078867708d55",
+  "starting_tree": "1077cd99099232aee52b501c70a62513e9ef647b",
+  "actual_live_source_blobs": {
+    "research/pq-wkem/RUN569_DIRECTED_SEAM_HIDDEN_SHIFT_ATTACK.md": "82b6f7eed36bb7a3bc4683f6cc3d11690135c4de",
+    "research/pq-wkem/GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "research/pq-wkem/CLZ_APPLICABILITY_20261008.md": "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  },
+  "primary_literature": "Gharibi arXiv:1207.4537v2, Theorem 1 and Corollaries 2-4; inspected PDF pages 3-5",
+  "exact_checker": "run570_low_width_injectivization_check.js, pure ECMAScript, executed in same V8 isolate before publication",
+  "checker_status": "PASS",
+  "checker_assertions": 19625,
+  "coherent_quantum_queries_executed": 0,
+  "guarantee": "Exact finite identities and conditional ideal-oracle Simon attack; NO actual PQ WKEM, QPT release assumption, native Bitcoin endpoint, N-of-N implementation or production changes",
+  "publication": "pending coherent commit, verified after GitHub write"
+}

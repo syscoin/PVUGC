@@ -1,0 +1,10 @@
+{
+  "run": 564,
+  "status": "PASS",
+  "assertions_passed": 25347,
+  "false_statement_overwrite_bypasses": 576,
+  "cross_capsule_splice_bypasses": 576,
+  "all_valid_two_witness_recoveries": 1152,
+  "symbolic_handle_model_not_real_FHE": true,
+  "QPT_security_proved": false
+}

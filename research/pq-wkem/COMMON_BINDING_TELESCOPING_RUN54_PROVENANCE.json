@@ -1,0 +1,38 @@
+{
+  "run": 54,
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "starting_head": "2aee3a315e4b352ef9b62af076cb922552670f10",
+  "starting_pr_state": {
+    "open": true,
+    "draft": true,
+    "merged": false
+  },
+  "checkpoint_comment_id": 5798566317,
+  "external_literature_or_web_search": false,
+  "research_scope": "research/pq-wkem only; no production-code changes intended",
+  "construction": "hidden telescoping edge pads over Run-53 shared assignment marginals",
+  "proved_claims": [
+    "Common assignment makes hidden edge-pad plaintext terms telescope exactly, independent of which valid witness is used.",
+    "Any fixed assignment sequence with a nonzero adjacent difference is information-theoretically masked by an independent uniform edge pad.",
+    "The Run-53 8-clause false core has no constant locally-valid switching sequence.",
+    "In the natural linear native-preimage encoding, summing the public component capsules cancels all edge-pad coefficient vectors before witness evaluation.",
+    "A public linear witness encoder E exposes the pulled-back coefficient E^T a, so public linear coordinate scrambling does not hide a linear telescoping functional.",
+    "For the explicit q=4093, mu=2046, L=8 bounded-ternary instantiation, the complete-view aggregate false-noise magnitude is deterministically at most 242 < floor(q/4)=1023."
+  ],
+  "not_claimed": [
+    "No complete generic-NP WKEM.",
+    "No generic impossibility theorem for nonlinear/computational binders.",
+    "No arbitrary-QPT key-recovery-to-source-witness or LWE/SIS reduction.",
+    "No security claim from test success.",
+    "No claim that every parameterization of the aggregate noisy capsule fails by the same deterministic bound.",
+    "No malicious-secure ceremony or final practical parameters."
+  ],
+  "local_execution": {
+    "command_1": "python /mnt/data/check_common_binding_run54.py > /mnt/data/common-binding-run54-pass1.json",
+    "command_2": "python /mnt/data/check_common_binding_run54.py > /mnt/data/common-binding-run54-pass2.json",
+    "byte_identical_outputs": true,
+    "checker_sha256": "dc6ddb1da4bc9211730556dfba569f3dafb255a061b86a4a66c7770dfdc6f713",
+    "captured_validation_sha256": "bb51018faada25b40afd9ded0bc935ea49352bf9b249b95863bcc2fda13d3aa8"
+  }
+}

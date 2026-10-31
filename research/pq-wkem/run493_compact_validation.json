@@ -1,0 +1,43 @@
+{
+  "run": 493,
+  "checks": 87870,
+  "cases": [
+    {
+      "n": 3,
+      "delta": 3,
+      "unique_period": true,
+      "forbidden_fourier_mass": 0
+    },
+    {
+      "n": 4,
+      "delta": 5,
+      "unique_period": true,
+      "forbidden_fourier_mass": 0
+    },
+    {
+      "n": 5,
+      "delta": 9,
+      "unique_period": true,
+      "forbidden_fourier_mass": 0
+    },
+    {
+      "n": 6,
+      "delta": 17,
+      "unique_period": true,
+      "forbidden_fourier_mass": 0
+    },
+    {
+      "n": 7,
+      "delta": 33,
+      "unique_period": true,
+      "forbidden_fourier_mass": 0
+    },
+    {
+      "n": 8,
+      "delta": 65,
+      "unique_period": true,
+      "forbidden_fourier_mass": 0
+    }
+  ],
+  "scope": "finite exact Fourier test; no public PPT mixer or cryptographic security"
+}

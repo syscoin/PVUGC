@@ -1,0 +1,93 @@
+{
+  "run": 534,
+  "status": "PASS",
+  "symbolic_cases": 72,
+  "exact_key_recoveries": 72,
+  "recovered_accepted_inputs": 72,
+  "distinct_valid_inputs_same_key": 48,
+  "max_bdd_nodes": 4098,
+  "seed_bits": 256,
+  "widths": [
+    256,
+    512,
+    1024,
+    2048
+  ],
+  "examples": [
+    {
+      "kind": "needle",
+      "width": 256,
+      "nodes": 514,
+      "seed_bits": 256
+    },
+    {
+      "kind": "needle",
+      "width": 512,
+      "nodes": 1026,
+      "seed_bits": 256
+    },
+    {
+      "kind": "needle",
+      "width": 1024,
+      "nodes": 2050,
+      "seed_bits": 256
+    },
+    {
+      "kind": "needle",
+      "width": 2048,
+      "nodes": 4098,
+      "seed_bits": 256
+    },
+    {
+      "kind": "prefix",
+      "width": 256,
+      "nodes": 130,
+      "seed_bits": 256
+    },
+    {
+      "kind": "prefix",
+      "width": 512,
+      "nodes": 258,
+      "seed_bits": 256
+    },
+    {
+      "kind": "prefix",
+      "width": 1024,
+      "nodes": 514,
+      "seed_bits": 256
+    },
+    {
+      "kind": "prefix",
+      "width": 2048,
+      "nodes": 1026,
+      "seed_bits": 256
+    },
+    {
+      "kind": "random_tape",
+      "width": 256,
+      "nodes": 258,
+      "seed_bits": 256
+    },
+    {
+      "kind": "random_tape",
+      "width": 512,
+      "nodes": 514,
+      "seed_bits": 256
+    },
+    {
+      "kind": "random_tape",
+      "width": 1024,
+      "nodes": 1026,
+      "seed_bits": 256
+    },
+    {
+      "kind": "random_tape",
+      "width": 2048,
+      "nodes": 2050,
+      "seed_bits": 256
+    }
+  ],
+  "junk_negative_controls": 80,
+  "junk_nonrecoveries": 80,
+  "scope": "clear per-output OBDDs, known failure baseline and freely selectable inputs; no security conclusion for composed hidden-frame chips"
+}

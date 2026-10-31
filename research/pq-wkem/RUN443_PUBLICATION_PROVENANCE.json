@@ -1,0 +1,17 @@
+{
+  "run": 443,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "435a871fb8d53e6f065037890f3e430c94997501",
+  "published_checker": "research/pq-wkem/run443_compact_check.py",
+  "published_checker_git_blob": "36628ccd92eb3df757b5a95ca69488c86bfb7e92",
+  "published_checker_sha256": "48721e970cf50779259e7b65d87325be8b6522ae31be791ba472417cae915f54",
+  "published_validation_git_blob": "88150bea8caa92b764e2db1ce231c170d11ae4ff",
+  "published_validation_sha256": "6ccbd592d124dd2d74f9c33d3ca3e3f628971e314b57f363f3b350d344875a57",
+  "published_note_git_blob": "090a9efffca325995d0b442cce846bee0f8734c5",
+  "compact_assertions": 2,
+  "independent_extended_local_assertions": 1027,
+  "result_scope": "Conditional native-forgery to one-bit WE reduction with polynomial fresh QPT advice; not a practical PQ WKEM",
+  "executed": "python run443_compact_check.py (twice, byte-identical); python run443_gl_check.py (twice, byte-identical)"
+}

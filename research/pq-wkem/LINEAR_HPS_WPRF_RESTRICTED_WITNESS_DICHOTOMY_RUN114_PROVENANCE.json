@@ -1,0 +1,52 @@
+{
+  "artifacts": {
+    "LINEAR_HPS_WPRF_RESTRICTED_WITNESS_DICHOTOMY_RUN114.md": {
+      "bytes": 14252,
+      "sha256": "88e1346b1c092fa23a160216e1c8a0a8b4eee71e41843f91094f5d179c9dadc0"
+    },
+    "linear-hps-wprf-run114-validation.json": {
+      "bytes": 1411,
+      "sha256": "e73ae896a635b3b5532926ff6c26000a4337910b830419a534022a2ecac2c1d4"
+    },
+    "linear_hps_wprf_run114_check.py": {
+      "bytes": 8719,
+      "sha256": "029689bd5dcf6ada187f98a3948b7ccb5cd07acc5959d3c0a3f76119b31af229"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "execution": {
+    "assertions": 69272,
+    "byte_identical": true,
+    "checker_runs": 2,
+    "output_sha256": "e73ae896a635b3b5532926ff6c26000a4337910b830419a534022a2ecac2c1d4"
+  },
+  "limitations": [
+    "No author code was executed.",
+    "The new theorem applies to the explicit public linear projective-hash form, not all HPS/SPHF constructions.",
+    "Concrete RQC/HQC/LWE HPS security is not promoted to arbitrary-QPT without an explicit quantum-valid theorem and independently justified QPT-hard assumptions.",
+    "Stopping condition not met."
+  ],
+  "repo_pr": "syscoin/PVUGC#1",
+  "run": 114,
+  "sources": [
+    {
+      "eprint": "2017/997",
+      "evidence": "full PDF parsed; HPS/SPHF applications, any-NP 3-round HVZK, restricted WE and statistical-soundness scope inspected",
+      "title": "Hash Proof Systems over Lattices Revisited",
+      "url": "https://eprint.iacr.org/2017/997"
+    },
+    {
+      "eprint": "2021/026",
+      "evidence": "full PDF parsed; Definitions 18-20, Theorem 2, witness-encryption application inspected",
+      "title": "A Gapless Code-Based Hash Proof System based on RQC and its Applications",
+      "url": "https://eprint.iacr.org/2021/026"
+    },
+    {
+      "doi": "10.1007/978-3-031-33488-7_25",
+      "evidence": "abstract/metadata only; no theorem-level QPT claim imported",
+      "title": "A Gapless Post-quantum Hash Proof System in the Hamming Metric",
+      "year": 2023
+    }
+  ],
+  "starting_pr_head": "a0803edfa691f184e33ca92620471a81c17c611c"
+}

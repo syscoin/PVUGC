@@ -1,0 +1,45 @@
+{
+  "run": 446,
+  "assertions": 3124,
+  "finite_domain": 256,
+  "capsules": [
+    {
+      "context": "UTXO-0/disprove",
+      "valid_original_on_false": 0,
+      "planted_false_proofs": 1,
+      "valid_original_on_true": 3,
+      "same_capability_for_valid_originals": true,
+      "false_case_release_nonconstant": true
+    },
+    {
+      "context": "UTXO-1/disprove",
+      "valid_original_on_false": 0,
+      "planted_false_proofs": 1,
+      "valid_original_on_true": 3,
+      "same_capability_for_valid_originals": true,
+      "false_case_release_nonconstant": true
+    },
+    {
+      "context": "UTXO-2/disprove",
+      "valid_original_on_false": 0,
+      "planted_false_proofs": 1,
+      "valid_original_on_true": 3,
+      "same_capability_for_valid_originals": true,
+      "false_case_release_nonconstant": true
+    },
+    {
+      "context": "UTXO-3/disprove",
+      "valid_original_on_false": 0,
+      "planted_false_proofs": 1,
+      "valid_original_on_true": 3,
+      "same_capability_for_valid_originals": true,
+      "false_case_release_nonconstant": true
+    }
+  ],
+  "toy_permutation_one_way": false,
+  "honest_setup_model": "classical",
+  "qpt_hardness_established": false,
+  "iO_implemented": false,
+  "actual_wkem": false,
+  "meaning": "Exact finite witness to proof-verifier extensional non-equivalence; no practical attack"
+}

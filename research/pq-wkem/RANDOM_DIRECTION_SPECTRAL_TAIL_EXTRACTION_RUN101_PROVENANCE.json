@@ -1,0 +1,81 @@
+{
+  "artifact_sha256": {
+    "RANDOM_DIRECTION_SPECTRAL_TAIL_EXTRACTION_RUN101.md": "ee5900b8c3f65dd3f6f61d0d6d654747560fb834b08a705dffbb74d620649ea5",
+    "random-direction-spectral-tail-run101-validation.json": "b4d8d5e3fc1271500db64da6bdf332348891361de0b43edc554ecb98781d616f",
+    "random_direction_spectral_tail_run101_check.py": "e831f073553dbe5c6943326a1c83da548ca7071288f595b0b4635e8f1f739a70"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "applicable_tables": 13312,
+    "assertions": 558,
+    "byte_identical_stdout": true,
+    "executions": 2,
+    "exhaustive_decoder_tables": 65536,
+    "path": "research/pq-wkem/random_direction_spectral_tail_run101_check.py",
+    "status": "PASS",
+    "violations": 0
+  },
+  "exact_repository_inputs": [
+    {
+      "blob_sha": "e4b5dfe48e6ca05d565fbe81881f2178332abc0e",
+      "path": "research/pq-wkem/SYNDROME_EXTRACTOR_CAPACITY_RUN99.md"
+    },
+    {
+      "blob_sha": "b37f02d10111eb158aed7c769ca61effaeae6040",
+      "path": "research/pq-wkem/DECODER_FOURIER_RIGIDITY_RUN97.md"
+    },
+    {
+      "blob_sha": "abb556df59acf2f13894017343d4f79ca9a25975",
+      "path": "research/pq-wkem/HAMMING_SPECTRAL_RELEASE_RUN96.md"
+    }
+  ],
+  "latest_substantive_comment": {
+    "created_at": "2026-09-25T17:19:39Z",
+    "id": 5836517821,
+    "scope": "Run 99 published and verified"
+  },
+  "literature_checkpoint": [
+    {
+      "date": "2026-09-16",
+      "not_imported": "no concrete PQ/QPT security theorem",
+      "verified_scope": "public current record: classical prime-order generic-group NP WE; logarithmic homogeneous-MinRank gap with Boolean right factor",
+      "version": "arXiv:2609.18275v1",
+      "work": "Hair\u2013Sahai, Witness Encryption via Prime-Order Generic Groups"
+    },
+    {
+      "date": "2026-09-19",
+      "limitation": "full primary PDF was inaccessible through the available fetch path in this run; exact source parameters/extraction theorem not claimed",
+      "verified_scope": "metadata: Karp\u2013Levin polylog-circuit SAT to GapMDP over prime field lambda^{omega(1)}, omega(log lambda) approximation; generic-group extractable WE",
+      "version": "IACR ePrint 2026/2063 public metadata",
+      "work": "Zhengzhong Jin, Witness Encryption for NP from SNARGs and Groups"
+    }
+  ],
+  "pr": 1,
+  "publication": {
+    "attempted_action": "mcp__GitHub__create_blob",
+    "attempted_artifact": "research/pq-wkem/random_direction_spectral_tail_run101_check.py",
+    "branch_visible_paths": [],
+    "comment_id": null,
+    "commit_sha": null,
+    "further_write_attempts_after_block": 0,
+    "note": "Per the user publication rule, no GitHub write was retried or rerouted after the explicit safety block.",
+    "request_or_correlation_id": null,
+    "returned_error": "Script error: This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "status": "BLOCKED_BEFORE_GITHUB",
+    "tool_timestamp": null
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 101,
+  "security_classification": {
+    "arbitrary_QPT_original_source_extraction": "UNPROVED",
+    "coherent_extraction": "QPT only with coherently re-runnable adversary, preparable/purifiable auxiliary state, and adjoint",
+    "orientation_reduction": "arbitrary-QPT, forward-only, exact distributional reduction",
+    "spectral_tail_identity": "information-theoretic identity for final classical response"
+  },
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "state": "open"
+  },
+  "starting_sha": "93ae96ba977d96e435c41c86ffeb037e8dbc2ff5"
+}

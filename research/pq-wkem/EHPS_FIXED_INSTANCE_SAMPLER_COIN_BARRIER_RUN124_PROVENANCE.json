@@ -1,0 +1,75 @@
+{
+  "artifacts": {
+    "EHPS_FIXED_INSTANCE_SAMPLER_COIN_BARRIER_RUN124.md": {
+      "bytes": 15063,
+      "sha256": "1c7c2e8f210df09a73c850f48d0911c033bb1103878295dba1b5e0bb0ed18df4"
+    },
+    "ehps-fixed-instance-sampler-coin-run124-validation.json": {
+      "bytes": 831,
+      "sha256": "118e88fbc48b4ed186ec34587b9a839b3f265912512f860c571ee6ff98fbc6d0"
+    },
+    "ehps_fixed_instance_sampler_coin_run124_check.py": {
+      "bytes": 5721,
+      "sha256": "06ccd4fcb004716e50819d1ebafbfba3caf20e3bc42fc02b8ed6c76658778888"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "correction": "Wee EHPS public evaluation consumes sampler coins r, not merely the relation witness s. Run 123's abstract extraction theorem survives; the EHPS analogy is limited to dual-mode/extraction structure.",
+  "execution": {
+    "assertions": 2771,
+    "byte_identical_stdout": true,
+    "command": "./ehps_fixed_instance_sampler_coin_run124_check.py",
+    "executions": 2
+  },
+  "github_exact_files_read": [
+    {
+      "blob": "415623e48e8b5fe246663e560d3486545b408acd",
+      "path": "research/pq-wkem/VTDH_FIXED_DIGEST_MAJORITY_CANONICALIZATION_RUN121.md"
+    },
+    {
+      "blob": "96a54fd83881e716703bde307f6287719a0c15bd",
+      "path": "research/pq-wkem/SETUP_KNOWN_INVARIANT_ADAPTOR_VRF_BOUNDARY_RUN112.md"
+    },
+    {
+      "blob": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924",
+      "path": "research/pq-wkem/literature-20260924/ASSESSMENT.md"
+    }
+  ],
+  "latest_substantive_comment_id": 5847380543,
+  "limitations": [
+    "finite checker does not establish DL/CDH/factoring/LWE/SIS hardness",
+    "no QPT theorem is imported from Wee 2010 or Chen-Zhang 2014/2016",
+    "Chen-Zhang full paper was not retrieved; claims are limited to the live primary ePrint abstract/metadata",
+    "Run 122/123 blocked payloads are not retried or republished",
+    "stopping condition remains unmet"
+  ],
+  "pr": 1,
+  "primary_sources": [
+    {
+      "author": "Hoeteck Wee",
+      "sections_checked": [
+        "1.1 overview",
+        "2.2 binary relations",
+        "2.3 extractable hash proofs",
+        "5.1 DH ABO-EHPS"
+      ],
+      "title": "Efficient Chosen-Ciphertext Security via Extractable Hash Proofs",
+      "url": "https://www2.seas.gwu.edu/~hoeteck/pubs/exthps-crypto10.pdf",
+      "venue": "CRYPTO 2010"
+    },
+    {
+      "authors": [
+        "Yu Chen",
+        "Zongyang Zhang"
+      ],
+      "eprint": "2014/306",
+      "evidence_level": "primary ePrint abstract/metadata; full PDF not retrieved in this run",
+      "live_revision_observed": "2016-02-27 last of 3 revisions",
+      "title": "Publicly Evaluable Pseudorandom Functions and Their Applications",
+      "url": "https://eprint.iacr.org/2014/306"
+    }
+  ],
+  "repository": "syscoin/PVUGC",
+  "run": 124,
+  "starting_head": "4198b1815d3edc7be41ec1cb25c0c46fab24610e"
+}

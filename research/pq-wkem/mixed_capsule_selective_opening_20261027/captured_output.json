@@ -1,0 +1,48 @@
+{
+  "record": "mixed_capsule_selective_opening_20261027",
+  "toy_q": 7,
+  "source_M": [
+    1,
+    1
+  ],
+  "source_e": [
+    1,
+    0
+  ],
+  "radix_digits": [
+    0,
+    1
+  ],
+  "single_column_TV": "42/126 = 1/3",
+  "full_conditional_joint_TV": "336/2016 = 1/6",
+  "opened_independent_other_capsule_tensor_identity": true,
+  "shared_key_opening_exposes_target_key": true,
+  "keys": [
+    {
+      "K": 0,
+      "pk_surrogate": 1,
+      "TV_num": 336,
+      "TV_den": 2016
+    },
+    {
+      "K": 1,
+      "pk_surrogate": 2,
+      "TV_num": 336,
+      "TV_den": 2016
+    },
+    {
+      "K": 2,
+      "pk_surrogate": 2,
+      "TV_num": 336,
+      "TV_den": 2016
+    },
+    {
+      "K": 3,
+      "pk_surrogate": 1,
+      "TV_num": 336,
+      "TV_den": 2016
+    }
+  ],
+  "assertions": 81,
+  "scope": "Exact finite algebra only; full cubic certificate and 37-column mixed-capsule test independently executed in local Python archive; no QPT hardness test"
+}

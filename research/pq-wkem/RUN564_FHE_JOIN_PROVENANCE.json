@@ -1,0 +1,16 @@
+{
+  "run": 564,
+  "date": "2026-10-16",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "8c1b20a3b7f95fcf41d024faa1f9955747202da1",
+  "proof_scope": "Unrestricted homomorphic acceptance-bit overwrite and ordinary IND-CPA public release barrier only",
+  "checker_command": "node run564_homomorphic_flag_check.js",
+  "checker_executed_locally": true,
+  "checker_assertions": 25347,
+  "checker_source_sha256": "0ccec3c46b32ff3062e2fea31e86ad0ba40c547275e94276283deb73448bbf5a",
+  "validation_sha256": "c2ce8f58a948861c5e7e5ae8e6f66e2e8c73b9f7e1a088aacef8dc938fe062a9",
+  "QPT_wkem_proved": false,
+  "bitcoin_production_changed": false
+}

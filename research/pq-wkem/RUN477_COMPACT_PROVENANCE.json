@@ -1,0 +1,19 @@
+{
+  "assertions": 43258,
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": "node run477_compact_check.js",
+  "checker_sha256": "becf6127ceeac195e03f26db8ebcc5d68553ea88faec07292c3f15b2bb18aa1f",
+  "extended_local_checker_assertions": 158797,
+  "node_check_passed": true,
+  "note_sha256": "f5f19612eeb5241288e352632c8f9fb9c18816633235808ec77ad06a4468ede2",
+  "output_sha256": "e1d3dcde5ec17f3c9ab79f445990cce5e637c4c28358abcd9959cde9b17cbae4",
+  "pr": 1,
+  "production_changed": false,
+  "repeated_output_identical": true,
+  "repository": "syscoin/PVUGC",
+  "run": 477,
+  "run259_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "run476_blob": "0f2676cbb8fc3ae8f20655674b352efcea09a5a0",
+  "scope": "Exact toy mathematics only; QPT SIS hardness and practical WKEM remain unproved",
+  "starting_sha": "bce95a14124f0f16944941e022947913ddb3356d"
+}

@@ -1,0 +1,23 @@
+{
+  "checkpoint_comment_id": 5795506813,
+  "claim_boundary": "Exact affine-subspace theorem for linear share generation plus arbitrary uniform public joint linear masks; not a generic impossibility theorem and not a completed WKEM.",
+  "external_literature_or_web_search": false,
+  "local_execution": {
+    "byte_identical_results": true,
+    "command": "python threshold_denominator_atlas_run51_correlated_check.py",
+    "executions": 2,
+    "seed": 510051002
+  },
+  "local_sha256": {
+    "captured_result": "b78b89007995cd05506a5200d25575718eb81ce2a92fb7d2fc77a99d546ca5f4",
+    "checker": "75bcceb3ae91923f5bd4c2d63aedc32e3cffc2d049b0a273d9667c903e819272",
+    "proof": "c4f34719fbe572959b345a8d54335b5ff006dabecf3618a4f1128de4ff6d9f0c"
+  },
+  "parent_run51_head": "9a1e083da71ad08a0089240faa9a9a03d5348f22",
+  "production_code_modified": false,
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "run": 51,
+  "scope": "correlated uniform public linear-mask extension of the threshold denominator atlas theorem",
+  "starting_head": "075ad0438ff06556cdae8c239e29c1ae9b06edc9"
+}

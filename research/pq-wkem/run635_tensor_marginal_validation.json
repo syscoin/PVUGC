@@ -1,0 +1,48 @@
+{
+  "run": 635,
+  "checks_passed": 10583,
+  "model": "integer unimodular two-state gauge chains, four-state public transfer",
+  "fixtures": [
+    {
+      "n": 5,
+      "seed": 11,
+      "eta": "0/1",
+      "key": "100011",
+      "contracted": "100011",
+      "exhaustive": true
+    },
+    {
+      "n": 8,
+      "seed": 17,
+      "eta": "1/8",
+      "key": "010010",
+      "contracted": "010010",
+      "exhaustive": true
+    },
+    {
+      "n": 9,
+      "seed": 23,
+      "eta": "1/2",
+      "key": "101000",
+      "contracted": "101000",
+      "exhaustive": true
+    },
+    {
+      "n": 12,
+      "seed": 31,
+      "eta": "1/1",
+      "key": "011011",
+      "contracted": "??????",
+      "exhaustive": false
+    },
+    {
+      "n": 18,
+      "seed": 47,
+      "eta": "2/1",
+      "key": "001000",
+      "contracted": "110111",
+      "exhaustive": false
+    }
+  ],
+  "security_claim": "finite algebra only, no hard SOURCE or native PQ signatures"
+}

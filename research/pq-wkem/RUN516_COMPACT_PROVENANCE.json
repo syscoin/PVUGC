@@ -1,0 +1,19 @@
+{
+  "run": 516,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "2dfbf5e537b11fc6ae60df0e599b31b390d92c3f",
+  "starting_tree": "c298e42cb5ceabbeff4836be668de1bccc48cf8b",
+  "checker": "run516_compact_check.js",
+  "validation": "run516_compact_validation.json",
+  "exact_execution": "V8 JS eval of same checker string used in Git tree; PASS",
+  "scope": "ideal claim-sector positive coupling and public sector-switch attack; not PPT/QPT white-box proof",
+  "source_blobs": [
+    "5515cc20ee785de28b363231cfd422134c4ab0e2",
+    "fe9bf2a946b7bf68dfc373f3461291ab33a5468c",
+    "959eac9b0c9ab2ec17319da3639cd1c980fe2c06",
+    "321c8f9993441841acfffeed99ec759fe4733f57",
+    "f3e6ba72cffef86d2c5fdeb24dfa86574e911116"
+  ]
+}

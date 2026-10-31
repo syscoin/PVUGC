@@ -1,0 +1,30 @@
+{
+  "record": "selector-span-optimal-20261027-turn8",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "expected_start_sha": "7bbb4ca96bd2ba7b6bedbd9308e4a1565438596d",
+  "exact_predecessor_blob": "d32da19a0d7ee1d658d018846a28fd78d3f9037c",
+  "publication_scope": "research/pq-wkem/selector_span_optimal_20261027/ only",
+  "offline_research": true,
+  "published": {
+    "PROOF.md": "0ae1aaf2d580e37d8332871245b49df3369b5d23",
+    "check_optimal_span.js": "d8b51f295940356b38769c20f85c87dc7010b373",
+    "js_validation.json": "8636f0c89373e0934ab72875d60a8199ed767bea"
+  },
+  "local_archive": "SELECTOR_SPAN_OPTIMAL_20261027_RESEARCH.tar.gz",
+  "local_python_assertions_per_run": 37567,
+  "local_python_executions": 2,
+  "published_js_assertions_per_run": 612,
+  "published_js_executions": 2,
+  "identical_outputs": true,
+  "theorem": "local Fourier-L1 optimal physical selector-span sampler; exact false whole-view identity; restricted efficiency gain",
+  "not_proved": [
+    "generic polynomial-rate NP witness-KEM",
+    "native PQ/Bitcoin security",
+    "actual BTC/SYS 100-block QPT work bound",
+    "key-dependent ORIGINAL source embedding",
+    "malicious N-of-N setup or unrestricted selective opening",
+    "practical 128-bit parameter set"
+  ]
+}

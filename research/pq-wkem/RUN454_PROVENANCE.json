@@ -1,0 +1,21 @@
+{
+  "run": 454,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "d5109ceece36cd170e88a23eead82e3170f43a7d",
+  "starting_tree": "07a42ad7be37b5e27dec795c699e881aea576274",
+  "publication": "pending",
+  "checks": {
+    "node_compact": 175,
+    "python_extended_local_only": 417,
+    "repeat_byte_identical": true
+  },
+  "paths": [
+    "RUN454_FRONTIER_DENSITY_COMPACT.md",
+    "run454_compact_check.js",
+    "run454_compact_validation.json",
+    "RUN454_PROVENANCE.json"
+  ],
+  "scope": "restricted public frontier density; no QPT-security proof, no practical witness-KEM"
+}

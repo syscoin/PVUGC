@@ -1,0 +1,95 @@
+{
+  "assertions": 2452,
+  "fixtures": [
+    {
+      "fourier_mass_D": "4/3",
+      "name": "published_true",
+      "nonlinear_gates": 1,
+      "quantum_examples": [
+        {
+          "extraction_probability": 0.5067866769,
+          "gap": -0.2303060884,
+          "proved_lower_bound": 0.0397806708
+        }
+      ],
+      "quotient_dimension": 3,
+      "rho": "2/3",
+      "source_coordinates": 15,
+      "witnesses": 3
+    },
+    {
+      "fourier_mass_D": "0",
+      "name": "published_false",
+      "nonlinear_gates": 1,
+      "quantum_examples": [],
+      "quotient_dimension": 1,
+      "rho": "2/3",
+      "source_coordinates": 15,
+      "witnesses": 0
+    },
+    {
+      "fourier_mass_D": "4/9",
+      "name": "unique_true",
+      "nonlinear_gates": 1,
+      "quantum_examples": [
+        {
+          "extraction_probability": 0.1551426853,
+          "gap": -0.0500523268,
+          "proved_lower_bound": 0.0056367797
+        }
+      ],
+      "quotient_dimension": 3,
+      "rho": "2/3",
+      "source_coordinates": 11,
+      "witnesses": 1
+    },
+    {
+      "fourier_mass_D": "16/27",
+      "name": "two_gate_true",
+      "nonlinear_gates": 2,
+      "quantum_examples": [
+        {
+          "extraction_probability": 0.1420919113,
+          "gap": 0.0102627528,
+          "proved_lower_bound": 0.0001777344
+        }
+      ],
+      "quotient_dimension": 4,
+      "rho": "4/9",
+      "source_coordinates": 17,
+      "witnesses": 3
+    },
+    {
+      "fourier_mass_D": "0",
+      "name": "two_gate_false",
+      "nonlinear_gates": 2,
+      "quantum_examples": [],
+      "quotient_dimension": 2,
+      "rho": "4/9",
+      "source_coordinates": 17,
+      "witnesses": 0
+    }
+  ],
+  "groups": {
+    "acceptance": 1776,
+    "false_secrecy": 2,
+    "fourier_support": 76,
+    "full_view": 67,
+    "helper_pad": 4,
+    "honest_channel": 7,
+    "kernel": 13,
+    "law": 10,
+    "parameter_bound": 60,
+    "quantum_reflection": 420,
+    "source": 17
+  },
+  "scope": "finite algebra and small matrix simulation only; not a practical security parameter set",
+  "source_sha256": "66f1c9479a1ac0457fa3330b6ce1f445d8d219962d395cabe17c858963a96463",
+  "status": "PASS",
+  "whole_view_hybrid": {
+    "independent_column_acceptance": "361/768",
+    "mean_extraction_weight_lower": "723/8192",
+    "mean_hybrid_gap": "7/1536",
+    "real_acceptance": "23/48"
+  }
+}

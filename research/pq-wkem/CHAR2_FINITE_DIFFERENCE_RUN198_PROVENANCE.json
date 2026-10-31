@@ -1,0 +1,51 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_inputs": {
+    "research/pq-wkem/CMV_MINRANK_LACONIC_QPT_SOURCE_BRIDGE_RUN152.md": "398b93af491d0b11cc486e86c89295a05b714804",
+    "research/pq-wkem/FINITE_DIFFERENCE_LOWRANK_RUN82.md": "6430557fd1596308db029d17b48549f9ed9490c8",
+    "research/pq-wkem/JOINT_LOWRANK_PROJECTION_RUN197.md": "6dab6c3812ebbb7c35dbe8f541698a8389a59f7a",
+    "research/pq-wkem/literature-20260924/DEEP_DIVE_RANK_SCALAR_DESCENT.md": "5d061495800bad32733298d25f1f1ac6e55779c2"
+  },
+  "execution": {
+    "connector_read_note": "An initial combined GitHub read used the wrong fetch_issue_comments argument name and failed local schema validation before producing evidence. It was corrected with the documented repo_full_name schema. This was not a GitHub authorization error or safety denial; no error/request/correlation ID was supplied.",
+    "final_command": "python char2_finite_difference_run198_check.py",
+    "final_executions": 2,
+    "final_exit_codes": [
+      0,
+      0
+    ],
+    "final_outputs_byte_identical": true,
+    "fixtures": 4,
+    "language": "Python 3 standard library",
+    "syntax_check": "PASS"
+  },
+  "files": {
+    "CHAR2_FINITE_DIFFERENCE_REPAIR_RUN198.md": {
+      "bytes": 11156,
+      "git_blob_sha": "958854318ddc22c78f1910d4f63a0db65e44c0e9",
+      "sha256": "b22946136dcba59d93ae0f4aca4f076541de51677c0c3285723c011c1ccf1474"
+    },
+    "char2-finite-difference-run198-validation.json": {
+      "bytes": 1701,
+      "git_blob_sha": "6ec3263958519f9b01d841e09e599e2fafa7e4ad",
+      "sha256": "11fbac628c9995f85795400b0b27de2531f437a383a2fbc37e5b6ce352f916a7"
+    },
+    "char2_finite_difference_run198_check.py": {
+      "bytes": 5667,
+      "git_blob_sha": "a9a2dd3bd3309f9216ff2dd1e6a37e1751966b18",
+      "sha256": "6a967f0bef0fd1e9380aaec8d96511f3f392f18146a3f3d05f008b8739ec455c"
+    }
+  },
+  "latest_substantive_comment_read": 5913974235,
+  "pr": 1,
+  "publication": {
+    "denied_historical_payload_retried": false,
+    "production_changed": false,
+    "status_before_write": "LOCAL_VALIDATED_NOT_YET_PUBLISHED",
+    "workflows_changed": false
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 198,
+  "scope": "correction of Run-197 prime-field-to-binary scope plus direct characteristic-two near-gap false family and repaired generic-NP rank-event obstruction; not fixed-Syscoin-relation security or completed WKEM",
+  "starting_sha": "4e7cc5f9d3fc727a0b09981409bb05c776a803bc"
+}

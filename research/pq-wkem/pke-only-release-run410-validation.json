@@ -1,0 +1,16 @@
+{
+  "assertions_passed": 41004,
+  "elgamal_toy_fixtures": 13310,
+  "elgamal_toy_modulus": 23,
+  "elgamal_toy_subgroup_order": 11,
+  "hardness_not_claimed": [
+    "ElGamal toy is not post-quantum",
+    "ideal pad is not a PKE",
+    "exhaustive testing does not prove IND-CPA/EUF-CMA or WKEM security",
+    "secret-dependent correlated setup not covered"
+  ],
+  "ideal_pad_checking_key_candidates": 8,
+  "ideal_pad_hybrid_view_states": 32,
+  "model": "PKE-only release black-box hybrid and toy homomorphic witness admission",
+  "run": 410
+}

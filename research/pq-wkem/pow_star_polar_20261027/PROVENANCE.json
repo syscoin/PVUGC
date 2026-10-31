@@ -1,0 +1,23 @@
+{
+  "record": "pow-star-polar-20261027",
+  "start_sha": "b4e2eaa4062e68e53a488e066f75de83fb24c45d",
+  "branch": "research/pq-wkem-validation-20260918",
+  "pr": 1,
+  "repo": "syscoin/PVUGC",
+  "pinned_polar_proof_blob": "039e2706200aaf8cb6cf0a2bd9e0d730684abda5",
+  "offline": true,
+  "scope": "research/pq-wkem only",
+  "executed_js_assertions": 2913,
+  "executed_python_assertions": 2781,
+  "each_executed_twice": true,
+  "web_and_external_literature": false,
+  "no_claim": [
+    "practical generic-NP PQ WKEM",
+    "100-block Bitcoin work bound",
+    "malicious setup",
+    "QPT LWE instantiation",
+    "Bitcoin native PQ signature deployment"
+  ],
+  "checker_sha256_local": "not yet confirmed against GitHub readback",
+  "publication_status": "pending verification"
+}

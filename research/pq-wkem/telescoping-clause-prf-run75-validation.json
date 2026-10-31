@@ -1,0 +1,50 @@
+{
+  "component_constrained_key_false_instance_attacks": 900,
+  "explicit_false_fixtures_hidden": 3,
+  "explicit_xor_homomorphic_membership_cases": 1250,
+  "homomorphic_random_membership_bounds": [
+    {
+      "key_bits": 8,
+      "out_bits": 4,
+      "queries": 4,
+      "upper_bound_random_membership": 0.00390625
+    },
+    {
+      "key_bits": 12,
+      "out_bits": 4,
+      "queries": 5,
+      "upper_bound_random_membership": 0.00390625
+    },
+    {
+      "key_bits": 16,
+      "out_bits": 8,
+      "queries": 4,
+      "upper_bound_random_membership": 1.52587890625e-05
+    },
+    {
+      "key_bits": 20,
+      "out_bits": 8,
+      "queries": 5,
+      "upper_bound_random_membership": 9.5367431640625e-07
+    },
+    {
+      "key_bits": 24,
+      "out_bits": 8,
+      "queries": 6,
+      "upper_bound_random_membership": 5.960464477539063e-08
+    }
+  ],
+  "homomorphic_transcripts_in_public_image": 1250,
+  "honest_telescope_decaps": 400,
+  "ideal_complete_output_cases": 720,
+  "ideal_false_instances_perfectly_hidden": 192,
+  "ideal_true_instances_key_revealed": 528,
+  "max_adjacent_clause_variable_union": 6,
+  "max_homomorphic_image_rank_observed": 24,
+  "max_prefix_cover_nodes_observed": 24,
+  "prefix_cover_assignment_checks": 366720,
+  "random_transcripts_in_public_image_observed": 0,
+  "scope": "finite algebra/semantics validation only; no cryptographic security inferred from tests",
+  "seed": 750075001,
+  "status": "PASS"
+}

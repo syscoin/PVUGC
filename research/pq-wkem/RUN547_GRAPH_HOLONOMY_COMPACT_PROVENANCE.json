@@ -1,0 +1,30 @@
+{
+  "artifacts": {
+    "RUN547_GRAPH_HOLONOMY_COMPACT.md": {
+      "bytes": 5129,
+      "git_blob_sha1": "fcc043f8c83f3c32339a52c5ee0ebd55351814cb",
+      "sha256": "4188fe4433eb089a011b59c7af035102953cc0e9a7ac971c9158fa627a034de9"
+    },
+    "run547_graph_holonomy_independent.js": {
+      "bytes": 2057,
+      "git_blob_sha1": "603941ca7eda26a9597c5d7b22041c0d7c6bf636",
+      "sha256": "20b9c60cf4b34759cdd347c2af86ce57a7b8cc5829261834cf3b02f20a47f532"
+    },
+    "run547_graph_holonomy_independent_validation.json": {
+      "bytes": 245,
+      "git_blob_sha1": "c023c80dc4936e7f1853a2fcf66632b1e70044bc",
+      "sha256": "6593923a0337600f31bb9eca7774dd490dc7a1a2cd805a4c212d120537ef435c"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_checker": "node run547_graph_holonomy_independent.js",
+  "execution": "twice, byte-identical",
+  "pr": 1,
+  "repo": "syscoin/PVUGC",
+  "run": 547,
+  "sources": {
+    "CLZ_blob": "c19d9d9cd515140e3ce62eac960cd548c0add622",
+    "run546_note_blob": "57d2afb4aa0d3d38fcf918f7e129ce4fe7391904"
+  },
+  "starting_head": "5078a93be6cd49fe4390b1075cd40c99f697a100"
+}

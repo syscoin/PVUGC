@@ -1,0 +1,27 @@
+{
+  "assertions": 2771,
+  "checker": "ehps_fixed_instance_sampler_coin_run124_check.py",
+  "checks": {
+    "abo_non_target_extraction": 1210,
+    "abo_target_hash_identity": 121,
+    "dh_relation_and_sampler": 34,
+    "extraction_mode_formula": 1210,
+    "fixed_instance_source_collapse_reduction_instances": 165,
+    "mode_public_key_distribution_exact_equality": true,
+    "sampler_coin_is_discrete_log_of_relation_witness": 11
+  },
+  "claims_not_tested": [
+    "discrete-log, CDH, factoring, LWE, SIS, or any computational hardness",
+    "QPT security of Wee 2010 or Chen-Zhang PEPRF",
+    "existence of a generic-NP fixed-instance witness-public-evaluable dual-mode hash",
+    "security of any final witness KEM"
+  ],
+  "run": 124,
+  "toy_group": {
+    "alpha": 3,
+    "g": 2,
+    "p": 23,
+    "q": 11,
+    "tag_star": 4
+  }
+}

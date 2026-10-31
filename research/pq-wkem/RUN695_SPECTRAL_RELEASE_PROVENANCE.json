@@ -1,0 +1,47 @@
+{
+  "run": 695,
+  "date": "2026-10-21",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "88c90ca6929c47ac0786e0ec4097eb27b3917ba1",
+  "source_dependency_paths": [
+    "research/pq-wkem/RUN593_COMPACT_NONCOMMUTATIVE_AADP.md",
+    "research/pq-wkem/GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md"
+  ],
+  "source_dependency_blobs": [
+    "29b9168bfff6043810284cd1960400579f224e31",
+    "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  ],
+  "executed_compact_checker": "new Function(checker + '\\nreturn report;')() inside connected-code tool; intended Node script also emits JSON",
+  "compact_validation": {
+    "run": 695,
+    "purpose": "all-witness correctness of full-rank spectral release only",
+    "status": "finite algebra verified; no hiding, QPT extraction, or real signature verification",
+    "field": 101,
+    "gates": 2,
+    "width": 5,
+    "key": 17,
+    "setups": 12,
+    "valid_recoveries": 48,
+    "forced_zero_cofactor": {
+      "seed": 40,
+      "w": [
+        1,
+        1,
+        1
+      ],
+      "source_rank": 4,
+      "old_cofactor": 0,
+      "new_roots": [
+        17,
+        46
+      ]
+    },
+    "assertions_passed": 405
+  },
+  "extended_local_checker": "/mnt/data/pq_run695/run695_spectral_release_check.py (Python3; 1,203 assertions)",
+  "extended_local_validation": "/mnt/data/pq_run695/run695_spectral_release_validation.json",
+  "security_scope": "all-witness correctness only; QPT hiding and true-instance source extraction unproved",
+  "no_production_changes": true
+}

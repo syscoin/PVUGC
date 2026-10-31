@@ -1,0 +1,24 @@
+{
+  "run": 512,
+  "date": "2026-10-14",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "7dd755e3429bacc8d5fd7e240facd658c6bd3be0",
+  "scope": "new ideal-model shared-loader theorem with independent claim-local seed translations",
+  "committed_checker": "run512_shared_loader_check.js",
+  "executed_exact_checker": "function run512Check() in this invocation; its toString() used verbatim as the committed source",
+  "output": "run512_shared_loader_validation.json",
+  "validation": {
+    "exhaustive_S8_frames": 40320,
+    "sampled_S16_frames": 128,
+    "transplant_algebra": 330752,
+    "full_public_multiset_equalities": 82176,
+    "mask_reuse_leaks": 163328,
+    "reference_masks": 81152
+  },
+  "independent_local_python_sha256": "557ee8dccb3d90375575ef452ff91dae0dfc340e1f3cce375e4495fafe22bc9c",
+  "independent_local_validation_sha256": "5944b464a8bbea4c7a8107fc239fed8cdd2718cff4ed73d99352ae7852d35870",
+  "full_local_proof_sha256": "44abe49a3a5b9ed4fbdaf337f047c7009567d50d637348178aa3f5de2736c022",
+  "scope_limit": "not a classical-PPT mixer nor proof of QPT true-instance security; GitHub writes restricted to draft PR research artifacts"
+}

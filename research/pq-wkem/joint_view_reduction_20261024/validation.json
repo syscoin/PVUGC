@@ -1,0 +1,483 @@
+{
+  "all_false_cases_sha256": "87505bf7c7c13fbfecac4d2f90baf2681d906f61e28a310e3d5daa9acf5620aa",
+  "checker_sha256": "fd15772d2c61a8f8162693b83db71c4629c1b2d4149e888700546c80b2ca2b29",
+  "checkpoint": "joint_view_reduction_20261024",
+  "classification": "SECURITY_CORRECTION_NOT_POSITIVE_CONSTRUCTION",
+  "explicit_assertions": 24979,
+  "failed_two_sided_repair_checks": [
+    {
+      "correct": true,
+      "seed": 4000,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 4001,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 4002,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 4003,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 4004,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 4005,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 4006,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 4007,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 4008,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 4009,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 4010,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 4011,
+      "status": "candidate"
+    }
+  ],
+  "false_case_counts": {
+    "candidate": 128
+  },
+  "false_examples": [
+    {
+      "Khat": 219,
+      "SL": 9,
+      "SR": 15,
+      "actual_key": 219,
+      "classes": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "consistent": true,
+      "projected_shape": [
+        12,
+        6
+      ],
+      "seed": 1000,
+      "span_rank": 16,
+      "status": "candidate"
+    },
+    {
+      "Khat": 30,
+      "SL": 11,
+      "SR": 13,
+      "actual_key": 30,
+      "classes": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "consistent": true,
+      "projected_shape": [
+        10,
+        8
+      ],
+      "seed": 1001,
+      "span_rank": 16,
+      "status": "candidate"
+    },
+    {
+      "Khat": 215,
+      "SL": 14,
+      "SR": 10,
+      "actual_key": 215,
+      "classes": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "consistent": true,
+      "projected_shape": [
+        7,
+        11
+      ],
+      "seed": 1002,
+      "span_rank": 16,
+      "status": "candidate"
+    },
+    {
+      "Khat": 254,
+      "SL": 11,
+      "SR": 13,
+      "actual_key": 254,
+      "classes": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "consistent": true,
+      "projected_shape": [
+        10,
+        8
+      ],
+      "seed": 1003,
+      "span_rank": 16,
+      "status": "candidate"
+    },
+    {
+      "Khat": 215,
+      "SL": 12,
+      "SR": 12,
+      "actual_key": 215,
+      "classes": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "consistent": true,
+      "projected_shape": [
+        9,
+        9
+      ],
+      "seed": 1004,
+      "span_rank": 16,
+      "status": "candidate"
+    }
+  ],
+  "false_seed_range": [
+    1000,
+    1127
+  ],
+  "fixture": {
+    "R1CS_rows": 7,
+    "matrix_dimension": 21,
+    "original_variables": 4,
+    "padding": 5,
+    "quotient_coordinates": 6,
+    "release_nodes": 8
+  },
+  "generic_chart_witness": {
+    "SL2": [
+      [
+        3,
+        12,
+        11,
+        4
+      ],
+      [
+        8,
+        6,
+        0,
+        15
+      ],
+      [
+        5,
+        4,
+        3,
+        6
+      ],
+      [
+        4,
+        12,
+        9,
+        5
+      ],
+      [
+        15,
+        1,
+        13,
+        10
+      ],
+      [
+        10,
+        11,
+        0,
+        12
+      ],
+      [
+        13,
+        3,
+        6,
+        10
+      ],
+      [
+        8,
+        10,
+        7,
+        13
+      ]
+    ],
+    "certificate_passed": true,
+    "orientations": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    "seed": 1000
+  },
+  "model": "Synthetic GF(16) subset GF(256), classical public-input algebra, no key search",
+  "not_claimed": [
+    "asymptotic saturation bound for all relations",
+    "cryptographic-size execution",
+    "secure replacement",
+    "QPT secrecy",
+    "native Bitcoin validation"
+  ],
+  "transported_metric_checks": [
+    {
+      "correct": true,
+      "seed": 3000,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 3001,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 3002,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 3003,
+      "status": "candidate"
+    }
+  ],
+  "true_source_checks": [
+    {
+      "correct": true,
+      "seed": 2000,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 2001,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 2002,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 2003,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 2004,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 2005,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 2006,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 2007,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 2008,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 2009,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 2010,
+      "status": "candidate"
+    },
+    {
+      "correct": true,
+      "seed": 2011,
+      "status": "candidate"
+    }
+  ],
+  "valid_witness_recoveries": 36
+}

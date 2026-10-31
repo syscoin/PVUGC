@@ -1,0 +1,92 @@
+{
+  "seed": 26092201,
+  "summary": {
+    "explicit_false_fixture": "S1={00,01,10}, S2={11} over F2^2 has empty actual intersection but recovers K exactly",
+    "proved_identity": "K recoverable from complete affine-evaluation tables iff intersection of affine hulls is nonempty",
+    "stopping_condition_met": false
+  },
+  "tests": {
+    "F3_complete_fiber_checks": {
+      "hiding_cases": 31,
+      "recoverable_cases": 49,
+      "systems": 80
+    },
+    "exact_distribution_dichotomy": {
+      "hidden_distributions_equal": true,
+      "hidden_fixture_support": 8,
+      "hidden_total_per_key": 8,
+      "leak_fixture_support_key0": 8,
+      "leak_fixture_support_key1": 8,
+      "leak_support_intersection": 0
+    },
+    "explicit_F101_false_splice": {
+      "recovered": 500,
+      "trials": 500
+    },
+    "explicit_F2_false_splice": {
+      "recovered": 500,
+      "trials": 500
+    },
+    "noisy_bound_tight_control": {
+      "constructed_joint_distribution_combined_success": "3/5",
+      "guaranteed_combined_success": "3/5",
+      "per_decoder_success": "9/10"
+    },
+    "random_rowspace_iff_hull_intersection": {
+      "checks": 1080
+    },
+    "rank_condensor_false_fixture": {
+      "actual_common_candidate": false,
+      "block1_rank_lt_2": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "block2_rank_lt_2": [
+        [
+          1,
+          1
+        ]
+      ],
+      "certificate_local_ranks": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "rank1_63_repeat_success": "0.9968806526003727",
+      "rank1_raw_success": "2/3",
+      "three_independent_rank1_attack_success": "0.9907002183612197",
+      "three_rank1_union_bound_attack_success": "0.9906419578011182"
+    },
+    "set_pair_census": {
+      "F2^2": {
+        "disjoint_actual": 50,
+        "disjoint_but_affine_hulls_intersect": 8,
+        "pairs": 225,
+        "rowspace_equivalence_checked": 225
+      },
+      "F3^1": {
+        "disjoint_actual": 12,
+        "disjoint_but_affine_hulls_intersect": 6,
+        "pairs": 49,
+        "rowspace_equivalence_checked": 49
+      },
+      "F3^2": {
+        "disjoint_actual": 18660,
+        "disjoint_but_affine_hulls_intersect": 17628,
+        "pairs": 261121,
+        "rowspace_equivalence_checked": 1029
+      }
+    }
+  }
+}

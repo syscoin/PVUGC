@@ -1,0 +1,45 @@
+{
+  "run": 405,
+  "date_utc": "2026-10-10",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "c55ee417c56405cea3d81241764ebb14eb54c549",
+  "expected_tree_base": "4e408aaef4f2859f2f535daff3e3bc745bfa87fe",
+  "read_blobs": [
+    "cd167f6df5e14492f912377bbe37073533588b26",
+    "54ddfa5df2c4225e59c535741774cd83194465b4",
+    "7afc59866028fef93728d6c3da766d7c9deafdc6"
+  ],
+  "checker_result": {
+    "run": 405,
+    "status": "PASS",
+    "assertions": 131077,
+    "census": {
+      "uniform_private_pad": {
+        "strategies": 65536,
+        "tv_over_64": 0,
+        "max_real_over_64": 32,
+        "max_dummy_over_64": 32,
+        "max_strategy_gap_over_64": 0
+      },
+      "partly_unmasked_pad": {
+        "strategies": 65536,
+        "tv_over_64": 12,
+        "max_real_over_64": 40,
+        "max_dummy_over_64": 32,
+        "max_strategy_gap_over_64": 12
+      }
+    },
+    "graph_cases": 16,
+    "limits": "Finite probability and graph logic only, not WE, signatures, QPT security or Bitcoin consensus."
+  },
+  "limitations": [
+    "No WE/mixer built",
+    "No true-instance ORIGINAL extraction",
+    "QPT WE-IND and EUF assumed",
+    "Auxiliary view simulatable from vk only",
+    "One-honest N-of-N setup unproved",
+    "Native Bitcoin PQ endpoint hypothetical"
+  ]
+}

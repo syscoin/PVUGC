@@ -1,0 +1,44 @@
+{
+  "run": 71,
+  "starting_pr_head": "52c0be7fb4e7ca41c742580763f1735090878ea4",
+  "checkpoint_comment_id": 5812308960,
+  "scope": "research/pq-wkem only; no production paths; no external literature/web search",
+  "proof": {
+    "path": "research/pq-wkem/HIDDEN_SUBSPACE_TRANSPORT_RUN71.md",
+    "sha256": "d2250915747b98f7f34eb28fc5c5cec38a09a51a4d3403101302abbf7a49198c",
+    "published_git_blob": "f6db4f44a247146ace6c4b06cd99adfdf60419e4",
+    "published_byte_identity_with_local": true
+  },
+  "checker": {
+    "path": "research/pq-wkem/hidden_subspace_transport_run71_check.py",
+    "sha256": "8417010a631f69a94d8159b102de4edc3556a5f2aa8e3fb1d2723d68d44dacc2",
+    "published_git_blob": "6085ef7b6b33cbc315715da2308e41ca704bf1cb",
+    "published_byte_identity_with_executed_local": true,
+    "executions": 2,
+    "byte_identical_outputs": true
+  },
+  "validation": {
+    "path": "research/pq-wkem/hidden-subspace-transport-run71-validation.json",
+    "sha256": "663ebc055438e2e1eb2e1bd02d9cb03e42d6fac48c028663620d49a4fbcc1580",
+    "published_git_blob": "9487fc53d2e81d71e85474dc18969cbe1a8078c7",
+    "published_byte_identity_with_local": true
+  },
+  "tests_actually_executed": {
+    "finite_field_false_instances": 450,
+    "finite_field_false_exact_key_recoveries": 450,
+    "finite_field_true_controls": 450,
+    "finite_field_true_exact_key_recoveries": 450,
+    "reverse_steps_next_channel_equalities": 450,
+    "separate_reverse_lemma_cases": 400,
+    "separate_reverse_lemma_same_source_equalities": 400,
+    "separate_reverse_solution_not_hidden_row": 400,
+    "bounded_noise_false_trials": 1250,
+    "bounded_noise_false_sign_recoveries": 1250,
+    "bounded_noise_true_trials": 1250,
+    "bounded_noise_true_sign_recoveries": 1250
+  },
+  "claims_boundary": {
+    "proved": "Exact node-potential rank-r transports are publicly reversible along undirected walks by public linear solves; orthogonal partial-isometry transports with bounded operator-norm additive noise give false alternating walks the same deterministic product perturbation bound as honest paths.",
+    "not_claimed": "No impossibility for all noncommutative or lattice encodings; no LWE/SIS break; no generic-NP WKEM; no arbitrary-QPT final-key recovery to source-witness reduction; no security claim from passing tests."
+  }
+}

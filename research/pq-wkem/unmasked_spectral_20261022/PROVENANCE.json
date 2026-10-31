@@ -1,0 +1,39 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checkpoint": "unmasked-spectral-central-polynomial-20261022",
+  "created_utc": "2026-10-23T02:56:38.215261+00:00",
+  "invocation": "interactive; no scheduler run ID supplied",
+  "local_failures": [
+    {
+      "message": "Temporary failure in name resolution; no matching distribution could be retrieved",
+      "stage": "optional python-flint installation"
+    },
+    {
+      "message": "StreamingExecNotEnabledContainerError",
+      "stage": "interactive streaming attempt"
+    },
+    {
+      "message": "N=337 and N=385 attempts exceeded 45/90/120/180-second local limits; excluded from final completed tests",
+      "stage": "large cryptographic-field exploratory runs"
+    }
+  ],
+  "pr": 1,
+  "publication": "research artifacts prepared; publication outcome recorded separately",
+  "python": "3.13.5",
+  "repository": "syscoin/PVUGC",
+  "source_hashes": {
+    "UNMASKED_SPECTRAL_PUBLIC_RECOVERY.md": "c93aa622ece257a01cc316be4ac6ca6288d1acfacb6aa05dd466f19775587781",
+    "batch_check.py": "8c2d6e03119763d2417ffd7b7e20a0c50169b7e4b6ada3c9fbce85fd9086579c",
+    "crypto_field_attack.cpp": "bfd0f4c1a7ddb2b1911a3105308345f2feb502c72b4a29756693837b27a53fb3",
+    "extract_roots.py": "7c3d56a7ff89b30d72ef810f2525c5b3da8dc93833fd88ce4377787962516665",
+    "probe.py": "703e0af2edb16bfa262cef676d654fb8336f9ce8430f028c82c0b39011744c38"
+  },
+  "starting_sha": "ef2246af43a567b8baa6863ee7b506cc9a1a5cd1",
+  "tool_actions_before_publication": [
+    "GitHub.get_pr_info",
+    "GitHub.fetch",
+    "api_tool.list_resources",
+    "web.search_query/open/click/screenshot",
+    "container.exec"
+  ]
+}

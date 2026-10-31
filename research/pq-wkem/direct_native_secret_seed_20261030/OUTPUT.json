@@ -1,0 +1,1 @@
+{"candidate":"Direct native secret seeds; 2-of-3 Shamir SOURCE","source_only":true,"prg_assumption_removed":true,"native_keygen":"mock root, not real SLH","toy_uniform_lwe":false,"trials":24,"assertions":246630,"illustrative_bytes":45978768}

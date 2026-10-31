@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "checks": 11,
+  "run": "polar-coded-fourier-20261027-automation5",
+  "certified": [
+    {
+      "rho": "2/3",
+      "N": 16384,
+      "log2Zfloor": -457
+    },
+    {
+      "rho": "1/2",
+      "N": 32768,
+      "log2Zfloor": -442
+    }
+  ],
+  "finite": {
+    "N": 8,
+    "k": 2,
+    "publicDitheredError": "104/729",
+    "individualErrorNumerators": [
+      "53991",
+      "413991",
+      "76491",
+      "413991"
+    ]
+  }
+}

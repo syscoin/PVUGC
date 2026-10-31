@@ -1,0 +1,47 @@
+{
+  "assertions_per_execution": 2452,
+  "branch": "research/pq-wkem-validation-20260918",
+  "byte_identical_outputs": true,
+  "checker_command": "python check_fourier_extraction.py",
+  "claimed_result": "Resource-accounted full-transcript coherent-code-access quantum extraction inequality; not practical PQ WKEM.",
+  "created_utc": "2026-10-26T22:14:09.593208+00:00",
+  "dependency_blobs": {
+    "affine_checker": "596c3b86a4fb8320be96513b83f2a0c5be1e6ad8",
+    "affine_note": "356d5be2f809f60ef6bc77110ac39513ca69a106"
+  },
+  "excluded_claims": [
+    "generic polynomial-resource honest correctness",
+    "standard-LWE reduction",
+    "quantum hardware execution",
+    "malicious setup security",
+    "arbitrary target-correlated advice or selective opening",
+    "Bitcoin graph or endpoint implementation"
+  ],
+  "execution_type": "interactive; no scheduler run ID supplied",
+  "files": {
+    "README.md": {
+      "bytes": 19128,
+      "git_blob_sha1": "d68b015397f46caf30d579bff12220ad04e94d7c",
+      "sha256": "281fc823a5a8dbec4e8b79b84bbb55d382b962da90f1229a79395b20ecaf3eb9"
+    },
+    "check_fourier_extraction.py": {
+      "bytes": 13582,
+      "git_blob_sha1": "31772dc587cb7eee7747d44ce6d04bf45b1d6f8a",
+      "sha256": "66f1c9479a1ac0457fa3330b6ce1f445d8d219962d395cabe17c858963a96463"
+    },
+    "validation.json": {
+      "bytes": 2359,
+      "git_blob_sha1": "1a491d570a5c6d6f8cf8232018a6e503d7fccbac",
+      "sha256": "22ed32efe1b6228d7639f3af9772ca60056c551b779096d8599ccff975339cd4"
+    }
+  },
+  "final_executions": 2,
+  "latest_comment_read": 6427546203,
+  "offline_research": true,
+  "other_exact_read": "research/pq-wkem/VTDH_STANDARD_LWE_QPT_LIFT_RUN122.md at starting_sha",
+  "pr": 1,
+  "python": "3.13.5",
+  "record_id": "fourier-recovery-extraction-20261026",
+  "repository": "syscoin/PVUGC",
+  "starting_sha": "d47fb4cdf4e426ea00749a7e61f2b67850071df0"
+}

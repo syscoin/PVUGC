@@ -1,0 +1,8 @@
+{
+  "run": 487,
+  "assertions": 4864,
+  "contexts": 128,
+  "valid_source_witnesses_per_context": 2,
+  "accepted_toy_native_signatures": 2048,
+  "scope": "insecure finite permutation only; does not establish QPT or concrete security"
+}

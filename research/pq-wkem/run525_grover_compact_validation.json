@@ -1,0 +1,13 @@
+{
+  "run": 525,
+  "pass": true,
+  "model": "one full reference opening, arbitrary public first round, invertible middle/final rounds, bound public key checker",
+  "trials": 96,
+  "true_first_round_keys_accepted": 96,
+  "grover_amplitude_checks": 96,
+  "nonbijective_first_round_trials": 16,
+  "classical_predicate_evaluations": 8256,
+  "maximum_marked": 12,
+  "quantum_hardware": false,
+  "native_slh_dsa": false
+}

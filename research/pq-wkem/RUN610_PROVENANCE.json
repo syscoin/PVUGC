@@ -1,0 +1,22 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_sha256": "322b3556e935583e6ff2cda133754f26459d3f05cc3cc1db20b795788be46746",
+  "date": "2026-10-18",
+  "exact_compact_checker_assertions": 67915,
+  "exact_extended_local_checker_assertions": 68956,
+  "exact_validation_sha256": "f355d2bed4307ce7129a1239986b42a930bcc7ec5d77910e63e85c5751166409",
+  "execution_repeat_byte_identical": true,
+  "github_pr": 1,
+  "latest_substantive_comment_id": 6241612333,
+  "primary_source": "https://www.cs.toronto.edu/~vinodv/KV-PAKE.pdf (sections 2,4,5.2,6.2 partly inspected; not complete proof audit)",
+  "pr_state": "open/draft/unmerged",
+  "repository": "syscoin/PVUGC",
+  "run": 610,
+  "source_blobs": {
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run604": "6b63e67d3063bfb19fa8edc39645b0cee71120c0",
+    "clz_assessment": "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  },
+  "starting_sha": "9aed4746a11a7992a68eb97a6925c64c596f6658",
+  "status": "small-field exact algebra only; no native signatures, QPT positive proof or production changes"
+}

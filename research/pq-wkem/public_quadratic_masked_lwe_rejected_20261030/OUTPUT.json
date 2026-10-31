@@ -1,0 +1,14 @@
+{
+  "assertions": 5642,
+  "candidate": "public_quadratic_masked_dual_LWE",
+  "executable": "check.py",
+  "false_cases": 640,
+  "full_secret_bits": 256,
+  "g": 101,
+  "native_pk_mock": "SHA256(secret)",
+  "q": 65537,
+  "related_capsules": 2,
+  "sampled_cases": 1280,
+  "security": "finite classical functional counterexample only",
+  "status": "reject: public monomial substitution"
+}

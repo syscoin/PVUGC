@@ -1,0 +1,49 @@
+{
+  "assertions_per_execution": 109623,
+  "branch": "research/pq-wkem-validation-20260918",
+  "byte_identical_outputs": true,
+  "checker_command": "python check_joint_linear_release.py",
+  "checker_executions": 2,
+  "claimed_result": "Full-joint QPT-LWE/native reduction for a uniform-matrix binary-linear reference family; vectorization and exact bit-projection pad. Not a generic SOURCE compiler or WKEM.",
+  "created_utc": "2026-10-26T22:52:56.825004+00:00",
+  "exact_dependency": "research/pq-wkem/VTDH_STANDARD_LWE_QPT_LIFT_RUN122.md at starting_sha",
+  "excluded_claims": [
+    "arbitrary circuit-compiled A,b security",
+    "per-instance or generic-NP false-instance theorem",
+    "PoW ORIGINAL witness extraction/work bound",
+    "reusable adaptive WPRF",
+    "concrete 128-bit security parameters",
+    "malicious distributed setup",
+    "unrestricted selective opening",
+    "native signature implementation or quantum hardware test"
+  ],
+  "execution_type": "current user-requested review/research; no scheduler run ID supplied",
+  "external_web_research": false,
+  "files": {
+    "README.md": {
+      "bytes": 20657,
+      "git_blob_sha1": "606f7d6bec6dae60f059b4c4e15ac5b43a920ebe",
+      "sha256": "817898d4d71645714ca68de9fd7ec26ee53fe47f3418ba50e57a98e5ccc16f59"
+    },
+    "check_joint_linear_release.py": {
+      "bytes": 9167,
+      "git_blob_sha1": "d31eea0c54d47a4e8258a737865f80407b1be8ac",
+      "sha256": "79c4106032944ae4f3074600c63ab2cd35963304990f24327228a50f9f6e66b6"
+    },
+    "validation.json": {
+      "bytes": 1201,
+      "git_blob_sha1": "6c32ad2b72eb5615d7a72e5b1e536799fa1e4f41",
+      "sha256": "26a249d13974da6247e062260a38d525661bc7ba7cf861fd6aa13359f73c3693"
+    }
+  },
+  "latest_comments_read": [
+    6428644456,
+    6428675029
+  ],
+  "pr": 1,
+  "primary_input": "user-supplied Compact witness-PRF key release and noisy-linear draft in current message",
+  "python": "3.13.5",
+  "record_id": "joint-linear-release-20261026",
+  "repository": "syscoin/PVUGC",
+  "starting_sha": "5fc7ca8922b69df2c884ad52721ff088d72533a9"
+}

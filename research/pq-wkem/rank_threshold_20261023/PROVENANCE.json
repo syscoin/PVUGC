@@ -1,0 +1,27 @@
+{
+  "checkpoint": "paired-rank-threshold-20261023",
+  "date_utc": "2026-10-23",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "verified_start_head": "ef33ef4be94d46807b7be30acc42bf3d1a89c060",
+  "upstream": {
+    "qap_frobenius_projective_20261022/frobenius_qap.py": "d5b35ae77076e0e6bbf927a41b819130ac84fead",
+    "sampled_frobenius_qap_20261023/sampled_qap.py": "3c568a1035865a20a98a271fd1d9c186db20c755"
+  },
+  "prior_unpublished_checkpoint": "paired_sampled_integration_20261023.zip",
+  "artifact_git_blobs": {
+    "RANK_THRESHOLD_COMPOSITION.md": "a07925249d3f1681cd7122b0835e27d769cd5d5f",
+    "rank_threshold_check.py": "16308bcf09461e94651022860e79cbeac8ee98f1",
+    "validation.json": "300ed6e7fd11427f8386b4963ca33448f68fb347"
+  },
+  "executed_commands": [
+    "OPENBLAS_NUM_THREADS=1 python rank_threshold_check.py > validation.json",
+    "OPENBLAS_NUM_THREADS=1 python rank_threshold_check.py > rerun.json",
+    "cmp validation.json rerun.json"
+  ],
+  "validations": "1034 assertions, two byte-identical runs, 3 toy seeds, exhaustive 256 normalized inputs per seed, 762 false supplied representations rejected",
+  "hash_of_local_checker_sha256": "8c2d02afe8234ecfd4f29fc4c95318bae5ca202c4a56a1d13c10d768e65ca664",
+  "hash_of_local_validation_sha256": "4be970391162da6dab0cec611867327925b30bcb7ba2443c22998b7499333218",
+  "result_scope": "Combined global SOURCE+rank-threshold supplied-representation extraction, correct K only. Not arbitrary K/native forgery extraction, key hiding or practical construction."
+}

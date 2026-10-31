@@ -1,0 +1,15 @@
+{
+  "run": 482,
+  "status": "PASS",
+  "assertions": 4576,
+  "finite_false_distribution_pair_cases": 256,
+  "finite_false_distribution_individual_checks": 4096,
+  "true_fixtures": 48,
+  "false_fixtures": 48,
+  "replayed_signature_rejections": 48,
+  "fresh_false_branch_signatures_with_reused_key": 48,
+  "independent_key_rejections": 48,
+  "toy_native_signature_is_PQ": false,
+  "toy_permutation_is_one_way": false,
+  "scope": "finite diagnostic only; theorem uses distinct stated QPT assumptions"
+}

@@ -1,0 +1,23 @@
+{
+  "run": 413,
+  "scope": "marginal-vs-joint public-release sampler finite negative control",
+  "assertions_passed": 3028,
+  "exhaustive_probability_cases": 24,
+  "fixed_checking_key_cases": 1344,
+  "example_N8_h1": {
+    "marginal_tv": "0",
+    "joint_tv": "7/8",
+    "uniform_sampler_recovery": "1/8"
+  },
+  "example_N8_h4": {
+    "marginal_tv": "0",
+    "joint_tv": "1/2",
+    "uniform_sampler_recovery": "1/2"
+  },
+  "not_proved": [
+    "PQ security",
+    "KEM construction",
+    "quantum hardness",
+    "native Bitcoin signing"
+  ]
+}

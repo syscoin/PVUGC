@@ -1,0 +1,20 @@
+{
+  "run": 456,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "634d2ff059f857396695e9af6ab0ce3ce8378a98",
+  "starting_tree": "392848811050ecbbec494308ff72ed0186379fbf",
+  "publication_status": "ARTIFACTS_PREPARED_PENDING_COMMIT_VERIFICATION",
+  "checker": "run456Compact.toString() source exactly executed before tree construction",
+  "compact_assertions": 79,
+  "local_extended_assertions": 158,
+  "local_extended_environment": "Python 3.13.5, cryptography 46.0.4, Ed25519 non-PQ",
+  "scope": "research only, draft PR, no production changes",
+  "paths": [
+    "research/pq-wkem/RUN456_PUBLIC_KEY_SEED_SPACE_COMPACT.md",
+    "research/pq-wkem/run456_compact_check.js",
+    "research/pq-wkem/run456_compact_validation.json",
+    "research/pq-wkem/RUN456_PUBLICATION_PROVENANCE.json"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "run": 548,
+  "status": "PASS",
+  "masks_per_bit_tree": 216,
+  "unanchored_equal": true,
+  "one_anchor_equal": true,
+  "two_anchor_supports_disjoint": true,
+  "partial_token_triple_support": [
+    18,
+    36
+  ],
+  "partial_token_supports_disjoint": true,
+  "three_pair_marginals_equal": true,
+  "cuts": [
+    [
+      "path",
+      1
+    ],
+    [
+      "diamond",
+      2
+    ],
+    [
+      "diamond_unanchored",
+      1
+    ],
+    [
+      "theta_3anchors",
+      4
+    ]
+  ]
+}

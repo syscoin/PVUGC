@@ -1,0 +1,35 @@
+[
+  {
+    "N": 65,
+    "attack_uses_field_or_witness_enumeration": false,
+    "block_size": 1,
+    "candidates": [
+      35957,
+      50027
+    ],
+    "m": 32,
+    "margin": 1,
+    "polynomial_degree": 17,
+    "q": 65537,
+    "reference_key": 50027,
+    "reference_key_in_candidates": true,
+    "residual_masks": false,
+    "source_family": "complete connected false SOURCE from pinned unmasked audit"
+  },
+  {
+    "N": 129,
+    "attack_uses_field_or_witness_enumeration": false,
+    "block_size": 2,
+    "candidates": [
+      50027
+    ],
+    "m": 32,
+    "margin": 1,
+    "polynomial_degree": 89,
+    "q": 65537,
+    "reference_key": 50027,
+    "reference_key_in_candidates": true,
+    "residual_masks": false,
+    "source_family": "complete connected false SOURCE from pinned unmasked audit"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "assertions": 16489,
+  "finite_models": {
+    "bad_fixed_input_pairs": 4,
+    "random_function_collision_cases": 12,
+    "range_size": 5,
+    "source_statements": 8,
+    "source_witnesses": 8,
+    "structured_wprf_tables": 125,
+    "target_checksum_space": 13
+  },
+  "not_validated": [
+    "any computational WPRF pseudorandomness",
+    "any pairing, LWE, SIS, MinRank, or QPT hardness assumption",
+    "the security proof of ePrint 2026/1079",
+    "existence of a standard-LWE/SIS generic-NP compiler",
+    "malicious-secure ceremony or practical parameter estimates"
+  ],
+  "run": 127,
+  "source_sha256": "37f1fb9f4c3e3a9d847ad29553312184661fd0253b7b17964327fec51de75348",
+  "status": "PASS",
+  "validated_claims": [
+    "witness-preserving compiler composes special-language same-value evaluation into source-relation same-value evaluation",
+    "target-witness extraction plus source map yields ORIGINAL source witness",
+    "challenge-distribution identity is exact under deterministic compiler postprocessing",
+    "witness-dependent target inputs do not in general preserve one setup-masked key",
+    "fixed target input restores all-witness same-key functionality",
+    "setup-samplable universally source-extractable target witnesses collapse source search",
+    "public dummy openings demonstrate why ordinary local-opening validity cannot equal source-bearing validity"
+  ]
+}

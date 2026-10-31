@@ -1,0 +1,16 @@
+{
+  "checks": 200194,
+  "pair_GF256_reconstructions": 196608,
+  "toy_packet_pairs": 96,
+  "exact_toy_leftover_TV": "208/625",
+  "weight_2003_fails": true,
+  "weight_2004_passes": true,
+  "normal_decode_margin": 11007,
+  "wrap_decode_margin": 11036,
+  "prior_public_bytes": "35682192",
+  "new_public_bytes": "67630992",
+  "extra_public_bytes": "31948800",
+  "ORIGINAL_Lift": "UNSOLVED",
+  "QPT_hardness": "NOT TESTED",
+  "native_signatures": "NOT TESTED"
+}

@@ -1,0 +1,13 @@
+{
+  "Fourier_phase_checks": 7506,
+  "QPT_release_security": false,
+  "actual_witness_KEM": false,
+  "assertions": 533244,
+  "finite_instances": 1503,
+  "known_inverse_control_checks": 1503,
+  "max_n_bits_tested": 8,
+  "right_coset_checks": 521208,
+  "run": 571,
+  "scope": "Algebraic embedding into dihedral HSP and phase identities only; no QPT algorithm executed",
+  "status": "PASS"
+}

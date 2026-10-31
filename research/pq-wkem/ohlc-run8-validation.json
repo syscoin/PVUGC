@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "scope": "Fresh exact algebra/enumeration tests for OHLC and random projection, plus functional toy check for the equivalence transform; not a PQ security experiment.",
+  "results": {
+    "canonical_coset_equivalence_toy": {
+      "functional_roundtrips": 500,
+      "note": "Toy functionality only; theorem in CANONICAL_COSET_EQUIVALENCE_AND_OHLC.md gives the black-box security equivalence.",
+      "trials": 500
+    },
+    "ohlc": {
+      "false": {
+        "blocks": 3,
+        "enumerated_short_vectors": 577,
+        "rows": 10,
+        "short_integer_solutions": 0,
+        "short_modular_solutions": 0,
+        "variables": 8
+      },
+      "field": 31,
+      "genuine_witness_projection_checks": 400,
+      "max_row_support": 4,
+      "random_projection": {
+        "2": {
+          "false_projected_short_hit_trials": 830,
+          "observed_rate": 0.415,
+          "trials": 2000,
+          "union_bound": 0.6004162330905307
+        },
+        "3": {
+          "false_projected_short_hit_trials": 95,
+          "observed_rate": 0.019,
+          "trials": 5000,
+          "union_bound": 0.019368265583565508
+        },
+        "4": {
+          "false_projected_short_hit_trials": 0,
+          "observed_rate": 0.0,
+          "trials": 5000,
+          "union_bound": 0.0006247827607601776
+        }
+      },
+      "sufficient_modulus_lower_bound": 18.0,
+      "true": {
+        "blocks": 4,
+        "rows": 11,
+        "short_integer_solutions": 2,
+        "short_modular_solutions": 2,
+        "variables": 10
+      }
+    }
+  },
+  "notes": [
+    "No outside literature or web search used.",
+    "Historical test counts are not included.",
+    "No production source changed.",
+    "Canonical-Coset equivalence is proved in CANONICAL_COSET_EQUIVALENCE_AND_OHLC.md; the toy test only checks functionality."
+  ]
+}

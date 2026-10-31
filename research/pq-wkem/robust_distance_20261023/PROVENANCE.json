@@ -1,0 +1,36 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "date_utc": "2026-10-23",
+  "exact_upstream_git_blobs": {
+    "research/pq-wkem/qap_frobenius_projective_20261022/frobenius_qap.py": "d5b35ae77076e0e6bbf927a41b819130ac84fead",
+    "research/pq-wkem/rank_threshold_20261023/RANK_THRESHOLD_COMPOSITION.md": "a07925249d3f1681cd7122b0835e27d769cd5d5f",
+    "research/pq-wkem/sampled_frobenius_qap_20261023/sampled_qap.py": "3c568a1035865a20a98a271fd1d9c186db20c755"
+  },
+  "files": {
+    "ROBUST_DISTANCE_RANK_SELECTION.md": {
+      "git_blob_sha1": "0f3eccd2dbddcf363099028db98d5b041478adff",
+      "sha256": "b3b77a200baaaa17c047a97922af408f46f11888dbe8c06247721f2d511bce7a"
+    },
+    "robust_distance_check.py": {
+      "git_blob_sha1": "af07712aa891b967ae017ef959f9dd6ff0ecf765",
+      "sha256": "8adeacab4ba34c55b2b512391da1b1aab881e048a974b0c6e68bb2fc6b941541"
+    },
+    "validation.json": {
+      "git_blob_sha1": "1756f7555678e207a7acb3592bb3c98d9727f845",
+      "sha256": "d659840a9beebfe4cc24ecff1713ce376860942a6d2d1663b7d74c7beb249a4f"
+    }
+  },
+  "pr": 1,
+  "publication": {
+    "status": "PRE_COMMIT_ARTIFACT_SNAPSHOT",
+    "verification": "Readback commit/blob receipts belong to the top-level PR comment after branch update."
+  },
+  "repo": "syscoin/PVUGC",
+  "reproduction": [
+    "OPENBLAS_NUM_THREADS=1 python robust_distance_check.py > validation.json",
+    "OPENBLAS_NUM_THREADS=1 python robust_distance_check.py > repeated.json",
+    "cmp validation.json repeated.json"
+  ],
+  "summary": "New honest-setup simultaneous robust-distance, correct-key rank, and wrong-field-key uniqueness lemmas; N decreases 117292 to 111065, raw public bytes decrease 10.336%; 9216 toy assertions, byte-identical runs. No K-only secrecy or QPT native forgery extraction.",
+  "verified_start_head": "3b66eb3fe5926024520b67edf6d15edfba9d5edb"
+}

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "checks": 612,
+  "Z": 23,
+  "signal": "8/23",
+  "previous": "8/29",
+  "snapshots": [
+    {
+      "pin": "all",
+      "yes": 32,
+      "no": 224,
+      "eq": false
+    },
+    {
+      "pin": "true",
+      "yes": 8,
+      "no": 56,
+      "eq": false
+    },
+    {
+      "pin": "false",
+      "yes": 0,
+      "no": 32,
+      "eq": true
+    }
+  ],
+  "scope": "Exact finite algebra and full quotient laws only; no QPT/PoW test"
+}

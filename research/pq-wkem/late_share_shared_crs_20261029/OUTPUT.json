@@ -1,0 +1,31 @@
+{
+  "assertions": 3966,
+  "illustrative": {
+    "K4_rounds_for_at_least_128_bit_soundness_if_uniform_independent": 487,
+    "M": 2048,
+    "kappa": 256,
+    "new_global_sigma_plus_commit_bits": 1840900,
+    "prior_per_position_bad_event_log2_bound": -373.41504,
+    "prior_per_position_sigma_plus_commit_bits": 5517312,
+    "relative_reduction": 0.66634115,
+    "shared_CRS_bad_event_log2_bound": -384.41504,
+    "t": 898
+  },
+  "scope": "algebraic enumerations and an IDEAL-HIDING transcript coupling; no QPT proof from tests, no ORIGINAL release, no concrete native PQ",
+  "seed": 20261029,
+  "status": "PASS",
+  "toy": {
+    "adaptive_two_round_pairs": 144,
+    "color_assignments_K4": 81,
+    "corrupt_share_values": 6,
+    "difference_set_size": 118,
+    "ideal_commitment_values": 64,
+    "kappa": 4,
+    "seed_space": 16,
+    "shared_sigma_offsets": [
+      14510,
+      7392
+    ],
+    "t": 14
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "run": 585,
+  "date": "2026-10-17",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "e807fe6b2e9e89fc2d17dac96fdaa0465b11a23d",
+  "starting_tree": "3a2bd692a371bd85fe041f58c280bc018a589a3c",
+  "starting_latest_issue_comment_id": 6067040320,
+  "content_scope": "native public checking-key correlation, two black-box quantum search models",
+  "checker": "run585_native_multitarget_check.js",
+  "execution": "executed twice in V8 with exactly byte-identical captured JSON",
+  "assertions": 224,
+  "limitations": "toy oracle algebra, not SLH code or actual quantum/QPT security; no practical witness KEM",
+  "sources": [
+    "FIPS 205 final, 2024-08-13, algorithms 18–21",
+    "Run584 blob 4e1f005be26067f53c13fcb222c3091ecaadcf91",
+    "Run580 blob fba4dadaad8b942d3c6887f449081d0b52367e6b",
+    "Run259 blob c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  ]
+}

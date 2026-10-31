@@ -1,0 +1,9 @@
+{
+  "run": 485,
+  "assertions": 576,
+  "fixtures": 48,
+  "false_instances": 24,
+  "valid_witness_releases": 48,
+  "chosen_input_target_recoveries": 48,
+  "claim": "public target recovery identity and derived-capability test only; no actual obfuscation"
+}

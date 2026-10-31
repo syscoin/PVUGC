@@ -1,0 +1,95 @@
+{
+  "artifacts": {
+    "LOW_RANK_LATTICE_TRAPDOOR_MISMATCH_RUN125.md": {
+      "bytes": 13986,
+      "sha256": "436a93560702dea461c89118c9712536b818c3fd37719d7233f54f18ff54b966"
+    },
+    "low-rank-lattice-trapdoor-run125-validation.json": {
+      "bytes": 2509,
+      "sha256": "c4fdc0b0b8fde79252c91f6f449e00e562e8f2bc7f928fec3a15a861b975879c"
+    },
+    "low_rank_lattice_trapdoor_run125_check.py": {
+      "bytes": 8761,
+      "sha256": "b95a875fff1c58a0163183e61470ecc69449b241fd77cfa281e7b73fa9853750"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "captured_output": "low-rank-lattice-trapdoor-run125-validation.json",
+  "checker": "low_rank_lattice_trapdoor_run125_check.py",
+  "exact_branch_inputs": [
+    {
+      "blob": "415623e48e8b5fe246663e560d3486545b408acd",
+      "path": "research/pq-wkem/VTDH_FIXED_DIGEST_MAJORITY_CANONICALIZATION_RUN121.md"
+    },
+    {
+      "blob": "46ed0d41fba7c827cb223b2bb952e45957d97a0c",
+      "path": "research/pq-wkem/PUBLIC_AFFINE_PSEUDOWITNESS_NOISE_ATTACK_RUN120.md"
+    },
+    {
+      "blob": "f5ff350ee6a3105b7f9c2b9bbf88b551cdf390e9",
+      "path": "research/pq-wkem/LINEAR_HPS_WPRF_RESTRICTED_WITNESS_DICHOTOMY_RUN114.md"
+    },
+    {
+      "blob": "91ebfdb8d712bc9a092b30af21048ea7bd04a109",
+      "path": "research/pq-wkem/HIDDEN_INPUT_EPHF_BOUNDARY_RUN109.md"
+    },
+    {
+      "blob": "e7431a4e67257069352e6b28012d94f1dbb1d09a",
+      "path": "research/pq-wkem/NOISY_GADGET_PROJECTION_BARRIER_RUN110.md"
+    },
+    {
+      "blob": "96a54fd83881e716703bde307f6287719a0c15bd",
+      "path": "research/pq-wkem/SETUP_KNOWN_INVARIANT_ADAPTOR_VRF_BOUNDARY_RUN112.md"
+    },
+    {
+      "blob": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924",
+      "path": "research/pq-wkem/literature-20260924/ASSESSMENT.md"
+    }
+  ],
+  "independent_result_scope": "Information-theoretic rank/norm/counting barrier and exact parameter arithmetic. No claim about QPT hardness or the exact output distribution of a concrete GPV/SIS/LWE trapdoor sampler.",
+  "latest_substantive_comment_id_at_start": 5847380543,
+  "local_handoff": [
+    "Run 122: conditional QPT lift of current VTDH pad hiding from exact decisional-LWE family; source extraction still missing",
+    "Run 123: statistical dual-mode source-hash sufficient interface for straight-line QPT recovery-to-source extraction",
+    "Run 124: EHPS public evaluation uses sampler coins rather than relation witness; PEPRF syntax closer but not a generic-NP QPT solution"
+  ],
+  "pr_state_at_start": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  },
+  "primary_literature": [
+    {
+      "citation": "Isaac M. Hair and Amit Sahai, Witness Encryption via Prime-Order Generic Groups, arXiv:2609.18275v1",
+      "verified_facts": [
+        "classical prime-order generic-group witness encryption",
+        "R=floor(log_2 N)",
+        "m=(N+1)(2NR+1) binom(2R,R)",
+        "true instance yields nonzero rank-one uv^T with Boolean right factor",
+        "false instance has every nonzero matrix rank at least R+1",
+        "encryption chooses p in [2^m,2^(m+1))"
+      ],
+      "version": "v1, 2026-09-16"
+    }
+  ],
+  "proof_note": "LOW_RANK_LATTICE_TRAPDOOR_MISMATCH_RUN125.md",
+  "publication_note": "Publication outcome is recorded by the run receipt and GitHub readback; this provenance file records the research inputs and local artifact hashes rather than predicting the write result.",
+  "publication_outcome": {
+    "diagnostic": "Script error: This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "diagnostic_note": "The tool supplied no timestamp, request ID, or correlation ID. No second GitHub write action was attempted after the explicit safety block.",
+    "error_timestamp": null,
+    "invoked_action": "mcp__GitHub__create_blob",
+    "ordinary_comment_id": null,
+    "readback_head_sha": "4198b1815d3edc7be41ec1cb25c0c46fab24610e",
+    "readback_run125_paths": [],
+    "request_or_correlation_id": null,
+    "returned_commit_sha": null,
+    "status": "BLOCKED_BEFORE_GITHUB",
+    "verified_remote_paths": []
+  },
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "run": 125,
+  "starting_sha": "4198b1815d3edc7be41ec1cb25c0c46fab24610e",
+  "title": "Low-rank / lattice-trapdoor mismatch"
+}

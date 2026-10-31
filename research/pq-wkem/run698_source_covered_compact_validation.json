@@ -1,0 +1,15 @@
+{
+  "run": 698,
+  "scope": "source-covered b=2 matrix gate correctness only; no PQ secrecy or ORIGINAL extraction",
+  "q": 257,
+  "b": 2,
+  "m": 3,
+  "n": 13,
+  "d": 3,
+  "k": 73,
+  "checks": 106,
+  "covered": 13,
+  "valid": 8,
+  "invalidRank": 13,
+  "positions": 156
+}

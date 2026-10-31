@@ -1,0 +1,51 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checkpoint_comment_id": 5815542921,
+  "external_web_or_literature_used": false,
+  "github_scope": "requested PQ WKEM research record only",
+  "local_sha256": {
+    "checker": "24f542cdcd7466d0c376fd9b3069eef9d5577ffecb4d8549d2770b8449f21e5f",
+    "proof": "ca0b307be3c73479647086715c3eb3d7a3534d20683419cac57b5db68f4e3150",
+    "validation": "49bd035c10e664c3d5af938bea3d62512b0caa7f7b3d08c163cb2ec58e68f8e9"
+  },
+  "pr_number": 1,
+  "production_code_modified": false,
+  "publication_plan": [
+    "research/pq-wkem/COMPACT_HIGH_DEGREE_OCCURRENCE_SPLIT_RUN74.md",
+    "research/pq-wkem/compact_high_degree_occurrence_split_run74_check.py",
+    "research/pq-wkem/compact-high-degree-occurrence-split-run74-validation.json",
+    "research/pq-wkem/COMPACT_HIGH_DEGREE_OCCURRENCE_SPLIT_RUN74_PROVENANCE.json"
+  ],
+  "repository": "syscoin/PVUGC",
+  "result": {
+    "completed_generic_np_wkem": false,
+    "proved_negative_or_boundary": [
+      "independent public source choices at repeated witness occurrences implement the split local relation, not joint NP satisfiability",
+      "every CNF with nonempty clauses is locally traversable under per-clause occurrence splitting",
+      "local equality/checksum blocks with fresh source reads do not bind prior occurrences",
+      "N-of-N replication of the same split relation does not repair the semantic source defect"
+    ],
+    "proved_positive": [
+      "compact O(L)-size high-degree CNF source circuit exists semantically",
+      "direct circuit uses L public literal reads and L-1 multiplications"
+    ],
+    "remaining": [
+      "compact cryptographically shared nonlinear witness handle/source encoder",
+      "arbitrary-QPT parent/final-key recovery to source witness or independent PQ break",
+      "complete false-statement hiding for surviving construction",
+      "malicious-secure setup/erasure and auxiliary-input composition",
+      "concrete resource/security parameters"
+    ],
+    "stopping_condition_met": false
+  },
+  "run": 74,
+  "starting_verified_head": "8562a1d6d1471f0f32eb5b29c0fc0de0223c00fe",
+  "tests": {
+    "byte_identical_validation_outputs": true,
+    "checker_executions": 2,
+    "checker_sha256": "24f542cdcd7466d0c376fd9b3069eef9d5577ffecb4d8549d2770b8449f21e5f",
+    "claim_scope": "finite semantics/algebra validation only",
+    "deterministic_seed": 740074001,
+    "validation_sha256": "49bd035c10e664c3d5af938bea3d62512b0caa7f7b3d08c163cb2ec58e68f8e9"
+  }
+}

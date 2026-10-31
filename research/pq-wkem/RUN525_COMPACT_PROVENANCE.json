@@ -1,0 +1,13 @@
+{
+  "run": 525,
+  "date_utc": "2026-10-15",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "5f8fb423cc2d3735f12a8fe44d99f48da08f386d",
+  "checker_local_git_blob_sha": "4b68274cebebe0e0c9c4de7f2e51f4d3d0efef92",
+  "validation_local_git_blob_sha": "063493e1d0d9a3c64805a50292ca950d1b46ec28",
+  "executed": "node run525_grover_compact_check.js twice, byte identical; independent Python checker likewise",
+  "claim": "one-reference conditional QPT Grover attack, not witness-KEM",
+  "production_changed": false
+}

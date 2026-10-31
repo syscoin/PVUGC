@@ -1,0 +1,13 @@
+{
+  "run": 562,
+  "status": "PASS",
+  "assertions_passed": 37844,
+  "public_true_orbit_fixtures": 3048,
+  "valid_original_witness_checks": 6096,
+  "outsider_successes_without_witness": 3048,
+  "false_key_independence_grid_pairs": 5460,
+  "toy_permutations_one_way": false,
+  "positive_QPT_WKEM_proof": false,
+  "theorem_A": "unconditional polynomial-orbit enumeration",
+  "theorem_B": "conditional QPT OWP source-extraction separation"
+}

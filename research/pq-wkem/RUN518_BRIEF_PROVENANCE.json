@@ -1,0 +1,15 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "claims": "scoped QPT search attack only; no complete PQ WKEM; no production changes",
+  "command": "node run518_compact_check.js",
+  "git_blobs": {
+    "RUN518_GROVER_PUBLIC_FRONTIER_BRIEF.md": "f5c6f40cce0b31da6dec3d1221270d89b73374d0",
+    "run518_compact_check.js": "bea8f863018b6cefdf26e6bd6b2e16dade745f03",
+    "run518_compact_validation.json": "ef66a097e688e53b528b8760c1963bd5e995abba"
+  },
+  "pr": 1,
+  "repeated_execution_byte_identical": true,
+  "repo": "syscoin/PVUGC",
+  "run": 518,
+  "start_sha": "9957b754ed22e1c807bc1d5c9f79d5d3e6bfea26"
+}

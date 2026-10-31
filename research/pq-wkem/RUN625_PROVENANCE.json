@@ -1,0 +1,21 @@
+{
+  "run": 625,
+  "date": "2026-10-18",
+  "repository": "syscoin/PVUGC",
+  "pr_number": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_start_sha": "11eebf04b96edf7385bcf098e494d067189b9e0a",
+  "live_run619_blob": "f81063d9bff265f71f53ffc48cac8cdc6fb03ea0",
+  "live_run259_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "git_blob_ids": {
+    "RUN625_JOINT_QUANTUM_RELEASE_BASELINE.md": "c0d570cb273a414d313b9844d238af9b4870b2da",
+    "run625_joint_oracle_check.py": "1f37eeff20a4fd926aa67943684cd5da416761c5",
+    "run625_joint_oracle_validation.json": "8a9324e02598d06126546ea472114dc881df2f12"
+  },
+  "verification": "Python 3.13.5, standard library, two byte-identical executions, py_compile passed, 1280 small coherent circuits, 400 toy correlated signing-seed checks; exact executed code+captured stdout committed as independent blobs.",
+  "security_scope": "Ideal coherent indexed oracle theorem; related credential correlation classical falsifier; NO concrete local mixer/PQ security, keyless builder, malicious N-of-N setup, native SLH-DSA, full history or Bitcoin activation.",
+  "literature": [
+    "https://eprint.iacr.org/2024/006",
+    "https://arxiv.org/html/2609.40289v1"
+  ]
+}

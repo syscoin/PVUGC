@@ -1,0 +1,9 @@
+{
+  "run": 412,
+  "checker": "compact public-coins coherent frontier",
+  "checks": 390,
+  "fixtures": 64,
+  "false_original_ghost_tests": 6,
+  "worst_error": 6.328271240363392e-15,
+  "crypto_security_proved": false
+}

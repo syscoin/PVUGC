@@ -1,0 +1,32 @@
+{
+  "run": 479,
+  "starting_sha": "fbb6190fd99a74b85efe0ca43cd37681b11592e0",
+  "branch": "research/pq-wkem-validation-20260918",
+  "repo": "syscoin/PVUGC",
+  "source_exact": [
+    "RUN478_REVERSIBLE_WHITELIST_COMPACT.md:9441db3ad7d7732e5e8fe1c05041b0763119ed3f",
+    "RUN475_ENCRYPTED_AUTH_EVAL_BYPASS_COMPACT.md:3806593a3156d6a66789d97fbd8d3577c8bf1b65",
+    "CLZ_APPLICABILITY_20261008.md:c19d9d9cd515140e3ce62eac960cd548c0add622",
+    "GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md:c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  ],
+  "checker": "run479_orbit_compact_check.js",
+  "validation": {
+    "run": 479,
+    "status": "PASS",
+    "assertions": 576,
+    "fixtures": 64,
+    "valid_original_witnesses_per_fixture": 2,
+    "different_plaintext_states": 64,
+    "witnessless_capability_recoveries": 64,
+    "refresh_checks": 64,
+    "context_separation_checks": 64,
+    "public_step_budget": 12,
+    "limitations": "finite transparent semantics only; no encrypted implementation or native signing; extended local Python independently checks Ed25519"
+  },
+  "local_only": [
+    "RUN479_FIXED_UNARY_ORBIT_BARRIER.md",
+    "run479_orbit_check.py",
+    "run479_orbit_validation.json"
+  ],
+  "scope": "narrow fixed-unary no-input orbit theorem, not concrete QPT WKEM"
+}

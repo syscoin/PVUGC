@@ -1,0 +1,1 @@
+{"assertions": 3888, "key_bits": 4, "m": 8, "n": 3, "q": 257, "run": 372, "scope": "toy finite algebra only; no QPT security", "status": "PASS", "witness_bits": 6}

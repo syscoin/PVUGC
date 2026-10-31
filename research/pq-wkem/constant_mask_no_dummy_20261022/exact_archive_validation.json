@@ -1,0 +1,39 @@
+{
+  "N": 19,
+  "advertised_rank_threshold": 16,
+  "attack_input_contains_key_or_seed_or_factors": false,
+  "cancelled_rank_at_reference_key": 18,
+  "candidates": [
+    27
+  ],
+  "exact_archive_script_sha256": "390e4abcf81650050b0efca13390ea13c08893bf62c3c6241cbf2444cd281c2f",
+  "exposed_mask_coefficient_matches_private_reference": true,
+  "factorization_without_field_enumeration": true,
+  "m": 8,
+  "original_checks": 1426,
+  "point_evaluation_rank_at_reference_key": 19,
+  "q": 101,
+  "random_candidate_success_lower_bound": "1/1",
+  "reference_key": 27,
+  "reference_key_in_candidates": true,
+  "residuals": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0
+  ],
+  "s": 3,
+  "scope": "Synthetic q=101 archived setup; no standard signature scheme or production system attacked.",
+  "source": [
+    0,
+    0,
+    0,
+    1,
+    1,
+    1
+  ]
+}

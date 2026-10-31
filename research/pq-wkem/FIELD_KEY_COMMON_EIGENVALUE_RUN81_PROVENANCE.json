@@ -1,0 +1,57 @@
+{
+  "classification": {
+    "arbitrary_qpt_source_extraction": "UNPROVED",
+    "honest_algorithms": "classical polynomial time",
+    "qpt_false_hiding": "UNPROVED",
+    "result": "constructive correctness/KEM-interface improvement; not a security proof",
+    "standard_pq_reduction": "UNPROVED"
+  },
+  "literature_context": [
+    {
+      "arxiv": "2609.18275",
+      "authors": "Isaac M. Hair, Amit Sahai",
+      "title": "Witness Encryption via Prime-Order Generic Groups",
+      "use": "algebraic source rank-gap/low-rank extraction only; classical generic-group encryption security not imported"
+    },
+    {
+      "arxiv": "2510.03752",
+      "authors": "Rohit Chatterjee, Changrui Mu, Prashant Nalini Vasudevan",
+      "title": "Public-Key Encryption from the MinRank Problem",
+      "use": "blockwise rank-metric duality context only; random-generator/classical security theorem not imported"
+    }
+  ],
+  "new_claims": [
+    "valid-witness blockwise view is exactly U V^T with independent uniform t-by-r U,V",
+    "two independent capsules recover a direct field key as their unique common base-field eigenvalue except with an explicit ambiguity probability",
+    "randomizer rank may be t-1 rather than requiring 2r<t",
+    "simultaneous-all-witness correctness has an explicit field-size/capsule-count tradeoff",
+    "complete-output additive-character coefficient is q^{-r sum_h rank(N_h)} and every false-instance key-sensitive character has magnitude at most q^{-rD}",
+    "minimum-rank-only full statistical bound remains quantitatively insufficient"
+  ],
+  "pr_number": 1,
+  "production_code_modified": false,
+  "publication": {
+    "github_checkpoint_attempted": true,
+    "github_checkpoint_result": "blocked by OpenAI safety checks before reaching GitHub",
+    "github_files_published_this_run": false,
+    "local_artifacts_preserved": true,
+    "publication_retried_or_rerouted": false
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 81,
+  "starting_verified_head": "c4a33a018607bda7d8e8b1d646d54df9c399e22e",
+  "stopping_condition_met": false,
+  "tests": {
+    "byte_identical_stdout": true,
+    "checker_sha256": "a3a9a25f4b6cd3476c84653f1a7872c0b19bba480dfe3fe18d1b68550dd61aa8",
+    "counts": {
+      "exact_additive_character_checks": 24,
+      "full_output_character_identity_checks": 700,
+      "honest_view_identity_checks": 360,
+      "key_sensitive_false_gap_checks": 482
+    },
+    "executions": 2,
+    "scope": "finite algebra/correctness/distribution controls only; not cryptographic security",
+    "validation_sha256": "30d5fc492002fa6884277dfe8bbacdc48234c4a9ce400d3ae3c9e69f4032e182"
+  }
+}

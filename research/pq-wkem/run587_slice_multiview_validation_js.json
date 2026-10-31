@@ -1,0 +1,42 @@
+{
+  "run": 587,
+  "js_assertions": 53652,
+  "finite_exact_tv": [
+    {
+      "m": 3,
+      "q": 5,
+      "exact_average_tv": 0.76,
+      "upper": 1,
+      "keys": 125
+    },
+    {
+      "m": 4,
+      "q": 7,
+      "exact_average_tv": 0.6701895043731778,
+      "upper": 1,
+      "keys": 2401
+    },
+    {
+      "m": 5,
+      "q": 7,
+      "exact_average_tv": 0.5304039983340275,
+      "upper": 0.8591229182759271,
+      "keys": 16807
+    },
+    {
+      "m": 6,
+      "q": 5,
+      "exact_average_tv": 0.33758,
+      "upper": 0.566158816655649,
+      "keys": 15625
+    }
+  ],
+  "m48_q257_bound": 0.0000039634437297037876,
+  "true_statement_probability_upper": 3.3578423504683612e-93,
+  "aux_capsules": 48,
+  "valid_witnesses_each": 2,
+  "target_bits_recovered": 128,
+  "target_original_false": true,
+  "coin_reuse_across_capsules": true,
+  "practical_wkem": false
+}

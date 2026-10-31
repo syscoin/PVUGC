@@ -1,0 +1,27 @@
+{
+  "run": "scheduled automation turn 11",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "expected_head": "fb8d26f6e2075266acba9899b7108b4c476c0452",
+  "origin": "offline theoretical reduction + deterministic V8 checker",
+  "checker": {
+    "candidate": "quotient-aligned structured LWE source",
+    "status": "REJECTED; no generic PQ WKEM advance",
+    "q": 65537,
+    "g": 4096,
+    "degree": 3,
+    "T": 26,
+    "rank_D": 10,
+    "original_witness_count": 0,
+    "public_nonwitness_dual_support": 3,
+    "full_joint_false_bits_recovered": 512,
+    "assertions": 1039,
+    "independent_qpt_security_proof": false,
+    "real_native_signatures": false
+  },
+  "independent_agents_used": 0,
+  "external_web_or_literature": false,
+  "real_native_signature": false,
+  "status": "negative supporting note; not PQ WKEM progress"
+}
