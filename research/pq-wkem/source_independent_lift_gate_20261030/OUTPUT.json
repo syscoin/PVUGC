@@ -1,0 +1,22 @@
+{
+  "candidate": "SOURCE-independent planted target with hypothetical public ORIGINAL Lift",
+  "status": "NO POSITIVE WKEM ADVANCE",
+  "toyTrials": 20,
+  "toyFalseRecovered": 20,
+  "toyQ": 67,
+  "toyOpeningWeight": 4,
+  "toyShortVectorCandidates": 29120,
+  "realLargeParams": {
+    "q": 16777213,
+    "n": 256,
+    "m": 4469,
+    "w": 2006,
+    "L": 103,
+    "noiseB": 128
+  },
+  "singleScopeStatisticalDistanceBelow2Pow128": true,
+  "largeNullAcceptanceExact": "513793/16777213",
+  "lweContradictionAdvantageFactor": 0.6462503635138923,
+  "checks": 103,
+  "disclaimer": "Toy finite scope-transfer only; no QPT security or native signature test"
+}
