@@ -1,0 +1,108 @@
+{
+  "run": "XNAR-2026-11-01-T05",
+  "status": "FAILED_REPAIR",
+  "fixture": {
+    "q": 65537,
+    "b": 11,
+    "g": 32,
+    "E": 2,
+    "N": 6,
+    "p": [
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      2,
+      -1,
+      1,
+      0,
+      0,
+      1
+    ],
+    "false_l1": 8,
+    "false_l2_squared": 10
+  },
+  "exact_false_noise_channel": {
+    "29": {
+      "success_numerator": "1219903125",
+      "denominator": "1220703125",
+      "success": 0.99934464
+    },
+    "31": {
+      "success_numerator": "1220471875",
+      "denominator": "1220703125",
+      "success": 0.99981056
+    },
+    "32": {
+      "success_numerator": "1220471875",
+      "denominator": "1220703125",
+      "success": 0.99981056
+    },
+    "33": {
+      "success_numerator": "1220653125",
+      "denominator": "1220703125",
+      "success": 0.99995904
+    },
+    "35": {
+      "success_numerator": "1220696875",
+      "denominator": "1220703125",
+      "success": 0.99999488
+    },
+    "37": {
+      "success_numerator": "1220703125",
+      "denominator": "1220703125",
+      "success": 1
+    },
+    "256": {
+      "success_numerator": "1220703125",
+      "denominator": "1220703125",
+      "success": 1
+    }
+  },
+  "capsule_xor_correct_recovery_lower_bounds": {
+    "2": {
+      "ciphertexts": 94,
+      "all_correct_lower_bound": 0.9823485969338535
+    },
+    "8": {
+      "ciphertexts": 376,
+      "all_correct_lower_bound": 0.931241918259808
+    }
+  },
+  "asymptotic_polynomial_repetition": [
+    {
+      "N": 6,
+      "ciphertexts": 10152,
+      "log2_union_failure_upper_bound": 11.096201035497506
+    },
+    {
+      "N": 64,
+      "ciphertexts": 12320768,
+      "log2_union_failure_upper_bound": -19.614878885683744
+    },
+    {
+      "N": 128,
+      "ciphertexts": 98566144,
+      "log2_union_failure_upper_bound": -62.70062985295861
+    },
+    {
+      "N": 256,
+      "ciphertexts": 788529152,
+      "log2_union_failure_upper_bound": -151.99055435842803
+    },
+    {
+      "N": 512,
+      "ciphertexts": 6308233216,
+      "log2_union_failure_upper_bound": -333.63362315577655
+    },
+    {
+      "N": 1024,
+      "ciphertexts": 50465865728,
+      "log2_union_failure_upper_bound": -699.9524458101141
+    }
+  ],
+  "assertions": 19,
+  "limits": "Finite error algebra and a Hoeffding union bound only; never claim QPT or native Bitcoin security."
+}

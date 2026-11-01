@@ -1,0 +1,35 @@
+{
+  "research_id": "XNAR-2026-11-01-T05",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "52b88ba2f94e6510bade88da413164d9dcac6e7f",
+  "predecessor_blob": "b77d79ce786dab5342bfee4a8c4dfb74cce5e0d3",
+  "starting_comment_id": 6555798646,
+  "result": "NO_POSITIVE_SECURE_WKEM_ADVANCE",
+  "published_files": {
+    "RESEARCH.md": {
+      "blob_sha": "ecfc80caae744ee6aedcf94b4e7549084256fd2c",
+      "bytes": 5546
+    },
+    "checker.js": {
+      "blob_sha": "d8e1ac4274b44df7d40ae01deaccc6d742dd04e4",
+      "bytes": 2132
+    },
+    "output.json": {
+      "blob_sha": "0664d9cedb58d2d34e8ebb3a1b5638f2bcb038d6",
+      "bytes": 2342
+    }
+  },
+  "executed": {
+    "published_node_checker": "Node.js 22 standard library; twice with byte-identical output; 19 exact finite-arithmetic assertions",
+    "extended_python_checker": "offline Python 3; twice with byte-identical output; 60450 assertions; 128 complete 512-bit-key trials for each C=2 and C=8"
+  },
+  "extended_local_evidence": {
+    "archive": "WKEM_XNAR_FALSE_NOISE_20261101_OFFLINE.tar.gz",
+    "sha256": "1a78fa70132649c94374bad3fb9864a8edd6c2302a3bb221a643ae7915aa1df4",
+    "publication": "local-only: extended Python checker, derivation, outputs and provenance"
+  },
+  "methods": "authorized GitHub continuity reads and research-only publication; offline arithmetic; no web/literature, independent agent or quantum/native Bitcoin experiment",
+  "limits": "classical explicit FALSE attack; no positive secure WKEM claim; hypothetical native PQ endpoint and N-of-N ceremony not proven"
+}
