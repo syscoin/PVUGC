@@ -1,0 +1,17 @@
+{
+  "run": "RS14-2026-10-31",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "3610103d236b962b720dc59f6f68137c618f929f",
+  "prior_C12_blob": "e3a414cb35908ae7aa0c02363e18e278cb8a3178",
+  "prior_QGL_blob": "3978a53fe6d40bb54850b53e4618cbd161e3ae2e",
+  "last_substantive_comment": 6552018616,
+  "executed_checker": "checker.js self-contained V8 twice identical",
+  "checks": 23131,
+  "extended_python_checker_assertions": 39197,
+  "extended_python_checker_sha256": "ee782de191bbb42c5ed853039d3fe209ff8331ae77de145e7458de4127d0589d",
+  "extended_offline_archive_sha256": "7bcfc94c81bc2ab7e8cd6a79b8f81bc214cdaa70ad25ec6e346aaa3ee2fa5354",
+  "limits": "Toy arithmetic, no QPT hardness, no generic ORIGINAL release. Honest completeness negligible-error only.",
+  "publication": "before Git object creation"
+}
