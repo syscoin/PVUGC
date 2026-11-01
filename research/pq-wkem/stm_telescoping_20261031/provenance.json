@@ -1,0 +1,40 @@
+{
+  "research_id": "STM-QPT-20261031",
+  "repository": "syscoin/PVUGC",
+  "pr_number": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_head": "b348495b58e9778cf39f06bfcecd2e4e427b5120",
+  "start_pr_status": "open/draft/unmerged",
+  "last_substantive_issue_comment_id": 6553585207,
+  "exact_predecessor_blobs": {
+    "icso2": "0330a6425ae0219efc9b102509aec6ffafb4470e",
+    "native256": "3d992b47ab3dec20f2badd60bfceadf07c26f0e8"
+  },
+  "published_executed_checker": {
+    "path": "checker.js",
+    "git_blob": "a5bc05ffd9ffaeb211031c875f818851fa79e7f2",
+    "execution": "V8 function runCheck() executed and source published as self-invoking same function",
+    "assertions": 12390
+  },
+  "published_checker_output": {
+    "path": "output.json",
+    "git_blob": "43f220f98f5b154facc735720f3338497f2e07d2"
+  },
+  "published_full_derivation": {
+    "path": "RESEARCH.md",
+    "git_blob": "2e6f8703ee43d7838b3a5a1099b17d2ce6f43c2a"
+  },
+  "separate_extended_local_only_python": {
+    "path": "/mnt/data/wkem_stm_telescoping_20261031/checker.py",
+    "source_sha256": "6f1497adc4f3e8eb38a77128bdf1f3bd1e7287a501f4ca00c931e797e757a41b",
+    "assertions_per_run": 12453,
+    "repeat_runs": 2,
+    "byte_identical_output": true,
+    "notes_sha256": "86eec84fb003799b58fb20d9d900c9932b901fcc4b5b80dad3e726992f96d61f",
+    "output_sha256": "806f8dbd7aeae9634d65d55e14b033f51c3d654013a32e2c6e01dd7246579c1d",
+    "archive_format": "tar.xz",
+    "archive_sha256": "6f15d2130b351f5e8781f5cc2b5320c38f8892cf90fe16e7010e4f5b7caf3e21"
+  },
+  "scope": "Only research/pq-wkem/ on actual PR branch and ordinary issue comment; no production, main, workflows or external research",
+  "claim": "Restricted mathematical composition and toy verification; not full QPT security, ORIGINAL-W witness encryption or Bitcoin support"
+}
