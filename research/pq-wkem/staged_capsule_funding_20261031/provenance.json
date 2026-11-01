@@ -1,0 +1,37 @@
+{
+  "run_id": "SCFB-2026-10-31-T11",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "observed_start_sha": "23b25f72bf5bbd627e99b65d3b293cd47a66e560",
+  "observed_latest_comment_id": 6550736782,
+  "scope": "research/pq-wkem/staged_capsule_funding_20261031/",
+  "exact_publication_checker": "node checker.js",
+  "checker_git_blob": "2e28f9c7056cb425695b4f36fa74c92cce2ccdd3",
+  "checker_sha256": "685a288291037348c4d859421ed3d8159fbb0eca485a00de5d21977e64ca30e0",
+  "output_git_blob": "cef3f3ec3824de2d2b0122d35515a912736865a7",
+  "output_sha256": "5df481de0a294e51dbd0c36d27df9d2c54d2eeae989bcbcc8d905b2327c0a003",
+  "checker_repeated_identically": true,
+  "assertions": 86,
+  "extended_local_python_assertions": 293,
+  "extended_local_python_repeated_identically": true,
+  "extended_local_only_paths": [
+    "wkem_staged_capsule_funding_20261031/RESEARCH.md",
+    "wkem_staged_capsule_funding_20261031/checker.py",
+    "wkem_staged_capsule_funding_20261031/output.json",
+    "wkem_staged_capsule_funding_20261031/provenance.json"
+  ],
+  "research_status": "conditional outpoint/funding-sequencing advance; witness-KEM release unresolved",
+  "endpoint_status": "hypothetical; no Bitcoin PQ-native consensus implementation",
+  "external_web_or_literature_used": false,
+  "independent_agents_invoked": false,
+  "limitations": [
+    "not a witness-KEM",
+    "not native PQ signatures",
+    "not Bitcoin serialization",
+    "requires an independently secure source release",
+    "honest funding-wallet gate distinct from one honest N-of-N",
+    "unsolicited funding not prevented",
+    "future DA/inclusion not guaranteed"
+  ]
+}
