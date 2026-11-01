@@ -1,0 +1,36 @@
+{
+  "B_bits": 146,
+  "adaptive_opened_coin_equations": 512,
+  "checks": 79361,
+  "n3_ciphertext_bytes_32byte_residues": 688128,
+  "odd_parity_shift_parameters": [
+    {
+      "H": 8,
+      "M": 7,
+      "log2_TV_union_upper": -131.415037,
+      "n": 3
+    },
+    {
+      "H": 13,
+      "M": 16,
+      "log2_TV_union_upper": -130.714598,
+      "n": 5
+    },
+    {
+      "H": 18,
+      "M": 29,
+      "log2_TV_union_upper": -130.245112,
+      "n": 7
+    }
+  ],
+  "opened_share_pair_orderings": 6,
+  "q_bits": 255,
+  "run": "NIDR-ECO-2026-11-01-T08",
+  "seed": 2026110108,
+  "small_exact_TV": "65837/78125",
+  "small_exact_error_overlap_count": 12288,
+  "small_exact_error_total": 78125,
+  "status": "restricted lemma, not generic NP WKEM",
+  "two_capsule_key_bits": 3072,
+  "two_valid_original_witness_decryptions": 256
+}
