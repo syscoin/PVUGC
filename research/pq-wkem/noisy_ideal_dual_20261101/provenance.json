@@ -1,0 +1,27 @@
+{
+  "research_id": "NIDR-2026-11-01-T07",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "b4483b53ce5364e23ffcaa465c427a50b031c268",
+  "executed_twice_identically": true,
+  "exact_js_checks": 977,
+  "additional_offline_python_checks": [
+    10609,
+    5588
+  ],
+  "source_blob_shas": {
+    "RESEARCH": "bce3eb5a0c71e10c3e197adcafb8227435b4fac6",
+    "checker.js": "4894c9a3f2d4e1446b32c3ccecf41f91d4dd3f03",
+    "output.json": "56cda904929f3923a8841839867c817479e80e7c"
+  },
+  "limitations": [
+    "No generic NP FALSE theorem",
+    "No arbitrary hard TRUE recovery extraction",
+    "No standard QPT-LWE challenge simulation",
+    "No selective coin disclosure proof"
+  ],
+  "external_web_or_literature": false,
+  "independent_agents": false,
+  "publication_scope": "research/pq-wkem/noisy_ideal_dual_20261101"
+}

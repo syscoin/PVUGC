@@ -1,0 +1,123 @@
+{
+  "research_id": "NIDR-2026-11-01-T07",
+  "status": "restricted-family noise-smoothed false hiding; NOT generic PQ WKEM",
+  "total_checks": 977,
+  "checks": {
+    "odd_constant_shift": 3,
+    "odd_shift_l1": 3,
+    "quadratic_basis_size": 3,
+    "odd_false_witness_exclusion": 168,
+    "odd_exact_shift_coupling": 75,
+    "even_two_valid_witnesses": 2,
+    "true_original_kernel": 240,
+    "true_original_residual": 240,
+    "true_same_bit_release": 240,
+    "false_orbit_size": 1,
+    "false_exact_joint_distribution": 1,
+    "joint_tv_union_example": 1
+  },
+  "odd": [
+    {
+      "n": 3,
+      "M": 7,
+      "H": 8,
+      "shift": [
+        -2,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        -1
+      ],
+      "fixture_tv_bound": 0.00006103469059226538
+    },
+    {
+      "n": 5,
+      "M": 16,
+      "H": 13,
+      "shift": [
+        -3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        0,
+        0,
+        -1,
+        -1,
+        0,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "fixture_tv_bound": 0.00009918137221243124
+    },
+    {
+      "n": 7,
+      "M": 29,
+      "H": 18,
+      "shift": [
+        -4,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        0,
+        0,
+        0,
+        -1,
+        0,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "fixture_tv_bound": 0.0001373280538325971
+    }
+  ],
+  "even": [
+    {
+      "n": 4,
+      "M": 11,
+      "validWitnesses": [
+        5,
+        10
+      ]
+    },
+    {
+      "n": 6,
+      "M": 22,
+      "validWitnesses": [
+        21,
+        42
+      ]
+    }
+  ],
+  "exact_false_orbit_size": 2401,
+  "limitations": [
+    "No hard TRUE arbitrary recovery-to-ORIGINAL extraction",
+    "No generic NP FALSE security",
+    "No structured-A standard QPT-LWE simulator",
+    "No selective coin-disclosure theorem",
+    "No actual native PQ Bitcoin endpoint"
+  ]
+}
