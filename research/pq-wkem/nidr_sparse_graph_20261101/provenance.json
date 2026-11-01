@@ -1,0 +1,16 @@
+{
+  "run": "SPNIDR-2026-11-01-T09",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "7647173457b19cb1aebba3dd7397570aec4190f6",
+  "predecessor_blob": "6c13ad7efadeec31a6f876e3e86ffa40ae52f758",
+  "comment_read": 6559602304,
+  "offline_research": true,
+  "external_web": false,
+  "independent_agents": false,
+  "checker": "node checker.js",
+  "checker_invoked": "functions.exec V8 runChecker() body",
+  "extended_checker": "local Python checker.py 50866 assertions, twice identical",
+  "status": "restricted honest signed-XOR full-view false simulator / sparse efficiency, generic NP unresolved"
+}
