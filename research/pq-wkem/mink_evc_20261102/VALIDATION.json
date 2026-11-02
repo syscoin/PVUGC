@@ -1,0 +1,41 @@
+{
+  "asymptotic_unassessed": {
+    "A_bytes_approx": 134395200.0,
+    "B0": "2^159",
+    "k": 384,
+    "log2_opening_shift_bound_per_commitment": -136.40748456466514,
+    "log2_statistical_mode_bound": -142.41503749927884,
+    "m": 32940,
+    "n": 128,
+    "q": "2^255-19"
+  },
+  "checks": 11524,
+  "exact_tv_small": {
+    "exact": 0.03901844231062338,
+    "field": 3,
+    "leftover_upper": 0.07654655446197431,
+    "m": 7,
+    "total_A": 2187
+  },
+  "hash_compressed": {
+    "cases": 64,
+    "hash_bits": 384,
+    "message_bytes_tested": [
+      0,
+      5,
+      8192
+    ]
+  },
+  "run": "MINK-EVC-20261102",
+  "scope": "algebraic equalities and finite distribution tests only; no SIS/LWE hardness estimate; no generic NP or source-release construction",
+  "seed": 21754173825832515,
+  "toy": {
+    "B0": 20,
+    "cases": 160,
+    "k": 4,
+    "m": 13,
+    "message_checks_per_case": 16,
+    "n": 3,
+    "q": 101
+  }
+}
