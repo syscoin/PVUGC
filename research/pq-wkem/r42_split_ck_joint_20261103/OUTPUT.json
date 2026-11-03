@@ -1,0 +1,51 @@
+{
+  "run": "R42-SPLIT-CK-JOINT-SIM-20261103",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "start_head": "b34dfa0e2633b15a541a4a55d8305635f32ecd59",
+  "prior_research_blob": "0b024a724100218f92b2e0ea065569f4b7c45836",
+  "prior_checker_blob": "0eee56fb5346f8d22092da9a6ed146628368aa12",
+  "execution": "functions.exec offline V8, direct checkR42() twice with identical returns",
+  "repeat_identical": true,
+  "first": {
+    "run": "R42-SPLIT-CK-JOINT-SIM",
+    "assertions": 616,
+    "decoded_bits": 960,
+    "original_valid_witnesses_tested": 0,
+    "restricted_lwe_or_branches": 7,
+    "checked_non_target_openings": 2,
+    "uniform_conditional_fixtures": 16,
+    "parameters": {
+      "q": 257,
+      "n": 2,
+      "m": 12,
+      "B": 1,
+      "delta": 128,
+      "kappa": 16,
+      "scopes": 2
+    },
+    "guarantees": "classical algebraic tests only; no QPT hardness; no ORIGINAL binding",
+    "checksum": "9031e937"
+  },
+  "second": {
+    "run": "R42-SPLIT-CK-JOINT-SIM",
+    "assertions": 616,
+    "decoded_bits": 960,
+    "original_valid_witnesses_tested": 0,
+    "restricted_lwe_or_branches": 7,
+    "checked_non_target_openings": 2,
+    "uniform_conditional_fixtures": 16,
+    "parameters": {
+      "q": 257,
+      "n": 2,
+      "m": 12,
+      "B": 1,
+      "delta": 128,
+      "kappa": 16,
+      "scopes": 2
+    },
+    "guarantees": "classical algebraic tests only; no QPT hardness; no ORIGINAL binding",
+    "checksum": "9031e937"
+  },
+  "scope": "Restricted LWE-secret-OR source; no original claim soundness; no QPT hardness tested"
+}
