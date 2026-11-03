@@ -1,0 +1,32 @@
+{
+  "run": "R46-MINK-QUOTIENT-EXACT-20261103",
+  "q": 65537,
+  "delta": 32768,
+  "assertions": 5164,
+  "certified_false": {
+    "clauses": 19,
+    "generators": 191,
+    "rank": 51,
+    "old_coefficients": 64,
+    "compact_coefficients": 13,
+    "valid_original_assignments": [],
+    "genuine_openings": 0,
+    "unit_in_mask_span": true
+  },
+  "three_witness_true": {
+    "clauses": 18,
+    "generators": 171,
+    "rank": 49,
+    "old_coefficients": 64,
+    "compact_coefficients": 15,
+    "valid_original_assignments": [
+      10,
+      11,
+      43
+    ],
+    "genuine_openings": 768,
+    "unit_in_mask_span": false
+  },
+  "exact_joint_cases": 48,
+  "security": "exact restricted conditional distribution equivalence; no generic WKEM or QPT-hardness proof"
+}
