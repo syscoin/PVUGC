@@ -1,0 +1,19 @@
+{
+  "run": "R41-CLAIM-OR-LWE-SAME-CAPABILITY",
+  "assertions": 167,
+  "recovered_bit_decodings": 256,
+  "target_distinct_valid_branches": 3,
+  "non_target_all_source_openings": 2,
+  "claims": 3,
+  "parameters": {
+    "q": 257,
+    "n": 2,
+    "m": 12,
+    "B": 1,
+    "delta": 128,
+    "kappa": 16,
+    "scopes": 2
+  },
+  "source": "deterministic algebraic toy; NOT QPT hardness",
+  "target_public_fingerprint": "bf089d62"
+}
