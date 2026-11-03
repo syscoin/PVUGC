@@ -1,0 +1,12 @@
+{
+  "run_id": "R37-PRESIGNED-CAPABILITY-SUF-SPLIT",
+  "assertions": 36,
+  "decoding_checks": 240,
+  "valid_original_witnesses": 2,
+  "independent_scopes": 3,
+  "accepted_alternative_signature_collisions": 8,
+  "signature_elements": 8,
+  "toy_hash": "square mod 17 (INSECURE)",
+  "endpoint": "not implemented",
+  "hard_true_extraction": "unproved"
+}
