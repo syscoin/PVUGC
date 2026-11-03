@@ -1,0 +1,23 @@
+{
+  "result": {
+    "run": "R48-CERTFALSE-SPLIT-CK-20261103",
+    "status": "qualified FALSE secret-CK simulator; hard-TRUE remains unsolved",
+    "assertions": 91,
+    "true_original_witnesses": [
+      3,
+      7
+    ],
+    "true_decoded_bit_instances": 192,
+    "false_rank": 4,
+    "false_quotient_coordinates": 4,
+    "true_rank": 3,
+    "true_quotient_coordinates": 5,
+    "coupled_false_pad_bits": 64,
+    "finite_cases_per_signature": 1024,
+    "distinct_finite_public_views": 64,
+    "exact_joint_equality": true,
+    "leaking_ck_equality": false,
+    "quantum_hardness": "NOT TESTED"
+  },
+  "repeat_identical": true
+}
