@@ -1,0 +1,29 @@
+{
+  "result": {
+    "run": "R49-ORIGINAL-LWE-PAD-JOINT-20261103",
+    "assertions": 403,
+    "distinct_original_witnesses_opened": 2,
+    "false_capsule_and_full_ck_couplings": 128,
+    "toy": {
+      "lwe_modulus": 16,
+      "lwe_n": 2,
+      "lwe_m": 3,
+      "lwe_seed_bits": 11,
+      "lwe_output_bits": 12
+    },
+    "illustrative_not_security_sized": {
+      "signature_bits": 65536,
+      "source_codom": 15,
+      "source_coeff_bytes": 3,
+      "lwe_seed_bits": 20480,
+      "raw_pad_capsule_bytes": 2949120,
+      "lwe_pad_capsule_bytes": 921600,
+      "public_A_bytes": 2097152,
+      "unamortized_total_raw_with_bind_and_D": 2968832,
+      "unamortized_total_lwe_with_bind_D_A": 3038464
+    },
+    "quantum_hardness": "NOT TESTED",
+    "hard_true_original_extraction": "NOT PROVED"
+  },
+  "repeat_identical": true
+}
