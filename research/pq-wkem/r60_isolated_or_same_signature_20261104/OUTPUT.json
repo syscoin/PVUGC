@@ -1,0 +1,1 @@
+{"id":"R60-ISOLATED-OR-SAME-SIGNATURE-20261104","checks":8132,"couplings":192,"relatedOpens":192,"mixedOpens":256,"uniformChecks":64,"certifiedFalseSecurity":"conditional","hardTrueSecurity":"unproved","toyOnly":true}
