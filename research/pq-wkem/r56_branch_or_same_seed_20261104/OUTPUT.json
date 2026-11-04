@@ -1,0 +1,38 @@
+{
+  "run": "R56-BRANCH-OR-SAME-SEED-20261104",
+  "assertions": 8718,
+  "code": "exact Node.js checker",
+  "q": 16777259,
+  "delta": 65536,
+  "branches_true": [
+    {
+      "witnesses": 8,
+      "quotient": 9
+    },
+    {
+      "witnesses": 8,
+      "quotient": 9
+    }
+  ],
+  "branches_cert_false": [
+    {
+      "quotient": 2,
+      "rank": 14
+    },
+    {
+      "quotient": 2,
+      "rank": 14
+    },
+    {
+      "quotient": 2,
+      "rank": 14
+    }
+  ],
+  "genuine_original_openings": 4096,
+  "same_seed_false_joint_couplings": 256,
+  "adaptive_correlated_ck_aux_couplings": 256,
+  "selective_noise_reveal_couplings": 256,
+  "sourceopen_oracle": false,
+  "qpt_security_tested": false,
+  "hard_true_extraction": "UNPROVED"
+}
