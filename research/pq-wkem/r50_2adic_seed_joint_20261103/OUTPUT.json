@@ -1,0 +1,18 @@
+{
+  "result": {
+    "run": "R50-2ADIC-SEED-JOINT-20261103",
+    "matrices": 512,
+    "noninjective": 116,
+    "collision_rate": "29/128",
+    "union_bound": "47/128",
+    "bound_terms_over_128": [
+      27,
+      4,
+      16
+    ],
+    "sampled_seed_images": 32768,
+    "quantum_hardness": "NOT TESTED",
+    "hard_TRUE_extraction": "NOT PROVED"
+  },
+  "repeat_identical": true
+}
