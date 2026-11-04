@@ -1,0 +1,18 @@
+{
+  "result": {
+    "name": "R51-HIDDEN-A-ORIGINAL-PRG-JOINT-20261103",
+    "assertions": 215,
+    "opened_original_witnesses": 2,
+    "certfalse_seed_and_ck_couplings": 64,
+    "public_matrix_seed": "NOT PUBLISHED",
+    "toy_expander": "NOT cryptographically secure; SHAKE256 expansion separately executed in local Python checker",
+    "resource_bytes": {
+      "R49": 3038464,
+      "R48": 2968832,
+      "R51": 952880
+    },
+    "hard_true_original_extraction": "UNPROVED",
+    "QPT_hardness": "NOT TESTED"
+  },
+  "repeat_identical": true
+}
