@@ -1,0 +1,30 @@
+{
+  "run": "R91-MIXED-TRUE-FALSE-LWE-20261105",
+  "kind": "exact-bounded-JS",
+  "assertions": 6698,
+  "uniform_false_census": {
+    "total": 15625,
+    "compatible": 621,
+    "unionBound": "1/25"
+  },
+  "uniform_q3_extractor": {
+    "keys": 6561,
+    "ranks": [
+      1,
+      320,
+      6240
+    ],
+    "meanTV": "1928/59049",
+    "lhlBound": "1/6"
+  },
+  "lhl_budget": {
+    "groupsPerLeaf": 688,
+    "rowsOneFalse": 1648,
+    "rowsFourFalse": 1649,
+    "rowsFourFalseSixteenCapsules": 1652,
+    "log2TotalFourFalse": -128.28278173169562,
+    "log2TotalSixteenCapsules": -128.49381411478177,
+    "log2ChanceOfFalseLeafActuallyTrueUnionBound": -282531.38724735985
+  },
+  "fixture": "Algebraic finite tests only, NOT PQ security"
+}
