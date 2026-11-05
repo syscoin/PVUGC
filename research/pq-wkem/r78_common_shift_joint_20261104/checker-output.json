@@ -1,0 +1,28 @@
+{
+  "run": "R78-COMMON-SHIFT-SOURCE-COIN-REUSE-20261104",
+  "status": "RESTRICTED_CERTIFIED_FALSE_JOINT_VIEW_ONLY",
+  "assertions": 152081,
+  "pointwise_couplings": 147456,
+  "adaptive_full_public_couplings": 512,
+  "true_original_openings": 1536,
+  "misaligned_shared_coin_total_variation": 1,
+  "distinguishing_statistic_support": [
+    [
+      0,
+      1,
+      2,
+      3,
+      14,
+      15
+    ],
+    [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  ],
+  "limitations": "Toy exact algebra; no new hard-TRUE extractor, generic FALSE proof, 128-bit or QPT hardness demonstration"
+}
