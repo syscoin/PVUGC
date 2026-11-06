@@ -155,3 +155,110 @@ console.log(JSON.stringify(runR99(),null,2));
 The honest source/setup/evaluation are classical PPT. The counterexample uses only a uniform independent septenary encryption random tape, explicitly known public A_R,b_R and one deterministic public fake s*. The adversary sees the whole statement/relation, context, claim/UTXO, branch, anchors/window, capsule bytes, checking key, auxiliary data, native verification key, masked signature, audit statements and any related capsules. Full-public correlations do **not** save the source because the attacker recovers the actual common root T. Independent nonuniform quantum advice, coherent quantum queries, related-capsule openings or retained malicious coins are unnecessary. Replaying the repaired row structure with different honest native signatures cannot cure the leakage. The proposed release is **not** genuine ordinary QPT-LWE distribution: the structured A,b share relations, and no ordinary-LWE challenge simulator is instantiated. There is NO positive secure witness-KEM construction advance.
 
 **Next exact missing equation:** Find a classical-PPT `Comp(R_original,x)` that instantiates a genuine x-dependent ordinary-QPT-LWE challenge *together* with source opening data, statement, capsule, public CK/Aux, context, native checking key and related capsules, without knowing challenge secret or calling SourceOpen. For **every** `w` with `R_original(x,w)=1`, `Open(Comp(x),w)=T` for the SAME precommitted T. Any arbitrary unauthorized QPT output of T or accepted preauthorized native signature must let a straight-line reduction output a **valid ORIGINAL witness** or independently break a specified QPT-secure assumption, not merely extract a representation volunteered by the adversary. Independently justified generic FALSE and hard-TRUE full-view security, one-honest N-of-N malicious graph/abort, finite DA/censorship, adaptive openings, practical 128-bit quantum security and the *conditional* Bitcoin no-EC-path PQ native endpoint all remain unresolved. Do not disable the automation. No full PR diff, external literature or other repositories were used.
+
+## R99 accuracy correction — exact tail versus actual nearest-point failures
+
+**Correction of a material label, without changing the security conclusion:** the V8 output field `publicNearKeyFailProbabilityExactRatioApprox` is an exact-integer-computed probability of the **conservative event** `|Z| > floor(q/4)-1`, NOT the exact event that the decoder makes a wrong decision for a particular bit. At boundary residues the decoder may still succeed. Every V8 value reported in that field must be read as an **upper bound on the per-bit decoder failure probability**. Likewise the 256-bit union-bound field is an upper bound, not an exact error rate. The earlier ordinary PR comment used imprecise wording. The invalid near-key attack is **at least as successful** as those values imply.
+
+A separate offline Python exact-integer checker was executed to calculate the true nearest-point decision for *both* bit values over all noise counts, with tie rule `d1<d0`. Its exact executed source and captured output follow; no QPT experiment or standalone security claim is implied.
+
+```python
+#!/usr/bin/env python3
+"""R99 exact integer septenary noise census and actual nearest-point decoder error.
+Only a finite counterexample checker: no quantum claim, no Internet.
+"""
+import json
+
+def is_prime(n):
+    return n >= 2 and all(n % d for d in range(2, int(n**.5)+1))
+
+def choose_q(r):
+    p = max(32*r+1, 451)
+    while not is_prime(p): p += 1
+    return p
+
+def census(r):
+    q=choose_q(r); delta=q//2
+    c=[1];lo=0
+    for e in [1]*(2*r)+[2]*r:
+        new=[0]*(len(c)+6*e)
+        for i,v in enumerate(c):
+            if v:
+                for t in range(-3,4):new[i+3*e+t*e]+=v
+        c=new;lo-=3*e
+    denom=7**(3*r)
+    assert sum(c)==denom and lo==-12*r
+    threshold=q//4-1
+    tail=sum(v for i,v in enumerate(c) if abs(lo+i)>threshold)
+    error=[]
+    for bit in (0,1):
+        bad=0
+        for i,v in enumerate(c):
+            z=(delta*bit+lo+i)%q
+            d0=min(z,q-z)
+            d1=min((z-delta)%q,(delta-z)%q)
+            predicted=int(d1<d0)
+            if predicted!=bit:bad+=v
+        assert bad<=tail
+        error.append(bad)
+    return {"repetitions":r,"q":q,"rows":6*r,
+            "exact_tail_upper_bound":format(tail/denom,'.10e'),
+            "exact_bit0_decoder_error":format(error[0]/denom,'.10e'),
+            "exact_bit1_decoder_error":format(error[1]/denom,'.10e'),
+            "all_coin_true_correct":3*2*r<q/4-1,
+            "false_source_no_valid_key":q>450}
+
+if __name__=='__main__':
+    print(json.dumps({"run":"R99-REPLICATED-SLACK-LWE-20261105", "status":"NO_POSITIVE_SECURE_WKEM_ADVANCE", "independent_exact_python_decoder": [census(r) for r in (16,32,64,128)]},indent=2))
+```
+
+```json
+{
+  "run": "R99-REPLICATED-SLACK-LWE-20261105",
+  "status": "NO_POSITIVE_SECURE_WKEM_ADVANCE",
+  "independent_exact_python_decoder": [
+    {
+      "repetitions": 16,
+      "q": 521,
+      "rows": 96,
+      "exact_tail_upper_bound": "7.2057098040e-13",
+      "exact_bit0_decoder_error": "4.3885774723e-13",
+      "exact_bit1_decoder_error": "5.7971436381e-13",
+      "all_coin_true_correct": true,
+      "false_source_no_valid_key": true
+    },
+    {
+      "repetitions": 32,
+      "q": 1031,
+      "rows": 192,
+      "exact_tail_upper_bound": "9.0447442715e-24",
+      "exact_bit0_decoder_error": "4.5084783031e-24",
+      "exact_bit1_decoder_error": "5.5830827774e-24",
+      "all_coin_true_correct": true,
+      "false_source_no_valid_key": true
+    },
+    {
+      "repetitions": 64,
+      "q": 2053,
+      "rows": 384,
+      "exact_tail_upper_bound": "7.4917262980e-46",
+      "exact_bit0_decoder_error": "4.6389089981e-46",
+      "exact_bit1_decoder_error": "6.0653176480e-46",
+      "all_coin_true_correct": true,
+      "false_source_no_valid_key": true
+    },
+    {
+      "repetitions": 128,
+      "q": 4099,
+      "rows": 768,
+      "exact_tail_upper_bound": "1.1634318845e-89",
+      "exact_bit0_decoder_error": "5.8503455352e-90",
+      "exact_bit1_decoder_error": "7.2218403449e-90",
+      "all_coin_true_correct": true,
+      "false_source_no_valid_key": true
+    }
+  ]
+}
+```
+
+The same row repetition repair therefore fails with even smaller **actual** per-bit error probabilities than the conservative exact tail estimates. This correction is strictly about measurement/terminology; no positive generic NP witness-KEM result is obtained. The GitHub R99 first commit `f464e403e2ab7b23f9866f6a842412c4d37ac28c` and comment `6673632969` remain verifiable historical records, now superseded by this corrected research note.
