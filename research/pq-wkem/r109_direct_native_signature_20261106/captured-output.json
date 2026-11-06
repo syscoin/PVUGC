@@ -1,0 +1,13 @@
+{
+  "run": "R109-DIRECT-PRESIGNED-NATIVE-SIGNATURE-LWE-20261106",
+  "result": "PASS",
+  "assertions": 2502,
+  "exactJointHistogramEqualities": 3,
+  "allRootTapeCases": 64,
+  "authorizationCases": 1152,
+  "rejectionCases": 896,
+  "unqualifiedMaliciousSetCutChecks": 384,
+  "output": "exact finite 2-bit clause-sharing whole-view check; toy digest; not QPT proof",
+  "construction": "encrypt actual preauthorized native signature bytes as CNF clause shares; public CK/Aux independent of signature; native EUF simulator need not know target signature",
+  "notEstablished": "generic ORIGINAL-NP source compiler; malicious N-of-N build; calibrated LWE/PQ-signatures; production"
+}
