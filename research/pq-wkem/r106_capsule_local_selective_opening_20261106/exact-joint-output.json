@@ -1,0 +1,12 @@
+{
+  "adversarial_off_target_opening_policies": 5,
+  "assertions": 210,
+  "censused_root_public_pairs": 18750,
+  "complete_off_target_key_disclosures": true,
+  "run": "R106-CAPSULE-LOCAL-LWE-SELECTIVE-OPENING-20261106",
+  "status": "PASS",
+  "target_PRG": "independently uniform, simulated under QPT PRG",
+  "target_honest_ciphertexts": "zero, simulated under INDCPA",
+  "warning": "toy final-hybrid distribution equality, not primitive QPT security",
+  "whole_joint_histogram_equalities": 30
+}
