@@ -1,0 +1,49 @@
+{
+  "run": "R108-CNF-CLAUSE-CUT-LWE-RELEASE-20261106",
+  "result": "PASS",
+  "assertions": 21931,
+  "counters": {
+    "cut_sets": 16,
+    "qualification_tapes": 20000,
+    "joint_trials": 9375,
+    "joint_equalities": 15,
+    "negative_dnf_cases": 28
+  },
+  "clauses": [
+    [
+      "H1",
+      "H2"
+    ],
+    [
+      "H2",
+      "H3"
+    ],
+    [
+      "H3",
+      "H4"
+    ],
+    [
+      "M",
+      "H1",
+      "H4"
+    ]
+  ],
+  "initial_malicious": [
+    "M"
+  ],
+  "honest_clause_cuts": [
+    [
+      "H1",
+      "H2"
+    ],
+    [
+      "H2",
+      "H3"
+    ],
+    [
+      "H3",
+      "H4"
+    ]
+  ],
+  "scope": "Finite algebra/checking-field toy; NOT QPT security or generic NP compiler"
+}
