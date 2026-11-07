@@ -1,0 +1,53 @@
+{
+  "result": "PASS",
+  "assertions": 5145,
+  "law": "HZ=2b for all-ones Z despite odd-XOR cycle contradiction",
+  "q": 65521,
+  "records": [
+    {
+      "n": 3,
+      "Delta": 22,
+      "checks": 256,
+      "half_weights": 6,
+      "false_witnesses": 0,
+      "attack_success": 256,
+      "valid_paths": 2
+    },
+    {
+      "n": 5,
+      "Delta": 30,
+      "checks": 256,
+      "half_weights": 10,
+      "false_witnesses": 0,
+      "attack_success": 256,
+      "valid_paths": 2
+    },
+    {
+      "n": 7,
+      "Delta": 38,
+      "checks": 256,
+      "half_weights": 14,
+      "false_witnesses": 0,
+      "attack_success": 256,
+      "valid_paths": 2
+    },
+    {
+      "n": 11,
+      "Delta": 54,
+      "checks": 256,
+      "half_weights": 22,
+      "false_witnesses": 0,
+      "attack_success": 256,
+      "valid_paths": 2
+    },
+    {
+      "n": 23,
+      "Delta": 102,
+      "checks": 256,
+      "half_weights": 46,
+      "false_witnesses": 0,
+      "attack_success": 256,
+      "valid_paths": 2
+    }
+  ]
+}
