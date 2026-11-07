@@ -44,8 +44,8 @@ for(const n of [3,5,7,11,23]){
   const K=j%2;
   const {c,p,e,eta}=transcript(f,K,Delta);
   let candidate=rec(2*p,c,Z,q);
-  assert(decode(candidate,2*Delta,q)===K,\`public false attack n=\${n}\`);
-  assert(circular(candidate,2*Delta*K,q)<=2+2*n,\`error bound n=\${n}\`);
+  assert(decode(candidate,2*Delta,q)===K,`public false attack n=${n}`);
+  assert(circular(candidate,2*Delta*K,q)<=2+2*n,`error bound n=${n}`);
   const v=transcript(t,K,Delta);
   for(let bit=0;bit<2;bit++){
    const z=Array(2*n).fill(0);for(let i=0;i<n;i++)z[2*i+bit]=1;
