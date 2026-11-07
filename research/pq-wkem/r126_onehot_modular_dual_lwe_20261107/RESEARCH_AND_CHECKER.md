@@ -15,7 +15,7 @@ For ORIGINAL 3CNF x with n variables and m clauses, set P=n+2m. Allocate one pai
 
 **Exact representation lemma (proved):** Every integer vector z satisfying Az=delta and ||z||_2^2 ≤ P determines an ORIGINAL 3CNF satisfying assignment. Indeed each integral pair with sum 1 has squared norm at least 1, with equality iff binary; P pairs force every pair binary, and an all-false clause would demand s1+2s2=4, impossible for binary slack bits. Conversely every ORIGINAL valid witness supplies such a vector of squared norm exactly P. Different original witnesses remain distinct vectors.
 
-A candidate **classical** source setup for each hidden bit B∈{0,1} chooses r uniformly in Z_q^(P+m), independent bounded errors e∈[-eta,eta]^(2P), e0∈[-eta,eta), and publishes
+A candidate **classical** source setup for each hidden bit B∈{0,1} chooses r uniformly in Z_q^(P+m), independent bounded errors e∈[-eta,eta]^(2P), e0∈[-eta,eta], and publishes
 
     U=A^T r+e (mod q),   V=delta^T r+e0+B floor(q/2) (mod q).
 
