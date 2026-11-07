@@ -1,0 +1,19 @@
+{
+  "record": "random-kernel-filtered-gaussian-20261027-turn11",
+  "date": "2026-10-27",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "643aec951ddff0ef2132a3eee8d37586f95bd691",
+  "predecessor_blob_sha": "69b4983e296531b5696bbcca34cb4d4e82d4c07e",
+  "research_scope": "offline; permitted GitHub continuity reads; no web or literature",
+  "published_checker": "V8 JavaScript exact test, executed twice, identical",
+  "published_checker_assertions": 64533,
+  "independent_local_checker": "Python standard library executed twice byte-identically",
+  "local_assertions_each": 66076,
+  "local_checker_sha256": "734cd6e7c2d27777511b87924ba4dbb0dff43d8a5b4d1b6309448b3fa9259e06",
+  "local_output_sha256": "1d7bcd07a8df5c4e9ed9c764e3f7fe51f086c50a25eab6c85eef66026660e6cd",
+  "unchanged_standard_LWE_distribution": true,
+  "source_compiler_solved": false,
+  "qpt_hardness_certified": false
+}

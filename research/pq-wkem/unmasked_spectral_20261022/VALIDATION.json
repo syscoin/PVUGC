@@ -1,0 +1,68 @@
+{
+  "checkpoint": "unmasked-spectral-central-polynomial-20261022",
+  "large_field": [
+    {
+      "N": 65,
+      "artifact": "connected_crypto_b1_m32",
+      "b": 1,
+      "exact_key_recovered": true,
+      "field_enumeration": false,
+      "field_roots": 1,
+      "gates": 32,
+      "padding": 1,
+      "polynomial_degree": 17,
+      "q_bits": 257,
+      "rank_at_K": 16,
+      "residual_shields": false,
+      "root_extraction_seconds": 0.038673008000159825,
+      "setup_and_attack_seconds": 0.295258,
+      "structural_minpoly_degree": 65,
+      "structural_minpoly_squarefree": true
+    },
+    {
+      "N": 129,
+      "artifact": "connected_crypto_b2_m32",
+      "b": 2,
+      "exact_key_recovered": true,
+      "field_enumeration": false,
+      "field_roots": 2,
+      "gates": 32,
+      "padding": 1,
+      "polynomial_degree": 89,
+      "q_bits": 257,
+      "rank_at_K": 88,
+      "residual_shields": false,
+      "root_extraction_seconds": 0.5967411799999809,
+      "setup_and_attack_seconds": 2.4886,
+      "structural_minpoly_degree": 129,
+      "structural_minpoly_squarefree": true
+    },
+    {
+      "N": 193,
+      "artifact": "connected_crypto_b2_m48",
+      "b": 2,
+      "exact_key_recovered": true,
+      "field_enumeration": false,
+      "field_roots": 2,
+      "gates": 48,
+      "padding": 1,
+      "polynomial_degree": 89,
+      "q_bits": 257,
+      "rank_at_K": 88,
+      "residual_shields": false,
+      "root_extraction_seconds": 0.5555091100000027,
+      "setup_and_attack_seconds": 7.79754,
+      "structural_minpoly_degree": 193,
+      "structural_minpoly_squarefree": true
+    }
+  ],
+  "large_field_reference_checks_passed": 3,
+  "limitations": [
+    "N=337/N=385 large-field exploratory runs timed out and are not counted",
+    "Large-field values are research-only generated capabilities; no native signature test in this checkpoint",
+    "Conservative rank theorem for b=2 is 458, not the empirically observed 88"
+  ],
+  "small_field_cases": 24,
+  "small_field_successes": 24,
+  "source": "connected false projectively safe sum-of-bits family"
+}

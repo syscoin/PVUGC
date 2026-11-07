@@ -1,0 +1,19 @@
+{
+  "status": "PASS; candidate proven INSECURE",
+  "checks": 377,
+  "exact_original_source_soundness": true,
+  "all_valid_original_same_mock_capability": true,
+  "false_source_direct_rounding_attack": true,
+  "affine_offset_publicly_recovered": true,
+  "illustrative": {
+    "q": 65537,
+    "n": 128,
+    "m": 2000,
+    "h": 800,
+    "radix": 40,
+    "columns": 147
+  },
+  "uniform_H_only_bound_below_2_minus_128": true,
+  "log2_upper_bound_on_attack_failure": -136.06983174406,
+  "qpt_security_claim": "NONE"
+}

@@ -1,0 +1,30 @@
+{
+  "external_sources_used": [],
+  "local_execution": {
+    "byte_identical_outputs": true,
+    "command": "python3 transparent_nonlinear_eval_run67_check.py",
+    "executions_after_finalization": 2,
+    "output_sha256": "195670f424ae44b92528c7b264654257f35d58d6d8592df9edbf7930a1fe0570"
+  },
+  "notes": [
+    "Tests validate finite algebra and implementation only.",
+    "The attack is classical polynomial time on the stated transparent evaluator class.",
+    "No production files were modified locally."
+  ],
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "research_only_paths": [
+    "research/pq-wkem/TRANSPARENT_NONLINEAR_EVAL_RUN67.md",
+    "research/pq-wkem/transparent_nonlinear_eval_run67_check.py",
+    "research/pq-wkem/transparent-nonlinear-eval-run67-validation.json",
+    "research/pq-wkem/TRANSPARENT_NONLINEAR_EVAL_RUN67_PROVENANCE.json"
+  ],
+  "run": 67,
+  "security_status": "incomplete; stopping condition not met",
+  "sha256": {
+    "TRANSPARENT_NONLINEAR_EVAL_RUN67.md": "5dccd1f364651c5ef27eb6d61e093c219b99203deb05e47b527b734308036b0d",
+    "transparent-nonlinear-eval-run67-validation.json": "92676eb4574ae6d11649ce73c229b51301e482ae7fba17f79d332c99975e1b84",
+    "transparent_nonlinear_eval_run67_check.py": "8cbe36b09a12b48dcd1e72204fc8d5464d3456ac90b143cf8ff2b155e277ee37"
+  },
+  "starting_head": "55ebb031d6767407d0a77a41fbf5fa4855aab3f0"
+}

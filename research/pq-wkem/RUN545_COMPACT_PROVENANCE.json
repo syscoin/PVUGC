@@ -1,0 +1,15 @@
+{
+  "run": 545,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "21a36423e369d6fc9e8b04871724cba4a205710c",
+  "starting_tree": "453b28ab6e3c2766b09392d857ed6c948fa9d36f",
+  "prior_note_blob": "9b125b237c6ae72e586a6ae62f78344c57c4a0a9",
+  "checker_method": "exact V8-executed Function.toString IIFE evaluated twice",
+  "checker_chars": 1476,
+  "validation_chars": 1715,
+  "assertions": 31,
+  "local_extended_python_assertions": 192,
+  "local_extended_artifacts_separate": true,
+  "scope": "conditional public b-bit hash-frontier input impossibility; not construction; no PQ claim",
+  "production_changes": false
+}

@@ -1,0 +1,10 @@
+{
+  "assertions": 1716,
+  "group_order": 11,
+  "independent_joint_uniform_projection_pairs": 121,
+  "pq_security": "NOT ESTABLISHED; group DLog broken by Shor",
+  "run": 683,
+  "shared_false_pair_recoveries": 1331,
+  "single_false_projection_cells": 22,
+  "valid_witness_equations": 242
+}

@@ -1,0 +1,18 @@
+{
+  "run": 478,
+  "status": "PASS",
+  "checks": 27970,
+  "fixtures": 64,
+  "gates": 429,
+  "wires": 169,
+  "allowed": [
+    "NOT",
+    "CNOT",
+    "TOFFOLI"
+  ],
+  "all_workspace_zero": true,
+  "secret_registers_unchanged": true,
+  "source_false": true,
+  "unauthorized_releases": 64,
+  "model": "ideal bitwise encrypted-gate semantics; toy auth, no FHE/FE/PQ"
+}

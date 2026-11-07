@@ -1,0 +1,15 @@
+{
+  "run": 483,
+  "status": "PASS",
+  "assertions": 419,
+  "valid_streams": 64,
+  "false_streams_rejected": 64,
+  "skipped_rows_rejected": 64,
+  "replays_rejected": 64,
+  "toy8_collision": {
+    "root": 29,
+    "s0": 217,
+    "s1": 0
+  },
+  "scope": "source admission only; protected key release unconstructed"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "MINK-LAMPORT-FALSE algebra",
+  "checks": 3255,
+  "triples": 512,
+  "refutation_delta": 3,
+  "certificate_bits": 2,
+  "key_bits": 131072,
+  "scope": "small F2 fixture, no QPT hardness claim"
+}

@@ -1,0 +1,23 @@
+{
+  "run": 489,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "e46dce004be6516b2b68ad5a89c83c9c16b9a11e",
+  "last_substantive_comment_id": 6067040320,
+  "checker": "run489_image_gap_compact_check.js",
+  "compact_assertions": 265,
+  "compact_execution": "exact V8 new Function; JSON output captured",
+  "extended_local_python_assertions": 1286,
+  "extended_local_sha256": "fe9e5678fa6b68cbc7b703f2dfe4ddcb3b5d2b87b87be00bb34f81eb06e030f7",
+  "extended_local_validation_sha256": "a13501227941d29e55506dfeb1c455e39cb36bdfda6c18b703398e028b7f6434",
+  "extended_local_note_sha256": "0489e17e903705d079c0bae8bafe10d7564fa6668c485055e81658f9d87d7868",
+  "not_proved": [
+    "actual SLH root-map random-function approximation",
+    "false-instance QPT hiding",
+    "true-instance extraction",
+    "secure local mixer",
+    "native valid-signature impossibility for arbitrary public keys"
+  ],
+  "publication_stage": "before_commit"
+}

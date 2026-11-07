@@ -1,0 +1,11 @@
+{
+  "run": 701,
+  "kind": "executed algebra/correctness checkpoint only",
+  "live_start_sha": "5e170eba0bce1c4aea5a9bed86ba357625f2ac77",
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_checks": "node --check; node twice identical; 988 compact assertions; extended Python 354 assertions",
+  "local_extended_proof_sha256": "28f03635a596c41c11a84c4d3c8aa7eaf7e5b3c0d26bf5b7bd647983b9162390",
+  "local_extended_python_sha256": "afef8fe7b0febba82835c344e50b2c118ced87d3c84173e2a1fe72054cb0935e",
+  "full_public_view_QPT_security": "UNPROVED",
+  "native_Bitcoin": "NOT IMPLEMENTED"
+}

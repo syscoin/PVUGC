@@ -1,0 +1,104 @@
+{
+  "assertions": 25049,
+  "byte_identical_stdout": true,
+  "execution_1_exit_code": 0,
+  "execution_2_exit_code": 0,
+  "py_compile": "PASS",
+  "result": {
+    "assertions": 25049,
+    "decoder_tv_cases": 25028,
+    "decoder_tv_tight_cases": 942,
+    "fixed_instance_sampler_cost": [
+      {
+        "expected_rejection_trials": "256",
+        "h^4_trials_hit_probability_union_bound": "1",
+        "min_entropy_bits": 8,
+        "target_probability": "2^-8"
+      },
+      {
+        "expected_rejection_trials": "65536",
+        "h^4_trials_hit_probability_union_bound": "1",
+        "min_entropy_bits": 16,
+        "target_probability": "2^-16"
+      },
+      {
+        "expected_rejection_trials": "4294967296",
+        "h^4_trials_hit_probability_union_bound": "1/4096",
+        "min_entropy_bits": 32,
+        "target_probability": "2^-32"
+      },
+      {
+        "expected_rejection_trials": "18446744073709551616",
+        "h^4_trials_hit_probability_union_bound": "1/1099511627776",
+        "min_entropy_bits": 64,
+        "target_probability": "2^-64"
+      },
+      {
+        "expected_rejection_trials": "340282366920938463463374607431768211456",
+        "h^4_trials_hit_probability_union_bound": "1/1267650600228229401496703205376",
+        "min_entropy_bits": 128,
+        "target_probability": "2^-128"
+      },
+      {
+        "expected_rejection_trials": "115792089237316195423570985008687907853269984665640564039457584007913129639936",
+        "h^4_trials_hit_probability_union_bound": "1/26959946667150639794667015087019630673637144422540572481103610249216",
+        "min_entropy_bits": 256,
+        "target_probability": "2^-256"
+      }
+    ],
+    "route_classification": {
+      "laconic_shvzk": {
+        "generic_np_escape": false,
+        "reason": "WE-equivalent in cited classical theorem"
+      },
+      "nonlaconic_nonhps_release": {
+        "closed_by_this_run": false,
+        "reason": "not covered"
+      },
+      "sampleable_gap_hps": {
+        "fixed_instance_interface": false,
+        "reason": "sampler supplies random yes instance+witness, not arbitrary fixed x"
+      },
+      "statistical_hps": {
+        "generic_np_escape": false,
+        "reason": "statistical WE -> SZK"
+      }
+    },
+    "scope": "Finite distribution/combinatorics checks only; literature theorems and cryptographic/QPT hardness are not proved by this checker.",
+    "status": "PASS",
+    "threshold_examples": [
+      {
+        "eps": "0",
+        "false_tv": "0",
+        "standard_SD_gap": true,
+        "true_tv_lower": "1"
+      },
+      {
+        "eps": "1/100",
+        "false_tv": "1/100",
+        "standard_SD_gap": true,
+        "true_tv_lower": "49/50"
+      },
+      {
+        "eps": "1/10",
+        "false_tv": "1/10",
+        "standard_SD_gap": true,
+        "true_tv_lower": "4/5"
+      },
+      {
+        "eps": "1/7",
+        "false_tv": "1/4",
+        "standard_SD_gap": true,
+        "true_tv_lower": "5/7"
+      },
+      {
+        "eps": "1/6",
+        "false_tv": "1/3",
+        "standard_SD_gap": false,
+        "true_tv_lower": "2/3"
+      }
+    ]
+  },
+  "run": "Run 262",
+  "scope": "The checker validates exact finite total-variation and sampling arithmetic. It does not prove the cited complexity-theoretic/literature results or any LWE/SIS/QPT assumption."
+}

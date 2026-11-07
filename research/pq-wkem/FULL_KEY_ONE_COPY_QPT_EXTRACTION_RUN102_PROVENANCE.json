@@ -1,0 +1,141 @@
+{
+  "artifact_sha256": {
+    "FULL_KEY_ONE_COPY_QPT_EXTRACTION_RUN102.md": "4362b3b20cb5929c6d5a9a64cc0022307662305466cd533e108dd1bb66ecb512",
+    "full-key-one-copy-qpt-extraction-run102-validation.json": "43bbc1e601476b6b0e5c2e70036d0323bfaf20384fefd590a9116c5c57c705da",
+    "full_key_one_copy_qpt_extraction_run102_check.py": "2f95be15a810c09c7417a34f885ca4a2379402fb8adeaf1886a89c27f7368f63"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "byte_identical_stdout": true,
+    "executions": 2,
+    "operator_fourier_exact_checks": 3072,
+    "path": "research/pq-wkem/full_key_one_copy_qpt_extraction_run102_check.py",
+    "status": "PASS",
+    "total_assertions": 3689
+  },
+  "correction_to_run101": "Run 101's re-preparable/purifiable-advice caveat was too strong. A one-copy mixed-advice operator-Fourier sampler suffices in the standard circuit model.",
+  "exact_repository_inputs": [
+    {
+      "blob_sha": "e4b5dfe48e6ca05d565fbe81881f2178332abc0e",
+      "path": "research/pq-wkem/SYNDROME_EXTRACTOR_CAPACITY_RUN99.md"
+    },
+    {
+      "blob_sha": "b37f02d10111eb158aed7c769ca61effaeae6040",
+      "path": "research/pq-wkem/DECODER_FOURIER_RIGIDITY_RUN97.md"
+    },
+    {
+      "blob_sha": "abb556df59acf2f13894017343d4f79ca9a25975",
+      "path": "research/pq-wkem/HAMMING_SPECTRAL_RELEASE_RUN96.md"
+    },
+    {
+      "blob_sha": "5fc79b25e140d2fba30e00c6fd168b619beabd45",
+      "path": "research/pq-wkem/GAPMDP_SHORT_KERNEL_BRIDGE_RUN92.md"
+    }
+  ],
+  "latest_substantive_comment": {
+    "created_at": "2026-09-25T17:19:39Z",
+    "id": 5836517821,
+    "scope": "Run 99 published and verified"
+  },
+  "literature": [
+    {
+      "authors": "Kyohei Sudo; Keisuke Hara; Masayuki Tezuka; Yusuke Yoshida",
+      "doi": "10.1587/transfun.2024EAP1004",
+      "published": "2025-02-01",
+      "venue": "IEICE Trans. Fundamentals E108.A(2), 104-116",
+      "verified_use": "Theorem 1/2 one-copy auxiliary-state precedent using predictor/distinguisher unitary and adjoint once each; not imported as a source-witness theorem.",
+      "work": "Quantum Search-to-Decision Reduction for the LWE Problem"
+    },
+    {
+      "authors": "Nir Bitansky; Zvika Brakerski; Yael Tauman Kalai",
+      "source": "arXiv:2203.02314 / CRYPTO 2022",
+      "verified_use": "Generic warning that quantum auxiliary input cannot generally be duplicated/restored in constructive post-quantum lifting; Run 102 uses a direct one-copy circuit proof instead.",
+      "work": "Constructive Post-Quantum Reductions"
+    },
+    {
+      "author": "Zhengzhong Jin",
+      "last_updated": "2026-09-19",
+      "source": "ePrint 2026/2063 public current metadata",
+      "verified_use": "Metadata only: Karp-Levin polylog-circuit SAT to GapMDP over prime field lambda^{omega(1)} with omega(log lambda) approximation; exact source parameters/extraction theorem still unverified.",
+      "work": "Witness Encryption for NP from SNARGs and Groups"
+    }
+  ],
+  "pr": 1,
+  "publication": {
+    "branch_visible_paths": [],
+    "comment_id": null,
+    "commit_sha": null,
+    "diagnostic_note": "No request/correlation ID or tool timestamp was returned. No tree, commit, ref update, or PR comment was attempted after the safety block.",
+    "outstanding_local_only_paths": [
+      "research/pq-wkem/FULL_KEY_ONE_COPY_QPT_EXTRACTION_RUN102.md",
+      "research/pq-wkem/full_key_one_copy_qpt_extraction_run102_check.py",
+      "research/pq-wkem/full-key-one-copy-qpt-extraction-run102-validation.json",
+      "research/pq-wkem/FULL_KEY_ONE_COPY_QPT_EXTRACTION_RUN102_PROVENANCE.json"
+    ],
+    "post_block_write_attempts": 0,
+    "starting_and_final_head": "93ae96ba977d96e435c41c86ffeb037e8dbc2ff5",
+    "status": "PARTIALLY_PUBLISHED",
+    "verified_readback": {
+      "all_four_target_paths_absent": true,
+      "head_unchanged": true,
+      "pr_draft": true,
+      "pr_open": true,
+      "pr_unmerged": true
+    },
+    "write_actions": [
+      {
+        "action": "mcp__GitHub__create_blob",
+        "artifact": "FULL_KEY_ONE_COPY_QPT_EXTRACTION_RUN102.md",
+        "blob_sha": "5ec37cfcf47fcdc68d279af1dc1b6c90a7287c8d",
+        "exact_local_bytes": true,
+        "result": "success"
+      },
+      {
+        "action": "mcp__GitHub__create_blob",
+        "artifact": "checker preliminary text transfer",
+        "blob_sha": "0a1662e48152dc2efedb7355a04dce0af4dc1f29",
+        "exact_local_bytes": false,
+        "note": "Unreferenced Git object; detected before tree/commit and superseded locally. It is not a branch file.",
+        "result": "success"
+      },
+      {
+        "action": "mcp__GitHub__create_blob",
+        "artifact": "validation preliminary text transfer",
+        "blob_sha": "f0bde7884f470d1d384865a26432b0a95581264e",
+        "exact_local_bytes": false,
+        "note": "Unreferenced Git object; formatting differed from captured bytes. It is not a branch file.",
+        "result": "success"
+      },
+      {
+        "action": "mcp__GitHub__create_blob",
+        "artifact": "full-key-one-copy-qpt-extraction-run102-validation.json",
+        "blob_sha": "237d92689423fc3f6cb9eb85f73948b9a4d09283",
+        "exact_local_bytes": true,
+        "result": "success"
+      },
+      {
+        "action": "mcp__GitHub__create_blob",
+        "artifact": "full_key_one_copy_qpt_extraction_run102_check.py exact local bytes",
+        "error": "Script error: This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+        "request_or_correlation_id": null,
+        "result": "SAFETY_BLOCK",
+        "tool_timestamp": null
+      }
+    ]
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 102,
+  "security_classification": {
+    "advice_repreparation_required": false,
+    "false_hiding": "Run 99 information-theoretic when syndrome condition holds; arbitrary QPT",
+    "generic_np_source_instantiated": false,
+    "opaque_forward_only_oracle_covered": false,
+    "true_extraction": "arbitrary non-uniform QPT circuit adversary with arbitrary mixed quantum advice; one copy; circuit plus adjoint"
+  },
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "state": "open"
+  },
+  "starting_sha": "93ae96ba977d96e435c41c86ffeb037e8dbc2ff5"
+}

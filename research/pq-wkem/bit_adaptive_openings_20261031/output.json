@@ -1,0 +1,23 @@
+{
+  "candidate": "BASO",
+  "toy": {
+    "q": 65537,
+    "d": 2,
+    "n": 6,
+    "B": 2,
+    "b": 3,
+    "payload_bits": 18,
+    "capsules": 3,
+    "valid_source_witnesses": 2
+  },
+  "assertions": 28096,
+  "opening_trials": 150,
+  "accepted": 4340,
+  "rejected": 160,
+  "coinQueries": 814,
+  "allowed_bit_opening_subsets": 7,
+  "cross_capsule_opening_patterns": 343,
+  "LWE_hybrid_factor_toy": 324,
+  "LWE_hybrid_factor_raw512_two_capsules": 6144,
+  "security_note": "Deterministic finite arithmetic only; does not test QPT hardness or ORIGINAL relation"
+}

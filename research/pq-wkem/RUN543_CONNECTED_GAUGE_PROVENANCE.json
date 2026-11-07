@@ -1,0 +1,14 @@
+{
+  "run": 543,
+  "head": "82a1b921dcf717953d097c8b442cd38ebebaa5cb",
+  "tree": "0c1f8b2d291ea0ae5e12aa9614dab6a84356fff4",
+  "branch": "research/pq-wkem-validation-20260918",
+  "checked_at": "2026-10-15",
+  "verified_input_run541_blob": "d327fdc8c540fa7a868266704bd094eac6950f68",
+  "tests": 4,
+  "checker": "executed exact same source in V8 JavaScript before GitHub write; Node standalone runs run543()",
+  "validation_byte_count": 1500,
+  "local_independent_checkers": "SHA-256 JavaScript and Python independent finite exhaustions; captured locally only",
+  "security_status": "IDEAL PUBLIC EVALUATOR ATTACK ONLY; NO PQ WITNESS-KEM",
+  "historical_deny_retries": 0
+}

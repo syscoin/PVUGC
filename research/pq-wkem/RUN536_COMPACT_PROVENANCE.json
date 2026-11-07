@@ -1,0 +1,15 @@
+{
+  "run": 536,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "5cf863d50cdeb1465343e4b8a2764bbd67ab3051",
+  "starting_tree_sha": "8f2ca820af441f0e87182fea0b58135c21bf2779",
+  "predecessor_note_blob": "9a99978d033e961de061d0099e6449e2aec34833",
+  "run259_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "run519_blob": "f44a4d4486fdbb396f5456eebc240fb4661e4060",
+  "checker_sha256": "5de18200a7df2e6cd6c4d5ba50395a486f9a047c07c0ba4334467c831632c9f0",
+  "validation_sha256": "6565ffbec7a5432d16b33fb2257a9752a5b5e875357cd9ddc243e5ee03382a36",
+  "execution": "node --check; two full byte-identical Node runs",
+  "scope": "conditional general-NP reduction to one-bit WE; uniform QPT; no arbitrary correlated one-shot quantum advice; no practical construction"
+}

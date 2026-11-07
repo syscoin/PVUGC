@@ -1,0 +1,40 @@
+{
+  "run": 408,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "df7c770e8c2bc4558a3498e71852e337c3688172",
+  "source_paper": "https://crypto.iacr.org/2022/papers/530630_1_En_21_Chapter_OnlinePDF.pdf",
+  "scope": "PUBLIC Enc2 conversion algebra, NOT original miABE break",
+  "published_js_checker_executed": true,
+  "exact_validation": {
+    "run": 408,
+    "model": "exact exponent-group algebra; target-group scalar normalization, not key recovery",
+    "seed": "0x408a5a",
+    "trials": 1800,
+    "assertions_passed": 36000,
+    "moduli": [
+      17,
+      257,
+      65537
+    ],
+    "widths": [
+      1,
+      2,
+      3,
+      5,
+      8
+    ],
+    "original_witness_extracted": false,
+    "cryptographic_security_established": false,
+    "actual_lattice_or_pairing_implemented": false
+  },
+  "local_extended_python_checker_assertions": 52800,
+  "artifacts": [
+    "PUBLIC_SLOT_SELECTOR_NORMALIZATION_RUN408.md",
+    "miabe_public_selector_run408_check.js",
+    "miabe-public-selector-run408-validation.json",
+    "PUBLIC_SLOT_SELECTOR_NORMALIZATION_RUN408_PROVENANCE.json"
+  ],
+  "production_changed": false
+}

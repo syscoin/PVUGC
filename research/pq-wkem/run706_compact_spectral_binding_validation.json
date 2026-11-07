@@ -1,0 +1,1 @@
+{"run":706,"assertions":39370,"field":3,"dimension":3,"deficiency":2,"uniform_invalid_matrices":19683,"possible_matrices":19683,"low_rank_count":339,"exact_low_rank_probability":0.0172229843011736,"complete_public_coefficients":true,"hard_true_key_only_extraction_proved":false}

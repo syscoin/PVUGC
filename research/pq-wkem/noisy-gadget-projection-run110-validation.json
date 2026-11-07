@@ -1,0 +1,527 @@
+{
+  "correctness_tradeoff": {
+    "claim": "For selected_blocks>=1, kappa>=1 and decoding radius <=q/4, a worst-case per-coordinate bound sufficient for correctness is <=q/8<q/6, hence inside the gadget secret-recovery regime.",
+    "rows": [
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 32.125,
+        "kappa": 1,
+        "q": 257,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 16.0625,
+        "kappa": 2,
+        "q": 257,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 4.015625,
+        "kappa": 8,
+        "q": 257,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 0.501953125,
+        "kappa": 64,
+        "q": 257,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 0.062744140625,
+        "kappa": 512,
+        "q": 257,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 21.416666666666668,
+        "kappa": 1,
+        "q": 257,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 10.708333333333334,
+        "kappa": 2,
+        "q": 257,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 2.6770833333333335,
+        "kappa": 8,
+        "q": 257,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 0.3346354166666667,
+        "kappa": 64,
+        "q": 257,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 0.041829427083333336,
+        "kappa": 512,
+        "q": 257,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 7.138888888888889,
+        "kappa": 1,
+        "q": 257,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 3.5694444444444446,
+        "kappa": 2,
+        "q": 257,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 0.8923611111111112,
+        "kappa": 8,
+        "q": 257,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 0.1115451388888889,
+        "kappa": 64,
+        "q": 257,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 0.013943142361111112,
+        "kappa": 512,
+        "q": 257,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 0.9884615384615385,
+        "kappa": 1,
+        "q": 257,
+        "selected_blocks": 64
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 0.49423076923076925,
+        "kappa": 2,
+        "q": 257,
+        "selected_blocks": 64
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 0.12355769230769231,
+        "kappa": 8,
+        "q": 257,
+        "selected_blocks": 64
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 0.015444711538461539,
+        "kappa": 64,
+        "q": 257,
+        "selected_blocks": 64
+      },
+      {
+        "attack_threshold_q_over_6": 42.833333333333336,
+        "guaranteed_correctness_Bmax": 0.0019305889423076924,
+        "kappa": 512,
+        "q": 257,
+        "selected_blocks": 64
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 96.125,
+        "kappa": 1,
+        "q": 769,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 48.0625,
+        "kappa": 2,
+        "q": 769,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 12.015625,
+        "kappa": 8,
+        "q": 769,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 1.501953125,
+        "kappa": 64,
+        "q": 769,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 0.187744140625,
+        "kappa": 512,
+        "q": 769,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 64.08333333333333,
+        "kappa": 1,
+        "q": 769,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 32.041666666666664,
+        "kappa": 2,
+        "q": 769,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 8.010416666666666,
+        "kappa": 8,
+        "q": 769,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 1.0013020833333333,
+        "kappa": 64,
+        "q": 769,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 0.12516276041666666,
+        "kappa": 512,
+        "q": 769,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 21.36111111111111,
+        "kappa": 1,
+        "q": 769,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 10.680555555555555,
+        "kappa": 2,
+        "q": 769,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 2.670138888888889,
+        "kappa": 8,
+        "q": 769,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 0.3337673611111111,
+        "kappa": 64,
+        "q": 769,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 0.04172092013888889,
+        "kappa": 512,
+        "q": 769,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 2.957692307692308,
+        "kappa": 1,
+        "q": 769,
+        "selected_blocks": 64
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 1.478846153846154,
+        "kappa": 2,
+        "q": 769,
+        "selected_blocks": 64
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 0.3697115384615385,
+        "kappa": 8,
+        "q": 769,
+        "selected_blocks": 64
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 0.04621394230769231,
+        "kappa": 64,
+        "q": 769,
+        "selected_blocks": 64
+      },
+      {
+        "attack_threshold_q_over_6": 128.16666666666666,
+        "guaranteed_correctness_Bmax": 0.005776742788461539,
+        "kappa": 512,
+        "q": 769,
+        "selected_blocks": 64
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 1536.125,
+        "kappa": 1,
+        "q": 12289,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 768.0625,
+        "kappa": 2,
+        "q": 12289,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 192.015625,
+        "kappa": 8,
+        "q": 12289,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 24.001953125,
+        "kappa": 64,
+        "q": 12289,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 3.000244140625,
+        "kappa": 512,
+        "q": 12289,
+        "selected_blocks": 1
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 1024.0833333333333,
+        "kappa": 1,
+        "q": 12289,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 512.0416666666666,
+        "kappa": 2,
+        "q": 12289,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 128.01041666666666,
+        "kappa": 8,
+        "q": 12289,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 16.001302083333332,
+        "kappa": 64,
+        "q": 12289,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 2.0001627604166665,
+        "kappa": 512,
+        "q": 12289,
+        "selected_blocks": 2
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 341.3611111111111,
+        "kappa": 1,
+        "q": 12289,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 170.68055555555554,
+        "kappa": 2,
+        "q": 12289,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 42.670138888888886,
+        "kappa": 8,
+        "q": 12289,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 5.333767361111111,
+        "kappa": 64,
+        "q": 12289,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 0.6667209201388888,
+        "kappa": 512,
+        "q": 12289,
+        "selected_blocks": 8
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 47.26538461538462,
+        "kappa": 1,
+        "q": 12289,
+        "selected_blocks": 64
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 23.63269230769231,
+        "kappa": 2,
+        "q": 12289,
+        "selected_blocks": 64
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 5.908173076923077,
+        "kappa": 8,
+        "q": 12289,
+        "selected_blocks": 64
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 0.7385216346153847,
+        "kappa": 64,
+        "q": 12289,
+        "selected_blocks": 64
+      },
+      {
+        "attack_threshold_q_over_6": 2048.1666666666665,
+        "guaranteed_correctness_Bmax": 0.09231520432692308,
+        "kappa": 512,
+        "q": 12289,
+        "selected_blocks": 64
+      }
+    ]
+  },
+  "exhaustive_unique_decode": {
+    "B": 2,
+    "ell": 5,
+    "observations": 53125,
+    "q": 17
+  },
+  "gadget_distance": {
+    "min_bound": "Delta_infty(g)>=q/3",
+    "moduli_checked": "2..257",
+    "rows": [
+      {
+        "distance": 94,
+        "ell": 8,
+        "q": 250,
+        "ratio": 0.376
+      },
+      {
+        "distance": 89,
+        "ell": 8,
+        "q": 251,
+        "ratio": 0.3545816733067729
+      },
+      {
+        "distance": 84,
+        "ell": 8,
+        "q": 252,
+        "ratio": 0.3333333333333333
+      },
+      {
+        "distance": 95,
+        "ell": 8,
+        "q": 253,
+        "ratio": 0.37549407114624506
+      },
+      {
+        "distance": 106,
+        "ell": 8,
+        "q": 254,
+        "ratio": 0.41732283464566927
+      },
+      {
+        "distance": 85,
+        "ell": 8,
+        "q": 255,
+        "ratio": 0.3333333333333333
+      },
+      {
+        "distance": 128,
+        "ell": 8,
+        "q": 256,
+        "ratio": 0.5
+      },
+      {
+        "distance": 106,
+        "ell": 9,
+        "q": 257,
+        "ratio": 0.41245136186770426
+      }
+    ]
+  },
+  "near_threshold": {
+    "B": 42,
+    "checks": 5911,
+    "patterns_per_secret": 23,
+    "q": 257,
+    "q_over_6": 42.833333333333336
+  },
+  "public_short_link": {
+    "B": 2,
+    "cases": 153,
+    "claim": "Signed/permutation randomization with a public short inverse link preserves the noisy gadget decoding attack.",
+    "q": 17
+  },
+  "run": 110,
+  "scope": [
+    "Finite controls for a theorem proved algebraically in the note.",
+    "The attack is classical polynomial time when q is polynomial in the security parameter; it therefore refutes QPT security in that regime.",
+    "The theorem concerns full powers-of-two gadget projections with sufficiently bounded noise, not every possible gadget or correlated-noise construction.",
+    "Passing tests does not establish or refute SIS/LWE hardness beyond the explicit gadget-projection attack."
+  ],
+  "status": "PASS",
+  "tail_event": [
+    {
+      "recovery_success_lower": 0.9999999999990905,
+      "tail_failure_bound": "2^-40"
+    },
+    {
+      "recovery_success_lower": 1.0,
+      "tail_failure_bound": "2^-64"
+    },
+    {
+      "recovery_success_lower": 1.0,
+      "tail_failure_bound": "2^-96"
+    },
+    {
+      "recovery_success_lower": 1.0,
+      "tail_failure_bound": "2^-128"
+    }
+  ],
+  "total_assertions": 59662
+}

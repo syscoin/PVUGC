@@ -1,0 +1,27 @@
+{
+  "assertions": 22926,
+  "controls": {
+    "both_fixed_boundaries_tv": "1",
+    "free_output_joint_uniform_size": 576,
+    "hidden_input_joint_uniform_size": 576
+  },
+  "decoder_stabilizer_order": 4,
+  "group_order": 24,
+  "run": 357,
+  "scope": "Exact finite group/coset and decoder-boundary identities; not WKEM or QPT hardness.",
+  "source_anchored_output_decoder_paths": {
+    "edge_count_2": {
+      "frame_samples_per_semantics": 96,
+      "support_size": 96,
+      "tv_disjoint_pairs": 480,
+      "tv_equivalent_pairs": 96
+    },
+    "edge_count_3": {
+      "decoder_equivalent_different_parity_tv": "0",
+      "frame_samples_per_semantics": 2304,
+      "same_parity_different_decoder_tv": "1",
+      "support_size": 2304
+    }
+  },
+  "status": "PASS"
+}

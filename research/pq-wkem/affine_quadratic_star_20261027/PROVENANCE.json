@@ -1,0 +1,31 @@
+{
+  "record": "affine-quadratic-star-20261027-turn6",
+  "pr": 1,
+  "repository": "syscoin/PVUGC",
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "02f2783d8eef49e05746dd471d0ddaa0c64451ee",
+  "predecessor_blob": "2e9e3477a39eca0a03d3d234f1c0bdd3dd260bd6",
+  "offline": true,
+  "run_type": "scheduled turn 6, one bounded constructive iteration",
+  "mathematical_delta": "Verified polynomial factor-plane grouper and physical masks for affine-obfuscated nonliteral AND/NAND stars; inherited whole quotient Fourier identities.",
+  "remote_checker_assertions": 2764,
+  "independent_local_python_assertions_per_execution": 3620,
+  "independent_local_python_double_run_identical": true,
+  "local_checker_sha256": "2f737e8ddaede95bcbda4745fc5d5a7d25668daf87a4783ecad3984968e8792d",
+  "local_proof_sha256": "0731fe91c65db2efc78e3e28f7ac2fed6d61eb3b03d9366655443d9a73d954c8",
+  "local_validation_sha256": "09777f7f7c204246d8e426e24069658d9feaa610211996f78c230947a5e84e46",
+  "remote_blobs": {
+    "PROOF.md": "958cfc5bec97c993ab3feceae66a6307eb08ee22",
+    "check_affine_quadratic_star.js": "aab31f1e0c144c3611b8618e7fe51c585bb8edb5",
+    "validation.json": "263ef057f34a378662810506eabe1eac8932553a"
+  },
+  "not_proved": [
+    "generic polynomial-size PQ witness-KEM",
+    "standard QPT-LWE source compiler",
+    "128-bit concrete SHA/BTC/Syscoin work reduction",
+    "malicious N-of-N setup/abort",
+    "native-PQ Bitcoin endpoint",
+    "adaptive selective opening"
+  ],
+  "publication_scope": "research/pq-wkem/affine_quadratic_star_20261027 only"
+}

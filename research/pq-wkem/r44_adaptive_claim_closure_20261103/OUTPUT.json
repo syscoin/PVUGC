@@ -1,0 +1,24 @@
+{
+  "run": "R44-ADAPTIVE-CLAIM-CLOSURE-20261103",
+  "tests": 1485,
+  "decodes": 5568,
+  "couplings": 364,
+  "exposures": 2,
+  "sequences": 157,
+  "adaptiveSelections": [
+    82,
+    45,
+    21,
+    9
+  ],
+  "parameters": {
+    "q": 257,
+    "n": 2,
+    "m": 7,
+    "B": 1,
+    "p": 16,
+    "Q": 4,
+    "J": 3
+  },
+  "status": "restricted QPT composition algebra; not generic ORIGINAL witness-KEM, not a QPT hardness experiment"
+}

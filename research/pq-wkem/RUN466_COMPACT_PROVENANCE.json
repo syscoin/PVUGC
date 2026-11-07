@@ -1,0 +1,40 @@
+{
+  "run": 466,
+  "date": "2026-10-12",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "ace60595fdd0dc8742dae05979690977c7066e95",
+  "proof_scope": "narrow PPT/QPT interface falsification; no constructive security",
+  "checker": "run466_compact_check.js",
+  "checker_environment": "V8 ECMAScript",
+  "checker_output": {
+    "run": 466,
+    "status": "PASS",
+    "assertions": 275,
+    "nonempty_acceptance_fixtures": 270,
+    "total_candidate_evaluations": 528,
+    "binary_control_states": 4096,
+    "conclusion": "finite enumerability only; not cryptographic security"
+  },
+  "local_extended_python": {
+    "assertions": 67,
+    "byte_identical": true,
+    "sizes": [
+      32,
+      64,
+      128
+    ],
+    "recovered_in": [
+      24,
+      34,
+      114
+    ],
+    "note_sha256": "51d1f28fb839a6cf3042a20148cfa23c0c44eac28b21708bddaaa57e23619c1c",
+    "checker_sha256": "12410edaaf569eb569f0a182951410f4459355b506056d4da335d1951976dc10",
+    "validation_sha256": "4e262e743d4e39cb9d1530d69f366aa7023a4e31ce3742f2e54e8cce0ae733c5",
+    "publication": "local only"
+  },
+  "statement": "Source proof/checker/output are independent of previously denied Run 465 payload",
+  "status": "Artifact itself does not assert branch publication; verify subsequent commit/readbacks"
+}

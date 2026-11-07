@@ -1,0 +1,41 @@
+{
+  "run": "R33-BRANCHWISE-BILINEAR-OR-20261103",
+  "assertions": 8505,
+  "guarded_false_assignments": 64,
+  "valid_true_original_witnesses": 16,
+  "same_capability_bit_recoveries": 4096,
+  "restricted_joint_false_log2_TV_upper_bound": -136.48065262053947,
+  "exact_F3_convolution": [
+    {
+      "t": 1,
+      "numerator": "66",
+      "denominator": "162"
+    },
+    {
+      "t": 2,
+      "numerator": "1890",
+      "denominator": "13122"
+    },
+    {
+      "t": 3,
+      "numerator": "52002",
+      "denominator": "1062882"
+    },
+    {
+      "t": 4,
+      "numerator": "1412802",
+      "denominator": "86093442"
+    },
+    {
+      "t": 5,
+      "numerator": "38224386",
+      "denominator": "6973568802"
+    },
+    {
+      "t": 6,
+      "numerator": "1032767010",
+      "denominator": "564859072962"
+    }
+  ],
+  "verdict": "PASS finite algebra, restricted FALSE branch stripping theorem; arbitrary hard TRUE recovery-to-ORIGINAL witness UNPROVED"
+}

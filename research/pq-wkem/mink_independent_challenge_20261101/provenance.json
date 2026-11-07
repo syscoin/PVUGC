@@ -1,0 +1,14 @@
+{
+  "run_id": "MINK-IVEC-2026-11-01-T17",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "c9eea4022a412fc5949c529c51a3ba4124955965",
+  "predecessor_blob": "ec9a93e99d946b34f110b081b58e1c2685265783",
+  "checker": "checker.js",
+  "checker_executions": 2,
+  "outputs_byte_identical": true,
+  "assertion_events_each": 448,
+  "offline": true,
+  "security_scope": "one-honest verifier setup soundness only; full QPT malicious-verifier ZK and generic witness-KEM unproved"
+}

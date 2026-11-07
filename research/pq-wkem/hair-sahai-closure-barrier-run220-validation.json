@@ -1,0 +1,95 @@
+{
+  "adjoint_scalar_closure": {
+    "binary_15D_L_with_GF16_span_4_row_support_lower_bound": 12,
+    "conclusion": "e15(D)<=12 is independently reverified; any hypothetical e15(D)<=11 witness must have adjoint GF(16)-span 5 or 6, not 4.",
+    "explicit_e15_upper_witness": {
+      "adjoint_GF16_closure_dimension": 6,
+      "adjoint_L_dimension": 15,
+      "adjoint_row_support": 12,
+      "primal_W4_basis": [
+        39234,
+        1002,
+        6,
+        1
+      ],
+      "primal_ambient_capacity": 4,
+      "primal_support": 9
+    },
+    "field_row_hyperplane_preimage_dimension_histogram": {
+      "2": 4352,
+      "3": 17
+    }
+  },
+  "assertions": 65996,
+  "combined_narrowing": {
+    "hypothetical_adjoint_e15_le11_L_requires_GF16_span_at_least": 5,
+    "hypothetical_primal_support_le9_W5_requires_GF16_span_at_least": 3,
+    "remaining_question": "Does e15(D)=11 or 12 in the GF(16)-span-5/6 cases?"
+  },
+  "field_span_2_primal_search": {
+    "all_field_span_2_W5_support_lower_bound": 12,
+    "binary_5_subspaces_per_plane": 97155,
+    "conclusion": "No binary 5D source subcode with GF(16)-span 2 can have column support <=11; support <=9 is therefore impossible in this closure class.",
+    "field_plane_support_histogram": {
+      "20": 529,
+      "24": 69632
+    },
+    "field_planes_total": 70161,
+    "support13_example_basis": [
+      36928,
+      2340,
+      54294,
+      37128,
+      61185
+    ],
+    "support13_example_plane": [
+      61185,
+      61456
+    ],
+    "support20_binary_5_checked": 51394995,
+    "support20_le11_count": 0,
+    "support20_min_exact_support": 13,
+    "support20_planes": 529,
+    "support20_subspace_histogram": {
+      "13": 8820,
+      "14": 168315,
+      "15": 785445,
+      "16": 1652610,
+      "17": 3159180,
+      "18": 13674885,
+      "19": 23815680,
+      "20": 8130060
+    },
+    "support24_plane_codim3_lower_bound": 12
+  },
+  "fixture": {
+    "N": 3,
+    "R": 1,
+    "compressed_column_ambient_dimension": 24,
+    "field": "GF(16), x^4+x+1",
+    "rank_histogram": {
+      "3": 225,
+      "4": 65310
+    },
+    "source_dimension_binary": 16
+  },
+  "independent_global_upper_witness": {
+    "GF16_span_dimension": 4,
+    "ambient_source_capacity": 5,
+    "basis": [
+      39234,
+      970,
+      32,
+      6,
+      1
+    ],
+    "column_support": 10
+  },
+  "python": "3.13.5",
+  "run": 220,
+  "scope": {
+    "not_proved": "e15(D)=12 globally, d5(C)=10 globally, full false-instance hiding, arbitrary-QPT ORIGINAL-witness extraction, or malicious distributed setup.",
+    "proved": "Exact finite closure-class exclusions and exhaustive 51,394,995-subspace field-span-2 census for the literal current false-source fixture."
+  },
+  "status": "PASS"
+}

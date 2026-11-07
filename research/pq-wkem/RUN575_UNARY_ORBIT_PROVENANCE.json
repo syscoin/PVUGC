@@ -1,0 +1,57 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_assertions": 118752,
+  "checker_repetitions": 2,
+  "date": "2026-10-16",
+  "exact_captured_output": "run575_unary_orbit_validation.json",
+  "exact_executed_checker": "run575_unary_orbit_check.py",
+  "files": {
+    "RUN575_GITHUB_NOTE.md": {
+      "byte_length": 6600,
+      "git_blob_sha1": "e5e68d0ff2156be7b56e7fc89451352e7b0c17c5",
+      "sha256": "0dba3a7324c7de846d66cd2d9e33a7d7628a6f5dc43752ae07f692964ea8d449"
+    },
+    "RUN575_PUBLIC_UNARY_ORBIT_ENUMERATION.md": {
+      "byte_length": 12387,
+      "git_blob_sha1": "7d7ffb78bac6554fefb4ac91649b132160de3d8d",
+      "sha256": "0923cd42c3add69b3234efba3790186a880f8670217cf9d4316b2cc36d9a9374"
+    },
+    "run575_unary_orbit_check.py": {
+      "byte_length": 3022,
+      "git_blob_sha1": "7f2ac9f3e4215645e27f822f73f54b8eece60b7c",
+      "sha256": "4e1e4bbfee563a0c5f512d25531fdcc27d00b4d16b163871d9a53f3bbafb927f"
+    },
+    "run575_unary_orbit_validation.json": {
+      "byte_length": 479,
+      "git_blob_sha1": "c25b756562d733a2c71fe78adc5fc5781b24845d",
+      "sha256": "fd261ae9173c2f1360862a31f1fbfb0790110cf953eedc36f6953e751b89eb35"
+    }
+  },
+  "last_substantive_comment_id": 6067040320,
+  "literature": [
+    "https://simons.berkeley.edu/talks/ji-luo-mit-csail-2026-07-13",
+    "https://doi.org/10.1007/978-3-032-35367-2_18",
+    "https://doi.org/10.1007/978-3-031-78023-3_2"
+  ],
+  "pr_state": "open/draft/unmerged",
+  "publication": "pending supported GitHub write and exact readback",
+  "pull_request": 1,
+  "read_files": {
+    "CLZ_APPLICABILITY_20261008.md": "c19d9d9cd515140e3ce62eac960cd548c0add622",
+    "GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "RUN574_CHECKABLE_ONE_WAY_RELEASE_WE_COMPILER.md": "7fe1c9ca59edf036c863632fe9b21438662e5aff"
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 575,
+  "security_not_established": [
+    "QPT WKEM",
+    "generic NP release",
+    "false-instance hiding",
+    "true-instance extraction",
+    "malicious setup",
+    "native Bitcoin endpoint"
+  ],
+  "starting_sha": "a7e52011789254acdbdd1cc3f7279ea241ce8dd3",
+  "starting_tree": "10194c0192091edb8a55b701f2904ecded20d256",
+  "theorem_scope": "Unconditional credential-enumeration attack if late original witness only chooses public unary orbit position bounded by T=poly; not attack on CLZ scheme."
+}

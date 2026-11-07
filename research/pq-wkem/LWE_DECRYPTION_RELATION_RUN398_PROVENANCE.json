@@ -1,0 +1,40 @@
+{
+  "run": 398,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "bba5c4bb4e37144a390b40f0b58a7ff633d7a1f1",
+  "validated_checker": "lwe_decryption_relation_run398_check.js",
+  "checker_execution": "V8 classical deterministic full function execution",
+  "assertions": 15971,
+  "outputs_exactly": {
+    "run": 398,
+    "status": "PASS",
+    "assertions": 15971,
+    "q": 97,
+    "m": 4,
+    "B": 1,
+    "multi_witness_count": 97,
+    "honestly_generated_witness_count": 1,
+    "adversarial_false_witness_count": 0,
+    "false_support_bit0": [
+      0,
+      10
+    ],
+    "false_support_bit1": [
+      48,
+      58
+    ],
+    "recovered_8bit_seeds": 256,
+    "actual_LWE_security": false,
+    "all_false_instance_hiding": false,
+    "Syscoin_relation": false
+  },
+  "notes": "The more extensive independent local Python checker is distinct from this published JS checker; neither establishes cryptographic QPT security.",
+  "source_blobs": {
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run393": "7ee3cc73f1115a2788a4d54021ca808f865405dd",
+    "run394": "7afc59866028fef93728d6c3da766d7c9deafdc6",
+    "clz": "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  }
+}

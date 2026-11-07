@@ -1,0 +1,34 @@
+{
+  "status": "PASS (restricted SOURCE only)",
+  "checks": 101,
+  "validWitnesses": 9,
+  "independentNativeSeeds": 2,
+  "source": {
+    "q": 257,
+    "n": 3,
+    "m": 18,
+    "B": 1
+  },
+  "uniformTiny": {
+    "q": 17,
+    "m": 16,
+    "cases": 12,
+    "falseCount": 12,
+    "avgTV": 0.01811477854727599,
+    "lhlUpper": 0.03314563036811941,
+    "maxTV": 0.03212804035331964
+  },
+  "sampledFixedFalseSourceWitnesses": 0,
+  "illustrative": {
+    "q": 16777216,
+    "n": 256,
+    "m": 6600,
+    "B": 256,
+    "L": 256,
+    "log2Delta": -217,
+    "log2_2LDelta": -208,
+    "rawDenseABytes": 5068800,
+    "rawCipherBytes": 197376
+  },
+  "disclaimer": "Genuine Lamport OTS checking-key correlation and second independent checker are in local-only check.py; NOT native SLH, QPT hardness, generic NP or every-fixed-FALSE security."
+}

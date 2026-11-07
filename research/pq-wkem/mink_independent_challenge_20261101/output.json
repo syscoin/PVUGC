@@ -1,0 +1,39 @@
+{
+  "run_id": "MINK-IVEC-2026-11-01-T17",
+  "scope": "conditional one-honest-verifier soundness, NOT zero knowledge or WKEM",
+  "test": "deterministic standard-JavaScript toy arithmetic; no hardness experiment",
+  "assertion_events": 448,
+  "false_graph_assignments": 81,
+  "exact_acceptance": {
+    "1": {
+      "accepted": 5,
+      "total": 6,
+      "fraction": "5/6"
+    },
+    "2": {
+      "accepted": 25,
+      "total": 36,
+      "fraction": "25/36"
+    },
+    "3": {
+      "accepted": 125,
+      "total": 216,
+      "fraction": "125/216"
+    },
+    "4": {
+      "accepted": 625,
+      "total": 1296,
+      "fraction": "625/1296"
+    }
+  },
+  "true_proof_instances": 72,
+  "parameters": {
+    "n_party": 4,
+    "graph_k4_edges": 6,
+    "ell_max": 4,
+    "q": 101,
+    "n_lwe": 1,
+    "m_lwe": 7,
+    "B": 1
+  }
+}

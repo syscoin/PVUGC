@@ -1,0 +1,34 @@
+{
+  "run": 476,
+  "status": "PASS",
+  "checks": 16420,
+  "cases": [
+    {
+      "context": "claim77/utxoA/challenge",
+      "original_witnesses": 2,
+      "proof_existence": true,
+      "first_bruteforce_query": 1414
+    },
+    {
+      "context": "claim77/utxoA/disprove",
+      "original_witnesses": 0,
+      "proof_existence": true,
+      "first_bruteforce_query": 1637
+    },
+    {
+      "context": "claim78/utxoB/disprove",
+      "original_witnesses": 0,
+      "proof_existence": true,
+      "first_bruteforce_query": 2980
+    },
+    {
+      "context": "claim77/utxoA/normal",
+      "original_witnesses": 0,
+      "proof_existence": true,
+      "first_bruteforce_query": 3320
+    }
+  ],
+  "toy_bits": 12,
+  "conclusion": "computational proof soundness is not semantic false-instance nonmembership",
+  "qpt_security": "UNPROVED; finite semantic diagnostic only"
+}

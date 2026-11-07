@@ -1,0 +1,19 @@
+{
+  "run": 373,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "a99c8a88ae768e1b2d9bddc18a9321d75009f65a",
+  "base_tree_sha": "5ff6aa2fe435acea916c8bc5d004da48048e67b7",
+  "run372_blob": "6ea495dda5c43a8f3fcadd6896842d630d0c2b57",
+  "run259_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "executed_checker_sha256": "7ab423219b3275a6044fb35d347acb389e5df07d4ee3ea9b238dbca693e331a4",
+  "executed_validation_sha256": "c9d859e50cfe618d29e001b7b49d2c56eb3f00c3de54f3c130bf7fcf4b244cee",
+  "py_compile": "PASS",
+  "identical_executions": 2,
+  "assertions": 30966,
+  "local_extended_assertions": 330380,
+  "claim": "exact public orbit extraction for submitted admission objects only",
+  "no_full_PQ_or_release_claim": true,
+  "production_unchanged": true
+}

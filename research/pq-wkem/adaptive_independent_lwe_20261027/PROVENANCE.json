@@ -1,0 +1,24 @@
+{
+  "record": "adaptive-independent-lwe-20261027-turn9",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_head": "1d46ab641973d8a6192c68ef1437eb79c774c232",
+  "predecessor_exact_proof_blob": "2260a962953b11dd3bbcf1b92784e73d9460e439",
+  "action": "research-only independently keyed adaptive selected-opening LWE / original-NP composition",
+  "external_research": false,
+  "local_commands": [
+    "python3 check_adaptive.py",
+    "python3 check_adaptive.py"
+  ],
+  "byte_identical_runs": true,
+  "assertions_per_run": 859212,
+  "published_checker_blob": "5cbc015aecdf193e6a353fd5de8ddc85b0f8e15d",
+  "published_checker_matches_exact_executed_local_bytes": true,
+  "published_output_blob": "2bbd95dcae2dffdb63a3f063df53f75edb876b36",
+  "published_proof_blob": "6cf07e0374f5d303c3528c79caeb30a3aacf7301",
+  "local_extended_proof_sha256": "3f36ec6f9da226f291c1b854169a8dbf2eacd2d06c1c5b48c65a9d709e149348",
+  "local_extended_proof_note": "Local PROOF.md is a longer separately saved derivation; the GitHub PROOF.md is standalone, covers the complete algorithms, premises and proof, and is not byte-identical to the longer local draft.",
+  "status": "mathematical conditional composition instantiated with the existing reference-source QPT-LWE challenger; no practical ORIGINAL Bitcoin source or PQ WKEM achieved",
+  "limitation": "finite algebra checker not security, LWE parameters not certified, target linear opening disqualifies security game, arbitrary false reference linear instance excluded"
+}

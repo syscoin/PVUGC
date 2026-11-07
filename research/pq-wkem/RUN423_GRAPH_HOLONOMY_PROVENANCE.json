@@ -1,0 +1,47 @@
+{
+  "run": 423,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "f60b924be6b03caf9c6808eca7c832fed7851de7",
+  "starting_tree_sha": "1ae9337b3db8f67b9975e998b7d16cee905f60cc",
+  "live_latest_ordinary_comment": 6067040320,
+  "checked_dependency": {
+    "path": "research/pq-wkem/RUN421_IO_SOUNDNESS_COMPACT.md",
+    "blob": "ef3c8dbecf476232e267464ba94c4b81eddb3b22"
+  },
+  "source_primary": [
+    "https://doi.org/10.1007/978-3-031-78023-3_2",
+    "https://arxiv.org/abs/2609.40289"
+  ],
+  "checker_execution": "new Function(console, exact published JavaScript bytes), no Node-specific dependency",
+  "validation": {
+    "run": 423,
+    "assertions": 11355,
+    "tree_mask_assignments": 216,
+    "forest_uniform_pair_count": 36,
+    "forest_count_per_pair": 6,
+    "cycle_supports_disjoint": true,
+    "each_cycle_edge_marginal_uniform": true,
+    "undirected_cycle_in_dag_diamond_checks": 2592,
+    "capability_bits_recovered_without_witness": 4096,
+    "scope": "complete public S3 edge tables; NOT RIO",
+    "post_quantum": "classical attack also available to QPT",
+    "complete_wkem": false
+  },
+  "scope": "finite full-S3 permutation truth table theorem, exact toy counterexample; not cryptographic proof",
+  "evidence_paths": [
+    "research/pq-wkem/RUN423_GRAPH_HOLONOMY_COMPACT.md",
+    "research/pq-wkem/run423_holonomy_compact_check.js",
+    "research/pq-wkem/run423-holonomy-compact-validation.json",
+    "research/pq-wkem/RUN423_GRAPH_HOLONOMY_PROVENANCE.json"
+  ],
+  "limitations": [
+    "not RIO/CCMR attack",
+    "not secure WE construction",
+    "no QPT security proof",
+    "no Bitcoin deployment",
+    "independent longer local-only Python checker"
+  ],
+  "production_changes": false
+}

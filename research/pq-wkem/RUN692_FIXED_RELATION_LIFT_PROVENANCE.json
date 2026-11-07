@@ -1,0 +1,18 @@
+{
+  "run": 692,
+  "research_date": "2026-10-21",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "262f02cccf18e18cca72718e5219a81d8f24a7f8",
+  "scope": "conditional fixed witness-universal relation + false-instance signature unforgeability entails one-bit WE",
+  "checks": {
+    "python_compilation": "pass",
+    "two_runs_byte_identical": true,
+    "finite_gate_circuits": 1560,
+    "candidate_assignments": 49920
+  },
+  "checker_local_sha256": "b417f041ca1911026cc2b9285759b2a9cc93e8f556f611c8ed5ddee814bf71a5",
+  "validation_local_sha256": "a147ecb56bebf48fd17bbbf4f7a0918ea0d5107a19062879ce226d3150c69108",
+  "scope_limits": ["no Syscoin NP-completeness result", "no cryptographic construction", "QPT correlated advice unresolved", "no native Bitcoin deployment claim"]
+}

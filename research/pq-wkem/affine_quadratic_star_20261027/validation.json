@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "assertions": 2764,
+  "counts": {
+    "local": 2733,
+    "factor": 5,
+    "no-literal-input": 20,
+    "rank": 5,
+    "relation": 1
+  },
+  "source": "affine-quadratic-star exact signed-character and factor checks",
+  "cases": [
+    {
+      "h": 1,
+      "rho": "2/3",
+      "independent": "2/3",
+      "maskRank": 4,
+      "validModes": 4,
+      "invalidModes": 4,
+      "originalGatesShareLiteralInput": true
+    },
+    {
+      "h": 2,
+      "rho": "4/7",
+      "independent": "4/9",
+      "maskRank": 6,
+      "validModes": 8,
+      "invalidModes": 24,
+      "originalGatesShareLiteralInput": false
+    },
+    {
+      "h": 3,
+      "rho": "8/15",
+      "independent": "8/27",
+      "maskRank": 8,
+      "validModes": 16,
+      "invalidModes": 112,
+      "originalGatesShareLiteralInput": false
+    },
+    {
+      "h": 4,
+      "rho": "16/31",
+      "independent": "16/81",
+      "maskRank": 10,
+      "validModes": 32,
+      "invalidModes": 480,
+      "originalGatesShareLiteralInput": false
+    },
+    {
+      "h": 5,
+      "rho": "32/63",
+      "independent": "32/243",
+      "maskRank": 12,
+      "validModes": 64,
+      "invalidModes": 1984,
+      "originalGatesShareLiteralInput": false
+    }
+  ],
+  "relationFixture": {
+    "acceptedTrue": 5,
+    "acceptedFalse": 0
+  },
+  "limitations": "The independently executed local Python checker adds exhaustive full-quotient laws, GL2/NAND rewrites and dyadic polar certificate."
+}

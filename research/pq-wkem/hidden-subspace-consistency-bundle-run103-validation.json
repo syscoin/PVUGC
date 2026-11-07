@@ -1,0 +1,154 @@
+{
+  "bundle_T": 3,
+  "bundle_chi_square": "9/7",
+  "correctness": {
+    "p_bad_wrong_per_bundle": "3/56",
+    "p_good_correct_per_bundle": "1/14"
+  },
+  "false_perfect_hiding": [
+    {
+      "K_size": 1,
+      "S_size": 64,
+      "u_index": 0
+    },
+    {
+      "K_size": 1,
+      "S_size": 64,
+      "u_index": 1
+    },
+    {
+      "K_size": 1,
+      "S_size": 64,
+      "u_index": 2
+    },
+    {
+      "K_size": 1,
+      "S_size": 64,
+      "u_index": 3
+    },
+    {
+      "K_size": 1,
+      "S_size": 64,
+      "u_index": 4
+    },
+    {
+      "K_size": 1,
+      "S_size": 64,
+      "u_index": 5
+    },
+    {
+      "K_size": 1,
+      "S_size": 64,
+      "u_index": 6
+    }
+  ],
+  "fixture": {
+    "D": 2,
+    "c": 2,
+    "m": 2,
+    "n": 3,
+    "q": 2,
+    "subspaces": 7
+  },
+  "hair_sahai_binary_ledger": [
+    {
+      "N": 8,
+      "R": 3,
+      "alpha_rank1": 0.0136986301369863,
+      "bundles_L": 12954,
+      "consistency_T": 141,
+      "cutoff_D": 4,
+      "hidden_subspace_dim_m": 6,
+      "log2_total_subcapsules": 20.800661381142454
+    },
+    {
+      "N": 16,
+      "R": 4,
+      "alpha_rank1": 0.0001144417910903251,
+      "bundles_L": 1550533,
+      "consistency_T": 148,
+      "cutoff_D": 5,
+      "hidden_subspace_dim_m": 13,
+      "log2_total_subcapsules": 27.773786166114697
+    },
+    {
+      "N": 32,
+      "R": 5,
+      "alpha_rank1": 3.6088749770551076e-09,
+      "bundles_L": 49169250626,
+      "consistency_T": 163,
+      "cutoff_D": 6,
+      "hidden_subspace_dim_m": 28,
+      "log2_total_subcapsules": 42.865765470742545
+    },
+    {
+      "N": 64,
+      "R": 6,
+      "alpha_rank1": 1.7076184216646695e-18,
+      "bundles_L": 103914127402281893888,
+      "consistency_T": 194,
+      "cutoff_D": 7,
+      "hidden_subspace_dim_m": 59,
+      "log2_total_subcapsules": 74.09386654574232
+    }
+  ],
+  "intersection_enumerator_total": "16/7",
+  "public_U_attack": {
+    "codimension": 2,
+    "success_probability": "7/8"
+  },
+  "rank1_good_probability": "1/7",
+  "run": 103,
+  "scope": [
+    "Finite algebra/probability controls only.",
+    "Perfect false hiding is proved algebraically in the note, not inferred from tests.",
+    "The bundle's Fourier support is source-extractable, but arbitrary-QPT recovery-to-mode extraction still needs a quantitative response-mass theorem.",
+    "The Hair-Sahai resource ledger is an interface estimate, not a deployment benchmark."
+  ],
+  "status": "PASS",
+  "total_assertions": 242,
+  "true_geometry": [
+    {
+      "K_size": 1,
+      "S_size": 64,
+      "codim": 0,
+      "u_index": 0
+    },
+    {
+      "K_size": 1,
+      "S_size": 64,
+      "codim": 0,
+      "u_index": 1
+    },
+    {
+      "K_size": 1,
+      "S_size": 64,
+      "codim": 0,
+      "u_index": 2
+    },
+    {
+      "K_size": 4,
+      "S_size": 16,
+      "codim": 2,
+      "u_index": 3
+    },
+    {
+      "K_size": 1,
+      "S_size": 64,
+      "codim": 0,
+      "u_index": 4
+    },
+    {
+      "K_size": 1,
+      "S_size": 64,
+      "codim": 0,
+      "u_index": 5
+    },
+    {
+      "K_size": 1,
+      "S_size": 64,
+      "codim": 0,
+      "u_index": 6
+    }
+  ]
+}

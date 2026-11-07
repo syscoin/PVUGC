@@ -1,0 +1,28 @@
+# Run 421 — computationally sound source proofs do NOT imply iO-equivalent false-release circuits
+
+Date: 2026-10-11. Repo: syscoin/PVUGC#1; draft research branch research/pq-wkem-validation-20260918. Read-first exact head 2dfc9c8259f373e51149942d7080c3fe7745bd33. Latest substantive ordinary comment 6067040320.
+Verified dependencies: Run 420 blob 466a038c928596e76d2616367a6216571916c129; Run 259 blob c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2; CLZ applicability blob c19d9d9cd515140e3ce62eac960cd548c0add622.
+
+## Exact counterexample (conditional on a QPT one-way function)
+Let classical-PPT computable f:{0,1}^lambda->{0,1}^{poly(lambda)} be a one-way function against arbitrary QPT inverters with ordinary advice independent of the sampled preimage. The ORIGINAL source relation is R(1,w)=[w in {0,1}] (two distinct valid ORIGINAL witnesses), and R(0,w)=0 for every w.
+Honest classical CRS setup samples u uniformly, publishes y=f(u), and erases u. A SMALL public proof verifier accepts pi=0 or 1 on x=1, and accepts on x=0 precisely if f(pi)=y. Every true ORIGINAL witness produces a proof and recovers the same independently sampled native key K. For false x=0, a QPT prover finding an accepted pi must invert f on the random image y; thus the proof system is computationally sound assuming f is QPT one-way.
+Yet on EVERY honestly sampled false-instance CRS, pi=u is accepted. Consequently the release circuit C_(y,K)(pi)= K if Verify(0,pi), else bottom is NOT extensionally equal to the constant-bottom circuit. Standard iO (including classical-circuit iO secure against QPT distinguishers) applies to equal-sized EQUIVALENT circuits, not merely computationally indistinguishable functionality on efficiently found inputs. Therefore computational SNARG soundness alone does not validate an iO hybrid replacing C_(y,K) by bottom. This is a proof-method obstruction, NOT proof that the obfuscated circuit leaks K or that every SNARG is insecure.
+
+## Conditional positive route from Run 259
+Suppose a classical public-CRS setup and complete representation predicate V satisfy Pr_crs[exists z accepted when ORIGINAL x is false] <= delta. On the complementary good-CRS event, release and bottom programs are EQUAL on every input. If one assumes QPT-secure classical-circuit iO with reduction-generated correlated auxiliary vk(K), a QPT-EUF-CMA native signature scheme, and the ability to simulate ALL other public data in the bottom-world from vk without K, then a straight-line hybrid gives Pr[false-instance fresh-signature forgery] <= delta + Adv_QPT_iO + Adv_QPT_EUF. The target message must not already be publicly pre-signed.
+Run 259's statistical complete-residual fold supports delta <= |Z_x| q^{-t}; this may demand a LARGE t. Run 259's alternative SIS acceptance reduces an efficiently FOUND invalid z to QPT SIS, but does NOT show that no invalid accepted z exists. Computational SIS hardness is not functional equivalence; it cannot, without another lemma, replace delta in standard iO. Neither route proves true-instance arbitrary native-signature-to-ORIGINAL extraction.
+
+## Attack and model ledger
+Honest algorithms: classical PPT. Attackers: arbitrary QPT with all published program bytes, native checking keys, CRS, permissible efficiently generated auxiliary inputs and coherent simulation of classical public evaluators. No QROM or rewinding in the stated reductions. Arbitrary non-simulatable secret-correlated quantum advice, malicious setup, N-of-N ceremony, and multiple-capsule composition are UNPROVED.
+Relevant attacks: source/verdict seam (1); adaptive public proof search (5); malicious retained CRS preimage or zero folding CRS (6); public vk(K) correlations in the conditional hybrid (8); quantum one-way soundness but unavoidable extensional mismatch (9). Mask-frame synchronization (2), statistical gate fingerprints (3), multi-view elimination (4), and cross-UTXO reuse (7) are not tested for a real mixer.
+
+## Exact executed checker
+run421_compact_check.js is the exact compact checker executed before publishing; validation JSON records its deterministic result. It enumerates small INVERTIBLE toy permutations and binary folds, not any secure one-way function, iO, or actual quantum algorithm. It is a negative-control. An independent extended local-only Python checker ran 40,996 assertions, including 32 Ed25519 native-signature fixtures; Ed25519 is NOT PQ. No full practical WKEM follows from tests.
+
+## Literature and scope
+FOCS 2013 Garg et al equivalent-circuit iO definition: https://research.ibm.com/publications/candidate-indistinguishability-obfuscation-and-functional-encryption-for-all-circuits-extended-abstract .
+FOCS 2022 Bitansky et al proof-of-equivalence framework: https://doi.org/10.1109/FOCS54457.2022.00100 .
+CLZ CRYPTO 2026 functional/homomorphic/CCA system: https://simons.berkeley.edu/talks/ji-luo-mit-csail-2026-07-13 . The complete CLZ proof was NOT audited; this theorem does not assert a flaw in CLZ.
+
+## Handoff
+The missing object remains a compact protected source-to-key release frontier under independently justified QPT assumptions: all valid ORIGINAL witnesses recover SAME K; false ORIGINAL statements hide K in full public view; unauthorized true-instance native signing or key recovery reduces to ORIGINAL evidence or an independent QPT break. Statistical no-ghost plus QPT iO only addresses a restricted FALSE-instance hybrid. Run 259 starts AFTER an accepted COMPLETE source representation exists. Original N-of-N ceremony, graph liveness, multi-capsule security and conditional native PQ Bitcoin endpoint remain unproved. Draft PR only, no production changes. STOPPING CONDITION NOT MET.

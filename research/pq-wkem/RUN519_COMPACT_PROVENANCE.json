@@ -1,0 +1,20 @@
+{
+  "run": 519,
+  "date": "2026-10-15",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "parent": "e7a8a1e1dda86bd6ea8efd3c5e516314966481d9",
+  "kind": "bounded research-only compact publication",
+  "checker": "run519_commutator_check.py",
+  "validation": "run519_commutator_validation.json",
+  "execution": "Original local checker was run twice in Python with byte-identical captured output. Committed checker source is intended to be byte-identical and is subject to exact Git blob comparison.",
+  "dependency_git_blobs": {
+    "run518": "f5c6f40cce0b31da6dec3d1221270d89b73374d0",
+    "run517": "fb0acb35eae848e7fa3b19a5486085d126fcf41f",
+    "run516": "fe183bf7b53eb5087e3496d7ae2cdeeef525b979",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  },
+  "scope": "Reversible commutator algebra, full-space oracle support, public factor-exposure counterexample; no practical PQ release",
+  "production_changed": false
+}

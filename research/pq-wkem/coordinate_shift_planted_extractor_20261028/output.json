@@ -1,0 +1,1 @@
+{"status":"PASS","assertions":8765,"full_vector_q17_unique_states":1445,"black_box_extracted":[1,0,1,0,1,0,0,0,0],"black_box_true":[1,0,1,0,1,0,0,0,0],"anchor_gap":0.584667,"same_seed_trials":10,"claim":"bounded classical algebra only; no QPT hardness"}

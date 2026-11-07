@@ -1,0 +1,133 @@
+{
+  "assertions": 1163452,
+  "assumptions": [
+    "prime-field arithmetic",
+    "same uniform hidden s across public offsets",
+    "no assumption about correctness/hiding of a full LWE public hp"
+  ],
+  "classification": {
+    "q2_n1_m1": {
+      "hides_mask_only": 1,
+      "leak_fraction": "1/2",
+      "leaks_same_key": 1,
+      "total": 2
+    },
+    "q2_n1_m2": {
+      "hides_mask_only": 1,
+      "leak_fraction": "3/4",
+      "leaks_same_key": 3,
+      "total": 4
+    },
+    "q2_n1_m3": {
+      "hides_mask_only": 1,
+      "leak_fraction": "7/8",
+      "leaks_same_key": 7,
+      "total": 8
+    },
+    "q2_n2_m1": {
+      "hides_mask_only": 3,
+      "leak_fraction": "1/4",
+      "leaks_same_key": 1,
+      "total": 4
+    },
+    "q2_n2_m2": {
+      "hides_mask_only": 9,
+      "leak_fraction": "7/16",
+      "leaks_same_key": 7,
+      "total": 16
+    },
+    "q2_n2_m3": {
+      "hides_mask_only": 21,
+      "leak_fraction": "43/64",
+      "leaks_same_key": 43,
+      "total": 64
+    },
+    "q3_n1_m1": {
+      "hides_mask_only": 2,
+      "leak_fraction": "1/3",
+      "leaks_same_key": 1,
+      "total": 3
+    },
+    "q3_n1_m2": {
+      "hides_mask_only": 2,
+      "leak_fraction": "7/9",
+      "leaks_same_key": 7,
+      "total": 9
+    },
+    "q3_n1_m3": {
+      "hides_mask_only": 2,
+      "leak_fraction": "25/27",
+      "leaks_same_key": 25,
+      "total": 27
+    },
+    "q3_n2_m1": {
+      "hides_mask_only": 8,
+      "leak_fraction": "1/9",
+      "leaks_same_key": 1,
+      "total": 9
+    },
+    "q3_n2_m2": {
+      "hides_mask_only": 56,
+      "leak_fraction": "25/81",
+      "leaks_same_key": 25,
+      "total": 81
+    },
+    "q3_n2_m3": {
+      "hides_mask_only": 200,
+      "leak_fraction": "529/729",
+      "leaks_same_key": 529,
+      "total": 729
+    },
+    "q5_n1_m1": {
+      "hides_mask_only": 4,
+      "leak_fraction": "1/5",
+      "leaks_same_key": 1,
+      "total": 5
+    },
+    "q5_n1_m2": {
+      "hides_mask_only": 4,
+      "leak_fraction": "21/25",
+      "leaks_same_key": 21,
+      "total": 25
+    },
+    "q5_n1_m3": {
+      "hides_mask_only": 4,
+      "leak_fraction": "121/125",
+      "leaks_same_key": 121,
+      "total": 125
+    },
+    "q5_n2_m1": {
+      "hides_mask_only": 24,
+      "leak_fraction": "1/25",
+      "leaks_same_key": 1,
+      "total": 25
+    },
+    "q5_n2_m2": {
+      "hides_mask_only": 504,
+      "leak_fraction": "121/625",
+      "leaks_same_key": 121,
+      "total": 625
+    },
+    "q5_n2_m3": {
+      "hides_mask_only": 2904,
+      "leak_fraction": "12721/15625",
+      "leaks_same_key": 12721,
+      "total": 15625
+    }
+  },
+  "limitations": [
+    "finite checks do not prove cryptographic hardness",
+    "nonleak classification is for mask-only view, not full LWE view",
+    "related targets may be excluded by independently justified binding/fresh keys"
+  ],
+  "stats": {
+    "different_key_full_bit_pair_recoveries": 184768,
+    "fresh_secret_controls": 2,
+    "identical_target_no_leak_controls": 83,
+    "leaking_matrices": 13636,
+    "matrices": 17386,
+    "nonleaking_matrices": 3750,
+    "three_target_full_key_recoveries": 1826
+  },
+  "status": "PASS"
+}

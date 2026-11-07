@@ -1,0 +1,80 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "date_utc": "2026-09-25",
+  "exact_version_inputs": [
+    {
+      "git_blob": "5fc79b25e140d2fba30e00c6fd168b619beabd45",
+      "path": "research/pq-wkem/GAPMDP_SHORT_KERNEL_BRIDGE_RUN92.md"
+    },
+    {
+      "git_blob": "f8634c5dd2bc29796f152ebde67064fe55045cc9",
+      "path": "research/pq-wkem/SIS_RANDOMIZED_SHORT_KERNEL_LIFT_RUN42.md"
+    },
+    {
+      "git_blob": "4fefd6c364a76fd12fe76169ddbec47e486c786b",
+      "path": "research/pq-wkem/LWE_DIRECTIONAL_TRANSPORT_RUN72.md"
+    },
+    {
+      "git_blob": "0f93693ad51f7d84c249fd02ffa361bcadd3dd84",
+      "path": "research/pq-wkem/SPECTRAL_DIMENSION_FLOOR_RUN89.md"
+    },
+    {
+      "git_blob": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924",
+      "path": "research/pq-wkem/literature-20260924/ASSESSMENT.md"
+    }
+  ],
+  "files": {
+    "TRANSVERSE_RTLWE_QPT_AND_PREPUBLICATION_BARRIER_RUN94.md": {
+      "sha256": "440cfa1f8d1c7068581eb85b7228cdb513175ae61f3e324850a3350049525770"
+    },
+    "transverse-rtlwe-publication-run94-validation.json": {
+      "sha256": "8b00835fe9a28cab69a62bab315b822fc35b101854ada26f07650c6b5e84b7c1"
+    },
+    "transverse_rtlwe_publication_run94_check.py": {
+      "sha256": "50b07cbb3eee6c64c5e6c53f5f655cfac95a179a9a8fd3db7cb89024c8699ff1"
+    }
+  },
+  "primary_sources": [
+    {
+      "authors": [
+        "Brent Waters",
+        "Hoeteck Wee",
+        "David J. Wu"
+      ],
+      "eprint": "https://eprint.iacr.org/2022/1194",
+      "inspected_sections": [
+        "technical overview subset-policy CP-ABE",
+        "Assumption 4.1",
+        "Theorem 4.2",
+        "Lemmas 4.3-4.7",
+        "Section 5 mapping to subset policies"
+      ],
+      "paper_claim_vs_derived": "The paper states the classical/efficient-adversary generalized RTLWE-to-LWE theorem. The QPT classical-query lift is derived in Run 94 and is not attributed to the authors.",
+      "pdf": "https://ntt-research.com/wp-content/uploads/2023/01/Multi-authority-ABE-from-lattices-without-random-oracles.pdf",
+      "title": "Multi-Authority ABE from Lattices without Random Oracles",
+      "venue": "TCC 2022 / IACR ePrint 2022/1194"
+    }
+  ],
+  "production_code_changed": false,
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "research_result": {
+    "negative": "For the subset-policy identity-selector mapping, the RTLWE full-rank gate is exactly the unauthorized-set condition. Clear public same-binding ABE key-component prepublication sufficient for an authorized set exposes a witness-free decryption key; independent bindings do not satisfy the core single-r cancellation identity in general.",
+    "positive": "Derived QPT lift of Waters-Wee-Wu generalized related-trapdoor LWE for QPT adversaries with arbitrary quantum state but only classical preimage queries/static classical auxiliary views, conditional on QPT hardness of the exact LWE distribution used in their Lemma 4.5/Theorem 4.2 and their statistical parameter conditions.",
+    "scope": "Does not prove coherent-superposition preimage-oracle security, generic-NP source capability, full-output QPT hiding, arbitrary-QPT source extraction, or a completed WKEM."
+  },
+  "run": "94",
+  "starting_verified_head": "f127e33fb43ed2898bcc0a67ddbc944c5f514ca9",
+  "validation": {
+    "accidental_equalities_mod_257": 1,
+    "byte_identical": true,
+    "core_abe_decryptions": 500,
+    "deterministic_seed": 9400260925,
+    "independent_binding_identity_failures": 299,
+    "independent_binding_negative_controls": 300,
+    "public_same_binding_pool_decryptions": 500,
+    "runs": 2,
+    "security_inference": false,
+    "subset_pairs": 87376
+  }
+}

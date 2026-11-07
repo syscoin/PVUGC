@@ -1,0 +1,27 @@
+{
+  "status": "NO_POSITIVE_SECURE_ADVANCE",
+  "verified_checks": 533,
+  "original_false_assignments": 64,
+  "monomial_columns": 41,
+  "exact_rows": 11,
+  "low_row_types": 23,
+  "public_proxy_support": [
+    [
+      "x0*x2",
+      1
+    ],
+    [
+      "x0*x3",
+      -1
+    ]
+  ],
+  "q": 65537,
+  "h": 800,
+  "g": 1601,
+  "radix": 40,
+  "capsules": 3,
+  "columns": 147,
+  "full_256bit_false_key_recoveries": 3,
+  "log2_upper_bound_attack_failure": -136.069832,
+  "security": "arbitrary-FALSE complete-public SOURCE fails, no original witness needed"
+}

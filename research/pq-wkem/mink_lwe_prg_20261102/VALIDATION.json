@@ -1,0 +1,20 @@
+{
+  "run_id": "MINK-LWE-PRG-20261102-T20",
+  "kind": "independent-small-fixture",
+  "assertions": 7354,
+  "q": 256,
+  "n": 4,
+  "m": 24,
+  "a": 3,
+  "seed_bits": 104,
+  "output_bits": 192,
+  "stretch_bytes": 55,
+  "false_distributions": "exact for all three two-lane openings",
+  "true_witnesses": [
+    0,
+    7
+  ],
+  "matrix_sha256": "4381489fca19acb41199e67c473569e374495e998a43c692e603380bf3039fac",
+  "stretch_sha256": "0e3a1fe4c30b2b7b73a782fba0f27a1d58a13d778cd1e6fb34fdac261c74a226",
+  "caveat": "Toy algebra only; full-size Python and proof in offline archive."
+}

@@ -1,0 +1,20 @@
+{
+  "record": "shared_A_target_separated_selective_open_20261030",
+  "assertions": 134,
+  "finite": {
+    "mean_TV": 0.33279999999999976,
+    "two_target_TV": 0.4987733333333339,
+    "source_mean": 1.2,
+    "source_variance": 0.96,
+    "no_preimage": 0.2752
+  },
+  "storage_bytes": {
+    "naive": 2104934400,
+    "shared": 36864000,
+    "aBytes": 5222400,
+    "uBytes": 39936,
+    "ctBytes": 20556,
+    "savings_pct": 98.24868651488616
+  },
+  "scope_warning": "Same U reused across claims means any released short opening decrypts both, regardless of separate keys."
+}

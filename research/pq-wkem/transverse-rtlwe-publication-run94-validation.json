@@ -1,0 +1,32 @@
+{
+  "checks": {
+    "core_subset_abe": {
+      "correct_decryptions": 500,
+      "public_same_binding_pool_decryptions": 500
+    },
+    "independent_binding_negative_control": {
+      "accidental_equalities": 1,
+      "single_binding_identity_failures": 299,
+      "trials": 300
+    },
+    "subset_transversality": {
+      "authorized": 9837,
+      "pairs": 87376,
+      "unauthorized": 77539
+    }
+  },
+  "claims_validated": [
+    "For identity-selector M_Y and indicator u_X, rank([M_Y;u_X])=rank(M_Y)+1 iff X is not a subset of Y.",
+    "The core common-binding subset-ABE cancellation identity decrypts for authorized X subset Y.",
+    "If same-binding key components sufficient for an authorized Y containing X are public, the challenge decrypts publicly.",
+    "Independently bound attribute components generally do not satisfy the same single-binding cancellation identity (negative control only)."
+  ],
+  "modulus": 257,
+  "run": "94",
+  "security_nonclaims": [
+    "The checker does not prove LWE, RTLWE, or QPT hardness.",
+    "The QPT lift in the proof note is a reduction argument for classical-query/static views, not established by these finite tests.",
+    "No generic-NP WKEM is completed."
+  ],
+  "seed": 9400260925
+}

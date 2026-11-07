@@ -1,0 +1,11 @@
+{
+  "run": 541,
+  "repository": "syscoin/PVUGC",
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "4c75e8cc8b4d61f9f0e4fea3c4490dd8d7c4e367",
+  "starting_tree": "222bd448d270e34a2f7d58c0af2f333937ee1a7b",
+  "execution": "node --check, two identical executions, independent extended Python verification",
+  "checker_local_sha256": "73b9ba9d8dc84d532cee136d7ce46eed5ac291ee33070c141b579806cb031c08",
+  "validation_local_sha256": "839c8ce780748647013fb89eb2e1f1ad06f2e85273084ab8915521fb1608e2ee",
+  "conclusion": "scoped false-instance classical full-key recovery; not WKEM or PQ security"
+}

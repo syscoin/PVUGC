@@ -1,0 +1,187 @@
+{
+  "run": 544,
+  "model": "Toy SplitMix64 public H,T; exact finite enumeration; not quantum execution",
+  "cases": 16,
+  "markedTotal": 498,
+  "trivialTotal": 465,
+  "hashTargets": 48,
+  "passed": true,
+  "details": [
+    {
+      "k": 4,
+      "j": 0,
+      "key": 8,
+      "q": 3,
+      "marked": 24,
+      "trivial": 21,
+      "early": 0,
+      "rounds": 1,
+      "grover_p": 0.95651
+    },
+    {
+      "k": 4,
+      "j": 1,
+      "key": 1,
+      "q": 3,
+      "marked": 18,
+      "trivial": 20,
+      "early": 0,
+      "rounds": 2,
+      "grover_p": 0.865614
+    },
+    {
+      "k": 4,
+      "j": 2,
+      "key": 9,
+      "q": 3,
+      "marked": 26,
+      "trivial": 20,
+      "early": 1,
+      "rounds": 1,
+      "grover_p": 0.977647
+    },
+    {
+      "k": 4,
+      "j": 3,
+      "key": 10,
+      "q": 3,
+      "marked": 26,
+      "trivial": 23,
+      "early": 0,
+      "rounds": 1,
+      "grover_p": 0.977647
+    },
+    {
+      "k": 5,
+      "j": 0,
+      "key": 3,
+      "q": 3,
+      "marked": 18,
+      "trivial": 36,
+      "early": 0,
+      "rounds": 2,
+      "grover_p": 0.952039
+    },
+    {
+      "k": 5,
+      "j": 1,
+      "key": 3,
+      "q": 3,
+      "marked": 25,
+      "trivial": 27,
+      "early": 0,
+      "rounds": 2,
+      "grover_p": 0.999213
+    },
+    {
+      "k": 5,
+      "j": 2,
+      "key": 21,
+      "q": 3,
+      "marked": 22,
+      "trivial": 29,
+      "early": 0,
+      "rounds": 2,
+      "grover_p": 0.994515
+    },
+    {
+      "k": 5,
+      "j": 3,
+      "key": 22,
+      "q": 3,
+      "marked": 27,
+      "trivial": 31,
+      "early": 0,
+      "rounds": 2,
+      "grover_p": 0.991349
+    },
+    {
+      "k": 6,
+      "j": 0,
+      "key": 2,
+      "q": 4,
+      "marked": 36,
+      "trivial": 28,
+      "early": 3,
+      "rounds": 2,
+      "grover_p": 0.950867
+    },
+    {
+      "k": 6,
+      "j": 1,
+      "key": 38,
+      "q": 4,
+      "marked": 36,
+      "trivial": 25,
+      "early": 0,
+      "rounds": 2,
+      "grover_p": 0.950867
+    },
+    {
+      "k": 6,
+      "j": 2,
+      "key": 30,
+      "q": 4,
+      "marked": 36,
+      "trivial": 31,
+      "early": 0,
+      "rounds": 2,
+      "grover_p": 0.950867
+    },
+    {
+      "k": 6,
+      "j": 3,
+      "key": 44,
+      "q": 4,
+      "marked": 44,
+      "trivial": 18,
+      "early": 1,
+      "rounds": 2,
+      "grover_p": 0.994057
+    },
+    {
+      "k": 7,
+      "j": 0,
+      "key": 47,
+      "q": 5,
+      "marked": 37,
+      "trivial": 43,
+      "early": 0,
+      "rounds": 4,
+      "grover_p": 0.976251
+    },
+    {
+      "k": 7,
+      "j": 1,
+      "key": 91,
+      "q": 5,
+      "marked": 35,
+      "trivial": 34,
+      "early": 0,
+      "rounds": 4,
+      "grover_p": 0.988621
+    },
+    {
+      "k": 7,
+      "j": 2,
+      "key": 91,
+      "q": 5,
+      "marked": 41,
+      "trivial": 36,
+      "early": 0,
+      "rounds": 3,
+      "grover_p": 0.975525
+    },
+    {
+      "k": 7,
+      "j": 3,
+      "key": 89,
+      "q": 5,
+      "marked": 47,
+      "trivial": 43,
+      "early": 0,
+      "rounds": 3,
+      "grover_p": 0.996907
+    }
+  ]
+}

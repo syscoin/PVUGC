@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "suite": "independent_js_shared_key_adaptive_openings",
+  "checks": 4984,
+  "theta_cardinality_bit_length": 2546,
+  "adaptive_policies": 1,
+  "full_openings_tested": 1024
+}

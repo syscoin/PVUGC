@@ -1,0 +1,255 @@
+{
+  "id": "REVIEWER_LINEAGE_20260928",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "source_snapshot_sha": "9d3a4dd419a18e6be08d1c8eca9b719f514ed6f3",
+  "latest_ordinary_comment_read": 5859816284,
+  "scope": "Publication-gap and local archive integrity metadata only; no denied proof, checker, output or compressed mathematical summary is republished.",
+  "basis_for_branch_absence": "Connected GitHub list_pr_changed_filenames at the source snapshot; no labeled artifact sets for these run IDs were present.",
+  "historical_denials": "Reported in the conversation, and for the earlier range in ordinary PR comment 5859816284. Original denial execution logs were not retrieved this session. No supported resolution is asserted.",
+  "publication_disposition": "Excluded from retry. This inventory is not permission to retry the listed payloads.",
+  "already_present_recent_run_sets": [
+    129,
+    131,
+    132,
+    133,
+    134,
+    140,
+    147,
+    152
+  ],
+  "local_missing_run_sets": 32,
+  "local_original_members": 128,
+  "zip_integrity_checked": true,
+  "archive_sha256_computed": true,
+  "research_checkers_executed_this_session": false,
+  "historical_test_results_independently_validated_this_session": false,
+  "sandbox_paths_guaranteed_to_persist": false,
+  "archives": [
+    {
+      "run": 130,
+      "archive": "PQ_WKEM_RUN130_LOCAL_ARTIFACTS.zip",
+      "bytes": 10915,
+      "sha256": "880980b77d6d75f12929887d9914c3db97f47bcf5c2a447dae5ebf2d7738dd82",
+      "members": 4
+    },
+    {
+      "run": 135,
+      "archive": "PQ_WKEM_RUN135_LOCAL_ARTIFACTS.zip",
+      "bytes": 12376,
+      "sha256": "91dc7c03a4d3a5861036f47fe29489ecee8569b6368c1e20066d8a9fc7548abf",
+      "members": 4
+    },
+    {
+      "run": 136,
+      "archive": "PQ_WKEM_RUN136_LOCAL_ARTIFACTS.zip",
+      "bytes": 15259,
+      "sha256": "7a0fc9cb8dd6c99ff1f3568f5876d8c034e0d6cc71a44cff5e3fff66a5f7b70d",
+      "members": 4
+    },
+    {
+      "run": 137,
+      "archive": "PQ_WKEM_RUN137_LOCAL_ARTIFACTS.zip",
+      "bytes": 10897,
+      "sha256": "48f3943a34846fb1ebba4e8ca64e6f033accd486d39ab3249f478186280f9849",
+      "members": 4
+    },
+    {
+      "run": 138,
+      "archive": "PQ_WKEM_RUN138_LOCAL_ARTIFACTS.zip",
+      "bytes": 12652,
+      "sha256": "e4133edf608584f8fb29d11bdc502cfe5ef93a8f19c0955f35da21a0f84b1856",
+      "members": 4
+    },
+    {
+      "run": 139,
+      "archive": "PQ_WKEM_RUN139_LOCAL_ARTIFACTS_FINAL.zip",
+      "bytes": 10676,
+      "sha256": "6fdf14772ccfce7ef19e8966886addc41460ef636a25c6fef13c43acc04c4e92",
+      "members": 4
+    },
+    {
+      "run": 141,
+      "archive": "PQ_WKEM_RUN141_LOCAL_ARTIFACTS.zip",
+      "bytes": 11475,
+      "sha256": "78f0547ff7860c22c5356d47810cc4fed170ebf8edfe5f57af04e2e39aaa582a",
+      "members": 4
+    },
+    {
+      "run": 142,
+      "archive": "PQ_WKEM_RUN142_LOCAL_ARTIFACTS.zip",
+      "bytes": 9082,
+      "sha256": "dc145575696837292d47e388b858170a9fed0d8f79b77b8f992a007dedd27025",
+      "members": 4
+    },
+    {
+      "run": 143,
+      "archive": "PQ_WKEM_RUN143_LOCAL_ARTIFACTS.zip",
+      "bytes": 11857,
+      "sha256": "c3ed72c19e13246d9d94c617a406025deb3807aa6240d080515891b79a580dc0",
+      "members": 4
+    },
+    {
+      "run": 144,
+      "archive": "PQ_WKEM_RUN144_LOCAL_ARTIFACTS.zip",
+      "bytes": 13047,
+      "sha256": "df617c509ba787620f6b09e71af24ac33f2cae327d3d231ed37ca0d3a7a1a0fc",
+      "members": 4
+    },
+    {
+      "run": 145,
+      "archive": "PQ_WKEM_RUN145_LOCAL_ARTIFACTS.zip",
+      "bytes": 14771,
+      "sha256": "e7fd72d08598963e0bda6966c118713729dcf66311931c1b624493b3407be60d",
+      "members": 4
+    },
+    {
+      "run": 146,
+      "archive": "PQ_WKEM_RUN146_LOCAL_ARTIFACTS.zip",
+      "bytes": 13623,
+      "sha256": "b26ae1fda448caa8e437176b9041e0e1294755017bf9f509e2bc3da6589e8d1e",
+      "members": 4
+    },
+    {
+      "run": 148,
+      "archive": "PQ_WKEM_RUN148_LOCAL_ARTIFACTS.zip",
+      "bytes": 12819,
+      "sha256": "f009576af4e7389301d7d1a741f22b1947bb59cbcca6b46a385e23c269817fef",
+      "members": 4
+    },
+    {
+      "run": 149,
+      "archive": "PQ_WKEM_RUN149_LOCAL_ARTIFACTS.zip",
+      "bytes": 11898,
+      "sha256": "11898e6be7a68715eca45bdcd2b18f9cf2ad610a97322e4f47f5985365b91846",
+      "members": 4
+    },
+    {
+      "run": 150,
+      "archive": "PQ_WKEM_RUN150_LOCAL_ARTIFACTS.zip",
+      "bytes": 15109,
+      "sha256": "3918e085493da4600ea6b5e256d7943a1d06d5f591a4215f84b4fe4ad992d5ac",
+      "members": 4
+    },
+    {
+      "run": 151,
+      "archive": "PQ_WKEM_RUN151_LOCAL_ARTIFACTS.zip",
+      "bytes": 12802,
+      "sha256": "fb53caf10c2331335ed3f17a6d67975b43230846c236895ef1603162e71c72f0",
+      "members": 4
+    },
+    {
+      "run": 153,
+      "archive": "PQ_WKEM_RUN153_LOCAL_ARTIFACTS.zip",
+      "bytes": 13442,
+      "sha256": "58f9c776e5feb50eba9ed8d429c842154daa9e713b7c721f2329d2f2f66374c2",
+      "members": 4
+    },
+    {
+      "run": 154,
+      "archive": "PQ_WKEM_RUN154_LOCAL_ARTIFACTS.zip",
+      "bytes": 16626,
+      "sha256": "655a77bd03a94f5bc69ad228925d79dd8da1f6e24ba876f68caddcfef442c166",
+      "members": 4
+    },
+    {
+      "run": 155,
+      "archive": "PQ_WKEM_RUN155_LOCAL_ARTIFACTS.zip",
+      "bytes": 11647,
+      "sha256": "bc1324e1394514efb8fcfac1a2adae8558da60e8592f333362a98994b645e741",
+      "members": 4
+    },
+    {
+      "run": 156,
+      "archive": "PQ_WKEM_RUN156_LOCAL_ARTIFACTS.zip",
+      "bytes": 14964,
+      "sha256": "46ce95ba7a3c91385e1f4b053cdef6da8c0ae07533fce21008c6125bda042a8f",
+      "members": 4
+    },
+    {
+      "run": 157,
+      "archive": "PQ_WKEM_RUN157_LOCAL_ARTIFACTS.zip",
+      "bytes": 15689,
+      "sha256": "5f10b8599ac2f41e00ab386a086562a0190ffcbb6d2f89cb69a91e30250bd334",
+      "members": 4
+    },
+    {
+      "run": 158,
+      "archive": "PQ_WKEM_RUN158_LOCAL_ARTIFACTS.zip",
+      "bytes": 8731,
+      "sha256": "817074e7622b226fe6960ff8d3a435500c6b1e2da1cbf4747c3be5c5ff833ac7",
+      "members": 4
+    },
+    {
+      "run": 159,
+      "archive": "PQ_WKEM_RUN159_LOCAL_ARTIFACTS.zip",
+      "bytes": 9511,
+      "sha256": "08ff530db015ba11bda3d9ba9adbc293b41af5b25957297ccff2045883b735a4",
+      "members": 4
+    },
+    {
+      "run": 160,
+      "archive": "PQ_WKEM_RUN160_LOCAL_ARTIFACTS.zip",
+      "bytes": 11589,
+      "sha256": "262de5456745e43cd8dcfb42afef266a5c612ab47071b3df7b459a5944ccc295",
+      "members": 4
+    },
+    {
+      "run": 161,
+      "archive": "PQ_WKEM_RUN161_LOCAL_ARTIFACTS.zip",
+      "bytes": 9850,
+      "sha256": "39e3422ac4bbe119aec7a169759ebbcc196c4929b718f2adc17f9c69231efda4",
+      "members": 4
+    },
+    {
+      "run": 162,
+      "archive": "PQ_WKEM_RUN162_LOCAL_ARTIFACTS.zip",
+      "bytes": 9719,
+      "sha256": "2552f3caadd9b2126482c8d26467c4ecdd5c439e806f9c6430dafd96938d75d4",
+      "members": 4
+    },
+    {
+      "run": 163,
+      "archive": "PQ_WKEM_RUN163_LOCAL_ARTIFACTS.zip",
+      "bytes": 9696,
+      "sha256": "c17b54d05f1299c8e18c66cc916d747a6c7fafcb6f488e16a831b859d200fad9",
+      "members": 4
+    },
+    {
+      "run": 164,
+      "archive": "PQ_WKEM_RUN164_LOCAL_ARTIFACTS.zip",
+      "bytes": 11423,
+      "sha256": "3e0a170103705bea203fc6f207efeea5194e7428123804f8b7ffe3a5e6a6daf0",
+      "members": 4
+    },
+    {
+      "run": 165,
+      "archive": "PQ_WKEM_RUN165_LOCAL_ARTIFACTS.zip",
+      "bytes": 12183,
+      "sha256": "6fea007fdc282169755df93fa76134ffe4ee65b52735d282f2d4ab7072d6d8ad",
+      "members": 4
+    },
+    {
+      "run": 166,
+      "archive": "PQ_WKEM_RUN166_LOCAL_ARTIFACTS.zip",
+      "bytes": 12033,
+      "sha256": "7e91d965b41c4d99c9e18d5ac0ca6abc37915fe1ede65f62cd8f994ae4b9b1e9",
+      "members": 4
+    },
+    {
+      "run": 167,
+      "archive": "PQ_WKEM_RUN167_LOCAL_ARTIFACTS.zip",
+      "bytes": 10162,
+      "sha256": "dbc86bbdfc0015856a28d38f513f70a9473e6677013eb6c736bd53d16ac58d01",
+      "members": 4
+    },
+    {
+      "run": 168,
+      "archive": "PQ_WKEM_RUN168_LOCAL_ARTIFACTS.zip",
+      "bytes": 10472,
+      "sha256": "635d0a4d6634fbcd0788d74cc797b7dd967fd91ed83e37dad3c9e4bd26387bdb",
+      "members": 4
+    }
+  ]
+}

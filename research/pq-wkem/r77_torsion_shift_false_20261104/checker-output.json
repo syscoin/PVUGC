@@ -1,0 +1,17 @@
+{
+  "run": "R77-TORSION-SHIFT-FALSE-20261104",
+  "status": "STRICT_CERTIFIED_FALSE_CLASS_EXTENSION__NOT_GENERIC_WKEM",
+  "assertions": 8905,
+  "exact_toy_histogram_support": {
+    "4a+4b-1": 432,
+    "8a+8b-1": 288
+  },
+  "full_view_lwe_challenge_couplings": 160,
+  "adaptive_second_statement_selection": [
+    74,
+    86
+  ],
+  "valid_original_witnesses": 3,
+  "successful_true_openings": 240,
+  "limitations": "toy LWE and toy hashes; no QPT security proof or hard TRUE recovery-to-ORIGINAL witness reduction"
+}

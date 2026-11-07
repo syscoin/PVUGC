@@ -1,0 +1,13 @@
+{
+  "run": 547,
+  "independent_implementation": "nodejs",
+  "configurations_per_secret": 1296,
+  "full_support_sizes": [
+    216,
+    648
+  ],
+  "full_overlap": 0,
+  "all_three_edge_views_identical": true,
+  "checks": 5188,
+  "status": "PASS"
+}

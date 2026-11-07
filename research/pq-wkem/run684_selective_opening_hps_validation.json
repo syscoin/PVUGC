@@ -1,0 +1,29 @@
+{
+  "assertions": 60282,
+  "claim_limit": "Exact small-group algebra only. No native signature, source compiler, PQ assumption, or malicious setup protocol implemented.",
+  "independent_hps_total_exhaustive_key_pairs": 161051,
+  "independent_hps_uniform_conditional_cells": 14641,
+  "individual_false_capsule_cells": 121,
+  "model": "finite prime-order DH smooth projective hash; NOT PQ",
+  "parameters": {
+    "false_word": [
+      4,
+      16
+    ],
+    "g": 2,
+    "h": 8,
+    "p": 23,
+    "q": 11,
+    "related_false_word": [
+      16,
+      3
+    ],
+    "true_or_word": [
+      13,
+      12
+    ]
+  },
+  "run": 684,
+  "shared_hps_key_distinct_credential_attack_success_power_related_false_word": 14641,
+  "shared_hps_key_distinct_credential_attack_success_same_false_word": 14641
+}

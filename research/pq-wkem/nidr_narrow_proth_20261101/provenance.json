@@ -1,0 +1,18 @@
+{
+  "command": "python checker.py > output.json; python checker.py > output_second.json; cmp output.json output_second.json",
+  "digests": {
+    "RESEARCH.md": "1f0c226f5771c9e8a12c2fc1877f0b61c8ec085f956336c1e353f577736e3488",
+    "checker.py": "63898e1f6a004f0c2f5a680839c9c599ecdb21193691a9572bd211cee9e94a55",
+    "output.json": "ffe1a950e33c6353bda9eacb837503c7fbf78c4f54c76ef323f4e51d8eca8faa",
+    "output_second.json": "ffe1a950e33c6353bda9eacb837503c7fbf78c4f54c76ef323f4e51d8eca8faa"
+  },
+  "offline": true,
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "prior_head": "bfd0796d08f9fc55d98bc62451e3f56b6fa45cf6",
+  "publication": "not yet attempted",
+  "python": "3.13.5",
+  "run": "PNIDR-2026-11-01-T10",
+  "run1_run2_byte_identical": true,
+  "source_blob": "a32031b9b979bc4367db7bf53309e96a5327e9d4",
+  "source_ref": "research/pq-wkem/nidr_sparse_graph_20261101/RESEARCH.md"
+}

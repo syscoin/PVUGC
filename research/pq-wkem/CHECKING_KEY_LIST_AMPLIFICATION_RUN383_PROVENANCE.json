@@ -1,0 +1,35 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checked_exact_dependency_sha": "aaf32ee48fd84db79aa19ceaa7f72e41a83fc5d3",
+  "executions": "Python syntax PASS; twice run, captured stdout byte-identical",
+  "latest_substantive_comment_id": 6067040320,
+  "pr": 1,
+  "publication_receipt": "Commit/comment outcomes are separately recorded after the attempted permitted publication.",
+  "published_artifact_sha256": {
+    "CHECKING_KEY_LIST_AMPLIFICATION_RUN383.md": "56e589c87898f180286b1a7b61df777a9764299905cc00c9432eafa8ad00fd7a",
+    "checking-key-list-run383-validation.json": "f5dfcfa8e025fc3f3ce05780325e020bcda0bd83fc85e280d8e7ba7d3549a08c",
+    "checking_key_list_run383_check.py": "dd12085e8656a8f72c0d4e02a44417d2b1e4c29b7356744a501af881d76f7dbc"
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 383,
+  "scope": "unconditional candidate-list authorization lemma and falsifying toy; no standard-LWE or native-SLH security claims",
+  "starting_sha": "94b77e94a9dbb539b26b0d4a48b9af30d0762ca5",
+  "validation": {
+    "assertions": 11006,
+    "coherent_grover_widths": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "independent_error_fixtures": 180,
+    "maximum_ambiguous_positions": 4,
+    "nearest_failure_fixtures": 112,
+    "qpt_security": false,
+    "real_lwe": false,
+    "run": 383,
+    "status": "PASS"
+  }
+}

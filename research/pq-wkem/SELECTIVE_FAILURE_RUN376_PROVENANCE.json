@@ -1,0 +1,27 @@
+{
+  "assumption_scope": "oracle-only selective correctness; not concrete PQ security",
+  "branch": "research/pq-wkem-validation-20260918",
+  "checks": {
+    "assertions": 7082,
+    "executions_identical": 2,
+    "python_compile": "PASS"
+  },
+  "created_utc": "2026-10-08T23:58:47.036855+00:00",
+  "dependency_blobs": {
+    "clz": "c19d9d9cd515140e3ce62eac960cd548c0add622",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run374": "362007a7463570bd7562dd7c1d0a9b15976cbebc"
+  },
+  "extended_local_only_sha256": "fb3114b2a770e542fb8abdc3df5b2785748aaa2aec882c00ec22a68ff8d3ec40",
+  "file_sha256": {
+    "SELECTIVE_FAILURE_SETUP_AUDIT_BRIEF_RUN376.md": "b12195f625999ae316f58d5e1e501366be0cc179d7c8f6eabe530d0caf89311e",
+    "selective-failure-run376-validation.json": "fdcb0b13da8947f7d2fbc0f77bf16395c90b0a9ed3a6f8dd5ffda43fe4a4d2e5",
+    "selective_failure_run376_check.py": "277f093dbd4a64db409dd44dd306a988c0c2a8a7c5bcd00b92287d1d6c1eef87"
+  },
+  "latest_comment": 6067040320,
+  "pr": 1,
+  "publication_stage_when_provenance_written": "before_publication",
+  "repo": "syscoin/PVUGC",
+  "run": 376,
+  "starting_sha": "eb23c2c8542c688f9929ef629544f10a7e855e90"
+}

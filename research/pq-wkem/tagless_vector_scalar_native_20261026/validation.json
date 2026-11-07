@@ -1,0 +1,28 @@
+{
+  "component": "tagless_vector_scalar_covered_v01",
+  "assertions": 70514,
+  "fields": [
+    2,
+    3,
+    5,
+    17,
+    257
+  ],
+  "laws": [
+    {
+      "field": 3,
+      "all_coefficient_arrays": 81,
+      "key_values": 3
+    },
+    {
+      "field": 5,
+      "all_coefficient_arrays": 625,
+      "key_values": 5
+    }
+  ],
+  "random_bijective_couplings": 2048,
+  "honest_true_checks": 2048,
+  "native_signature_security": "symbolic theorem only; not tested",
+  "generic_np_coverage": "not proved",
+  "hard_true": "public key recovery when 1 not in W"
+}

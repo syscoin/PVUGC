@@ -1,0 +1,14 @@
+{
+  "run": "554",
+  "date_utc": "2026-10-16",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "starting_head": "522ceac338d8d9f14972c8eb610504cf78ae5611",
+  "branch": "research/pq-wkem-validation-20260918",
+  "source_blob_run553": "7d515d2b03092af2205ec67b47420a75d2a7f10a",
+  "source_blob_run552_unreferenced": "9685c5325d04dad00b7e79dc2c59bd10d3bd62de",
+  "checker_local_sha256": "d9138db676f4cb3438e08cb887a667d2fd3cdf930437abbf31322dde2560a2bc",
+  "validation_local_sha256": "e4505738d3d08e861faaa04c755e06bff066a4369b1df0b0803d737aa982edc8",
+  "validation": "8346 assertions, two byte-identical executions, syntax OK",
+  "status": "proposed research-only; no production modification"
+}

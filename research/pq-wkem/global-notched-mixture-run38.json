@@ -1,0 +1,297 @@
+{
+  "construction": "two-step notched global block mixture p=(1,4/5), L=4",
+  "false_fixtures": {
+    "multimode_gap_quarter": {
+      "complete_map_success": "23/40",
+      "complete_tv": "3/20",
+      "max_odd_character_bias": "1/10",
+      "predicates": [
+        1,
+        2,
+        7,
+        7
+      ],
+      "quotient_dimension": 3,
+      "source_gap": "1/4",
+      "support_size": 8
+    },
+    "three_singletons": {
+      "complete_map_success": "11/20",
+      "complete_tv": "1/10",
+      "max_odd_character_bias": "1/10",
+      "predicates": [
+        1,
+        2,
+        4
+      ],
+      "quotient_dimension": 3,
+      "source_gap": "2/3",
+      "support_size": 8
+    }
+  },
+  "fixed_mode": {
+    "false_fixed_mode_bound_for_r_ge_1_4": "1/10",
+    "honest_bias": "3/10",
+    "rational_points_checked": 6266,
+    "roots": [
+      "1/2",
+      "3/4"
+    ],
+    "vertex_value": "-1/80",
+    "worst_grid_r": "1/4",
+    "worst_grid_value": "1/10"
+  },
+  "larger_stress_fixture": {
+    "complete_map_success": "189/320",
+    "complete_tv": "29/160",
+    "note": "deterministic stress fixture; not an exhaustive larger-instance bound",
+    "proof_bits": 4,
+    "quotient_dimension": 5,
+    "source_gap": "1/4",
+    "support_size": 31,
+    "tests": [
+      [
+        0,
+        2,
+        11
+      ],
+      [
+        2,
+        3,
+        4
+      ],
+      [
+        2,
+        1,
+        8
+      ],
+      [
+        2,
+        0,
+        11
+      ],
+      [
+        0,
+        3,
+        13
+      ],
+      [
+        2,
+        0,
+        1
+      ],
+      [
+        1,
+        3,
+        13
+      ],
+      [
+        0,
+        3,
+        1
+      ]
+    ]
+  },
+  "logarithmic_handoff": {
+    "C_equals_c_log2_lambda_exponents": {
+      "false": 3.321928094887362,
+      "honest": 1.7369655941662063,
+      "ratio": 1.584962500721156
+    },
+    "per_cycle_false_fixed_bound": "1/10",
+    "per_cycle_honest_bias": "3/10",
+    "rows": [
+      {
+        "bias_ratio_bound": "1/3",
+        "cycles": 1,
+        "false_fixed_bias_bound": "1/10",
+        "honest_fixed_bias": "3/10",
+        "samples_for_unit_inverse_bias_squared_ceiling": 12,
+        "steps": 2
+      },
+      {
+        "bias_ratio_bound": "1/9",
+        "cycles": 2,
+        "false_fixed_bias_bound": "1/100",
+        "honest_fixed_bias": "9/100",
+        "samples_for_unit_inverse_bias_squared_ceiling": 124,
+        "steps": 4
+      },
+      {
+        "bias_ratio_bound": "1/27",
+        "cycles": 3,
+        "false_fixed_bias_bound": "1/1000",
+        "honest_fixed_bias": "27/1000",
+        "samples_for_unit_inverse_bias_squared_ceiling": 1372,
+        "steps": 6
+      },
+      {
+        "bias_ratio_bound": "1/81",
+        "cycles": 4,
+        "false_fixed_bias_bound": "1/10000",
+        "honest_fixed_bias": "81/10000",
+        "samples_for_unit_inverse_bias_squared_ceiling": 15242,
+        "steps": 8
+      },
+      {
+        "bias_ratio_bound": "1/243",
+        "cycles": 5,
+        "false_fixed_bias_bound": "1/100000",
+        "honest_fixed_bias": "243/100000",
+        "samples_for_unit_inverse_bias_squared_ceiling": 169351,
+        "steps": 10
+      },
+      {
+        "bias_ratio_bound": "1/729",
+        "cycles": 6,
+        "false_fixed_bias_bound": "1/1000000",
+        "honest_fixed_bias": "729/1000000",
+        "samples_for_unit_inverse_bias_squared_ceiling": 1881677,
+        "steps": 12
+      }
+    ]
+  },
+  "outer_map_composition_control": {
+    "bounded_distance_repetition_coset_controls": [
+      {
+        "n": 7,
+        "public_better_float": 0.873964,
+        "public_map_better_fixture_outer_success": "218491/250000",
+        "public_map_equal_fixture_outer_success": "51209873/64000000",
+        "witness_outer_success": "51209873/64000000",
+        "witness_outer_success_float": 0.800154265625
+      },
+      {
+        "n": 15,
+        "public_better_float": 0.949987459946224,
+        "public_map_better_fixture_outer_success": "59374216246639/62500000000000",
+        "public_map_equal_fixture_outer_success": "3632205288343288397/4096000000000000000",
+        "witness_outer_success": "3632205288343288397/4096000000000000000",
+        "witness_outer_success_float": 0.8867688692244357
+      },
+      {
+        "n": 31,
+        "public_better_float": 0.9904595640881166,
+        "public_map_better_fixture_outer_success": "61903722755507287387519268419/62500000000000000000000000000",
+        "public_map_equal_fixture_outer_success": "257061626742216814246457291163421248857/268435456000000000000000000000000000000",
+        "witness_outer_success": "257061626742216814246457291163421248857/268435456000000000000000000000000000000",
+        "witness_outer_success_float": 0.9576291842096181
+      }
+    ],
+    "true_mask_1_public_map": "13/20",
+    "true_mask_7_public_map": "7/10",
+    "witness_raw_success": "13/20"
+  },
+  "run": "38",
+  "small_exhaustive_census": {
+    "gap_counts": {
+      "1/2": 4664,
+      "1/3": 1212,
+      "1/4": 17720,
+      "2/3": 60,
+      "3/4": 24
+    },
+    "no_odd_mode_perfect_hiding_cases": 7194,
+    "nontrivial_odd_mode_cases": 23680,
+    "qualified_false_gap_ge_1_4": 30874,
+    "quotient_dimension_counts": {
+      "3": 20764,
+      "4": 2868,
+      "5": 48
+    },
+    "sample_worst_predicate_tuples": [
+      [
+        1,
+        1,
+        1,
+        2
+      ],
+      [
+        1,
+        1,
+        1,
+        4
+      ],
+      [
+        1,
+        1,
+        1,
+        8
+      ],
+      [
+        1,
+        1,
+        2,
+        1
+      ],
+      [
+        1,
+        1,
+        4,
+        1
+      ],
+      [
+        1,
+        1,
+        8,
+        1
+      ],
+      [
+        1,
+        2,
+        1,
+        1
+      ],
+      [
+        1,
+        2,
+        2,
+        2
+      ],
+      [
+        1,
+        2,
+        7,
+        7
+      ],
+      [
+        1,
+        2,
+        11,
+        11
+      ],
+      [
+        1,
+        4,
+        1,
+        1
+      ],
+      [
+        1,
+        4,
+        4,
+        4
+      ]
+    ],
+    "worst_complete_map_success": "23/40",
+    "worst_complete_tv": "3/20"
+  },
+  "true_complete_view": {
+    "singleton_accept": {
+      "complete_tv": "3/10",
+      "predicates": [
+        1
+      ],
+      "public_map_success": "13/20",
+      "quotient_dimension": 3
+    },
+    "singleton_reject": {
+      "complete_tv": "2/5",
+      "predicates": [
+        7
+      ],
+      "public_map_success": "7/10",
+      "quotient_dimension": 3
+    }
+  }
+}

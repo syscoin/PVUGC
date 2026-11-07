@@ -1,0 +1,26 @@
+{
+  "run": 604,
+  "date": "2026-10-18",
+  "repo": "syscoin/PVUGC",
+  "pull_request": 1,
+  "base_branch": "research/pq-wkem-validation-20260918",
+  "starting_head_sha": "06995a2bd0dde73ece10d4c304da7098858e7e07",
+  "latest_substantive_comment_id": 6241612333,
+  "exact_dependencies": {
+    "run593_note_blob": "29b9168bfff6043810284cd1960400579f224e31",
+    "run259_source_binding_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  },
+  "research_scope": "Known-witness cross-statement native authorization falsifier, pk-only simulator impossibility, conditional QPT-PRF child-key separation",
+  "honest_model": "classical PPT",
+  "attacker_model": "arbitrary nonuniform QPT with public correlated data; quantum auxiliary advice independent of unreleased master",
+  "assumptions": [
+    "conditional QPT PRF for child-key hybrid",
+    "conditional native QPT EUF-CMA for pk-only simulator contradiction",
+    "false-target full-view simulator missing"
+  ],
+  "reproduced": "Python 3 standard library; two byte-identical runs; extended checker 292 assertions; published minimal checker exact captured stdout",
+  "executed_checker_git_blob": "f548d066449947e00d1bcd6b0b0de3f3f203968c",
+  "captured_stdout_git_blob": "6ecbda47d4d023f2f3f48f165d22ea11dac1e0d1",
+  "research_note_git_blob": "6b63e67d3063bfb19fa8edc39645b0cee71120c0",
+  "status": "Research checkpoint only; no complete practical PQ witness-KEM; no production changes"
+}

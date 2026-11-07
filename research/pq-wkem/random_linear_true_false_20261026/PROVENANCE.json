@@ -1,0 +1,42 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_dependencies": [
+    "research/pq-wkem/joint_linear_release_20261026/README.md at starting_head"
+  ],
+  "files": {
+    "README.md": {
+      "bytes": 8557,
+      "git_blob_sha1": "4b7333cf8f3ccf87f66aa62688b4c1ecca0b7357",
+      "sha256": "04ee9110a6af9913ca8a8e9d964b8debdf6566fdb32f4e44bb4b39412060c13d"
+    },
+    "check.js": {
+      "bytes": 3053,
+      "git_blob_sha1": "8fc4cb9616cc471e92c4dc5bd2b284110beb45e9",
+      "sha256": "72ada06acf0464da75a1dce0be87b52a9c60be4893cf871ec5d5001137a1a078"
+    },
+    "validation.json": {
+      "bytes": 414,
+      "git_blob_sha1": "729ef9e1336a9b95b5a433c11637684e4fa0c5c2",
+      "sha256": "088bee18aa1decb23ce10c3f5a80f103106a85fd4cf3e4ed7596be42de0fecc2"
+    }
+  },
+  "identical_outputs": true,
+  "latest_comment_read": 6429284729,
+  "local_only_checker_assertions": 169352,
+  "local_only_full_derivation": "random_linear_true_false_20261026/README.md",
+  "offline_research": true,
+  "pr": 1,
+  "publication_scope": "research/pq-wkem/random_linear_true_false_20261026/ only; no production",
+  "published_checker_assertions": 1737,
+  "published_checker_executions": 2,
+  "record": "unplanted-random-linear-20261026",
+  "repository": "syscoin/PVUGC",
+  "starting_head": "3936efe2e6672ae1fe9edd0ee5594f55ab7b10fe",
+  "unsupported": [
+    "generic NP or PoW source compiler",
+    "128-bit concrete hardness",
+    "malicious setup or keyless Build",
+    "unrestricted selective opening",
+    "Bitcoin endpoint"
+  ]
+}

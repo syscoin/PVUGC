@@ -1,0 +1,242 @@
+{
+  "assignment_lifts": 282,
+  "asymptotic_controls": [
+    {
+      "false_accept_at_8_honest_std": 0.9999999999999761,
+      "std_ratio": 1.0488088481701516
+    },
+    {
+      "false_accept_at_8_honest_std": 0.999999999935091,
+      "std_ratio": 1.224744871391589
+    },
+    {
+      "false_accept_at_8_honest_std": 0.9999999845827421,
+      "std_ratio": 1.4142135623730951
+    },
+    {
+      "false_accept_at_8_honest_std": 0.9999961403835631,
+      "std_ratio": 1.7320508075688772
+    }
+  ],
+  "claims": [
+    "For the Run-117/118 one-hot affine compiler, every Boolean assignment (even one violating clauses) publicly yields an exact affine preimage z with ||z||_1=||z||_2^2=B+2V(a)<3B.",
+    "In the natural noisy projective release c=M^T s+e, y=t^T s+f, d=c_K-y, every such affine preimage computes c_K plus projected noise: z^T c+d=c_K+z^T e-f.",
+    "Therefore on false statements the public all-zero assignment already gives a source-invalid decapsulation representation; no source witness search is needed.",
+    "For iid centered Gaussian noise, its projected standard deviation is only a constant factor (<sqrt(3), including target noise) larger than an honest one-hot witness. Any threshold sequence that accepts honest Gaussian noise with probability tending to one also accepts this public pseudowitness with probability tending to one.",
+    "A separate standard-LWE anchor does not repair this syntactic attack because the attacker ignores it and evaluates the structured affine block directly.",
+    "The checker establishes algebra/functionality and exact Gaussian tail controls only; it does not establish or refute unrelated nonlinear carriers, superconstant gaps, or arbitrary QPT reductions."
+  ],
+  "false_formula_public_lifts": 3,
+  "gaussian_parameter_rows": [
+    {
+      "B": 3,
+      "honest_rejection_upper": 2.32830643653871e-10,
+      "lambda": 32,
+      "pseudowitness_acceptance_exact_gaussian": 0.9999934908161203,
+      "pseudowitness_rejection_chernoff_upper": 7.689947814299771e-05,
+      "pseudowitness_rejection_exact_gaussian": 6.509183879700538e-06,
+      "threshold_over_honest_std": 6.7637056350018945,
+      "variance_ratio": 2.25
+    },
+    {
+      "B": 3,
+      "honest_rejection_upper": 5.421010862427558e-20,
+      "lambda": 64,
+      "pseudowitness_acceptance_exact_gaussian": 0.9999999997522656,
+      "pseudowitness_rejection_chernoff_upper": 4.023536067054828e-09,
+      "pseudowitness_rejection_exact_gaussian": 2.477344196128247e-10,
+      "threshold_over_honest_std": 9.492583076949755,
+      "variance_ratio": 2.25
+    },
+    {
+      "B": 3,
+      "honest_rejection_upper": 2.9387358770556803e-39,
+      "lambda": 128,
+      "pseudowitness_acceptance_exact_gaussian": 1.0,
+      "pseudowitness_rejection_chernoff_upper": 1.1014807482558057e-17,
+      "pseudowitness_rejection_exact_gaussian": 4.869154759804822e-19,
+      "threshold_over_honest_std": 13.372807206584035,
+      "variance_ratio": 2.25
+    },
+    {
+      "B": 3,
+      "honest_rejection_upper": 8.63616855509448e-78,
+      "lambda": 256,
+      "pseudowitness_acceptance_exact_gaussian": 1.0,
+      "pseudowitness_rejection_chernoff_upper": 8.254959281112557e-35,
+      "pseudowitness_rejection_exact_gaussian": 2.600885787943907e-36,
+      "threshold_over_honest_std": 18.875318561757094,
+      "variance_ratio": 2.25
+    },
+    {
+      "B": 8,
+      "honest_rejection_upper": 2.32830643653871e-10,
+      "lambda": 32,
+      "pseudowitness_acceptance_exact_gaussian": 0.9999655569830725,
+      "pseudowitness_rejection_chernoff_upper": 0.00037651631479686124,
+      "pseudowitness_rejection_exact_gaussian": 3.444301692750956e-05,
+      "threshold_over_honest_std": 6.7637056350018945,
+      "variance_ratio": 2.6666666666666665
+    },
+    {
+      "B": 8,
+      "honest_rejection_upper": 5.421010862427558e-20,
+      "lambda": 64,
+      "pseudowitness_acceptance_exact_gaussian": 0.9999999938635552,
+      "pseudowitness_rejection_chernoff_upper": 9.192292841720268e-08,
+      "pseudowitness_rejection_exact_gaussian": 6.136444764880152e-09,
+      "threshold_over_honest_std": 9.492583076949755,
+      "variance_ratio": 2.6666666666666665
+    },
+    {
+      "B": 8,
+      "honest_rejection_upper": 2.9387358770556803e-39,
+      "lambda": 128,
+      "pseudowitness_acceptance_exact_gaussian": 0.9999999999999998,
+      "pseudowitness_rejection_chernoff_upper": 5.479033495021015e-15,
+      "pseudowitness_rejection_exact_gaussian": 2.6310258685419547e-16,
+      "threshold_over_honest_std": 13.372807206584035,
+      "variance_ratio": 2.6666666666666665
+    },
+    {
+      "B": 8,
+      "honest_rejection_upper": 8.63616855509448e-78,
+      "lambda": 256,
+      "pseudowitness_acceptance_exact_gaussian": 1.0,
+      "pseudowitness_rejection_chernoff_upper": 1.9465437244367192e-29,
+      "pseudowitness_rejection_exact_gaussian": 6.66917925323464e-31,
+      "threshold_over_honest_std": 18.875318561757094,
+      "variance_ratio": 2.6666666666666665
+    },
+    {
+      "B": 32,
+      "honest_rejection_upper": 2.32830643653871e-10,
+      "lambda": 32,
+      "pseudowitness_acceptance_exact_gaussian": 0.9999267804496014,
+      "pseudowitness_rejection_chernoff_upper": 0.0007695218970253367,
+      "pseudowitness_rejection_exact_gaussian": 7.321955039867841e-05,
+      "threshold_over_honest_std": 6.7637056350018945,
+      "variance_ratio": 2.909090909090909
+    },
+    {
+      "B": 32,
+      "honest_rejection_upper": 5.421010862427558e-20,
+      "lambda": 64,
+      "pseudowitness_acceptance_exact_gaussian": 0.9999999738628436,
+      "pseudowitness_rejection_chernoff_upper": 3.75743113781903e-07,
+      "pseudowitness_rejection_exact_gaussian": 2.6137156457742105e-08,
+      "threshold_over_honest_std": 9.492583076949755,
+      "variance_ratio": 2.909090909090909
+    },
+    {
+      "B": 32,
+      "honest_rejection_upper": 2.9387358770556803e-39,
+      "lambda": 128,
+      "pseudowitness_acceptance_exact_gaussian": 0.9999999999999956,
+      "pseudowitness_rejection_chernoff_upper": 8.958413929507787e-14,
+      "pseudowitness_rejection_exact_gaussian": 4.487444631289071e-15,
+      "threshold_over_honest_std": 13.372807206584035,
+      "variance_ratio": 2.909090909090909
+    },
+    {
+      "B": 32,
+      "honest_rejection_upper": 8.63616855509448e-78,
+      "lambda": 256,
+      "pseudowitness_acceptance_exact_gaussian": 1.0,
+      "pseudowitness_rejection_chernoff_upper": 5.092268753235134e-27,
+      "pseudowitness_rejection_exact_gaussian": 1.8210809519125878e-28,
+      "threshold_over_honest_std": 18.875318561757094,
+      "variance_ratio": 2.909090909090909
+    },
+    {
+      "B": 128,
+      "honest_rejection_upper": 2.32830643653871e-10,
+      "lambda": 32,
+      "pseudowitness_acceptance_exact_gaussian": 0.9999115434316483,
+      "pseudowitness_rejection_chernoff_upper": 0.0009200899311681338,
+      "pseudowitness_rejection_exact_gaussian": 8.845656835168174e-05,
+      "threshold_over_honest_std": 6.7637056350018945,
+      "variance_ratio": 2.9767441860465116
+    },
+    {
+      "B": 128,
+      "honest_rejection_upper": 5.421010862427558e-20,
+      "lambda": 64,
+      "pseudowitness_acceptance_exact_gaussian": 0.9999999624305791,
+      "pseudowitness_rejection_chernoff_upper": 5.342663538024942e-07,
+      "pseudowitness_rejection_exact_gaussian": 3.7569420875913725e-08,
+      "threshold_over_honest_std": 9.492583076949755,
+      "variance_ratio": 2.9767441860465116
+    },
+    {
+      "B": 128,
+      "honest_rejection_upper": 2.9387358770556803e-39,
+      "lambda": 128,
+      "pseudowitness_acceptance_exact_gaussian": 0.9999999999999909,
+      "pseudowitness_rejection_chernoff_upper": 1.8014114462545068e-13,
+      "pseudowitness_rejection_exact_gaussian": 9.124746333151635e-15,
+      "threshold_over_honest_std": 13.372807206584035,
+      "variance_ratio": 2.9767441860465116
+    },
+    {
+      "B": 128,
+      "honest_rejection_upper": 8.63616855509448e-78,
+      "lambda": 256,
+      "pseudowitness_acceptance_exact_gaussian": 1.0,
+      "pseudowitness_rejection_chernoff_upper": 2.0479677076019735e-26,
+      "pseudowitness_rejection_exact_gaussian": 7.40719700276475e-28,
+      "threshold_over_honest_std": 18.875318561757094,
+      "variance_ratio": 2.9767441860465116
+    },
+    {
+      "B": 512,
+      "honest_rejection_upper": 2.32830643653871e-10,
+      "lambda": 32,
+      "pseudowitness_acceptance_exact_gaussian": 0.99990725922454,
+      "pseudowitness_rejection_chernoff_upper": 0.0009621274424084038,
+      "pseudowitness_rejection_exact_gaussian": 9.274077545991358e-05,
+      "threshold_over_honest_std": 6.7637056350018945,
+      "variance_ratio": 2.9941520467836256
+    },
+    {
+      "B": 512,
+      "honest_rejection_upper": 5.421010862427558e-20,
+      "lambda": 64,
+      "pseudowitness_acceptance_exact_gaussian": 0.999999958861851,
+      "pseudowitness_rejection_chernoff_upper": 5.834108791822061e-07,
+      "pseudowitness_rejection_exact_gaussian": 4.1138149035922216e-08,
+      "threshold_over_honest_std": 9.492583076949755,
+      "variance_ratio": 2.9941520467836256
+    },
+    {
+      "B": 512,
+      "honest_rejection_upper": 2.9387358770556803e-39,
+      "lambda": 128,
+      "pseudowitness_acceptance_exact_gaussian": 0.9999999999999891,
+      "pseudowitness_rejection_chernoff_upper": 2.145153459395302e-13,
+      "pseudowitness_rejection_exact_gaussian": 1.0896657299067071e-14,
+      "threshold_over_honest_std": 13.372807206584035,
+      "variance_ratio": 2.9941520467836256
+    },
+    {
+      "B": 512,
+      "honest_rejection_upper": 8.63616855509448e-78,
+      "lambda": 256,
+      "pseudowitness_acceptance_exact_gaussian": 1.0,
+      "pseudowitness_rejection_chernoff_upper": 2.9001873334500373e-26,
+      "pseudowitness_rejection_exact_gaussian": 1.051968241454115e-27,
+      "threshold_over_honest_std": 18.875318561757094,
+      "variance_ratio": 2.9941520467836256
+    }
+  ],
+  "projective_identity_checks": 240,
+  "qpt_status": {
+    "attack_model": "classical polynomial-time once the one-hot affine compiler and noisy linear release are public; therefore it refutes QPT security of that composition a fortiori",
+    "hardness_assumption": "none for the attack",
+    "honest_algorithms": "classical",
+    "leaky_lwe_note": "Leaky-LWE can protect a standard LWE challenge in the presence of bounded noisy linear leakage, but it does not randomize the leakage itself; this checker does not treat Leaky-LWE as a QPT theorem."
+  },
+  "run": 120,
+  "status": "PASS",
+  "total_assertions": 1727
+}

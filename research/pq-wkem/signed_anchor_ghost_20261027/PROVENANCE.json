@@ -1,0 +1,19 @@
+{
+  "record": "ghost-anchor-one-20261027",
+  "outcome": "no-qualified-positive-advance",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "observed_start_sha": "78c08f4dffe406c0c9c0baf392dc2aaef74650f7",
+  "exact_predecessor_path": "research/pq-wkem/native_key_list_lwe_20261027/PROOF.md",
+  "exact_predecessor_blob": "1403770e563eab3a725f3886a245d58a9924e9e6",
+  "latest_read_substantive_comment_id": 6445428331,
+  "published_checker": "publish_check.py",
+  "published_checker_passes": 2,
+  "assertions_per_published_pass": 3266,
+  "extended_local_checker_passes": 2,
+  "assertions_per_extended_pass": 3420,
+  "source": "offline mathematics and exact local execution; no Internet/literature research",
+  "scope": "negative result for structured 3CNF SOURCE only; no claim against unplanted uniform-B LWE",
+  "scheduled_run_uuid": null
+}

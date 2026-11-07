@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "assertions": 58846,
+  "q": 256,
+  "g": 128,
+  "degree": 3,
+  "shape": [
+    17,
+    42
+  ],
+  "pasch_false_assignments_checked": 64,
+  "mod2_certificate_weight": 17,
+  "distinct_true_witnesses": 56,
+  "mock_capability_bits": 256,
+  "shares": 3,
+  "related_false_capsules": [
+    {
+      "hiddenReconciled": 256,
+      "independentCoins": true,
+      "openingShares": [
+        0,
+        2
+      ]
+    },
+    {
+      "hiddenReconciled": 256,
+      "independentCoins": true,
+      "openingShares": [
+        0,
+        2
+      ]
+    }
+  ],
+  "full_false_ciphertext_equalities": 768,
+  "raw_ciphertext_field_elements": 33024,
+  "scope": "finite algebra only, not QPT or native SLH security"
+}

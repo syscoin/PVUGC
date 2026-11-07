@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "captured_utc": "2026-09-21T21:37:35.266444+00:00",
+  "scope": "Fresh algebra/formula controls only; not cryptographic parameters or an end-to-end WKEM test.",
+  "and_or_local_checks": 16,
+  "two_input_predicate_checks": 64,
+  "gap_csp_control": {
+    "G": 4,
+    "variables": 22,
+    "solutions": 2,
+    "B": 7,
+    "solution_weights": [11, 11]
+  },
+  "projection_identity_control": {
+    "projection_matrices": 16,
+    "candidates": 8,
+    "exact_candidates": 2,
+    "S_C": "45/32",
+    "S_exact": "3/16",
+    "observed_mean": "63/128",
+    "formula": "63/128"
+  },
+  "channel_tables": {
+    "target_honest_success": 0.9,
+    "padded_false_family": [
+      {"B": 5, "one_violation_false_success": 0.8713271066890224},
+      {"B": 15, "one_violation_false_success": 0.8889969889864289},
+      {"B": 55, "one_violation_false_success": 0.8968249036123076},
+      {"B": 205, "one_violation_false_success": 0.8991343611185818},
+      {"B": 1005, "one_violation_false_success": 0.8998225892146647},
+      {"B": 5005, "one_violation_false_success": 0.899964341413537}
+    ],
+    "synthetic_half_gap_family": [
+      {"G": 4, "B": 7, "half_gap_false_success": 0.8577708763999665},
+      {"G": 10, "B": 13, "half_gap_false_success": 0.8410660986454146},
+      {"G": 50, "B": 53, "half_gap_false_success": 0.8253332845326818},
+      {"G": 200, "B": 203, "half_gap_false_success": 0.8214031838818301},
+      {"G": 1000, "B": 1003, "half_gap_false_success": 0.8202846122964376},
+      {"G": 5000, "B": 5003, "half_gap_false_success": 0.8200570841766637}
+    ]
+  },
+  "notes": [
+    "The random-projection expectation check is exact rational enumeration, not Monte Carlo.",
+    "The synthetic half-gap CSP is a control fixture, not a generic PCP implementation.",
+    "No outside literature or web search was used.",
+    "No production source was changed."
+  ]
+}

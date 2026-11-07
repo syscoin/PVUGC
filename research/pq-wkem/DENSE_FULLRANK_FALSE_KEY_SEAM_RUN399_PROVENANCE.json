@@ -1,0 +1,14 @@
+{
+  "run": 399,
+  "repository": "syscoin/PVUGC",
+  "pr_number": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "7b8f3d965528b90db12adaf302627b6a408ad8b6",
+  "exact_upstream_note_blob": "016f999eb7b74859054ec69e86b87ae3b1cba977",
+  "execution": "Exact JavaScript checker evaluated in V8 before this publication call.",
+  "compact_checker_output_matches": true,
+  "extended_local_python": "Separate deterministic 40076-assertion checker; not byte-identical to compact GitHub checker.",
+  "assumptions": "none introduced",
+  "security_status": "chosen-false mathematical break only",
+  "pr_scope": "new research files; no production changes"
+}

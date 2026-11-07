@@ -1,0 +1,27 @@
+{
+  "run": "R65-SINGLE-ROOT-CK-DERIVATION-20261104",
+  "checks": 262281,
+  "source": {
+    "q": 16777216,
+    "m": 64,
+    "n": 2,
+    "delta": 129,
+    "bits_per_vector": 16,
+    "root_bits": 256,
+    "ciphertext_vectors": 16,
+    "bytes": 3072
+  },
+  "old_source_bytes": 6144,
+  "source_saving_percent": 50,
+  "genuine_witness_openings": 2,
+  "independent_related_true_openings": 2,
+  "real_source_lwe_couplings": 16,
+  "whole_root_lwe_challenge": {
+    "real": 1,
+    "uniform": 1
+  },
+  "tree_hybrid": 1,
+  "checksum_correlations_recomputed": true,
+  "test_crypto": "noncryptographic V8 transcript hash/synthetic signer; independently executed Python checker covers real Ed25519 verification",
+  "security": "conditional ordinary-QPT-LWE SIS-only; no generic NP WKEM"
+}

@@ -1,0 +1,59 @@
+{
+  "classification": {
+    "arbitrary_qpt_final_key_recovery_to_original_source": "UNPROVED",
+    "honest_algorithms": "classical polynomial time in the explicit compiler dimensions",
+    "qpt_false_hiding": "UNPROVED",
+    "result": "product-feature Vandermonde source lift with inherited low-rank original-source extraction and a generic false coefficient-support gap; no hiding proof",
+    "standard_pq_reduction": "UNPROVED"
+  },
+  "literature_context": [
+    {
+      "arxiv": "2609.18275v1",
+      "authors": "Isaac M. Hair, Amit Sahai",
+      "title": "Witness Encryption via Prime-Order Generic Groups",
+      "use": "weighted-table source compiler, exact-span update interface, false-instance rank theorem and supplied-low-rank source extractor only; classical generic-group encryption security not imported"
+    },
+    {
+      "author": "Zhengzhong Jin",
+      "eprint": "2026/2063",
+      "title": "Witness Encryption for NP from SNARGs and Groups",
+      "use": "abstract-level comparison only; full manuscript was not retrieved in this run and no extraction/security arrow was imported"
+    }
+  ],
+  "new_claims": [
+    "Augmenting each assignment matrix by horizontal Vandermonde feature blocks q_j(b)A(b) preserves honest rank one.",
+    "Every nonzero augmented source matrix of rank at most R has a nonzero block that lies in the original Hair-Sahai source space and therefore yields an ORIGINAL satisfying witness via the existing extractor.",
+    "On any false instance, augmented admissibility with m injective Vandermonde features forces every nonzero coefficient representation to have Hamming support at least m+1.",
+    "Choosing m at least the support size excludes the explicit sparse finite-difference and bounded recombination families from Runs 82-83.",
+    "The augmented partial-assignment span remains polynomially updateable because theta(b) shifts affinely and its power vector transforms by a fixed triangular binomial map.",
+    "The direct explicit representation is too large for the project's practical stopping condition at representative N."
+  ],
+  "pr_number": 1,
+  "production_code_modified": false,
+  "publication": {
+    "final_files_publication_status": "not yet attempted when this provenance was generated",
+    "opening_checkpoint_attempted": true,
+    "opening_checkpoint_result": "blocked by OpenAI safety checks before reaching GitHub",
+    "opening_checkpoint_retried_or_rerouted": false
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 84,
+  "starting_verified_head": "adcf3b578848c454c99191bc073f6ed430f4da42",
+  "stopping_condition_met": false,
+  "tests": {
+    "byte_identical_stdout": true,
+    "checker_sha256": "cdd30209e8d7cc37978881b39da5a209973c6a452d98cfc3ad5199134a6290b3",
+    "counts": {
+      "augmented_partial_assignment_transition_checks": 37,
+      "false_nonzero_matrices_exhausted": 4912,
+      "generic_false_sparse_support_subsets_checked": 92,
+      "honest_rank1_and_base_block_checks": 24,
+      "injective_assignment_labels_checked": 40,
+      "true_extracted": 40,
+      "true_rank_le_R_nonzero_exhausted": 40
+    },
+    "executions": 2,
+    "scope": "finite algebra/extractor/support-gap/size controls only; not cryptographic or QPT security evidence",
+    "validation_sha256": "7084d17e3579a7eca64ee9e01c7b09958e6b9a858d07b2023bb45124d59f07c5"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "run": 444,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "6a3a9d81df40c2a463416af3efa89bb200903146",
+  "prior_comment_id": 6067040320,
+  "scope": "public-unary-only late witness admission falsification",
+  "publish_files": [
+    "RUN444_PUBLIC_UNARY_CONTROL_COVER_COMPACT.md",
+    "run444_compact_check.js",
+    "run444_compact_validation.json",
+    "RUN444_PUBLICATION_PROVENANCE.json"
+  ],
+  "local_extended_note": "RUN444_PUBLIC_UNARY_CONTROL_COVER.md",
+  "local_independent_checker": "run444_unary_cover_check.py",
+  "local_extended_assertions": 192,
+  "compact_assertions": 84,
+  "exact_compact_checker_sha256": "3027270d2c7cb23c78bec3105bae49bd9c699b3226c57e9a9883c3fea531b398",
+  "exact_compact_output_sha256": "1050bb878aed7a983600bc1c8258b658e5a6d302a3f65f3ddaf15116fe2f408f",
+  "full_paper_proof_audit": false,
+  "production_changed": false,
+  "confidence": "conditional restricted-interface theorem; not WKEM"
+}

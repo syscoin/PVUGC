@@ -1,0 +1,17 @@
+{
+  "run": 586,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "ec70a1391c9b685a75b214d61fc765b06c42c58f",
+  "validated_twice_byte_identical": true,
+  "js_assertions": 48157,
+  "local_python_assertions": 48336,
+  "checker_runtime": "functions.exec V8; published code Node-compatible",
+  "scope": "Restricted LWE public-key ORIGINAL relation, selected far-false key falsifier; no WKEM",
+  "prior_blobs": {
+    "run585": "97164d9984adda526e5bd109643eb86eaaaac9d2",
+    "run584": "4e1f005be26067f53c13fcb222c3091ecaadcf91",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  }
+}

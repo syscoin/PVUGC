@@ -1,0 +1,39 @@
+{
+  "status": "NO_POSITIVE_WKEM_ADVANCE",
+  "repair": "XOR shares across independent noisy packets",
+  "closed_form_bad_packet_failure": "2*(m+1)/3^(m+1)",
+  "classical_early_recovery_lower_bound": "(1-p)^(L*T)",
+  "rows": [
+    {
+      "m": 6,
+      "bad_packet_failure_num": "14",
+      "bad_packet_failure_den": "2187",
+      "necessary_packets_per_bit_for_256bit_key_128bit_target": "54"
+    },
+    {
+      "m": 12,
+      "bad_packet_failure_num": "26",
+      "bad_packet_failure_den": "1594323",
+      "necessary_packets_per_bit_for_256bit_key_128bit_target": "21252"
+    },
+    {
+      "m": 20,
+      "bad_packet_failure_num": "42",
+      "bad_packet_failure_den": "10460353203",
+      "necessary_packets_per_bit_for_256bit_key_128bit_target": "86316242"
+    },
+    {
+      "m": 32,
+      "bad_packet_failure_num": "66",
+      "bad_packet_failure_den": "5559060566555523",
+      "necessary_packets_per_bit_for_256bit_key_128bit_target": "29191266350530"
+    },
+    {
+      "m": 64,
+      "bad_packet_failure_num": "130",
+      "bad_packet_failure_den": "10301051460877537453973547267843",
+      "necessary_packets_per_bit_for_256bit_key_128bit_target": "2.746209529580835e+28"
+    }
+  ],
+  "assertions": 52
+}

@@ -1,0 +1,61 @@
+{
+  "assertions_by_category": {
+    "fresh_independent_support": 1,
+    "fresh_independent_uniform": 1,
+    "interpolation": 1452,
+    "joint_support_size": 2,
+    "lawful_opening_key_recovery": 161051,
+    "projection_consistency": 5687,
+    "raw_pairwise_key_support": 1,
+    "raw_pairwise_key_uniform": 1,
+    "true_projectivity": 46585,
+    "uniform_prefix_multiplicity": 2,
+    "uniform_prefix_support": 2
+  },
+  "conditional_fibers": [
+    {
+      "conditional_key_fiber_size": 121,
+      "degree": 1,
+      "distinct_public_slots": 3,
+      "full_independent_support": 1331,
+      "joint_mask_support": 121,
+      "lagrange_coefficients": [
+        10,
+        2
+      ]
+    },
+    {
+      "conditional_key_fiber_size": 1331,
+      "degree": 2,
+      "distinct_public_slots": 4,
+      "full_independent_support": 14641,
+      "joint_mask_support": 1331,
+      "lagrange_coefficients": [
+        1,
+        8,
+        3
+      ]
+    }
+  ],
+  "fresh_independent_mask_triples": 1331,
+  "lawful_opening_recovery_cases": 161051,
+  "limitations": [
+    "finite algebra only",
+    "discrete-log group is not post-quantum",
+    "no generic-NP source compiler",
+    "no arbitrary-QPT ORIGINAL extraction"
+  ],
+  "raw_pairwise_key_support": 14641,
+  "run": 685,
+  "total_assertions": 214785,
+  "toy_group": {
+    "false_word_exponents": [
+      2,
+      6
+    ],
+    "generator": 2,
+    "h": 8,
+    "modulus": 23,
+    "prime_order": 11
+  }
+}

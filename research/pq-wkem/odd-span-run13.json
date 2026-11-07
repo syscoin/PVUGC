@@ -1,0 +1,39 @@
+{
+  "odd_span": {
+    "bad_odd_span_weight": 5,
+    "canonical_valid_weights": [3, 3, 3],
+    "minimum_exact_inequality_slack": [2090, 1181],
+    "random_rational_distributions_checked": 400,
+    "tight_bad_bias": [7, 10],
+    "tight_gamma": [9, 10],
+    "tight_valid_bias": [9, 10],
+    "valid_vectors_rank": 3
+  },
+  "safe_boundary_trace": [
+    {"D": 2, "best_trace_guess": [1, 2], "hidden_trace_uniform_given_outside": true, "m": 2, "n": 3, "outside_views": 32, "q": 2, "rank1_bias": [1, 7], "samples_exhausted": 448},
+    {"D": 2, "best_trace_guess": [1, 2], "hidden_trace_uniform_given_outside": true, "m": 3, "n": 4, "outside_views": 4060, "q": 2, "rank1_bias": [1, 15], "samples_exhausted": 61440},
+    {"D": 2, "best_trace_guess": [1, 3], "hidden_trace_uniform_given_outside": true, "m": 2, "n": 3, "outside_views": 243, "q": 3, "rank1_bias": [1, 13], "samples_exhausted": 9477}
+  ],
+  "scale_table": [
+    {"D": 3, "inverse_square_scale": 7225.000000000001, "n": 8, "q": 2, "rank1_bias": 0.011764705882352941, "safe_boundary_m": 6},
+    {"D": 4, "inverse_square_scale": 87649718.87755102, "n": 16, "q": 2, "rank1_bias": 0.00010681315327687495, "safe_boundary_m": 13},
+    {"D": 4, "inverse_square_scale": 5744386595025.0, "n": 24, "q": 2, "rank1_bias": 4.172325382967316e-07, "safe_boundary_m": 21},
+    {"D": 4, "inverse_square_scale": 3.764641645942779e+17, "n": 32, "q": 2, "rank1_bias": 1.6298145059565582e-09, "safe_boundary_m": 29},
+    {"D": 8, "inverse_square_scale": 1143700419438255.2, "n": 32, "q": 2, "rank1_bias": 2.9569491750926127e-08, "safe_boundary_m": 25}
+  ],
+  "status": "PASS",
+  "subspace_character": [
+    {"m": 1, "n": 3, "q": 2, "rank1_bias": [3, 7], "subspaces": 7},
+    {"m": 2, "n": 3, "q": 2, "rank1_bias": [1, 7], "subspaces": 7},
+    {"m": 1, "n": 4, "q": 2, "rank1_bias": [7, 15], "subspaces": 15},
+    {"m": 2, "n": 4, "q": 2, "rank1_bias": [1, 5], "subspaces": 35},
+    {"m": 3, "n": 4, "q": 2, "rank1_bias": [1, 15], "subspaces": 15},
+    {"m": 1, "n": 3, "q": 3, "rank1_bias": [4, 13], "subspaces": 13},
+    {"m": 2, "n": 3, "q": 3, "rank1_bias": [1, 13], "subspaces": 13}
+  ],
+  "unsafe_completion": [
+    {"D": 2, "all_hidden_blocks_recovered": true, "completion_events": 144, "m": 1, "n": 4, "probability": [3, 5], "q": 2, "samples_exhausted": 240},
+    {"D": 2, "all_hidden_blocks_recovered": true, "completion_events": 1536, "m": 2, "n": 4, "probability": [6, 35], "q": 2, "samples_exhausted": 8960},
+    {"D": 2, "all_hidden_blocks_recovered": true, "completion_events": 162, "m": 1, "n": 3, "probability": [6, 13], "q": 3, "samples_exhausted": 351}
+  ]
+}

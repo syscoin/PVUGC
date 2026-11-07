@@ -1,0 +1,39 @@
+{
+  "run": 640,
+  "date": "2026-10-19",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "89dc1ef8b59f897e2ab0ec94f1c45d5270222ecf",
+  "starting_tree": "056b11b9f31cc2c99636fd2000699fefeb8af391",
+  "sources": {
+    "run639_note_blob": "836ff201da0e4987f736f9456f6a231b27c06a52",
+    "run638_note_blob": "d02a36dc6b6be0a740af3da9f3c9f3768b650fc2",
+    "actual_source": "GPT_PRO_WE_REVIEW_PACKET.md, Appendix A07 lines 1310–1368; A11 lines 2025–2057 and 2207–2237",
+    "qualification": "Actual two-branch genuine Gaussian fiber; only mod-2 residue near uniform under explicit smoothing and fresh-error hypotheses."
+  },
+  "theorem": "Pr_actual[exists integer J: DJ=I mod 2^k and ||J||_F^2<=R] <= delta_slice+2^(-m^2)*sum_(i<=R) binom(tm,i); no claim of full-mod-q uniformity.",
+  "published_blobs": {
+    "note": "a29eaac5bb6da4473d403db6fd5240de40897992",
+    "executed_checker": "645911fefd3e71c3d2e542a849993c095a976510",
+    "captured_output": "e01624f9387575d6c1fbbd7be484444b5343afde"
+  },
+  "local_expanded_note": {
+    "filename": "RUN640_ACTUAL_SOURCE_PARITY_INVERSE_BOUND.md",
+    "sha256": "d973c6da3f087977a8a2317fc74c733862f28b9b184c8403d84ef94adb6393e4",
+    "qualifier": "Expanded companion retained in local research package, not byte-identical to concise published note."
+  },
+  "reproducibility": {
+    "command": "python3 research/pq-wkem/run640_parity_inverse_check.py",
+    "compilation": "python3 -m py_compile research/pq-wkem/run640_parity_inverse_check.py",
+    "assertions": 325,
+    "repeated_byte_identical": true,
+    "checker_sha256": "2bf051682278ce7d916ba88cd39447546f28da1041cf0cf1d00c55c2cf18b12b",
+    "output_sha256": "87badc32391f3acbf90967b7aae34b394e307cce1c6e99aa8b58043215877cf3"
+  },
+  "scope": "Necessary norm budget only; not key hiding, QPT extraction, a novel hardness assumption, or WKEM implementation.",
+  "honest_setup": "classical PPT conditional on packet's actual Gaussian residue theorem",
+  "attacker": "arbitrary QPT with public checking keys and all capsules; theorem is information-theoretic on honest D",
+  "production_changed": false,
+  "pr_intent": "draft, unmerged"
+}

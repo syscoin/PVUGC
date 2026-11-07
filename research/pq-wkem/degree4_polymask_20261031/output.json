@@ -1,0 +1,13 @@
+{
+  "checks": 11219,
+  "full_false_bits": 512,
+  "true_witnesses": 4,
+  "true_bit_releases": 192,
+  "F10_d3_rank": 10,
+  "F10_d4_rank": 28,
+  "F10_d4_mask_independent": true,
+  "XOR_d4_rank": 53,
+  "XOR_d5_rank": 63,
+  "XOR_d4_mask_independent": false,
+  "complete_generic_WKEM": false
+}

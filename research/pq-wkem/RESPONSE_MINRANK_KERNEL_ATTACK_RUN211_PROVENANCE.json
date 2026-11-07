@@ -1,0 +1,56 @@
+{
+  "artifact_hashes": {
+    "RESPONSE_MINRANK_KERNEL_ATTACK_RUN211.md": {
+      "bytes": 14100,
+      "sha256": "dcb4b94f53b863f3d55d25088cc799fa4f8f1869890a6fc1d068269ffd484560"
+    },
+    "response-minrank-kernel-attack-run211-validation.json": {
+      "bytes": 1262,
+      "sha256": "c8cae4ab3cb6588c550da9fd715e1170856913513cadbf80814e0ea8ce9a0160"
+    },
+    "response_minrank_kernel_attack_run211_check.py": {
+      "bytes": 10664,
+      "sha256": "6f43fbe3bc63f634b7a397ebd4724e93fffc3df191b2064645fa7474b56f7df3"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "assertions": 2978,
+    "byte_identical_outputs": true,
+    "executions": 2,
+    "network_used_by_checker": false,
+    "python_version": "3.13.5",
+    "syntax_check": "passed"
+  },
+  "connected_github_reads": [
+    "get_pr_info",
+    "fetch_pr_comments",
+    "list_pr_changed_filenames",
+    "fetch_file at exact head"
+  ],
+  "created_utc": "2026-10-01T10:07:01.155736+00:00",
+  "exact_version_inputs": {
+    "research/pq-wkem/CMV_MINRANK_LACONIC_QPT_SOURCE_BRIDGE_RUN152.md": "398b93af491d0b11cc486e86c89295a05b714804",
+    "research/pq-wkem/CONDITIONAL_IMAGE_MIXING_RUN196.md": "99a0538f9823bfd562b34570d7aa68dd079fa446",
+    "research/pq-wkem/QROM_ORIGINAL_WITNESS_BRIDGE_RUN204.md": "552f0e4b890e434a3f5c0c45a86212cfab82d742"
+  },
+  "latest_substantive_ordinary_comment_id": 5913974235,
+  "publication_status": "recorded separately after the permitted publication attempt",
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "run_id": 211,
+  "scope": "One bounded iteration on efficient recovery of the response-MinRank bad-image witness n; no full-capsule or production modification.",
+  "starting_head_sha": "10ef85d5e34186b5c7bb8bf144804925604021ea",
+  "starting_state": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  },
+  "web_sources_checked": [
+    "https://arxiv.org/abs/2510.03752",
+    "https://eprint.iacr.org/2025/1833",
+    "https://doi.org/10.1007/s10623-025-01738-1",
+    "https://doi.org/10.1007/s10623-025-01800-y",
+    "https://eprint.iacr.org/2022/1031.pdf"
+  ]
+}

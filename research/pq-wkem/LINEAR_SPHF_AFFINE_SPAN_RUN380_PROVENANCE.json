@@ -1,0 +1,32 @@
+{
+  "assertions": 398945,
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_runs_identical": 2,
+  "clz_exact_note_blob": "c19d9d9cd515140e3ce62eac960cd548c0add622",
+  "comment_success_independent": true,
+  "concrete_wkem": false,
+  "full_paper_audit": false,
+  "latest_substantive_comment": 6067040320,
+  "new_result": "exact all-capsule affine-span dichotomy, pairwise-perfect-triple-leak example",
+  "paths": {
+    "LINEAR_SPHF_AFFINE_SPAN_RUN380.md": "research/pq-wkem/LINEAR_SPHF_AFFINE_SPAN_RUN380.md",
+    "linear-sphf-affine-span-run380-validation.json": "research/pq-wkem/linear-sphf-affine-span-run380-validation.json",
+    "linear_sphf_affine_span_run380_check.py": "research/pq-wkem/linear_sphf_affine_span_run380_check.py"
+  },
+  "pr": 1,
+  "production_changes": false,
+  "publication_status_at_note_creation": "LOCAL_VALIDATED_PRE_PUBLICATION",
+  "python_syntax": "PASS",
+  "qpt_security": false,
+  "repository": "syscoin/PVUGC",
+  "run": 380,
+  "run259_exact_note_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "run379_exact_note_blob": "d58ff0eddacd9fd1840b1b3939e39b401750ff90",
+  "sha256": {
+    "LINEAR_SPHF_AFFINE_SPAN_RUN380.md": "11d22463cf1139bbeec20ec905ee16c63b0fef76fdb80a719082c67018483b50",
+    "linear-sphf-affine-span-run380-validation.json": "670736bed64f3e0dd3eacfcc03be722c433a586e2ae799b9e42774670e57d643",
+    "linear_sphf_affine_span_run380_check.py": "c0cd3b31b3e8faad2eda40aded0ff9175d022680d473b8be527c3f4340ee832a"
+  },
+  "start_commit_tree_sha": "62d13805d3708323c86f9cbea61aabde8b2e2b49",
+  "starting_sha": "3d12b3180e4943a137c8669171f47cc0dd4ad759"
+}

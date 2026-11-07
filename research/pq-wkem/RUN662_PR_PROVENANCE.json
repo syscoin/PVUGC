@@ -1,0 +1,24 @@
+{
+  "run": 662,
+  "date": "2026-10-20",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "d9f73ea9e3bdeaf06f524475816b77b2c9288a4d",
+  "published_note_blob": "6ef3a03a1839484e3ea3fe93791f98beab2dad54",
+  "published_checker_blob": "66a897b4bbdded58722de4c010ae208bd69b4bca",
+  "published_validation_blob": "07d7e1b8f39132186384970a5529c50da820398f",
+  "executions": {
+    "compact_js": "node --check passed; 35 assertions; repeated SHA256 725c90856af8b3e7d543fbf93a9bccd586cf091746bef33ac31bac9928bc4f0b",
+    "extended_python": "py_compile passed; 46683 assertions; repeated output SHA256 01a32d43b3a3862efc4ce102853682d50c4a464366e2fd5767d8437451e541a4"
+  },
+  "claim": "independent-copy explicit base-field representation admission, not full QPT key hiding or arbitrary recovery extraction",
+  "live_dependencies": {
+    "Run593": "29b9168bfff6043810284cd1960400579f224e31",
+    "Run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "Run638": "d02a36dc6b6be0a740af3da9f3c9f3768b650fc2",
+    "Run641": "ac631ac1242e440d53d5e1e77253ef850b798c94"
+  },
+  "production_changed": false,
+  "security_complete": false
+}

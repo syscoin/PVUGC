@@ -1,0 +1,294 @@
+{
+  "assertions": 1043,
+  "cancelled_cases_passing_supplied_rank_test": 0,
+  "checker_sha256": "6271786e2d6f5a228fdb3f28614f3e57ecfa9163ef72b839a9e2e1a2ae46fc68",
+  "checkpoint": "coefficient-mask-audit-20261022",
+  "duality_census_cases": 729,
+  "field": 101,
+  "key_roots_after_cancellation": 18,
+  "limits": [
+    "The restricted false-source mask-space repair is exact, not a general PQ WKEM proof.",
+    "Small-field root enumeration validates roots, not cryptographic-scale runtime.",
+    "The generic public quotient fact was already documented in QUOTIENT_AND_PROBE.md.",
+    "A public rank-check rejection does not prevent direct credential use.",
+    "No quantum algorithm was executed; formal cancellation is already classical.",
+    "The parameter family tested is allowed by Run707, not a claim about a deployed instance."
+  ],
+  "matrix_dimension": 9,
+  "normalized_canceller": [
+    1,
+    2,
+    2
+  ],
+  "old_probe_eigenvalue_incidents_after_repair": 0,
+  "point2_eigenvalue_incidents": 0,
+  "repair_certificate_coefficients": [
+    51,
+    50,
+    50
+  ],
+  "repaired_normalized_canceller_exists": false,
+  "source_constraints": [
+    "x^2-x=0",
+    "x-2=0"
+  ],
+  "source_has_witness": false,
+  "spectral_cases": [
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        39,
+        50,
+        67
+      ],
+      "family": "full",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 0,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        67,
+        84
+      ],
+      "family": "full",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 1,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        67
+      ],
+      "family": "full",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 2,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        22,
+        67
+      ],
+      "family": "full",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 3,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        10,
+        12,
+        40,
+        67
+      ],
+      "family": "full",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 4,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        67,
+        89,
+        98
+      ],
+      "family": "full",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 5,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        59,
+        67
+      ],
+      "family": "diagonal",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 0,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        67
+      ],
+      "family": "diagonal",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 1,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        45,
+        67
+      ],
+      "family": "diagonal",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 2,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        43,
+        67
+      ],
+      "family": "diagonal",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 3,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        41,
+        67
+      ],
+      "family": "diagonal",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 4,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        3,
+        67
+      ],
+      "family": "diagonal",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 5,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        37,
+        67
+      ],
+      "family": "conjugated_diagonal",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 0,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        67
+      ],
+      "family": "conjugated_diagonal",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 1,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        64,
+        67
+      ],
+      "family": "conjugated_diagonal",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 2,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        43,
+        67
+      ],
+      "family": "conjugated_diagonal",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 3,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        67
+      ],
+      "family": "conjugated_diagonal",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 4,
+      "tag_selected_key": 67
+    },
+    {
+      "baseline_rank_at_2": 6,
+      "cancelled_operator_roots": [
+        11,
+        67,
+        71
+      ],
+      "family": "conjugated_diagonal",
+      "key_is_root": true,
+      "passes_supplied_rank_test": false,
+      "seed": 5,
+      "tag_selected_key": 67
+    }
+  ],
+  "total_spectral_cases": 18,
+  "true_source_multiplier_cases": [
+    {
+      "feature_count": 3,
+      "max_multiplier_degree": 0
+    },
+    {
+      "feature_count": 4,
+      "max_multiplier_degree": 1
+    },
+    {
+      "feature_count": 5,
+      "max_multiplier_degree": 2
+    },
+    {
+      "feature_count": 6,
+      "max_multiplier_degree": 3
+    },
+    {
+      "feature_count": 7,
+      "max_multiplier_degree": 4
+    },
+    {
+      "feature_count": 8,
+      "max_multiplier_degree": 5
+    },
+    {
+      "feature_count": 9,
+      "max_multiplier_degree": 6
+    },
+    {
+      "feature_count": 10,
+      "max_multiplier_degree": 7
+    },
+    {
+      "feature_count": 11,
+      "max_multiplier_degree": 8
+    }
+  ]
+}

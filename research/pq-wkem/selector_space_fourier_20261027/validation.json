@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "assertions": 389,
+  "groups": {
+    "affine_normalization": 8,
+    "false_full_view": 1,
+    "improved_rate": 1,
+    "invalid_filter": 312,
+    "kernel": 22,
+    "mask_count": 1,
+    "merge_requires_gain": 1,
+    "no_global_factor": 1,
+    "true_full_view": 2,
+    "valid_filter": 40
+  },
+  "fixtures": [
+    {
+      "pin": "all",
+      "quotient_bits": 9,
+      "valid_modes": 32,
+      "invalid_modes": 224,
+      "entire_laws_equal": false
+    },
+    {
+      "pin": "true",
+      "quotient_bits": 7,
+      "valid_modes": 8,
+      "invalid_modes": 56,
+      "entire_laws_equal": false
+    },
+    {
+      "pin": "false",
+      "quotient_bits": 6,
+      "valid_modes": 0,
+      "invalid_modes": 32,
+      "entire_laws_equal": true
+    }
+  ],
+  "signal": {
+    "old": "4096/29791",
+    "new": "4096/16381",
+    "bias_gain": 1.8186313411879618,
+    "capacity_gain": 3.332198100449607
+  },
+  "scope": "Exact finite distribution identities; no QPT hardness or Bitcoin benchmark"
+}

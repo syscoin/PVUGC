@@ -1,0 +1,1 @@
+{"run":"MINK-LWE-TOEPLITZ-LOCK-20261102-R14","status":"finite_checks_passed","checks":1087,"enumerated_toeplitz":512,"bad_toeplitz":39,"global_bad_bound":128,"senders":5,"commitments":25,"seed_collisions_same_message_allowed":5,"toy_prg_steps":3,"quantum_security_proved":false,"generic_np_wkem_solved":false}

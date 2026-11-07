@@ -1,0 +1,30 @@
+{
+  "run_id": "2026-10-31-certified-12bit-coin-release",
+  "start_sha": "f267d64d43a3b66df2c329bb891adfc98632d29e",
+  "status": "restricted_efficiency_not_generic_WKEM",
+  "q": 1099511627689,
+  "d": 512,
+  "n": 21008,
+  "B": 16384,
+  "bits": 12,
+  "g": 268435455,
+  "T": 258,
+  "source_log2_false_bound": -528,
+  "log2_error_reject_bound": -1185.237,
+  "log2_all_conditional_loss": -1177.226,
+  "ciphertext_vectors_b8": 384,
+  "ciphertext_vectors_b10": 312,
+  "ciphertext_vectors_b11": 282,
+  "ciphertext_vectors_b12": 258,
+  "ciphertext_bytes_b12": 27101610,
+  "shared_matrix_bytes": 53780480,
+  "toy": {
+    "distinct_valid_witnesses": 2,
+    "capsules": 2,
+    "ciphertexts": 72,
+    "rejection_tries": 6816,
+    "chosen_false_z3_recovers": true
+  },
+  "assertions": 7660,
+  "warning": "No 128-bit QPT hardness or Bitcoin native signatures tested. Adversarial FALSE and hard TRUE ORIGINAL witness reductions unresolved."
+}

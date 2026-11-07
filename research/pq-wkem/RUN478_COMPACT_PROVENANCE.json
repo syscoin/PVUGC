@@ -1,0 +1,42 @@
+{
+  "run": 478,
+  "date": "2026-10-13",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "2625a6a309f2824db5a5f98b17741592dbd58ff5",
+  "starting_tree_sha": "fa3dd489509f601d85025751b2c3908daa5007ea",
+  "read_dependencies": {
+    "run477": "d1051fb019251b09d9c1cf9e64d3468a75e6c3bb",
+    "run476": "0f2676cbb8fc3ae8f20655674b352efcea09a5a0",
+    "run475": "3806593a3156d6a66789d97fbd8d3577c8bf1b65",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "clz": "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  },
+  "execution": "Exact run478_compact_check.js evaluated in local V8 before GitHub write, stdout captured verbatim; no filesystem dependency",
+  "validation": {
+    "run": 478,
+    "status": "PASS",
+    "checks": 27970,
+    "fixtures": 64,
+    "gates": 429,
+    "wires": 169,
+    "allowed": [
+      "NOT",
+      "CNOT",
+      "TOFFOLI"
+    ],
+    "all_workspace_zero": true,
+    "secret_registers_unchanged": true,
+    "source_false": true,
+    "unauthorized_releases": 64,
+    "model": "ideal bitwise encrypted-gate semantics; toy auth, no FHE/FE/PQ"
+  },
+  "extended_local_only": {
+    "python_checks": 530,
+    "js_checks": 21666,
+    "verified_twice": true
+  },
+  "security": "conditional transparent local gate API attack; no FHE/FE/WKEM/PQ construction",
+  "research_commit": "filled by GitHub return, not this file"
+}

@@ -1,0 +1,1 @@
+{"checks": 675, "classification": "restricted source seed-to-native composition; native public key mocked; not ORIGINAL witness-KEM", "derived_native_seed_bits": 384, "master_bits": 256, "master_digit_columns": 52, "raw_seed_digit_columns": 77, "record": "native_master_seed_dual_lwe_20261030", "saved_bytes": 7740000}

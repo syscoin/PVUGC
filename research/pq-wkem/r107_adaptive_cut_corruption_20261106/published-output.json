@@ -1,0 +1,19 @@
+{
+  "run": "R107-ADAPTIVE-TARGET-CORRUPTION-CUT-FAMILY-20261106",
+  "result": "PASS",
+  "assertions": 281,
+  "full_transcript_cases": 6000,
+  "histogram_equalities": 24,
+  "cuts": [
+    [
+      "H1",
+      "H2"
+    ],
+    [
+      "H1",
+      "H3"
+    ]
+  ],
+  "model": "GF(5) exact final hybrid with publicly disclosed ALL complement occurrence plaintext and adaptive classical corruption chosen from full public CK/Aux",
+  "warning": "not actual lattice security; arbitrary generic ORIGINAL NP remains unresolved"
+}

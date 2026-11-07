@@ -1,0 +1,14 @@
+Run: affine-multiplicative-20261026T2102Z
+Repository: syscoin/PVUGC, PR #1 (draft/open/unmerged when checked)
+Branch: research/pq-wkem-validation-20260918
+Expected parent: 72e57de2d2b0892b9f79a5ec4a0cfcdb2d0c7b4e
+Expected base tree: 0de4f275d1283a4d838b8ac7b90b04f0f7058ff5
+Exact predecessor blob: 73141f5b899bbcf09cbbc32bf57fa3e65884949c
+JS executed in connected local JavaScript sandbox: 428 assertions PASS
+JS output: checker_output.txt
+Python executed offline twice, byte-identical: 195 assertions PASS
+Python source SHA256: 240cc208d6fd8ad60a2a16fe15ab09e1622073f1d324dfde48126be9f087fc24
+Python output SHA256: dcd06c19f99ee5810b173224c1298e7cc7b1d8264f05746c2b224b846d6c9455
+Local complete archive SHA256: 7e5c66f1ca8373be382d20e0440d34d80d12d171048ace54a7dcd28316876d74
+Scope: research-only compiler and false-output distribution; no generic QPT security.
+Offline research: no public web or external literature searches.

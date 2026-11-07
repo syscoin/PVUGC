@@ -1,0 +1,63 @@
+{
+  "run": 492,
+  "assertions": 10249,
+  "cases": [
+    {
+      "selectors": 1,
+      "trueStatements": 255,
+      "falseStatements": 1,
+      "validWitnessChecks": 1024,
+      "publicQueries": 256
+    },
+    {
+      "selectors": 2,
+      "trueStatements": 255,
+      "falseStatements": 1,
+      "validWitnessChecks": 1024,
+      "publicQueries": 272
+    },
+    {
+      "selectors": 3,
+      "trueStatements": 255,
+      "falseStatements": 1,
+      "validWitnessChecks": 1024,
+      "publicQueries": 292
+    },
+    {
+      "selectors": 4,
+      "trueStatements": 255,
+      "falseStatements": 1,
+      "validWitnessChecks": 1024,
+      "publicQueries": 340
+    },
+    {
+      "selectors": 5,
+      "trueStatements": 255,
+      "falseStatements": 1,
+      "validWitnessChecks": 1024,
+      "publicQueries": 342
+    },
+    {
+      "selectors": 6,
+      "trueStatements": 255,
+      "falseStatements": 1,
+      "validWitnessChecks": 1024,
+      "publicQueries": 350
+    },
+    {
+      "selectors": 7,
+      "trueStatements": 255,
+      "falseStatements": 1,
+      "validWitnessChecks": 1024,
+      "publicQueries": 382
+    },
+    {
+      "selectors": 8,
+      "trueStatements": 255,
+      "falseStatements": 1,
+      "validWitnessChecks": 1024,
+      "publicQueries": 510
+    }
+  ],
+  "scope": "Exhaustive toy release-slot enumeration; not a WKEM or QPT test."
+}

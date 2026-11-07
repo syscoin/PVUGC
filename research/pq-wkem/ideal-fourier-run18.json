@@ -1,0 +1,106 @@
+{
+  "false_contradiction_perfect_hiding": {
+    "each_ciphertext_multiplicity": 1,
+    "field": 101,
+    "identical": true,
+    "keys_compared": [
+      0,
+      1,
+      17
+    ],
+    "support_size": 10201
+  },
+  "false_odd_triangle_certificate": {
+    "certificate_nonzero_terms": 6,
+    "degree_bound_multiplier": 2,
+    "generators": 21,
+    "one_in_mask_span": true,
+    "variables": 3
+  },
+  "qpt_fourier_algebra": {
+    "B_squared": "17/200",
+    "eta": "3/20",
+    "group": "F2^4",
+    "nonsemantic_Delta_coefficient": "3/20",
+    "nonsemantic_label": 10,
+    "parseval_randomized_predictor": "17/200",
+    "predictor_advantage_delta": "1/8",
+    "proved_lower_bound": "2/17",
+    "randomized_clean_flag_total_probability": "17/200",
+    "semantic_Delta_coefficient": "1/4",
+    "semantic_label": 3,
+    "semantic_sampling_mass": "1"
+  },
+  "status": "PASS",
+  "true_ideal_coset_public_quotient": {
+    "feature_dimension": 4,
+    "field": 101,
+    "keys_recovered": 500,
+    "mask_generators": 3,
+    "public_lambda": [
+      1,
+      1,
+      0,
+      0
+    ],
+    "trials": 500
+  },
+  "true_unique_witness_pseudofunctional": {
+    "constraint": "1-x*y*z=0",
+    "equals_unique_witness_evaluation": false,
+    "keys_recovered": 300,
+    "public_lambda": [
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1
+    ],
+    "trials": 300,
+    "unique_boolean_witness": [
+      1,
+      1,
+      1
+    ]
+  },
+  "witness_multiplicity": [
+    {
+      "B_squared": "1/49",
+      "M": 1,
+      "gamma": "1/7"
+    },
+    {
+      "B_squared": "2/49",
+      "M": 2,
+      "gamma": "1/7"
+    },
+    {
+      "B_squared": "4/49",
+      "M": 4,
+      "gamma": "1/7"
+    },
+    {
+      "B_squared": "8/49",
+      "M": 8,
+      "gamma": "1/7"
+    },
+    {
+      "B_squared": "16/49",
+      "M": 16,
+      "gamma": "1/7"
+    },
+    {
+      "B_squared": "32/49",
+      "M": 32,
+      "gamma": "1/7"
+    },
+    {
+      "B_squared": "64/49",
+      "M": 64,
+      "gamma": "1/7"
+    }
+  ]
+}

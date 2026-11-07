@@ -1,0 +1,22 @@
+{
+  "run": 511,
+  "date_utc": "2026-10-14",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "54abffc290d8a7a679a1a17e083abfdd7d834720",
+  "last_ordinary_comment_id": 6067040320,
+  "exact_source_blobs": {
+    "run506": "2d5d10c9a1d7063b08ffb377c5d5e8da2113dde8",
+    "run507": "68a408db82ae13abb01b487b2b70d05153e8121b",
+    "run510": "60ac2f2d0a06a9999426adeb7edd8fa1d000f718",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  },
+  "executed_checker": "run511_compact_check.js",
+  "execution": "node v22.16.0, two byte-identical runs",
+  "expected_checker_blob": "e59f60b1d57b9f9a60fc2dfd8fd9dd37061ae14c",
+  "expected_validation_blob": "cdb8a9c78dffa554655dfb408be792eeb04d9d82",
+  "locally_preserved_extended_checker": "run511_cross_capsule_check.py",
+  "locally_preserved_extended_validation": "run511_cross_capsule_validation.json",
+  "scope": "ideal action reuse attack; no production or actual Bitcoin exploit"
+}

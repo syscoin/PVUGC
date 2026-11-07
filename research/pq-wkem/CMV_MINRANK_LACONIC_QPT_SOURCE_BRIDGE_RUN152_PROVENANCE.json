@@ -1,0 +1,76 @@
+{
+  "artifact_sha256": {
+    "checker": "e5d77eb65d46c5be57599ffb6eb995cd2027ad112078f635847735c85e9b34c2",
+    "note": "d260a6c5ac87beda2befa2460da6870f1bda5cda0c674eadad680f97e941e904",
+    "validation": "1d5f8dd6f587719ccb26d6af13b7b005147ecd3c9684f8289468cbb659d63545"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_head_inputs": {
+    "run102": "5ec37cfcf47fcdc68d279af1dc1b6c90a7287c8d",
+    "run129": "cb74329d418b365abd325270185673b29fb10560",
+    "run131": "910ae37f9f03f7b712674e46cc672e76cb2ffc06",
+    "run134": "16d356d1118caf8db5e6a55eb659b9f9656a041e",
+    "run147": "440a59de11556424cefe51aa5433d383c757ee7b",
+    "run79": "30084603c3b35c449be4e154f6d214533526d3c5",
+    "run82": "6430557fd1596308db029d17b48549f9ed9490c8"
+  },
+  "execution": {
+    "assertions": 540,
+    "byte_identical_stdout": true,
+    "python_syntax": "PASS",
+    "run1_exit": 0,
+    "run2_exit": 0
+  },
+  "identifier": "RUN152_CMV_MINRANK_LACONIC_QPT_SOURCE_BRIDGE",
+  "latest_substantive_comment_id": 5859816284,
+  "limitations": [
+    "False-instance hiding for actual statement-derived Hair-Sahai source remains unproved.",
+    "CMV random-instance semantic security does not apply to structured source generators.",
+    "CMV theorem is formally polynomial-time, not an arbitrary-QPT theorem.",
+    "Run82 gives an exponential near-gap false family, so sparse low-rank-spectrum heuristics are invalid.",
+    "Factor-sampled randomizer was chosen for exact Fourier analysis and is not asserted identical to CMV's exact uniform-rank<=r distribution.",
+    "Practical parameters and malicious setup composition remain open."
+  ],
+  "new_results": [
+    "Public Hair-Sahai anchor-one affine slice is a fixed MinRank public key whose every ORIGINAL rank-one witness decrypts the same structured bit.",
+    "Kronecker-lifted rank-one residual permits CMV-form correctness with randomizer-rank rather than residual-rank-squared threshold.",
+    "Exact complete-output Fourier law P0_hat(Lambda)=2^(-r rank(N_Lambda)) for sum-of-r rank-one randomizer.",
+    "Information-theoretic false hiding reduces to one explicit rank-spectrum chi-square sum.",
+    "Arbitrary-QPT bit-prediction source extraction follows from low/high rank-spectrum conditions using Run102's one-copy mixed-advice Fourier sampler."
+  ],
+  "pr": 1,
+  "primary_sources": [
+    {
+      "arxiv": "2510.03752",
+      "authors": [
+        "Rohit Chatterjee",
+        "Changrui Mu",
+        "Prashant Nalini Vasudevan"
+      ],
+      "facts_used": [
+        "t-block-wise inner product and rank product bound",
+        "PKE structured-zero ciphertext and uniform-one ciphertext",
+        "decryption through low-rank residual",
+        "security theorem is for uniformly random MinRank instances and polynomial-time algorithms"
+      ],
+      "title": "Public-Key Encryption from the MinRank Problem",
+      "url": "https://arxiv.org/abs/2510.03752"
+    },
+    {
+      "arxiv": "2609.18275v1",
+      "authors": [
+        "Isaac M. Hair",
+        "Amit Sahai"
+      ],
+      "facts_used": [
+        "generic-NP weighted-table MinRank compiler and logarithmic false gap",
+        "rank-one Boolean-factor witness interface",
+        "classical generic-group security not imported"
+      ],
+      "title": "Witness Encryption via Prime-Order Generic Groups",
+      "url": "https://arxiv.org/abs/2609.18275"
+    }
+  ],
+  "repository": "syscoin/PVUGC",
+  "starting_sha": "a81bac1eb92e57160c5b373d7fbef8032e127d04"
+}

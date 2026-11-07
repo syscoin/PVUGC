@@ -1,0 +1,147 @@
+{
+  "assertions": 4539,
+  "gadget_identity": [
+    {
+      "elements": 4,
+      "q": 4
+    },
+    {
+      "elements": 8,
+      "q": 8
+    },
+    {
+      "elements": 16,
+      "q": 16
+    }
+  ],
+  "hyb1_hyb2_embedding": [
+    {
+      "q": 4,
+      "tuples": 256
+    },
+    {
+      "q": 8,
+      "tuples": 4096
+    }
+  ],
+  "non_conclusions": [
+    "does not prove QPT-LWE",
+    "does not solve fixed-digest source opening",
+    "does not imply ORIGINAL-witness extraction from final-key recovery"
+  ],
+  "pad_uniformity": [
+    {
+      "k": 1,
+      "states": 2
+    },
+    {
+      "k": 2,
+      "states": 4
+    },
+    {
+      "k": 3,
+      "states": 8
+    },
+    {
+      "k": 4,
+      "states": 16
+    },
+    {
+      "k": 5,
+      "states": 32
+    },
+    {
+      "k": 6,
+      "states": 64
+    },
+    {
+      "k": 7,
+      "states": 128
+    },
+    {
+      "k": 8,
+      "states": 256
+    },
+    {
+      "k": 9,
+      "states": 512
+    },
+    {
+      "k": 10,
+      "states": 1024
+    },
+    {
+      "k": 11,
+      "states": 2048
+    },
+    {
+      "k": 12,
+      "states": 4096
+    }
+  ],
+  "parameter_samples": [
+    {
+      "holds": true,
+      "lambda": 64,
+      "q_form": "lambda^2"
+    },
+    {
+      "holds": true,
+      "lambda": 64,
+      "q_form": "lambda^3"
+    },
+    {
+      "holds": true,
+      "lambda": 64,
+      "q_form": "lambda^4"
+    },
+    {
+      "holds": true,
+      "lambda": 128,
+      "q_form": "lambda^2"
+    },
+    {
+      "holds": true,
+      "lambda": 128,
+      "q_form": "lambda^3"
+    },
+    {
+      "holds": true,
+      "lambda": 128,
+      "q_form": "lambda^4"
+    },
+    {
+      "holds": true,
+      "lambda": 256,
+      "q_form": "lambda^2"
+    },
+    {
+      "holds": true,
+      "lambda": 256,
+      "q_form": "lambda^3"
+    },
+    {
+      "holds": true,
+      "lambda": 256,
+      "q_form": "lambda^4"
+    },
+    {
+      "holds": true,
+      "lambda": 512,
+      "q_form": "lambda^2"
+    },
+    {
+      "holds": true,
+      "lambda": 512,
+      "q_form": "lambda^3"
+    },
+    {
+      "holds": true,
+      "lambda": 512,
+      "q_form": "lambda^4"
+    }
+  ],
+  "run": 122,
+  "scope": "finite algebra/distribution/parameter-bookkeeping only; not a QPT-hardness experiment",
+  "status": "PASS"
+}

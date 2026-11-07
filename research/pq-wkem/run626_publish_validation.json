@@ -1,0 +1,1 @@
+{"counted_conditions": 3456, "group": "S4", "individual_path_marginals_uniform": true, "joint_overlap": 0, "joint_supports": [72, 192], "joint_tv": 1.0, "mask_pairs_per_world": 576, "public_adapter_tests": 1152, "result": "PASS", "run": 626, "scope": "finite group falsifier, not QPT WKEM security"}

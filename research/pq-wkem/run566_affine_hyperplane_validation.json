@@ -1,0 +1,46 @@
+{
+  "run": 566,
+  "status": "PASS",
+  "assertions_passed": 1560,
+  "subsets_exhausted": 414,
+  "unsafe_subsets": 292,
+  "safe_subsets": 122,
+  "grids": [
+    {
+      "q": 2,
+      "m": 1,
+      "subsets": 2
+    },
+    {
+      "q": 2,
+      "m": 2,
+      "subsets": 8
+    },
+    {
+      "q": 2,
+      "m": 3,
+      "subsets": 128
+    },
+    {
+      "q": 3,
+      "m": 1,
+      "subsets": 4
+    },
+    {
+      "q": 3,
+      "m": 2,
+      "subsets": 256
+    },
+    {
+      "q": 5,
+      "m": 1,
+      "subsets": 16
+    }
+  ],
+  "vector_affine_forgery_fixtures": 213,
+  "booleanized_affine_only_nonrelease_fixtures": 208,
+  "constant_injection_forgery_fixtures": 208,
+  "public_boolean_zero_test_vectors": 91,
+  "real_encryption_implemented": false,
+  "QPT_security_established": false
+}

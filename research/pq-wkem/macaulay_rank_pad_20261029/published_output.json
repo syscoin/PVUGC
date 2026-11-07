@@ -1,0 +1,40 @@
+{
+  "assertions": 7938,
+  "degree": 3,
+  "false_exact_uniform_orbits": 4,
+  "false_kernel_certificate": [
+    0,
+    0,
+    256,
+    0,
+    0,
+    0,
+    0,
+    256,
+    0,
+    0,
+    0,
+    256,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "generic_NP_solution": false,
+  "matrix_false": [
+    19,
+    8
+  ],
+  "matrix_true": [
+    2,
+    8
+  ],
+  "native_key": "mock integer, no SLH implementation",
+  "q": 257,
+  "status": "PASS",
+  "true_distinct_witnesses": 7,
+  "whole_key_trials": 4
+}

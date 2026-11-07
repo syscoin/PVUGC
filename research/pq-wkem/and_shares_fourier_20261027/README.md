@@ -1,0 +1,49 @@
+# XOR-shared AND of ORIGINAL relations: per-clause coherent extraction
+
+Research record: and-shares-fourier-20261027. Offline continuation of syscoin/PVUGC draft PR #1, head dfc10d62b73bead83bda4be632382a7e43779df2, branch research/pq-wkem-validation-20260918. Exact prerequisites: or_policy_joint_fourier_20261027/PROOF.md (blob 0b65a2613fed5083c1b43455e3c7857c28a948c8) and polar_coded_fourier_20261027/PROOF.md (blob 039e2706200aaf8cb6cf0a2bd9e0d730684abda5).
+
+## Concrete new release, not a new hardness assumption
+
+The predecessor releases one native key when ANY one of several DIFFERENT ORIGINAL relations is satisfied, and its arbitrary-adversary extractor returns SOME authorized disjunct witness. The new AND release uses a uniform XOR sharing of the SAME already precommitted native signing seed across different SOURCE capsules, and it yields a recovery-to-ORIGINAL extractor for EACH SELECTED conjunct, even while all other clauses, public native checking key and their capsules remain visible. The selected conjunct may be claim-bound 100-block work evidence and a different conjunct may be arbitrary NP. Exact false-instance hiding of the NP conjunct is enforced cryptographically, not by a skippable external verifier. No SourceOpen oracle, canonical witness, shared intermediate state, extra online authority, generic WE assumption, or new cryptographic primitive is introduced.
+
+Let m>=2 be polynomial. Public Policy_i(pk,claim,context) deterministically creates ORIGINAL relation R_i(x_i,w_i), before noise selection. Each source description and the whole claim, UTXO, intended native verification key/path, branch, burn authorization, anchors and window are immutable and publicly bound. Policy_i uses pk but not hidden K or setup coins.
+
+For each i, instantiate the pinned explicit Boolean SOURCE compiler: public homogeneous C_i, row basis B_i of ker(C_i), b_i=B_i e0, and classically samplable E_i. Set P_(i,z)=Law(B_i E_i+b_i z) over the ENTIRE quotient. The proved Fourier identity is hat(P_(i,1))(a)-hat(P_(i,0))(a)=-2 rho_i exactly at normalized accepted ORIGINAL witness modes S_i and zero everywhere else. Every such mode efficiently yields a verified ORIGINAL witness. Define s_i=|S_i|. In particular an ORIGINAL false R_i gives EXACT full-law P_(i,1)=P_(i,0), not merely a zero measured probe.
+
+Build samples actual k-bit native signing seed K from NativeGen, and publishes real pk(K). Pick U_1,...,U_(m-1) independently uniform in GF(2)^k; define U_m=K XOR U_1 XOR ... XOR U_(m-1). For each i independently sample public uniform k-bit dither D_i. Use the predecessor's public certified polar code c_i=Enc_i(U_i XOR D_i), of N_i bits. For every column j sample FRESH independent E_(i,j) and publish Q_(i,j)=B_i E_(i,j)+b_i c_i[j]. Publish (all x_i,C_i,B_i,code parameters,D_i,Q_i,real pk,claim/branch/anchors/context,all admissible aux and related capsules) as ONE JOINT VIEW. Builder private K,U_i,E and coins require protection/erasure under the honest-erasure baseline.
+
+Recover takes one valid ORIGINAL witness w_i for EVERY conjunct. It reconstructs the SOURCE one-hot v_i and corresponding a_i with a_i^T B_i=v_i^T; obtains y_(i,j)=a_i^T Q_(i,j)=c_i[j]+v_i^T E_(i,j). For every fixed valid w_i, these errors are independent BSC((1-rho_i)/2) across columns. Certified polar Decode_i(y_i) XOR D_i returns U_i when successful; XOR ALL recovered U_i to obtain the SAME precommitted K, check real pk(K), then sign only the intended challenge-path message OFF CHAIN. Distinct witnesses may have distinct states. Simultaneous-all-valid-witness correctness failure is at most SUM_i epsilon_i when each published per-source noise-class/polar certificate bounds clause failure by epsilon_i; no tuple enumeration is needed.
+
+## Exact full-public false AND simulation, even with nontarget-share openings
+
+The XOR-hyperplane distribution is symmetric. For ANY designated i, equivalently sample all other U_j uniformly independently of K and define missing U_i=K XOR XOR_(j!=i) U_j. Define Null_i to replace ONLY Q_i by independent full P_(i,0) columns while leaving every other capsule honest and retaining actual pk, all source/claim data, public dither, and simulatable native auxiliary data.
+
+The Null_i simulator GIVEN ONLY REAL NATIVE pk samples every U_j (j!=i), their D_j and honest Q_j; then samples target Q_i from P_(i,0). It never generates or needs missing U_i or K. It can additionally disclose all nontarget shares AND their builder coins, adaptively as long as the disclosure interface is faithfully simulatable from those coins. Target E_i and missing U_i must stay hidden. This is a QUALIFIED selective-opening theorem, not unrestricted same-key selective opening.
+
+If R_i is false, P_(i,0)=P_(i,1) as complete laws, so REAL=Null_i as the complete joint distribution, even conditional on fixed K, its real pk, all non-target capsules, public D, and the allowed non-target openings. If ANY conjunct is false, the whole AND release reduces EXACTLY to this native-secret-free simulation. Identical distributions remain identical under arbitrary coherent QPT processing with advice whose distribution is independent of fresh target release randomness. Auxiliary material correlated with target K/masks outside the ordinary native challenge must not be smuggled into this statement.
+
+## Stronger per-clause arbitrary-QPT recovery-to-ORIGINAL theorem
+
+Fix ANY chosen i. Let A be an arbitrary QPT algorithm seeing ALL jointly correlated public data and permitted other-clause openings and attempting exact K recovery or genuinely fresh native-message signature forgery. Use the predecessor's explicit stronger coherent circuit/A-inverse access, reversible success-phase check, one appropriately independent quantum advice state, and matched legitimate native signing/presignature challenge. Classical rewinding, extracting a volunteered representation, QROM programming or an assumed WE oracle is NOT invoked.
+
+Order only target i's N_i columns. In each adjacent hybrid replace one P_(i,c_i[j]) by P_(i,0), retaining the REAL native pk, all other true/false clauses/capsules, target dither, and native aux. The reduction that generated K knows c_i[j]; when it equals 0 the gap is 0, and when 1 the entire Fourier difference is supported exactly on S_i. The prior coherent reflection+Fourier-measurement lemma extracts an ORIGINAL witness for R_i from that gap. Jensen/telescoping over the target columns give, for s_i>0,
+
+  eta_i=max(0,p_real-p_native,i)
+  p_Ext,i >= eta_i^2 / (N_i^2 s_i rho_i^2)
+  p_real <= p_native,i + N_i rho_i sqrt(s_i p_Ext,i).
+
+Here p_native,i is success in the exact Null_i view, which is sampled from the real ordinary native checking-key challenge without knowing K. This inequality holds FOR EACH chosen i SEPARATELY, unlike the predecessor's SOME-branch OR extraction. If R_i is false, s_i=0 and p_real=p_native,i EXACTLY. The extractor has to count full emitted length, coherent A/A-inverse execution, quantum advice and oracle resources. Native EUF-CMA covers only fresh messages/paths, not an already preauthorized graph edge; an unavailable coherent signing-oracle implementation is an explicit limitation.
+
+If every witness of the chosen i projects by a deterministic efficient check to winning claim-specific PoW evidence, and an INDEPENDENT, resource-matched QPT work-search game establishes p_Ext,i<=delta_work,i(B_i_star), then
+
+  p_real <= p_native,i + N_i rho_i sqrt(s_i delta_work,i(B_i_star)).
+
+This can target PoW even if an attached NP clause is trivially satisfiable or its share fully opened. Conversely, the false NP clause still has exact whole-view hiding regardless of the work clause's truth. Once enough accepted public work evidence is known, the work bound can be one. A generic '100 confirmations' slogan is NOT an established QPT work bound, nor is AuxPoW parent work proof of best-chain membership. Claim-bound proof requirements include actual anchored ancestor history, all relevant tags and merkle/lag/height rules, public history, fork/challenge windows and any censorship/observation assumptions. Quicker authenticated veto events must be separately typed; they cannot be charged 100-block mining difficulty.
+
+## Exact limits / provenance
+
+This is a completed, explicit composition theorem for the ALREADY PINNED Fourier SOURCE release, NOT a polynomial-rate generic-NP WE/WKEM, repaired LWE source compiler, native PQ Bitcoin endpoint, keyless Build, malicious N-of-N/abort guarantee or transaction-graph proof. Each underlying signal rho_i can still be exponentially tiny in nonlinear gate count, so N_i rho_i sqrt(s_i delta_work) may be vacuous. Sharing K outside ONE authorized conjunction remains forbidden. Source and auxiliary distributions must be simulatable given native pk, not arbitrary hidden-key-related side information.
+
+The accompanying immutable research bundle contains the full 13KB derivation with precise setup/disclosure/advice caveats, the exact self-contained Node checker, its captured output and SHA256/Git-blob provenance. That checker executed twice byte-identically with 16,530 finite integer-algebra assertions: false full-joint laws, null-K independence at equal toy pk, same-K XOR, exact 100/729 two-source three-repeat majority error and every two-input deterministic toy joint-success reflection inequality. Tests are NOT PQ hardness tests, SHA-mining benchmarks or native signature executions. No outside research accessed.
+
+NEXT actual bottleneck: a classically PPT, polynomial-output SOURCE-dependent sampler with full-joint QPT security for generic NP, or a genuinely distribution-preserving structured SOURCE/LWE embedding, PLUS a nonvacuous work bound with the real SYS/BTC claim predicate. No claim of practical WKEM completion.

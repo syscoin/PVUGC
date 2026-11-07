@@ -1,0 +1,18 @@
+{
+  "run": "R81-TRUE-SCOPE-EUF-20261104",
+  "status": "RESTRICTED_TRUE_OUT_OF_SCOPE_NATIVE_EUF_REDUCTION",
+  "assertions": 14592,
+  "cases": 64,
+  "authorized_slots_per_case": 2,
+  "distinct_original_witnesses": 3,
+  "counts": {
+    "full_public_couplings": 64,
+    "original_witness_openings": 384,
+    "same_capability_checks": 384,
+    "unqueried_message_negative_tests": 256,
+    "checking_key_recomputations": 384,
+    "fixed_manifest_checks": 64
+  },
+  "crypto_fixture": "Ed25519 test only, not PQ; deterministic SHAKE pad is NOT a cryptographic security argument",
+  "scope": "actual full-public simulator via chosen-signing-message oracle; no hard-TRUE same-message source simulation/extraction, no LWE security proof"
+}

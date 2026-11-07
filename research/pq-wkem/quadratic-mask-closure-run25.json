@@ -1,0 +1,88 @@
+{
+  "classification": "finite algebra validation only; not a cryptographic proof by testing",
+  "exhaustive_tiny_false_distribution": {
+    "degree_bound": 2,
+    "field": 5,
+    "n": 3,
+    "pairwise_statistical_distance": 1.0,
+    "randomness_points_per_key": 15625,
+    "support_key0": 15625,
+    "support_key1": 15625,
+    "support_overlap": 0
+  },
+  "false_quadratic_formal_decoder": {
+    "boolean_witnesses": 0,
+    "exact_key_recoveries": 500,
+    "feature_dimension": 163,
+    "field": 101,
+    "mask0_generators": 9,
+    "mask1_generators": 93,
+    "n": 8,
+    "published_degree": 4,
+    "trials": 500
+  },
+  "formal_moment_recurrence": [
+    {
+      "annihilated": 93,
+      "degree_bound": 4,
+      "field": 101,
+      "n": 8,
+      "tested_multiples": 93
+    },
+    {
+      "annihilated": 386,
+      "degree_bound": 5,
+      "field": 103,
+      "n": 10,
+      "tested_multiples": 386
+    },
+    {
+      "annihilated": 1586,
+      "degree_bound": 6,
+      "field": 107,
+      "n": 12,
+      "tested_multiples": 1586
+    }
+  ],
+  "higher_degree_pointwise_controls": [
+    {
+      "degree_bound": 4,
+      "exact_key_recoveries": 150,
+      "feature_dimension": 163,
+      "n": 8,
+      "power": 2,
+      "trials": 150
+    },
+    {
+      "degree_bound": 6,
+      "exact_key_recoveries": 150,
+      "feature_dimension": 466,
+      "n": 9,
+      "power": 3,
+      "trials": 150
+    },
+    {
+      "degree_bound": 6,
+      "exact_key_recoveries": 150,
+      "feature_dimension": 247,
+      "n": 8,
+      "power": 5,
+      "trials": 150
+    }
+  ],
+  "public_gaussian_closure_decoder": {
+    "ambient_dimension": 163,
+    "exact_key_recoveries": 80,
+    "noise_rank_max": 93,
+    "noise_rank_min": 93,
+    "trials": 80
+  },
+  "seed": 89435366837541,
+  "true_same_key": {
+    "field": 101,
+    "n": 4,
+    "setups": 200,
+    "successful_decodes": 1200,
+    "witness_count": 6
+  }
+}

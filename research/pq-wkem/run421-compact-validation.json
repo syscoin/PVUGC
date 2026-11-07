@@ -1,0 +1,16 @@
+{
+  "run": 421,
+  "model": "finite algebraic negative-control, not a QPT implementation",
+  "assertions": 126839,
+  "false_instance_hidden_proof_fixtures": 504,
+  "true_instance_two_witness_fixtures": 504,
+  "folded_crs_matrices": 37448,
+  "good_crs": 36084,
+  "bad_crs": 1364,
+  "malicious_zero_crs": 5,
+  "exact_bad_fraction": "2^(-t) for fixed nonzero GF(2) residual",
+  "real_one_way_function": false,
+  "real_iO": false,
+  "real_qpt_attack": false,
+  "practical_wkem": false
+}

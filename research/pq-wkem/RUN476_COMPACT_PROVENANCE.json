@@ -1,0 +1,17 @@
+{
+  "run": 476,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "624e8b0a3418625ee96442fd150eb6a7d76b4b76",
+  "scope": "mathematical counterexample; no practical WKEM",
+  "checker": "node run476_compact_check.js",
+  "executed_checks": 16420,
+  "repeat": "two local runs byte-identical",
+  "checker_expected_git_blob": "8df074fb45e343ef3acd2274c1120d22c87957ca",
+  "validation_expected_git_blob": "44f2cbf132cb7178a1a629d81e8ffaefa5092abc",
+  "dependencies": {
+    "run475": "3806593a3156d6a66789d97fbd8d3577c8bf1b65",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  }
+}

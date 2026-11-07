@@ -1,0 +1,8 @@
+assertions_passed=1580
+source_rows_tested=3
+exact_real_challenge_couplings=1500
+null_translation_bijections=75
+fixed_known_witness_kernel_probability=1/25
+public_short_open_search_probability=17985/83521
+short_open_search_lwe_advantage=215820/1419857
+status=finite_algebra_verified_not_QPT_security

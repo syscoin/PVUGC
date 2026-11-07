@@ -1,0 +1,25 @@
+{
+  "artifact_digest": {
+    "RUN513_AFFINE_MASK_COMPACT.md": {
+      "bytes": 5602,
+      "sha256": "d8108a9950a40b056bdb54c759a595a3205cbcbd4fbc5e706d7398d8a5e0ad44"
+    },
+    "run513_compact_check.py": {
+      "bytes": 1942,
+      "sha256": "c7b04cb34ea50c3365ae83916681639057ebc4059594ce55df75e55f36ff8c4f"
+    },
+    "run513_compact_validation.json": {
+      "bytes": 146,
+      "sha256": "5ab3d008f50f71159a52da49e2f3978b006680ddab592b9ae1658b8266593e81"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "head": "15e65651be3a4c2a68e34f3385ed6e6a76222880",
+  "production_untouched": true,
+  "repo": "syscoin/PVUGC",
+  "run": 513,
+  "security_scope": "exact oracle algebra; no practical WKEM, native Bitcoin or QPT security reduction",
+  "source_run511_blob": "f3e6ba72cffef86d2c5fdeb24dfa86574e911116",
+  "source_run512_blob": "321c8f9993441841acfffeed99ec759fe4733f57",
+  "verification": "Python stdlib checker executed twice byte-identically, independently extended checker locally"
+}

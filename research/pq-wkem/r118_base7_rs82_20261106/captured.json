@@ -1,0 +1,17 @@
+{
+  "run": "R118-BASE7-RS82-20261106",
+  "assertions": 23447,
+  "errorRankBits": 5615,
+  "oldSeedBits": 20192,
+  "seedBits": 19422,
+  "groupsOld": 85,
+  "groupsNew": 82,
+  "bytesOld": 48960,
+  "bytesNew": 47232,
+  "savedBytesPerOccurrence": 1728,
+  "savedBytes256": 442368,
+  "correction": "RS(82,76) distance 7; up to 3 groups",
+  "simultaneousUnionCoefficient": 447759360,
+  "jointPublicToyWorlds": 8,
+  "scope": "finite correctness/histogram checks; no generic NP source or quantum-hardness proof"
+}

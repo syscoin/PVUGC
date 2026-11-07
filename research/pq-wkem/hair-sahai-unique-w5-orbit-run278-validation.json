@@ -1,0 +1,124 @@
+{
+  "assertions": 183657,
+  "byte_identical_stdout": true,
+  "execution_1_exit_code": 0,
+  "execution_2_exit_code": 0,
+  "py_compile": "PASS",
+  "result": {
+    "GL2_16_order": 61200,
+    "all_binary_5spaces_in_GF16_sq": 97155,
+    "assertions": 183657,
+    "canonical_H_projective_rank_spectrum": {
+      "3": 7,
+      "4": 10
+    },
+    "canonical_P_basis_hex": [
+      "0x41",
+      "0x22",
+      "0x10",
+      "0x8",
+      "0x4"
+    ],
+    "canonical_W_field_hyperplane_rank_profile": {
+      "2": 7,
+      "3": 106,
+      "4": 160
+    },
+    "canonical_W_scalar_intersections": {
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0
+    },
+    "canonical_dual_full_rank_distribution": {
+      "0": 1,
+      "2": 105,
+      "3": 1590,
+      "4": 2400
+    },
+    "canonical_generator_G": [
+      [
+        11,
+        12,
+        1,
+        0,
+        0
+      ],
+      [
+        7,
+        14,
+        0,
+        1,
+        0
+      ],
+      [
+        10,
+        7,
+        0,
+        0,
+        1
+      ]
+    ],
+    "canonical_parity_check_H": [
+      [
+        1,
+        2,
+        0,
+        8,
+        4
+      ],
+      [
+        4,
+        2,
+        1,
+        0,
+        0
+      ]
+    ],
+    "classification_consequence": "Every field-span-three scattered W5 with the surviving 7-heavy-plane / [5,2] parity-check rank profile is GL3(GF16)-equivalent to the one canonical W above. Its field-linear automorphism group is trivial.",
+    "concurrent_triples_share_distinct_binary_W_lines": true,
+    "field": "GF(16)=F2[x]/(x^4+x+1)",
+    "heavy_plane_dual_collinear_triples": [
+      [
+        0,
+        2,
+        3
+      ],
+      [
+        1,
+        5,
+        6
+      ]
+    ],
+    "heavy_plane_leftover_index": 4,
+    "leftover_heavy_plane_contains_neither_shared_line": true,
+    "line_intersection_profile_histogram": {
+      "10x_dim1__7x_dim2": 61200,
+      "12x_dim1__4x_dim2__1x_dim3": 35700,
+      "16x_dim1__1x_dim4": 255
+    },
+    "next_tensor_target": "No abstract [5,2] classification remains: test embeddings of this single rigid W normal form into actual Hair-Sahai source field hyperplanes, using the two concurrent heavy-plane triples plus one residual heavy plane as pruning invariants.",
+    "python": "3.13.5",
+    "run": 278,
+    "scope": {
+      "not_proved": "No exclusion of embeddings into the actual Hair-Sahai tensor, no e15(D)=12/d5(C)=10 theorem, no false-instance QPT hiding, ORIGINAL extraction, malicious setup, or practical WKEM.",
+      "proved": "Complete finite classification of the relevant abstract [5,2] GF16 parity-check code / W5 geometry."
+    },
+    "status": "PASS",
+    "target_profile_count": 61200,
+    "target_profile_single_regular_GL2_orbit": true,
+    "target_profile_stabilizer_size": 1
+  },
+  "run": "Run 278",
+  "scope": "Exact finite GF(16)/F2 subspace classification only; no cryptographic hardness inference."
+}

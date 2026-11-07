@@ -1,0 +1,17 @@
+{
+  "artifacts": {
+    "RUN472_HARDCORE_MINIMALITY_COMPACT.md": "cbbb906546d919ef1998d277f7802520152ca388a70eed08163583d71ab6e2cc",
+    "run472_compact_check.js": "3eb49323782ea856fa4085c4f8eb3bab4fa698db54ebe514f93003f9114dd8f8",
+    "run472_compact_validation.json": "833f743f9cc288da12409a065bc810503ca06799600e9706285d3766d22e2c4c"
+  },
+  "assertions": 610,
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": "node run472_compact_check.js",
+  "executed_twice_byte_identical": true,
+  "head_observed_open_draft": true,
+  "publication_stage": "snapshot before connected GitHub write",
+  "repo": "syscoin/PVUGC",
+  "run": 472,
+  "scope": "conditional GL application and finite toy tests; not a real PQ mixer, no QPT theorem proven beyond stated assumptions",
+  "start_sha": "7ce5a63c9ddd4005f0c124639bb595d59f52cb4a"
+}

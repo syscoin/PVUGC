@@ -1,0 +1,13 @@
+{
+  "run": "MINK-DENSE-2026-11-01-T19",
+  "checks": 470,
+  "k4_assignments": 81,
+  "k4_valid_edge_sum": 324,
+  "lhl_key_space": 59049,
+  "lhl_mean_tv": 0.1907568290741867,
+  "lhl_max_tv": 0.8888888888888891,
+  "lhl_bound": 0.2651650429449553,
+  "illustrative_log2_eps": -344.99717125094,
+  "shared_key_bytes": 3715200,
+  "success": true
+}

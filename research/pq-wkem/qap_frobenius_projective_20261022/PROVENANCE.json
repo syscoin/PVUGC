@@ -1,0 +1,60 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "capabilities": {
+    "daybreak_plugin_search": "no plugin returned; no account-entitlement claim",
+    "github_reads": "succeeded",
+    "used_separate_daybreak_tool": false
+  },
+  "captured_at_utc": "2026-10-23T05:54:17.739422+00:00",
+  "checkpoint": "qap-frobenius-projective-20261022",
+  "commands": [
+    "python -m py_compile frobenius_qap.py check.py",
+    "OPENBLAS_NUM_THREADS=1 python check.py > validation.json",
+    "OPENBLAS_NUM_THREADS=1 python check.py > validation.repeat.json",
+    "cmp validation.json validation.repeat.json"
+  ],
+  "errors_during_execution": [],
+  "exact_dependencies": {
+    "CONSTRUCTION_STATE.md": "d492be3ce232b2c6bfce384aae65bbff35671f47",
+    "QAP_SOURCE_COUPLING.md": "f201441801d9ccdcb8a2af35a4a579eae563f7a5",
+    "qap_coupling.py": "c52065a432c553705e29ddf792e1403f8e9c7e80"
+  },
+  "execution_kind": "interactive; no scheduled run ID supplied",
+  "executions": 2,
+  "files": [
+    {
+      "bytes": 17456,
+      "git_blob_sha1": "90853783859418ef4fc42da70832f270d638bbf0",
+      "path": "FROBENIUS_PROJECTIVE_QAP.md",
+      "sha256": "92b49ab931e1518d1283bbf9638a06b1dcae32f4aa02df0d9e53edc0e5fd2767"
+    },
+    {
+      "bytes": 13898,
+      "git_blob_sha1": "d5b35ae77076e0e6bbf927a41b819130ac84fead",
+      "path": "frobenius_qap.py",
+      "sha256": "6da9e9519c1f9b21d00b736679ba498cb56a7518e9610abc7934ec3aacf66d9a"
+    },
+    {
+      "bytes": 8869,
+      "git_blob_sha1": "1bfbf5cca69e7c42ff9f965f94f6eb171638188d",
+      "path": "check.py",
+      "sha256": "64bf0183cbeb9082ca86b806e13356f86b012949f98386d680a75ddf58e85d77"
+    },
+    {
+      "bytes": 6697,
+      "git_blob_sha1": "9b41cfc3e19bbb9cbaf0031d13d60495e24b15ca",
+      "path": "validation.json",
+      "sha256": "a5b7ec943644a2033eb68a76263982959e083eda2cc3acf90c4ee4d29f5fbf05"
+    }
+  ],
+  "final_assertions": 2780,
+  "latest_substantive_comment_read": 6357634771,
+  "numpy": "2.3.5",
+  "pr": 1,
+  "publication_status_at_packaging": "NOT_YET_ATTEMPTED; final receipt separate",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "repeat_stdout_byte_identical": true,
+  "repository": "syscoin/PVUGC",
+  "scope": "Source compiler and projective/rank correctness only; no full QPT security theorem or smallest secure package claim.",
+  "starting_sha": "418e86149dc047835960bfe7fa65f3c7834d1049"
+}

@@ -1,0 +1,26 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_executions": "node checker executed twice byte-identical, node --check passed",
+  "files": [
+    {
+      "bytes": 4868,
+      "path": "research/pq-wkem/RUN539_HASH_KEYGEN_COMPACT.md",
+      "sha256": "d70304736b5ee3d5332ad93e18aee91a3c4465fa7b3d4a117c851bdfac6f39f9"
+    },
+    {
+      "bytes": 1155,
+      "path": "research/pq-wkem/run539_hash_keygen_compact_check.js",
+      "sha256": "7ea16914c588da11434061e8aa77ef4d96e3c7d4dde2a547fc03c2b651fea830"
+    },
+    {
+      "bytes": 402,
+      "path": "research/pq-wkem/run539_hash_keygen_compact_validation.json",
+      "sha256": "150d6bf922522c5cb500c519bf21b1c6cbd1f4bf9fae0d248f4a36b4f9492f76"
+    }
+  ],
+  "pr": 1,
+  "repo": "syscoin/PVUGC",
+  "run": 539,
+  "scope": "random-oracle toy native-keygen boundary; no actual SLH security",
+  "starting_sha": "69d112e5255dfd195bfb8255d42ced10e9e615e1"
+}

@@ -1,0 +1,45 @@
+{
+  "artifacts": {
+    "STAT_DUAL_MODE_SOURCE_HASH_QPT_EXTRACTION_RUN123.md": {
+      "bytes": 11035,
+      "sha256": "6e1a85b56ebcd6c77ca8ef855644a0aff19b35ec3c2510e0d75ebfd24b4635c0"
+    },
+    "stat-dual-mode-source-hash-run123-validation.json": {
+      "bytes": 839,
+      "sha256": "edcf2594ca6b52b3ab7de26b2963cc2c786c29b8b2e0bc1a12df510bc45e3f90"
+    },
+    "stat_dual_mode_source_hash_run123_check.py": {
+      "bytes": 3611,
+      "sha256": "3aba4f2663ac82c01826e3fb5998c2dbd04cce490b3d0af149e4a3594422e0d9"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "created_utc": "2026-09-26T16:29:18Z",
+  "execution": {
+    "byte_identical_stdout": true,
+    "command": "./stat_dual_mode_source_hash_run123_check.py",
+    "executions": 2
+  },
+  "limitations": [
+    "finite checker does not prove cryptographic hardness",
+    "SDMSH is an analysis target, not an instantiated generic-NP construction",
+    "Wee 2010 concrete instantiations are not claimed post-quantum",
+    "Run 122 publication is not retried"
+  ],
+  "pr": 1,
+  "primary_sources": [
+    {
+      "id": "IACR ePrint 2024/1514",
+      "live_revision_observed": "2026-03-30 last of 3 revisions",
+      "title": "Black-Box Non-Interactive Zero Knowledge from Vector Trapdoor Hash"
+    },
+    {
+      "author": "Hoeteck Wee",
+      "title": "Efficient Chosen-Ciphertext Security via Extractable Hash Proofs",
+      "venue": "CRYPTO 2010"
+    }
+  ],
+  "repository": "syscoin/PVUGC",
+  "run": 123,
+  "starting_head": "4198b1815d3edc7be41ec1cb25c0c46fab24610e"
+}

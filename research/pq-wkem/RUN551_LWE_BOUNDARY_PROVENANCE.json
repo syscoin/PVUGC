@@ -1,0 +1,17 @@
+{
+  "run": 551,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "c5d68d3c110803e1abd63c11acca7528af60c4e8",
+  "source_script_sha256": "d78a0f8dcb2b7534334b65858d0f26066a883d6b85a813efe66504b77fa4150e",
+  "captured_validation_sha256": "22b6f7ddef25056ae7c6d367f92e0f5b8c413ce964f055ec52998a4f5aed1b0a",
+  "executed_commands": [
+    "python3 -m py_compile run551_lwe_boundary_check.py",
+    "python3 run551_lwe_boundary_check.py",
+    "python3 run551_lwe_boundary_check.py | cmp - run551_lwe_boundary_validation.json"
+  ],
+  "test_result": "PASS, chosen-false-key attack, no complete WKEM",
+  "scope": "note is a compact committed derivation; extended derivation preserved separately as local checkpoint",
+  "date_utc": "2026-10-16"
+}

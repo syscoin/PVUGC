@@ -1,0 +1,28 @@
+{
+  "run": 570,
+  "status": "PASS",
+  "assertions": 19625,
+  "cubic_xor_sidon_h": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "sidon_unordered_pairs": 650,
+  "exact_single_bit_collision_cases": 45,
+  "exhaustive_boolean_function_assignments_checked": 2949120,
+  "low_width_domain_bits": 10,
+  "low_width_output_bits": 1,
+  "public_offsets": 32,
+  "low_width_injective_test_instances": 6,
+  "exact_two_element_fibers": 6144,
+  "simulated_simon_shift_recoveries": 6,
+  "joint_view_cancelled_values": 6144,
+  "illustrative_n128_m1_offsets": 385,
+  "illustrative_injectivization_failure_bound": "<2^-129",
+  "illustrative_simon_samples": 256,
+  "coherent_quantum_queries_executed": 0,
+  "security_proven": false,
+  "attribution": "Gharibi 2012 injectivization; exact XOR-Sidon field-graph specialization and seam application",
+  "caveat": "Ideal random functions and finite algebra; no concrete QPT local mixer, WE, Bitcoin change or quantum hardware."
+}

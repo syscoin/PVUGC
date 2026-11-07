@@ -1,0 +1,1 @@
+{"assertions": 31, "recovered_diagnostic_bits": 256, "run": 441, "scope": "finite algebra, no WE, no QPT hiding", "supports": {"fresh": {"bit0_support": 36, "bit1_support": 36}, "input": {"bit0_support": 36, "bit1_support": 36}, "output": {"bit0_support": 36, "bit1_support": 36}, "shared": {"bit0_support": 6, "bit1_support": 12}}}

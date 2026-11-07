@@ -1,0 +1,42 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "assertions": 40102,
+    "path": "research/pq-wkem/ro_local_release_run338_check.py",
+    "sha256": "4bfeab9a1e31e5eb96ea001efda26a7b864ff5c768df19b5a5b05b15dba3964b"
+  },
+  "exact_dependencies": {
+    "research/pq-wkem/GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "research/pq-wkem/NOISY_SHORT_PREIMAGE_HPS_BOUNDARY_RUN115.md": "cf2ec9575948e16b58acbd870208686759f14e44",
+    "research/pq-wkem/VTDH_STANDARD_LWE_QPT_LIFT_RUN122.md": "c6bb41bf172001ca0c882e84051911ffae35e342"
+  },
+  "latest_substantive_comment_id": 5945825660,
+  "literature_access_notes": {
+    "cheng_goyal_eprint_html": "accessible; abstract and metadata read",
+    "cheng_goyal_pdf": "403 Forbidden in this environment; no full-proof construction audit claimed",
+    "wichs_zirdelis_pdf": "search extraction accessible; direct PDF open/screenshot returned 403/not-PDF in this environment; claims limited to explicit abstract/security statement surfaced by source"
+  },
+  "note": {
+    "path": "research/pq-wkem/RO_LOCAL_RELEASE_AND_RESTRICTED_LWE_NEARMISS_RUN338.md",
+    "sha256": "a293ece526225edad8c146c26022a1404cae302ac14dd6eda053355928b08d5e"
+  },
+  "pr": 1,
+  "production_changed": false,
+  "repository": "syscoin/PVUGC",
+  "run": 338,
+  "scope": "bounded no-retarget R_work; black-box future-hash local-release barrier; LWE compute-and-compare and range-CPRF near-miss audit",
+  "starting_sha": "b3fdb58941ce490cc1ed3be150056c93e37ed5b9",
+  "stopping_condition_met": false,
+  "validation": {
+    "byte_identical": true,
+    "path": "research/pq-wkem/ro-local-release-run338-validation.json",
+    "repeat_sha256": "cd2a44b0d533014fb30785b5da22e5c4bf8eb16e2d0c76ebb8ba3bd1f447c501",
+    "sha256": "cd2a44b0d533014fb30785b5da22e5c4bf8eb16e2d0c76ebb8ba3bd1f447c501"
+  },
+  "web_primary_sources": [
+    "https://eprint.iacr.org/2017/276",
+    "https://eprint.iacr.org/2026/1874",
+    "https://www.microsoft.com/en-us/research/publication/obfuscation-evasive-functions/",
+    "https://link.springer.com/article/10.1007/s10623-018-0461-x"
+  ]
+}

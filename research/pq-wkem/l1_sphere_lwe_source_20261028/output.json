@@ -1,0 +1,30 @@
+{
+  "checks": 1932,
+  "ciphertext_field_elements_new": 6063,
+  "ciphertext_field_elements_original": 7740,
+  "exact_sphere_more_than_ternary": true,
+  "expected_nonzero_r_coordinates": 551.357447,
+  "finite_toy_collision_matrices": 343,
+  "finite_toy_sphere_size": 18,
+  "log2_complete_stat_bound_new": -235.967427,
+  "log2_complete_stat_bound_original": -231.06169,
+  "original_source_entropy_bits_approx": 2535.940001,
+  "packed_17bit_new_bytes": 12884,
+  "packed_17bit_original_bytes": 16448,
+  "parameters": {
+    "base": 47,
+    "columns": 47,
+    "g": 1393,
+    "h": 696,
+    "m": 1600,
+    "n": 128,
+    "q": 65537,
+    "seed_bits": 256
+  },
+  "record": "l1-sphere-lwe-source-20261028-turn11",
+  "security": "finite algebra and exact collision/count comparison only, not QPT evaluation",
+  "source_entropy_bits_approx": 2545.046872,
+  "status": "PASS",
+  "test_rng": "Python Random fixed seed; Build requires unbiased CSPRNG",
+  "two_original_256bit_full_key_trials": 4
+}

@@ -1,0 +1,31 @@
+{
+  "run": 475,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "66931087bbb4b537e75d605800dcbd4743db4bfc",
+  "compact_execution": "V8 Function evaluating the EXACT checkerSource also published as run475_compact_check.js",
+  "validation": {
+    "run": 475,
+    "assertions_passed": 211,
+    "results": {
+      "contexts": 8,
+      "honest_valid_releases": 16,
+      "false_witnesses": 0,
+      "false_honest_releases": 0,
+      "false_attacker_releases": 4,
+      "source_checked_false_releases": 0,
+      "native_checks": 8
+    },
+    "model": "opaque unrestricted ideal Eval; NO actual FHE/FE",
+    "native_signature": "textbook toy RSA, insecure and non-PQ",
+    "security_claim": "none"
+  },
+  "local_extended": {
+    "note_sha256": "443b1fe11a4f5abb8ea4b050363864d0b5ec0b2b8cb5d22a7dcbed813f4d07b0",
+    "checker_sha256": "41d42904dc993fe1919990d59ab6774f769e2646d437e4bae853288a5bc7cd80",
+    "output_sha256": "32ea268adb54b487ea97ecfed5a4691c6a6c69fef696fc8ee5ce15d2217d2ce6",
+    "assertions": 1429
+  },
+  "limitations": "No FHE/FE/PQ security implementation; semantic correctness bypass theorem"
+}

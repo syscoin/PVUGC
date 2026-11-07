@@ -1,0 +1,1 @@
+{"assertions": 2257, "per_call_stretch_bits": 20, "run": "R85-LWE-EXACT-PRG-20261105", "same_capability_openings": 72, "seed_bits": 28, "source_bit_decodes": 2016, "status": "RESTRICTED_CONDITIONAL_NOT_GENERIC_WKEM", "wrong_seed_checking_seed_collisions": 24}

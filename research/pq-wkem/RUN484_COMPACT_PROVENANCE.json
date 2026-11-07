@@ -1,0 +1,47 @@
+{
+  "run": 484,
+  "starting_sha": "99601a39d1edce3bf3c11ff98df74276e91909da",
+  "branch": "research/pq-wkem-validation-20260918",
+  "source_note_sha": "0933013687e3f39d7a6c4dc9e733d5b203d03f72",
+  "source_binding_sha": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "checker": "exact function run484compact() was executed in the V8 research runtime",
+  "validation": {
+    "run": 484,
+    "status": "PASS",
+    "assertions": 24,
+    "toy_digest_bits": 16,
+    "cases": [
+      {
+        "claim": 0,
+        "saltA": 851,
+        "saltB": 121,
+        "shared_root": 55073,
+        "hybrid_accepted": true
+      },
+      {
+        "claim": 1,
+        "saltA": 862,
+        "saltB": 20,
+        "shared_root": 62417,
+        "hybrid_accepted": true
+      },
+      {
+        "claim": 2,
+        "saltA": 571,
+        "saltB": 15,
+        "shared_root": 61243,
+        "hybrid_accepted": true
+      },
+      {
+        "claim": 3,
+        "saltA": 724,
+        "saltB": 56,
+        "shared_root": 6416,
+        "hybrid_accepted": true
+      }
+    ],
+    "scope": "toy classical chosen-root collisions; conditional quantum query analysis only"
+  },
+  "scope": "compact toy classical source admission only; ideal quantum claw query analysis, not real SHA quantum exploit",
+  "extended_local_only": "RUN484_CHOSEN_ROOT_QUANTUM_CLAW.md, run484_chosen_root_claw_check.py, run484_validation.json"
+}

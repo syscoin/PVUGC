@@ -1,0 +1,34 @@
+{
+  "run": "R55-BYTE-PACKED-ORIGINAL-CK-20261103",
+  "assertions": 1287,
+  "q_source": 16777259,
+  "delta": 65536,
+  "radix": 256,
+  "min_cyclic_distance": 65536,
+  "true": {
+    "witnesses": [
+      10,
+      11,
+      43
+    ],
+    "rank": 61,
+    "quotient": 3,
+    "openings": 768,
+    "full_seed_witnesses": 3,
+    "bytes_old_per_256_bits": 2304,
+    "bytes_new_per_256_bits": 384
+  },
+  "false19": {
+    "rank": 64,
+    "quotient": 0
+  },
+  "cert_false4": {
+    "rank": 14,
+    "quotient": 2,
+    "joint_four_capsule_ck_aux_couplings": 256,
+    "bytes_old_per_256_bits": 1536,
+    "bytes_new_per_256_bits": 256
+  },
+  "hard_TRUE_extraction": "UNPROVED",
+  "QPT_hardness": "NOT TESTED"
+}

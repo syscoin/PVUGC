@@ -1,0 +1,52 @@
+{
+  "run": 469,
+  "assertions": 9513,
+  "algorithm": "exact Walsh graph distribution, simulated measurements, GF2 nullspace",
+  "cases": [
+    {
+      "n": 7,
+      "r": 3,
+      "projection_defects": 2,
+      "eta": 0.015625,
+      "mu": 0.203125,
+      "gap": 0.765625,
+      "graph_bits": 11,
+      "samples_per_batch": 63,
+      "batches": 24,
+      "correct_recoveries": 13,
+      "false_one_dimensional": 0,
+      "measured_parity_violations": 13,
+      "lower_bound": 0.5078124999426362
+    },
+    {
+      "n": 8,
+      "r": 4,
+      "projection_defects": 2,
+      "eta": 0.0078125,
+      "mu": 0.109375,
+      "gap": 0.875,
+      "graph_bits": 13,
+      "samples_per_batch": 75,
+      "batches": 24,
+      "correct_recoveries": 18,
+      "false_one_dimensional": 0,
+      "measured_parity_violations": 7,
+      "lower_bound": 0.7070312499999991
+    },
+    {
+      "n": 9,
+      "r": 4,
+      "projection_defects": 2,
+      "eta": 0.00390625,
+      "mu": 0.09765625,
+      "gap": 0.89453125,
+      "graph_bits": 14,
+      "samples_per_batch": 85,
+      "batches": 24,
+      "correct_recoveries": 21,
+      "false_one_dimensional": 0,
+      "measured_parity_violations": 3,
+      "lower_bound": 0.833984375
+    }
+  ]
+}

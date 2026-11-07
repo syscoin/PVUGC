@@ -1,0 +1,45 @@
+{
+  "degree2_mask_rank": 5,
+  "degree2_quotient_dimension": 1,
+  "deterministic_false_noise_bound": 9,
+  "distinct_false_helpers_seen": 2000,
+  "exhaustive_false_bounded_error": {
+    "max_abs_noise": 9,
+    "success": 4374,
+    "total": 4374
+  },
+  "false_full_capsule_recoveries": 2000,
+  "max_abs_false_noise_observed": 8,
+  "max_abs_true_noise_observed": 4,
+  "nonlinear_false_helper_pseudo_transfer_checks": 2000,
+  "phase": 64,
+  "q": 257,
+  "run45_laurent_allowed_multiple_checks": {
+    "1": 2,
+    "2": 14,
+    "3": 96,
+    "4": 660,
+    "5": 4550
+  },
+  "run45_laurent_total_checks": 5322,
+  "run45_sparse_masked_helper_controls": 400,
+  "seed": 490049,
+  "true_full_capsule_recoveries": 2000,
+  "true_helper_witness_evaluations": 1000,
+  "uniform_mask_affine_coset_size_per_row": 1121154893057,
+  "xstar_centered": [
+    1,
+    -1,
+    -1,
+    -1,
+    3,
+    -1
+  ],
+  "xstar_mask_pairings": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}

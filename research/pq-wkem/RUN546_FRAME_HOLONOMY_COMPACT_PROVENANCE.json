@@ -1,0 +1,17 @@
+{
+  "run": 546,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "25e14aefc6181e79ad692afe37ce25d91e677045",
+  "starting_tree": "fff66e9d9e9a22e4bf709c8d1a61e15b099794e7",
+  "prior_run545_note_blob": "1f6d911c1654f9cf17e72f2b1eb43abf8241f1a2",
+  "clz_assessment_blob": "c19d9d9cd515140e3ce62eac960cd548c0add622",
+  "last_substantive_comment_id": 6067040320,
+  "checker_execution": "exact V8 checker string executed twice via new Function; byte-identical captured JSON",
+  "checker_assertions": 1014,
+  "extended_local_python_assertions": 1020,
+  "scope": "classical perfect distinguisher for public shared-frame permutations only; not WKEM",
+  "provenance_stage": "prepared_before_publication",
+  "production_changes": false
+}

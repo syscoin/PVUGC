@@ -1,0 +1,155 @@
+{
+  "artifact_sha256": {
+    "ADAPTOR_INVARIANT_COMMON_KEY_RUN111.md": "e1e49cfb9f4bc6c042337b30e06d85196c068130880bb45f9f82c015dee18db7",
+    "adaptor-invariant-common-key-run111-validation.json": "c4184a6223c74e8af96fd4ca2d75d1eab602a6515a01e14acd9d80b7538aa789",
+    "adaptor_invariant_common_key_run111_check.py": "a6d2c31ae475f7434de5d8bbbe2eef60bec0fcf43d127c2953733135da500111"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "byte_identical_stdout": true,
+    "executions": 3,
+    "path": "research/pq-wkem/adaptor_invariant_common_key_run111_check.py",
+    "status": "PASS",
+    "total_assertions": 15031
+  },
+  "exact_repository_inputs": [
+    {
+      "blob_sha": "91ebfdb8d712bc9a092b30af21048ea7bd04a109",
+      "path": "research/pq-wkem/HIDDEN_INPUT_EPHF_BOUNDARY_RUN109.md"
+    },
+    {
+      "blob_sha": "5ec37cfcf47fcdc68d279af1dc1b6c90a7287c8d",
+      "path": "research/pq-wkem/FULL_KEY_ONE_COPY_QPT_EXTRACTION_RUN102.md"
+    },
+    {
+      "blob_sha": "4fefd6c364a76fd12fe76169ddbec47e486c786b",
+      "path": "research/pq-wkem/LWE_DIRECTIONAL_TRANSPORT_RUN72.md"
+    },
+    {
+      "blob_sha": "f8634c5dd2bc29796f152ebde67064fe55045cc9",
+      "path": "research/pq-wkem/SIS_RANDOMIZED_SHORT_KERNEL_LIFT_RUN42.md"
+    },
+    {
+      "blob_sha": "5fc79b25e140d2fba30e00c6fd168b619beabd45",
+      "path": "research/pq-wkem/GAPMDP_SHORT_KERNEL_BRIDGE_RUN92.md"
+    }
+  ],
+  "latest_substantive_comment": {
+    "id": 5842442762,
+    "scope": "Run 109 published and verified"
+  },
+  "literature": [
+    {
+      "limitation": "Full primary manuscript not retrieved; theorem-level QPT model not imported.",
+      "verified_scope": [
+        "current abstract: arbitrary-NP adaptor framework",
+        "pre-signature + full signature allow signer to extract NP witness",
+        "Online/Offline NIZK extraction uses randomness from offline part",
+        "AES-128 instantiation uses VOLE-in-the-Head and FAEST post-quantum signature",
+        "complete signature reported as 11.6 kB"
+      ],
+      "version": "ePrint 2026/2155 / ASIACRYPT 2026, listing updated 2026-09-22",
+      "work": "Abe\u2013Bui\u2013Cong\u2013Ohkubo\u2013Shang\u2013Takahashi\u2013Tibouchi, Practical Adaptor Signatures for NP from Online/Offline NIZK"
+    },
+    {
+      "primary_pdf": "https://iacr.org/archive/pkc2021/127110132/127110132.pdf",
+      "screenshot_checked": "page 9 / theorem 1",
+      "verified_scope": [
+        "Theorem 1: secure adaptor signatures cannot be constructed from unique signature schemes for a hard relation",
+        "proof generates ordinary unique signature and feeds it with pre-signature to extractor",
+        "paper notes prior post-quantum adaptor schemes from Module-SIS/Module-LWE and isogeny assumptions"
+      ],
+      "version": "PKC 2021",
+      "work": "Erwig\u2013Faust\u2013Host\u00e1kov\u00e1\u2013Maitra\u2013Riahi, Two-Party Adaptor Signatures from Identification Schemes"
+    },
+    {
+      "verified_scope": "abstract definition: all legal signatures agree under a polynomial-time computable invariant hard to predict from an unsigned document; classical equivalence to NIZK",
+      "version": "CRYPTO 1992",
+      "work": "Goldwasser\u2013Ostrovsky, Invariant Signatures and Non-Interactive Zero-Knowledge Proofs are Equivalent"
+    },
+    {
+      "limitation": "Full primary proof not retrieved; exact QPT model not imported.",
+      "verified_scope": [
+        "current abstract: affine batch MAC sigma=Delta x+k",
+        "authenticator key vector can be generated beforehand from short seed",
+        "chosen message authenticated in two messages",
+        "poly(log m,lambda) communication under LWE and CRS"
+      ],
+      "version": "ePrint 2026/2159, listing updated 2026-09-24",
+      "work": "Liu\u2013Liu, Batch IT-MAC: Program the Randomness in Succinct VOLE"
+    }
+  ],
+  "local_predecessor": {
+    "archive": "/mnt/data/wkem_noisy_gadget_projection_run110.zip",
+    "archive_sha256": "d60afb3a255249125ba7038c9c43aadcf0b6f5ec084c853d1a674478ae4a3518",
+    "note": "Not retried or republished.",
+    "publication_status": "BLOCKED_BEFORE_GITHUB",
+    "replayed_checker_byte_matches_captured_output": true,
+    "run": 110
+  },
+  "new_results": [
+    "exact common-value condition for an adaptor-completion one-mask KEM",
+    "unique-signature/full-signature same-key shortcut is closed by Erwig et al. theorem",
+    "random-linear/Goldreich-Levin hashing of distinct completions yields same k-bit key only with probability 2^-k",
+    "invariant signatures identify the surviving common-value abstraction but ordinary adaptor extraction still requires the full completion",
+    "Online/Offline NIZK offline randomness is a potentially useful erased extraction trapdoor, but FINAL-key recovery -> completion remains missing",
+    "fresh Batch IT-MAC shows pre-fixed correlated randomness can coexist with later chosen input under LWE, but only interactively"
+  ],
+  "pr": 1,
+  "publication": {
+    "actions": [
+      {
+        "action": "mcp__GitHub__create_blob",
+        "blob_sha": "0e4a294539a949af5a178ed7cc5d6659ed79a42b",
+        "path": "research/pq-wkem/ADAPTOR_INVARIANT_COMMON_KEY_RUN111.md",
+        "result": "SUCCESS_UNREFERENCED_BLOB"
+      },
+      {
+        "action": "mcp__GitHub__create_blob",
+        "blob_sha": "eb7ca46c106582d0038020128450381780b456fd",
+        "path": "research/pq-wkem/adaptor_invariant_common_key_run111_check.py",
+        "result": "SUCCESS_UNREFERENCED_BLOB"
+      },
+      {
+        "action": "mcp__GitHub__create_blob",
+        "error": "Script error: This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+        "path": "research/pq-wkem/adaptor-invariant-common-key-run111-validation.json",
+        "result": "SAFETY_BLOCKED"
+      }
+    ],
+    "branch_visible_paths": [],
+    "comment_id": null,
+    "commit_sha": null,
+    "outstanding_local_only_paths": [
+      "research/pq-wkem/ADAPTOR_INVARIANT_COMMON_KEY_RUN111.md",
+      "research/pq-wkem/adaptor_invariant_common_key_run111_check.py",
+      "research/pq-wkem/adaptor-invariant-common-key-run111-validation.json",
+      "research/pq-wkem/ADAPTOR_INVARIANT_COMMON_KEY_RUN111_PROVENANCE.json"
+    ],
+    "post_block_write_attempts": 0,
+    "pr_state_after_block": {
+      "draft": true,
+      "merged": false,
+      "state": "open"
+    },
+    "request_or_correlation_id": null,
+    "starting_and_final_head": "568446e21cedb83c07c20227cd9c443f51fabb82",
+    "status": "PARTIALLY_PUBLISHED",
+    "tool_timestamp": null
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 111,
+  "security_classification": {
+    "batch_it_mac": "interactive; full QPT theorem UNVERIFIED",
+    "invariant_route": "candidate abstraction; QPT hiding/extraction UNPROVED",
+    "online_offline_nizk_adaptor": "supplied-completion extraction promising; full QPT theorem UNVERIFIED",
+    "stopping_condition": "UNMET",
+    "unique_adaptor_route": "REFUTED by classical PPT theorem; therefore QPT-refuted"
+  },
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "state": "open"
+  },
+  "starting_sha": "568446e21cedb83c07c20227cd9c443f51fabb82"
+}

@@ -1,0 +1,28 @@
+{
+  "checks": 13,
+  "run": 508,
+  "samples": [
+    {
+      "exact_branch_accepted": true,
+      "other_claim_and_branch_rejected": true,
+      "scheme": "SLH-DSA-SHA2-128f",
+      "signature_bytes": 17088,
+      "source_witness_used": false
+    },
+    {
+      "exact_branch_accepted": true,
+      "other_claim_and_branch_rejected": true,
+      "scheme": "SLH-DSA-SHA2-192f",
+      "signature_bytes": 35664,
+      "source_witness_used": false
+    },
+    {
+      "exact_branch_accepted": true,
+      "other_claim_and_branch_rejected": true,
+      "scheme": "SLH-DSA-SHA2-256f",
+      "signature_bytes": 49856,
+      "source_witness_used": false
+    }
+  ],
+  "scope": "Exact-message signed-public-path separation; no original witness, key-recovery claim, or actual Bitcoin graph"
+}

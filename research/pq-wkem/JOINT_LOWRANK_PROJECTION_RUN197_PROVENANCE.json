@@ -1,0 +1,61 @@
+{
+  "run": 197,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "bed393e8a4f83a5e4aaa266b7942b1ef3a45eb9a",
+  "latest_substantive_comment_read": 5913974235,
+  "created_utc": "2026-09-30T20:00:07Z",
+  "scope": "exact shared-factor full-t-by-t public projection law, rank-event distinguisher, and Run-82 necessary parameter condition; not full-transcript hiding or completed WKEM",
+  "exact_inputs": {
+    "research/pq-wkem/CONDITIONAL_IMAGE_MIXING_RUN196.md": "99a0538f9823bfd562b34570d7aa68dd079fa446",
+    "research/pq-wkem/CMV_MINRANK_LACONIC_QPT_SOURCE_BRIDGE_RUN152.md": "398b93af491d0b11cc486e86c89295a05b714804",
+    "research/pq-wkem/FINITE_DIFFERENCE_LOWRANK_RUN82.md": "6430557fd1596308db029d17b48549f9ed9490c8"
+  },
+  "execution": {
+    "language": "Python 3 standard library",
+    "syntax_check": "PASS",
+    "final_command": "python joint_lowrank_projection_run197_check.py",
+    "final_executions": 2,
+    "final_exit_codes": [0, 0],
+    "final_outputs_byte_identical": true,
+    "draft_failure_preserved": {
+      "stage": "first draft checker execution before finalization",
+      "exception": "AssertionError",
+      "location": "bridge_controls raw Counter equality",
+      "cause": "the direct source-factor map has uniform kernel multiplicity when ambient source dimensions exceed rho, so raw histogram counts differ by one global multiplicity although normalized laws agree",
+      "repair": "compare normalized histograms by exact cross multiplication; theorem statement already concerns equality in distribution",
+      "github_write_attempted_before_repair": false
+    },
+    "coverage": {
+      "product_law_exact_cases": 9,
+      "direct_cmv_bridge_cases": 3,
+      "t2_m_range": "0..5",
+      "t3_m_range": "1..3",
+      "illustrative_parameter_rows": 3
+    }
+  },
+  "files": {
+    "JOINT_LOWRANK_PROJECTION_RUN197.md": {
+      "bytes": 12094,
+      "git_blob_sha": "6dab6c3812ebbb7c35dbe8f541698a8389a59f7a",
+      "sha256": "f5301527b283e3f389e1d162b8494c5af032763cbf24234d0e6dabd9fb1beab3"
+    },
+    "joint_lowrank_projection_run197_check.py": {
+      "bytes": 7101,
+      "git_blob_sha": "0de8704c50057fdb5a3cce2e09b713fa7a561c5f",
+      "sha256": "d76fc57482af29de00bb0c2343010fe5db7120eed193a75910bf79bc3af89614"
+    },
+    "joint-lowrank-projection-run197-validation.json": {
+      "bytes": 3666,
+      "git_blob_sha": "3411f49e2f9450e0927bf6187be141aaea216f2a",
+      "sha256": "16818362820e24ea08cf1e0f386a4c7b4d85f81406b3abc8f50afe9412e9d9a9"
+    }
+  },
+  "publication": {
+    "status_before_write": "LOCAL_VALIDATED_NOT_YET_PUBLISHED",
+    "production_changed": false,
+    "workflows_changed": false,
+    "denied_historical_payload_retried": false
+  }
+}

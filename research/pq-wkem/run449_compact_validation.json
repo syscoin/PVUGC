@@ -1,0 +1,47 @@
+{
+  "run": 449,
+  "assertions": 1538,
+  "samples": [
+    {
+      "q": 2,
+      "t": 1,
+      "d": 1,
+      "bad": 3,
+      "total": 4,
+      "full": 2
+    },
+    {
+      "q": 2,
+      "t": 2,
+      "d": 2,
+      "bad": 43,
+      "total": 64,
+      "full": 24
+    },
+    {
+      "q": 2,
+      "t": 2,
+      "d": 3,
+      "bad": 211,
+      "total": 256,
+      "full": 168
+    },
+    {
+      "q": 3,
+      "t": 2,
+      "d": 2,
+      "bad": 529,
+      "total": 729,
+      "full": 432
+    },
+    {
+      "q": 5,
+      "t": 2,
+      "d": 1,
+      "bad": 121,
+      "total": 625,
+      "full": 0
+    }
+  ],
+  "scope": "finite algebra; no practical or QPT release construction"
+}

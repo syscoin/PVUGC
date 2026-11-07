@@ -1,0 +1,88 @@
+{
+  "check_count": 10651,
+  "exact_grover_success": [
+    0.0625,
+    0.47265625,
+    0.908447265625,
+    0.961318969727
+  ],
+  "fixtures": [
+    {
+      "accepted_pairs": 16,
+      "actual_uniform_acceptance": 0.0625,
+      "c": 4,
+      "classical_trial_upper": 16.0,
+      "distinct_global_cut_states": 16,
+      "gauge": false,
+      "good_tape_fraction": 1.0,
+      "mean_per_tape_valid_states": 1.0,
+      "misleading_global_state_lower": 1.0,
+      "quantum_query_scale_upper": 4.0,
+      "rho": 4,
+      "total_pairs": 256,
+      "valid_witness_offsets": [
+        0
+      ]
+    },
+    {
+      "accepted_pairs": 288,
+      "actual_uniform_acceptance": 0.0703125,
+      "c": 5,
+      "classical_trial_upper": 14.222222222222221,
+      "distinct_global_cut_states": 32,
+      "gauge": false,
+      "good_tape_fraction": 0.75,
+      "mean_per_tape_valid_states": 2.25,
+      "misleading_global_state_lower": 1.0,
+      "quantum_query_scale_upper": 3.771236166328254,
+      "rho": 7,
+      "total_pairs": 4096,
+      "valid_witness_offsets": [
+        0,
+        3,
+        7
+      ]
+    },
+    {
+      "accepted_pairs": 288,
+      "actual_uniform_acceptance": 0.0703125,
+      "c": 5,
+      "classical_trial_upper": 14.222222222222221,
+      "distinct_global_cut_states": 16,
+      "gauge": true,
+      "good_tape_fraction": 0.75,
+      "mean_per_tape_valid_states": 2.25,
+      "misleading_global_state_lower": 0.5,
+      "quantum_query_scale_upper": 3.771236166328254,
+      "rho": 7,
+      "total_pairs": 4096,
+      "valid_witness_offsets": [
+        0,
+        3,
+        7
+      ]
+    },
+    {
+      "accepted_pairs": 192,
+      "actual_uniform_acceptance": 0.375,
+      "c": 3,
+      "classical_trial_upper": 2.6666666666666665,
+      "distinct_global_cut_states": 8,
+      "gauge": false,
+      "good_tape_fraction": 1.0,
+      "mean_per_tape_valid_states": 3.0,
+      "misleading_global_state_lower": 1.0,
+      "quantum_query_scale_upper": 1.6329931618554523,
+      "rho": 6,
+      "total_pairs": 512,
+      "valid_witness_offsets": [
+        0,
+        1,
+        2
+      ]
+    }
+  ],
+  "run": "671",
+  "scope": "counting and coherent-search algebra only, no PQ experiment",
+  "source_sha256": "50388a42d16a7f3aef4e4e19dacf9c650441aef2dd66490f812093c7e4eea2f9"
+}
