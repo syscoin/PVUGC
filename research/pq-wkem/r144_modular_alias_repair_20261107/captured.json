@@ -1,0 +1,14 @@
+{
+  "run": "R144",
+  "candidate": "parity-aliased LWE projection",
+  "status": "REJECTED (classical false-instance key recovery)",
+  "q": 257,
+  "delta": 128,
+  "legitimate_M": 6,
+  "odd_denominator_error_bound": 18,
+  "two_scale_signal": 1,
+  "three_scale_signal": 127,
+  "false_instance_public_recoveries": 4096,
+  "random_formula_cases": 500,
+  "assertions": 24005
+}

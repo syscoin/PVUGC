@@ -1,0 +1,24 @@
+# R144 — Coprime fractional openings defeat near-half-modulus phase alias
+
+**Status: supporting negative research only; rejected; NOT secure generic NP witness-KEM.** Continuation of the R138 universal-fractional attack, informed by R143. No efficiency work or external literature search. One bounded SOURCE repair attempt.
+
+## Exact classical Build/Open distribution
+For any n-variable 3-CNF with m exactly-three-literal clauses (negation/repetitions allowed), let B=n+2m. Define H_x in Z^((B+m) × 2B), b_x=all ones: complement-pair equations z_{i,0}+z_{i,1}=1 and each clause equation (sum of its three selected literal coordinates)−z_{slack1,0}−z_{slack2,0}=1. Every genuine satisfying ORIGINAL witness w yields an integer 0/1 vector z_w (using two Boolean slack bits for number of true literals minus 1), with H_x z_w=b_x and ||z_w||_1=||z_w||_2²=B. Distinct valid w may give different z_w.
+
+Choose odd q, s uniform in Z_q^(B+m), e independent uniform {-1,0,1}^(2B), eta independent uniform {-1,0,1}, K uniform {0,1}. Publish c=H_x^T s+e mod q and phase p=b_x^T s+Delta K+eta mod q, alongside the context and source identifiers. Genuine off-chain Open(w) computes p−z_w^T c = Delta K+eta−z_w^T e (mod q). With M=1+B and circular distance D=||Delta||_q>2M, every genuine ORIGINAL witness recovers the SAME K on all coin tapes. This restricted bit release is NOT yet a native signature capsule, and H_x is structured rather than independently established uniform QPT-LWE.
+
+## Proposed repair and direct public refutation
+The R138 denominator-4 counterfeit can be suppressed by putting Delta near q/2, so 4Delta wraps to approximately zero mod q. However there are universal public counterfeit rational vectors with denominators **2 and 3**. For denominator 2, set every input complement pair to (1/2,1/2), and each clause's two slack pairs to (1/2,1/2),(0,1). For denominator 3, set every input pair to (1/3,2/3), so each literal is 1/3 or 2/3. For clause literal sum L (between 1 and 2), choose slack pairs (L−1,2−L),(0,1). Each works on EVERY 3-CNF, including unsatisfiable statements:
+H_x zbar_d=b_x, ||zbar_d||_1=B, ||zbar_d||_2²<=B.
+The integer Z_d=d*zbar_d is public. An unauthorized adversary computes directly from actual public c,p:
+  P_d = d*p − Z_d^T c = d*Delta*K + d*eta − Z_d^T e (mod q).
+The error magnitude is at most dM on every setup tape. Whenever ||d*Delta||_q>2dM, public circular nearest-signal decoding recovers K with certainty, without any original witness, private representation or oracle.
+
+For q=257, Delta=128, and FALSE x=(v∨v∨v) ∧ (¬v∨¬v∨¬v), B=5, M=6, the genuine phase has D=128. Double-scale aliases (||2Delta||_q=1), but triple-scale signal survives (||3Delta||_q=127>36=2*3M). Hence the denominator-3 fake recovers K from ALL permitted noise tapes of this FALSE instance. The checker directly built and recovered 4096 public ciphertext samples, validating the analytic identity.
+
+**General margin result:** Since 3−2=1, ||Delta||_q <= ||3Delta||_q+||2Delta||_q. If D>12M, at least one of d=2 or d=3 satisfies ||dDelta||_q > 6M >=2dM. Thus no modulus/Delta phase-alias trick repairs this linear source family in its high-margin all-tape-correctness regime. The lower-margin region (2M<D<=12M), different source laws, and genuine nonlinear correlated sources are NOT ruled out. This is not an impossibility theorem for general witness encryption.
+
+## Evidence and limits
+Adjacent checker.js was executed in the connected JS runtime before publication, deterministically generating the captured.json. It checks exact H_x equations/norms for both counterfeit denominators across 500 arbitrary formula fixtures, all genuine satisfying Boolean witness paths there, every ciphertext phase identity and direct FALSE recovery in 4096 samples, and the circular triangle inequality for small moduli. An independent offline Python exact-Fraction checker in the local research archive passed 26,662 assertions and reran byte-identically. Neither checker is evidence of QPT security. The source is classically broken before public CK/J/Aux, related capsules, quantum advice, malicious ceremony or native-signature verification could improve it; adding public information cannot erase this leak.
+
+**Next gate:** Leave public linear release, including phase rescaling. Construct a classically PPT, ORIGINAL-dependent **non-publicly composable nonlinear** SOURCE opening with a genuine full-joint-public-output QPT simulator under independently justified assumptions, every valid ORIGINAL witness recovering the identical precommitted native capability, and arbitrary unauthorized recovery/native forgery => ORIGINAL witness or independent QPT break. No such construction in this iteration. No routine PR comment or user-facing report is warranted under the quiet-reporting rule.
