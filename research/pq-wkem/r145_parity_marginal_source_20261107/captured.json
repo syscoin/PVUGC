@@ -1,0 +1,13 @@
+{
+  "run": "R145-parity-moment-lift",
+  "checks": 10257,
+  "clauses": 8,
+  "dimension": 8,
+  "odd_modulus": 4093,
+  "delta": 101,
+  "public_counterfeit_denominator": 4,
+  "samples": 4096,
+  "all_recovered": 4096,
+  "degree_tested": "3..10",
+  "scope": "FALSE source counterexample only; no QPT-LWE claim"
+}
