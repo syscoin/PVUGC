@@ -1,0 +1,38 @@
+{
+  "checks": 342658,
+  "output": [
+    {
+      "case": "original-2cnf",
+      "N": 6,
+      "denominator": 4,
+      "honestBound": 4,
+      "publicBound": 14,
+      "circularDistance": 4096,
+      "publicGuaranteed": true,
+      "samples": 43740,
+      "collisions": 0
+    },
+    {
+      "case": "integer-optimum-synthetic",
+      "N": 5,
+      "denominator": 5,
+      "honestBound": 6,
+      "publicBound": 28,
+      "circularDistance": 5120,
+      "publicGuaranteed": true,
+      "samples": 14580,
+      "collisions": 0
+    },
+    {
+      "case": "denominator-resonance-synthetic",
+      "N": 5,
+      "denominator": 4,
+      "honestBound": 6,
+      "publicBound": 23,
+      "circularDistance": 0,
+      "publicGuaranteed": false,
+      "samples": 14580,
+      "collisions": 7290
+    }
+  ]
+}
