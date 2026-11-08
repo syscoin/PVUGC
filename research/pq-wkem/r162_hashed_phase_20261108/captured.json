@@ -1,0 +1,15 @@
+{
+  "LWE_assumption_claimed": false,
+  "assertions": 1950,
+  "false_instance": "(x\u2228x\u2228x) \u2227 (\u00acx\u2228\u00acx\u2228\u00acx)",
+  "false_scaled_search_candidates": 33,
+  "false_unauthorized_openings": 192,
+  "q_bits": 521,
+  "q_is_mersenne_prime_521": true,
+  "run": "R162-HASHED-PHASE-ORIGINAL-SOURCE-20261108",
+  "standard_QPT_LWE_challenge_simulator": false,
+  "status": "rejected nonlinear hashed-phase release; no generic WKEM security advance",
+  "true_search_candidates": 9,
+  "true_valid_openings": 576,
+  "true_valid_witness_count": 3
+}
