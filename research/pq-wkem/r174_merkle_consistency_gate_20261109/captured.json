@@ -1,0 +1,14 @@
+{
+  "accepted_false_witnesses": 0,
+  "accepted_true_witnesses": 4,
+  "all_assignments": 16,
+  "assertions": 205,
+  "distinct_true_roots": 4,
+  "enumerated_witness_table_rows": 4,
+  "model": "SHA256 concrete Merkle openings; toy Boolean CNF; no real SYS/BTC source",
+  "public_anchor_bypass": true,
+  "public_constraint_zero_bypass": true,
+  "security": "NONE: functionality/negative controls only, no Build poly or QPT reduction",
+  "single_root_ciphertext_successes": 1,
+  "single_root_ciphertext_total_valid_witnesses": 4
+}
