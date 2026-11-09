@@ -1,0 +1,41 @@
+{
+  "assertions": 3226,
+  "groups": {
+    "absence_matches_committed_state": 768,
+    "amount_binding": 1,
+    "and_of_challenges_is_wrong": 1,
+    "different_anchor_rejected": 1,
+    "equal_work_not_greater": 1,
+    "exact_work_formula": 1,
+    "fork_depth_boundary_accepted": 3,
+    "incomplete_path_rejected": 768,
+    "insufficient_fork_depth_rejected": 3,
+    "longer_can_have_less_work": 1,
+    "longer_lower_work_rejected": 1,
+    "membership_or_absence_path": 768,
+    "n_of_n_early_retention_boundary": 64,
+    "neighbor_absence_not_target_absence": 1,
+    "one_challenge_suffices_all_honest": 32,
+    "ordinary_extension_not_conflict": 1,
+    "proof_hashes_are_not_common_capability": 1,
+    "recipient_binding": 1,
+    "same_child_work_variants_not_conflict": 3,
+    "selected_branch_only": 24,
+    "selector_domain": 8,
+    "shorter_higher_work_allowed": 1,
+    "substituted_root_proof_rejected": 1,
+    "unauthenticated_work_rejected": 1,
+    "unqualified_sys_fork_rejected": 3,
+    "wrong_leaf_value_rejected": 768
+  },
+  "not_implemented": [
+    "production BTC/SYS qualification",
+    "challenge-conditioned release",
+    "native signatures",
+    "QPT security experiment",
+    "malicious N-of-N setup"
+  ],
+  "run": "TRI-CANCEL-20261109",
+  "scope": "Merkle-path and policy algebra only; NOT a key-release implementation",
+  "source_sha256": "b0cfa3d8591b4658e5d4c5d90660a321d334790380581a80dadc4849b14cffdf"
+}
