@@ -1,0 +1,21 @@
+{
+  "checks": 1410,
+  "fixtures": 128,
+  "full_work_closure_checks": 128,
+  "future_source_independent_classes": {
+    "bits": 16,
+    "expected_upper_bound": 1.0,
+    "matches": 0,
+    "q": 32,
+    "single_trial_hit_bound": 0.00048828125,
+    "trials": 2048
+  },
+  "honest_invalid_rejections": 128,
+  "production": "NO",
+  "raw_fake_unlocks": 128,
+  "root_authenticates_but_does_not_gate_raw_open": true,
+  "security": "NONE. Synthetic source; future class idealized; public raw key recovery.",
+  "source_authentication": "NONE. Toy booleans, not BTC/SYS best-chain evidence.",
+  "valid_same_child_different_work": 128,
+  "work_id_is_distinct": 128
+}
