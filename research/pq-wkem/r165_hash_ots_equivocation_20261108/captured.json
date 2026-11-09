@@ -1,0 +1,9 @@
+{
+  "run": "R165_v8_hash_label_algebra",
+  "checks": 320,
+  "sameSemanticOutcomeNoRelease": 64,
+  "differentSignedOutcomeCommonKey": 64,
+  "invalidSourceSignerRetainsEarlyRelease": 64,
+  "tamperedLabelRejected": 64,
+  "scope": "finite toy 32-bit label algebra, NOT SHA/PQ/consensus security"
+}
