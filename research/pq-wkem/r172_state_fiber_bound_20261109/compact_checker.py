@@ -48,10 +48,8 @@ def check():
         words=list(itertools.product((0,1),repeat=n))
         # Distinguishable suffix: each first-half prefix accepts only matching suffix.
         assert len({tuple(a==b for b in words) for a in words})==2**n
-
         def f(p): return sum(bit<<i for i,bit in enumerate(p))
         assert len({f(w) for w in words})==2**n
-
         for a in words:
             for b in words: assert (f(a)-f(b)==0)==(a==b)
         results.append([n,2**n])
