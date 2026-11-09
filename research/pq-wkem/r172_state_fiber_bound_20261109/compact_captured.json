@@ -1,0 +1,79 @@
+{
+  "explicit_graph_cases": [
+    {
+      "BFS_extracted_valid_witness": [
+        1,
+        1,
+        1
+      ],
+      "BFS_recovered_key_without_witness": true,
+      "case": "true",
+      "nodes": 15,
+      "satisfiable": true,
+      "visited": 15
+    },
+    {
+      "BFS_extracted_valid_witness": null,
+      "BFS_recovered_key_without_witness": false,
+      "case": "false",
+      "nodes": 3,
+      "satisfiable": false,
+      "visited": 3
+    },
+    {
+      "BFS_extracted_valid_witness": [
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "BFS_recovered_key_without_witness": true,
+      "case": "multi",
+      "nodes": 63,
+      "satisfiable": true,
+      "visited": 44
+    }
+  ],
+  "prefix_equivalence_classes": [
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      3,
+      8
+    ],
+    [
+      4,
+      16
+    ],
+    [
+      5,
+      32
+    ],
+    [
+      6,
+      64
+    ],
+    [
+      7,
+      128
+    ],
+    [
+      8,
+      256
+    ],
+    [
+      9,
+      512
+    ]
+  ],
+  "public_terminal_mask_bypassed": true,
+  "security": "NONE; research-only toy",
+  "total_prefix_classes": 1022
+}
