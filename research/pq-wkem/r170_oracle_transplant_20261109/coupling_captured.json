@@ -1,0 +1,31 @@
+{
+  "coherent_oracle": {
+    "address_bits": 3,
+    "basis_pairs": 1088,
+    "coherent_unitary_identity": true,
+    "oracles_checked": 17,
+    "output_bits": 3
+  },
+  "coupling": {
+    "changed_builder_transcript": 19,
+    "expected_hits": 18.6807,
+    "fake_is_modified_oracle_valid": 2400,
+    "fake_is_original_valid": 1,
+    "finite_only": true,
+    "n_bits": 12,
+    "q_per_builder": 32,
+    "queried_fake_address": 19,
+    "query_union_total": 76516,
+    "trials": 2400
+  },
+  "interpretation": "Finite tests check coupling/oracle correction only; no generic-NP Build, QPT hardness or real Syscoin/BTC validation",
+  "negative_control": {
+    "all_domain_queries": 20480,
+    "max_old_valid_witnesses": 4,
+    "n_bits": 10,
+    "new_valid_fake_not_in_old_table": 20,
+    "requires_exponential_build": true,
+    "trials": 20
+  },
+  "study": "R170 oracle transplant; no WKEM security claim"
+}

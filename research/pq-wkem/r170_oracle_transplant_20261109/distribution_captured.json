@@ -1,0 +1,9 @@
+{
+  "M": 4,
+  "N": 4,
+  "exact_enumeration_only": true,
+  "joint_marginal_events": 1024,
+  "oracle_tables": 256,
+  "programmed_to_honest_weight_factor": 4,
+  "single_vs_double_only_hidden_address": 16384
+}
