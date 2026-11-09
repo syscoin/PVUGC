@@ -1,0 +1,27 @@
+{
+  "D_queries_per_instance": 15,
+  "cases": [
+    {
+      "attacker_witness_used": false,
+      "name": "UNSAT-9",
+      "precommitted_K_sha256": "efc6c3550d053240f3913a8385481ba1d3ba1435aeffdeadb6ce669c1dc2b724",
+      "public_row_count": 86,
+      "rank": 81,
+      "raw_extraction_succeeded": true,
+      "rows_used_in_extraction": 26,
+      "valid_witness_count": 0
+    },
+    {
+      "attacker_witness_used": false,
+      "name": "SAT-8",
+      "precommitted_K_sha256": "6b8bd33986759ea73eb1f774f9b0b1de797e33650d13c67bd3f85877636ecfec",
+      "public_row_count": 79,
+      "rank": 73,
+      "raw_extraction_succeeded": true,
+      "rows_used_in_extraction": 13,
+      "valid_witness_count": 1
+    }
+  ],
+  "checks": 5,
+  "model": "hypothetical public D(w)=xor SHA-derived per-clause hidden masks"
+}
