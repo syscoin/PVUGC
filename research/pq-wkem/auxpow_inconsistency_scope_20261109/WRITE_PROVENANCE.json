@@ -1,0 +1,27 @@
+{
+  "run": "AUXPOW-INC-SCOPE-20261109",
+  "kind": "interactive user-directed relation scoping, not a cryptographic breakthrough",
+  "observed_start_head": "44032a05e4362e5831a24084c6154c3266c58988",
+  "initial_unattached_commit": "349ebb72dcd295775bc4903b847a11ae41bfcc82",
+  "note_blob": "cb1337cf67d91e7c0c258d508ab4c351c79e6f7c",
+  "first_update_result": {
+    "tool": "GitHub.update_ref",
+    "code": "UNKNOWN",
+    "error": "GithubGraphQLAPIError: Something went wrong while executing your query",
+    "server_time": "2026-11-09T16:59:33Z",
+    "request_id": "8708:20AB8E:D2AA9E:2B56ACC:6AF1FBF4",
+    "diagnosis": "Not supplied; no safety/policy denial was returned"
+  },
+  "read_only_resolution": {
+    "branch_head": "66d016b3d1b7103441d2e0aaa651199dbb801a08",
+    "branch_parent": "44032a05e4362e5831a24084c6154c3266c58988",
+    "tree": "c1f1beee98ea4066641a4c5a360eaae5bad340b9",
+    "note_path_at_observed_head": "404 Not Found"
+  },
+  "reconciliation": "Rebuild the same research note atop the observed new head, preserving that intervening commit, and attempt a non-force expected-head update. The future result is not asserted by this provenance file.",
+  "source_code_ref": "syscoin/syscoin@1180dad257fb3cda797187f51ccc519b684e148d",
+  "source_reads": ["src/validation.cpp:10350-10570", "src/auxpow.cpp:1-280"],
+  "new_cryptographic_tests_executed": false,
+  "external_research": false,
+  "ordinary_pr_comment_created": false
+}
