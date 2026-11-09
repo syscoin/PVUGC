@@ -1,0 +1,39 @@
+{
+  "all_public_attacks_succeeded": true,
+  "checks": 10128,
+  "examples": [
+    {
+      "checks": 12,
+      "clauses": 5,
+      "key_check": "82336d2d45aad4d0",
+      "n": 3,
+      "valid_witnesses": 4
+    },
+    {
+      "checks": 24,
+      "clauses": 6,
+      "key_check": "cc9327fadcd0bf98",
+      "n": 4,
+      "valid_witnesses": 8
+    },
+    {
+      "checks": 43,
+      "clauses": 7,
+      "key_check": "304afbb89ddec534",
+      "n": 5,
+      "valid_witnesses": 11
+    },
+    {
+      "checks": 93,
+      "clauses": 8,
+      "key_check": "79eac310e52544c9",
+      "n": 6,
+      "valid_witnesses": 29
+    }
+  ],
+  "false_formulas": 12,
+  "false_key_recoveries": 12,
+  "limits": "Toy exact Boolean/XOR arithmetic only. Public D(w) unrestricted; no hash-only generic NP compiler, QPT proof, true Bitcoin/Syscoin PoW or native endpoint.",
+  "name": "clause mask with full-degree repair and publicly evaluable correction",
+  "true_formulas": 240
+}
