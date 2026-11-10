@@ -1,0 +1,8 @@
+{
+  "all_collisions_at_leaf": true,
+  "assertions": 128,
+  "cases": 32,
+  "scope": "16-bit intentionally insecure toy Merkle; real QPT collision resistance is an unproved assumption in this run",
+  "sha256_source": "fdd36444f58e16aaefa7c983bf93137f8b32c7b7c5a5f90effe45119cc116e9a",
+  "total_search_trials": 9364
+}
