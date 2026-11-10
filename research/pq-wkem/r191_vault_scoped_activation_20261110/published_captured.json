@@ -1,0 +1,9 @@
+{
+  "checks": 15,
+  "fixed_txid": "3e8c3f42f1eaf130e1aea6a2c261141dfbd999fa505c5465350ea15aef7a1fe3",
+  "limitations": "synthetic witness and coinbase, no PoW/native signature/WE/QPT; OTS reuse in fixture",
+  "result": "witness-dependent claim authenticates under variant block commitment, while child spends same txid",
+  "run": "R191-MINIMAL-20261110",
+  "wtxid_A": "d9b4e1da9ff83ef6d785b8d43d69bce865e9fd9aed9741c508c15c21701837aa",
+  "wtxid_B": "3cbdaa4eaf60eebf39a797a6dc8d5fdab7e0b51bf50ed71d7b7aa40cd4a2623f"
+}
