@@ -1,0 +1,15 @@
+{
+  "run": "R186-SMCT-20261109",
+  "startHead": "b7f70979ed5ac74205a378ada35f43db278491d0",
+  "intermediateCommit": "75ff4dbbfd871b639c5ea7d96d689fdec2c61a07",
+  "source_sha256": "d0bfa5c7717a01f2a44a0648ab9e01910185cdfcb12bde963f35bd10ca92bf29",
+  "captured_sha256": "2a9cdc1e4deef395158ad07b64d992b64cfed52429e65cf1c69baf14deb68eb0",
+  "archive_sha256": "4bacc54688b03730176603ccd8eaaa016aff9d44c5475edec171a0f70d765301",
+  "archive_git_blob": "2c0968656b91149c2e0c032486e599030f162209",
+  "functional_assertions": 126,
+  "run_twice_byte_equal": true,
+  "source_authentication": false,
+  "qpt_experiment": false,
+  "full_local_derivation_sha256": "1c72b42c3818a036ba0a04b61690e044a1074212da330dc3ed4eb24d75a7c5fc",
+  "no_pr_comment": true
+}
