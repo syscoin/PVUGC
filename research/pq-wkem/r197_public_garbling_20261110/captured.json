@@ -1,0 +1,13 @@
+{
+  "checks": 600,
+  "conclusion": "false ORIGINAL instance leaks through public labels; transcript salt repair not instantiated",
+  "counts": {
+    "all_honest_false_paths_reject": 240,
+    "false_instance_attack_gets_exact_key": 120,
+    "future_transcript_tweak_breaks_all_witness_correctness": 120,
+    "public_check_key_disambiguates_output": 120
+  },
+  "run": "R197-public-garbling",
+  "scope": "abstract 1-bit fanout circuit; no BTC/SYS consensus verifier; no quantum security claims",
+  "sha256_source": "f1a39e682e82eeb3e26be1a9a901edaba84a4bd702bbfc3790ebceb20ee28905"
+}
