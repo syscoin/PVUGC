@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "first_alternative_opens": 128,
+    "independent_setup_nonce_not_derived_from_actual_source": 128,
+    "pair_specific_token_fails_every_witness": 128,
+    "parent_work_variants_same_child_no_fork": 128,
+    "point_preimage_correctness": 128,
+    "public_baseline_opens_without_fault": 128,
+    "public_prefix_opens_without_fault": 128,
+    "retained_source_secret_early_open": 128,
+    "same_child_tag_value_independent_of_parent_work": 128,
+    "second_qualified_alternative_fails_same_point": 128,
+    "using_tag_as_pad_public_leak": 128,
+    "wrong_point_no_open": 128
+  },
+  "functional_assertions": 1536,
+  "run": "R206-AUXPOW-POINT-LOCK",
+  "scope": "Synthetic point-lock function and fork token timing tests only; no actual source compiler or QPT proof",
+  "source_sha256": "57f1bc6d618551f7bf79afa08b1578bb60224c7954d15666caf8c3b86313eab0"
+}
