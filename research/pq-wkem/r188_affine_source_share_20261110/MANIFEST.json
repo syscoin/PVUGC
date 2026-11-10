@@ -1,0 +1,42 @@
+{
+  "run": "R188-AFFINE-SOURCE-SHARE-20261110",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "observed_start": "7b7fb024e36b2977a696272d792f09e31e917d9e",
+  "intermediate_commit": "321633883ee06cd3be9cb39b75f7ec856dad10bf",
+  "prior_read": "research/pq-wkem/r187_merkle_unique_open_20261110/RESEARCH.md",
+  "prior_read_blob": "3d0808d4882ea00aa37ba9bb0d772e01f36cf7c4",
+  "files": {
+    "CHECKPOINT_01.md": {
+      "git_blob": "a853c59ec397f3848d3e9e9a6dfb0b19b948556e",
+      "sha256": "05ecd7b8228e07121d62e314dc267f4bc6de254a4bcfb0027e0ad69b9f5d6f7c"
+    },
+    "RESEARCH.md": {
+      "git_blob": "784a1e8d00e8a8f9bce3402c4c4ba9c55288eb70",
+      "note": "published readable derivation; local extended derivation sha256 a5f06e8f467750ac47077bb64f13ce5eaf6537fa27d225bf8174186735cc9afd"
+    },
+    "checker.py": {
+      "git_blob": "47c43a5973bc077923231d75d35e4dc38f941b3a",
+      "sha256": "06157d1605b3aecc4f2c984fbd44ea0c3b24eb64da440c77045b0e00c54e0534"
+    },
+    "captured.json": {
+      "git_blob": "6033adcd3a61db9c11244f4787413b69cc448b32",
+      "sha256": "90fe44252791482b40669c89ec73798ee99cffe22891be191cbaa1f9ed0ca8f1"
+    }
+  },
+  "local_archive": {
+    "path": "/mnt/data/pq_r188_20261110/TESTED_BYTES.tar.xz",
+    "sha256": "91b0b61b1fc45f07f13eb136030c4724755340c8da619cf599b2f3e548270661",
+    "note": "exact extended derivation, source, captured JSON and byte-identical rerun; local, not claimed uploaded"
+  },
+  "execution": {
+    "actual": "python checker.py twice; cmp output equal",
+    "functional_assertions": 26303,
+    "real_source_validator": false,
+    "quantum_attack": false,
+    "native_signature": false,
+    "security_claim": "NONE: private_TEST_ONLY_eval uses K,a and is not a public source compiler"
+  },
+  "reporting": "No ordinary PR comment; no practical hash-based Build/Open."
+}
