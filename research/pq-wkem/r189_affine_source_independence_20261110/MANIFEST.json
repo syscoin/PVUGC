@@ -1,0 +1,63 @@
+{
+  "run": "R189_SOURCE_AFFINE_20261110",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "observed_start_head": "d3d6a2e23d161899a564c25e9222d48a8673a9df",
+  "intermediate_checkpoint_commit": "72e73ca9e611e9b1cddbf2c2e71da5d5a6978396",
+  "intermediate_parent": "d3d6a2e23d161899a564c25e9222d48a8673a9df",
+  "classification": "Scoped algebraic independence theorem and failed source-correlation repair; no Build/Open, no QPT security, no breakthrough",
+  "files": {
+    "CHECKPOINT_01.md": {
+      "git_blob": "f51ea2902fbf1a679926d27f152289543c8fa81d",
+      "sha256": "dde49c1d7b540e3c670c1ddfad8882ee16e39a52b08c2f729af4b85c6cc40dc3",
+      "readback": true
+    },
+    "RESEARCH.md": {
+      "git_blob": "bcea14a1ee98f12e4b91a37461efe32c9ad37a98",
+      "note": "Published clean note separately from longer local working draft; contents verified after commit"
+    },
+    "checker.py": {
+      "git_blob": "7fb7ada24d849361fdc2e53ac293f14b343ef79d",
+      "sha256": "b56a915cf2afeedde0e560843dedb337df0946587f3b1df5a97ce2e599dbf606",
+      "identical_to_executed_local": true
+    },
+    "captured.json": {
+      "git_blob": "964ed49bd5a761dc07656910df86c60bd7002cd3",
+      "sha256": "3b9a9cb4cc98acc91a779af395618f140d95e357a0178ce05639523193dade68",
+      "identical_to_actual_stdout": true
+    }
+  },
+  "checks": {
+    "language": "Python 3 standard library",
+    "assertions": 1261,
+    "rerun_byte_identical": true,
+    "field_size": 7,
+    "real_source_validation": false,
+    "quantum_attack_test": false,
+    "native_signatures": false
+  },
+  "reads": [
+    "PVUGC PR #1 metadata",
+    "R188 RESEARCH.md exact start head",
+    "R187 RESEARCH.md exact start head",
+    "PR ordinary comments since 2026-11-09T23:00Z (none)",
+    "intermediate checkpoint commit and blob"
+  ],
+  "other_tool_actions": [
+    "two local checker executions",
+    "local SHA256 and Git blob checks",
+    "GitHub intermediate create_tree/create_commit/expected-head update/readback",
+    "GitHub tested source/captured/research create_blob"
+  ],
+  "errors": [
+    {
+      "kind": "local formatting error in an unattached experimental Git blob",
+      "unattached_blob": "0d7d06a8e929f708f19db1902b1823c4fc657894",
+      "resolution": "not added to branch; clean research note blob bcea14a1ee98f12e4b91a37461efe32c9ad37a98",
+      "safety_denial": false
+    }
+  ],
+  "ordinary_pr_comment_created": false,
+  "task_completion": false
+}

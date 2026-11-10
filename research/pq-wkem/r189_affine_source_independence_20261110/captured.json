@@ -1,0 +1,26 @@
+{
+  "assertions": 1261,
+  "claim": "scoped algebraic/probability identities, no source-dependent release",
+  "field": 7,
+  "groups": {
+    "adaptive_public_source_choice_uninformative": 7,
+    "distinct_witness_hashes_no_common_secret_identity": 1,
+    "each_hidden_share_uniform": 98,
+    "full_key_recovery_from_one_hidden_eval": 686,
+    "hidden_evaluation_uniform_per_distinct_semantic_z": 42,
+    "hidden_share_vector_has_rank_one_support": 49,
+    "key_correlated_checker_changes_posterior": 14,
+    "post_checker_eval_support_restricted": 14,
+    "raw_source_free_evaluator_leaks_K": 294,
+    "single_baseline_preimages": 7,
+    "two_baselines_common_K_preimages": 49
+  },
+  "not_proved": [
+    "full public with CK/D and quantum oracle correlations",
+    "SHA256/AuxPoW source verification",
+    "polynomial BuildSourceShare",
+    "public authenticated evaluator",
+    "native signature security"
+  ],
+  "run": "R189_source_affine_information_gap"
+}
