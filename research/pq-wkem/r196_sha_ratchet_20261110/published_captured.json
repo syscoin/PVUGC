@@ -1,0 +1,11 @@
+{
+  "assertions": 128,
+  "counts": {
+    "explicit_rows_only_list_known_forks": 32,
+    "fork_fails_common_signature": 32,
+    "prefix_leaks_early": 32,
+    "universal_row_leaks_on_fake": 32
+  },
+  "run": "R196",
+  "scope": "synthetic SHA functional checks only, no source authentication or WE"
+}
