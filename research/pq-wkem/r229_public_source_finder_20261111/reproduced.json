@@ -1,0 +1,5 @@
+{
+  "assertions": 5,
+  "finding": "Merkle commitment does not imply full public witness enumeration",
+  "scope": "synthetic source, no original consensus verifier, no Build/Open"
+}
