@@ -1,0 +1,37 @@
+{
+  "authorized_openings_reveal_raw_sibling_keys": 768,
+  "hybrid_final_pad_distribution": {
+    "0": {
+      "each_multiplicity": 1,
+      "support": 64
+    },
+    "1": {
+      "each_multiplicity": 1,
+      "support": 64
+    },
+    "2": {
+      "each_multiplicity": 1,
+      "support": 64
+    },
+    "3": {
+      "each_multiplicity": 1,
+      "support": 64
+    }
+  },
+  "marginal_vs_joint_counterexample": {
+    "individual_marginal_support": 4,
+    "joint_key_recovery": 16,
+    "total": 16
+  },
+  "raw_key_ror_with_public_check_hash": {
+    "denominator": 16777216,
+    "distinguishing_advantage_numerator": 16773120,
+    "key_space": 4096,
+    "real_accept_numerator": 16777216,
+    "uniform_accept_numerator": 4096
+  },
+  "reused_key_two_slot_leakage": 64,
+  "run": "R226-CONTINUATION-20261111",
+  "same_native_signature_opening_equivalence": 64,
+  "scope": "finite algebra only; NO hash-only original-dependent Enc/Open or quantum security proof"
+}
