@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "txid_constant": true,
+    "different_witness_ids": true,
+    "authentic_absent_burn": true,
+    "unmined_signed_claim_breaks_naive": true,
+    "unmined_signed_claim_rejected": true,
+    "no_root_substitution": true,
+    "no_signature_substitution": true,
+    "existing_burn_not_absent": true
+  },
+  "passed": 8,
+  "limits": [
+    "synthetic hash witness fixture",
+    "accepted commitments are mock Bitcoin chain state",
+    "fixed burn-state snapshot",
+    "no SHA-based Build/Open",
+    "no QPT test"
+  ]
+}
