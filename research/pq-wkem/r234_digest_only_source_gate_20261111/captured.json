@@ -1,0 +1,25 @@
+{
+  "all_semantic_conflicts_return_same": 255,
+  "candidate": "R234-digest-factorization",
+  "covered_first_differing_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "fake_semantic_conflicts_return_same": 255,
+  "functional_checks": 516,
+  "known_prefix_alone_opens": true,
+  "not_tested": [
+    "actual BTC or SYS source authentication",
+    "native PQ verification",
+    "QPT or QROM"
+  ],
+  "private_label_public_derivation_failed": true,
+  "source_sha256": "7611492bd31372c256156f28a515c1627898b479ee00ace68de27829e93c4580",
+  "work_dependent_pad_other_certificate_fails": true
+}
