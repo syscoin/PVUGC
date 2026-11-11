@@ -1,0 +1,9 @@
+# R215 — first SHA256d midstate as a source label (pre-experiment checkpoint)
+
+**Hypothesis only; no security or completion claim.** Continue R214's unfinished source-to-hidden-label interface using actual SHA256d internal states rather than invented OTS labels or arbitrary public tag hashes.
+
+For a syntactically valid 80-byte Bitcoin parent header p||nonce, test three candidate labels for a qualified work witness: L_mid=SHA256 first-block compression midstate, L_prefix=the difficulty-forced output prefix, L_tail=the nonce-dependent SHA256d digest/final state. A viable label must be frozen by pre-funding Build, be derivable from EVERY actual qualified future ORIGINAL source witness, yet remain computationally hidden from the complete public setup absent one. Examine whether adding genuine coinbase/child ancestor commitments creates any hidden correlation instead of merely public authentication. All 3 bridge challenge branches, N-of-N preauthorization, one-notary activation, permissionless off-chain evidence and native-only Bitcoin spending remain the required target.
+
+Test honest shared-template nonce variants AND distinct merkle-root/coinbase templates using actual SHA256d compression arithmetic, with deliberately synthetic target thresholds; no mined actual Bitcoin/Syscoin history or source acceptance is claimed. If labels are public before PoW, reconstruct the actual early-open attack. If labels vary by witness, demonstrate the all-witness same frozen-key failure. Diagnose whether a real source-only repair exists before proceeding.
+
+Continuity: syscoin/PVUGC PR #1, draft/open, branch research/pq-wkem-validation-20260918, observed initial head de9eaa91976049a12fd11f245e0cda98c07bbcf0; exact R214 research blob 6a44593a4990671777506995f16d7cc0d7ef875d read. Latest ordinary comments since 2026-11-10T23:00Z: none. No web/external research, lattice, outside repo write, agent or QPT test. This checkpoint precedes execution and claims no result.
