@@ -1,0 +1,12 @@
+{
+  "correct_openings": 300,
+  "dimension": 20,
+  "field": 257,
+  "projection_rank": 18,
+  "public_mask_generators": 20,
+  "run": "R218-repro",
+  "scope": "toy Boolean OR gate; no real SHA/AuxPoW or QPT experiment",
+  "trials": 100,
+  "unauthorized_public_recoveries": 100,
+  "valid_witnesses": 3
+}
