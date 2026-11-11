@@ -1,0 +1,12 @@
+{
+  "assertions": 27,
+  "distinct_semantic_child_work": "5f849c1e0e577369696b3ce7d6c77430e228dac71bd6b51f55ca9dc309631200",
+  "run": "R235-SCP",
+  "same_child_distinct_parent_work": [
+    "d400a4bf0404000bca5c9e177b9734cf09af171314ff5d1e5adeaac4cbca3c00",
+    "d1e3edfc0e9c77492a81169b14fe021eac4fe8a35a9aa4968c31949802802e00"
+  ],
+  "sha256_source": "ac2eaef417be231343fea162fa5b80115bd4e30ae439ecac1a2646869a6249b8",
+  "status": "source-conditioned common key NOT instantiated; local functionality only",
+  "toy_target_bits": 10
+}
