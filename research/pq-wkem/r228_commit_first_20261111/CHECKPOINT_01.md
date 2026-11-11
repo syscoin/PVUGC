@@ -1,0 +1,3 @@
+# R228 intermediate checkpoint (prior to tests)
+
+Hypothesis: pre-fix exactly one canonical source claim A0 before the N-of-N ceremony; an independent honest setup salt and mandatory SHA256 check on activation INPUT witness P might prevent alternative claim A1 using the same activation txid, while leaving one-notary activation of that *already selected* A0 possible. Need test malformed/cross-claim P, unbound side fields, different wtxid on same txid, and missing script path. This is an endpoint binding option, NOT a hash-only original-witness KEM or universal arbitrary-later-claim compiler. The local full checkpoint was written before tests; no security result asserted at this stage.

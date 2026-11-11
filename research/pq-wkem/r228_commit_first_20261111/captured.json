@@ -1,0 +1,26 @@
+{
+  "checks": 641,
+  "claim": "conditional activation hash binding only, not witness-encryption",
+  "groups": {
+    "bypass_spend_if_graph_not_enforced": 64,
+    "different_claim_rejected_by_hashlock": 64,
+    "different_slot_rejected": 64,
+    "distinct_claims_distinct_hash_fixture": 64,
+    "noncanonical_stack_preimage_rejected": 64,
+    "offchain_semantics_only_hashbound_claim": 64,
+    "one_committed_claim_accepted": 64,
+    "other_witness_fields_do_not_change_claim": 64,
+    "public_preimage_can_satisfy_hashlock_without_source_fault": 64,
+    "strict_claim_encoding": 1,
+    "variant_has_same_txid_different_wtxid": 64
+  },
+  "not_tested": [
+    "actual Bitcoin Script and native PQ endpoint",
+    "actual source evidence",
+    "QROM reduction",
+    "source-conditioned Build/Open",
+    "malicious setup completeness"
+  ],
+  "run": "R228-20261111",
+  "source_sha256": "ae767b6e8f40b29ce3359da508169faa3847788f29e859fa9debfe3abed66f59"
+}
