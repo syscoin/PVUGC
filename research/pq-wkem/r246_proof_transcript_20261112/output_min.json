@@ -1,0 +1,13 @@
+{
+  "false_statement_public_prefix_recovers": true,
+  "first_two_nonces": [
+    20,
+    816
+  ],
+  "public_prefix_recovers_without_witness": true,
+  "run": "R246_MIN",
+  "secret_salt_absent_from_source": true,
+  "source_proof_pads_different": true,
+  "status": "NONQUALIFYING source-like SHA tests, not consensus/NIZK/QPT",
+  "valid_toy_headers": 2
+}
