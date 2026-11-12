@@ -1,0 +1,2 @@
+# R242 intermediate checkpoint
+Observed PVUGC PR #1 head fb28fd2b1408d0ac92945e0cd50ae8e83d64aa18 on research/pq-wkem-validation-20260918. Started before experiments from R241's public SHA input-label failure. Candidate: finite-field zero-tests for ORIGINAL source constraints and Fermat unequal-hash check, with vanishing-ideal random masks; test every-witness fixed-sigma algebra and whether public field encodings permit unauthorized coefficient recovery. This is NOT a security theorem or source implementation.
