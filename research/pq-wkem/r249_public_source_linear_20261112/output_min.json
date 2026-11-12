@@ -1,0 +1,12 @@
+{
+  "consistent_source_bit_outputs": [
+    0,
+    0
+  ],
+  "false_boolean_off_domain_sigma": 91,
+  "inconsistent_raw_output": 91,
+  "module_supported_toy_witnesses": 2,
+  "public_module_sigma": 91,
+  "run": "R249_MIN",
+  "status": "nonqualifying algebraic regressions only"
+}
