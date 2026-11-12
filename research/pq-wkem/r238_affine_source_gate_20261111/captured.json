@@ -1,0 +1,8 @@
+{
+  "fake_raw_share_early_recovery_cases": 12,
+  "honest_api_rejection_cases": 12,
+  "result": "universal interpolation correct but source gate not instantiated",
+  "run": "R238",
+  "test_model": "finite-field algebra, synthetic IDs, raw share interface",
+  "valid_pair_correctness_checks": 5952
+}

@@ -1,0 +1,3 @@
+# R238 intermediate checkpoint — affine shares for canonical parent observations
+Observed PVUGC PR #1 head: 19cd84d33118ceafb95cfda5f2565d16a03a945b, R237. Read exact R237 RESEARCH.md, Git blob b03c31ece01dd26ec7036d8d7727bb7a962b1626. PQ Core PR #609's activated canonical SYS tag plus mandatory modern child-chain ID is respected; no R190 parser issue is inferred.
+Candidate: each relevant authenticated source P maps to field element t(P). Setup's frozen K is the constant term of f(t)=K+a*t. Any two different parent-source observations hypothetically yielding f(t_i) interpolate the SAME K. Hypothesis under examination: can actual source evidence make its shares publicly available without exposing f on arbitrary fake inputs? No security claim or empirical result yet.
