@@ -1,0 +1,4 @@
+# R239 intermediate checkpoint — canonical-source pad test
+Observed PVUGC PR #1 on branch research/pq-wkem-validation-20260918 at c9ee0c1130ffee074d7a815414d14533d2702d57 (R238). Read R238 RESEARCH.md and latest relevant ordinary PR comments (R225). Retain Core #609 activated canonical parent tag and modern child chain ID; do not infer deployment.
+Candidate: one frozen ciphertext c = sigma XOR Hpad(I(x_W,w)), with I derived from ORIGINAL authenticated SHA/AuxPoW evidence w, attempting permissionless recovery of the same frozen cancellation signature for every qualified witness.
+Exact pending equation: for two accepted w0,w1, equality of recovered sigma forces Hpad(I(w0))=Hpad(I(w1)). Test whether parent-SHA, normalized pure-child, or common-baseline indices meet equality without being publicly computable. Check full-public security when the index collapses. This checkpoint precedes the later local executions and makes no security claim.

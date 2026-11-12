@@ -1,0 +1,17 @@
+{
+  "baseline": {
+    "correct": 8,
+    "public_baseline_attack": true,
+    "unique": 1
+  },
+  "child": {
+    "correct": 2,
+    "public_baseline_attack": false,
+    "unique": 4
+  },
+  "parent": {
+    "correct": 1,
+    "public_baseline_attack": false,
+    "unique": 8
+  }
+}
