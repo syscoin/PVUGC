@@ -1,5 +1,5 @@
 {
-  "checks": 9,
+  "checks": 8,
   "directional_toy_backward_walk_blocked": true,
   "eq_n_midpoint_lower_bounds": {
     "1": 2,
