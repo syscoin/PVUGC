@@ -1,0 +1,54 @@
+{
+  "certified": [
+    {
+      "SL": 9,
+      "SR": 15,
+      "coupled_metric_inside": true,
+      "full_constant_inside": true,
+      "old_identity_outside": true,
+      "rankS": 16,
+      "relation": "false",
+      "seed": 1000,
+      "status": "certified"
+    },
+    {
+      "SL": 11,
+      "SR": 13,
+      "coupled_metric_inside": true,
+      "full_constant_inside": true,
+      "old_identity_outside": true,
+      "rankS": 16,
+      "relation": "false",
+      "seed": 1001,
+      "status": "certified"
+    },
+    {
+      "SL": 14,
+      "SR": 10,
+      "coupled_metric_inside": true,
+      "full_constant_inside": true,
+      "old_identity_outside": true,
+      "rankS": 16,
+      "relation": "false",
+      "seed": 1002,
+      "status": "certified"
+    },
+    {
+      "SL": 11,
+      "SR": 13,
+      "coupled_metric_inside": true,
+      "full_constant_inside": true,
+      "old_identity_outside": true,
+      "rankS": 16,
+      "relation": "false",
+      "seed": 1003,
+      "status": "certified"
+    }
+  ],
+  "checks": 1866,
+  "provenance": "synthetic GF(16) subfield GF(256), exact current gate; no QPT secrecy claim",
+  "statuses": {
+    "certified": 64
+  },
+  "trials": 64
+}

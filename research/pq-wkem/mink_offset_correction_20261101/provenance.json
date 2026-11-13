@@ -1,0 +1,16 @@
+{
+  "research_label": "MINK-OFFSET-20261101",
+  "status": "UNSUCCESSFUL",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "57a7fc6fbb22756bb2e17e5211445bf54345c858",
+  "exact_read_source_blob": "b667b8d155f90e39718bc521de1e21161b5fa02a",
+  "actual_executions": "Python checker two independent deterministic executions, byte-identical",
+  "checks_per_execution": 8448,
+  "fixtures_per_execution": 96,
+  "false_rounds_per_execution": 768,
+  "external_research": false,
+  "claim": "negative algebraic boundary; no secure WKEM or new source compiler",
+  "local_extended_archive": "MINK_OFFSET_UNSUCCESSFUL_20261101.tar.gz"
+}

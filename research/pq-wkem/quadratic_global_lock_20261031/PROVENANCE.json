@@ -1,0 +1,14 @@
+{
+  "checkpoint": "QGL-2026-10-31",
+  "start_sha": "bd2c5d9de34ef4d1fd10b01a963cb8ff821b60fb",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "status": "NEGATIVE; no positive WKEM advance",
+  "source_note": "NGCE comment 6550493876",
+  "published_checker": "checker.py",
+  "published_output": "output.json",
+  "offline_extended_checker_sha256": "7a404e1618e63e4003381ff7b28551e5f5851ef0a66438961aa39de2085b0e68",
+  "offline_extended_output_sha256": "43ef412d093442c4a782e096b2b48689744e2001a167b9edf23b889ff591c2fb",
+  "security": "no LWE challenge simulator, QPT or native signature proof"
+}

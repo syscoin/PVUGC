@@ -1,0 +1,9 @@
+# R199 — intermediate hypothesis: authenticated-source polynomial interpolation
+
+Run: R199-SOURCE-POLY-20261110. Existing syscoin/PVUGC PR #1 branch research/pq-wkem-validation-20260918. Observed start head 1355cc2aeb069ef7829b00d276378fb1434fb910 (open/draft). R198 at exact blob da4b6422998cbd881a4411e485a75e2ae0f9de39 was read; no recent ordinary comments since 2026-11-10T00:00Z.
+
+Candidate: treat two *semantic* conflicting child-history projections as coordinates z_A != z_B in a field F_p. Build samples frozen claim-scoped capability k and random slope a, defining f(z)=k+a*z. If certified source history could supply (z_A,f(z_A)) and (z_B,f(z_B)), then Open interpolates k=(z_B*f(z_A)-z_A*f(z_B))/(z_B-z_A), invariant across all qualifying pairs. The idea differs from R198 interval-prefix GGM: pair interpolation solves the same-frozen-output identity but does NOT by itself supply source-conditioned share generation.
+
+Exact missing step: the ORIGINAL SHA/AuxPoW source emits child/tag/root hashes z, but *not* secret polynomial shares f(z). Publishing f coefficients or freely evaluable f exposes k immediately; keeping coefficients secret denies future miners/any challenger the shares. Injecting labels that a malicious source can choose and retain recreates R173's early-release failure. Do not reclassify an invented source field as authenticated consensus evidence.
+
+Planned checker: bounded exact field interpolation, arbitrary witness pairs, WorkID invariance, public-polynomial early recovery, and rejection of assumed hash-derived shares that cannot fit one global line. This is an intermediate mathematical hypothesis and diagnostic plan, not a secure hash-based Build/Open, an ORIGINAL source compiler, security theorem or deployment claim. No PR progress comment warranted solely for publication.

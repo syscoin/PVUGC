@@ -1,0 +1,76 @@
+{
+  "condenser": {
+    "maps": 160,
+    "max_good": 121,
+    "mean_good": 106.27342549923195,
+    "min_good": 91,
+    "p_exact": "21/32",
+    "required_half_mean": 52.5,
+    "subspaces": 651,
+    "union_bound": 0.001298571639013558
+  },
+  "inherited_completion": [
+    {
+      "D": 2,
+      "N": 4,
+      "conditional_completion": "3/5",
+      "full_rank_restriction": "15/16",
+      "lower_bound": "9/16",
+      "m": 1,
+      "q": 2
+    },
+    {
+      "D": 2,
+      "N": 4,
+      "conditional_completion": "6/35",
+      "full_rank_restriction": "105/128",
+      "lower_bound": "9/64",
+      "m": 2,
+      "q": 2
+    },
+    {
+      "D": 2,
+      "N": 3,
+      "conditional_completion": "6/13",
+      "full_rank_restriction": "26/27",
+      "lower_bound": "4/9",
+      "m": 1,
+      "q": 3
+    }
+  ],
+  "rank_mixture": {
+    "N": 4,
+    "image_subspace_counts": {
+      "0": 1,
+      "1": 15,
+      "2": 35
+    },
+    "m": 2,
+    "maps_per_rank1_image": 3,
+    "maps_per_rank2_image": 6,
+    "q": 2,
+    "rank_counts": {
+      "0": 1,
+      "1": 45,
+      "2": 210
+    }
+  },
+  "splicing": {
+    "global_ranks": [
+      2,
+      2
+    ],
+    "local_ranks": {
+      "L1_x0": 2,
+      "L1_x1": 1,
+      "L2_x0": 1,
+      "L2_x1": 2
+    },
+    "majority_repetitions": 63,
+    "majority_success": 0.9968806526003727,
+    "rank1_zero_residual": "2/3",
+    "rank2_zero_residual": "1/2",
+    "xor_splice_success": 0.9937807658571446
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,243 @@
+{
+  "fixed_digest_majority": {
+    "claim": "If every full valid encoding vector for one fixed digest is within Hamming radius t of one decoded center d, then pad p=K^k xor r from one honest opening vector r lets every full valid vector recover the same bit K by strict majority whenever 4t<k.",
+    "families": [
+      {
+        "ball_size": 1,
+        "k": 5,
+        "majority_margin_lower_bound": 5,
+        "max_pair_distance": 0,
+        "t": 0
+      },
+      {
+        "ball_size": 6,
+        "k": 5,
+        "majority_margin_lower_bound": 1,
+        "max_pair_distance": 2,
+        "t": 1
+      },
+      {
+        "ball_size": 1,
+        "k": 7,
+        "majority_margin_lower_bound": 7,
+        "max_pair_distance": 0,
+        "t": 0
+      },
+      {
+        "ball_size": 8,
+        "k": 7,
+        "majority_margin_lower_bound": 3,
+        "max_pair_distance": 2,
+        "t": 1
+      },
+      {
+        "ball_size": 1,
+        "k": 9,
+        "majority_margin_lower_bound": 9,
+        "max_pair_distance": 0,
+        "t": 0
+      },
+      {
+        "ball_size": 10,
+        "k": 9,
+        "majority_margin_lower_bound": 5,
+        "max_pair_distance": 2,
+        "t": 1
+      },
+      {
+        "ball_size": 46,
+        "k": 9,
+        "majority_margin_lower_bound": 1,
+        "max_pair_distance": 4,
+        "t": 2
+      },
+      {
+        "ball_size": 1,
+        "k": 11,
+        "majority_margin_lower_bound": 11,
+        "max_pair_distance": 0,
+        "t": 0
+      },
+      {
+        "ball_size": 12,
+        "k": 11,
+        "majority_margin_lower_bound": 7,
+        "max_pair_distance": 2,
+        "t": 1
+      },
+      {
+        "ball_size": 67,
+        "k": 11,
+        "majority_margin_lower_bound": 3,
+        "max_pair_distance": 4,
+        "t": 2
+      },
+      {
+        "ball_size": 1,
+        "k": 13,
+        "majority_margin_lower_bound": 13,
+        "max_pair_distance": 0,
+        "t": 0
+      },
+      {
+        "ball_size": 14,
+        "k": 13,
+        "majority_margin_lower_bound": 9,
+        "max_pair_distance": 2,
+        "t": 1
+      },
+      {
+        "ball_size": 92,
+        "k": 13,
+        "majority_margin_lower_bound": 5,
+        "max_pair_distance": 4,
+        "t": 2
+      },
+      {
+        "ball_size": 378,
+        "k": 13,
+        "majority_margin_lower_bound": 1,
+        "max_pair_distance": 6,
+        "t": 3
+      }
+    ]
+  },
+  "pad_hiding_control": {
+    "claim": "For truly uniform r in {0,1}^k, p=r xor K^k is exactly uniform and independent of K.",
+    "enumerated_k_max": 10
+  },
+  "run": 121,
+  "security_scope": [
+    "These are finite combinatorial/functionality checks, not a computational security proof.",
+    "The VTDH paper's published pseudorandomness definition quantifies over PPT adversaries; a QPT lift of its concrete LWE instantiation is not established by this checker.",
+    "The majority layer canonicalizes non-unique valid openings for a fixed digest but does not make an ORIGINAL NP witness capable of opening a setup-fixed digest.",
+    "Any party that obtains any full valid opening vector in the binding ball recovers the key; source gating therefore remains a separate compiler/extraction obligation."
+  ],
+  "status": "PASS",
+  "tightness": {
+    "claim": "When 4t>=k, two radius-t strings can be at distance at least k/2, so universal strict-majority correctness is no longer guaranteed.",
+    "controls": [
+      {
+        "k": 4,
+        "outcome": "tie",
+        "pair_distance": 2,
+        "t": 1
+      },
+      {
+        "k": 4,
+        "outcome": "wrong-majority",
+        "pair_distance": 4,
+        "t": 2
+      },
+      {
+        "k": 5,
+        "outcome": "wrong-majority",
+        "pair_distance": 4,
+        "t": 2
+      },
+      {
+        "k": 6,
+        "outcome": "wrong-majority",
+        "pair_distance": 4,
+        "t": 2
+      },
+      {
+        "k": 6,
+        "outcome": "wrong-majority",
+        "pair_distance": 6,
+        "t": 3
+      },
+      {
+        "k": 7,
+        "outcome": "wrong-majority",
+        "pair_distance": 4,
+        "t": 2
+      },
+      {
+        "k": 7,
+        "outcome": "wrong-majority",
+        "pair_distance": 6,
+        "t": 3
+      },
+      {
+        "k": 8,
+        "outcome": "tie",
+        "pair_distance": 4,
+        "t": 2
+      },
+      {
+        "k": 8,
+        "outcome": "wrong-majority",
+        "pair_distance": 6,
+        "t": 3
+      },
+      {
+        "k": 8,
+        "outcome": "wrong-majority",
+        "pair_distance": 8,
+        "t": 4
+      },
+      {
+        "k": 9,
+        "outcome": "wrong-majority",
+        "pair_distance": 6,
+        "t": 3
+      },
+      {
+        "k": 9,
+        "outcome": "wrong-majority",
+        "pair_distance": 8,
+        "t": 4
+      },
+      {
+        "k": 10,
+        "outcome": "wrong-majority",
+        "pair_distance": 6,
+        "t": 3
+      },
+      {
+        "k": 10,
+        "outcome": "wrong-majority",
+        "pair_distance": 8,
+        "t": 4
+      },
+      {
+        "k": 11,
+        "outcome": "wrong-majority",
+        "pair_distance": 6,
+        "t": 3
+      },
+      {
+        "k": 11,
+        "outcome": "wrong-majority",
+        "pair_distance": 8,
+        "t": 4
+      },
+      {
+        "k": 12,
+        "outcome": "tie",
+        "pair_distance": 6,
+        "t": 3
+      },
+      {
+        "k": 12,
+        "outcome": "wrong-majority",
+        "pair_distance": 8,
+        "t": 4
+      },
+      {
+        "k": 13,
+        "outcome": "wrong-majority",
+        "pair_distance": 8,
+        "t": 4
+      },
+      {
+        "k": 14,
+        "outcome": "wrong-majority",
+        "pair_distance": 8,
+        "t": 4
+      }
+    ]
+  },
+  "total_assertions": 494480
+}

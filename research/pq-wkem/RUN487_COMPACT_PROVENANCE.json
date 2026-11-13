@@ -1,0 +1,18 @@
+{
+  "run": 487,
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "ec14788eb8bc9e780276599c0ae04d2dc642d109",
+  "scope": "native verification-key plug-in barrier",
+  "validation": {
+    "run": 487,
+    "assertions": 4864,
+    "contexts": 128,
+    "valid_source_witnesses_per_context": 2,
+    "accepted_toy_native_signatures": 2048,
+    "scope": "insecure finite permutation only; does not establish QPT or concrete security"
+  },
+  "local_extended_checker": "run487_independent.py (3328 assertions, local-only)",
+  "publication": "pending"
+}

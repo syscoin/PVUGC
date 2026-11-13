@@ -1,0 +1,63 @@
+# R49 — ORIGINAL-LWE-PAD-JOINT: exact QPT DLWE challenge embedding for certified-FALSE ORIGINAL source
+
+**Scope, provenance.** One bounded offline continuation of R48; NOT a generic PQ witness-KEM or a hard-TRUE security theorem. 2026-11-03, repository `syscoin/PVUGC` PR #1, draft/unmerged, branch `research/pq-wkem-validation-20260918`, verified starting SHA `57ad03aa16908e7eb866a7f0e38baebd8c4953d9`. Starting substantive ordinary comment 6617599803. Exact prior R48 RESEARCH blob `d3dce77b15d70b61c1d1e1e1ee2fcbef2f8ee4d2`; R48 checker blob `5df5158e3f331ae274d55980a0993be63994dc41`. No external research, PR-wide diff, historical replay or archive reconstruction. The exact V8-executed checker and captured output are sibling files in this directory.
+
+## Constructed release algorithm, rather than an assumed opening oracle
+
+R48 instantiates R46's genuine ORIGINAL NP quotient source with a secret-correlated public checking key, but needs a raw full-L-bit one-time pad for the L-bit native pre-signature. R49 replaces that pad by a **fully specified LWE-stream expansion** from a shorter seed which is itself encrypted using the genuine ORIGINAL relation. Unlike R39–R44, LWE decryption secrets are NOT alternative witnesses for the source predicate. The exact QPT challenge simulator instantiates the ORIGINAL SOURCE capsules, LWE sample/challenge, native masked signature, checking key, auxiliary correlations and permitted related capsules **together**. Its security proof is for certified-FALSE only. It deliberately trades R48's information-theoretic FALSE simulation for an independently stated computational QPT DLWE assumption. No claim of assumption-free improvement.
+
+Let `R_ORIGINAL(x,w)` be the actual NP verifier. Statement x canonically includes ORIGINAL relation identity, concrete UTXO/claim, branch, burn/authorization/output, SYS/BTC source conditions including parsing, headers, AuxPoW, checkpoint/coinbase tags, ancestor tags and window/anchors, context, public A, native verification key and intended signed path/message. These checks occur OFF CHAIN on witnesses; no Bitcoin NP verifier, VM, trace challenge or proof verifier is introduced. For an honest Build with fixed explicitly polynomial dimension M, compile the faithful ORIGINAL verifier to the R48 Boolean quotient over an odd field `F_{q_src}`. Let `W_x=span{f_j f_k}`, `P_x` the public canonical linear quotient with kernel W_x, `S_x` its public section, and `Delta=(q_src-1)/2`. For every bit mu of the independent binding seed and pad seed publish fresh
+
+`Z_mu = P_x(Delta * mu * 1 + eta_mu)`,
+
+where the coefficient noise eta is sampled independently and uniformly from `[-B,B]^M`. Require `M B < Delta/2`. Honest Build does not choose or know an ORIGINAL witness.
+
+Choose a *different* modulus `q_lwe=2^t`, integers `t>b>=1`, dimensions `n,m` and `tn+bm<tm`. Draw one public matrix `A <- Uniform(Z_{q_lwe}^{m x n})`, optionally shared across independently seeded claim capsules. Each target claim draws `s <- Uniform(Z_{q_lwe}^n)`, `e <- Uniform(S_b^m)` with `S_b={-2^(b-1),...,+2^(b-1)-1}`. Encode the fixed-length pad seed `K_seed = Encode_t(s)||Encode_b(e+2^(b-1))`, of k=tn+bm bits. Expand deterministically
+
+`Y=As+e (mod q_lwe)`, `G_A(K_seed)=Encode_t(Y_1)||...||Encode_t(Y_m)`,
+
+of L=tm bits. The output is EXACTLY uniform L-bit for a uniform `Y <- Z_{q_lwe}^m`, since q_lwe is a power of two. It is not claimed uniform on actual LWE instances. Assume **the precise QPT decisional LWE game** distinguishing the joint distribution `(A,As+e)` from `(A,U)`, with the exact stated uniform narrow-error alphabet. This is an independent, well-defined average-case assumption, NOT a claim that any toy or illustrative parameters possess 128-bit PQ security. No automatic reduction from arbitrary “LWE” terminology, classical security or a fixed public A is being asserted.
+
+For an honestly prepared native fixed-path signature: KeyGen gives sk_N,vk_N; select exact message `m*=M(x,UTXO,claim,branch,anchors,window,A,vk_N,path,context)`; make a canonical fixed-L-bit pre-signature `sigma*=Sign(sk_N,m*)` before irreversible funding and apply the independently required R45 N-of-N manifest, data availability, erasure and no-bypass requirements. Choose independent `K_bind <- {0,1}^{k_bind}`; publish Z for all its bits and all bits of K_seed. Publish `D=Encode(sigma*) XOR G_A(K_seed)` and
+
+`CK=F(domain,K_bind,x,UTXO,claim,branch,anchors,window,A,vk_N,m*,all_Z,D,public_context,permitted_related_capsules)`.
+
+F is a specified efficient deterministic function of **only** these inputs; CK may reveal K_bind. Public auxiliary information may use CK, these public fields, independent coins, and K_bind. It must NOT additionally use target s,e, target seed, signature/sk_N or target SOURCE noise except through D/other declared public fields. Merely hashing F does NOT establish tag integrity; an independent QPT collision-resistance assumption and canonical serialization are needed for adversarial mutation/binding security.
+
+`Open(x,w)`, OFF CHAIN: check `R_ORIGINAL(x,w)=1`, decode all seed/binding bits from `Ev_w(S_x(Z_mu))`, parse s,e, recompute G_A, validate CK and context, recover `sigma=D XOR G_A(K_seed)`, check `Verify(vk_N,m*,sigma)=1`, and submit only the ordinary native fixed-path signature. The same pad seed is a precommitted CAPABILITY component; distinct ORIGINAL witnesses do not need common source preimages or internal states.
+
+## Deterministic ALL-ORIGINAL-witness correctness
+
+For any genuine valid ORIGINAL w, evaluation annihilates all `g in W_x`: `Ev_w(S_x(P_x(v)))=Ev_w(v)`. Consequently `Ev_w(S_x(Z_mu))=Delta*mu+Ev_w(eta_mu)` with `|Ev_w(eta_mu)|<=MB<Delta/2`. Every valid ORIGINAL witness decodes the SAME prechosen bits of K_seed and K_bind, computes the SAME Y and sigma*, and checks the SAME CK. This is a pointwise statement for all valid witnesses under honest Build, not a true-instance confidentiality theorem. The compiler's degree-bound efficiency and arbitrary-NP size remain unoptimized.
+
+## Joint-public-output QPT theorem: **certified-FALSE targets ONLY**
+
+Choose a predesignated unopened target x with an actually verified **public algebraic certificate** `1 in W_x`; equivalently `P_x(1)=0`. Do NOT claim this holds on arbitrary FALSE instances. In that case each target seed-bit capsule obeys the exact identity `Z_mu=P_x(eta_mu)`, independently of its seed bit, even conditioned jointly on A, native vk, native sigma*, secret K_bind and allowed auxiliary material. Independent target capsules sharing one K_seed and all non-target capsules use independently sampled SOURCE noise.
+
+Let A_QPT receive the **entire classical public view** `(R_ORIGINAL,x,claim,UTXO,vk_N,m*,A,D,all_Z,CK,context,auxiliary,related_capsules)` and efficiently reproducible public-dependent quantum advice. It may obtain independent non-target claim witnesses, binding seeds, LWE seeds, capabilities, native signatures and a coherent reversible non-target opening lookup table, as long as distinct non-target native messages were signed or publicly authorized. Each other claim has **independent s,e,K_bind, native path/message** even when all share A; the reduction knows their coins and simulates them and their openings from the challenge A. The target claim and its pad seed are never opened or reused by an opened sibling; additional certified-FALSE target capsules may reuse the target pad seed with fresh source noise. No multiple distinct signature plaintexts under the same pad, source/CK hash of target seed, target-secret/sk-correlated advice, arbitrary TRUE target-related capsule sharing the seed, or fully coherent pre-commit target selection is permitted.
+
+**LWE-to-uniform hybrid:** An exact QPT-DLWE reduction B_D receives challenge `(A,Y)` with Y either `As+e` for the specified independent uniform s,e or independent uniform U. B_D creates its own native sk_N/vk_N and signs the fixed target message. It DOES NOT KNOW target s,e. For each target K_seed bit it nevertheless publishes `P_x(eta_mu)`, which has the exact honest joint distribution because `P_x(1)=0`. It similarly generates K_bind SOURCE bits, constructs `D=Encode(sigma*) XOR Encode_t(Y)`, computes the REAL K_bind-dependent CK and all allowed aux/related/opening records. In the LWE challenge branch this is **exactly real**; in the uniform branch D is an **exactly uniform independent L-bit string**, even conditioned on signature, K_bind, x, A and all source capsules. No SourceOpen oracle, no witness, no LWE secret, no extractor and no quantum rewinding are used.
+
+**Uniform-to-native-EUF hybrid:** B_E receives only the native EUF-CMA challenger verification key. It selects A, all allowed SOURCE noise and independent non-target source witnesses/coins, K_bind, samples D uniformly, and computes CK/aux with the same public algorithm without target signature/sk_N. It makes no target native signing query. A_QPT's accepted signature for the distinct target message is thus a fresh-message QPT EUF-CMA forgery. QPT coherent postprocessing is preserved by a straight-line classical distribution hybrid; B_D/B_E can implement the permitted coherent non-target lookup because they know all its records.
+
+With advantage defined as the difference of real/uniform QPT-DLWE success probabilities:
+
+`Pr_REAL_FALSE[Verify(vk_N,m*,sigma_A)=1 and m* fresh] <= Adv_QPT-DLWE(B_D;n,m,2^t,S_b) + Adv_QPT-EUF-CMA(B_E).`
+
+Any algorithm recovering the exact precommitted seed obtains the valid native sigma via D; the same bound covers that event. There is **no proof of independent seed IND or generic hard-TRUE secrecy**. The only exact-distribution hypothesis about auxiliary advice is that the reduction can reproduce it without the unknown target secret beyond D; arbitrary unbounded correlated auxiliary advice is out of scope. This is not an ideal common-release primitive or an unproved SOURCE-opening oracle.
+
+## Resources and security qualification
+
+Illustration ONLY, not a justified PQ parameter set: source `q_src=65537`, R46 TRUE fixture codimension c=15, coefficient width 3 bytes, K_bind 256 bits, native signature L=65,536 bits (8192 bytes); use `t=16,n=256,m=4096,b=4`, e uniform `[-8,7]^m`. Then pad seed k=20,480 bits (vs raw 65,536), pad source capsule 921,600 bytes (vs 2,949,120), all source capsules 933,120 bytes (vs 2,960,640). But the **public A matrix is 2,097,152 bytes**, so including the 8192-byte D, one unamortized claim is **3,038,464 bytes** vs **2,968,832 bytes** for raw R48: **2.35% WORSE**. A is not free. With one independently seeded shared A for two claims the totals become 3,979,776 vs 5,937,664 bytes (32.97% saved), and for eight claims 9,627,648 vs 23,750,656 (59.46% saved), excluding metadata and public basis costs. This is only an amortized and conditional batch improvement; compressing/fixing A would require a different independently proven QPT assumption. The specified narrow-error, large-sample LWE distribution has NOT been hardness-estimated or connected to 128-bit PQ security. The toy `q_lwe=16,n=2,m=3,S={-1,0}` is trivially insecure.
+
+## Executed checker, negative controls and exact handoff
+
+Published CHECKER.js is the actual twice-executed JS function and repeat harness, OUTPUT.json is its captured output: 403 assertions, two distinct ORIGINAL witness openings (w=3 and 7), 128 independently seeded certified-FALSE source-capsule exact couplings, corresponding full CK challenge embeddings, and integer resource-accounting tests. A more extensive LOCAL-ONLY Node checker passed 660 assertions twice and resides in the separately provided local archive. These are finite algebra and distribution tests, not tests of DLWE, quantum security, native signature strength or live Bitcoin. The checker explicitly verifies that K_seed never enters public CK except through D and that the public A size cannot be omitted from resource estimates. The research file, checker and output are research only; no production or main files touched.
+
+**Decisive unresolved hard-TRUE equation:**
+
+`Pr[A_QPT recovers final capability or accepted native signature from full hard-TRUE public view]`
+` <= Pr[Ext^A outputs ACTUAL ORIGINAL w with R_ORIGINAL(x,w)=1]`
+`  + Adv_QPT(independently instantiated break) + negl(lambda).`
+
+In hard TRUE, P_x(1) is nonzero, so seed source capsules depend on the LWE challenge secret; the R49 simulator CANNOT produce them from Y alone. This is still the missing witness-to-original reduction. R35/R46 short pseudo-evaluations, arbitrary FALSE, malicious setup/abort, source chain validity, DA/censorship and conditional no-EC-path/PQ native Bitcoin remain unresolved. **Leave automation enabled.**

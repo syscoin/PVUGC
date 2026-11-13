@@ -1,0 +1,37 @@
+{
+  "record": "direct-seed-repetition-20261027-automation4",
+  "date_utc": "2026-10-27",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "ca41240b3ac6be598d587df5b62f9c2e29f529ae",
+  "source_dependency": "research/pq-wkem/fourier_recovery_extraction_20261026/README.md",
+  "source_dependency_blob": "d68b015397f46caf30d579bff12220ad04e94d7c",
+  "published_checker_executions": 2,
+  "published_assertions": 45,
+  "published_check": {
+    "status": "PASS",
+    "assertions": 45,
+    "case_true_witnesses": 3,
+    "case_false_witnesses": 0,
+    "one_gate_bias": "2/3",
+    "scope": "exact toy full SOURCE and native-pk-correlated null law; no QPT-hardness implementation",
+    "hybrid_rates": [
+      0.4296875,
+      0.43359375,
+      0.4197048611
+    ]
+  },
+  "local_only_python_assertions": 1745,
+  "local_only_python_runs": 2,
+  "local_archive": "WKEM_DIRECT_SEED_REPETITION_20261027.tar.xz",
+  "local_archive_sha256": "4c5d5f4e7e7abd009b1b8b6679c3ca7a15f79e1d1b4902374f54e84bfcc7b94c",
+  "unsupported": [
+    "generic polynomial-size resource bound",
+    "QPT PoW work-hardness proof",
+    "malicious N-of-N ceremony",
+    "arbitrary correlated quantum setup advice",
+    "Bitcoin native PQ deployment"
+  ],
+  "scope": "research-only four additions under research/pq-wkem/; no prod or workflow"
+}

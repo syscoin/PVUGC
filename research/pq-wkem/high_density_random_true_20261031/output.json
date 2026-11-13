@@ -1,0 +1,97 @@
+{
+  "checkpoint": "HDRT average-case random TRUE and packed 3-lane joint release",
+  "checks": 3710,
+  "source_censuses": [
+    {
+      "q": 3,
+      "d": 1,
+      "n": 4,
+      "pr_false": 0.0411522633744856,
+      "conditional_true_tv": 0.0411522633744856,
+      "planted_tv": 0.13168724279835392,
+      "LHL_bound": 0.1767766952966369
+    },
+    {
+      "q": 3,
+      "d": 1,
+      "n": 5,
+      "pr_false": 0.01646090534979424,
+      "conditional_true_tv": 0.01646090534979424,
+      "planted_tv": 0.0877914951989026,
+      "LHL_bound": 0.125
+    },
+    {
+      "q": 3,
+      "d": 1,
+      "n": 6,
+      "pr_false": 0.006401463191586648,
+      "conditional_true_tv": 0.006401463191586648,
+      "planted_tv": 0.05852766346593507,
+      "LHL_bound": 0.08838834764831845
+    },
+    {
+      "q": 3,
+      "d": 1,
+      "n": 7,
+      "pr_false": 0.0024386526444139613,
+      "conditional_true_tv": 0.0024386526444139613,
+      "planted_tv": 0.03901844231062338,
+      "LHL_bound": 0.0625
+    },
+    {
+      "q": 3,
+      "d": 1,
+      "n": 8,
+      "pr_false": 0.0009144947416552355,
+      "conditional_true_tv": 0.0009144947416552355,
+      "planted_tv": 0.02601229487374892,
+      "LHL_bound": 0.04419417382415922
+    },
+    {
+      "q": 5,
+      "d": 1,
+      "n": 4,
+      "pr_false": 0.0832,
+      "conditional_true_tv": 0.0832,
+      "planted_tv": 0.18688,
+      "LHL_bound": 0.25
+    },
+    {
+      "q": 5,
+      "d": 1,
+      "n": 5,
+      "pr_false": 0.029696,
+      "conditional_true_tv": 0.029696,
+      "planted_tv": 0.123904,
+      "LHL_bound": 0.1767766952966369
+    },
+    {
+      "q": 5,
+      "d": 1,
+      "n": 6,
+      "pr_false": 0.0096768,
+      "conditional_true_tv": 0.0096768,
+      "planted_tv": 0.0817664,
+      "LHL_bound": 0.125
+    }
+  ],
+  "byte_toy": {
+    "q": 40961,
+    "n": 32,
+    "d": 1,
+    "B": 1,
+    "g": 160,
+    "lanes": 3,
+    "scopes": 2,
+    "capsules_per_scope": 2,
+    "master_bits": 512,
+    "field_modulus_proved_prime": true,
+    "original_witnesses_per_scope": 3,
+    "correctly_reconstructed_bytes": 768,
+    "packed_vectors": 768,
+    "unpacked_bit_vectors": 6144,
+    "packed_ciphertext_bytes": 50688
+  },
+  "chosen_false_public_recoveries": 256,
+  "limitations": "toy d=1/mock native; no QPT hardness or generic original NP compiler"
+}

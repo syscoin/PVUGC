@@ -1,0 +1,346 @@
+{
+  "assertions": 139,
+  "hair_sahai_conservative_bounds": [
+    {
+      "K": 102,
+      "N": 4,
+      "R": 2,
+      "assignment_count": 16,
+      "combined_certificate_bit_bound": 17722,
+      "constraint_minor_bit_bound": 754,
+      "integer_weight_bit_bound": 45,
+      "log2_HDelta_over_2^m": -495.8867461933487,
+      "m": 510,
+      "source_minor_bit_bound": 12930,
+      "stack_minor_bit_bound": 4038
+    },
+    {
+      "K": 126,
+      "N": 5,
+      "R": 2,
+      "assignment_count": 32,
+      "combined_certificate_bit_bound": 79468,
+      "constraint_minor_bit_bound": 1970,
+      "integer_weight_bit_bound": 59,
+      "log2_HDelta_over_2^m": -739.7219135843947,
+      "m": 756,
+      "source_minor_bit_bound": 65266,
+      "stack_minor_bit_bound": 12232
+    },
+    {
+      "K": 980,
+      "N": 8,
+      "R": 3,
+      "assignment_count": 256,
+      "combined_certificate_bit_bound": 13402186,
+      "constraint_minor_bit_bound": 50178,
+      "integer_weight_bit_bound": 192,
+      "log2_HDelta_over_2^m": -8796.324035001215,
+      "m": 8820,
+      "source_minor_bit_bound": 12898562,
+      "stack_minor_bit_bound": 453446
+    },
+    {
+      "K": 9030,
+      "N": 16,
+      "R": 4,
+      "assignment_count": 65536,
+      "combined_certificate_bit_bound": 2856982687023,
+      "constraint_minor_bit_bound": 43581442,
+      "integer_weight_bit_bound": 657,
+      "log2_HDelta_over_2^m": -153468.6223705676,
+      "m": 153510,
+      "source_minor_bit_bound": 2856198209538,
+      "stack_minor_bit_bound": 740896043
+    },
+    {
+      "K": 80892,
+      "N": 32,
+      "R": 5,
+      "assignment_count": 4294967296,
+      "combined_certificate_bit_bound": 761618100371736004136,
+      "constraint_minor_bit_bound": 8645769166850,
+      "integer_weight_bit_bound": 1997,
+      "log2_HDelta_over_2^m": -2669366.6323703364,
+      "m": 2669436,
+      "source_minor_bit_bound": 761617806415584264094,
+      "stack_minor_bit_bound": 285310382573192
+    },
+    {
+      "K": 710556,
+      "N": 64,
+      "R": 6,
+      "assignment_count": 18446744073709551616,
+      "combined_certificate_bit_bound": 313943295889891592872742829604963,
+      "constraint_minor_bit_bound": 104574592153859448111106,
+      "integer_weight_bit_bound": 5637,
+      "log2_HDelta_over_2^m": -46186032.04779696,
+      "m": 46186140,
+      "source_minor_bit_bound": 313943288987968510718019253901009,
+      "stack_minor_bit_bound": 6797348490000864127592848
+    }
+  ],
+  "python": "3.13.5",
+  "run": 250,
+  "scope": {
+    "not_proved": "every eligible prime is good; small-height rational common-kernel lifts for arbitrary circuits; concrete-group QPT attack/security; ORIGINAL-witness extraction; practical WKEM",
+    "proved": "integer-presentation specialization lemma; explicit toy orientation preservation; conservative asymptotic bad-prime counting bound for the direct assignment presentation"
+  },
+  "status": "PASS",
+  "theorem_checked": {
+    "boundary": "This does not prove a polynomial-height rational kernel basis, so it does not by itself make the Run248 quotient/LLL attack universal.",
+    "height": "For the direct Boolean-assignment presentation, log2|Delta| <= 2^N*poly(N), while Hair-Sahai m = Omega(N^3 log N), so the bad-prime probability is negligible despite the presentation being exponential-size.",
+    "random_prime": "The number of bad primes in [2^m,2^(m+1)) is at most log2(|Delta|)/m; combined with the paper interval prime density this contributes O(log2|Delta|/2^m).",
+    "specialization": "For a fixed integer presentation, ranks/source dimension/common-right-kernel dimension can change only at primes dividing a product of explicit nonzero minors."
+  },
+  "toy_specialization": {
+    "C": [
+      [
+        2,
+        2,
+        2,
+        2
+      ]
+    ],
+    "E_shape": [
+      6,
+      4
+    ],
+    "combined_certificate_abs": 32,
+    "constraint_pivot_det": 2,
+    "prime_census": [
+      {
+        "divides_certificate": true,
+        "p": 2,
+        "ranks": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 3,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 5,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 7,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 11,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 13,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 17,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 19,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 23,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 29,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 31,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 37,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 41,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 43,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 47,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 53,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 59,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 61,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 67,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 71,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 73,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 79,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 83,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 89,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "divides_certificate": false,
+        "p": 97,
+        "ranks": [
+          1,
+          2,
+          2
+        ]
+      }
+    ],
+    "rational_common_right_kernel_generator": [
+      1,
+      1,
+      1
+    ],
+    "source_minor_det": 4,
+    "stack_minor_det": 4
+  }
+}

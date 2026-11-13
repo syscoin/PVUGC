@@ -1,0 +1,19 @@
+{
+  "record": "selector-space-fourier-20261027-turn7",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_head": "2d49f5e6f38379331cb203c49ee83421c5917b2a",
+  "original_proof_blob": "958cfc5bec97c993ab3feceae66a6307eb08ee22",
+  "checks": 389,
+  "execution": "JS checker evaluated synchronously in current bounded run; independent Python exact checker executed locally twice (777 assertions)",
+  "research_scope": "research/pq-wkem/ only",
+  "external_literature": false,
+  "not_proved": [
+    "practical generic NP WKEM",
+    "Bitcoin QPT work bound",
+    "structured LWE SOURCE embedding",
+    "malicious setup",
+    "native PQ Bitcoin endpoint"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "assertions": 9216,
+  "checkpoint": "robust-distance-rank-selection-20261023",
+  "exact_256bit_certificate": {
+    "L": 27725,
+    "N": 111065,
+    "T": 83,
+    "correct_rank_less_than_2minus130": true,
+    "distance_less_than_2minus212": true,
+    "field_bits": 256,
+    "h": 165,
+    "k": 27000,
+    "m": 16000,
+    "n": 11000,
+    "new_bytes": 10657815170400000,
+    "old_bytes": 11886405060096000,
+    "r": 11726,
+    "saved_bytes": 1228589889696000,
+    "wrong_scalar_less_than_2minus130": true
+  },
+  "experiments": [
+    {
+      "accepted_invalid_or_wrong_pairs": 0,
+      "accepted_valid_pairs": 2,
+      "field_key_source_pair_checks": 4096,
+      "seed": 47
+    },
+    {
+      "accepted_invalid_or_wrong_pairs": 0,
+      "accepted_valid_pairs": 2,
+      "field_key_source_pair_checks": 4096,
+      "seed": 79
+    }
+  ],
+  "key_only_secrecy_proved": false,
+  "status": "SUPPLIED_PAIR_SOURCE_EXTRACTION_ONLY",
+  "synthetic_Gf16_distance_histogram": {
+    "0": 2,
+    "2": 42,
+    "3": 212
+  }
+}

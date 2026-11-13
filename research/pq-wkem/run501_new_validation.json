@@ -1,0 +1,12 @@
+{
+  "run": 501,
+  "claim": "sparse fresh-label exceptions preserve quantum Simon recovery",
+  "assertions": 4155,
+  "fixtures": 75,
+  "fourier_cells": 3720,
+  "exact_mass_formula": true,
+  "exact_total_variation": true,
+  "conditioned_good_samples_uniform": true,
+  "theorem_scope": "conditional approximate-period public evaluator, NOT full WKEM or RIO security",
+  "implementation_scope": "finite classical computation of quantum Fourier measurement probabilities; no quantum circuit or PQ primitives"
+}

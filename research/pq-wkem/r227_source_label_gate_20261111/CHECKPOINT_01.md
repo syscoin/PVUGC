@@ -1,0 +1,15 @@
+# R227 checkpoint 01 — SHA source-input label gate (construction hypothesis, not a result)
+
+Repo syscoin/PVUGC PR #1, open draft branch research/pq-wkem-validation-20260918. Observed start head 73d25c39a9310551f72d316b05c4ac985f4127f7; exact latest R226 OR-SEAL/RESEARCH.md was read at blob 685f4371f781cf45d8c31f57d44d1b831d85a8c3. No outside web, no production write.
+
+**Objective:** Try to instantiate a *single actual-source-dependent* Build/Open leaf before optimizing R226's three-way OR wrapper. Keep source predicates R_BTCwork, R_burn_fault, R_AuxPoW-fork including full original parent/coinbase/prefix authentication. Every valid ORIGINAL certificate must release the same frozen claim-scoped native cancel signature. No invented signing authority or independent hash puzzle.
+
+Named hypothesis SG-SHA: garble the complete Boolean SHA256d / AuxPoW / source relation circuit with fresh 256-bit hash-derived wire labels, make the 1-output wire decrypt a frozen native cancellation signature, and allow any challenger to supply actual source witness bits. The builder cannot know a future alternate chain. Thus the central problem is to provide input-wire labels from the authenticated source *without disclosing both choices of any variable or making a new online issuer*.
+
+Candidate baseline to be tested: publish both hash-verified labels for each unknown source witness bit, with hash-padded ordinary two-input Boolean gate rows. This permits arbitrary witnesses and avoids a private issuer, but may permit inconsistent combinations of bit labels from different occurrences. One direct regression is an unsatisfiable circuit R(u)=u AND (NOT u), with both occurrences tied to the SAME source bit, yet evaluation using u=1 for the first occurrence and u=0 for the second potentially produces output 1. The test must verify recovery of the *correct frozen output label* via actual garbled-gate equations, not just Boolean shortcut evaluation.
+
+Planned repair tests: (a) share wire identity across occurrences rather than duplicate independent input wires; (b) add explicit SHA/hash equality checks to gate outputs; (c) source-derive one choice-label via a path-dependent SHA or PoW preimage, with exact testing of whether a malicious observer can manufacture the opposite choice without authenticated source qualification. Evaluate whether any proposed repair merely hides an unimplemented source-to-label operation.
+
+Source authentication cannot be a post-hoc check on garbling; otherwise adversary bypasses it. The full public checking view, QPT access and malicious source coins must eventually be simulated. Synthetic Boolean fixtures cannot justify standard-model SHA or QROM security.
+
+This is a **hypothesis checkpoint**, not a lemma, security claim or reportable advance. Capture executed code and concrete failed/successful outcomes in a later research file.

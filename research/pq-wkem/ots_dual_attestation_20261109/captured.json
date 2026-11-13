@@ -1,0 +1,11 @@
+{
+  "assertions": 832,
+  "claim": "restricted opposing-authentication-secret carrier ONLY; source validity and malformed signer bypass not bound",
+  "fake_source_releases": 64,
+  "fixtures": 64,
+  "honest_releases": 64,
+  "reproducible_seed": 981127,
+  "security": "not generic NP; malicious signer knows both preimages; no source anchoring; no QPT proof",
+  "single_disclosure_key_to_second_preimage_extractions": 64,
+  "wrong_preimage_rejections": 192
+}

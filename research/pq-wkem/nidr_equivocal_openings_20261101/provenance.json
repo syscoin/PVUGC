@@ -1,0 +1,28 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_cmd": "python3 checker.py",
+  "checker_executions": 2,
+  "file_sha256": {
+    "RESEARCH.md": "bbb7d509ec81e5c5d3c403fa6203931a59f5cc0a585d9c248e5ca828ebef1de1",
+    "checker.py": "6964cf1c32f37ead574041285bafa2bb017e2efecf551b1169ab3b1e68c91ed9",
+    "output.json": "a0fbd56429724f52abca2d4357edc76eed8b5cac94d1227a7a6c43f6a2fbc179"
+  },
+  "independent_agents": false,
+  "latest_substantive_comment_id_read": 6559192399,
+  "offline_only": true,
+  "output_byte_identical": true,
+  "pr": 1,
+  "predecessor_blob_sha": "bce3eb5a0c71e10c3e197adcafb8227435b4fac6",
+  "predecessor_file": "research/pq-wkem/noisy_ideal_dual_20261101/RESEARCH.md",
+  "repo": "syscoin/PVUGC",
+  "repo_initial_state": {
+    "draft": true,
+    "merged": false,
+    "state": "open"
+  },
+  "run_id": "NIDR-ECO-2026-11-01-T08",
+  "start_head": "e2910dcf4a9f8d4977946737b2af6e27876e6fe0",
+  "status": "restricted adaptive coin-opening proof; generic NP and hard-TRUE unresolved",
+  "utc_date": "2026-11-01",
+  "web_research": false
+}

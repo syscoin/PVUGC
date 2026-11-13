@@ -1,0 +1,27 @@
+# R145 — Parity-marginal SOURCE trial: supplied nonlinear consistency versus public fractional phase
+
+**Classification: bounded failed ORIGINAL-dependent source candidate; not a secure generic NP WKEM.** Offline; no size/performance optimization. PR continuity verified at head 2ad27faf2569f3886319db24b3f4d6c3bc99f432 before execution, and R144's exact research note (blob 922fad4feb0a72d151d01f0c6c7ae384a4fe3623) was read. This explores whether pairwise factor consistency fixes R144's problem, rather than repeating its complement-pair source verbatim.
+
+## Exact ORIGINAL statement, source law and honest opening
+
+Let x be the 8-clause 3CNF on original Boolean variables (a,b,c) that jointly demands XOR(a,b,c)=0 and XOR(a,b,c)=1. For each demanded parity, add four 3-clauses forbidding each triple of opposite parity. Exhaustive enumeration shows x is FALSE. A valid ORIGINAL witness for compatible (not contradictory) factors would select one of four locally accepted triples in each parity factor, with equal global variable values.
+
+Introduce two length-four local one-hot distributions z0,z1 and combine them into 8-vector z. Construct the explicit integer 8x8 matrix H with one normalization row per factor and six consistency rows requiring equality of the three singleton and three pair-product moments. Set b=(1,1,0,0,0,0,0,0)^T. If an ORIGINAL Boolean witness existed, its two matching one-hot positions would yield Hz=b; any two valid witnesses give the same release bit K.
+
+Sample q=4093, Delta=101, s uniformly in Zq^8, each e_j independently uniform on {-1,0,1}, eta uniform on {-1,0,1} and capability bit K uniformly on {0,1}. Publish c=H^T s+e mod q and p=b^T s+Delta*K+eta mod q, with H,b and relation/claim/path identifiers. Honest Open(w) forms its pair of matching local indicators z and computes T=p-z^T c=Delta*K+eta-z^T e mod q. Its error is at most 3, so nearest-phase decoding gives the identical precommitted K on all genuine witness paths and all allowed setup tapes. This is a bit SOURCE model, not yet a native signature capsule. H is statement-structured and NO standard decisional QPT-LWE assumption is established for this distribution.
+
+## Universal false-source fractional opening for this instance
+
+Each parity factor's uniform distribution over four permitted triples agrees with the other factor on ALL moments of strict subsets of the three variables: each k-variable AND-product has expectation 2^{-k} for k<3. Thus the public fractional zbar=(1/4,...,1/4) satisfies H zbar=b despite x being FALSE. Public integer Z=4*zbar=(1,...,1) satisfies HZ=4b exactly.
+
+An adversary reads only actual public (H,c,p) and computes P=4p-Z^T c=4Delta*K+4eta-Z^T e mod q. Error magnitude is at most 12 on every allowed tape. The two candidate centers 0 and 4Delta=404 are separated by circular distance 404>24. Nearest-center decoding yields K certainly, without an ORIGINAL witness, oracle, supplied representation from the adversary, LWE secret, private coin, or quantum computation. Additional CK/J/Aux, other capsules, auxiliary inputs and selective-opening information cannot remove this already-public leak; a full-public proof is impossible for this candidate. This is NOT a break of independently established LWE or a general WE impossibility claim.
+
+## Nonlinear-consistency repair test and exact limitation
+
+For n Boolean variables, uniform even-parity versus odd-parity assignments have identical moments on every proper subset, including degrees 0..n-1. Their degree-n full product moments differ. For this n=3 trial, adding the triple-moment equation excludes the counterfeit. Requiring agreement of ALL 2^n moments forces equality of the entire signed distributions by Boolean Mobius inversion; disjoint parity supports and two normalization requirements make it impossible even over rational signed marginals. This is a supplied-representation linear-algebra fact, not arbitrary key-recovery extraction. The obvious complete representation is exponential and supplies no polynomial-size generic NP release, nonlinear cryptographic enforcement, SOURCE simulator, or QPT reduction. This attempted repair therefore does NOT qualify as positive construction progress.
+
+## Executed evidence and next gate
+
+An executable pure-JavaScript checker was run in the connected V8 environment before Git-object creation. It checks moment equalities exactly for n=3..10, degree-n separation, explicit false CNF, rational-scaled matrix equations, and 4096 direct public-only phase recoveries. The adjacent captured.json is its exact result. An independent offline Python stdlib rational checker ran 10,252 assertions and reproduced its output byte-identically (local-only). Assertions are functional, not quantum-security experiments.
+
+The next construction must employ a genuinely nonlinear ORIGINAL-dependent public release not admitting these public affine pseudocertificates, jointly instantiate its source-dependent encryption, source-opening correlations, CK/J/Aux/context and related-capsule simulator under independently justified QPT assumptions, and prove *arbitrary* unauthorized final-key recovery/native forgery implies an actual ORIGINAL witness or an independent PQ break. This iteration does not solve that obligation, N-of-N ceremony/abort, or the conditional Bitcoin-native endpoint. No routine PR comment or user-facing alert is appropriate under the reporting threshold.

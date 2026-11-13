@@ -1,0 +1,19 @@
+{
+  "run": 568,
+  "date": "2026-10-16",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "9c3899e4858af9f01afc8a23bf29d73aa2ba5a03",
+  "latest_substantive_comment_id": 6067040320,
+  "exact_dependencies": [
+    "RUN567_SIS_FOLDED_LANGUAGE_EXISTENCE_GAP.md@6b48c45ae7e719a0cafc716af0ad7d33cf08f390",
+    "RUN566_AFFINE_HYPERPLANE_BARRIER.md@7e21c5fbb9d7a872b91a9415da52d15e60f2efa7",
+    "GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md@c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "CLZ_APPLICABILITY_20261008.md@c19d9d9cd515140e3ce62eac960cd548c0add622"
+  ],
+  "checker_command": "node run568_xor_seam_simon_check.js",
+  "published_checker": "Same exact executed Node.js checker as local",
+  "outcome": "Negative oracle-model attack on a symmetric local seam. No practical WKEM or concrete QPT security claim.",
+  "publication": "research_only"
+}

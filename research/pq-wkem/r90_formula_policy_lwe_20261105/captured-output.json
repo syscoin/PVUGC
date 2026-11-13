@@ -1,0 +1,18 @@
+{
+  "run": "R90-FORMULA-LWE-LSSS-20261105",
+  "status": "RESTRICTED_CONSTRUCTIVE_COMPOSITION_NOT_GENERIC_NP_WKEM",
+  "assertions": 15965,
+  "count": {
+    "formulas": 275,
+    "coalitions": 7882,
+    "unauthorized_privacy": 3941,
+    "authorized_reconstruction": 3941,
+    "sharing_cases": 256,
+    "authorized_openings": 2048,
+    "unauthorized_paths": 2048,
+    "claim_tamper_rejected": 256,
+    "checking_view_rebuilds": 256
+  },
+  "verifier": "complete GF2 symbolic coalition census plus toy public checking path; not quantum experiment",
+  "extra_local_python": "separate executed exact toy LWE/Ed25519 fixture: 8989 assertions; NOT this checker"
+}

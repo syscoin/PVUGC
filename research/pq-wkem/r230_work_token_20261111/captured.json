@@ -1,0 +1,32 @@
+{
+  "aggregate_nonce_attempts_before_wins": 14228,
+  "assertions": 434,
+  "checks": {
+    "child_pad_diff_fork": 24,
+    "child_pad_same_work_variant": 24,
+    "distinct_children": 24,
+    "fixed_digest_byte": 72,
+    "immediate_public_signature_recovery": 72,
+    "parent_target": 72,
+    "prefix_pad_known": 72,
+    "public_common_anchor_opens_early": 1,
+    "public_salt_unconditionally_derived_pad": 1,
+    "same_child_multiple_work_certificates": 24,
+    "work_without_source_admission": 24,
+    "workid_pad_not_semantic": 24
+  },
+  "conclusion": "SOURCE-NATIVE HASH PAD DOES NOT PROVIDE ALL-WITNESS COMMON HIDDEN RELEASE",
+  "first_fork_child_ids": [
+    "9df7759fbf40effdade58dc6b425bfdf7b6ae2d9f905cbaaefd4800ad4487a8a",
+    "bb2cc7e687c03f6803034945c6acdad8865f0ee81f4e29578a0d4bc6d6af58e9"
+  ],
+  "first_work_digests": [
+    "e776fd260cd187fac56475d43a676a424b08b9280b7a2b99b293fafcee843b00",
+    "9292229746091367714f1a67664df236ab2543518217638c60064b436bf43d00",
+    "59663c42cf674b6a744c0774891081bce0534ff44601e290d5e1cd2e54db6800"
+  ],
+  "fixtures": 24,
+  "run": "R230_work_token_20261111",
+  "scope": "synthetic parent coinbase/Merkle only, no Bitcoin/Syscoin validity, no source admission, no native sig or QPT",
+  "sha256d_parent_headers": 72
+}

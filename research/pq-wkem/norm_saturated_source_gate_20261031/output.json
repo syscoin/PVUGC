@@ -1,0 +1,24 @@
+{
+  "assertions": 7201,
+  "disposition": "REJECTED; full 512-bit key recovered for FALSE 3CNF",
+  "false_instance": {
+    "n": 3,
+    "clauses": 32,
+    "original_satisfying_assignments": 0,
+    "rows": 99,
+    "cols": 134,
+    "pairs": 67
+  },
+  "q": 65537,
+  "B": 1,
+  "g": 137,
+  "public_fake": {
+    "norm_squared": 83,
+    "norm_l1": 75
+  },
+  "recovered_bits": 512,
+  "max_absolute_fake_noise": 28,
+  "union_bound_512": 7.59327670534584e-10,
+  "true_witnesses": 6,
+  "true_release_evaluations": 3072
+}

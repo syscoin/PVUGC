@@ -1,0 +1,8 @@
+{
+  "different_witnesses": true,
+  "index": 0,
+  "model": "SHA256 truncated to 16 bits at each Merkle node; NOT a SHA256 attack",
+  "queries_until_same_root": 381,
+  "root_hex": "587d",
+  "same_root_different_bit_verified": true
+}

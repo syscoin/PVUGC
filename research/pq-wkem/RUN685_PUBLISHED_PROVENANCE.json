@@ -1,0 +1,22 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_assertions": 214785,
+  "exact_source_blobs": {
+    "run114": "f5ff350ee6a3105b7f9c2b9bbf88b551cdf390e9",
+    "run115": "cf2ec9575948e16b58acbd870208686759f14e44",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run684": "b4b2e82a5cc9765ff10dfb294d2ac436763f6a02"
+  },
+  "note": "new polynomial correlation theorem, not a PQ WKEM",
+  "pr": 1,
+  "published_artifact_sha256": {
+    "RUN685_PUBLISHED_SCOPE.md": "ccb2810b90bd5d2af6338b624c6752e97a2da0b8ae83f0708c66174cd7e663d2",
+    "run685_polynomial_hps_selective_opening_check.py": "7688299b70202f762996e0cb4324d980ebdf0799f8ac21d2aea7a99dea84e242",
+    "run685_polynomial_hps_selective_opening_validation.json": "6d6b5e40561cccc6c17dddba6a04926f588d06ce25e4c844043aada70aaa6bfd"
+  },
+  "python_compile": "PASS",
+  "repeat_identical": true,
+  "repository": "syscoin/PVUGC",
+  "run": 685,
+  "starting_sha": "7bc816093968b78ca108952b959a6d287ecd564e"
+}

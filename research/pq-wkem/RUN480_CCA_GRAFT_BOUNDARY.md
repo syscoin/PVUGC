@@ -1,0 +1,29 @@
+# Run 480 — public late-witness graft contradicts ordinary IND-CCA2
+
+Date 2026-10-13 UTC. Verified starting head 1346e4ccf577d5d4a6ad3f772af3795bbbc8a1e2, branch `research/pq-wkem-validation-20260918`, PR #1 open/draft/unmerged. Exact-version dependencies: Run 479 blob c8572206ebc17ebb68dd6112353283f545a132dc, Run 478 blob 9441db3ad7d7732e5e8fe1c05041b0763119ed3f, CLZ assessment blob c19d9d9cd515140e3ce62eac960cd548c0add622. Last substantive ordinary comment 6067040320. The result is a known CCA nonmalleability consequence applied to this **specific late-witness interface**, not a new fundamental impossibility theorem.
+
+## Exact theorem and reduction
+
+Let a classical PPT PKE (Gen,Enc,Dec) with deterministic Dec have ordinary IND-CCA2 security and correctness error delta. A setup encrypts plaintext (s,0,ctx), where s is a protected native capability and the second field is a later witness-input port. Assume public classical PPT Graft(pk,c,w) on an encryption of (s,0,ctx) yields an encryption of (s,w,ctx) for some w != 0, with probability >=1-epsilon for each of two chosen secrets s0 != s1. Literal ciphertext plaintext-changing grafting, not extra public side information to a distinct release operation, is assumed.
+
+**Theorem:** One-query classical PPT chosen-ciphertext adversary wins ordinary IND-CCA2 with probability >=1-epsilon-delta. It selects challenge messages (s0,0,ctx) and (s1,0,ctx), receives c*, computes c'=Graft(pk,c*,w), and decrypts c' with the allowed IND-CCA2 oracle. On the combined correctness event c' cannot equal c*: the same ciphertext could not deterministically decrypt to both (s_b,0,ctx) and (s_b,w,ctx). Thus the oracle returns (s_b,w,ctx), identifying the challenge bit. A union bound gives the stated success lower bound. Outside the event the adversary may fail: no incorrect p/2 amplification is claimed. When errors are negligible, this contradicts ordinary IND-CCA2. This classical attack is also an allowed QPT attack, without coherent-oracle access, rewinding, or advice.
+
+This is a **proof-model incompatibility**, not a demonstrated witnessless Bitcoin signature or a break of real IND-CCA2 PKE. Bitcoin does not provide a PKE CCA decryption oracle.
+
+## Executed public graft and checking key caveat
+
+The exact executed Node.js checker models textbook Paillier, which is NOT IND-CCA2 or PQ. With n=pq, g=n+1, Enc(m;r)=g^m*r^n mod n^2, encode m=ctx*32^2+s*32+0, and publicly graft via c'=c*g^w mod n^2 for 1<=w<32. Decryption yields the unchanged secret/context and new input port. Across three tiny parameter sets and four bound contexts, 576 challenge queries were rejected when equal to c*, while all 576 distinct grafted queries decrypted and recovered the challenge bit. This checker is an algebraic diagnostic, not a practical cryptographic attack.
+
+The theorem needs no signing verification key. The **actual** WKEM game must additionally include the published native verification key correlated with s, functional keys, all public setup data, malicious setup/retained seeds, multiple capsules and related statements, and QPT quantum advice/query access. Ordinary IND-CCA2 cannot substitute for that much stronger security statement.
+
+## Correct CLZ and related literature applicability
+
+Canetti–Luo–Zhang CRYPTO 2026 (DOI 10.1007/978-3-032-35367-2_18) distinguishes its CCA2 base encryption from controlled-homomorphic and functional encryption with **permitted linked transformations**; the latter requires a different HCCA-like security game. Source: Ji Luo author-linked presentation https://simons.berkeley.edu/talks/ji-luo-mit-csail-2026-07-13 . We have not audited its full proof, quantum assumptions, or exact lineage/extraction interface. No CLZ security claim is refuted here. Run 479 shows that a fixed unary iteration API with no late plaintext input is inadequate; adding a public input port is not justified by the ordinary CCA2 theorem.
+
+Agrawal–Rossi–Yadav–Yamada, ePrint 2023/941 (revised 2024-05-15; Lemma 3.4 correction), explicitly describes multi-input ABE **encryptors using the master secret key**. This does not directly supply the permissionless public late-witness issuer needed here: https://eprint.iacr.org/2023/941 . Cini–Lai–Woo (2025) describes multi-client ABE with limited corrupt-client coverage and very-selective security, not the present full-QPT game: https://research.aalto.fi/en/publications/lattice-based-multi-authorityclient-attribute-based-encryption-fo/ . Abstract-level relevance is not a complete proof audit.
+
+## Attack taxonomy, scope, and handoff
+
+(1) Input-ciphertext seam: yes. (2) Gauge reconstruction: not needed. (3) Statistical fingerprint: not needed. (4) Multi-capsule: single capsule already sufficient **in CCA game**, but composition unproved. (5) Adaptive decryption query decisive **only in CCA security game**, not actual public release. (6) Honest classical setup is enough. (7) Same ctx, no cross-UTXO/branch replay. (8) Native checking key deliberately outside theorem; mandatory for real attack game. (9) Classical PPT attack lifts as an allowed QPT adversary; no genuinely coherent quantum attack established. No new hardness assumption, no concrete 128-bit parameters.
+
+A plausible minimal next *interface* is typed public input grafting linked cryptographically to the immutable setup capability, with a fixed exact ORIGINAL-source verifier and a protected release rule. Such an input port has **not** been built here. Its linked-HCCA/functional-key QPT security and the native-signature -> accepted COMPLETE representation -> ORIGINAL witness chain remain unproved; Run 259 supplies only the downstream supplied-representation arrow, subject to its exact SIS/residual conditions. Avoid restating WE/WPRF as a 'source-authenticated local mixer'. No online issuers, on-chain NP/VM, direct on-chain proofs, or production changes are proposed. PR stays draft/unmerged, practical PQ witness-KEM stopping condition unmet.

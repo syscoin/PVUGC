@@ -1,0 +1,32 @@
+{
+  "run": 436,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "5438e05013be585358b03c06c7811c24a080c498",
+  "source_run435_blob": "50faa1e8d34ce8022b496d70a954a9d2a673d450",
+  "latest_substantive_comment_id": 6067040320,
+  "checker_runtime": "JavaScript V8, same source as published",
+  "assertions": 8515,
+  "validation": {
+    "run": 436,
+    "model": "finite balanced binary source / independently noisy hidden output permutations",
+    "assertions": 8515,
+    "domain": 4096,
+    "views": 160,
+    "relativeFramesRecovered": 160,
+    "sourceRecoveredUpToOneGlobalSwap": true,
+    "seedBitsRecoverableGivenPublicOrientationCheck": 256,
+    "formulaGap": 0.125,
+    "analyticJointFailureUpperBound": 0.000008442489264712977,
+    "actualQuantumComputation": false,
+    "postQuantumRelease": false
+  },
+  "python_extended_local_only": {
+    "assertions": 5672,
+    "with_ed25519_diagnostic": true
+  },
+  "actual_work": "new finite-alphabet output permutation alignment theorem",
+  "output_scope": "negative mathematical interface; not practical PQ WKEM",
+  "production_changed": false
+}

@@ -1,0 +1,45 @@
+{
+  "record": "and-shares-fourier-20261027",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "startHead": "dfc10d62b73bead83bda4be632382a7e43779df2",
+  "exactDependencies": {
+    "research/pq-wkem/or_policy_joint_fourier_20261027/PROOF.md": "0b65a2613fed5083c1b43455e3c7857c28a948c8",
+    "research/pq-wkem/polar_coded_fourier_20261027/PROOF.md": "039e2706200aaf8cb6cf0a2bd9e0d730684abda5"
+  },
+  "published": {
+    "README.md": "31eea19871e28918569b3e64981347c5450b083f",
+    "check_and_shares.js": "303b3751f2858cbcfe0cba09c73fbdf97abc9121",
+    "validation.json": "182610d8caecbd636b53937897da0aa42a745bc0"
+  },
+  "localExtendedProof": {
+    "filename": "PROOF.md",
+    "sha256": "fc0f7ff15f0484d6401a27e92713fbaf6f8dbbd710b1824d4e3637d2176ea801",
+    "tarFile": "AND_SHARES_FOURIER_20261027_RESEARCH.tar.gz",
+    "tarSha256": "4bfe464133d70502b3552a1741cb4d8a5d94b4d075f949128bdbb8ff8f5898ea"
+  },
+  "checker": {
+    "nodeAssertionsPerExecution": 16530,
+    "identicalExecutions": 2,
+    "exactIntegerChecks": true,
+    "noQuantumHardnessTest": true,
+    "noNativeSignatureTest": true,
+    "noSyscoinCircuitCompiled": true
+  },
+  "publicationScope": "research/pq-wkem/and_shares_fourier_20261027/ only + ordinary PR comment",
+  "assumptions": [
+    "Exact full-quotient Fourier support law for each genuine ORIGINAL source",
+    "Classical honest setup with target-mask/key-share erasure and public-key-dependent source only",
+    "Reversible/coherent adversary circuit and inverse with declared independent quantum advice",
+    "Native challenger simulates allowed signing, presignature and relevant auxiliaries",
+    "No unmodeled target-mask or secret-correlated selective openings"
+  ],
+  "unresolved": [
+    "Polynomial-rate generic NP SOURCE release",
+    "A full SOURCE-dependent ordinary-QPT-LWE simulator, not merely a pad hybrid",
+    "Nonvacuous Bitcoin/Syscoin claim-bound QPT PoW bound",
+    "Malicious N-of-N ceremony, abort/data availability, transaction graph and native PQ endpoint"
+  ],
+  "offline": true
+}

@@ -1,0 +1,22 @@
+{
+  "run": 408,
+  "model": "exact exponent-group algebra; target-group scalar normalization, not key recovery",
+  "seed": "0x408a5a",
+  "trials": 1800,
+  "assertions_passed": 36000,
+  "moduli": [
+    17,
+    257,
+    65537
+  ],
+  "widths": [
+    1,
+    2,
+    3,
+    5,
+    8
+  ],
+  "original_witness_extracted": false,
+  "cryptographic_security_established": false,
+  "actual_lattice_or_pairing_implemented": false
+}

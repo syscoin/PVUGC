@@ -1,0 +1,18 @@
+{
+  "record": "fourier_filtered_gate_noise_20261026",
+  "date": "2026-10-26",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "9f4579adc4c564b4afab772f0821b2462e8a2bf9",
+  "readme_predecessor_blob": "be48a801acc9851d6ca712a568a9aa959baec0c3",
+  "js_checker": "check_exact.js",
+  "js_checker_passed_twice": true,
+  "js_assertions": 162,
+  "independent_python_checker_assertions": 7414,
+  "independent_python_byte_identical": true,
+  "local_complete_archive_sha256": "63d5aac1f5f346f502dfec5afddb7918a081444b1275ef23bcfff9b18fb598af",
+  "claim": "generic FALSE SOURCE entire Q independent of X exactly, independently sampled gate noise",
+  "gaps": "exponential honest channel; no QPT true key=>ORIGINAL extraction, no practical generic WKEM",
+  "external_web_research": false
+}

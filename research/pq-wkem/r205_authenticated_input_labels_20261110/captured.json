@@ -1,0 +1,19 @@
+{
+  "counts": {
+    "fake_true_assignment_opens": 128,
+    "false_source_requires_second_hidden_label": 128,
+    "future_witness_fingerprint_mismatch": 128,
+    "garbled_truth_table": 512,
+    "public_root_label_malleability": 128,
+    "same_claim_two_valid_evidence_digests_differ": 128
+  },
+  "functional_assertions": 1152,
+  "qualifications": [
+    "Toy SHA256 gate with explicitly sampled private wire labels",
+    "No actual SHA256 circuit garbling, Bitcoin work, source validation or QPT testing",
+    "Label leakage attack is deterministic once both labels public",
+    "Hash inequality regressions are fixtures, not PQ security claims"
+  ],
+  "run": "R205-TWO-LABEL-SOURCE-GATE",
+  "source_sha256": "42bc7de7b73fcd0985c9384dad1bbb78d05ab6489d22a90bbfc62ca888fb6b05"
+}

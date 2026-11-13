@@ -1,0 +1,21 @@
+{
+  "artifacts_sha256": {
+    "RUN632_ENTROPY_ORBIT.md": "9981dbd46825caef44e698d1ca50365f3d404c33c373fc10123518909b4a10e0",
+    "run632_publish_check.py": "b2f612cc1c9e16165b04ca3083c12885b7409f76219d1557c00c8cc0c5659b69",
+    "run632_publish_validation.json": "cdf5de2d7f937c3fd563753a12c53b982a77a8388de1c5d92e563e449270c73f"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_executed": true,
+  "exact_input_blobs": {
+    "RUN630_COHERENT_SHIFT_RELEASE_FALSIFIER.md": "0520a62dfa031d0bf6bb1b71e7aea7a77be8ec0c",
+    "RUN631_FRONTIER_SEARCH_DENSITY_BARRIER.md": "8393e7f183fd46c2ab0573b75ca7f23787d19b36"
+  },
+  "pr": 1,
+  "py_compile_passed": true,
+  "python": "3.13.5",
+  "repo": "syscoin/PVUGC",
+  "run": 632,
+  "scope": "finite rational algebra, no cryptographic QPT claim",
+  "start_sha": "452392c6626e9a8852a64272ac4d17d85695d0c4",
+  "stdout_repeated_identically": true
+}

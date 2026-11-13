@@ -1,0 +1,19 @@
+{
+  "run": 553,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "7869c277685d50438830322abf83ecfe23871b56",
+  "run552_unreferenced_sha": "74ef7bb655e18824926bbb6002d89f1de18aebe2",
+  "run259_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "execution": "new Function(checker + '\\nreturn runCheck();')() in connected V8",
+  "checker_assertions": 2441486,
+  "checker_status": "PASSED",
+  "claim_scope": "fixed vs adaptive statement-CRS statistical soundness quantifier only; not a practical WKEM",
+  "files": [
+    "RUN553_ADAPTIVE_CRS_SOUNDNESS_COMPACT.md",
+    "run553_adaptive_crs_compact_check.js",
+    "run553_adaptive_crs_compact_validation.json",
+    "RUN553_ADAPTIVE_CRS_SOUNDNESS_COMPACT_PROVENANCE.json"
+  ]
+}

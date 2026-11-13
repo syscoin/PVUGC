@@ -1,0 +1,9 @@
+# R223 — target-bucket SHA/PoW release: intermediate checkpoint
+
+Scope: attempt a real hash-only secret release from future qualifying Bitcoin/Syscoin evidence. Observed PR #1 open/draft branch research/pq-wkem-validation-20260918 head 0bac0dffe97ba7fddfc0d5b4dd0957ef26ee4667. Read R222 source-edge-potential RESEARCH.md exact blob 159c1aa46799acd0000bd71d79ff7b08b82841dd. No web, outside literature or production changes.
+
+Candidate: use a future SHA256d parent work digest z satisfying Bitcoin target z<=T as a source-dependent release selector for a single precommitted challenge key. Try public bucket/secret-sharing tables indexed by digest bits, ensuring every accepted z gives the same K, while checking whether a fabricated qualifying number z without an authenticated header or original history can unlock the key. Attempt a repair via real header-preimage locks rather than digest-only selectors. The release must work for every qualifying original R1/R2/R3 witness (not just PoW), source inclusion and actual claim/UTXO are part of the original relation.
+
+Hypothesis to test: a public f_C(z)=K on every digest z in [0,T] is algebraically evaluable on a chosen low digest without mining; the source preimage does not authorize release. For preimage-locked repair, the builder precedes mining and does not know future SHA preimages, so it must show a polynomial source-to-label compiler rather than a table of known solutions, online issuer or retained source secrets.
+
+This intermediate note is not a result. No executed tests or QPT theorem yet; the proposed mechanism may fail. Next: bounded exhaustive checker, explicit equations, attempted repair and source-qualification regression.

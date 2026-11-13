@@ -1,0 +1,259 @@
+{
+  "L": 8,
+  "assertions": 5380,
+  "bound_failure_denominator": 2905308,
+  "bound_failure_numerator": 6425,
+  "checkpoint": "sampled-frobenius-qap-20261023",
+  "deterministic_base_nodes": [
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "exact_census_samples_per_source": 10,
+  "example_expected_failure_log2_lt": "0.0022114694896375876",
+  "field_q": 256,
+  "files_sha256": {
+    "check_sampled.py": "dce9e1f9c01265226761323219f0158dad71d3050bd8205007768867eeb83e5f",
+    "sampled_qap.py": "271de9c29f497f9daa0c25b11e304d10bf7ab324b22d575cfa8177b558b871e8"
+  },
+  "honest_source_census_fixtures": [
+    {
+      "accepted_original_sources": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "eval_nodes": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        216,
+        98,
+        194
+      ],
+      "invalid_accepted": [],
+      "projective_classes": 257,
+      "seed": 0,
+      "source": "true"
+    },
+    {
+      "accepted_original_sources": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "eval_nodes": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        147,
+        231,
+        195
+      ],
+      "invalid_accepted": [],
+      "projective_classes": 257,
+      "seed": 10000,
+      "source": "true"
+    },
+    {
+      "accepted_original_sources": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "eval_nodes": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        111,
+        94,
+        73
+      ],
+      "invalid_accepted": [],
+      "projective_classes": 257,
+      "seed": 20000,
+      "source": "true"
+    },
+    {
+      "accepted_original_sources": [],
+      "eval_nodes": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        34,
+        145,
+        216
+      ],
+      "invalid_accepted": [],
+      "projective_classes": 257,
+      "seed": 1,
+      "source": "false"
+    },
+    {
+      "accepted_original_sources": [],
+      "eval_nodes": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        91,
+        16,
+        211
+      ],
+      "invalid_accepted": [],
+      "projective_classes": 257,
+      "seed": 10001,
+      "source": "false"
+    },
+    {
+      "accepted_original_sources": [],
+      "eval_nodes": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        82,
+        83,
+        111
+      ],
+      "invalid_accepted": [],
+      "projective_classes": 257,
+      "seed": 20001,
+      "source": "false"
+    }
+  ],
+  "large_example": {
+    "L_new": 27635,
+    "L_prior": 31999,
+    "conservative_log2_upper_bound_exponent": 11725,
+    "exact_integer_128bit_soundness_certificate": true,
+    "exact_minimum_extra_nodes_for_this_bound": 11636,
+    "important": "not a QPT ciphertext-hiding security bound",
+    "kappa": 256,
+    "m": 16000,
+    "n": 11000,
+    "new_field_elements": 82481852907000,
+    "old_field_elements": 110588544027000,
+    "r": 11636,
+    "relative_matrix_payload_saving": 0.2541555399548239
+  },
+  "m": 6,
+  "n": 1,
+  "previous_L": 11,
+  "previous_source_matrix_dim": 23,
+  "r": 3,
+  "same_capability_recovery": [
+    {
+      "capability": 246,
+      "paths": [
+        {
+          "matrix_sha256": "683561692c3f03990a56f0f9d690d108fcf8b95fcd2ee75f7625fa20ee0e988c",
+          "roots": [
+            8,
+            246
+          ],
+          "selected": [
+            246
+          ],
+          "witness": 0
+        },
+        {
+          "matrix_sha256": "ead256e0abae9cabd7288008720d99a1d2369be0566050954078bf567330278c",
+          "roots": [
+            38,
+            246
+          ],
+          "selected": [
+            246
+          ],
+          "witness": 1
+        }
+      ],
+      "seed": 7
+    },
+    {
+      "capability": 64,
+      "paths": [
+        {
+          "matrix_sha256": "ddceb2c95dba9a0e12185b77d6e6fa196640934ceb1bcfc0f49fa603ac77c4fc",
+          "roots": [
+            64
+          ],
+          "selected": [
+            64
+          ],
+          "witness": 0
+        },
+        {
+          "matrix_sha256": "7b8f6c464224918a82524a7325072b5ed249b6c9edb264294f4c71bff69907a7",
+          "roots": [
+            64
+          ],
+          "selected": [
+            64
+          ],
+          "witness": 1
+        }
+      ],
+      "seed": 31
+    },
+    {
+      "capability": 72,
+      "paths": [
+        {
+          "matrix_sha256": "e781bd8677152f64d311377d29599a49afe747fb68134e7f00ae28c3e477bf67",
+          "roots": [
+            72,
+            161
+          ],
+          "selected": [
+            72
+          ],
+          "witness": 0
+        },
+        {
+          "matrix_sha256": "d64031b68c1dd112cdd6e102a971c54663bff8ddc4aa39bf5038d3e9727c8ab8",
+          "roots": [
+            71,
+            72
+          ],
+          "selected": [
+            72
+          ],
+          "witness": 1
+        }
+      ],
+      "seed": 67
+    }
+  ],
+  "source_matrix_dim": 17,
+  "status": "COMPILER_SOUNDNESS_PROVED_UNDER_HONEST_NODE_SAMPLING_ONLY",
+  "uniform_sampled_tail_nodes": 3
+}

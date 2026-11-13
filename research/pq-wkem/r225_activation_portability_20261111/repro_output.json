@@ -1,0 +1,6 @@
+{
+  "checks": 224,
+  "id": "R225-short",
+  "limitation": "synthetic source-admission booleans; no real PoW/AuxPoW, native signature, Build/Open, or QPT security",
+  "seeds": 32
+}

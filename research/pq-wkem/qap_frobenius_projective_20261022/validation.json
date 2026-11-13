@@ -1,0 +1,384 @@
+{
+  "all_direction_check": {
+    "minimum_block_diagonal_rank": 10,
+    "minimum_support": 4,
+    "nonzero_directions": 32767,
+    "promised_rank": 6,
+    "promised_support": 3
+  },
+  "assertions": 2780,
+  "checkpoint": "qap-frobenius-projective-20261022",
+  "code_sha256": {
+    "check.py": "64bf0183cbeb9082ca86b806e13356f86b012949f98386d680a75ddf58e85d77",
+    "frobenius_qap.py": "6da9e9519c1f9b21d00b736679ba498cb56a7518e9610abc7934ec3aacf66d9a"
+  },
+  "fields": [
+    {
+      "irreducibility_checked": true,
+      "modulus": 7,
+      "q": 4
+    },
+    {
+      "irreducibility_checked": true,
+      "modulus": 11,
+      "q": 8
+    },
+    {
+      "irreducibility_checked": true,
+      "modulus": 283,
+      "q": 256
+    }
+  ],
+  "gate_census": {
+    "rank_0": 1,
+    "rank_2": 255,
+    "rank_4": 768,
+    "tuples": 1024
+  },
+  "internal_pencil_diagnostics": [
+    {
+      "indices": [
+        1,
+        2,
+        3
+      ],
+      "pivot_invertible": true,
+      "results": {
+        "commutator": {
+          "N": 19,
+          "denominator_rank": 19,
+          "key_pencil_rank": 19
+        },
+        "squared_commutator": {
+          "N": 19,
+          "denominator_rank": 19,
+          "key_pencil_rank": 19
+        }
+      },
+      "seed": 17
+    },
+    {
+      "indices": [
+        4,
+        5,
+        6
+      ],
+      "pivot_invertible": true,
+      "results": {
+        "commutator": {
+          "N": 19,
+          "denominator_rank": 19,
+          "key_pencil_rank": 19
+        },
+        "squared_commutator": {
+          "N": 19,
+          "denominator_rank": 19,
+          "key_pencil_rank": 19
+        }
+      },
+      "seed": 17
+    },
+    {
+      "indices": [
+        1,
+        2,
+        3
+      ],
+      "pivot_invertible": true,
+      "results": {
+        "commutator": {
+          "N": 19,
+          "denominator_rank": 19,
+          "key_pencil_rank": 19
+        },
+        "squared_commutator": {
+          "N": 19,
+          "denominator_rank": 19,
+          "key_pencil_rank": 19
+        }
+      },
+      "seed": 29
+    },
+    {
+      "indices": [
+        4,
+        5,
+        6
+      ],
+      "pivot_invertible": true,
+      "results": {
+        "commutator": {
+          "N": 19,
+          "denominator_rank": 19,
+          "key_pencil_rank": 19
+        },
+        "squared_commutator": {
+          "N": 19,
+          "denominator_rank": 19,
+          "key_pencil_rank": 19
+        }
+      },
+      "seed": 29
+    },
+    {
+      "indices": [
+        1,
+        2,
+        3
+      ],
+      "pivot_invertible": true,
+      "results": {
+        "commutator": {
+          "N": 19,
+          "denominator_rank": 19,
+          "key_pencil_rank": 19
+        },
+        "squared_commutator": {
+          "N": 19,
+          "denominator_rank": 19,
+          "key_pencil_rank": 19
+        }
+      },
+      "seed": 41
+    },
+    {
+      "indices": [
+        4,
+        5,
+        6
+      ],
+      "pivot_invertible": true,
+      "results": {
+        "commutator": {
+          "N": 19,
+          "denominator_rank": 19,
+          "key_pencil_rank": 19
+        },
+        "squared_commutator": {
+          "N": 19,
+          "denominator_rank": 19,
+          "key_pencil_rank": 19
+        }
+      },
+      "seed": 41
+    }
+  ],
+  "size": {
+    "L": 9,
+    "N": 19,
+    "coefficient_matrices": 8,
+    "dense_field_elements": 2888,
+    "dense_payload_bits": 23104,
+    "excludes_metadata_native_keys_tags_and_setup_proofs": true,
+    "extra_evaluation_gates": 0,
+    "extra_source_variables": 0,
+    "m": 5,
+    "minimum_alternating_block_dimension": 4,
+    "n": 3,
+    "prior_scalar_qap_field_elements": 2888
+  },
+  "source_censuses": [
+    {
+      "field": 8,
+      "infinity_assignments": 4096,
+      "name": "product_zero",
+      "new_pure_quotient_infinity": 0,
+      "nonzero_infinity_accepted": 0,
+      "normalized_accepted": 3,
+      "normalized_assignments": 4096,
+      "old_pure_quotient_infinity": 63,
+      "original_witnesses": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "field": 8,
+      "infinity_assignments": 512,
+      "name": "false",
+      "new_pure_quotient_infinity": 0,
+      "nonzero_infinity_accepted": 0,
+      "normalized_accepted": 0,
+      "normalized_assignments": 512,
+      "old_pure_quotient_infinity": 63,
+      "original_witnesses": []
+    }
+  ],
+  "spectral_recoveries": [
+    {
+      "N": 19,
+      "field_roots": [
+        61
+      ],
+      "key": 61,
+      "nullity": 1,
+      "seed": 17,
+      "selected": [
+        61
+      ],
+      "witness": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "N": 19,
+      "field_roots": [
+        61
+      ],
+      "key": 61,
+      "nullity": 1,
+      "seed": 17,
+      "selected": [
+        61
+      ],
+      "witness": [
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "N": 19,
+      "field_roots": [
+        8,
+        61
+      ],
+      "key": 61,
+      "nullity": 1,
+      "seed": 17,
+      "selected": [
+        61
+      ],
+      "witness": [
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "N": 19,
+      "field_roots": [
+        126,
+        254
+      ],
+      "key": 126,
+      "nullity": 1,
+      "seed": 29,
+      "selected": [
+        126
+      ],
+      "witness": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "N": 19,
+      "field_roots": [
+        35,
+        100,
+        126,
+        158,
+        166
+      ],
+      "key": 126,
+      "nullity": 1,
+      "seed": 29,
+      "selected": [
+        126
+      ],
+      "witness": [
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "N": 19,
+      "field_roots": [
+        36,
+        126
+      ],
+      "key": 126,
+      "nullity": 1,
+      "seed": 29,
+      "selected": [
+        126
+      ],
+      "witness": [
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "N": 19,
+      "field_roots": [
+        143,
+        220
+      ],
+      "key": 220,
+      "nullity": 1,
+      "seed": 41,
+      "selected": [
+        220
+      ],
+      "witness": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "N": 19,
+      "field_roots": [
+        220
+      ],
+      "key": 220,
+      "nullity": 1,
+      "seed": 41,
+      "selected": [
+        220
+      ],
+      "witness": [
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "N": 19,
+      "field_roots": [
+        126,
+        150,
+        164,
+        220
+      ],
+      "key": 220,
+      "nullity": 1,
+      "seed": 41,
+      "selected": [
+        220
+      ],
+      "witness": [
+        1,
+        0,
+        1
+      ]
+    }
+  ],
+  "status": "COMPILER_COMPONENT_ONLY_NOT_QPT_SECURITY"
+}

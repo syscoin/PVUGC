@@ -1,0 +1,18 @@
+{
+  "run": 693,
+  "run_date": "2026-10-21",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "base_head": "95774b84b58f497efce5edc93f977a56a13b79dd",
+  "source_blobs": {
+    "run692": "bf7f24fa7fa42a2e975dc6314c1363dca37477c4",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  },
+  "exact_compact_checker_local_git_blob": "1d977b7c647f953f88dbd854e0e356a49e7e007f",
+  "exact_compact_output_local_git_blob": "a4dfb8c461ef3e1e3a18a54aa0c09cd22e6fef0b",
+  "syntax": "passed",
+  "repeat": "byte-identical",
+  "counted_assertions": 82307,
+  "scope": "two restricted frame failures; ideal full permutation contrast; not QPT WKEM",
+  "production_changed": false
+}

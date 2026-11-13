@@ -1,0 +1,47 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "external_web_or_literature_used": false,
+  "github_scope": "requested PQ WKEM research record only",
+  "local_sha256": {
+    "checker": "22f20865b19ce0328072e117466417acf921cdfbe35c743cd6e9b2a8140d8b24",
+    "proof": "905987123a2b4047a4c6d6f2ff6f113278507e773178f1034c88a5fcd600999f",
+    "validation": "1065ef6b019310fdc34e5084e70435d38898d0b09475b8482ec8fffe77b38235"
+  },
+  "pr_number": 1,
+  "production_code_modified": false,
+  "progress_comment_id": 5817470575,
+  "publication_plan": [
+    "research/pq-wkem/MASKED_VERIFIER_ORACLE_RUN76.md",
+    "research/pq-wkem/masked_verifier_oracle_run76_check.py",
+    "research/pq-wkem/masked-verifier-oracle-run76-validation.json",
+    "research/pq-wkem/MASKED_VERIFIER_ORACLE_RUN76_PROVENANCE.json"
+  ],
+  "repository": "syscoin/PVUGC",
+  "result": {
+    "completed_generic_np_wkem": false,
+    "proved_negative_or_boundary": [
+      "a generic explicit accepting-prefix GGM compiler is itself a witness finder on true instances",
+      "parity requires 2^(n-1) pure-prefix tokens on both accepting and rejecting sides despite O(n) verifier size",
+      "a secure compact masked-verifier evaluator is already the core generic witness-KEM primitive rather than a weaker assumed subproblem"
+    ],
+    "proved_positive": [
+      "single-pad masked verifier gives exact common-key correctness and perfect false-instance full-table hiding at the semantic level",
+      "in the ideal quantum-oracle model, Q-query key-recovery advantage delta yields source-witness extraction probability at least delta^2/(4Q^2)"
+    ],
+    "remaining": [
+      "construct compact PQ masked-verifier/source encoding with complete-representation reduction to an independent assumption",
+      "lift ideal-oracle extraction through the real encoding's auxiliary representation",
+      "malicious-secure distributed setup/erasure and auxiliary-input composition",
+      "concrete secure parameters and resource estimates for a surviving construction"
+    ],
+    "stopping_condition_met": false
+  },
+  "run": 76,
+  "starting_verified_head": "3cfa6b21326ff9e2e04eb6b46ae7cec7e8c372a7",
+  "tests": {
+    "byte_identical_validation_outputs": true,
+    "checker_executions": 2,
+    "claim_scope": "finite semantic/combinatorial/numerical validation only; theorems are proved in the research note",
+    "deterministic_seed": 760076001
+  }
+}

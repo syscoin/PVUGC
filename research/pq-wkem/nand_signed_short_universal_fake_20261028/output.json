@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "assertions": 86,
+  "signedShortLemma": "proved in README",
+  "universalPublicFake": "constructed for every rejected NAND input",
+  "fullNativeKeyRecoverySecurity": false,
+  "source": [
+    {
+      "source": "true",
+      "h": 5,
+      "m": 11,
+      "rows": 8,
+      "radix": 23,
+      "columns": 57,
+      "fakePadRecoveryLowerBound": 0.6580051667308306
+    },
+    {
+      "source": "false",
+      "h": 8,
+      "m": 21,
+      "rows": 17,
+      "radix": 15,
+      "columns": 66,
+      "fakePadRecoveryLowerBound": 0.975705646887357
+    },
+    {
+      "source": "false_pad_1",
+      "h": 12,
+      "m": 33,
+      "rows": 27,
+      "radix": 10,
+      "columns": 78,
+      "fakePadRecoveryLowerBound": 0.9995108822527748
+    },
+    {
+      "source": "false_pad_2",
+      "h": 16,
+      "m": 45,
+      "rows": 37,
+      "radix": 7,
+      "columns": 92,
+      "fakePadRecoveryLowerBound": 0.9999909762532008
+    },
+    {
+      "source": "false_pad_3",
+      "h": 20,
+      "m": 57,
+      "rows": 47,
+      "radix": 6,
+      "columns": 100,
+      "fakePadRecoveryLowerBound": 0.9999998534147778
+    },
+    {
+      "source": "false_pad_4",
+      "h": 24,
+      "m": 69,
+      "rows": 57,
+      "radix": 5,
+      "columns": 111,
+      "fakePadRecoveryLowerBound": 0.9999999976418906
+    },
+    {
+      "source": "false_pad_5",
+      "h": 28,
+      "m": 81,
+      "rows": 67,
+      "radix": 4,
+      "columns": 128,
+      "fakePadRecoveryLowerBound": 0.9999999999614602
+    }
+  ]
+}

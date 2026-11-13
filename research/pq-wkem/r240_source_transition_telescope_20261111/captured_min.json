@@ -1,0 +1,24 @@
+{
+  "checks": 8,
+  "directional_toy_backward_walk_blocked": true,
+  "eq_n_midpoint_lower_bounds": {
+    "1": 2,
+    "10": 1024,
+    "11": 2048,
+    "12": 4096,
+    "2": 4,
+    "3": 8,
+    "4": 16,
+    "5": 32,
+    "6": 64,
+    "7": 128,
+    "8": 256,
+    "9": 512
+  },
+  "false_directed_graph_xor_leak": true,
+  "false_relaxed_occurrences_open": true,
+  "fixed_source_edge_not_valid_across_future_roots": true,
+  "original_source_compiler": "NOT IMPLEMENTED",
+  "qpt_security": "NOT PROVED",
+  "run": "R240_MIN"
+}

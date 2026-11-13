@@ -1,0 +1,19 @@
+{
+  "run": 691,
+  "scope": "generic-NP exact-capability WKEM to one-bit WE, conditional QPT hard-core argument",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "84ef43846b143dde75eba52f0aced0c5e1f63c5d",
+  "dependencies": ["Run259:c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2", "Run690:84ef43846b143dde75eba52f0aced0c5e1f63c5d"],
+  "exact_checker": "python -m py_compile run691_published_check.py && python run691_published_check.py",
+  "passed": true,
+  "repeat_output_byte_identical": true,
+  "finite_cases": 5376,
+  "artifact_blobs": {
+    "RUN691_PUBLISHED_SCOPE.md": "b2bfe0a8d8a2ddddb740ba5f8da00e87dea70dfb",
+    "run691_published_check.py": "a0e4b666fbce1a6fe3a36fdb11fc42e277b91451",
+    "run691_published_validation.json": "379bc193ad5dabc3f5bf879b31c112aa44e93920"
+  },
+  "limitations": "not a release primitive; no concrete QPT hardness proof; excludes one-shot correlated quantum advice and multi-capsule inference; production unchanged"
+}

@@ -1,0 +1,10 @@
+{
+  "run": "R150-PUBLIC-IDEAL-MASK-20261108",
+  "status": "rejected",
+  "q": 101,
+  "checks": 2721,
+  "true_outputs": 4,
+  "false_outputs": 4,
+  "public_extractions": 2704,
+  "cryptographic_security_test": false
+}

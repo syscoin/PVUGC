@@ -1,0 +1,49 @@
+# R227 — source-input SHA garbling: exact public-label failure and transcript-context obstruction
+
+**Status: NO ORIGINAL construction advance. Research-only hypothesis and a failed classical construction. The externally authenticated Bitcoin/Syscoin challenge circuit, post-quantum native signatures, source-dependent Build/Open, QROM simulator, QPT security, and generic NP WE are NOT implemented.** No routine PR comment is warranted.
+
+## Continuity and actual actions
+
+Repo `syscoin/PVUGC`, existing draft/open PR #1, branch `research/pq-wkem-validation-20260918`. Initial observed head `73d25c39a9310551f72d316b05c4ac985f4127f7`, which added R226's exact conditional OR-SEAL research; R226 note was read at blob `685f4371f781cf45d8c31f57d44d1b831d85a8c3`. Latest relevant PR comments since 2026-11-10 were read (only the earlier R225 comment). An intermediate hypothesis was actually published as commit `2ed7344b4fc09c7abc32c8338dbb6c113357973a` before testing. The code in `checker.py` was executed twice locally with byte-identical JSON outputs, and the exact executed file's SHA-256 is `6d585352b9fd31d589323caf1c0daea8f29f426349a16681e5bf377a955191a0`, Git blob `0170bec6b1812140139d708f26327d9cfcb3d8fb`; captured output Git blob `98417f8a9388a491d0804d165293e85efcfb5322`. No outside internet/literature, production repo write, independent subagent, chain mining, actual source verifier, native PQ signing, or quantum computation was performed.
+
+## Original target, unchanged
+
+For the three qualified ORIGINAL branches (greater contradictory BTC cumulative work; no authorized burn/PoB in the bound source state; qualified AuxPoW/source fork or tag fault), N-of-N setup participants must prepare one protected, claim/path-scoped native cancellation authorization. Anyone with any qualifying source witness must recover the *same frozen* correct authorization, completely offline, with no additional live notary/committee. The public statement binds UTXO, activation/claim, source roots, anchor/window, timing, native VK/message, checking key and related capsules. Distinct Bitcoin parent-work certificates for the same pure Syscoin child are NOT forks. An additional malicious/fabricated Bitcoin parent coinbase is NOT authenticated inclusion evidence. No on-Bitcoin original verifier is introduced.
+
+The initial R227 hypothesis was to hash-garble the actual original source verifier as a Boolean circuit using fresh private wire labels, publicly distribute witness-input labels (so challengers are unrestricted), and let the TRUE output label decrypt the precommitted native cancel signature. Build uses SHA256-based pads for each gate row; Open follows a full valid source witness through its gates. This superficially supplies a classical Build/Open algorithm and witness-dependent computation without an online signer.
+
+## Exact source-input-label construction attempt
+
+For a wire v sample two 256-bit labels `L[v,0], L[v,1]`; for a binary gate `g(a,b)` with wire inputs u,v and output z publish each row
+
+    Row_g[a,b] = L[z,g(a,b)] XOR SHA256(domain_g, L[u,a], L[v,b]).
+
+For unary NOT publish `Row_NOT[a]=L[z,1-a] XOR SHA256(domain_NOT,L[u,a])`. All gate rows are readable. All witness input bit labels are public for *both* bit values. For output true label `L[out,1]`, publish `D=sigma_cancel XOR SHA256('output-mask',L[out,1])`, and public native checking key/verification tag. An honest evaluator using ONE consistent source input w derives true label only if the Boolean verifier accepts w. Domain separation and tags prevent accidental row substitution, not combinatorial mixing of publicly available labels.
+
+**Unconditional counterexample for this exact scheme:** take `R(x)=x AND NOT(x)`, which is false for both x=0 and x=1. An honest consistent run always derives `L[out,0]`. The public adversary instead evaluates the NOT gate with `L[x,0]` to obtain `L[notx,1]`, evaluates the AND gate with `L[x,1]` and `L[notx,1]`, obtains `L[out,1]`, and unmasks the frozen signature. Every opened garbled row and final verification tag is correct, yet the two occurrences of the same witness bit were assigned incompatible values. Sharing *the same input wire identity* across the circuit does not prevent reuse of its two public labels in different gates. The attack is deterministic given the public bytes, so it also applies to QPT adversaries without relying on quantum phenomena or SHA collision/inversion.
+
+**Scoped induction:** define S_v as the set of semantic wire labels computable by unrestricted public row decryption, without assuming one globally consistent witness assignment. Every primary witness-input wire begins with both labels. A binary gate whose two input wire sets contain both labels and whose truth table is nonconstant on all four combinations produces both output labels. For a NOT gate, both input labels produce both output labels. This is an algebraic exposure statement for this public-all-labels garbling family, not a general no-go theorem for hash-only witness encryption or circuits with hidden input encodings.
+
+## Two explicit repair attempts and what each would need
+
+**Repair A: public claim/source context in gate pads.** Replace each row mask with `SHA256(slot_id,domain,labels)`, where slot_id is the authenticated context known at setup. This makes cross-claim substitution harder but does not stop use of both bit labels in different occurrences; the adversary carries the SAME slot_id through both inconsistent partial evaluations. The checker explicitly re-encrypts a two-gate example with this public context and still obtains the sealed signature on a false instance.
+
+**Repair B: use a hash of the complete authenticated source certificate T(w) in each pad.** With a fixed row E, fixed pair of input labels A,B and fixed true output label L, correctness under two independently qualified certificates w0,w1 would require
+
+    E = L XOR H(T(w0),A,B) = L XOR H(T(w1),A,B).
+
+For distinct T(w0)!=T(w1), this requires H(T(w0),A,B)=H(T(w1),A,B); with independently distributed SHA outputs this is a collision event, not a general solution. Two parent-work wrappers for one semantic child already provide a realistic reason a raw certificate hash can vary while the same challenge semantics must hold. The checker validates failure of one static row across two distinct SHA256 transcript contexts. One could freeze a common public normalization, but then both labels remain independently accessible (Repair A). Alternatively Build could precompute a row per possible T, which is not a PPT universal construction for arbitrary future Bitcoin headers and still needs proof that raw row selection cannot be fabricated.
+
+**Uninstantiated proposed source-label repair:** Publish only one label per source bit, with the opposite label supposedly obtained from actual authenticated AuxPoW work. This would prevent the exhibited occurrence mix only if the hidden label cannot be obtained from an invalid or out-of-window source, even by a miner retaining unpublished source coins, and any valid qualifying witness supplies the required label. The real source contains public SHA/header/coinbase bytes, not prearranged secret garbling preimages. If a future miner inserts a label chosen by setup into its coinbase, the label exists and can be retained BEFORE authentic inclusion; if the label is derived from the future parent PoW hash/nonce, Build cannot compute a compatible fixed row ahead of time without a genuine shared-key transfer method. A post-hoc `VerifySource(w)` around a public label does not solve this. No source-to-label compiler or simulator has been found.
+
+The original source predicate is not reduced to the toy formula. The toy is an adversarial counterexample to a proposed generic garbled-circuit **mechanism**, and says nothing about which actual authenticated source witnesses exist. It is not evidence that practical hash-only WE is impossible.
+
+## Executed checks and precise limitations
+
+`checker.py` uses standard-library SHA256 and deterministic 128 independent seeds. It produced 769 functional assertions: 256 honest false evaluations, 128 forged accepted release paths, 128 public-label clonability checks, 128 failed transcript-context static-row tests, 128 failed public-context binding tests, and one exhaustive two-value false relation check. Two executions produced byte-identical `captured.json`. Its native verification tag is only a synthetic `SHA256(signature)` stand-in, NOT a real SLH/native signature. It is a classical functional negative test, not a statistical security experiment or QPT game. It does not build a circuit for SHA256d/AuxPoW, and it never creates real competing headers.
+
+## Remaining exact equation and next useful constructive experiment
+
+Must instantiate honest classical-PPT `BuildSource_hash(R_ORIGINAL,x,sigma)` and PUBLIC `OpenSource_hash(C,w)`, with SAME frozen signature for every *authenticated original-source* qualifying witness (including all three challenge branches and any admitted later activations). Unauthorized QPT final-signature recovery/forgery must reduce to ORIGINAL witness or independently justified PQ hash/native break under complete public checking/manifests/related capsules and source-secret retention. In particular, one needs a source-native input-label functionality where actual PoW/source authentication makes hidden label *cryptographically available*, not simply valid to a verifying program; Build must pre-bind the future label to the frozen native key without being able to recover it publicly at setup. That primitive is still missing, and relying on it as an assumption would rename WE.
+
+Do not optimize garbling size, code tables, pads or statement normalization until this source-to-label capability is actually instantiated. Keep the original automation enabled; no ordinary PR comment solely for this negative experiment.

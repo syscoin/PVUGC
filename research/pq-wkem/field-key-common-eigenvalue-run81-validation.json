@@ -1,0 +1,140 @@
+{
+  "all_witness_correctness_tradeoff": [
+    {
+      "capsules_needed_with_q_about_2^lambda_conservative": 5,
+      "large_field_bits_conservative": 392,
+      "log2_simultaneous_failure_upper_bound": -130.0931094043915,
+      "r": 15,
+      "security_bits": 128,
+      "t": 16,
+      "witness_bits_N": 256
+    },
+    {
+      "capsules_needed_with_q_about_2^lambda_conservative": 11,
+      "large_field_bits_conservative": 1161,
+      "log2_simultaneous_failure_upper_bound": -130.0458036896132,
+      "r": 31,
+      "security_bits": 128,
+      "t": 32,
+      "witness_bits_N": 1024
+    },
+    {
+      "capsules_needed_with_q_about_2^lambda_conservative": 35,
+      "large_field_bits_conservative": 4234,
+      "log2_simultaneous_failure_upper_bound": -130.02272007650026,
+      "r": 63,
+      "security_bits": 128,
+      "t": 64,
+      "witness_bits_N": 4096
+    },
+    {
+      "capsules_needed_with_q_about_2^lambda_conservative": 133,
+      "large_field_bits_conservative": 16522,
+      "log2_simultaneous_failure_upper_bound": -130.02272007650026,
+      "r": 63,
+      "security_bits": 128,
+      "t": 64,
+      "witness_bits_N": 16384
+    }
+  ],
+  "exact_F3_additive_character_magnitude_checks": 24,
+  "full_output_character_identity_checks": 700,
+  "honest_view_exact_UVt_identity_checks": 360,
+  "key_sensitive_false_gap_checks": 482,
+  "scope": "finite algebra/correctness validation only; no QPT or computational hiding inferred",
+  "seed": 20260924214323,
+  "status": "PASS",
+  "tiny_exact_census": {
+    "fixed_delta_upper_bound": [
+      4,
+      9
+    ],
+    "fixed_nonzero_delta_probabilities": {
+      "1": [
+        8,
+        27
+      ],
+      "2": [
+        8,
+        27
+      ]
+    },
+    "q": 3,
+    "r": 1,
+    "t": 2,
+    "two_capsule_spurious_common_root_probability": [
+      128,
+      729
+    ],
+    "two_capsule_union_upper_bound": [
+      4,
+      9
+    ]
+  },
+  "two_capsule_key_recovery_controls": [
+    {
+      "ambiguous_trials": 75,
+      "missing_true_key": 0,
+      "q": 17,
+      "r": 3,
+      "t": 4,
+      "theorem_union_bound_per_witness": 0.19783822571941842,
+      "total_extra_common_roots": 78,
+      "trials": 1000
+    },
+    {
+      "ambiguous_trials": 2,
+      "missing_true_key": 0,
+      "q": 257,
+      "r": 3,
+      "t": 4,
+      "theorem_union_bound_per_witness": 0.011764170128212067,
+      "total_extra_common_roots": 2,
+      "trials": 1200
+    },
+    {
+      "ambiguous_trials": 2,
+      "missing_true_key": 0,
+      "q": 257,
+      "r": 5,
+      "t": 6,
+      "theorem_union_bound_per_witness": 0.01960695136426856,
+      "total_extra_common_roots": 2,
+      "trials": 700
+    }
+  ],
+  "two_capsule_minrank_only_spectral_rows": [
+    {
+      "D": 3,
+      "base_q_exponent_in_crude_TV_bound": 311,
+      "crude_bound_nontrivial": false,
+      "k": 20,
+      "r": 3,
+      "t": 4
+    },
+    {
+      "D": 3,
+      "base_q_exponent_in_crude_TV_bound": 6379,
+      "crude_bound_nontrivial": false,
+      "k": 100,
+      "r": 7,
+      "t": 8
+    },
+    {
+      "D": 8,
+      "base_q_exponent_in_crude_TV_bound": 65416,
+      "crude_bound_nontrivial": false,
+      "k": 256,
+      "r": 15,
+      "t": 16
+    },
+    {
+      "D": 10,
+      "base_q_exponent_in_crude_TV_bound": 1048266,
+      "crude_bound_nontrivial": false,
+      "k": 1024,
+      "r": 31,
+      "t": 32
+    }
+  ]
+}

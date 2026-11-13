@@ -1,0 +1,11 @@
+{
+  "checks": 320,
+  "groups": {
+    "future_z_incompatible_with_fixed_rows": 64,
+    "inconsistent_rows_open_early": 64,
+    "public_merkle_not_authorization": 64,
+    "valid_false_inputs_reject": 128
+  },
+  "run": "R193",
+  "scope": "false Boolean source circuit; no actual AuxPoW or PQ security"
+}

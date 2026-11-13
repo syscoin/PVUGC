@@ -1,0 +1,25 @@
+{
+  "record": "mixed-linear-fourier-and-20261027-turn9",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_head": "e4bd8de56a08d49bdcd56b57c2e69b74c2575635",
+  "exact_prior_blobs": {
+    "scaled_syndrome_20261026/README.md": "910734d2eca32f1d3712e8089163703b81989466",
+    "and_shares_fourier_20261027/README.md": "31eea19871e28918569b3e64981347c5450b083f"
+  },
+  "executed": {
+    "published_node_checker_assertions": 295938,
+    "published_node_runs_identical": 2,
+    "local_python_assertions": 328228,
+    "local_python_runs_identical": 2,
+    "local_all_valid_witness_toy_cases": 6912,
+    "one_initial_checker_normalization_error": "corrected before two successful checks",
+    "local_python_sha256": "f83e7140d2ba73642de5c933acf0b01c0169699fc3f18de039189ac04f2750bd",
+    "local_extended_proof_sha256": "b947d2e2839d633edace4149257f6c3769655444ca2db1ad695f1d71be2ab428",
+    "local_archive": "MIXED_LINEAR_FOURIER_AND_20261027_RESEARCH.tar.gz"
+  },
+  "security_scope": "uniform-A reference QPT-LWE challenge hybrid plus inherited exact Fourier NP full-law; not arbitrary structured source, no actual Bitcoin PoW, no security parameter claim",
+  "git_scope": "four new research files only; expected-head nonforce commit; ordinary PR comment separate",
+  "offline": true
+}

@@ -1,0 +1,12 @@
+{
+  "run": 533,
+  "status": "PASS",
+  "padded_cases": 108,
+  "randomized_cases": 72,
+  "nonuniform_domination_cases": 200,
+  "correlated_sampler_cases": 21,
+  "repeat_probability_cases": 11,
+  "simulated_grover_identities": 11,
+  "negative_controls": 1,
+  "scope": "interface attack; no signature or QPT security implementation"
+}

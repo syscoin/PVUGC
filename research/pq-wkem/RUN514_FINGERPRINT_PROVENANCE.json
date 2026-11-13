@@ -1,0 +1,32 @@
+{
+  "run": 514,
+  "date": "2026-10-14",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "2a8f1ba16c0610fa38c44fc205e5681f72bf76c2",
+  "source_files": [
+    "RUN513_AFFINE_MASK_COMPACT.md",
+    "RUN512_MASKED_SHARED_LOADER_COMPACT.md",
+    "RUN509_COHERENT_TERMINAL_QUERY_EXTRACTION_COMPACT.md"
+  ],
+  "executed_checker": "run514_guarded_fingerprint_check.js",
+  "validation": {
+    "run": 514,
+    "status": "PASS",
+    "seed": 514,
+    "counts": {
+      "frames": 322944,
+      "maps": 323328,
+      "involution": 323328,
+      "fixed": 323328,
+      "commutation": 384,
+      "valid_bits": 648192,
+      "false_identity": 80832,
+      "cycle_law": 8
+    },
+    "scope": "finite invariant checks only; not a practical or QPT security proof"
+  },
+  "publication_claim": "SCOPED FUNCTIONAL FINGERPRINT ONLY",
+  "production_modified": false
+}

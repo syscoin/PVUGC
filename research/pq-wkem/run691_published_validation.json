@@ -1,0 +1,1 @@
+{"checks": 5376, "rows": [{"h": 2, "n": 5, "tv": "1/8"}, {"h": 4, "n": 7, "tv": "1/32"}, {"h": 6, "n": 9, "tv": "1/128"}], "scope": "finite public-key leakage only"}

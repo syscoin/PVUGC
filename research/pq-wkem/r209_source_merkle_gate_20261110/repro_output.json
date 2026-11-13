@@ -1,0 +1,11 @@
+{
+  "assertions": 156,
+  "auth_own": 36,
+  "cross_root_rejected": 36,
+  "other_future_incomplete": 24,
+  "same_root_conflict_rejected": 36,
+  "selected_future_opens": 12,
+  "source_sha256": "60c5419903b3893d9ea0b05ef2253edf17f453fcaed369754279a0d94b93601d",
+  "status": "synthetic Merkle/opening regression, NOT original source or secure release",
+  "wildcard_early_opens": 12
+}

@@ -1,0 +1,81 @@
+{
+  "run": 401,
+  "status": "PASS",
+  "checks": 235,
+  "seed": "0x20261009",
+  "coherent_small_statevector_fixtures": [
+    {
+      "width": 6,
+      "N": 64,
+      "table_target": 4,
+      "nonempty_trials": 12,
+      "mean_marked_count": 4.25,
+      "coherent_better_trials": 12,
+      "min_coherent_success": 0.976354
+    },
+    {
+      "width": 9,
+      "N": 512,
+      "table_target": 8,
+      "nonempty_trials": 12,
+      "mean_marked_count": 8.083333333333334,
+      "coherent_better_trials": 12,
+      "min_coherent_success": 0.985698
+    },
+    {
+      "width": 12,
+      "N": 4096,
+      "table_target": 16,
+      "nonempty_trials": 12,
+      "mean_marked_count": 18.333333333333332,
+      "coherent_better_trials": 12,
+      "min_coherent_success": 0.99567
+    }
+  ],
+  "bit_security_raw_query_estimates": [
+    {
+      "label_bits": 96,
+      "classical_birthday_exponent": 48,
+      "quantum_claw_query_exponent": 32,
+      "classical_table_memory_exponent": 32
+    },
+    {
+      "label_bits": 128,
+      "classical_birthday_exponent": 64,
+      "quantum_claw_query_exponent": 42.666667,
+      "classical_table_memory_exponent": 42.666667
+    },
+    {
+      "label_bits": 192,
+      "classical_birthday_exponent": 96,
+      "quantum_claw_query_exponent": 64,
+      "classical_table_memory_exponent": 64
+    },
+    {
+      "label_bits": 256,
+      "classical_birthday_exponent": 128,
+      "quantum_claw_query_exponent": 85.333333,
+      "classical_table_memory_exponent": 85.333333
+    },
+    {
+      "label_bits": 384,
+      "classical_birthday_exponent": 192,
+      "quantum_claw_query_exponent": 128,
+      "classical_table_memory_exponent": 128
+    },
+    {
+      "label_bits": 512,
+      "classical_birthday_exponent": 256,
+      "quantum_claw_query_exponent": 170.666667,
+      "classical_table_memory_exponent": 170.666667
+    }
+  ],
+  "shared_frame_amortization": {
+    "N_exponent": 36,
+    "capsules": 16,
+    "sample_count": 16384,
+    "shared_query_model": 49152,
+    "independent_query_model": 131072
+  },
+  "note": "Ideal public two-frame hash-claw seam ONLY. No full source-bound mixer, concrete quantum hardware security or native signing is proved."
+}

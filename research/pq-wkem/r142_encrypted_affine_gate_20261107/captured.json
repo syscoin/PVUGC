@@ -1,0 +1,25 @@
+{
+  "ciphertext_histogram_count_per_key_per_ciphertext": 5,
+  "coefficient_count": 4,
+  "complete_joint_view_OTP_identical_for_all_keys": true,
+  "evaluated_ciphertext_histogram_count_per_key_per_value": 625,
+  "independent_QPT_PKE_extension": "conditional multi-message IND-CPA standard hybrid; not a generic witness-KEM proof",
+  "q": 5,
+  "run": "R142-ENCRYPTED-AFFINE-QUOTIENT-WRAPPER",
+  "status": "REJECTED_NO_FOUNDATIONAL_ADVANCE",
+  "total_assertions": 3304,
+  "witnesses": [
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ]
+}

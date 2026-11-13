@@ -1,0 +1,7 @@
+{
+  "assertions": 500,
+  "result": "whole-certificate binding defeats input occurrence mixing in a fixed finite catalog, but either misses unanticipated future certificates or publishes their opening prematurely",
+  "run": "R224-GLOBAL-SOURCE-REPAIR",
+  "scope": "restricted explicit-row family only, no general impossibility or cryptographic source-bound release",
+  "source_sha256": "7308db34e9149bef7d932f1269a420934ad0e81e9a036a8d51d486ca1aff2e34"
+}

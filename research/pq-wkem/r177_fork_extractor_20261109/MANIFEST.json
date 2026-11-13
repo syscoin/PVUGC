@@ -1,0 +1,39 @@
+{
+  "run": "R177-CLAIM-RELEVANT-FORK-20261109",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "9c79af61d998afeadf0e5f1b764e8b1ea2bee27d",
+  "checkpoint1": "9c91796d9c64e1b72c8e3bd2acce126f83834eee",
+  "checkpoint2": "e3da802d410355fc35cce99d7324f1416c035c61",
+  "stored_blobs": {
+    "RESEARCH.md": "fbb04ac6be04d7b13d1b287b89c3d130bdeef425",
+    "fork_scope.py": "ce968d491640160eac2300e323a703ad09c429af",
+    "fork_scope_captured.json": "d6291093ff5c95f091e925cf05c503efe8c8a93d"
+  },
+  "sha256": {
+    "RESEARCH.md": "dc2a8b72a3749f4f422b670536977cb809c2dc7bfa3055d18c163c26e57a5cfa",
+    "fork_scope.py": "33fc029ff2bd6b05840801b9445dab28e9b9945edc2d93b765b1fdcfa9fdcad2",
+    "fork_scope_captured.json": "14d5e5a9385f9d21e95586d52b48c331214e6f032b4c6c1d88a2c1c578a218bd"
+  },
+  "local_exploration": {
+    "checker.py": {
+      "assertions": 1852,
+      "sha256": "6da54b9c8b790afa20f8f2b4748afa132ef2b74834fc19bf336149a48f4598df"
+    },
+    "claim_scope_checker.py": {
+      "assertions": 5010,
+      "sha256": "46a520286715f861d79b54f781bdcd486258ac7c66b1752338aba0700ca63a2d"
+    }
+  },
+  "observed_local_errors": [
+    "Initial claim_scope checker assertion expected post-claim tag disagreement to satisfy k-depth; corrected the abstract post-claim comparison to k=1, preserving the separate claim-specific k-depth test.",
+    "One oversized exploratory claim_scope checker execution timed out at a requested 200-second limit; bounded cached test matrix then executed successfully.",
+    "Initial compact checker had a Python SyntaxError at a multiple-assignment line; corrected before the two captured byte-identical runs."
+  ],
+  "executed": "Python standard library, 2 identical final compact checker runs, 7398 functional assertions",
+  "security": "No actual AuxPoW/Bitcoin qualification, source-bound hidden key compiler, quantum simulator, or deployed capability",
+  "external_literature": false,
+  "independent_agents": false,
+  "pr_comment_planned": false
+}

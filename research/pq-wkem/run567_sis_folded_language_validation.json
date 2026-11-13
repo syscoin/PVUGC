@@ -1,0 +1,128 @@
+{
+  "run": 567,
+  "status": "PASS",
+  "assertions_passed": 88696,
+  "total_matrices_exhausted": 87453,
+  "sum_binary_kernel_solutions": 258527,
+  "false_original_folded_true_matrices": 74203,
+  "grids": [
+    {
+      "q": 3,
+      "n": 1,
+      "L": 2,
+      "matrices": 9,
+      "zero_kernel_matrices": 2,
+      "false_original_folded_true": 7,
+      "deterministic_threshold": false
+    },
+    {
+      "q": 3,
+      "n": 1,
+      "L": 3,
+      "matrices": 27,
+      "zero_kernel_matrices": 0,
+      "false_original_folded_true": 27,
+      "deterministic_threshold": true
+    },
+    {
+      "q": 3,
+      "n": 1,
+      "L": 5,
+      "matrices": 243,
+      "zero_kernel_matrices": 0,
+      "false_original_folded_true": 243,
+      "deterministic_threshold": true
+    },
+    {
+      "q": 3,
+      "n": 1,
+      "L": 6,
+      "matrices": 729,
+      "zero_kernel_matrices": 0,
+      "false_original_folded_true": 729,
+      "deterministic_threshold": true
+    },
+    {
+      "q": 3,
+      "n": 2,
+      "L": 2,
+      "matrices": 81,
+      "zero_kernel_matrices": 56,
+      "false_original_folded_true": 25,
+      "deterministic_threshold": false
+    },
+    {
+      "q": 3,
+      "n": 2,
+      "L": 3,
+      "matrices": 729,
+      "zero_kernel_matrices": 288,
+      "false_original_folded_true": 441,
+      "deterministic_threshold": false
+    },
+    {
+      "q": 3,
+      "n": 2,
+      "L": 4,
+      "matrices": 6561,
+      "zero_kernel_matrices": 720,
+      "false_original_folded_true": 5841,
+      "deterministic_threshold": false
+    },
+    {
+      "q": 3,
+      "n": 2,
+      "L": 5,
+      "matrices": 59049,
+      "zero_kernel_matrices": 0,
+      "false_original_folded_true": 59049,
+      "deterministic_threshold": true
+    },
+    {
+      "q": 5,
+      "n": 1,
+      "L": 2,
+      "matrices": 25,
+      "zero_kernel_matrices": 12,
+      "false_original_folded_true": 13,
+      "deterministic_threshold": false
+    },
+    {
+      "q": 5,
+      "n": 1,
+      "L": 4,
+      "matrices": 625,
+      "zero_kernel_matrices": 4,
+      "false_original_folded_true": 621,
+      "deterministic_threshold": false
+    },
+    {
+      "q": 5,
+      "n": 1,
+      "L": 5,
+      "matrices": 3125,
+      "zero_kernel_matrices": 0,
+      "false_original_folded_true": 3125,
+      "deterministic_threshold": true
+    },
+    {
+      "q": 5,
+      "n": 2,
+      "L": 2,
+      "matrices": 625,
+      "zero_kernel_matrices": 552,
+      "false_original_folded_true": 73,
+      "deterministic_threshold": false
+    },
+    {
+      "q": 5,
+      "n": 2,
+      "L": 3,
+      "matrices": 15625,
+      "zero_kernel_matrices": 11616,
+      "false_original_folded_true": 4009,
+      "deterministic_threshold": false
+    }
+  ],
+  "security": "finite algebra only; no QPT SIS hardness or WKEM"
+}

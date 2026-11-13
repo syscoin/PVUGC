@@ -1,0 +1,184 @@
+{
+  "adjoint_code": {
+    "binary_dimension": 24,
+    "field_line_histogram": [
+      {
+        "count": 35,
+        "representative_rank": 2,
+        "row_support": 8
+      },
+      {
+        "count": 406,
+        "representative_rank": 3,
+        "row_support": 8
+      },
+      {
+        "count": 3584,
+        "representative_rank": 3,
+        "row_support": 12
+      },
+      {
+        "count": 88,
+        "representative_rank": 4,
+        "row_support": 8
+      },
+      {
+        "count": 66048,
+        "representative_rank": 4,
+        "row_support": 12
+      },
+      {
+        "count": 1048320,
+        "representative_rank": 4,
+        "row_support": 16
+      }
+    ],
+    "field_line_support_totals": {
+      "8": 529,
+      "12": 69632,
+      "16": 1048320
+    },
+    "matrix_shape": [
+      4,
+      16
+    ],
+    "minimum_nonzero_rank": 2,
+    "projective_line_total": 1118481,
+    "rank_histogram": {
+      "0": 0,
+      "1": 0,
+      "2": 525,
+      "3": 59850,
+      "4": 16716840
+    },
+    "transported_GF16_module_dimension": 6
+  },
+  "assertions": 13156,
+  "capacity_adjoint_identity": {
+    "branch_published_d1_d2_d3_implied_dual_tail": {
+      "e18_upper_bound": 13,
+      "e19": 14,
+      "e20": 15,
+      "e21": 15,
+      "e22": 16,
+      "e23": 16,
+      "e24": 16
+    },
+    "d5_target": "explicit support-9 W4 gives e15(D)<=12; d5(C)<=9 iff e15(D)<=11, so the unresolved drop is exactly 12 -> 11",
+    "fixtures": [
+      {
+        "adjoint_row_support": 16,
+        "ambient_support_dimension": 0,
+        "name": "zero",
+        "orthogonal_dimension": 24,
+        "source_capacity": 0
+      },
+      {
+        "adjoint_row_support": 0,
+        "ambient_support_dimension": 24,
+        "name": "full",
+        "orthogonal_dimension": 0,
+        "source_capacity": 16
+      },
+      {
+        "adjoint_row_support": 15,
+        "ambient_support_dimension": 3,
+        "name": "basis_word_0_columns",
+        "orthogonal_dimension": 21,
+        "source_capacity": 1
+      },
+      {
+        "adjoint_row_support": 14,
+        "ambient_support_dimension": 6,
+        "name": "basis_words_0_1_columns",
+        "orthogonal_dimension": 18,
+        "source_capacity": 2
+      },
+      {
+        "adjoint_row_support": 13,
+        "ambient_support_dimension": 9,
+        "name": "basis_words_0_1_2_columns",
+        "orthogonal_dimension": 15,
+        "source_capacity": 3
+      },
+      {
+        "adjoint_row_support": 12,
+        "ambient_support_dimension": 9,
+        "name": "explicit_support9_W4_capacity4",
+        "orthogonal_dimension": 15,
+        "source_capacity": 4
+      },
+      {
+        "adjoint_row_support": 16,
+        "ambient_support_dimension": 3,
+        "name": "coordinate_prefix_3",
+        "orthogonal_dimension": 21,
+        "source_capacity": 0
+      },
+      {
+        "adjoint_row_support": 16,
+        "ambient_support_dimension": 5,
+        "name": "coordinate_prefix_5",
+        "orthogonal_dimension": 19,
+        "source_capacity": 0
+      },
+      {
+        "adjoint_row_support": 16,
+        "ambient_support_dimension": 8,
+        "name": "coordinate_prefix_8",
+        "orthogonal_dimension": 16,
+        "source_capacity": 0
+      },
+      {
+        "adjoint_row_support": 16,
+        "ambient_support_dimension": 9,
+        "name": "coordinate_prefix_9",
+        "orthogonal_dimension": 15,
+        "source_capacity": 0
+      },
+      {
+        "adjoint_row_support": 16,
+        "ambient_support_dimension": 12,
+        "name": "coordinate_prefix_12",
+        "orthogonal_dimension": 12,
+        "source_capacity": 0
+      },
+      {
+        "adjoint_row_support": 12,
+        "ambient_support_dimension": 17,
+        "name": "coordinate_prefix_17",
+        "orthogonal_dimension": 7,
+        "source_capacity": 4
+      },
+      {
+        "adjoint_row_support": 9,
+        "ambient_support_dimension": 21,
+        "name": "coordinate_prefix_21",
+        "orthogonal_dimension": 3,
+        "source_capacity": 7
+      }
+    ],
+    "formula": "m_C(U)=16-dim(RowSupp(D(U^perp)))",
+    "generalized_profile_formula": "d_j(C)=24-max{s : e_s(D)<=16-j}"
+  },
+  "compiler_fixture": {
+    "N": 3,
+    "R": 1,
+    "field": "GF(16), x^4+x+1",
+    "gamma": 2,
+    "gamma_order": 15,
+    "global_column_support_dimension": 24,
+    "matrix_shape_after_descent": [
+      224,
+      4
+    ],
+    "source_dimension_binary": 16
+  },
+  "python": "3.13.5",
+  "run": 219,
+  "scope": {
+    "not_proved": "e15(D), d5(C), the full generalized-support tail, generic-NP false hiding, arbitrary-QPT ORIGINAL-witness extraction, or malicious distributed setup",
+    "proved": "exact finite adjoint construction, dual identity, exhaustive rank census, and complete transported-GF16 projective-line row-support spectrum for this literal false-source fixture"
+  },
+  "status": "PASS"
+}

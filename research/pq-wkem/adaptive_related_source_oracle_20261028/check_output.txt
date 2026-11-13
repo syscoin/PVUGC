@@ -1,0 +1,1 @@
+PASS 13792 assertions; 12 targets with two distinct accepted openings; 48 adversarial-source full-coin related capsules; exact TV 8/27 unchanged for 0..4 adaptive related capsules; toy only

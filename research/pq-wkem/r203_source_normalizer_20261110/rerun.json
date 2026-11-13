@@ -1,0 +1,17 @@
+{
+  "assertions": 1152,
+  "groups": {
+    "all_four_proofs_same_key": 256,
+    "different_tree_roots_not_same_key": 64,
+    "public_proof_opens_even_without_fork": 64,
+    "public_root_pad_opens_without_path": 64,
+    "public_root_pair_leaks_from_first_proof": 64,
+    "source_builder_opens_early": 64,
+    "two_history_masks_disagree_for_valid_alternatives": 64,
+    "wrong_leaf_not_open": 256,
+    "wrong_sibling_not_open": 256
+  },
+  "run": "R203-MASH-20261110",
+  "scope": "restricted Merkle-correlation correctness + early-release counterexamples; no ORIGINAL WE",
+  "sha256_source": "b4ead42d7de510c568f112114caceb1236c48528254a382c73369de83d766d6a"
+}

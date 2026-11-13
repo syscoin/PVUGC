@@ -1,0 +1,38 @@
+{
+  "attack": "public row-space quotient recovers every radix z_c, then public normalized linear relaxation recovers aggregate key",
+  "exhaustive_onevar_two_clause": {
+    "11": {"all_root_directions_outside_rowspace": true, "formulas": 64, "keys_recovered": 64, "satisfiable": 62, "unsatisfiable": 2, "z_vectors_recovered_exactly": 64},
+    "13": {"all_root_directions_outside_rowspace": true, "formulas": 64, "keys_recovered": 64, "satisfiable": 62, "unsatisfiable": 2, "z_vectors_recovered_exactly": 64},
+    "5": {"all_root_directions_outside_rowspace": true, "formulas": 64, "keys_recovered": 64, "satisfiable": 62, "unsatisfiable": 2, "z_vectors_recovered_exactly": 64},
+    "7": {"all_root_directions_outside_rowspace": true, "formulas": 64, "keys_recovered": 64, "satisfiable": 62, "unsatisfiable": 2, "z_vectors_recovered_exactly": 64}
+  },
+  "fixed_false": {
+    "11": {"clauses": 2, "components": 90, "coordinates": 11, "kernel_dimension_mod_p": 4, "keys_recovered": 80, "nvars": 1, "relaxation_exact_integer_kernel": true, "relaxation_source_assignment_satisfies": false, "root_directions_outside_rowspace": 90, "root_directions_total": 90, "trials": 80, "z_vectors_recovered_exactly": 80},
+    "13": {"clauses": 2, "components": 110, "coordinates": 11, "kernel_dimension_mod_p": 4, "keys_recovered": 80, "nvars": 1, "relaxation_exact_integer_kernel": true, "relaxation_source_assignment_satisfies": false, "root_directions_outside_rowspace": 110, "root_directions_total": 110, "trials": 80, "z_vectors_recovered_exactly": 80},
+    "5": {"clauses": 2, "components": 30, "coordinates": 11, "kernel_dimension_mod_p": 4, "keys_recovered": 80, "nvars": 1, "relaxation_exact_integer_kernel": true, "relaxation_source_assignment_satisfies": false, "root_directions_outside_rowspace": 30, "root_directions_total": 30, "trials": 80, "z_vectors_recovered_exactly": 80},
+    "7": {"clauses": 2, "components": 50, "coordinates": 11, "kernel_dimension_mod_p": 4, "keys_recovered": 80, "nvars": 1, "relaxation_exact_integer_kernel": true, "relaxation_source_assignment_satisfies": false, "root_directions_outside_rowspace": 50, "root_directions_total": 50, "trials": 80, "z_vectors_recovered_exactly": 80}
+  },
+  "fixed_true": {
+    "11": {"clauses": 2, "components": 90, "coordinates": 11, "kernel_dimension_mod_p": 4, "keys_recovered": 80, "nvars": 1, "relaxation_exact_integer_kernel": true, "relaxation_source_assignment_satisfies": false, "root_directions_outside_rowspace": 90, "root_directions_total": 90, "trials": 80, "z_vectors_recovered_exactly": 80},
+    "13": {"clauses": 2, "components": 110, "coordinates": 11, "kernel_dimension_mod_p": 4, "keys_recovered": 80, "nvars": 1, "relaxation_exact_integer_kernel": true, "relaxation_source_assignment_satisfies": false, "root_directions_outside_rowspace": 110, "root_directions_total": 110, "trials": 80, "z_vectors_recovered_exactly": 80},
+    "5": {"clauses": 2, "components": 30, "coordinates": 11, "kernel_dimension_mod_p": 4, "keys_recovered": 80, "nvars": 1, "relaxation_exact_integer_kernel": true, "relaxation_source_assignment_satisfies": false, "root_directions_outside_rowspace": 30, "root_directions_total": 30, "trials": 80, "z_vectors_recovered_exactly": 80},
+    "7": {"clauses": 2, "components": 50, "coordinates": 11, "kernel_dimension_mod_p": 4, "keys_recovered": 80, "nvars": 1, "relaxation_exact_integer_kernel": true, "relaxation_source_assignment_satisfies": false, "root_directions_outside_rowspace": 50, "root_directions_total": 50, "trials": 80, "z_vectors_recovered_exactly": 80}
+  },
+  "linfty_gap_census": {
+    "other_cases": 0,
+    "satisfiable_min1": 62,
+    "unsat_examples": [
+      {"clauses": [[1,1,1],[-1,-1,-1]], "min_linfty": 2},
+      {"clauses": [[-1,-1,-1],[1,1,1]], "min_linfty": 2}
+    ],
+    "unsatisfiable_min2": 2
+  },
+  "random_true": {
+    "11": {"all_hidden_witnesses_valid": true, "all_relaxations_nonwitness": true, "all_root_directions_outside_rowspace": true, "instances": 20, "total_keys_recovered": 200, "total_trials": 200, "total_z_vectors_recovered_exactly": 200},
+    "13": {"all_hidden_witnesses_valid": true, "all_relaxations_nonwitness": true, "all_root_directions_outside_rowspace": true, "instances": 20, "total_keys_recovered": 200, "total_trials": 200, "total_z_vectors_recovered_exactly": 200},
+    "5": {"all_hidden_witnesses_valid": true, "all_relaxations_nonwitness": true, "all_root_directions_outside_rowspace": true, "instances": 20, "total_keys_recovered": 200, "total_trials": 200, "total_z_vectors_recovered_exactly": 200},
+    "7": {"all_hidden_witnesses_valid": true, "all_relaxations_nonwitness": true, "all_root_directions_outside_rowspace": true, "instances": 20, "total_keys_recovered": 200, "total_trials": 200, "total_z_vectors_recovered_exactly": 200}
+  },
+  "run": 35,
+  "seed": 2026092215
+}

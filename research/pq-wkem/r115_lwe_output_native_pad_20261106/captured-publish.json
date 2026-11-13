@@ -1,0 +1,23 @@
+{
+  "run": "R115-LWE-OUTPUT-NATIVE-PAD-20261106",
+  "result": "PASS",
+  "assertions": 887,
+  "exactFinalHybridCases": 16384,
+  "restrictedPolicyCases": 512,
+  "qualifiedPolicyCases": 240,
+  "params": {
+    "q": 65521,
+    "d": 256,
+    "m": 2000,
+    "ell": 64,
+    "signatureBytes": 7856,
+    "seedBits": 20192,
+    "groupsPerOccurrence": 158,
+    "newBytesPerOccurrence": 101120,
+    "oldBytesPerOccurrence": 314240,
+    "oneMaskedNativeSignatureBytes": 7858,
+    "nineOccurrencesNewBytes": 917938,
+    "nineOccurrencesOldBytes": 2828160
+  },
+  "limits": "Finite algebra/toy full joint distribution, NOT quantum security or generic ORIGINAL NP"
+}

@@ -1,0 +1,45 @@
+# R212 — Nonlinear residual-factorized hash gate: full-public extraction
+
+STATUS: negative construction/repair checkpoint ONLY. No secure hash-only source-dependent Build/Open, no arbitrary-QPT source witness extraction, no full original-source verifier or native PQ endpoint. Do not promote this candidate or send a routine progress comment.
+
+## Provenance
+Existing draft/open syscoin/PVUGC PR #1; branch research/pq-wkem-validation-20260918. Observed starting head 6acd3f5f8d70a23045d1c068b9c02b163f1ecc13 (R211 independent-OR conditional composition). Read exact-version R211 and narrowly related R210, R209, R207, R206, R205 to avoid repeating point-lock/quotient/public-label failures; ordinary PR comment query since 2026-11-10T00:00Z returned no comments. Genuine intermediate hypothesis was recorded locally and published BEFORE running tests at 376a66d54104c50a5a63762916dfa9fc906e65ec, fast-forward/expected-head parent 6acd3f5. No web/external literature, independent agents, real mining, quantum experiment, production/source repo modification or native PQ signing.
+
+Full local standard-library checker.py executed twice and byte-matched captured.json/rerun.json: 1,026 toy assertions. SHA256 source c111b808ccd68222e2fe80938c4c84b8615b8f99890d406a1d77cac1954d3873; SHA256 output cfc0d729bff4448b7eec017a11db4d86f5c869f93436b4c5a0892f64ce100973. This complete checker/output were LOCAL ONLY; a separately executed small reproduction and its output are attached here. Short SHA256 source 4e01faa894837a88c69446da48e21c1b7e6692dda0fb07feb4c5e0a6572c3bc3 and output d3d650636a8c6d9d7b5a3fae590a9bf456b7f4e9596ce58d795df89ec541ee4d, each executed twice with byte-identical outputs. Toy Boolean algebra and SHA-256 are NOT actual AuxPoW/BTC/Syscoin source verification, security analysis or deployed artifacts.
+
+## ORIGINAL protected release target
+x_W binds exact vault/claim outpoint, burn ID, amount/recipient and authorization, one-notary activation assertion, source roots, Bitcoin/Syscoin anchors and window, claim-relevant height, required fork-depth, relevant interval tags, challenge deadline and reset, data availability, N-of-N preauthorization graph, exact native cancel message M/VKs, public capsule IDs and checking/auxiliary information. R1 = authenticated contradictory greater-work BTC history; R2 = finite authenticated missing/invalid bound PoB (not just lack of a Merkle proof); R3 = qualified authenticated claim-prefix incompatible Syscoin histories or separately admitted authenticated AuxPoW tag fault. Parent work for the SAME child does not constitute a fork. Qualified R3 does not need the winning Syscoin branch. A single watcher with ONE actual R1/R2/R3 witness must recover the SAME frozen claim-scoped cancel signature OFF CHAIN without online setup-party involvement. Bitcoin only checks native spending authorization, not an NP/VM/PCP/BitVM trace. The N-of-N ceremony constrains graph and erasure and DOES NOT itself solve release. The separate R211 conditional independent-OR wrapper presupposes secure leaves, none of which exists here.
+
+## Named candidate FGR
+Let an actual ORIGINAL verifier circuit be expressed as finite Boolean/field constraints f_1(x,z)=...=f_m(x,z)=0, where z contains SHA/AuxPoW, header/coinbase Merkle paths, ancestor/height, burn and source qualification data and full trace. Include the branch selector in the constraint circuit. Let r_x(z) be the vector of public constraint residuals, with r_x(z)=0 for EVERY accepted original witness. Try to replace R207's linear coefficient masks with a nonlinear publicly evaluable SHA256-based mask G(C,r).
+
+Build freezes native cancel signature sigma and publishes E = sigma XOR G(C,0), native VK, x_W, public parameters and auxiliary data.
+Open honestly computes r_x(z(w)) and returns E XOR G(C,r_x(z(w))) if native verification succeeds. Hence every valid witness obtains EXACTLY sigma, even with differing SHA transcripts and different challenge types. This is a genuine algebraic all-witness identity, but not a secure release algorithm.
+
+## Lemma: straight-line unauthorized recovery in this exact class
+Assume G(C,r) is publicly computable on arbitrary residuals, including the public all-zero residual, in polynomial time. The adversary with the COMPLETE public capsule simply computes
+
+    sigma* = E XOR G(C,0) = sigma.
+
+The adversary supplies NO original source evidence, internal representation, oracle query log, or local verifier transcript; it never calls r_x. It passes native verification and any honest checking key tied to sigma. Its success for a correctly built capsule is deterministic and classical, hence available to QPT as well. It holds for arbitrary nonlinear compositions of SHA256 inside G; SHA preimage/collision security is irrelevant because the required input 0 is public. This is a theorem about explicitly PUBLIC RESIDUAL-FACTORED gates, NOT all public hash/SHA witness encryptions. An alleged obfuscated public program that prevents extracting/evaluating G(C,0) is outside this model and requires a separately instantiated, full-public secure construction; an ordinary inlined public script is not an obfuscation proof.
+
+The executed toy has constraints a XOR b=1, c=a*b, Booleanity, with distinct accepted inputs (0,1,0) and (1,0,0), and SHA256 G over typed encodings of the residuals. Both valid inputs recover the same synthetic 32-byte capability. Yet 64/64 independent public capsules are opened early by computing the mask on the zero tuple, without satisfying the toy relation. This is a functional attack fixture, not a hash attack.
+
+## Repairs attempted, with explicit boundaries
+A. Bind G to a full witness-specific SHA transcript T(w): G(C,r,T(w)). Builder may freeze E against T(w0), but a different authentic witness w1 generally has T(w1)!=T(w0) and cannot obtain the SAME frozen capability. The checker validates two different satisfying toy transcripts and failure of the alternate opening; future authenticated work is unknown at Build. This repair fails all-witness correctness, not merely performance.
+
+B. Normalize transcript T(w) to a fixed public ancestor/claim-prefix T0 so all qualified witnesses have the same mask. Then G(C,0,T0) is directly evaluable by an adversary without a second source history. The checker validates both all-witness convergence and early public recovery. Replacing the zero residual by any other publicly known acceptance invariant yields the same extraction.
+
+C. Use private fresh salt s hidden by Build to prevent direct G(C,0,s) evaluation. Ordinary source evidence generated AFTER Build contains no established way to recover s. A future watcher cannot compute a protected pad from the ORIGINAL source without a new source-to-secret compiler. Publishing s restores the attack. The checker verifies an incorrect public salt fails decryption; this is NOT a proof of all possible private-salt encodings being impossible.
+
+D. Entangle SHA internal states with a globally consistent witness input in a nonfactorized public representation. This is the ONLY possible repair direction identified here, but NOT implemented. R205 public garbled gate labels admit mixed-occurrence FALSE-instance attacks. Private labels need a real source certificate issuer, and future transcript-bound garbling fails every-witness convergence. R207 explicit polynomial coefficients reveal their constant coset under Gaussian elimination. Do not claim this note proves every hash-only or nonblackbox construction impossible.
+
+## Proof model and exact next missing interface
+Honest Build/Open must run in classical PPT, with arbitrary QPT adversaries and explicit QROM if used. Their view includes native VK/M, related capsules, auxiliary quantum advice independent of honest secret coins, malicious source-selected and retained coins, checking/public keys, future selective openings, real SHA/AuxPoW provenance, Bitcoin anchor/history, and N-of-N malicious setup. Full-public FALSE security and hard-TRUE unauthorized recovery or accepted native forgery must reduce to ACTUAL ORIGINAL qualifying evidence or independent PQ hash/native break. The present counterexample is classical and requires no cryptographic assumption, and its toy constraints are not genuine original evidence.
+
+Need a genuinely instantiated hash/SHA/AuxPoW-dependent classical-PPT leaf:
+    Encap_R3(x_W; coins) -> (C,K)
+    Decap_R3(C,w)=SAME hidden K for every authentic R3(x_W,w)=1,
+    arbitrary QPT unauthorized final-key/accepted-native-forgery
+      -> an ORIGINAL R3 qualifying source witness OR independent justified PQ break.
+No online signer/issuer, independent hash puzzle, source-retained-label pair or on-chain verifier may substitute. The R211 OR wrapper cannot supply this missing leaf. No optimization or routine report; automation remains enabled.

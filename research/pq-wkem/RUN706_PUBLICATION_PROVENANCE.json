@@ -1,0 +1,10 @@
+{
+  "run": 706,
+  "base_head": "0919b22fd91c973e5088e1ff61b53da11f856493",
+  "status": "independent proved spectral-source acceptance component, NOT complete WKEM",
+  "extended_python_assertions": 1426,
+  "compact_js_assertions": 39370,
+  "full_extended_local_only": true,
+  "hard_true_key_only_extraction": false,
+  "scope": "research/pq-wkem only"
+}

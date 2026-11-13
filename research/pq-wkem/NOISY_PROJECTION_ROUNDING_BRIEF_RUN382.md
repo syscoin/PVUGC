@@ -1,0 +1,23 @@
+# Run 382 — additive noise and rounding still permit a false ORIGINAL preimage to release the capability
+
+Starting live PR: syscoin/PVUGC#1, branch research/pq-wkem-validation-20260918, head 39ec6bda791a72f9915b73f989719860947b22c4; open/draft/unmerged. Last substantive ordinary comment 6067040320. Exact scoped dependencies: Run 381 note blob 7d616ae34d0ec60c76e76749841bad75d421f931; Run 380 blob 99b96e918d93dfce2df8d3915e33a18933b9e7bb; Run 259 blob c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2.
+
+## Constructive candidate and exact attack
+
+A natural repair for Run 381's bare field-linear projection adds bounded noise to its public projection and uses nearest-codepoint rounding. Work with ORIGINAL relation R_A(x,w) iff Aw=x modulo q and w belongs to a publicly bounded set W. For each protected key bit K_j, classical setup samples h_j and bounded e_j, publishes p_j=A^T h_j+e_j and C_j=Delta*K_j+<h_j,x> modulo q. The public release evaluator computes nearest-codepoint decoding of C_j-<p_j,w>. Every honest w with Aw=x recovers the SAME K_j if |<e_j,w>| is inside its decoding margin.
+
+The SOURCE-GAP FAILURE is exact. Choose q=257, Delta=128, A=(1,1), W={-1,0,1}^2, with each e_j in {-1,0,1}^2 and arbitrary h_j in F257. For x=3, no ORIGINAL witness exists: every sum of allowed coordinates lies in [-2,2]. Yet z=(3,0) publicly satisfies Az=3 and is not an ORIGINAL witness. The attacker computes D_j=C_j-3*p_{j1}=128*K_j-3*e_{j1} modulo 257. Since |3*e_{j1}|<=3 while the codewords have cyclic distance 128, publicly rounding D_j reveals each K_j EXACTLY with probability one, over every honest setup error and h. It recovers any-length key bitwise, without knowing setup secrets, a valid ORIGINAL representation, or any proof.
+
+All valid ORIGINAL witnesses for x=0,1,2 also decode correctly, with respectively 3,2,1 witness choices. Their error size is at most 2. Thus perfect all-witness same-capability correctness plus independently honest LWE-shaped additive noise does not enforce ORIGINAL boundedness. The theorem is restricted to this exact noisy-projection/rounding interface and this counterexample; it is NOT a general impossibility for LWE, SPHF, nonlinear local mixing, or secure obfuscation.
+
+General scoped test: whenever an efficiently computed invalid z satisfies Az=x and its projection error remains strictly less than half the cyclic codeword separation, nearest-codepoint release accepts it regardless of ORIGINAL boundedness. Making noise larger may block some long preimages but needs its own full-public-output correctness and QPT hiding proof.
+
+## Attack taxonomy, source binding, and limitations
+
+(1) The local release seam is bypassed using invalid z directly; (2) global gauge alignment unnecessary; (3) distributions of local gates do not prevent deterministic decoding; (4) one capsule already breaks security, so no multi-view cancellation needed; (5) evaluation is entirely public and noninteractive; (6) the attack holds for HONEST independent h and bounded noise and does not need malicious retained seeds; (7) claim/UTXO/branch binding does not stop recovery for the SAME bound claim; (8) vk correlated with K may confirm recovery but is not needed; (9) attack is deterministic classical PPT, hence a QPT break for THIS toy release, with no quantum-only claim.
+
+Run 259 gives accepted COMPLETE representation -> ORIGINAL witness or specified SIS break. This attack's z is expressly not ORIGINAL-accepted; native authorization or K recovery does not supply any Run-259 representation. No inference about arbitrary-QPT ORIGINAL extraction follows.
+
+The exact executed checker exhausts 257 h choices, 9 error pairs, both key bits, all honest ORIGINAL witnesses for x=0,1,2 and false x=3. Published compact run: 69,392 assertions PASS, 27,756 honest checks, 4,626 false unauthorized key recoveries, Python syntax PASS, two byte-identical executions. A separate longer local checker confirms recovery of a 256-bit toy key. These finite toy checks do not prove a standard LWE assumption, 128-bit security, an SLH-DSA endpoint or a practical WKEM.
+
+Handoff: source-bound release must enforce ORIGINAL admissibility at the exact decryption frontier, not rely on approximate/rounded norm discrimination. Both false-instance complete-public-output QPT hiding and pre-release signature/key recovery -> accepted ORIGINAL source (or independent QPT break) remain UNPROVED; so do malicious N-of-N setup/erasure, abort and related-capsule composition, concrete cost, and conditional Bitcoin PQ verification. Production unchanged; PR draft/unmerged; stopping condition unmet.

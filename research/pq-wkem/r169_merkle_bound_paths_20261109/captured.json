@@ -1,0 +1,12 @@
+{
+  "checks": 13195,
+  "cross_root_splice_rejections": 636,
+  "distinct_valid_source_terminal_hashes": 9,
+  "honest_merkle_transcripts": 638,
+  "max_merkle_depth": 4,
+  "mutated_leaf_rejections": 636,
+  "security_claim": "NONE: Merkle consistency is conditional on collision resistance; release compiler still absent",
+  "single_frozen_pad_successes": 1,
+  "source_authenticity": "static toy PoW only, NOT best chain",
+  "toy_source_valid_work_certificates": 9
+}

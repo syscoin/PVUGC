@@ -1,0 +1,37 @@
+{
+  "general_GL2": {
+    "all_recovered_key_matrix": true,
+    "fixtures": 500,
+    "max_sampling_tries": 2,
+    "solution_dimensions": {
+      "1": 500
+    }
+  },
+  "hidden_global_conjugation": {
+    "all_recovered_key_matrix": true,
+    "attack_used_only_canonical_A_T": true,
+    "fixtures": 300,
+    "max_sampling_tries": 2,
+    "solution_dimensions": {
+      "1": 300
+    }
+  },
+  "notes": [
+    "These are finite-algebra checks of the proved intertwiner identity.",
+    "They are not cryptographic security experiments.",
+    "The attack theorem assumes a public canonical targeted branching representation and a true instance."
+  ],
+  "permutation_state_relabeling": {
+    "all_sampled_solutions_recovered_same_key_permutation": true,
+    "fixtures": 200,
+    "invertible_solutions_sampled": 1600,
+    "linearization_field": 101,
+    "max_sampling_tries": 2,
+    "solution_dimensions": {
+      "2": 196,
+      "3": 2,
+      "5": 2
+    }
+  },
+  "status": "PASS"
+}

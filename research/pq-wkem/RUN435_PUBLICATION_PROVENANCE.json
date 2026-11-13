@@ -1,0 +1,17 @@
+{
+  "run": 435,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "480b064bdd32114da038c1459418917817e62842",
+  "exact_run434_note_blob": "1274a94a26350c4719b7eeec0d9e2655b5a7c44c",
+  "latest_substantive_comment": 6067040320,
+  "compact_checker_assertions": 1047,
+  "extended_local_checker_assertions": 1640,
+  "exact_checker_node": "node research/pq-wkem/run435_compact_check.js",
+  "local_source_sha256": "f2f83dcb93c1cdeb7cd52464079eb40054f97d9bb246846c18559dd2dd1b46c1",
+  "local_output_sha256": "115b427f0af0e17d800146854b0b7427d5fe2332e1d11ec9917da3c23bb8ab05",
+  "positive_QPT_security": false,
+  "practical_PQ_WKEM": false,
+  "production_unchanged": true
+}

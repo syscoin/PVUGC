@@ -1,0 +1,16 @@
+{
+  "id": "MINK-OR-PSEUDOWITNESS-R28-JS",
+  "checks": 3268,
+  "pass": true,
+  "q": 65537,
+  "Delta": 32768,
+  "eta": 1,
+  "clauses": 24,
+  "variables": 20,
+  "rows": 74,
+  "pseudo_l1": 9,
+  "nonzero": 9,
+  "g_witnesses": 5,
+  "recovered_without_witness": 512,
+  "limitation": "degree-zero Boolean quotient only; NOT generic NP security or QPT construction"
+}

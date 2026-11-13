@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "assertions": 3189,
+  "toy_seed_bits": 5,
+  "toy_output_bits": 20,
+  "difference_set_size": 497,
+  "opposite_opening_pairs": 1024,
+  "real_proper_K3_rounds": 160,
+  "simulated_adaptive_false_K4_rounds": 160,
+  "false_K4_colorings": 81,
+  "max_proper_edges": 5,
+  "log2_K4_success_256": -67.336808,
+  "warning": "Functional arithmetic toy only; no QPT PRG/SLH/LWE/ORIGINAL-witness theorem"
+}

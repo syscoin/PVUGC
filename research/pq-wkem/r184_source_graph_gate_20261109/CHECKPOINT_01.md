@@ -1,0 +1,13 @@
+# R184 — Source-activated graph-path hash-share release (SAGP): intermediate
+
+Status: active construction/repair hypothesis, NOT a secure WKEM, breakthrough or production proposal. Starting syscoin/PVUGC PR #1 open/draft, branch research/pq-wkem-validation-20260918, observed head 2498e00bb9f1ce2451e0c5ba648fc60e7d6d2a9c. Read exact R183 and R182 RESEARCH.md plus the latest substantive R176/R177 comments. No external web/literature or non-PVUGC write.
+
+Objective: test whether graph-path XOR secret sharing can give one common precommitted cancellation capability for any of the three ORIGINAL bridge challenge families, with hash-authenticated source evidence activating path tokens, without future-value enumeration or an online issuer.
+
+Let G=(V,E) be a source-verifier graph. Setup chooses uniform lambda-bit node potentials s_v. For each allowed directed edge e=(u,v), assign t_e=s_u XOR s_v. Publish a single E=K XOR s_start XOR s_terminal. Any start-terminal path P recovers the SAME K because XOR_e in P t_e=s_start XOR s_terminal. This is a concrete and exact functional identity. It is NOT security: if all t_e are public, a public path opens K regardless of the original source; if t_e remain hidden, a future public ORIGINAL witness must independently supply the precise setup-chosen t_e, which actual SHA/AuxPoW evidence does not currently do.
+
+Three attempted repairs to test rather than assume: (1) hash-lock per-edge tokens to future source certificates, explicitly checking secret retention and forgery; (2) use a canonical Merkle root's top-node preimage shared by all inclusion proofs as a hidden common token, checking setup timing/public source access; (3) fold source-verifier state into polynomial graph width, checking false paths and complete-state explosion. Include activated Bitcoin wtxid, source-context binding, same-child multiple parent work, fork qualification, PoB absence and three-branch OR. These regression fixtures are synthetic only.
+
+The exact missing source-token operation is SourceToken(C_edge, w_ORIGINAL)=t_e for a precisely source-authenticated activated edge, with all valid witnessed paths returning the same frozen native capability, and arbitrary unauthorized QPT recovery extracting FULL ORIGINAL evidence or an independent hash/native break. The graph telescoping identity must not be reported as a WE solution, since making t_e available source-conditionally is the cryptographic problem.
+
+No checker or QPT simulation has been executed as of this intermediate checkpoint.

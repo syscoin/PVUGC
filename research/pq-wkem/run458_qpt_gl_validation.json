@@ -1,0 +1,56 @@
+{
+  "fixtures": [
+    {
+      "candidate_count": 2048,
+      "ell": 10,
+      "n": 24,
+      "observed_predictor_success": 0.747678,
+      "oracle_calls": 24552,
+      "public_commitment_matches": 1,
+      "quantum_advice": "none",
+      "secret_in_list": true,
+      "seed": 45801,
+      "synthetic_distinguisher_correct_probability": "1-1/4"
+    },
+    {
+      "candidate_count": 2048,
+      "ell": 10,
+      "n": 24,
+      "observed_predictor_success": 0.752199,
+      "oracle_calls": 24552,
+      "public_commitment_matches": 1,
+      "quantum_advice": "none",
+      "secret_in_list": true,
+      "seed": 45802,
+      "synthetic_distinguisher_correct_probability": "1-1/4"
+    },
+    {
+      "candidate_count": 8190,
+      "ell": 12,
+      "n": 24,
+      "observed_predictor_success": 0.749318,
+      "oracle_calls": 98280,
+      "public_commitment_matches": 1,
+      "quantum_advice": "none",
+      "secret_in_list": true,
+      "seed": 45803,
+      "synthetic_distinguisher_correct_probability": "1-1/4"
+    },
+    {
+      "candidate_count": 2048,
+      "ell": 10,
+      "n": 24,
+      "observed_predictor_success": null,
+      "oracle_calls": 24552,
+      "public_commitment_matches": 0,
+      "quantum_advice": "none",
+      "secret_in_list": false,
+      "seed": 45804,
+      "synthetic_distinguisher_correct_probability": "1/2"
+    }
+  ],
+  "run": 458,
+  "security_claim": "NONE",
+  "status": "PASS",
+  "test": "re-runnable measured predictor + pairwise-independent Walsh list"
+}

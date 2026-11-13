@@ -1,0 +1,53 @@
+{
+  "NOT_IMPLEMENTED": [
+    "original BTC/SYS source",
+    "actual ZK",
+    "QPT proof",
+    "native signatures",
+    "cryptographic conditional release"
+  ],
+  "assertions": 308,
+  "claims": "functional transcript nonconvergence + public normalizer leak; random-oracle target search is only a classical bound",
+  "distinct_source_pairs": 32,
+  "grind_bits": 12,
+  "grind_empirical_success_fraction": 0.8,
+  "grind_expected_success_probability_in_RO": 0.632165,
+  "grind_first_success_queries": [
+    953,
+    null,
+    1259,
+    2451,
+    1572,
+    1649,
+    1819,
+    3973,
+    null,
+    null,
+    1812,
+    4037,
+    954,
+    null,
+    2008,
+    2319,
+    1864,
+    152,
+    3801,
+    1968
+  ],
+  "grind_success_count": 16,
+  "grind_trials": 20,
+  "groups": {
+    "another_valid_proof_does_not_open_same_signature": 32,
+    "designated_proof_opens": 32,
+    "different_valid_proofs_different_bytes": 32,
+    "distinct_synthetic_qualifying_inputs": 32,
+    "fake_source_public_normalizer_opens": 32,
+    "fake_source_rejected_by_honest_verifier": 32,
+    "fixed_target_grind_classically_costly_or_unfound": 20,
+    "honest_normalized_proof_opens": 32,
+    "same_valid_witness_distinct_prover_randomness": 32,
+    "same_witness_different_prover_nonce_fails": 32
+  },
+  "max_classical_queries_per_trial": 4096,
+  "run": "R220_FS_SOURCE_GATE_20261111"
+}

@@ -1,0 +1,29 @@
+{
+  "files": {
+    "RESEARCH.md": {
+      "bytes": 8748,
+      "sha256": "868440eab766563e5851693321615d45da32568ef87bce1374c3e76d58c15dd0"
+    },
+    "captured.json": {
+      "bytes": 526,
+      "sha256": "8df787cfb5680d72ad9a4e2a6cc0de88da1912731a806767acff323ca9a32a9c"
+    },
+    "checker.py": {
+      "bytes": 5072,
+      "sha256": "4dd5b694c87c8e928e55e1ff024623597fc7b8f3d241678a563d8a2776bc5133"
+    },
+    "collision_captured.json": {
+      "bytes": 231,
+      "sha256": "188023b395007237a8fc2b85656496539d14a2c091bcb342f53b64e3d1cf5dce"
+    },
+    "collision_regression.py": {
+      "bytes": 1592,
+      "sha256": "c4cb9a86ab452ba18dcef8f61c092714980c17e4bdb2a10bd38f4558fcb59e19"
+    }
+  },
+  "pr": 1,
+  "repository": "syscoin/PVUGC",
+  "run": "r174_merkle_consistency_gate_20261109",
+  "scope": "research/pq-wkem",
+  "starting_head": "44032a05e4362e5831a24084c6154c3266c58988"
+}

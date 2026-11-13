@@ -1,0 +1,69 @@
+{
+  "checks": 17,
+  "claims_not_tested": [
+    "QROM theorem proofs",
+    "Jin tiny-WE quantum security",
+    "standard-model compilation of a QROM verifier",
+    "practical WKEM security"
+  ],
+  "qwise_description_exposure": [
+    {
+      "all_function_count": 27,
+      "family_size": 9,
+      "field_prime": 3,
+      "full_description_membership_advantage": "2/3",
+      "independence_degree": 2,
+      "quantum_query_bound_q": 1,
+      "two_q_plus_one_evaluation_test_advantage": "2/3"
+    },
+    {
+      "all_function_count": 3125,
+      "family_size": 25,
+      "field_prime": 5,
+      "full_description_membership_advantage": "124/125",
+      "independence_degree": 2,
+      "quantum_query_bound_q": 1,
+      "two_q_plus_one_evaluation_test_advantage": "4/5"
+    },
+    {
+      "all_function_count": 3125,
+      "family_size": 625,
+      "field_prime": 5,
+      "full_description_membership_advantage": "4/5",
+      "independence_degree": 4,
+      "quantum_query_bound_q": 2,
+      "two_q_plus_one_evaluation_test_advantage": "4/5"
+    },
+    {
+      "all_function_count": 823543,
+      "family_size": 49,
+      "field_prime": 7,
+      "full_description_membership_advantage": "16806/16807",
+      "independence_degree": 2,
+      "quantum_query_bound_q": 1,
+      "two_q_plus_one_evaluation_test_advantage": "6/7"
+    }
+  ],
+  "run": 204,
+  "status": "finite algebra/probability checks only",
+  "straight_line_composition_examples": [
+    {
+      "key_recovery_success": "3/4",
+      "knowledge_extraction_error": "1/32",
+      "original_witness_success_lower_bound": "21/32",
+      "tiny_extractor_loss": "1/16"
+    },
+    {
+      "key_recovery_success": "9/10",
+      "knowledge_extraction_error": "1/1000",
+      "original_witness_success_lower_bound": "889/1000",
+      "tiny_extractor_loss": "1/100"
+    },
+    {
+      "key_recovery_success": "1/2",
+      "knowledge_extraction_error": "1/8",
+      "original_witness_success_lower_bound": "1/4",
+      "tiny_extractor_loss": "1/8"
+    }
+  ]
+}

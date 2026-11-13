@@ -1,0 +1,21 @@
+{
+  "run": 684,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "046d38b90859150ccdefd22ba36eeca222863c98",
+  "source_files": {
+    "RUN683_PUBLISHED_SCOPE.md": "e99e766b5d16768a060c9eb4dae593b351b0a47c",
+    "RUN114": "f5ff350ee6a3105b7f9c2b9bbf88b551cdf390e9",
+    "RUN115": "cf2ec9575948e16b58acbd870208686759f14e44",
+    "RUN259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  },
+  "exact_checker": "run684_selective_opening_hps_check.py",
+  "validation": "run684_selective_opening_hps_validation.json",
+  "compiled": true,
+  "repeat_byte_identical": true,
+  "assertions": 60282,
+  "expanded_local_only_note": "RUN684_SELECTIVE_OPENING_CROSS_STATEMENT_HPS.md",
+  "full_scope": "restricted group SPHF, classical attack; not a PQ WKEM",
+  "literature": "BBDQ PKC 2018 bibliographic/abstract only; no QPT full-proof audit"
+}

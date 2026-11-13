@@ -1,0 +1,22 @@
+{
+  "run": 429,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "6435c709fcb96bec662ea4c4f833f7d433014eae",
+  "starting_tree": "785815aa48edc6fa133a085473be854855eaf49d",
+  "exact_read_blobs": {
+    "RUN428_SEEDED_RELEASE_WE_LOWER_BOUND": "a82a5a7efbb852462894fc62ac1d910df0e636f2",
+    "RUN428_PUBLICATION_PROVENANCE": "b515225f7fa8172bd5c8b4e95b080af495ee6557",
+    "RUN421_IO_SOUNDNESS_COMPACT": "ef3c8dbecf476232e267464ba94c4b81eddb3b22"
+  },
+  "checker": "run429_compact_check.js",
+  "checker_assertions": 19600,
+  "checker_oracles": 35,
+  "checker_exact_stdout": "run429_compact_validation.json",
+  "independent_local_python_assertions": 19695,
+  "independent_local_ed25519_signatures": 8,
+  "qpt_scope": "coherent Simon oracle attack; no public PPT key-hiding compiler supplied",
+  "claimed_complete_WKEM": false,
+  "production_changed": false
+}

@@ -1,0 +1,15 @@
+{
+  "assertions": 769,
+  "counts": {
+    "false_instance_release_from_occurrence_mix": 128,
+    "honest_false_witness_no_release": 256,
+    "original_relation_exhaustively_false": 1,
+    "public_classical_labels_copyable": 128,
+    "public_context_does_not_restore_consistency": 128,
+    "static_row_fails_multi_transcript_context": 128
+  },
+  "run": "R227_SOURCE_INPUT_GARBLE",
+  "scope": "unconditional classical inconsistency of a SPECIFIED public-label hash-garbling family, NOT generic impossibility",
+  "security_tests": "none (no quantum adversary or real BTC/SYS source)",
+  "source_sha256": "6d585352b9fd31d589323caf1c0daea8f29f426349a16681e5bf377a955191a0"
+}

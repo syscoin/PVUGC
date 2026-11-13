@@ -1,0 +1,8 @@
+{
+  "all_queries_unsatisfying": true,
+  "assertions": 66,
+  "keys_recovered": 32,
+  "oracle_queries_per_case": 26,
+  "run": "R219-ORACLE-ONLY",
+  "scope": "ideal unrestricted raw evaluation interface; no original SHA/AuxPoW Build/Open"
+}

@@ -1,0 +1,28 @@
+{
+  "capsule_checks": 320,
+  "identity_checks": 320,
+  "independent_K_exact_control": {
+    "ell": 2,
+    "expected": "q^(-n*ell)=1/25",
+    "n": 1,
+    "probability": "25/625",
+    "q": 5,
+    "satisfying": 25,
+    "total": 625
+  },
+  "max_abs_sampled_noise_inner_product": 60774,
+  "norm_checks": 240,
+  "prefix_checks": 240,
+  "projection_checks": 120,
+  "rtlwe_transversality_control": {
+    "L": 4,
+    "interpretation": "same-direction preimage query fails the full-rank gate in WWW22 Assumption 4.1",
+    "q": 7,
+    "rank_same_direction_stack": 1,
+    "rank_transverse_stack": 2
+  },
+  "run": 93,
+  "scope": "algebraic/source-transfer checks only; no cryptographic hiding claim",
+  "seed": 202609250219,
+  "status": "PASS"
+}

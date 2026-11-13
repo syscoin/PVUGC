@@ -1,0 +1,40 @@
+# R169 — Merkle-bound repeated-read hash evaluator and terminal-correlation gap
+
+**Status:** source-consistency component proved conditionally on collision resistance and checked in small synthetic fixtures. **No generic-PPT hash-based witness-KEM, common-capability release, QPT full-public simulator, or actual Syscoin/BTC evidence verification.** The component is not a reportable security breakthrough.
+
+## Scope / continuity
+
+Run date 2026-11-09. Repository `syscoin/PVUGC` PR #1, branch `research/pq-wkem-validation-20260918`. Starting observed head `959b23f80d66b70a39189836e78a5f8b2f951796` open/draft/unmerged. Exact-version source `research/pq-wkem/r168_booleanity_source_gate_20261109/RESEARCH.md`, blob `071dcec5ccc827c91db6c356504652e11e9c90fb`, was read. Latest applicable ordinary PR comments after `2026-11-09T02:25:00Z` absent in the bounded query. R168 compact finite-field Booleanity gate is a functional condition, not a ciphertext compiler. This pass used no web/external literature, lattices/groups, unavailable issuer or privileged helper.
+
+## Named candidate MBVP: Merkle-bound verifier path
+
+Let `V_x` be the exact deterministic ORIGINAL verifier, `n` the length of the canonical bit encoding of the **complete** witness (including relevant authenticated claim, UTXO, child, parent, coinbase/Merkle linkage, ancestor, window/interval and any required tags). For arbitrary `w` the witness provider can compute a perfectly ordinary binary Merkle root `r=Merkle(w)` with collision-resistant domain-separated leaves `H('leaf', i, w_i)` and internal nodes `H('node',left,right)`, with deterministic padding and unambiguous length/statement context. The evaluator begins with `r` and verifies every read `(i,b,pi)` against the **same r**, before applying the actual verifier transition for that bit. This can be made polytime per read and requires no preenumeration of all globally consistent assignments. This is a concrete repaired replacement for the exponential *explicit state enumeration* on the consistency subtask, not an encrypted terminal capability.
+
+**Consistency lemma:** Suppose a PPT or QPT adversary outputs two classically encoded, different accepted openings `(i,0,pi0)` and `(i,1,pi1)` for one root r and one canonical context. Walk upward from their different leaf hashes and take the first position where two unequal child pairs produce the same parent hash. Either the different leaf hashes collide, or an internal compression/hash collision exists. Therefore two accepted contradictory reads reduce **straight-line** to a collision in the chosen domain-separated Merkle hash. No rewind or witness commitment trapdoor is required; the QPT adversary's final classical outputs suffice. This only proves binding, not concealing a secret or proving global Bitcoin chain membership. If a terminal trace has verified all queries that affected `V_x`, it defines a single consistent assignment to those cells; unqueried cells may be completed arbitrarily if truly unused, so a fully accepted trace implies a genuine witness for *that static predicate*.
+
+The Merkle root is chosen by the source prover after setup, not the preauthorizing builder. Merkle binding stops repeated-bit splice but the root is publicly reproducible, and anyone can submit arbitrary false evidence rooted in another tree. Full ORIGINAL admissibility still needs the actual off-chain relation, including canonical chain and source temporal assumptions. A fake parent may meet a bare SHA PoW target but not canonical BTC membership.
+
+## Terminal common-capability failure
+
+Define an entirely public, incrementally hashed transcript `u_0=H('start',r)` and `u_{j+1}=H('step',u_j,j,i_j,b_j,pi_j)` for verified transitions. Distinct valid witness strings generally yield different terminal values `u(w)`, including distinct legitimate parent-work certificates for the same semantic child. Suppose Build chooses one protected K and publishes one fixed `D=K XOR H_pad(u(w_0))` for a particular accepted w0. Correct recovery by a different accepted w requires
+
+    H_pad(u(w)) = H_pad(u(w0)).
+
+For N distinct transcript digests and an independently random k-bit pad domain, the probability one such D opens for *all* N is `2^(-k(N-1))`. Thus simple hashing of fully source-consistent histories does **not** supply the SAME precommitted sigma for every valid ORIGINAL w. Letting Build generate a separate D per valid u returns to the exponential enumeration/independent-pad architecture. Defining a publicly computable `F(w)=K` on accepted traces without protected encoding puts K directly in a public validity circuit. Replacing the terminal digest by a fixed public constant for all accepted traces makes the pad public to any attacker. These arguments are restricted to this exact independent-pad/convergent-state normal form, not a generic impossibility of hash-based witness encryption.
+
+The source-specific part does not fix terminal convergence: semantic `OutcomeID` should group certificates with the same child; authenticated `WorkID` must distinguish their full parent/proof bytes. Folding terminal hashes by `OutcomeID` only may allow false/noncanonical work to inherit a real or synthetic child's key unless the actual full source predicate still constrains raw release. This remains an exact regression requirement.
+
+## Test implementation and reproducibility
+
+`checker.py` uses Python standard library SHA256 with separated leaf/node/transition/pad domains, a Merkle commitment for all witness bits, and a *synthetic static* parent-work predicate computing SHA256d. Over n=1..10 and up to 128 bitstrings per n, it checks correct authenticated rereads and rejects opposite-bit openings or attempts to paste an opening from a different root. It tests distinct toy parent-work certificates for one alternative child. Nine valid toy certificates produce nine distinct terminal hashes; a single fixed frozen 256-bit pad opens correctly on only the originally used certificate. All stated checks actually executed, not conceptual tests. Source/output hashes are recorded in `MANIFEST.json`.
+
+The synthetic source predicate accepts a SHA256d target for a stated claim/anchor/child/nonce, but is **not** authentic Bitcoin chain membership, verified AuxPoW coinbase, real Syscoin claims/tags, reorg handling, timestamp/height evidence or full canonical ORIGINAL source. The synthetic generator can mine its target privately. This checker is not a quantum hardness experiment. SHA-256 collision resistance at a 128-bit post-quantum target is not established by these toy tests; a generic quantum collision-search benchmark would favor >=384-bit Merkle outputs if this component were eventually employed, subject to independent parameter study **after** an actual end-to-end construction.
+
+## Exact unsolved public release interface
+
+    Build_hash(R_original,x, frozen_sigma) -> c                 [PPT, no witness]
+    Open_hash(c, w) = SAME frozen_sigma  for every R_original(x,w)=1.
+
+An arbitrary QPT adversary receiving the full public c, checking metadata, original relation, native VK, auxiliary data and related capsules who recovers sigma or forges the accepted native message must yield an ACTUAL ORIGINAL w (or an independently justified QPT hash break), not just a valid Merkle root or synthetic work transcript. Neither Merkle binding nor its hash trace provides such a K-correlated secret. It is premature to analyze byte-size or runtime optimizations of this restricted consistency component.
+
+**Next genuine construction experiment:** find and instantiate a *hash-only polynomial-build secret-bearing terminal correlation* that maps distinct Merkle-authenticated accepted traces to the same hidden K, with a reduction that cannot be shortcut by an invalid-source raw hash query. Do not define this mechanism as an ideal validity-gated oracle, selective program evaluator, disguised WE/iO, online source signer, or a many-witness table. Without an instantiated evaluator, this is a missing cryptographic algorithm, not proof polishing.

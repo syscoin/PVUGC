@@ -1,0 +1,1 @@
+{"status":"PASS","assertions":428,"scope":"exact mixed affine/NAND quotient, three distinct true witnesses and false view, affine extension rank","noise":"P(0000)=2/6; P(each singleton)=1/6"}

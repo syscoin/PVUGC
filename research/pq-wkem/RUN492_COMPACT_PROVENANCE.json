@@ -1,0 +1,21 @@
+{
+  "assertions": 10249,
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": "node run492_compact_selector_check.js",
+  "filenames": [
+    "RUN492_ENUMERABLE_FRONTIER_COMPACT.md",
+    "run492_compact_selector_check.js",
+    "run492_compact_selector_validation.json"
+  ],
+  "pr": 1,
+  "repeat_result": "byte-identical",
+  "repository": "syscoin/PVUGC",
+  "run": 492,
+  "scope": "conditional BPP barrier; no WKEM/QPT implementation",
+  "sha256": {
+    "RUN492_ENUMERABLE_FRONTIER_COMPACT.md": "55f363674b58c4e34ab419b2c66b44ca33ef3c2a0537cc6bbe225e03d91a12f2",
+    "run492_compact_selector_check.js": "495774169497004f6b5bac7eaed0796c150c6c8e9d78b30a99b84ed41799bd1d",
+    "run492_compact_selector_validation.json": "6b4c89fec808029ffc954e76f06df3c2a6b0dc8f58c3db8c2217f19d4e254b6b"
+  },
+  "start_sha": "2456c6c662f80b667a087f2d9b5128b7f67b7893"
+}

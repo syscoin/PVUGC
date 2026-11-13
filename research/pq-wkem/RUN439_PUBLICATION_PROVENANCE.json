@@ -1,0 +1,18 @@
+{
+  "run": 439,
+  "date": "2026-10-11",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "d45c05bafd1ffe8d0d4088c7026edf5d028473a5",
+  "starting_tree": "4fbdb6f02fb910f5de0c5f62c739f5973d56ee99",
+  "dependency_note": "research/pq-wkem/RUN438_ENDPOINT_PIN_ORBIT_COMPACT.md",
+  "dependency_blob": "143119e70be96ba9a80cc769dc283d9bafa81fb5",
+  "checker": "run439_compact_check.js",
+  "checks": 220,
+  "validation": "run439_compact_validation.json",
+  "status_claim": "exact finite colored-orbit theorem and structural source-bypass; no QPT security",
+  "classical_honest_model": true,
+  "QPT_adversary_allowed": true,
+  "production_changed": false
+}

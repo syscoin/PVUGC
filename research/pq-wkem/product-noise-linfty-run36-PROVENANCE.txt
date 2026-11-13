@@ -1,0 +1,33 @@
+Run 36 provenance
+=================
+
+Starting verified PR head:
+959d810abecda85ae8849c98abb2b5b1d8bb0dcd
+
+Locally executed / captured bytes:
+PRODUCT_NOISE_LINFTY_BARRIER.md
+  SHA-256 53c06b218558b9b74f76e25bf46352470321673e02be633b812e24f00dc9b5e9
+product_noise_linfty_run36_check.py
+  SHA-256 b3cdb1515d7a2e98980732f5a0c0c9eddc6954e62ce9419f175c02f9afb36b68
+product-noise-linfty-run36.json
+  SHA-256 e07d5dfeace4817386c73a9facb375de813a12bb9f48da0501c837b35b13c2d2
+
+The local checker was executed twice after the final finite-even-modulus change;
+the two JSON outputs were byte-identical with the SHA-256 above.
+
+Remote Git blobs after publication:
+PRODUCT_NOISE_LINFTY_BARRIER.md
+  a90374ad0339534b3d8ae37e5ff1933808c16bf3
+product_noise_linfty_run36_check.py
+  f24adb0aa51674b96c17ea5935936c052a83c731
+product-noise-linfty-run36.json
+  135bdcbce8514990a2a95900994a3cee3d2ed432
+
+The proof's remote Git blob equals the Git blob of the locally written proof bytes.
+The connector-published checker and JSON are semantically the same deterministic
+checker/result but are not claimed byte-identical to the local executed/captured
+files: the checker was manually normalized during publication (dead-code-only
+source differences), and the JSON was reserialized for the connector call.
+Accordingly no false remote-byte-identity claim is made.
+
+No production file was modified. No external literature or web search was used.

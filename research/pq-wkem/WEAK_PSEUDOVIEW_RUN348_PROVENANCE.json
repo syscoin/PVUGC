@@ -1,0 +1,48 @@
+{
+  "actual_connected_reads": [
+    "get_pr_info",
+    "fetch_pr_comments",
+    "fetch_commit (Run347)",
+    "fetch_file (Run347 note/provenance/checker; Run259; Run115)"
+  ],
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "assertions": 53694,
+    "byte_identical": true,
+    "model": "finite exact distributions and ideal phase estimation; no actual quantum execution",
+    "py_compile": true,
+    "runs": 2
+  },
+  "created_utc": "2026-10-07T19:55:04.021272+00:00",
+  "exact_dependency_blobs": {
+    "Run115": "cf2ec9575948e16b58acbd870208686759f14e44",
+    "Run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "Run347_checker": "c08530cb30536913717a37cc9017509d00fe95e0",
+    "Run347_note": "a651b129680d3d71d4b3006dc7294944041b058b",
+    "Run347_provenance": "c3b72a4ed10ad2ec41ce573908222bb333fae6e8"
+  },
+  "latest_substantive_comment": 5945825660,
+  "nonclaims": [
+    "no actual LWE/SIS break",
+    "no claim a biased public sampler exists in the latest proposal",
+    "no completed PQ witness KEM",
+    "no arbitrary-QPT security theorem",
+    "no malicious setup theorem",
+    "no production changes"
+  ],
+  "pr": 1,
+  "primary_literature": {
+    "arxiv": "quant-ph/0005055v1",
+    "full_text": "https://arxiv.org/html/quant-ph/0005055v1",
+    "theorem": "Theorem 12 section 4, amplitude estimation"
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 348,
+  "scope": "conditional information-theoretic/PPT/QPT falsifier for multi-view weak bias, not evidence the actual lattice local mixer leaks",
+  "start_pr_state": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  },
+  "starting_sha": "28038e42207d31ca3ac669d63bfdd1b78d9a6ca4"
+}

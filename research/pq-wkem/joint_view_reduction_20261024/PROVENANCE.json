@@ -1,0 +1,62 @@
+{
+  "automation_observed": {
+    "changed": false,
+    "enabled": true,
+    "id": "6ab0ca28f9908191bddd622d23ed0eb7",
+    "schedule": "Monday 08:00 America/Vancouver, next 2026-10-26",
+    "scheduled_recovery_claimed": false
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "byte_identical": true,
+  "checkpoint": "joint-view-reduction-20261024",
+  "classification": "SECURITY_CORRECTION_NOT_POSITIVE_CONSTRUCTION",
+  "commands": [
+    "python -m py_compile check.py",
+    "python check.py > validation.json",
+    "python check.py > validation.repeat.json",
+    "cmp validation.json validation.repeat.json"
+  ],
+  "dependency_archive_git_blob": "445ed01b984f75857aec8f84132f240f24bdab3c",
+  "dependency_checker_sha256": "b227773d7fe65e241bd808a54cf5a91192140e561f67c3b96953da9023a4a464",
+  "errors": [
+    {
+      "message": "INVALID_ARGUMENT: Error code: INVALID_ARGUMENT; Error: HTTPError: 400: GitHub Fetch only accepts UTF-8 text. (Response: None)",
+      "request_id": null,
+      "stage": "connected binary read"
+    },
+    {
+      "message": "AttributeError: module '__main__' has no attribute 'sl2'",
+      "resolution": "helper restored; both final executions passed",
+      "stage": "first standalone development integration"
+    }
+  ],
+  "execution_kind": "interactive; no scheduled run ID supplied",
+  "files": [
+    {
+      "bytes": 17387,
+      "git_blob_sha1": "bc2f71b4b2969132c4eb3c36ff93810de5f2bc21",
+      "path": "README.md",
+      "sha256": "a63725d8c737b50e23ae07b5abdac1f0f1802a433025fbe799e7159799dec99f"
+    },
+    {
+      "bytes": 16137,
+      "git_blob_sha1": "3cf89c3d32d068a90bef945df8630fbf3f87e4a5",
+      "path": "check.py",
+      "sha256": "fd15772d2c61a8f8162693b83db71c4629c1b2d4149e888700546c80b2ca2b29"
+    },
+    {
+      "bytes": 7296,
+      "git_blob_sha1": "31a81564b76349368465a425c0bb190a683338d5",
+      "path": "validation.json",
+      "sha256": "10d0ea28eb88e85566074e08d8228247730589acc8948b2dde649d803f22d6bd"
+    }
+  ],
+  "final_executions": 2,
+  "latest_substantive_comment_read": 6379933178,
+  "pr": 1,
+  "publication_status_at_packaging": "not yet attempted",
+  "python": "3.13.5",
+  "recorded_at_utc": "2026-10-25T02:56:38.086482+00:00",
+  "repo": "syscoin/PVUGC",
+  "starting_sha": "fb1772abab1597cd7821623927b2fb318cb2fa9b"
+}

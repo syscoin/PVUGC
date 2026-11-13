@@ -1,0 +1,27 @@
+{
+  "run": 559,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "18073a44fa92ac789140c439b3002e8e6c6eae4f",
+  "starting_tree": "8d6fca541d0bc5ffd68b11346b607250ccc03847",
+  "date": "2026-10-16",
+  "checker": "run559_public_binding_check.js",
+  "validation": {
+    "run": 559,
+    "status": "PASS",
+    "assertions_passed": 67000,
+    "binding_support_fixtures": 8100,
+    "positive_entropy_gap_fixtures": 6166,
+    "two_witness_true_instances": 4572,
+    "binding_bound": "Pr[Q(Z,Y')=1] <= d*2^-h",
+    "full_QPT_WKEM_security": false,
+    "toy_one_wayness": false
+  },
+  "checker_executed_in": "connected V8 code mode before publication",
+  "checker_reexecuted_identical": true,
+  "primary_source": "https://ieee-focs.org/FOCS-2017-Papers/3464a600.pdf",
+  "primary_scope": "FOCS 2017 p.601 section I.A, not full paper proof audit",
+  "QPT_security_proved": false,
+  "production_unchanged": true
+}

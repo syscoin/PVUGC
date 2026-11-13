@@ -1,0 +1,37 @@
+{
+  "run": 647,
+  "date": "2026-10-19",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "93937ee77f20540fbd23c2ce851cc99c8e016f5e",
+  "publication_note_blob": "d1203d5f25b3b60be419add99d5915cefb573532",
+  "publication_note_scope": "condensed version of the expanded local proof; expanded local note remains in research archive only",
+  "local_expanded_note_sha256": "f50756e010c623b7ea8037879e47ba6af4c4176228ae71238711c4aa0be03a1b",
+  "exact_executed_checker_blob": "d2a308ccdaab044bffabb6e3ef423acca0f22fe2",
+  "exact_captured_stdout_blob": "7048931b29c570ed1af3835e4b125b5432830292",
+  "exact_executed_checker_sha256": "bda22ad4fff7a9d0935c26b54cb402a1a88e8994fddd57adeaf7bb8de4d50db0",
+  "exact_captured_stdout_sha256": "e81917bf466d673edf2aed4c3af814c84d182d7e5746c9548f93c3ec832545a0",
+  "command": "python -m py_compile run647_simon_local_mixer_check.py && python run647_simon_local_mixer_check.py",
+  "repetitions": 2,
+  "repeated_stdout_byte_identical": true,
+  "assertions": 46629,
+  "finite_fixtures": 246,
+  "simulated_quantum_recovery_trials": 1476,
+  "reversible_gate_operations_generated": 54472,
+  "source_file_blobs": {
+    "GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "CLZ_APPLICABILITY_20261008.md": "c19d9d9cd515140e3ce62eac960cd548c0add622",
+    "RUN593_COMPACT_NONCOMMUTATIVE_AADP.md": "29b9168bfff6043810284cd1960400579f224e31"
+  },
+  "literature_access": "Primary Simon and BBHT metadata, ePrint 2024/006 abstract; no full-paper proof/errata audit",
+  "attack_scope": "hidden XOR-period two-to-one release frontiers with public coherent evaluation, including nonlinear reversible output-only mixing",
+  "not_claimed": [
+    "generic RIO or CLZ break",
+    "general nonlinear input-mixer break",
+    "Gaussian SOURCE attack",
+    "implemented Bitcoin native SLH or on-chain protocol",
+    "complete witness-KEM",
+    "practical 128-bit QPT parameters"
+  ]
+}

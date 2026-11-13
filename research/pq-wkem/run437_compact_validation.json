@@ -1,0 +1,1 @@
+{"run":437,"status":"PASS","assertions":1533,"group":"S3","forest_support":36,"triangle_support":{"identity":36,"swap":108,"cycle":72},"two_chord_support":{"same":108,"different":216},"pairwise_disjoint":true,"claim":"restricted information-theoretic falsification; no PQ WKEM"}

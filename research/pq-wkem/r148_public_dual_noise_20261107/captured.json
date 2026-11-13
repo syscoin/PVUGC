@@ -1,0 +1,53 @@
+{
+  "M_shape": [
+    6,
+    3
+  ],
+  "checks": "PASS",
+  "constraint_rank": 4,
+  "modular_demo": {
+    "K": 1,
+    "delta": 64,
+    "eta_range": [
+      -1,
+      1
+    ],
+    "notes": "only a 2-variable easy TRUE instance; not a hard-TRUE or QPT result",
+    "q": 65521
+  },
+  "public_min_l1": "2",
+  "public_min_l1_dual": [
+    "1",
+    "0",
+    "0",
+    "0",
+    "-1",
+    "0"
+  ],
+  "public_min_var_dual": [
+    "1",
+    "1/4",
+    "1/4",
+    "1/4",
+    "-1/2",
+    "1/4"
+  ],
+  "public_min_var_norm_sq": "3/2",
+  "smallest_honest_l1": "3",
+  "smallest_honest_l2_sq": "3",
+  "tested_modular_tapes": 2048,
+  "valid_assignments": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ]
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "run": 515,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "bdcdbb01693ea63f0321761c5ee214d1f4f36978",
+  "starting_tree": "12a859a458fe6458c0d596944a52b8a09560d000",
+  "date_utc": "2026-10-14",
+  "checker": "run515_camouflage_compact_check.js",
+  "validation": "run515_camouflage_compact_validation.json",
+  "execution": "exact JS source evaluated in connected execution environment before publication; PASS",
+  "comparison": "only research/pq-wkem additions; no production changes",
+  "scope": "finite ideal-permutation algebra, no cryptographic instantiation or QPT white-box claim",
+  "local_extended_archive": "PQ_WKEM_RUN515_COMMON_CAMOUFLAGE_CHECKPOINT.zip",
+  "publication": "verify returned Git tree/commit/blob bytes; provenance is not a success claim"
+}

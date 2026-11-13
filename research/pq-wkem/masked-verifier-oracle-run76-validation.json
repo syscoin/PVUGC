@@ -1,0 +1,93 @@
+{
+  "claim_scope": "finite semantic/combinatorial/numerical validation only; theorems are proved separately",
+  "explicit_accepting_cover_witness_extractions": 280,
+  "explicit_cover_total_tokens_in_controls": 2687,
+  "false_one_pad_complete_table_cases": 360,
+  "false_table_key_equality_checks": 1080,
+  "grover_hybrid_numeric_controls": 84,
+  "minimum_extraction_bound_slack": 0.0017741606372558751,
+  "minimum_hybrid_bound_slack": -1.1102230246251565e-16,
+  "parity_min_prefix_cover_rows": [
+    {
+      "accept_tokens": 1,
+      "n": 1,
+      "reject_tokens": 1
+    },
+    {
+      "accept_tokens": 2,
+      "n": 2,
+      "reject_tokens": 2
+    },
+    {
+      "accept_tokens": 4,
+      "n": 3,
+      "reject_tokens": 4
+    },
+    {
+      "accept_tokens": 8,
+      "n": 4,
+      "reject_tokens": 8
+    },
+    {
+      "accept_tokens": 16,
+      "n": 5,
+      "reject_tokens": 16
+    },
+    {
+      "accept_tokens": 32,
+      "n": 6,
+      "reject_tokens": 32
+    },
+    {
+      "accept_tokens": 64,
+      "n": 7,
+      "reject_tokens": 64
+    },
+    {
+      "accept_tokens": 128,
+      "n": 8,
+      "reject_tokens": 128
+    },
+    {
+      "accept_tokens": 256,
+      "n": 9,
+      "reject_tokens": 256
+    },
+    {
+      "accept_tokens": 512,
+      "n": 10,
+      "reject_tokens": 512
+    }
+  ],
+  "parity_resource_estimates": [
+    {
+      "bytes_at_32_per_token": "68719476736",
+      "log2_bytes_at_32_per_token": 36,
+      "n": 32,
+      "tokens_each_side": "2147483648"
+    },
+    {
+      "bytes_at_32_per_token": "295147905179352825856",
+      "log2_bytes_at_32_per_token": 68,
+      "n": 64,
+      "tokens_each_side": "9223372036854775808"
+    },
+    {
+      "bytes_at_32_per_token": "5444517870735015415413993718908291383296",
+      "log2_bytes_at_32_per_token": 132,
+      "n": 128,
+      "tokens_each_side": "170141183460469231731687303715884105728"
+    },
+    {
+      "bytes_at_32_per_token": "1852673427797059126777135760139006525652319754650249024631321344126610074238976",
+      "log2_bytes_at_32_per_token": 260,
+      "n": 256,
+      "tokens_each_side": "57896044618658097711785492504343953926634992332820282019728792003956564819968"
+    }
+  ],
+  "proper_parity_prefixes_checked_mixed": 2036,
+  "satisfying_witness_evaluations": 5081,
+  "seed": 760076001,
+  "status": "PASS",
+  "true_one_pad_cases": 420
+}

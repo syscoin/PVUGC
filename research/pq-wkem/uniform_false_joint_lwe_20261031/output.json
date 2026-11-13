@@ -1,0 +1,46 @@
+{
+  "candidate": "uniform-FALSE binary-ISIS joint LWE release",
+  "caveats": [
+    "finite-field algebra only",
+    "mock native checking key; no signature",
+    "toy LWE parameters are insecure",
+    "no QPT computations",
+    "not arbitrary FALSE/hard TRUE",
+    "no selective opening of protected ciphertext coins"
+  ],
+  "checks": 10036,
+  "chosen_false_nonwitness": {
+    "A": [
+      1
+    ],
+    "nonbinary_opener": 3,
+    "recovered_bits": 512,
+    "t": 3
+  },
+  "multiple_witness": {
+    "bits": 512,
+    "capsules": 3,
+    "correct_releases": 3072,
+    "distinct_original_witnesses": 2,
+    "native_mock_pk_sha256": "475915fe65dbf60a03a989155f68f60fc85a017b6db6ba2aadaf930bb986f667"
+  },
+  "random_false_test": {
+    "d": 3,
+    "false_count": 300,
+    "n": 6,
+    "q": 257,
+    "trials": 300,
+    "true_upper_decimal": 3.770340767522379e-06,
+    "true_upper_exact": "64/16974593"
+  },
+  "status": "restricted average-FALSE theorem, NOT generic NP witness-KEM",
+  "tiny_exhaustive": {
+    "d": 2,
+    "false_count": 456,
+    "n": 2,
+    "q": 3,
+    "total": 729,
+    "true_fraction": 0.3744855967078189,
+    "union_true_upper": 0.4444444444444444
+  }
+}

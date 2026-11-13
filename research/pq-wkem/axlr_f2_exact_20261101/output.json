@@ -1,0 +1,32 @@
+{
+  "run": "AXLR-2026-11-01-T11",
+  "description": "restricted exact affine signed-XOR release, NOT generic NP WKEM",
+  "assertions": 48156,
+  "graphs": {
+    "count": 729,
+    "true": 393,
+    "false": 336
+  },
+  "selective_opening": {
+    "pairs": 3,
+    "adaptive": 1
+  },
+  "sizes": {
+    "31": {
+      "pnidr_bytes": 3870720,
+      "axlr_bytes": 12288,
+      "factor": 315
+    },
+    "101": {
+      "pnidr_bytes": 12472320,
+      "axlr_bytes": 39936,
+      "factor": 312.3076923076923
+    },
+    "1001": {
+      "pnidr_bytes": 129217536,
+      "axlr_bytes": 387072,
+      "factor": 333.8333333333333
+    }
+  },
+  "claim": "Finite algebra only; no native signature or QPT experiment."
+}

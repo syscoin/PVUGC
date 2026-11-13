@@ -1,0 +1,26 @@
+{
+  "run": 630,
+  "date_utc": "2026-10-19",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "fa3d789f9d3547955223ce6a5cfeb7a5cd66604f",
+  "starting_tree_sha": "54f064384827815153601dd72e504798a4dcec37",
+  "scope": "quantum-only chosen-input falsifier of a two-view shifted-permutation ideal local-release interface",
+  "honest_model": "classical forward-only random-permutation oracle; no compact PPT public realization",
+  "adversary_model": "arbitrary QPT, coherent public evaluation, all public outputs and permitted auxiliary inputs",
+  "research_note_git_blob": "0520a62dfa031d0bf6bb1b71e7aea7a77be8ec0c",
+  "exact_executed_checker_git_blob": "c0fe61b78dd99b019ea3cc6f4af0cad7bfc33099",
+  "captured_output_git_blob": "4eab8d2b9db6ab0398099084986f71b1b76c7bb6",
+  "local_expanded_note_sha256": "f76584f1e937803a353685ddb9dcefef35a6e91317f465d111bd3230a3554b7e",
+  "local_checker_sha256": "4365ed46c2e3366c74c2db36d59f5b7c4212b950a7600514702e1ae998c7d8f9",
+  "local_validation_sha256": "e743b13faf61ac722aef6a0b4494f152107379ef703725f2f9b1f7b3d45c5b6d",
+  "executed_validation": {"counted_checks":535448,"exact_fourier_output_cases":2016,"valid_pair_cases":2016,"simulated_simon_trials":400,"simulated_simon_success":399},
+  "reproduction": [
+    "python -m py_compile research/pq-wkem/run630_simons_shift_check.py",
+    "python research/pq-wkem/run630_simons_shift_check.py",
+    "repeat and compare stdout bytewise with run630_simons_shift_validation.json"
+  ],
+  "unproved": ["compact classical public realization","ORIGINAL all-witness admission","full-public-view QPT hiding","arbitrary forgery to ORIGINAL witness or QPT break","malicious N-of-N ceremony","native Bitcoin PQ endpoint"],
+  "publication_state": "Git objects staged; commit and PR comment separate pending actions"
+}

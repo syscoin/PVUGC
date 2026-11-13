@@ -1,0 +1,12 @@
+{
+  "run": "R69-INDEPENDENT-MATRIX-INTERSECTION-20261104",
+  "status": "RESTRICTED_ONE_HONEST_SETUP_AND_QPT_HYBRID_NOT_GENERIC_WKEM",
+  "assertions": 545,
+  "planted_all_original_openings": 8,
+  "genuine_qLWE_or_uniform_jointview_couplings": 128,
+  "adaptive_corrupt_public_output_couplings": 128,
+  "abort_decisions": 22,
+  "pairwise_independent_pairs": 6,
+  "toy": "q=65536,p=4096,m=8,n=2,N=4,4-bit words,noncryptographic hashes",
+  "limitations": "planted correctness separate from uniform real setup; no QPT hardness, generic-NP compiler, malicious completeness or PQ native signer"
+}

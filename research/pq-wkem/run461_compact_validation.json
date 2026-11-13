@@ -1,0 +1,17 @@
+{
+  "assertions_passed": 12803,
+  "context": "limited rewrite moves; not CCMR/RIO/WE/WKEM",
+  "leaked_bits": 512,
+  "rewrites": 6144,
+  "run": 461,
+  "truth_table": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "run": 475,
+  "assertions_passed": 211,
+  "results": {
+    "contexts": 8,
+    "honest_valid_releases": 16,
+    "false_witnesses": 0,
+    "false_honest_releases": 0,
+    "false_attacker_releases": 4,
+    "source_checked_false_releases": 0,
+    "native_checks": 8
+  },
+  "model": "opaque unrestricted ideal Eval; NO actual FHE/FE",
+  "native_signature": "textbook toy RSA, insecure and non-PQ",
+  "security_claim": "none"
+}

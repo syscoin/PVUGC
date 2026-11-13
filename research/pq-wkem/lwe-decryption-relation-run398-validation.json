@@ -1,0 +1,23 @@
+{
+  "run": 398,
+  "status": "PASS",
+  "assertions": 15971,
+  "q": 97,
+  "m": 4,
+  "B": 1,
+  "multi_witness_count": 97,
+  "honestly_generated_witness_count": 1,
+  "adversarial_false_witness_count": 0,
+  "false_support_bit0": [
+    0,
+    10
+  ],
+  "false_support_bit1": [
+    48,
+    58
+  ],
+  "recovered_8bit_seeds": 256,
+  "actual_LWE_security": false,
+  "all_false_instance_hiding": false,
+  "Syscoin_relation": false
+}

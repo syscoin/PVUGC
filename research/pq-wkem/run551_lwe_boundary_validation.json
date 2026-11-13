@@ -1,0 +1,16 @@
+{
+  "B": 1,
+  "brute_force_candidate_secrets_checked": 792588,
+  "false_relation_unauthorized_decryption_checks": 1536,
+  "false_relation_witnesses_found": 0,
+  "fixtures": 12,
+  "limitations": "Finite classical correctness and exhaustive false-source tests only; not a QPT-LWE proof",
+  "m": 6,
+  "model": "toy finite exact Regev-style threshold release",
+  "multiple_valid_secret_witness_checks": 256,
+  "n": 2,
+  "q": 257,
+  "run": 551,
+  "test_result": "PASS (FALSIFIED worst-case false-instance hiding)",
+  "valid_relation_decryption_checks": 1536
+}

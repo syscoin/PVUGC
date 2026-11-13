@@ -1,0 +1,3 @@
+# R238 second checkpoint — executed raw-share test
+The local standard-library checker evaluated affine interpolation across 12 seeds and 32 synthetic candidate-parent IDs: 5,952 pair identities. Two fabricated source IDs per seed also recovered K from a raw public evaluator (12/12); an honest external authentication check rejected the fake inputs (12/12), without preventing direct access to raw shares. A second local execution produced byte-identical JSON. No real AuxPoW, Bitcoin inclusion, native signature, or QPT experiment occurred.
+The direct public f(t) approach is rejected. The proposed repair must cryptographically force a source-qualified share, not merely put a Boolean verifier before an independently callable evaluator.

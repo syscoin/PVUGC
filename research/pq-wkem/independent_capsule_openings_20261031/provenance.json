@@ -1,0 +1,23 @@
+{
+  "run_id": "ICSO-2-2026-10-31-T13",
+  "repository": "syscoin/PVUGC",
+  "pr_number": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "source_head": "a95c70b7895f2ba1caf337fd7559dffc7114966f",
+  "source_blobs": {
+    "NCSR": "d6f41f0ec9bb63c21f2931bd8af31d8a56750fa8",
+    "QGL": "3978a53fe6d40bb54850b53e4618cbd161e3ae2e"
+  },
+  "checker_executed": "runChecker() straight-line JS V8 function; published wrapper enables node checker.js",
+  "checker_assertions": 157,
+  "offline_python_extended": {
+    "assertions": 652,
+    "repeats": 2,
+    "output_sha256": "4e215b2eb856ae45f471738f1d3cb8edd0d46d450fc0c61624906d871f7833d7",
+    "python": "3.13.5",
+    "cryptography": "46.0.4"
+  },
+  "scope": "honest random binary-ISIS, C=2; not generic ORIGINAL WKEM",
+  "external_research": false,
+  "agents_invoked": false
+}

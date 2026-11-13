@@ -1,0 +1,19 @@
+{
+  "run": "R100-SHARED-UNIFORM-A-20261105",
+  "status": "RESTRICTED_EFFICIENCY_ADVANCE_NOT_GENERIC_NP",
+  "assertions": 1174,
+  "counts": {
+    "shared_A_keys": 120,
+    "authorized_shares": 384,
+    "insufficient_sets": 384,
+    "lwe_bits": 240,
+    "joint_rebindings": 24,
+    "universal_collision_pairs": 21
+  },
+  "bytes": {
+    "old": 14352896,
+    "new": 1688576,
+    "saved": 12664320
+  },
+  "fixture": "insecure q257/short GF256 Shamir, deterministic toy; NOT QPT security"
+}

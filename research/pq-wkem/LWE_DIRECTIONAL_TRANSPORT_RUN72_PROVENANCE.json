@@ -1,0 +1,51 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "created_utc": "2026-09-24T11:57:46.916362+00:00",
+  "external_web_or_literature_used": false,
+  "github_scope": "requested PQ WKEM research record only",
+  "local_sha256": {
+    "checker": "b10164628abef5b476b06f5bebdfd6e2d7307fee40ecce50aff8dd8a87f6ee83",
+    "proof": "d1cac656f4e25e2c301005a3f08f7f0dc1ddc4301296bb99b54104289ab42f9c",
+    "validation": "b1679eca37c1f72d91cf906e217767c123d9c39843221b13f98cc275327a7ba5"
+  },
+  "pr_number": 1,
+  "production_code_modified": false,
+  "publication_plan": [
+    "research/pq-wkem/LWE_DIRECTIONAL_TRANSPORT_RUN72.md",
+    "research/pq-wkem/lwe_directional_transport_run72_check.py",
+    "research/pq-wkem/lwe-directional-transport-run72-validation.json",
+    "research/pq-wkem/LWE_DIRECTIONAL_TRANSPORT_RUN72_PROVENANCE.json"
+  ],
+  "repository": "syscoin/PVUGC",
+  "run": 72,
+  "starting_pr_head": "4e18c693ea1c8d961d565f47f0db7d0d363a6187",
+  "status": {
+    "completed_generic_np_wkem": false,
+    "proved_negative_or_boundary": [
+      "unrounded Run-72 checkpoint transport is publicly linearly reversible when AB has full column rank",
+      "rounded checkpoint full-view security is not established merely by its LWE projection",
+      "local public bit-to-label acquisition exposes both labels",
+      "if affine source-gate correctness extends to an entire public affine fiber, the parent term is public"
+    ],
+    "proved_positive": [
+      "single-parent directional capability transport has exact reverse reduction to standard search-LWE",
+      "message hiding of a local transport reduces by additive shift to decision-LWE",
+      "k-parent missing-parent reverse view is exactly standard LWE after known terms are removed"
+    ],
+    "remaining": [
+      "relation-wide witness-restricted source-label acquisition",
+      "arbitrary-QPT final-key recovery to source witness or standard PQ break for complete generic-NP object",
+      "false-statement complete-output hiding for a complete generic-NP construction",
+      "malicious-secure distributed setup/erasure and auxiliary-input composition",
+      "authentication and concrete secure parameters/resource optimization"
+    ],
+    "stopping_condition_met": false
+  },
+  "tests": {
+    "byte_identical_validation_outputs": true,
+    "checker_executions": 2,
+    "claims": "finite algebra/correctness validation only; cryptographic statements come from explicit reductions/theorems",
+    "deterministic_seed": 720072001
+  },
+  "title": "standard-LWE directional transport; source-label transfer remains open"
+}

@@ -1,0 +1,18 @@
+{
+  "bound": "Pr[measure a random no-oracle query in R] >= (delta/(2q))^2",
+  "checked_conditions": 2433,
+  "fixtures": 608,
+  "max_probability_difference": 1.0,
+  "minimum_extractor_bound_slack": 0.003122558594,
+  "model": "Ideal keyed relation-release XOR oracle, full coherent QPT queries",
+  "native_signature": "NOT IMPLEMENTED",
+  "nonzero_distinguishing_fixtures": 585,
+  "one_query_example": {
+    "marked": 3,
+    "n": 7,
+    "real_minus_baseline": 0.023437499999999972
+  },
+  "real_FE_or_WE_compiler": "NOT CONSTRUCTED",
+  "run": 619,
+  "true_instance_original_extraction_for_real_circuits": "UNPROVED"
+}

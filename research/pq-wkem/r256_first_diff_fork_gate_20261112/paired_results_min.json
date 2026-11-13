@@ -1,0 +1,7 @@
+{
+  "classes_tested": 8,
+  "run": "R256_PAIRED_HEADERS",
+  "same_class_pair_nonconvergence": 8,
+  "status": "nonqualifying synthetic; no consensus/PoW admission",
+  "synthetic_hash_nonce_trials": 235
+}

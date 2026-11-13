@@ -1,0 +1,32 @@
+{
+  "run": 482,
+  "date_utc": "2026-10-13",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "f65ca86044c3d3722a80b5dd5395c348cef377dd",
+  "latest_comment_id": 6067040320,
+  "source_dependency_blobs": [
+    "f09c3936d0200ac14230a7fe2ca1492f1334d395",
+    "c8572206ebc17ebb68dd6112353283f545a132dc",
+    "c19d9d9cd515140e3ce62eac960cd548c0add622",
+    "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  ],
+  "checker_execution": "run482CompactCheck() executed in tool V8 immediately before assembling this tree; checker text is exactly function.toString() plus runner",
+  "validation": {
+    "run": 482,
+    "status": "PASS",
+    "assertions": 4576,
+    "finite_false_distribution_pair_cases": 256,
+    "finite_false_distribution_individual_checks": 4096,
+    "true_fixtures": 48,
+    "false_fixtures": 48,
+    "replayed_signature_rejections": 48,
+    "fresh_false_branch_signatures_with_reused_key": 48,
+    "independent_key_rejections": 48,
+    "toy_native_signature_is_PQ": false,
+    "toy_permutation_is_one_way": false,
+    "scope": "finite diagnostic only; theorem uses distinct stated QPT assumptions"
+  },
+  "claim": "conditional QPT false WE+PQ EUF hybrid and QPT one-way permutation true-extraction counterexample; no concrete cryptographic primitive"
+}

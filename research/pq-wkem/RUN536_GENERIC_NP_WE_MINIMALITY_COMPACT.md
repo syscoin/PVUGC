@@ -1,0 +1,26 @@
+# Run 536 — universal common-key release entails witness encryption (scoped)
+Research-only syscoin/PVUGC#1; verified starting head 5cf863d50cdeb1465343e4b8a2764bbd67ab3051; draft/unmerged. No production edits.
+
+## Exact game and theorem
+Honest classical PPT Setup(R,x;alpha) samples independent uniform h-bit native signing seed K and emits full public V=(R-id,x,UTXO/branch/anchor/window context,P_x,VK(K),presignatures and all other public correlations). A later classical PPT Recover(P_x,w) obtains the SAME exact K with overwhelming probability for each valid ORIGINAL witness w, allowing different s_w. The compiler supports arbitrary NP verification relations and has no online witness-key issuer. For false x, any uniform QPT adversary with the complete V and independent public auxiliary inputs recovers the exact K with negligible probability. Programs are readable and coherently executable.
+
+Then construct one-bit witness encryption: Enc(x,m) samples fresh Setup and independent r uniformly from {0,1}^h and publishes (V,r,c=m XOR <r,K>_2). Dec(w) recovers K and returns c XOR <r,K>_2. Correctness is immediate for every valid w.
+
+Suppose a false-instance QPT IND distinguisher guesses the chosen bit m with advantage epsilon. Give it (V,r,c) with independent uniform c and output Pred(V,r)=c XOR D(V,r,c). With uniform m, c is uniform and m=c XOR <r,K>, hence Pred predicts <r,K> with advantage epsilon. For each fixed full public V, the classical Goldreich–Levin list-decoder uses polynomially many classical calls to the restartable measured QPT predictor, returning a polynomial-size list containing the actual K with nonnegligible probability whenever epsilon is nonnegligible. Pick a uniform list member: because the list is polynomial, this recovers the exact K with nonnegligible probability. No unique-VK/seed condition or private test oracle is necessary. Contradiction.
+
+Thus universal generic-NP SAME-key release plus full-public false-instance uniform-QPT exact-key one-wayness implies single-bit PQ witness encryption. It does NOT prove WE implies the user's stronger unauthorized true-instance native-authorization-to-ORIGINAL extraction, nor establish a practical mixer. A special fixed Syscoin relation may admit a narrower relation-specific assumption; permitting arbitrary NP verifier circuits inside the relation restores the generic implication.
+
+## Checking-key counterexample
+Naively taking ciphertext c=m XOR K is not WE-secure when VK(K) is public: for two candidate messages m0,m1, derive K0=c XOR m0 and K1=c XOR m1 and test VK(Ki). This distinguishes with overwhelming probability when the VK images differ, even if recovering K from VK alone is hard. The independent one-bit Goldreich–Levin mask does not directly hand the attacker candidate full signing keys. It does incur nonconcrete polynomial reduction loss; no 128-bit estimate.
+
+## QPT and local-mixer ledger
+The repeated classical-query Goldreich–Levin argument applies to uniform QPT distinguishers with classical measured outputs. A nonuniform variant requires enough independent copies of K-independent advice; arbitrary single-copy instance-correlated non-clonable quantum auxiliary state is NOT established. If related capsules exist, include them in the exact starting key-one-wayness game; a single-instance theorem does not automatically compose. No separate coherent attack, quantum rewinding or QROM programming is claimed.
+
+All local-mixing seam, gauge, distributional fingerprint, public chosen-input, multi-capsule, malicious setup/erasure, branch replay and checking-key attacks must still be addressed by any actual construction. A distinguishing mixer need not reveal K; this theorem instead constrains the expressiveness of a universal release *security game*. Run 259 only gives accepted complete representation -> ORIGINAL witness under its actual residual/SIS conditions; this reduction supplies no accepted representation, so does NOT establish key/signature recovery -> ORIGINAL extraction. Run 519 atomic commutator remains an algebraic identity, not an inspectable QPT-secure public program.
+
+## Literature and executed check
+Goldreich–Levin 1989 full paper (https://www.cs.bu.edu/fac/lnd/pdf/hard.pdf), Theorem 1/Main Lemma and Sections 4–5: polynomial list decoding from noisy parity, including nonuniform instance distributions in the classical theorem. Adcock–Cleve, arXiv:quant-ph/0108095, is quantum follow-up; its entire proof and arbitrary quantum advice applicability were not audited. The single-bit reduction uses a classical-control restartable QPT predictor and the classical list decoder.
+
+Exact executed Node checker twice, byte-identical JSON and syntax verified: 1013 finite parity-balance cases, 96/96 attacks on a toy public SHA256 check plus naive full-key OTP, 40/40 iid-noise pairwise parity recoveries using 102400 queries. The iid-noise decoder is NOT the general GL list-decoder; tests are no QPT/WE hardness evidence.
+
+Unproved: independently justified QPT local release, all-valid SAME-key practical correctness, full false-instance arbitrary-QPT hiding with quantum side information, true-instance signature -> ORIGINAL, distributed one-honest-party setup, multiple capsules, 128-bit resources, and conditional native SLH/P2MR Bitcoin graph. Do not disable the automation.

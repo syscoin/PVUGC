@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "assertions": 12213,
+  "falseOriginal": {
+    "clauses": 8,
+    "variables": 5,
+    "satisfyingAssignments": 0,
+    "baseViolations": 1
+  },
+  "publicDecoders": {
+    "1": {
+      "rows": 27,
+      "columns": 56,
+      "signedNorm": 10,
+      "maxError": 11,
+      "q": 64,
+      "recoveredKeys": 2
+    },
+    "2": {
+      "rows": 45,
+      "columns": 56,
+      "signedNorm": 14,
+      "maxError": 15,
+      "q": 64,
+      "recoveredKeys": 2
+    }
+  },
+  "large3CNF": {
+    "clauses": 192,
+    "variables": 30,
+    "distinctScopes": 192,
+    "baseViolations": 1,
+    "signedNorm": 194,
+    "q": 1024,
+    "guaranteedAllCoinDecoding": true
+  },
+  "limitation": "No positive secure witness-KEM advance. Mock native key; QPT/Bitcoin not tested."
+}

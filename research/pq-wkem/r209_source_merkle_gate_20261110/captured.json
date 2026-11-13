@@ -1,0 +1,28 @@
+{
+  "assertions": 786,
+  "groups": {
+    "alternative_authenticated_under_own_root": 72,
+    "baseline_authentication": 24,
+    "cross_root_proof_rejected": 72,
+    "distinct_future_labels": 24,
+    "distinct_roots": 72,
+    "enumerated_table_opens_without_source": 256,
+    "forged_merkle_leaf_rejected": 24,
+    "preselected_future_correct": 24,
+    "preselected_future_incomplete": 48,
+    "public_indexed_row_early_open": 72,
+    "same_root_conflict_not_openable": 72,
+    "table_root_authenticates_known_row": 1,
+    "table_root_rejects_unknown_row": 1,
+    "wildcard_public_early_open": 24
+  },
+  "limitations": [
+    "synthetic authenticated Merkle trees not Bitcoin or Syscoin histories",
+    "no original source verifier or authenticated BTC anchoring",
+    "no QPT security proof or native signature implementation",
+    "no secure cryptographic Build/Open mechanism"
+  ],
+  "run": "R209-source-Merkle-gate",
+  "source_sha256": "b056d2b9d908225aaa87fadd799951bec03699c531ea35e28576c8aef1bd121a",
+  "synthetic_table_merkle_root": "761ca67f6681cdecffaa4bf0be6a44fee91e2192fd1f28a8dde43cbc0a4ba0e0"
+}

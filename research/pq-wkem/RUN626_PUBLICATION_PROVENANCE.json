@@ -1,0 +1,53 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "byte_identical_reexecution": true,
+  "commands": [
+    "python -m py_compile research/pq-wkem/run626_publish_check.py",
+    "python research/pq-wkem/run626_publish_check.py",
+    "repeat checker and cmp stdout exact bytes"
+  ],
+  "date_utc": "2026-10-19T06:09:19.732469+00:00",
+  "exact_dependency_blobs": {
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run615": "6e11c2af29aa42329d46dd885e18bdbe7c0aa8ce",
+    "run619": "f81063d9bff265f71f53ffc48cac8cdc6fb03ea0",
+    "run625": "c0d570cb273a414d313b9844d238af9b4870b2da"
+  },
+  "file_sha256": {
+    "RUN626_HOLONOMY_FALSIFIER.md": {
+      "bytes": 4042,
+      "sha256": "dcc96ba29d45e93c611bd16f1d9d6d4b72e8d223e5bddae09acc147cb9f7659e"
+    },
+    "run626_publish_check.py": {
+      "bytes": 2086,
+      "sha256": "78f1c6018e5047409ad0ce540330277f0fc5d09d2e0091cd84d4679e0bfb6188"
+    },
+    "run626_publish_validation.json": {
+      "bytes": 300,
+      "sha256": "6f6995f91523e849de249f01b25b20a83cacc234b69767b59e49a495f65d7d07"
+    }
+  },
+  "head_pr_status": "open draft unmerged",
+  "latest_retrieved_ordinary_comment_id": 6241612333,
+  "pr": 1,
+  "repo": "syscoin/PVUGC",
+  "run": 626,
+  "scope": "Elementary deterministic classical attack on one transparent group-frame distribution; no actual local release or full QPT security theorem.",
+  "start_head": "6d55f1b7d2f2b56aa775d5ac9ea8183d74b90094",
+  "validation": {
+    "counted_conditions": 3456,
+    "group": "S4",
+    "individual_path_marginals_uniform": true,
+    "joint_overlap": 0,
+    "joint_supports": [
+      72,
+      192
+    ],
+    "joint_tv": 1.0,
+    "mask_pairs_per_world": 576,
+    "public_adapter_tests": 1152,
+    "result": "PASS",
+    "run": 626,
+    "scope": "finite group falsifier, not QPT WKEM security"
+  }
+}

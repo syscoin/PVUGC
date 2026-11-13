@@ -1,0 +1,32 @@
+{
+  "Delta": 5,
+  "assertions": 20172,
+  "cases": [
+    {
+      "TV_float": 1.0,
+      "exact_uniform_g_TV_K0_K1": "1/1",
+      "max_Fourier_discrepancy": 0.0,
+      "name": "two_witness_true"
+    },
+    {
+      "TV_float": 0.0,
+      "exact_uniform_g_TV_K0_K1": "0/1",
+      "max_Fourier_discrepancy": 0.0,
+      "name": "unreachable_false"
+    },
+    {
+      "TV_float": 0.40740741,
+      "exact_uniform_g_TV_K0_K1": "11/27",
+      "max_Fourier_discrepancy": 0.0,
+      "name": "short_representations_false"
+    }
+  ],
+  "conclusion": "Joint challenge simulation is exact; uniform-g FALSE hiding requires separate dual-character suppression.",
+  "error_support": [
+    -1,
+    0,
+    1
+  ],
+  "provenance": "offline exact distribution and finite transform calculation; not QPT-LWE validation",
+  "q": 11
+}

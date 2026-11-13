@@ -1,0 +1,14 @@
+{
+  "artifacts_sha256": {
+    "RUN508_NATIVE_AUTH_SEPARATION_COMPACT.md": "e87d8ab54fbc05d88d49ca5c05414e4987bfbb0ffcd616a4c0cbc7a65de3065a",
+    "run508_compact_check.py": "184738334fe9814c30c10ef4786f18bdbfcdf1eb19a463482ace91679d36b2e7",
+    "run508_compact_validation.json": "538eb9c3c7c080cb483138cbca5b8810c9baff635ba08ac1c74ed4a10289ef3c"
+  },
+  "head_before": "9ba7756d9ed03e9d7f0694d69f6189e837eabe37",
+  "last_comment_id": 6067040320,
+  "pr": "syscoin/PVUGC#1",
+  "run": 508,
+  "run507_unreferenced_commit": "3363d237a42f6992b83c40cdcef7b2398c2eedf7",
+  "scope": "composition counterexample, not a real bridge exploit or QPT hiding theorem",
+  "validation": "13 assertions; real OpenSSL SLH-DSA 3 sets; byte-identical replay; py_compile pass"
+}

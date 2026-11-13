@@ -1,0 +1,43 @@
+{
+  "run": 65,
+  "started_from_pr_head": "c17ef2c2ee95b7b166dc05d7bb8fdfb83f5b3f3a",
+  "checkpoint_comment_id": 5807722457,
+  "created_utc": "2026-09-24T04:35:25Z",
+  "scope": "research-only continuation of syscoin/PVUGC PR #1; no production files changed",
+  "external_literature_or_web_search": false,
+  "construction_attempt": "padded high-order proper-moment exclusion block intended to amplify a unique local rejection from one-hot weight 1 to weight 2^R-1",
+  "proved_claims": [
+    "Over F_2, the ideal proper-moment exclusion block has a unique one-hot solution for every accepted target and the unique all-ones solution of weight 2^R-1 for the rejected target.",
+    "If those nonlinear query features were trusted and bound to one Boolean proof, the binary additive capsule has TV(P0,P1) <= rho*sqrt(S) with S <= 2^W rho^(2(B+M-1)) on false statements, giving polynomial M=Theta(B(W+kappa)) for fixed honest raw success.",
+    "For every affine local syndrome map sigma(q), a uniquely rejected Boolean query q* is the affine combination of three accepted neighboring queries; corresponding accepted linear preimages combine to an exact rejected preimage with norm at most their norm sum and support at most their support sum.",
+    "If only degree-0/1 query features are tied to the real query while higher proper-monomial features are free linear auxiliaries, an explicit three-row representation matches the real raw query but forges the higher features and bypasses the ideal high-order gap.",
+    "The graph of Boolean multiplication is non-affine, so no exact projection of a purely linear F_2 system with auxiliaries can enforce that nonlinear feature graph."
+  ],
+  "implemented_checks": {
+    "checker": "affine_query_gap_run65_check.py",
+    "seed": 650065,
+    "executed_twice_after_finalization": true,
+    "byte_identical_json_outputs": true,
+    "affine_square_identities": 1200,
+    "integer_preimage_trials": 1000,
+    "ideal_block_R_range": "2..8",
+    "accepted_targets_checked": 501,
+    "feature_forgery_R_range": "3..10",
+    "nonlinear_feature_graph_affine_closure_counterexample": true,
+    "ideal_bsc_parameter_cases": 4
+  },
+  "sha256": {
+    "AFFINE_QUERY_GAP_RUN65.md": "82c1d11b1c6cad28dafa73998c81f2e788ceac374c255b8b94be3ef9d9d21c80",
+    "affine_query_gap_run65_check.py": "07efd27b9484ddca5850d1d2536ee1961629e93553cfe59aadd39ada7117fbb5",
+    "affine-query-gap-run65-validation.json": "e0cb07535039759364df8c98de478865e9e2867b09bf5f12a96af6fbdb5525c2"
+  },
+  "not_claimed": [
+    "No completed generic-NP WKEM.",
+    "No standard-LWE/SIS reduction for the missing nonlinear feature binder.",
+    "No arbitrary-QPT early-key-recovery to source-witness extraction theorem.",
+    "No claim that tests establish cryptographic security.",
+    "No claim that the ideal trusted-feature BSC parameter cases are deployable or practical.",
+    "No claim that every nonlinear or computational binder is impossible."
+  ],
+  "remaining_gap": "Construct a public offline PQ nonlinear feature/common-witness binder whose complete public transcript does not expose a no-witness equivalent, then prove arbitrary-QPT early key recovery yields a source witness or an independently justified PQ break and compose malicious-secure erased setup with concrete parameters."
+}

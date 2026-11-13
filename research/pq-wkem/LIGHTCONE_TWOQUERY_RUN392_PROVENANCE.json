@@ -1,0 +1,15 @@
+{
+  "run": 392,
+  "date": "2026-10-09",
+  "branch": "research/pq-wkem-validation-20260918",
+  "expected_start_sha": "48037d3a11556f5dd2a702973622094dd3badb47",
+  "run391_unreferenced": "539089b2deeb047d7090f0314b37edfc927a86a8",
+  "run391_note_blob": "e508432bc50e89023df4ef12cbf661badfff3f60",
+  "run390_note_blob": "a1efd75071fb530aa09ffd4ac1b8145778467139",
+  "exact_executed_JS": "lightcone_twoquery_run392_check.js",
+  "compact_assertions": 101277,
+  "local_python_assertions": 213188,
+  "local_python_sha256": "e14494fd07aa04824f02593df00f1e5a890a8680518a43f680bb56cc3de074dc",
+  "local_python_validation_sha256": "350f136b9422a8a6efcdd5981a0aa7fd5fe71bd88c5620e332c0256f0323a622",
+  "limits": "isolated shallow forward mixer only; no key recovery, RIO break or WKEM"
+}

@@ -1,0 +1,20 @@
+{
+  "run": "MINK-FWT-20261102",
+  "checks": 72913,
+  "small_toy_cases": 7290,
+  "exhaustive_keys": 1024,
+  "collision_pairs": 11520,
+  "average_toy_tv": 0.21386718750000303,
+  "full_q": 65537,
+  "full_n": 256,
+  "full_m": 4800,
+  "fixed_weight": 2400,
+  "max_error": 7200,
+  "ternary_gap": 21845,
+  "log2_support": 4793.559767449657,
+  "log2_fixed_weight_epsilon": -341.77705497576835,
+  "old_vertex_bytes": 1542,
+  "new_vertex_bytes": 771,
+  "quantum_hardness_estimated": false,
+  "generic_wkem_proved": false
+}

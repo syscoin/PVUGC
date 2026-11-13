@@ -1,0 +1,7 @@
+{
+  "independent_joint_outputs": 512,
+  "messages": 8,
+  "pow_targets_checked": 255,
+  "run": "R237_MIN",
+  "status": "conditional algebra only; actual source-dependent Build/Open missing"
+}

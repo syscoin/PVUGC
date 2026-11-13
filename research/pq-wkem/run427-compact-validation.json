@@ -1,0 +1,16 @@
+{
+  "run": 427,
+  "independent_checker": "JavaScript",
+  "assertions": 2335,
+  "exhaustive_maps": 4,
+  "mask_pairs_per_map": 576,
+  "pairwise_laws": 6,
+  "support_sizes": [
+    144,
+    576,
+    576,
+    144
+  ],
+  "conclusion": "input clean set and output partition jointly leak histogram; either interface alone uniform",
+  "complete_practical_pq_wkem": false
+}

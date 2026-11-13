@@ -1,0 +1,12 @@
+{
+  "run": 580,
+  "result": "PASS",
+  "assertions": 304073,
+  "exhaustive_relabeling_views": 221184,
+  "latent_equality_checks": 6144,
+  "affine_transparent_checks": 74880,
+  "affine_translator_recoveries": 1360,
+  "grover_n8_rounds": 12,
+  "grover_n8_success": 0.999947042103,
+  "scope": "Finite identities and known search formula; not a practical WKEM or quantum implementation"
+}

@@ -1,0 +1,32 @@
+{
+  "checker_sha256": "faacfa6ba3bce8ba82f6cbdb7d3aa9e7d1237b7a3ccc2b6dc1948c0fb335bb00",
+  "checks": {
+    "false_has_no_witnesses": 1,
+    "false_mask_distribution_independent_of_key": 80,
+    "false_span_condition": 1,
+    "hard_true_public_extraction": 80,
+    "nonlinear_sha_mask_distinct_outputs_fixture_only": 80,
+    "same_precommitted_key_all_witnesses": 160,
+    "sha_seeded_all_witness_correctness": 160,
+    "sha_seeded_mask_still_publicly_extractable": 80,
+    "true_span_condition": 1,
+    "two_valid_witnesses": 1,
+    "unauthorized_synthetic_capability_opening": 80
+  },
+  "classification": "full-public linear-span recovery; NOT source-bound WKEM",
+  "field": 257,
+  "run": "R207",
+  "total_checks": 724,
+  "valid_witnesses": [
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      0
+    ]
+  ]
+}

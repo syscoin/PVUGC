@@ -1,0 +1,25 @@
+# Run 604 — sibling-authority leakage and conditional QPT separation
+
+Date: 2026-10-18. Research-only; no production changes. Starting live syscoin/PVUGC#1 head 06995a2bd0dde73ece10d4c304da7098858e7e07, branch research/pq-wkem-validation-20260918 (draft/open). Exact Run 593 file blob 29b9168bfff6043810284cd1960400579f224e31 and Run 259 proof blob c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2 were read before research.
+
+## Theorem A: known-witness sibling cross-authorization (unconditional)
+
+Take ORIGINAL-false statement x0 and true x1 with an adversary-known valid ORIGINAL witness w1. If honest classical-PPT Recover(P1,w1) returns branch capability K1 except probability delta and this capability authorizes the actual native signature/graph transaction of x0 with conditional probability p, a classical attacker signs x0 without any x0 witness with probability at least (1-delta)p. The attack is simply Recover(P1,w1), Sign(K1,challenge_tx0). It works even if the isolated x0 capsule is perfectly hiding. Key reuse, equal native public keys, or an overlapping graph-script alternative can create the authorization. Binding only ciphertext/KDF labels to distinct UTXOs does not repair the actual native authorization overlap. Theorem concerns already-released capability, not post-settlement unrestricted owner spending.
+
+## Theorem B: pk-only joint simulator cannot include same-authority true siblings
+
+Suppose a classical-PPT/QPT Sim given pk but not the secret signing credential could generate the complete related-view (false x0, known-witness true x1, all checking data) under the same native signing authority, with arbitrary-QPT distinguishing error epsilon. Running Sim(pk), Recover(C1,w1), and signing a fresh challenge produces a straight-line QPT native signature forgery with probability at least 1-delta-epsilon. Hence epsilon >= 1-delta-Adv_QPT_EUF_CMA. A full-view pk-only false-capsule simulator cannot promise to simulate such known-witness true siblings. Its failure also reflects a real cross-capsule spending attack; it is not merely an artefact of a proof technique.
+
+## Theorem C: conditional QPT-PRF child-key separation
+
+Let S be an honestly sampled, secret uniform master seed, c_i be t polynomially many distinct injectively encoded claim/branch/relation/UTXO/window/script contexts, and K_i=F_S(c_i) for a classical-PPT QPT-secure PRF. NativeKeyGenFromSeed(K_i) creates (sk_i,pk_i). For any classical PPT view constructor that includes all pk_i computed from their corresponding sk_i, public capsules, graph/checking data, and selected child openings, a straight-line QPT PRF distinguisher queries its oracle on the distinct c_i and builds exactly this public correlated view. Thus it bounds the QPT distinction between this derived-key world and one where all children K_i are independent uniform strings by Adv_QPT_PRF. Independent quantum auxiliary advice and coherent execution of public functions are permitted; master-correlated unsimulated advice or a secret-master oracle is NOT. This is NOT pseudorandomness of sk_i conditioned on its own pk_i.
+
+For independent native keypairs, additionally assuming a complete false-target pk-only simulator in the related-key-independent auxiliary view with error eps_sim, QPT native EUF security, no graph alternate authorization, and a fresh target transaction, gives Adv_false_spend <= Adv_QPT_PRF + eps_sim + Adv_QPT_EUF. The full-view false-capsule simulator and actual source-authenticated local mixer remain UNCONSTRUCTED. Native authority separation and graph binding must be audited independently; merely adding labels is insufficient. Honest N-of-N erasure and abort security are also missing; a retained S breaks the optional keyless-builder condition.
+
+## Interface/QPT scope
+
+Run 259 supplies only: accepted complete global representation z -> ORIGINAL witness, with exact statistical folding or conditional QPT-SIS. Neither native seed recovery nor native signature forgery automatically supplies z. Different valid original witnesses may keep different intermediate states while recovering the same claim-specific capability. This run does not construct that release frontier.
+
+Attack families: Theorem A targets cross-capsule and native checking-key correlations; public local seams, gauge synchronization, high-order fingerprints, chosen-input circuit leakage and coherent quantum attacks on any proposed mixer remain unresolved. Theorem C is a straight-line QPT reduction, not a claim that the illustrative HMAC-derived fixture is quantum secure. No 128-bit parameter selection, complete paper/errata audit, conditional P2MR+SLH deployment proof or generic NP WKEM security is claimed. The stopping condition is unmet.
+
+Reproducibility: the exactly executed Python-3 toy checker and its captured stdout are separate proposed artifacts. It demonstrates one same-authority false-branch authorization, 70 separated-key own verifications, zero sampled cross-key verifications. It uses a 32-message-bit Lamport toy and HMAC solely for functional checks, not PQ evidence.

@@ -1,0 +1,491 @@
+{
+  "canonical_basis_checks": [
+    {
+      "augmented_columns": 21,
+      "m": 1,
+      "nullity": 3
+    },
+    {
+      "augmented_columns": 41,
+      "m": 2,
+      "nullity": 5
+    },
+    {
+      "augmented_columns": 61,
+      "m": 3,
+      "nullity": 7
+    },
+    {
+      "augmented_columns": 81,
+      "m": 4,
+      "nullity": 9
+    },
+    {
+      "augmented_columns": 101,
+      "m": 5,
+      "nullity": 11
+    },
+    {
+      "augmented_columns": 121,
+      "m": 6,
+      "nullity": 13
+    }
+  ],
+  "claims": {
+    "not_proved": [
+      "security or insecurity of unrelated high-entropy correlated channels outside this direct-sum/notch construction",
+      "a generic impossibility theorem for witness encryption",
+      "a completed generic-NP PQ witness KEM"
+    ],
+    "proved": [
+      "canonical direct-sum quotient basis has 2m local kernel coordinates plus one global key-parity coordinate",
+      "exact histogram likelihood DP computes the complete key-conditioned quotient law in polynomial time for C=O(log lambda)",
+      "collision-free direct-sum TV is exactly (3/10)^C by sign-coherent mandatory/optional slot symmetrization",
+      "actual direct-sum TV differs from the collision-free value by at most twice the active-hit collision probability",
+      "a polynomial-size false direct-sum family therefore has inverse-polynomial complete TV and an explicit polynomial-time MAP distinguisher"
+    ],
+    "tested": [
+      "canonical nullspace identities for m=1..6",
+      "exact generic quotient TV equals histogram-DP TV for m=1..4 and C=1,2",
+      "finite exact convergence tables for C=1..6 and m=100,1000,10000",
+      "illustrative polynomial false-family parameter rows"
+    ]
+  },
+  "false_gadget": {
+    "local_constraints": 18,
+    "local_kernel_dimension": 2,
+    "local_variables": 20,
+    "predicates": [
+      1,
+      2,
+      7,
+      7
+    ],
+    "source_gap": "1/4",
+    "transition_types": {
+      "0:0": 2,
+      "0:1": 2,
+      "1:0": 3,
+      "1:1": 1,
+      "2:0": 4,
+      "3:0": 1,
+      "3:1": 3
+    }
+  },
+  "finite_convergence": [
+    {
+      "collision_free_limit": "3/10",
+      "cycles": 1,
+      "exact_tv": "119/400",
+      "exact_tv_float": 0.2975,
+      "gadgets": 100,
+      "limit_float": 0.3,
+      "peak_dp_states": 19,
+      "proved_tv_interval_from_coupling": [
+        "7/25",
+        "8/25"
+      ],
+      "union_collision_bound": "1/100"
+    },
+    {
+      "collision_free_limit": "3/10",
+      "cycles": 1,
+      "exact_tv": "1199/4000",
+      "exact_tv_float": 0.29975,
+      "gadgets": 1000,
+      "limit_float": 0.3,
+      "peak_dp_states": 19,
+      "proved_tv_interval_from_coupling": [
+        "149/500",
+        "151/500"
+      ],
+      "union_collision_bound": "1/1000"
+    },
+    {
+      "collision_free_limit": "3/10",
+      "cycles": 1,
+      "exact_tv": "11999/40000",
+      "exact_tv_float": 0.299975,
+      "gadgets": 10000,
+      "limit_float": 0.3,
+      "peak_dp_states": 19,
+      "proved_tv_interval_from_coupling": [
+        "1499/5000",
+        "1501/5000"
+      ],
+      "union_collision_bound": "1/10000"
+    },
+    {
+      "collision_free_limit": "9/100",
+      "cycles": 2,
+      "exact_tv": "17092153/200000000",
+      "exact_tv_float": 0.085460765,
+      "gadgets": 100,
+      "limit_float": 0.09,
+      "peak_dp_states": 69,
+      "proved_tv_interval_from_coupling": [
+        "0",
+        "21/100"
+      ],
+      "union_collision_bound": "3/50"
+    },
+    {
+      "collision_free_limit": "9/100",
+      "cycles": 2,
+      "exact_tv": "17907672403/200000000000",
+      "exact_tv_float": 0.089538362015,
+      "gadgets": 1000,
+      "limit_float": 0.09,
+      "peak_dp_states": 69,
+      "proved_tv_interval_from_coupling": [
+        "39/500",
+        "51/500"
+      ],
+      "union_collision_bound": "3/500"
+    },
+    {
+      "collision_free_limit": "9/100",
+      "cycles": 2,
+      "exact_tv": "17990751724903/200000000000000",
+      "exact_tv_float": 0.089953758624515,
+      "gadgets": 10000,
+      "limit_float": 0.09,
+      "peak_dp_states": 69,
+      "proved_tv_interval_from_coupling": [
+        "111/1250",
+        "57/625"
+      ],
+      "union_collision_bound": "3/5000"
+    },
+    {
+      "collision_free_limit": "27/1000",
+      "cycles": 3,
+      "exact_tv": "1481104109/62500000000",
+      "exact_tv_float": 0.023697665744,
+      "gadgets": 100,
+      "limit_float": 0.027,
+      "peak_dp_states": 167,
+      "proved_tv_interval_from_coupling": [
+        "0",
+        "327/1000"
+      ],
+      "union_collision_bound": "3/20"
+    },
+    {
+      "collision_free_limit": "27/1000",
+      "cycles": 3,
+      "exact_tv": "10661258494124651/400000000000000000",
+      "exact_tv_float": 0.026653146235311627,
+      "gadgets": 1000,
+      "limit_float": 0.027,
+      "peak_dp_states": 167,
+      "proved_tv_interval_from_coupling": [
+        "0",
+        "57/1000"
+      ],
+      "union_collision_bound": "3/200"
+    },
+    {
+      "collision_free_limit": "27/1000",
+      "cycles": 3,
+      "exact_tv": "1078605760299189756401/40000000000000000000000",
+      "exact_tv_float": 0.026965144007479742,
+      "gadgets": 10000,
+      "limit_float": 0.027,
+      "peak_dp_states": 167,
+      "proved_tv_interval_from_coupling": [
+        "3/125",
+        "3/100"
+      ],
+      "union_collision_bound": "3/2000"
+    },
+    {
+      "collision_free_limit": "81/10000",
+      "cycles": 4,
+      "exact_tv": "1585323857493449/250000000000000000",
+      "exact_tv_float": 0.006341295429973796,
+      "gadgets": 100,
+      "limit_float": 0.0081,
+      "peak_dp_states": 329,
+      "proved_tv_interval_from_coupling": [
+        "0",
+        "5681/10000"
+      ],
+      "union_collision_bound": "7/25"
+    },
+    {
+      "collision_free_limit": "81/10000",
+      "cycles": 4,
+      "exact_tv": "9882932830098388632787/1250000000000000000000000",
+      "exact_tv_float": 0.00790634626407871,
+      "gadgets": 1000,
+      "limit_float": 0.0081,
+      "peak_dp_states": 329,
+      "proved_tv_interval_from_coupling": [
+        "0",
+        "641/10000"
+      ],
+      "union_collision_bound": "7/250"
+    },
+    {
+      "collision_free_limit": "81/10000",
+      "cycles": 4,
+      "exact_tv": "101005575933678348786427321537/12500000000000000000000000000000",
+      "exact_tv_float": 0.008080446074694268,
+      "gadgets": 10000,
+      "limit_float": 0.0081,
+      "peak_dp_states": 329,
+      "proved_tv_interval_from_coupling": [
+        "1/400",
+        "137/10000"
+      ],
+      "union_collision_bound": "7/2500"
+    },
+    {
+      "collision_free_limit": "243/100000",
+      "cycles": 5,
+      "exact_tv": "130966038010399455013/80000000000000000000000",
+      "exact_tv_float": 0.0016370754751299933,
+      "gadgets": 100,
+      "limit_float": 0.00243,
+      "peak_dp_states": 571,
+      "proved_tv_interval_from_coupling": [
+        "0",
+        "90243/100000"
+      ],
+      "union_collision_bound": "9/20"
+    },
+    {
+      "collision_free_limit": "243/100000",
+      "cycles": 5,
+      "exact_tv": "373946789528783768787318002501/160000000000000000000000000000000",
+      "exact_tv_float": 0.0023371674345548984,
+      "gadgets": 1000,
+      "limit_float": 0.00243,
+      "peak_dp_states": 571,
+      "proved_tv_interval_from_coupling": [
+        "0",
+        "9243/100000"
+      ],
+      "union_collision_bound": "9/200"
+    },
+    {
+      "collision_free_limit": "243/100000",
+      "cycles": 5,
+      "exact_tv": "387290692925577422446271795645554827251/160000000000000000000000000000000000000000",
+      "exact_tv_float": 0.0024205668307848587,
+      "gadgets": 10000,
+      "limit_float": 0.00243,
+      "peak_dp_states": 571,
+      "proved_tv_interval_from_coupling": [
+        "0",
+        "1143/100000"
+      ],
+      "union_collision_bound": "9/2000"
+    },
+    {
+      "collision_free_limit": "729/1000000",
+      "cycles": 6,
+      "exact_tv": "16305500416320823241402651/40000000000000000000000000000",
+      "exact_tv_float": 0.00040763751040802056,
+      "gadgets": 100,
+      "limit_float": 0.000729,
+      "peak_dp_states": 909,
+      "proved_tv_interval_from_coupling": [
+        "0",
+        "1"
+      ],
+      "union_collision_bound": "33/50"
+    },
+    {
+      "collision_free_limit": "729/1000000",
+      "cycles": 6,
+      "exact_tv": "5507811882324149074114364981518592677/8000000000000000000000000000000000000000",
+      "exact_tv_float": 0.0006884764852905186,
+      "gadgets": 1000,
+      "limit_float": 0.000729,
+      "peak_dp_states": 909,
+      "proved_tv_interval_from_coupling": [
+        "0",
+        "132729/1000000"
+      ],
+      "union_collision_bound": "33/500"
+    },
+    {
+      "collision_free_limit": "729/1000000",
+      "cycles": 6,
+      "exact_tv": "579879748225419856894755134953144790537051091427/800000000000000000000000000000000000000000000000000",
+      "exact_tv_float": 0.0007248496852817749,
+      "gadgets": 10000,
+      "limit_float": 0.000729,
+      "peak_dp_states": 909,
+      "proved_tv_interval_from_coupling": [
+        "0",
+        "13929/1000000"
+      ],
+      "union_collision_bound": "33/5000"
+    }
+  ],
+  "generic_vs_histogram_crosschecks": [
+    {
+      "cycles": 1,
+      "generic_complete_tv": "3/20",
+      "generic_support": 8,
+      "histogram_dp_tv": "3/20",
+      "histogram_states": 8,
+      "m": 1,
+      "peak_histogram_states": 8,
+      "quotient_dimension": 3
+    },
+    {
+      "cycles": 2,
+      "generic_complete_tv": "3/200",
+      "generic_support": 8,
+      "histogram_dp_tv": "3/200",
+      "histogram_states": 8,
+      "m": 1,
+      "peak_histogram_states": 8,
+      "quotient_dimension": 3
+    },
+    {
+      "cycles": 1,
+      "generic_complete_tv": "7/40",
+      "generic_support": 31,
+      "histogram_dp_tv": "7/40",
+      "histogram_states": 19,
+      "m": 2,
+      "peak_histogram_states": 19,
+      "quotient_dimension": 5
+    },
+    {
+      "cycles": 2,
+      "generic_complete_tv": "7/400",
+      "generic_support": 32,
+      "histogram_dp_tv": "7/400",
+      "histogram_states": 20,
+      "m": 2,
+      "peak_histogram_states": 20,
+      "quotient_dimension": 5
+    },
+    {
+      "cycles": 1,
+      "generic_complete_tv": "13/60",
+      "generic_support": 71,
+      "histogram_dp_tv": "13/60",
+      "histogram_states": 19,
+      "m": 3,
+      "peak_histogram_states": 19,
+      "quotient_dimension": 7
+    },
+    {
+      "cycles": 2,
+      "generic_complete_tv": "13/675",
+      "generic_support": 128,
+      "histogram_dp_tv": "13/675",
+      "histogram_states": 40,
+      "m": 3,
+      "peak_histogram_states": 40,
+      "quotient_dimension": 7
+    },
+    {
+      "cycles": 1,
+      "generic_complete_tv": "19/80",
+      "generic_support": 128,
+      "histogram_dp_tv": "19/80",
+      "histogram_states": 19,
+      "m": 4,
+      "peak_histogram_states": 19,
+      "quotient_dimension": 9
+    },
+    {
+      "cycles": 2,
+      "generic_complete_tv": "307/12800",
+      "generic_support": 511,
+      "histogram_dp_tv": "307/12800",
+      "histogram_states": 69,
+      "m": 4,
+      "peak_histogram_states": 69,
+      "quotient_dimension": 9
+    }
+  ],
+  "polynomial_false_family": {
+    "asymptotic_note": "m is polynomial because (10/3)^C=lambda^(log2(10/3)/4) up to ceiling constants; exact public DP is polynomial in C and log m arithmetic size",
+    "choice": "C=ceil(log2(lambda)/4); m>=4*binom(2C,2)/(3/10)^C",
+    "rows": [
+      {
+        "collision_free_limit": "9/100",
+        "cycles": 2,
+        "exact_false_tv": "168033331/1903416300",
+        "exact_false_tv_float": 0.0882798634224158,
+        "gadgets": 267,
+        "lambda": 256,
+        "map_guess_advantage_over_half": 0.0441399317112079,
+        "peak_dp_states": 69,
+        "proved_lower_bound": "9/200"
+      },
+      {
+        "collision_free_limit": "27/1000",
+        "cycles": 3,
+        "exact_false_tv": "1165806489764240089/43429747109989874400",
+        "exact_false_tv_float": 0.026843501685877347,
+        "gadgets": 2223,
+        "lambda": 1024,
+        "map_guess_advantage_over_half": 0.013421750842938673,
+        "peak_dp_states": 167,
+        "proved_lower_bound": "27/2000"
+      },
+      {
+        "collision_free_limit": "27/1000",
+        "cycles": 3,
+        "exact_false_tv": "1165806489764240089/43429747109989874400",
+        "exact_false_tv_float": 0.026843501685877347,
+        "gadgets": 2223,
+        "lambda": 4096,
+        "map_guess_advantage_over_half": 0.013421750842938673,
+        "peak_dp_states": 167,
+        "proved_lower_bound": "27/2000"
+      },
+      {
+        "collision_free_limit": "81/10000",
+        "cycles": 4,
+        "exact_false_tv": "1954256440244583754675602980561/241688287650697942603341537280000",
+        "exact_false_tv_float": 0.008085854963187084,
+        "gadgets": 13828,
+        "lambda": 16384,
+        "map_guess_advantage_over_half": 0.004042927481593542,
+        "peak_dp_states": 329,
+        "proved_lower_bound": "81/20000"
+      },
+      {
+        "collision_free_limit": "81/10000",
+        "cycles": 4,
+        "exact_false_tv": "1954256440244583754675602980561/241688287650697942603341537280000",
+        "exact_false_tv_float": 0.008085854963187084,
+        "gadgets": 13828,
+        "lambda": 65536,
+        "map_guess_advantage_over_half": 0.004042927481593542,
+        "peak_dp_states": 329,
+        "proved_lower_bound": "81/20000"
+      }
+    ]
+  },
+  "run": 39,
+  "signed_slot_analysis": {
+    "mandatory_l1": "1/2",
+    "mandatory_signed_mass": {
+      "0": "0",
+      "1": "1/8",
+      "2": "1/4",
+      "3": "-1/8"
+    },
+    "optional_l1": "3/5",
+    "optional_signed_mass": {
+      "0": "1/5",
+      "1": "1/10",
+      "2": "1/5",
+      "3": "-1/10"
+    },
+    "per_cycle_collision_free_tv": "3/10"
+  },
+  "starting_head": "1a772a7bcdb1b3ee8dbdd6e031550f87fe49f58a"
+}

@@ -1,0 +1,1 @@
+{"assertions": 149101, "functions_checked": {"1": 4, "2": 16, "3": 256, "4": 65536}, "run": 371, "scope": "finite publicly callable frontier; no NP/QPT/SLH proof", "status": "PASS"}

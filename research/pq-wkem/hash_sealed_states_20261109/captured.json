@@ -1,0 +1,128 @@
+{
+  "assertions": 1432,
+  "checks_by_name": {
+    "actual_lamport_signature_verifies": 212,
+    "actual_toy_work_wrong_anchor_does_not_release": 19,
+    "bfs_equality_witness": 10,
+    "bound_context_substitution_rejected": 40,
+    "distinct_valid_source_evidence_exists": 1,
+    "equality_honest_correct": 10,
+    "equality_inconsistent_rejected": 10,
+    "exact_fixed_order_equality_edge_count": 10,
+    "exact_fixed_order_equality_state_count": 10,
+    "fixture_label_uniqueness": 95,
+    "lazy_recurrence_distinct_accepting_labels": 1,
+    "memory_free_quotient_can_satisfy_each_clause_locally": 42,
+    "nonvacuous_source_negative_controls": 1,
+    "one_lazy_release_record_not_every_witness_correct": 1,
+    "original_witness_exact_correctness": 306,
+    "public_bfs_unlocks_small_complete_graph": 10,
+    "public_source_search_extracts_complete_toy_certificate": 1,
+    "quotient_acceptance_uses_contradictory_reads": 2,
+    "quotient_leaks_actual_native_signature": 2,
+    "raw_search_extracts_original_witness": 40,
+    "raw_search_linear_in_explicit_states": 42,
+    "raw_search_matches_original_existence": 42,
+    "same_child_new_parent_work_not_conflict": 9,
+    "source_complete_evidence_release": 512,
+    "source_native_signature_verifies": 4
+  },
+  "cnf": {
+    "assignment_tests": 306,
+    "false_formulas": 2,
+    "false_quotient_leaks": 2,
+    "true_formulas": 40
+  },
+  "fixed_order_state_growth": [
+    {
+      "edges": 4,
+      "half_witness_bits": 1,
+      "maximum_label_bytes": 32,
+      "midpoint_states": 2,
+      "nodes": 3
+    },
+    {
+      "edges": 12,
+      "half_witness_bits": 2,
+      "maximum_label_bytes": 32,
+      "midpoint_states": 4,
+      "nodes": 9
+    },
+    {
+      "edges": 28,
+      "half_witness_bits": 3,
+      "maximum_label_bytes": 32,
+      "midpoint_states": 8,
+      "nodes": 21
+    },
+    {
+      "edges": 60,
+      "half_witness_bits": 4,
+      "maximum_label_bytes": 32,
+      "midpoint_states": 16,
+      "nodes": 45
+    },
+    {
+      "edges": 124,
+      "half_witness_bits": 5,
+      "maximum_label_bytes": 32,
+      "midpoint_states": 32,
+      "nodes": 93
+    },
+    {
+      "edges": 252,
+      "half_witness_bits": 6,
+      "maximum_label_bytes": 32,
+      "midpoint_states": 64,
+      "nodes": 189
+    },
+    {
+      "edges": 508,
+      "half_witness_bits": 7,
+      "maximum_label_bytes": 32,
+      "midpoint_states": 128,
+      "nodes": 381
+    },
+    {
+      "edges": 1020,
+      "half_witness_bits": 8,
+      "maximum_label_bytes": 32,
+      "midpoint_states": 256,
+      "nodes": 765
+    },
+    {
+      "edges": 2044,
+      "half_witness_bits": 9,
+      "maximum_label_bytes": 32,
+      "midpoint_states": 512,
+      "nodes": 1533
+    },
+    {
+      "edges": 4092,
+      "half_witness_bits": 10,
+      "maximum_label_bytes": 32,
+      "midpoint_states": 1024,
+      "nodes": 3069
+    }
+  ],
+  "limits": [
+    "No QPT security experiment or full-joint reduction",
+    "Explicit state Build can be exponential",
+    "Source is synthetic; no Bitcoin/Syscoin inclusion or best-chain claim",
+    "Lamport fixture is not a deployed Bitcoin native endpoint",
+    "No standalone packing/performance optimization"
+  ],
+  "run": "HPW-HSS-20261109",
+  "status": "NO_SECURE_GENERIC_WKEM_CONSTRUCTION",
+  "synthetic_source": {
+    "accepted_certificates": 4,
+    "edges": 514,
+    "enumerated_witnesses": 512,
+    "lazy_distinct_accept_labels": 4,
+    "lazy_single_record_successes": 1,
+    "nodes": 511,
+    "same_outcome_new_work": 9,
+    "witness_bits": 9,
+    "wrong_anchor_valid_work": 19
+  }
+}

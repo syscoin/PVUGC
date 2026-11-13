@@ -1,0 +1,22 @@
+{
+  "id": "STM-QPT-20261031",
+  "assertions": 12390,
+  "three_capsule_patterns": 343,
+  "four_capsule_patterns": 2401,
+  "adaptive_opening": "exact one-bit secrecy identity",
+  "source_witnesses_tested": 3,
+  "master_bits": 256,
+  "native_private_seed_bits": 512,
+  "raw_fallback_symbols": 37,
+  "master_symbols": 19,
+  "transition_lwe_hybrid_edges": 38,
+  "transition_guess_factor": 3,
+  "simultaneous_four_capsule_guess_factor": 81,
+  "log2_all_witness_eta_c2": -191.487287765,
+  "log2_all_witness_eta_c8": -189.487287765,
+  "matrix_bytes": 52940800,
+  "master_c2_cipher_bytes": 11788170,
+  "raw_c2_cipher_bytes": 22955910,
+  "chosen_false_public_recovery": "PASS (insecure)",
+  "status": "restricted algebra only; ORIGINAL reduction unsolved"
+}

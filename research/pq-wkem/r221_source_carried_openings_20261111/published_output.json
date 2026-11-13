@@ -1,0 +1,11 @@
+{
+  "checks": 64,
+  "groups": {
+    "path_auth_without_k": 16,
+    "plaintext_k_early": 16,
+    "public_q_pad_early": 16,
+    "toy_collision_same_mined_proof": 16
+  },
+  "run": "R221-SCOM-mini",
+  "scope": "Synthetic source commitment only; not original proof or QPT security"
+}

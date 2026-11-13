@@ -1,0 +1,13 @@
+{
+  "candidate": "R234-two-root-merkle-repair",
+  "checks": 9,
+  "hash_algorithm": "SHA-256 with synthetic domain tags",
+  "original_proof_and_key_release": "NOT IMPLEMENTED",
+  "presealed_A_path_does_not_decode_B": true,
+  "public_anchor_mask_revealed_early": true,
+  "same_position_openings_against_other_root_rejected": true,
+  "source_sha256": "a4830f627d0fdd2a956687325d1c43167e4a7848e2069661ad401341eeb253b3",
+  "synthetic_valid_root_A": "a527695f27ae77a3783abd6afbaf6fd68e5db82d281e98866edbf1ac3a80d6c1",
+  "synthetic_valid_root_B": "af4cb0f0623464178cebef8ca5472599e987d46494743c4d247024447b1ee3cf",
+  "work_wrappers_do_not_change_source_child": true
+}

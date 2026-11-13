@@ -1,0 +1,25 @@
+{
+  "run": "MINK-BHC-2026-11-01-T16",
+  "assertions": 663089,
+  "enumerated_openings": 662661,
+  "unique_commitment_values": 662661,
+  "toy": {
+    "q": 101,
+    "n": 1,
+    "m": 7,
+    "B": 1,
+    "A": [
+      94,
+      11,
+      14,
+      50,
+      7,
+      88,
+      5
+    ]
+  },
+  "global_binding_log2_bound_toy": -21.110809731578073,
+  "illustrative_global_binding_log2_bound": -14331.973045151173,
+  "k4_rounds_128bit_soundness": 487,
+  "scope": "finite algebraic checks; no quantum security experiment or full WKEM"
+}

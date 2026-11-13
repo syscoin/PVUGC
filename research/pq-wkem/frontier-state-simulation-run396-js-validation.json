@@ -1,0 +1,21 @@
+{
+  "run": 396,
+  "status": "PASS",
+  "assertions": 242074,
+  "reversible_three_bit_permutations": 40320,
+  "valid_witness_labels": [
+    1,
+    3,
+    5
+  ],
+  "exact_honest_frontier_states_tested": 967680,
+  "honest_release_success": 0.875,
+  "witness_free_release_success": 0.875,
+  "two_share_joint_tv": 0.875,
+  "two_share_real_authorization": 1,
+  "two_share_independent_authorization": 0.125,
+  "individual_marginal_checks": 128,
+  "proves_wkem": false,
+  "proves_rio_break": false,
+  "proves_qpt_security": false
+}

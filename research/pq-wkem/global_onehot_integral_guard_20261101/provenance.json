@@ -1,0 +1,28 @@
+{
+  "research_id": "GOIL-2026-11-01-T01",
+  "repo": "syscoin/PVUGC",
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "d85b12d75ca94ab67c589d6a703fb50d600d4ee3",
+  "source_blob": "a79b5f747fc328e2818d534be2b3f7cc04bb0336",
+  "exact_executable": "node checker.js",
+  "result": {
+    "research": "GOIL",
+    "seed": 20261101,
+    "q": 65537,
+    "d": 5,
+    "E": 2,
+    "bits": 8,
+    "g": 256,
+    "tests": 518,
+    "original_false_binary_witnesses": 0,
+    "counterfeit_l1": 8,
+    "unauth_false_symbol_decryptions": 128,
+    "guard_changed_symbol_count": 128,
+    "public_kernel": true,
+    "status": "PASS — SOURCE LEMMA ONLY; RELEASE INSECURE"
+  },
+  "extended_local_archive_sha256": "3b2ff1a215b1d1054921c7a8d26bc21c7e4eeae7b2cbb4cae6cf669369a11fef",
+  "web": false,
+  "agents": false,
+  "security_status": "unsafe; false original recovers key"
+}

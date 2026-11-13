@@ -1,0 +1,9 @@
+# R221 — Source-carried Merkle opening hypothesis (intermediate checkpoint)
+
+Run R221-SCOM-20261111, research only. At start, syscoin/PVUGC PR #1 was open/draft at 4efa6db13b841048ef12bef5dd1d2d1804a88d40 on research/pq-wkem-validation-20260918, tree acb425ab9ede091064f34458e9927fa604926aa4. Latest R220 and narrowly related R219 and R211 were read at exact branch versions. Recent ordinary PR comments since 2026-11-10T16:00Z: none. No web/external literature or independent agent.
+
+Hypothesis SCOM: Setup precommits a secret K with q=SHA256(domain,x,K), seals a frozen claim-scoped cancellation signature as D=sigma XOR Pad(K,x), and publishes a capsule root containing q. Can the ORIGINAL authenticated Bitcoin/Syscoin source Merkle proof (parent coinbase/child AuxPoW/tag path, qualified claim-specific fork) itself provide a hidden opening of q, without an issuer? This is an attempt to reuse *actual source proof structure* rather than hash a changing witness transcript into a key.
+
+Exact test needed: a Merkle path authenticates a leaf q relative to its source root, but does it reveal a preimage K of q? A miner who knows q but not K may still assemble/source-mine its commitment. A future source root independent of setup need not equal a frozen capsule root. If K is placed literally in a source leaf, it is revealed on an ordinary branch before any contradiction. Test both routes with SHA256d Bitcoin-shaped headers, source paths and independently generated source roots.
+
+This is a hypothesis checkpoint written before checker execution. It does not instantiate a cryptographic release gate, ORIGINAL R1/R2/R3 verifier, QPT theorem, production Bitcoin/Syscoin client, native signature, or deployment. The source predicate remains one-notary activation, N-of-N preauthorization, and permissionless release of the same cancellation authorization on ANY original qualified R1/R2/R3 witness.

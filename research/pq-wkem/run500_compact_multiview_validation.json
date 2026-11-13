@@ -1,0 +1,62 @@
+{
+  "run": 500,
+  "checks": 43421,
+  "cases": [
+    {
+      "hidden_bits": 1,
+      "views": 2,
+      "surplus": 0,
+      "matrices": 4,
+      "full_rank": 2,
+      "bit_decodable": 3,
+      "exact_probability": 0.5
+    },
+    {
+      "hidden_bits": 1,
+      "views": 3,
+      "surplus": 1,
+      "matrices": 8,
+      "full_rank": 6,
+      "bit_decodable": 7,
+      "exact_probability": 0.75
+    },
+    {
+      "hidden_bits": 2,
+      "views": 3,
+      "surplus": 0,
+      "matrices": 64,
+      "full_rank": 24,
+      "bit_decodable": 43,
+      "exact_probability": 0.375
+    },
+    {
+      "hidden_bits": 2,
+      "views": 4,
+      "surplus": 1,
+      "matrices": 256,
+      "full_rank": 168,
+      "bit_decodable": 211,
+      "exact_probability": 0.65625
+    },
+    {
+      "hidden_bits": 3,
+      "views": 4,
+      "surplus": 0,
+      "matrices": 4096,
+      "full_rank": 1344,
+      "bit_decodable": 2619,
+      "exact_probability": 0.328125
+    },
+    {
+      "hidden_bits": 3,
+      "views": 5,
+      "surplus": 1,
+      "matrices": 32768,
+      "full_rank": 20160,
+      "bit_decodable": 26251,
+      "exact_probability": 0.615234375
+    }
+  ],
+  "conclusion": "Sharing one hidden secret and one masked bit across h+1+s independent public parity views permits full linear recovery with probability >1-2^-s",
+  "limitation": "Finite public GF2 attack; not an actual PQ local-mixing system or a break of independent-key single-bit Goldreich-Levin."
+}

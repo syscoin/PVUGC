@@ -1,0 +1,20 @@
+{
+  "counts": {
+    "S32_action_identity_checks": 49152,
+    "S32_atomic_false_source_protection_cases": 1536,
+    "S32_false_source_checks": 6144,
+    "S32_public_prefix_bypass_cases": 768,
+    "S32_sampled_frames": 192,
+    "S32_sectors_reference_checks": 768,
+    "S32_valid_witness_checks": 3072,
+    "S8_commutator_cases": 645120,
+    "S8_false_terminal_identity_cases": 322560,
+    "S8_permutations": 40320,
+    "S8_true_seed_recovery_cases": 322560
+  },
+  "model": "ideal conjugated reversible actions, no compact mixer",
+  "run": 519,
+  "seed": 51920261015,
+  "status": "PASS",
+  "theorem": "E_f B_k E_f B_k flips t iff k*f(z), independent of initial admission bit"
+}

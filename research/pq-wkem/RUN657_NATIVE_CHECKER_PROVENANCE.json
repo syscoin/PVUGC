@@ -1,0 +1,17 @@
+{
+  "run": 657,
+  "date": "2026-10-20",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "bd0bbc8406ee7be834273bbd63f910de8fab3c80",
+  "exact_read_blobs": {
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "clz": "c19d9d9cd515140e3ce62eac960cd548c0add622",
+    "run653": "92582d5ac6034c594f6cffddf60f0e0a9b5b397b"
+  },
+  "checker_language": "JavaScript",
+  "checker_executed_in_v8": true,
+  "checker_assertions": 739,
+  "source_comment": "Full expanded independent Python checker and derivation preserved locally. Published JS checker independently executed with matching finite identities; no cryptographic security claim."
+}

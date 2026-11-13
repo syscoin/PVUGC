@@ -1,0 +1,27 @@
+{
+  "candidate": "MINK-QUAD-PACK-20261102-R13",
+  "checks": 9099,
+  "related_capsules": 3,
+  "same_256bit_tape_by_two_distinct_original_witnesses": true,
+  "q": 65537,
+  "n": 256,
+  "m": 4800,
+  "t": 2400,
+  "eta": 3,
+  "centers": [
+    0,
+    16384,
+    32768,
+    49152
+  ],
+  "max_error": 7200,
+  "fixed_weight_leftover_log2_epsilon": -341.77705497576835,
+  "canonical_17bit_ciphertext_bytes": 547,
+  "previous_binary_capsule_bytes": 592128,
+  "new_quaternary_capsule_bytes": 210048,
+  "compression_factor": 2.8190127970749543,
+  "malformed_adversarial_FALSE_exposes_capability": true,
+  "QPT_security_tested": false,
+  "full_setup_simulator_tested": false,
+  "generic_NP_compiler_instantiated": false
+}

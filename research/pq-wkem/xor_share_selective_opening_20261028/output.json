@@ -1,0 +1,1 @@
+{"QPT_hardness_tested": false, "assertions": 14092, "columns_per_capsule": 46, "exact_xor_mask_enumeration_bits": 3, "native_signature_security_tested": false, "opened_subsets": 7, "radix": 51, "result": "PASS", "share_capsules": 3, "tested_same_K_trials": 24, "toy_seed_bits": 256}

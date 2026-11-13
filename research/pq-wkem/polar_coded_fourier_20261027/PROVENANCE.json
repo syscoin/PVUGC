@@ -1,0 +1,74 @@
+{
+  "run": "polar-coded-fourier-20261027-automation5",
+  "execution": "scheduled automation turn 5; no platform run UUID provided",
+  "research_date_utc": "2026-10-27",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "34ba3caa80a5d0b3e6a03c341a86e6dba4a6d915",
+  "predecessor_blob": "1220d333b8c5526a36e77a877247dc51d8069a3e",
+  "latest_comment_read": 6431030403,
+  "published_blob_ids": {
+    "PROOF.md": "039e2706200aaf8cb6cf0a2bd9e0d730684abda5",
+    "check_polar_certificate.js": "e622de74de461dd6025357308ce81e956fe1e3ab",
+    "js_output.json": "a5079516f5d61cf40872ccceeacd6831b4c919bb"
+  },
+  "published_checker": {
+    "checks": 11,
+    "executions": 2,
+    "byte_identical": true,
+    "command": "node check_polar_certificate.js",
+    "scope": "exact integer-dyadic Bhattacharyya certificates, exhaustive N=8 channel/dither census"
+  },
+  "local_only": {
+    "README.md": {
+      "sha256": "1ed84caa2276b12aa6ef490be53c74bf23b30e251f2d9ea43e463d50324091a1",
+      "bytes": 16405
+    },
+    "check_polar_source.py": {
+      "sha256": "c26fb789393ca92e83b059306e9ca0333cf3e4d8f2830f80c14999bcafa55070",
+      "bytes": 14209
+    },
+    "validation.json": {
+      "sha256": "dd63497f65f344419c85d287cabff8b60938c0eb337012e98fd09609b64c56cf",
+      "bytes": 2974
+    },
+    "python_assertions": 9346,
+    "python_executions": 2,
+    "byte_identical": true,
+    "archive": "WKEM_POLAR_CODED_FOURIER_20261027.tar.gz",
+    "archive_sha256": "803d7c85060fc0ad7f4a1f815733a10fcd1d70b801bba1af51e0f049a968f778"
+  },
+  "demonstrated": {
+    "rho_2_over_3": {
+      "k": 256,
+      "t": 256,
+      "lambda": 128,
+      "polar_columns": 16384,
+      "bit_repetition_columns": 313088
+    },
+    "rho_1_over_2": {
+      "k": 256,
+      "t": 256,
+      "lambda": 128,
+      "polar_columns": 32768,
+      "bit_repetition_columns": 556800
+    },
+    "actual_toy_source": {
+      "distinct_witnesses": 3,
+      "encoded_seed_bits": 16,
+      "columns": 256,
+      "openings": 36
+    }
+  },
+  "not_proved": [
+    "polynomial release cost for generic NP",
+    "standard-LWE source-conditioned joint simulator",
+    "actual SYS/BTC PoW witness work bound",
+    "malicious N-of-N setup/abort and selective-opening security",
+    "native PQ Bitcoin endpoint or graph",
+    "concrete QPT 128-bit deployment parameters"
+  ],
+  "external_web_research": false,
+  "publication_scope": "research/pq-wkem/ only on existing PR #1 branch, no reviews/merges/production/workflows"
+}

@@ -1,0 +1,18 @@
+{
+  "run": 558,
+  "checker": "run558_cc_target_entropy_check.js",
+  "status": "PASS",
+  "assertions_passed": 234474,
+  "public_accept_bit_models": 10920,
+  "independent_target_exhaustive_cases": 135408,
+  "hash_label_collisions": 1365,
+  "noncolliding_adapters": 9555,
+  "programmed_target_conditional_min_entropy_bits": 0,
+  "independent_target_all_valid_success": "2^-k exactly",
+  "restricted_true_instances": 128,
+  "restricted_false_instances": 129,
+  "restricted_true_witness_multiplicity": 2,
+  "toy_permutation_modulus": 257,
+  "cryptographic_obfuscation_executed": false,
+  "QPT_security_proved": false
+}

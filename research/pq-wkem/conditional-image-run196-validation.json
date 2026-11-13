@@ -1,0 +1,194 @@
+{
+  "conditional_images_checked": 255,
+  "generic_controls": [
+    {
+      "kernel_rank_failure_bound": "1",
+      "minimum_rank": 2,
+      "r": 0,
+      "source": "identity",
+      "tv": "1/2"
+    },
+    {
+      "kernel_rank_failure_bound": "1/4",
+      "minimum_rank": 2,
+      "r": 1,
+      "source": "identity",
+      "tv": "1/8"
+    },
+    {
+      "kernel_rank_failure_bound": "1/16",
+      "minimum_rank": 2,
+      "r": 2,
+      "source": "identity",
+      "tv": "1/32"
+    },
+    {
+      "kernel_rank_failure_bound": "1/64",
+      "minimum_rank": 2,
+      "r": 3,
+      "source": "identity",
+      "tv": "1/128"
+    },
+    {
+      "kernel_rank_failure_bound": "1",
+      "minimum_rank": 2,
+      "r": 0,
+      "source": "field_code",
+      "tv": "3/4"
+    },
+    {
+      "kernel_rank_failure_bound": "1/4",
+      "minimum_rank": 2,
+      "r": 1,
+      "source": "field_code",
+      "tv": "3/16"
+    },
+    {
+      "kernel_rank_failure_bound": "1/16",
+      "minimum_rank": 2,
+      "r": 2,
+      "source": "field_code",
+      "tv": "3/64"
+    },
+    {
+      "kernel_rank_failure_bound": "1/64",
+      "minimum_rank": 2,
+      "r": 3,
+      "source": "field_code",
+      "tv": "3/256"
+    },
+    {
+      "kernel_rank_failure_bound": "1",
+      "minimum_rank": 1,
+      "r": 0,
+      "source": "full_space",
+      "tv": "15/16"
+    },
+    {
+      "kernel_rank_failure_bound": "1",
+      "minimum_rank": 1,
+      "r": 1,
+      "source": "full_space",
+      "tv": "3/8"
+    },
+    {
+      "kernel_rank_failure_bound": "5/8",
+      "minimum_rank": 1,
+      "r": 2,
+      "source": "full_space",
+      "tv": "15/64"
+    },
+    {
+      "kernel_rank_failure_bound": "11/32",
+      "minimum_rank": 1,
+      "r": 3,
+      "source": "full_space",
+      "tv": "33/256"
+    }
+  ],
+  "literal_table_projections": [
+    {
+      "R": 1,
+      "binary_rows": 360,
+      "field_bits": 4,
+      "gamma": 2,
+      "image_dimension": 10,
+      "laws": [
+        {
+          "r": 1,
+          "rank_failure_bound": "1",
+          "tv": "217/512",
+          "tv_float": 0.423828125
+        },
+        {
+          "r": 2,
+          "rank_failure_bound": "1",
+          "tv": "4123/65536",
+          "tv_float": 0.0629119873046875
+        },
+        {
+          "r": 3,
+          "rank_failure_bound": "841/4096",
+          "tv": "17143/2097152",
+          "tv_float": 0.008174419403076172
+        },
+        {
+          "r": 4,
+          "rank_failure_bound": "4127/131072",
+          "tv": "69223/67108864",
+          "tv_float": 0.0010315030813217163
+        },
+        {
+          "r": 5,
+          "rank_failure_bound": "18139/4194304",
+          "tv": "277543/2147483648",
+          "tv_float": 0.00012924103066325188
+        },
+        {
+          "r": 6,
+          "rank_failure_bound": "75923/134217728",
+          "tv": "1110823/68719476736",
+          "tv_float": 1.616460212972015e-05
+        }
+      ],
+      "n": 4,
+      "nonzero_rank_spectrum": {
+        "3": 155,
+        "5": 868
+      }
+    },
+    {
+      "R": 2,
+      "binary_rows": 3780,
+      "field_bits": 5,
+      "gamma": 2,
+      "image_dimension": 15,
+      "laws": [
+        {
+          "r": 1,
+          "rank_failure_bound": "1",
+          "tv": "217/512",
+          "tv_float": 0.423828125
+        },
+        {
+          "r": 2,
+          "rank_failure_bound": "1",
+          "tv": "17143/524288",
+          "tv_float": 0.03269767761230469
+        },
+        {
+          "r": 3,
+          "rank_failure_bound": "3473/32768",
+          "tv": "71827/33554432",
+          "tv_float": 0.002140611410140991
+        },
+        {
+          "r": 4,
+          "rank_failure_bound": "17207/2097152",
+          "tv": "290563/2147483648",
+          "tv_float": 0.00013530394062399864
+        },
+        {
+          "r": 5,
+          "rank_failure_bound": "75923/134217728",
+          "tv": "1165507/137438953472",
+          "tv_float": 8.480179531034082e-06
+        },
+        {
+          "r": 6,
+          "rank_failure_bound": "318347/8589934592",
+          "tv": "4665283/8796093022208",
+          "tv_float": 5.30381271346414e-07
+        }
+      ],
+      "n": 5,
+      "nonzero_rank_spectrum": {
+        "4": 651,
+        "6": 32116
+      }
+    }
+  ],
+  "run": 196,
+  "scope": "conditional-image theorem controls and exact finite one-block marginals; not full-capsule security",
+  "status": "PASS"
+}

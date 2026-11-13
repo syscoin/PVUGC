@@ -1,0 +1,27 @@
+{
+  "research_id": "BASO-2026-10-31-T10",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "4a57fd2e70299a452ed40b9a845cb1cd8daebf87",
+  "latest_substantive_comment_read": 6554141924,
+  "predecessor_path": "research/pq-wkem/stm_telescoping_20261031/RESEARCH.md",
+  "predecessor_blob": "2e6f8703ee43d7838b3a5a1099b17d2ce6f43c2a",
+  "qgl_regression_blob": "3978a53fe6d40bb54850b53e4618cbd161e3ae2e",
+  "research_notes_blob": "a79b5f747fc328e2818d534be2b3f7cc04bb0336",
+  "executed_v8_checker_blob": "c1c868373bad572b98d30c0116c63a4bc096e182",
+  "checker_run_twice_identical": true,
+  "published_captured_output_blob": "e7c58a66cc3670a2141c702fd0dacf03547f0cdb",
+  "published_checker_assertions": 28096,
+  "extended_local_only": {
+    "path": "/mnt/data/wkem_bit_adaptive_openings_20261031/EVIDENCE.tar.xz",
+    "sha256": "9dd1a1383a4ae77cf5a759311699ccfd5eef871ffc56d6b2ff0cead1d7975ee9",
+    "python_assertions_per_run": 30426,
+    "two_runs_byte_identical": true,
+    "plaintext_share_hash_guess_negative_controls": 162
+  },
+  "scope": "Only research/pq-wkem/ on existing PVUGC PR #1 branch plus ordinary PR comment",
+  "limitations": "Restricted uniform-SOURCE conditional QPT proof only. ORIGINAL compiler/FALSE/hard-TRUE extraction absent. Not deployed.",
+  "offline": true,
+  "agents_invoked": 0
+}

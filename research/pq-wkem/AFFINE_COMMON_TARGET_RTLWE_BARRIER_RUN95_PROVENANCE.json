@@ -1,0 +1,61 @@
+{
+  "run": 95,
+  "title": "Affine common-target preimage compiler and RTLWE transversality barrier",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "f127e33fb43ed2898bcc0a67ddbc944c5f514ca9",
+  "research_scope": "research-only; no production code",
+  "inputs": {
+    "published_run92": {
+      "path": "research/pq-wkem/GAPMDP_SHORT_KERNEL_BRIDGE_RUN92.md",
+      "blob": "5fc79b25e140d2fba30e00c6fd168b619beabd45"
+    },
+    "published_run89": {
+      "path": "research/pq-wkem/SPECTRAL_DIMENSION_FLOOR_RUN89.md",
+      "blob": "0f93693ad51f7d84c249fd02ffa361bcadd3dd84"
+    },
+    "rank_compiler_dependency": {
+      "path": "research/pq-wkem/literature-20260924/rank_field_extensions.py",
+      "blob": "e3c51bff4a8f3817f70b1368190b8b35893cafa2"
+    },
+    "local_handoff": [
+      "Run 93 identity-tail structured-target result from current conversation",
+      "Run 94 transverse RTLWE QPT/classical-query audit from current conversation"
+    ]
+  },
+  "primary_sources": [
+    {
+      "title": "Multi-Authority ABE from Lattices without Random Oracles",
+      "authors": "Brent Waters, Hoeteck Wee, David J. Wu",
+      "source": "https://eprint.iacr.org/2022/1194.pdf",
+      "checked": "Assumption 4.1, Theorem 4.2, full-rank query gate and Section 4 proof excerpts"
+    },
+    {
+      "title": "Circuit ABE with poly(depth, lambda)-sized Ciphertexts and Keys from Lattices",
+      "author": "Hoeteck Wee",
+      "source": "https://eprint.iacr.org/2024/1416.pdf",
+      "checked": "Assumption 1 (ell-succinct LWE), relation to LWE/evasive LWE, PPT security wording"
+    }
+  ],
+  "checker": {
+    "path": "research/pq-wkem/affine_common_target_run95_check.py",
+    "sha256": "2c9f8301997a641cb26f2fe6f7bef807da2c7fd8f0682f59ecd20ca08b033988",
+    "language": "Python 3 standard library only",
+    "deterministic_seed": 202609250415,
+    "executions": 2,
+    "outputs_byte_identical": true
+  },
+  "validation": {
+    "path": "research/pq-wkem/affine-common-target-run95-validation.json",
+    "sha256": "4faebcd873fb8b30f669b2d8528809fd802ed00e9654416f977fe340f498bf13"
+  },
+  "claims_not_made": [
+    "No full witness KEM",
+    "No standard-LWE proof for the correlated aligned preimage view",
+    "No QPT hiding theorem",
+    "No arbitrary-QPT key-recovery extractor",
+    "No production trapdoor sampler or deployment parameters",
+    "No claim that ell-succinct LWE is implied by ordinary QPT-LWE in the useful growing-ell regime"
+  ]
+}

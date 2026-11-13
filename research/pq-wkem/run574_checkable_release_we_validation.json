@@ -1,0 +1,44 @@
+{
+  "run": 574,
+  "assertions_passed": 175534,
+  "independent_fixed_distinguisher_identities": 768,
+  "enumerated_n": [
+    {
+      "n": 2,
+      "bit_predictions": "12/16",
+      "message_success": "24/32"
+    },
+    {
+      "n": 3,
+      "bit_predictions": "48/64",
+      "message_success": "96/128"
+    },
+    {
+      "n": 4,
+      "bit_predictions": "192/256",
+      "message_success": "384/512"
+    },
+    {
+      "n": 5,
+      "bit_predictions": "768/1024",
+      "message_success": "1536/2048"
+    },
+    {
+      "n": 6,
+      "bit_predictions": "3072/4096",
+      "message_success": "6144/8192"
+    },
+    {
+      "n": 7,
+      "bit_predictions": "12288/16384",
+      "message_success": "24576/32768"
+    },
+    {
+      "n": 8,
+      "bit_predictions": "49152/65536",
+      "message_success": "98304/131072"
+    }
+  ],
+  "scope": "finite algebra only; no WE, WKEM, quantum implementation",
+  "qpt_security_established": false
+}

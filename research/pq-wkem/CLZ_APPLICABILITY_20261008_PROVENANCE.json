@@ -1,0 +1,30 @@
+{
+  "base_tree_sha": "9f484bf9ef0c226fb885bd2d74eecf9cb464253b",
+  "branch": "research/pq-wkem-validation-20260918",
+  "checkpoint_id": "interactive-clz-assessment-20261008",
+  "complete_wkem": false,
+  "latest_existing_comment": 5945825660,
+  "new_checker_executed": false,
+  "note": "CLZ_APPLICABILITY_20261008.md",
+  "note_git_blob_sha1": "c19d9d9cd515140e3ce62eac960cd548c0add622",
+  "note_sha256": "0cb95b5075359ecb8019ebbda5a235de831e3b8361cfbe88c93b206d4d53a497",
+  "pr": 1,
+  "production_changes": false,
+  "publication_stage_when_provenance_written": "before_publication",
+  "reason_no_checker": "No cryptographic algorithm or new quantitative theorem is claimed in this literature/application checkpoint.",
+  "repository": "syscoin/PVUGC",
+  "run259_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "run370_archive_sha256": "ff470a253c5628d9930b45a59d588f2c0570fba8198403eea13683200ee46be2",
+  "run370_republished": false,
+  "scope": "new primary-source presentation audit and WKEM application/interface analysis; no full-paper proof audit; no construction or security proof",
+  "source_access": {
+    "container_download": "download failed",
+    "container_pdf_request": "NameResolutionError [Errno -3] Temporary failure in name resolution",
+    "crypto_slides": "targeted parsed sections including zero-based pages 60-61 and 141 read",
+    "eprint_landing": "read",
+    "eprint_pdf_web": "not accessible via this tool",
+    "publisher": "subscription preview and notes read",
+    "simons_slides": "parsed text and page images 9,11,16,19 read"
+  },
+  "starting_sha": "d51d007439bae3ddbe3fe74d48436f675df40ce3"
+}

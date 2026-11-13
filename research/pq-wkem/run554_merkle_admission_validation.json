@@ -1,0 +1,50 @@
+{
+  "assertions_total": 8346,
+  "cases": [
+    {
+      "assertions": 134,
+      "challenge_vectors": 16,
+      "cross_value_collision_pairs": 4,
+      "equivocal_vector_accepted": 16,
+      "first_pair": {
+        "one_salt": 0,
+        "zero_salt": 205
+      },
+      "fixed_vector_accepted": 1,
+      "hash_bits": 8,
+      "leaves": 4,
+      "root_hex": "2f"
+    },
+    {
+      "assertions": 4106,
+      "challenge_vectors": 256,
+      "cross_value_collision_pairs": 8,
+      "equivocal_vector_accepted": 256,
+      "first_pair": {
+        "one_salt": 1,
+        "zero_salt": 895
+      },
+      "fixed_vector_accepted": 1,
+      "hash_bits": 10,
+      "leaves": 8,
+      "root_hex": "002a"
+    },
+    {
+      "assertions": 4106,
+      "challenge_vectors": 256,
+      "cross_value_collision_pairs": 8,
+      "equivocal_vector_accepted": 256,
+      "first_pair": {
+        "one_salt": 0,
+        "zero_salt": 3891
+      },
+      "fixed_vector_accepted": 1,
+      "hash_bits": 12,
+      "leaves": 8,
+      "root_hex": "04c9"
+    }
+  ],
+  "conclusion": "finite existence and syntax only; not a hash or QPT security test",
+  "experiment": "run554_merkle_equivocation",
+  "hash": "truncated SHA-256 toy"
+}

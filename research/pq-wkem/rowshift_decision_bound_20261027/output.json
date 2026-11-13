@@ -1,0 +1,21 @@
+{
+  "assertions": 1766,
+  "exact_false_source_coupling_trials": 120,
+  "exhausted_parity_sign_systems": 16,
+  "explicit_sparse_certificate": "M_false^T cert = 2 e_anchor",
+  "full_original_witness_recovery_reduction": "NOT ESTABLISHED",
+  "modulus": 101,
+  "moments": 57,
+  "proof_obligation": "Source-dependent full-public QPT security without efficiently decidable exact row-span condition",
+  "qpt_security": "NOT ESTABLISHED",
+  "random_seed": 539365415,
+  "row_rank_false": 57,
+  "row_rank_true": 49,
+  "rows_per_source": 200,
+  "standard_lwe_full_joint_simulator": "NOT ESTABLISHED",
+  "status": "NECESSARY_CONDITION_NOT_WKEM_ADVANCE",
+  "target_anchor_in_rowspan_false": true,
+  "target_anchor_in_rowspan_true": false,
+  "valid_original_false_witnesses": 0,
+  "valid_original_true_witnesses": 8
+}

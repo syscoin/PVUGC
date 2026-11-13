@@ -1,0 +1,33 @@
+{
+  "record_id": "scaled-syndrome-20261026",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "initial_verified_sha": "2fe2159554db974bb77b791bbf2174af4343f0ee",
+  "parent_head_for_publication": "2fe2159554db974bb77b791bbf2174af4343f0ee",
+  "base_tree_sha": "334aa08c0e0e93364dff04fcb0740280845ac338",
+  "proof_pred_blobs": [
+    "606f7d6bec6dae60f059b4c4e15ac5b43a920ebe",
+    "4b7333cf8f3ccf87f66aa62688b4c1ecca0b7357"
+  ],
+  "executed_published_js": {
+    "status": "PASS",
+    "assertions": 192014,
+    "release_opens_rechecked": 82944,
+    "noise_bound": 1,
+    "nonprimitive_helper_bits": 0,
+    "scope": "finite exact equalities only; not a QPT-LWE hardness or native signature test"
+  },
+  "executed_local_python_assertions": 111097,
+  "executed_local_python_runs": 2,
+  "local_archive_sha256": "b5abfafa24ac127755573551cf8c3ff0ca3ee73423165cb53ac64997e9a4e83e",
+  "published_blob_shas": {
+    "README.md": "910734d2eca32f1d3712e8089163703b81989466",
+    "check_scaled_syndrome.js": "7da97ac703122e6a827bed76d9616fb7dbf21ca6",
+    "validation.json": "fa6c6545fb17d9bdc184730400a7f24ac11ee3af"
+  },
+  "scope": "uniform-A helper-free nonprimitive b with joint QPT-LWE hybrid; NOT arbitrary NP or bridge",
+  "disclaimer": "This provenance attests exact finite tests, not QPT-LWE or native-key security",
+  "external_web_research": false,
+  "publication_success_not_yet_claimed": true
+}

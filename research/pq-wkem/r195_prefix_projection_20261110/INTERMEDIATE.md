@@ -1,0 +1,11 @@
+# R195 — claim-prefix projection before source-label release
+
+Research checkpoint; NO completed hash-only Build/Open or quantum security claim.
+
+Continuity: syscoin/PVUGC PR #1; existing branch research/pq-wkem-validation-20260918; starting head e16a499e1f11299ee2ba2a6770092b083827c1d8. Read R194 CHECKPOINT_02 and R193 RESEARCH; no relevant new issue comments since 2026-11-10T08:30Z. Offline hash-only design.
+
+Potential semantic defect in R194: R194 proposes one rounded tagged ancestor identifier U_r(P) at r=10*ceil(h_rel/10). For h_rel not divisible by 10, r>h_rel. Two histories can share every claim-relevant block through h_rel and first diverge after h_rel but before r, making U_r different while there is NO claim-prefix fork. Example: h_rel=101,r=110, first divergence d=105, tagged child height n=116. This can produce different correct ancestor tags at height 110 despite agreeing through 101.
+
+Repair candidate: for each independently and fully authenticated relevant source history P, derive U_h(P)=pure-child block hash at EXACT claim-relevant height h_rel by checking its ancestor links down from authenticated tag/child chains. Compare U_h(P0)!=U_h(P1), not merely different rounded-tag hashes. The high-water rounded tag helps source authentication but is not the semantic outcome. Under collision-resistant child-header linkage and the common authenticated root, differing U_h implies first divergence d<=h_rel, while divergence only after h_rel preserves identical U_h. This may eliminate the need to separately identify d in the positive challenge witness. Distinct parent work certificates for the same child leave U_h invariant.
+
+Not yet proved/tested in this checkpoint: full evidence qualification, tag cadence, work anchoring, complete source history, LC depth, malicious source coins, publicly enforced release of setup-hidden labels, or any QPT extraction. This source normalization does NOT solve the actual source-to-hidden-key interface. Next: bounded synthetic header/tag regression with varying claim/fork heights and qualification boundaries, then mathematical proof and public release-gate feasibility check. Do not promote R194's secret-label grant as available.

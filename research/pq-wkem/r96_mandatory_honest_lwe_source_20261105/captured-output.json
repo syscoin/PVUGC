@@ -1,0 +1,11 @@
+{
+  "run": "R96-MANDATORY-HONEST-LWE-SOURCE-20261105",
+  "assertions": 2625,
+  "counts": {
+    "privacy": 125,
+    "maliciousPublicLeak": 625,
+    "openings": 625,
+    "hybridView": 625
+  },
+  "fixture": "GF5 and zero-error linear encryption; insecure structural fixture, NOT QPT hardness"
+}

@@ -1,0 +1,74 @@
+{
+  "source": "CHECKER.js executed in V8 twice, deterministic (not a cryptographic RNG)",
+  "starting_head": "3bd048ee413174122118995f2831ea9c7ffe9745",
+  "prior_comment": 6599379370,
+  "executions": 2,
+  "first": {
+    "run": "R35-MINK-UNIFORM-PRODUCT-SPAN-20261103",
+    "assertions": 7505,
+    "false_fixture": {
+      "n": 4,
+      "clauses": 10,
+      "public_product_generators": 55,
+      "affine_rank": 10,
+      "product_rank": 13,
+      "exact_integer_unit_certificate_terms": 11,
+      "full_capsule_exact_couplings": 128
+    },
+    "true_fixture": {
+      "genuine_original_witnesses": 7,
+      "same_capability_decodings": 3584
+    },
+    "small_field_exhaustive": [
+      {
+        "t": 1,
+        "tv": 0.32098765432098764,
+        "upper_bound": 0.8498365855987974
+      },
+      {
+        "t": 2,
+        "tv": 0.12345679012345676,
+        "upper_bound": 0.2832788618662658
+      },
+      {
+        "t": 3,
+        "tv": 0.04298125285779607,
+        "upper_bound": 0.09442628728875527
+      },
+      {
+        "t": 4,
+        "tv": 0.014530305339633193,
+        "upper_bound": 0.031475429096251756
+      },
+      {
+        "t": 5,
+        "tv": 0.00486601523028897,
+        "upper_bound": 0.010491809698750586
+      },
+      {
+        "t": 6,
+        "tv": 0.0016245139786605425,
+        "upper_bound": 0.0034972698995835282
+      },
+      {
+        "t": 7,
+        "tv": 0.0005417834264310091,
+        "upper_bound": 0.0011657566331945094
+      }
+    ],
+    "illustrative": {
+      "q": 101,
+      "M": 16,
+      "rank_W": 13,
+      "old_t": 30,
+      "old_random_field_draws": 600,
+      "new_random_field_draws": 55,
+      "old_direct_pair_expansions": 3000,
+      "new_direct_pair_expansions": 55,
+      "old_to_new_direct_expansion_ratio": 54.54545454545455,
+      "old_to_uniform_log2_TV_bound": -157.46796984466718
+    },
+    "status": "restricted FALSE exact; all-instance statistical equivalence for t sufficient; hard TRUE arbitrary recovered-key or forgery -> ORIGINAL witness unproved"
+  },
+  "repeat_identical": true
+}

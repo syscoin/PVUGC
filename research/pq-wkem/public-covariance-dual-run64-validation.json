@@ -1,0 +1,170 @@
+{
+  "gaussian_or2_diagnostic": {
+    "Delta": 8.0,
+    "note": "Monte Carlo validates implementation only; theorem is exact linear algebra/Gaussian projection.",
+    "sigma": 1.0,
+    "success": {
+      "public_integral_alt": 0.97742,
+      "public_min": 0.99973,
+      "w01": 0.99738,
+      "w10": 0.99754,
+      "w11": 0.97782
+    },
+    "theoretical_variances": {
+      "public_integral_alt": 4,
+      "public_min": 1.3333333333333333,
+      "w01": 2,
+      "w10": 2,
+      "w11": 4
+    },
+    "trials": 100000
+  },
+  "iid_symmetric_exact_histograms": {
+    "2": {
+      "histogram": {
+        "-1": 16,
+        "-2": 10,
+        "-3": 4,
+        "-4": 1,
+        "0": 19,
+        "1": 16,
+        "2": 10,
+        "3": 4,
+        "4": 1
+      },
+      "support": [
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "vectors": 81
+    },
+    "3": {
+      "histogram": {
+        "-1": 1016,
+        "-2": 784,
+        "-3": 504,
+        "-4": 266,
+        "-5": 112,
+        "-6": 36,
+        "-7": 8,
+        "-8": 1,
+        "0": 1107,
+        "1": 1016,
+        "2": 784,
+        "3": 504,
+        "4": 266,
+        "5": 112,
+        "6": 36,
+        "7": 8,
+        "8": 1
+      },
+      "support": [
+        -8,
+        -7,
+        -6,
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "vectors": 6561
+    }
+  },
+  "or2_exact": {
+    "integral_alt": [
+      "1",
+      "-1",
+      "1",
+      "-1"
+    ],
+    "integral_alt_l1": "4",
+    "integral_alt_norm2": "4",
+    "lambda_star": [
+      "1",
+      "1/3",
+      "1/3",
+      "-1/3"
+    ],
+    "lambda_star_norm2": "4/3",
+    "witness_norm2": [
+      "2",
+      "2",
+      "4"
+    ]
+  },
+  "or_clause_walsh_duals": [
+    {
+      "annihilator_dot": "0",
+      "coordinates": 4,
+      "l2sq": "4",
+      "r": 2,
+      "two_witness_identity": true
+    },
+    {
+      "annihilator_dot": "0",
+      "coordinates": 8,
+      "l2sq": "8",
+      "r": 3,
+      "two_witness_identity": true
+    },
+    {
+      "annihilator_dot": "0",
+      "coordinates": 16,
+      "l2sq": "16",
+      "r": 4,
+      "two_witness_identity": true
+    },
+    {
+      "annihilator_dot": "0",
+      "coordinates": 32,
+      "l2sq": "32",
+      "r": 5,
+      "two_witness_identity": true
+    },
+    {
+      "annihilator_dot": "0",
+      "coordinates": 64,
+      "l2sq": "64",
+      "r": 6,
+      "two_witness_identity": true
+    },
+    {
+      "annihilator_dot": "0",
+      "coordinates": 128,
+      "l2sq": "128",
+      "r": 7,
+      "two_witness_identity": true
+    },
+    {
+      "annihilator_dot": "0",
+      "coordinates": 256,
+      "l2sq": "256",
+      "r": 8,
+      "two_witness_identity": true
+    }
+  ],
+  "public_covariance_controls": {
+    "all_minimum_inequalities_passed": true,
+    "feasible_vectors_checked": 1440,
+    "instances": 120,
+    "max_ratio_min_to_sampled": 0.9994993533313864
+  },
+  "seed": 640064
+}

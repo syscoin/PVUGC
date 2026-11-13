@@ -1,0 +1,25 @@
+{
+  "run": 489,
+  "assertions_passed": 265,
+  "exact": [
+    {
+      "N": 2,
+      "maps": 4,
+      "missing_sum": 2,
+      "expected_absent_numerator": 1,
+      "expected_absent_denominator": 4
+    },
+    {
+      "N": 4,
+      "maps": 256,
+      "missing_sum": 324,
+      "expected_absent_numerator": 81,
+      "expected_absent_denominator": 256
+    }
+  ],
+  "explicit_unreachable_root": 1,
+  "retained_builder_seed": 3,
+  "retained_seed_root": 2,
+  "ideal_absent_probability_16bit": 0.36787663445620106,
+  "limits": "toy finite and ideal-model only, not SLH-DSA, quantum attack or WKEM"
+}

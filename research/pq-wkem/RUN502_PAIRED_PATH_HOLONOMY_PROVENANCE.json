@@ -1,0 +1,21 @@
+{
+  "run": 502,
+  "date": "2026-10-14",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "904455a97bddfe597094db99608be43d3fe365f4",
+  "previous_note_blob": "2ea79521d190aa8c9bb013981a970ca26e5e06f4",
+  "latest_comment_id": 6067040320,
+  "exact_checker_command": "node research/pq-wkem/run502_compact_holonomy_check.js",
+  "compact_checker_assertions": 86408,
+  "compact_checker_total_two_endpoint": 1152,
+  "compact_checker_total_three_frame": 27648,
+  "local_independent_python_assertions": 57922,
+  "independent_python_command": "python3 /mnt/data/pq_wkem_run502/run502_holonomy_check.py",
+  "local_python_reexecution_byte_identical": true,
+  "local_python_syntax_passed": true,
+  "native_signatures_in_local_python": 24,
+  "scope": "explicit finite reversible 2-bit gate tables; not CCMR RIO, iO, WE, FHE, ZK, PQ signing or security proof",
+  "publication": "tree preparation; commit and readback pending"
+}

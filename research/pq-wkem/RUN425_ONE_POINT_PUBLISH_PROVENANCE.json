@@ -1,0 +1,35 @@
+{
+  "artifacts": {
+    "RUN425_ONE_POINT_PINS_PUBLISH.md": {
+      "blob_sha": "511cfd34cee890a7ac338c6fcf871b6b735ca73d",
+      "bytes": 4994,
+      "sha256": "fce8cb0bfdfea912628eeb829b65b693c425058975d1603dc0b34e2d9b0919ee"
+    },
+    "run425-one-point-validation.json": {
+      "blob_sha": "86104564ef116b333bd4d7d80b00f265fe570290",
+      "bytes": 653,
+      "sha256": "ab16d9332ae5e841e04e78cf617f7f95af882e483fde6e24a835f04ef583656b"
+    },
+    "run425_one_point_check.js": {
+      "blob_sha": "24e9ebbe38b593df50fe1c013a5bf78ea7b4a3c9",
+      "bytes": 1734,
+      "sha256": "e609c22fecef9b87a536940f411d75d8747c8949ea18ee33c55178180623babc"
+    }
+  },
+  "base_tree": "0172d8dffab703feabc0b66421d5fded68eb1bb2",
+  "branch": "research/pq-wkem-validation-20260918",
+  "checks": {
+    "compact_js": 8052,
+    "ed25519_non_pq_fixtures": 12,
+    "extended_python": 12724,
+    "independent_js": 7970,
+    "replay": "byte identical"
+  },
+  "last_substantive_comment": 6067040320,
+  "pr": 1,
+  "production_unchanged": true,
+  "repo": "syscoin/PVUGC",
+  "run": 425,
+  "scope": "single-point boundary path information-theoretic falsifier; not complete WKEM",
+  "starting_head": "ee3e74a87d6f7420cf55d39759baf88c6d3e3e5d"
+}

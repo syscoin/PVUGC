@@ -1,0 +1,9 @@
+# Source-quotient full-evidence release, independent analysis checkpoint
+
+Scope: hash-only Build/Open for the ACTUAL ORIGINAL relation, avoiding standalone puzzles, lattice or groups. The current PR #1 branch head observed this run is 44e0519506be699aba052e30ddb5081ae8b7fd4b; its checkpoint CHECKPOINT_01.md is blob 6d177204cf9c3d62996c69615194082176378feb. Earlier full-state Merkle trace lemma proves transcript-to-original witness only, not final K-to-witness. This pass tests a quotient key class whose disclosure is supposed to require authenticated original evidence.
+
+Proposed quotient family: Build samples random frozen K, publishes CK=H_check(ctx,K), D=sigma XOR H_mask(ctx,K), and for q selected labels u_j emits (tag_j=H_tag(ctx,u_j), E_j=K XOR H_pad(ctx,u_j)). PublicDerive obtains u=g(x,w) from a claimed source witness; raw adversary may call hash APIs without the honest verifier. Variants: (A) g=OutcomeID with multiple parent-work proofs, (B) g=WorkID over complete evidence, (C) g=authenticated proof root, (D) publication of a Merkle root for the release map instead of raw records.
+
+Questions for actual test and proof: Is there ANY correlation supplied by actual authenticated source bytes in (A)-(D), or does (A) release to fake work, (B) lose every-witness completeness for future independent source, (C) inherit B, and (D) move the lookup into an unavailable opening without changing the logical identity? Does a source-qualification post-check affect the raw capability at all? Can one construct a genuinely more capable polynomial masked map with a full-public extractor, rather than rename WE?
+
+Nothing is proved or executed yet in this checkpoint. No security claim, no ordinary PR comment, no independent agent. Preserve outcomes and exact next mathematical obligation.

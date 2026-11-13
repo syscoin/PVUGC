@@ -1,0 +1,20 @@
+{
+  "run": 391,
+  "starting_sha": "48037d3a11556f5dd2a702973622094dd3badb47",
+  "repo": "syscoin/PVUGC",
+  "branch": "research/pq-wkem-validation-20260918",
+  "pr": 1,
+  "exact_executed_checker": "shallow_local_derivative_run391_check.js",
+  "script_language": "JavaScript V8",
+  "output_file": "shallow-local-derivative-run391-validation.json",
+  "assertions": 121354,
+  "latest_comment": 6067040320,
+  "source_blobs": {
+    "run390": "a1efd75071fb530aa09ffd4ac1b8145778467139",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "clz": "c19d9d9cd515140e3ce62eac960cd548c0add622",
+    "run388": "0a01c1a5d7a12af4ab8cab9c7edae3fa05be88ce"
+  },
+  "note": "The separately executed local Python checker and detailed note are not byte-identical to the published JS checker and compact note. Neither establishes WKEM or QPT security.",
+  "production_changes": false
+}

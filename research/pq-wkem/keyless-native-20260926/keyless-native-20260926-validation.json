@@ -1,0 +1,272 @@
+{
+  "affine_matrices_enumerated": 18604,
+  "assertions": 22400,
+  "checker_sha256": "0a4b67a4b33854c47f40657903c744f423f1f92b63c40db3db59b43207d35802",
+  "compiler_fixture_count": 21,
+  "fixtures": [
+    {
+      "affine_dimension": 1,
+      "affine_matrices": 2,
+      "n": 1,
+      "name": "one_bit",
+      "p": 2,
+      "rank_census": {
+        "1": 2
+      },
+      "source_witnesses": 2
+    },
+    {
+      "affine_dimension": 6,
+      "affine_matrices": 64,
+      "n": 3,
+      "name": "all_three_bits",
+      "p": 2,
+      "rank_census": {
+        "1": 8,
+        "3": 56
+      },
+      "source_witnesses": 8
+    },
+    {
+      "affine_dimension": 4,
+      "affine_matrices": 16,
+      "n": 3,
+      "name": "and_true",
+      "p": 2,
+      "rank_census": {
+        "1": 1,
+        "3": 15
+      },
+      "source_witnesses": 1
+    },
+    {
+      "affine_dimension": 4,
+      "affine_matrices": 16,
+      "n": 3,
+      "name": "and_false",
+      "p": 2,
+      "rank_census": {
+        "1": 3,
+        "3": 13
+      },
+      "source_witnesses": 3
+    },
+    {
+      "affine_dimension": 4,
+      "affine_matrices": 16,
+      "n": 3,
+      "name": "xor_true",
+      "p": 2,
+      "rank_census": {
+        "1": 2,
+        "3": 14
+      },
+      "source_witnesses": 2
+    },
+    {
+      "affine_dimension": 1,
+      "affine_matrices": 2,
+      "n": 2,
+      "name": "boolean_false_affine_nonempty",
+      "p": 2,
+      "rank_census": {
+        "3": 2
+      },
+      "source_witnesses": 0
+    },
+    {
+      "affine_dimension": null,
+      "affine_matrices": 0,
+      "n": 1,
+      "name": "linear_contradiction",
+      "p": 2,
+      "rank_census": {},
+      "source_witnesses": 0
+    },
+    {
+      "affine_dimension": 1,
+      "affine_matrices": 3,
+      "n": 1,
+      "name": "one_bit",
+      "p": 3,
+      "rank_census": {
+        "1": 2,
+        "2": 1
+      },
+      "source_witnesses": 2
+    },
+    {
+      "affine_dimension": 6,
+      "affine_matrices": 729,
+      "n": 3,
+      "name": "all_three_bits",
+      "p": 3,
+      "rank_census": {
+        "1": 8,
+        "2": 28,
+        "3": 324,
+        "4": 369
+      },
+      "source_witnesses": 8
+    },
+    {
+      "affine_dimension": 4,
+      "affine_matrices": 81,
+      "n": 3,
+      "name": "and_true",
+      "p": 3,
+      "rank_census": {
+        "1": 1,
+        "3": 44,
+        "4": 36
+      },
+      "source_witnesses": 1
+    },
+    {
+      "affine_dimension": 4,
+      "affine_matrices": 81,
+      "n": 3,
+      "name": "and_false",
+      "p": 3,
+      "rank_census": {
+        "1": 3,
+        "2": 3,
+        "3": 45,
+        "4": 30
+      },
+      "source_witnesses": 3
+    },
+    {
+      "affine_dimension": 4,
+      "affine_matrices": 81,
+      "n": 3,
+      "name": "xor_true",
+      "p": 3,
+      "rank_census": {
+        "1": 2,
+        "2": 1,
+        "3": 48,
+        "4": 30
+      },
+      "source_witnesses": 2
+    },
+    {
+      "affine_dimension": 1,
+      "affine_matrices": 3,
+      "n": 2,
+      "name": "boolean_false_affine_nonempty",
+      "p": 3,
+      "rank_census": {
+        "3": 3
+      },
+      "source_witnesses": 0
+    },
+    {
+      "affine_dimension": null,
+      "affine_matrices": 0,
+      "n": 1,
+      "name": "linear_contradiction",
+      "p": 3,
+      "rank_census": {},
+      "source_witnesses": 0
+    },
+    {
+      "affine_dimension": 1,
+      "affine_matrices": 5,
+      "n": 1,
+      "name": "one_bit",
+      "p": 5,
+      "rank_census": {
+        "1": 2,
+        "2": 3
+      },
+      "source_witnesses": 2
+    },
+    {
+      "affine_dimension": 6,
+      "affine_matrices": 15625,
+      "n": 3,
+      "name": "all_three_bits",
+      "p": 5,
+      "rank_census": {
+        "1": 8,
+        "2": 132,
+        "3": 3660,
+        "4": 11825
+      },
+      "source_witnesses": 8
+    },
+    {
+      "affine_dimension": 4,
+      "affine_matrices": 625,
+      "n": 3,
+      "name": "and_true",
+      "p": 5,
+      "rank_census": {
+        "1": 1,
+        "2": 3,
+        "3": 201,
+        "4": 420
+      },
+      "source_witnesses": 1
+    },
+    {
+      "affine_dimension": 4,
+      "affine_matrices": 625,
+      "n": 3,
+      "name": "and_false",
+      "p": 5,
+      "rank_census": {
+        "1": 3,
+        "2": 9,
+        "3": 193,
+        "4": 420
+      },
+      "source_witnesses": 3
+    },
+    {
+      "affine_dimension": 4,
+      "affine_matrices": 625,
+      "n": 3,
+      "name": "xor_true",
+      "p": 5,
+      "rank_census": {
+        "1": 2,
+        "2": 3,
+        "3": 240,
+        "4": 380
+      },
+      "source_witnesses": 2
+    },
+    {
+      "affine_dimension": 1,
+      "affine_matrices": 5,
+      "n": 2,
+      "name": "boolean_false_affine_nonempty",
+      "p": 5,
+      "rank_census": {
+        "3": 5
+      },
+      "source_witnesses": 0
+    },
+    {
+      "affine_dimension": null,
+      "affine_matrices": 0,
+      "n": 1,
+      "name": "linear_contradiction",
+      "p": 5,
+      "rank_census": {},
+      "source_witnesses": 0
+    }
+  ],
+  "identifier": "INTERACTIVE_KEYLESS_20260926",
+  "public_image_distinguishing_advantages": {
+    "balanced_two_to_one_256": "127/128",
+    "injective_256": "255/256"
+  },
+  "public_image_maps": 1794,
+  "rank_padding_trials": 1200,
+  "scope": "Exact finite algebra and authorization only; no implemented witness KEM, MinRank proof system, Bitcoin integration, or QPT security theorem.",
+  "toy_signature_checks": 100,
+  "valid_witness_instances": 48
+}

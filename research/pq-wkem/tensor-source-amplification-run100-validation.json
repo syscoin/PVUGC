@@ -1,0 +1,295 @@
+{
+  "capacity_rows": [
+    {
+      "beta": 0.8705505632961241,
+      "case": "rho_eq_1",
+      "necessary_capacity_passes": true,
+      "noise_entropy_rate": 0.16419229162251348,
+      "ratio": 0.060904198980245156,
+      "rho": 1.0,
+      "t": 1,
+      "tensor_rate": 0.01
+    },
+    {
+      "beta": 0.9986146661010289,
+      "case": "rho_eq_1",
+      "necessary_capacity_passes": true,
+      "noise_entropy_rate": 0.002332280596330046,
+      "ratio": 0.04287648757073002,
+      "rho": 1.0,
+      "t": 2,
+      "tensor_rate": 0.0001
+    },
+    {
+      "beta": 0.999986137152479,
+      "case": "rho_eq_1",
+      "necessary_capacity_passes": true,
+      "noise_entropy_rate": 2.9095141027129843e-05,
+      "ratio": 0.03437000009958871,
+      "rho": 1.0,
+      "t": 3,
+      "tensor_rate": 1.0000000000000002e-06
+    },
+    {
+      "beta": 0.9999998613705735,
+      "case": "rho_eq_1",
+      "necessary_capacity_passes": true,
+      "noise_entropy_rate": 3.485170725873832e-07,
+      "ratio": 0.028692998956292775,
+      "rho": 1.0,
+      "t": 4,
+      "tensor_rate": 1e-08
+    },
+    {
+      "beta": 0.9999999986137056,
+      "case": "rho_eq_1",
+      "necessary_capacity_passes": true,
+      "noise_entropy_rate": 4.060807806754261e-09,
+      "ratio": 0.02462564217732048,
+      "rho": 1.0,
+      "t": 5,
+      "tensor_rate": 1.0000000000000002e-10
+    },
+    {
+      "beta": 0.9999999999861371,
+      "case": "rho_eq_1",
+      "necessary_capacity_passes": true,
+      "noise_entropy_rate": 4.636433596776116e-11,
+      "ratio": 0.02156830199607166,
+      "rho": 1.0,
+      "t": 6,
+      "tensor_rate": 1.0000000000000002e-12
+    },
+    {
+      "beta": 0.9999999999998613,
+      "case": "rho_eq_1",
+      "necessary_capacity_passes": true,
+      "noise_entropy_rate": 5.213456099218874e-13,
+      "ratio": 0.01918113399189894,
+      "rho": 1.0,
+      "t": 7,
+      "tensor_rate": 1.0000000000000002e-14
+    },
+    {
+      "beta": 0.8705505632961241,
+      "case": "rho_eq_2",
+      "necessary_capacity_passes": true,
+      "noise_entropy_rate": 0.16419229162251348,
+      "ratio": 0.12180839796049031,
+      "rho": 2.0,
+      "t": 1,
+      "tensor_rate": 0.02
+    },
+    {
+      "beta": 0.9986146661010289,
+      "case": "rho_eq_2",
+      "necessary_capacity_passes": true,
+      "noise_entropy_rate": 0.002332280596330046,
+      "ratio": 0.17150595028292007,
+      "rho": 2.0,
+      "t": 2,
+      "tensor_rate": 0.0004
+    },
+    {
+      "beta": 0.999986137152479,
+      "case": "rho_eq_2",
+      "necessary_capacity_passes": true,
+      "noise_entropy_rate": 2.9095141027129843e-05,
+      "ratio": 0.2749600007967097,
+      "rho": 2.0,
+      "t": 3,
+      "tensor_rate": 8.000000000000001e-06
+    },
+    {
+      "beta": 0.9999998613705735,
+      "case": "rho_eq_2",
+      "necessary_capacity_passes": true,
+      "noise_entropy_rate": 3.485170725873832e-07,
+      "ratio": 0.4590879833006844,
+      "rho": 2.0,
+      "t": 4,
+      "tensor_rate": 1.6e-07
+    },
+    {
+      "beta": 0.9999999986137056,
+      "case": "rho_eq_2",
+      "necessary_capacity_passes": true,
+      "noise_entropy_rate": 4.060807806754261e-09,
+      "ratio": 0.7880205496742554,
+      "rho": 2.0,
+      "t": 5,
+      "tensor_rate": 3.2000000000000005e-09
+    },
+    {
+      "beta": 0.9999999999861371,
+      "case": "rho_eq_2",
+      "necessary_capacity_passes": false,
+      "noise_entropy_rate": 4.636433596776116e-11,
+      "ratio": 1.3803713277485863,
+      "rho": 2.0,
+      "t": 6,
+      "tensor_rate": 6.400000000000001e-11
+    },
+    {
+      "beta": 0.9999999999998613,
+      "case": "rho_eq_2",
+      "necessary_capacity_passes": false,
+      "noise_entropy_rate": 5.213456099218874e-13,
+      "ratio": 2.4551851509630644,
+      "rho": 2.0,
+      "t": 7,
+      "tensor_rate": 1.2800000000000002e-12
+    }
+  ],
+  "checker": "tensor_source_amplification_run100_check.py",
+  "claims_checked": [
+    "tensor dimension and minimum-distance powers on binary [3,2,2] code",
+    "every nonempty tensor fiber is a base-code word",
+    "sparse-fiber root-support bound on every enumerated tensor codeword",
+    "low-weight tensor word exposes a base word within the root threshold",
+    "exact tensor-code spectral sums and minimum-distance coarse bounds",
+    "fixed statement-independent auxiliary tensor cannot beat matched-signal base spectral leakage",
+    "self-tensor can reduce toy false spectral mass",
+    "Run-98 coarse leakage exponent arithmetic",
+    "Run-99 tensorized Shannon necessary-condition arithmetic"
+  ],
+  "fixed_aux_records": [
+    {
+      "aux": "repetition",
+      "delta_A": 2,
+      "honest_aux_weight": 2,
+      "matched_base_S": "3/256",
+      "product_S_beta_half": "3/256",
+      "subcode_lower": "3/256"
+    },
+    {
+      "aux": "full_space",
+      "delta_A": 1,
+      "honest_aux_weight": 2,
+      "matched_base_S": "3/256",
+      "product_S_beta_half": "105/256",
+      "subcode_lower": "3/16"
+    }
+  ],
+  "parameter_rows": [
+    {
+      "bits_equiv": -751.999823891109,
+      "case": "favorable_ratio",
+      "gamma": 4,
+      "k": 8,
+      "log_coarse_kappa_L_S": -521.2465577116976,
+      "t": 1
+    },
+    {
+      "bits_equiv": -2927.998591128873,
+      "case": "favorable_ratio",
+      "gamma": 4,
+      "k": 8,
+      "log_coarse_kappa_L_S": -2029.5339681244704,
+      "t": 2
+    },
+    {
+      "bits_equiv": -8047.9887290309825,
+      "case": "favorable_ratio",
+      "gamma": 4,
+      "k": 8,
+      "log_coarse_kappa_L_S": -5578.440696706043,
+      "t": 3
+    },
+    {
+      "bits_equiv": -623.9996477822182,
+      "case": "unfavorable_ratio",
+      "gamma": 4,
+      "k": 16,
+      "log_coarse_kappa_L_S": -432.52359653064343,
+      "t": 1
+    },
+    {
+      "bits_equiv": 144.0056354845082,
+      "case": "unfavorable_ratio",
+      "gamma": 4,
+      "k": 16,
+      "log_coarse_kappa_L_S": 99.81710022083007,
+      "t": 2
+    },
+    {
+      "bits_equiv": 49296.09016775214,
+      "case": "unfavorable_ratio",
+      "gamma": 4,
+      "k": 16,
+      "log_coarse_kappa_L_S": 34169.445912406234,
+      "t": 3
+    }
+  ],
+  "run": "100",
+  "self_tensor": {
+    "base_S": "3/16",
+    "tensor2_S": "75/2048"
+  },
+  "spectral_records": [
+    {
+      "S_exact": "3/16",
+      "S_float": 0.1875,
+      "distance_bound": "3/16",
+      "distance_bound_float": 0.1875,
+      "t": 1
+    },
+    {
+      "S_exact": "75/2048",
+      "S_float": 0.03662109375,
+      "distance_bound": "15/256",
+      "distance_bound_float": 0.05859375,
+      "t": 2
+    },
+    {
+      "S_exact": "7140315/17179869184",
+      "S_float": 0.00041562103433534503,
+      "distance_bound": "255/65536",
+      "distance_bound_float": 0.0038909912109375,
+      "t": 3
+    }
+  ],
+  "status": "PASS",
+  "tensor_records": [
+    {
+      "dimension": 2,
+      "distance": 2,
+      "length": 3,
+      "t": 1,
+      "weight_enumerator": {
+        "0": 1,
+        "2": 3
+      }
+    },
+    {
+      "dimension": 4,
+      "distance": 4,
+      "length": 9,
+      "nonzero_words_checked": 15,
+      "t": 2,
+      "weight_enumerator": {
+        "0": 1,
+        "4": 9,
+        "6": 6
+      },
+      "words_at_base_threshold_power": 9
+    },
+    {
+      "dimension": 8,
+      "distance": 8,
+      "length": 27,
+      "nonzero_words_checked": 255,
+      "t": 3,
+      "weight_enumerator": {
+        "0": 1,
+        "8": 27,
+        "12": 54,
+        "14": 108,
+        "16": 54,
+        "18": 12
+      },
+      "words_at_base_threshold_power": 27
+    }
+  ],
+  "total_checks": 5854
+}

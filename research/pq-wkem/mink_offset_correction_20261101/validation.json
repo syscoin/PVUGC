@@ -1,0 +1,9 @@
+{
+  "checks": 8448,
+  "decrypted_challenge_bits": 2304,
+  "decrypted_hidden_color_bits": 6144,
+  "false_graph": "K4 has no 3-coloring; every edge can be independently satisfied",
+  "false_rounds": 768,
+  "fixtures": 96,
+  "outcome": "false proof accepts 100% of encrypted-edge rounds using retained corrupt-party LWE secret"
+}
