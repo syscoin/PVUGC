@@ -1,0 +1,31 @@
+{
+  "active_private_input_bits": 1280,
+  "assertions": 21,
+  "checker_sha256": "9af6fa8b3d1470a076c44f9676c53571eb29d9b10ff34d22705ece9770cc83e6",
+  "garbled_row_count": 1323058,
+  "gate_count": 336923,
+  "native_signatures": false,
+  "public_external_label_pairs": 9,
+  "qpt_security_established": false,
+  "recovery_probes_per_clause": [
+    1,
+    1
+  ],
+  "run": "COMPOSE-CG-20261114",
+  "sha256_calls_in_correction": 3,
+  "sha_circuit_module_sha256": "4e34bd07570eca5a5138db3593c6e7410f29b208b8d462f5ceec51b4b117b629",
+  "source_consensus": false,
+  "status": "COMPOSITION_REJECTED_NOT_A_BRIDGE_SOLUTION",
+  "tests": {
+    "distinct_true_witness_same_secret": 6,
+    "false_honest_reject": 2,
+    "garbled_three_sha_matches_hashlib": 6,
+    "one_fixed_label_for_each_private_bit_and_constant": 1,
+    "only_external_inputs_have_label_pairs": 1,
+    "public_false_recovery_from_joint_view": 1,
+    "selector_both_labels_read_before_confirmation": 1,
+    "selector_first_spend_confirms_in_model": 1,
+    "selector_ledger_rejection_does_not_unlearn_labels": 1,
+    "selector_second_spend_rejected_in_model": 1
+  }
+}
