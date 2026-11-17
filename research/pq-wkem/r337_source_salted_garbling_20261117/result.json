@@ -1,0 +1,11 @@
+{
+  "QPT_security_proven": false,
+  "candidate": "source-salted input translation for a static hash-garbled verifier",
+  "dynamic_salt": "public fake-W evaluations disclose both input labels",
+  "mix": "ID(x=1), NOT(x=0), AND(1,1) opens true output label",
+  "normal_evaluation": "both x=0 and x=1 evaluate to false output label",
+  "original_AuxPoW": false,
+  "relation": "FALSE x AND (NOT x); synthetic unqualified W values",
+  "static_salt": "future different W cannot decrypt gate rows",
+  "unauthorized_exact_S_recovery": true
+}
