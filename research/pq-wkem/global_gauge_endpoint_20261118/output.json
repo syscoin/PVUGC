@@ -1,0 +1,27 @@
+{
+  "checks": [
+    {
+      "accepting_consistent_count": 0,
+      "linear_rank": 7,
+      "name": "FALSE_x_AND_not_x",
+      "nullspace_dim": 1,
+      "probes": 15,
+      "secret_recovered": true,
+      "secret_sha256": "554b69199cba9fef038fa0d18dda79e62bd10b96ed2ebd4ccae48329a7722fac",
+      "target_recovered": true,
+      "withheld": "1010"
+    },
+    {
+      "accepting_consistent_count": 1,
+      "linear_rank": 7,
+      "name": "TRUE_x_AND_y",
+      "nullspace_dim": 1,
+      "probes": 15,
+      "secret_recovered": true,
+      "secret_sha256": "5cdd608697437115aae7f5fa2c4f06d64817b4e10cab19b5157eca42c603d5bd",
+      "target_recovered": true,
+      "withheld": "1111"
+    }
+  ],
+  "scope": "synthetic full-public gauge attack, not ORIGINAL bridge"
+}
