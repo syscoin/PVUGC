@@ -1,0 +1,42 @@
+# R350 — Corrected full-length directed release pad and FALSE QROM simulation (RESTRICTED)
+
+## Provenance and scope
+Started from the current open/draft syscoin/PVUGC#1 head `017e7fb968c989b18853f13012f5f37949e2a147` on `research/pq-wkem-validation-20260918`; read R349 exact blob `f5c6791d6adbcef7b4abf96dded6162c6efaeb32` and recent substantive PR comments. R349's missing ORIGINAL-source equation is still `E_C(q,a)=K(T(q,a)) XOR H_e(x,q,a,K(q))` for arbitrary future authenticated SHA/AuxPoW transitions. The source-dependent implicit-edge compiler was NOT instantiated here. No new Core code claims, external web/literature, source certificate execution, native PQ signature or quantum experiment.
+
+## Exact correction to R349's pad distribution
+R349 wrote `C0=S XOR Expand(H_o(x,K_t),L)` with `H_o` described as potentially a 256-bit digest while S is a long frozen native signature. It then claimed an S-independent simulator can choose UNIFORM L-bit C0 and program `H_o(K_t)` accordingly. This is generally invalid: deterministic `Expand:{0,1}^256 -> {0,1}^L` has at most `2^256` possible pads when L>256, whereas a uniform L-bit C0 has `2^L` possibilities. Most desired programmed pads have no 256-bit preimage. This is a proof/distribution correction, NOT a practical break of SHAKE or an attack on a real system: independently justified QPT PRG security might repair that version, but was not proved.
+
+Repair this restricted candidate by defining a separate domain-separated ideal `H_out:(x,K_t)->{0,1}^L` returning the FULL L-bit pad directly. Its ideal output is uniformly distributed for a fresh hidden input. Concrete SHAKE256 can produce L deterministic bits, but the QROM theorem below does NOT establish concrete SHAKE QPT pseudorandomness. Domain-separate the release oracle from source and native signing hashes and explicitly account for any signer/source-oracle correlations.
+
+## Actual classical PPT finite-graph Build/Open
+For explicit polynomial-size directed multigraph G=(V,E), unique edge IDs, start s, terminal t, public context x, signature S in {0,1}^L and lambda-bit independent vertex masks K_v:
+- Build samples each K_v uniformly, publishes K_s and, for each pre-enumerated e:u->v, `C_e=K_v XOR H_edge(x,e,u,v,K_u)`.
+- Build publishes `C0=S XOR H_out(x,K_t)` with H_out's output length exactly L, and serializes `(x,G,K_s,{C_e},C0)`.
+- Public Open on any directed s->t path begins with K_s and derives each next key as `K_v=C_e XOR H_edge(x,e,u,v,K_u)`; then returns `C0 XOR H_out(x,K_t)`.
+By induction every such path returns the same frozen S. All honest algorithms are classical polynomial in the EXPLICIT graph size. The publicly listed graph's reachability is decidable by BFS; this is not a hard-TRUE ORIGINAL-source construction.
+
+## FALSE joint-public QROM theorem, with proof
+Assume t is not reachable from s. Let R be the public successor-closed reachable set, and d=1+#edges with source outside R. The adversary sees x,G, native VK/message/claim context, the entire capsule, arbitrary independent auxiliary classical/quantum state and q adaptive coherent queries to all domain-separated quantum random oracles. The native S may correlate with VK/message, but S, aux/VK and source material MUST be independent of the freshly sampled K_v and of the *hidden-point* edge/output QROM values. No maliciously retained K_v, previous same-message signature, or exposed sibling copy of S is covered.
+
+S-BLIND simulator:
+(1) sample independent K_v and expose K_s;
+(2) for e with u in R, compute real `C_e=K_v XOR H_edge(x,e,u,v,K_u)` (closure ensures v in R);
+(3) for every e with u outside R, sample independent uniform lambda-bit C_e;
+(4) sample uniform L-bit C0; leave the random oracle unprogrammed and expose the entire capsule/VK/context.
+
+Couple real and simulated transcripts by programming the simulator's RO at each hidden edge input `(x,e,u,v,K_u)` with u outside R to value `C_e XOR K_v`, and at the distinct output-domain point `(x,K_t)` to `C0 XOR S`. The resulting (C,oracle) distribution is EXACTLY honest Build: the programmed outputs are uniformly distributed because the corresponding C_e/C0 were uniform and edge IDs/output domains are distinct; their required correlations to all shared vertex masks and S are restored. Publicly reachable edge inputs retain their genuine RO outputs. This joint coupling handles cycles, multiple incoming/outgoing edges and globally shared K_v rather than falsely assuming independent per-edge keys.
+
+In the UNPROGRAMMED reference world, all d hidden keyed RO input locations remain uniform over their lambda-bit key coordinate and independent of the adversary's initial state, publicly reachable computations, ciphertext and reference-oracle evolution. A coherent reference query has expected squared amplitude on the hidden set at most d*2^(-lambda). Two QROM XOR query unitaries differing only at the hidden inputs change a query state by Euclidean norm <= 2 sqrt(p_hidden). Telescope q adaptive oracle queries, compare to the *reference* query states, take expectation and apply Jensen:
+`Adv_dist <= 2q sqrt(d/2^lambda)` in a standard norm/trace-distance convention; conservatively use `4q sqrt(d/2^lambda)` to absorb advantage normalization. No classical query-log extraction, internal-state knowledge, quantum rewinding or arbitrary programmed-oracle assumption is used. This is a restricted independent-hidden-key QROM hybrid for an actually serialized finite graph, not a theorem about concrete SHA.
+
+If any accepted fresh native signature on the fixed, UNQUERIED message in this FALSE simulator is a QPT EUF forgery, then
+`Pr[accepted native sig from a FALSE graph capsule] <= Adv_QPT-EUF(native signature) + 4q sqrt(d/2^lambda)`.
+This bound requires no other disclosure of a signature on the same message and independently generated native setup; strong unforgeability and same-message exposure are separate if the model includes already signed/public material. The theorem does NOT imply hard-TRUE extraction, malicious N-of-N setup safety, shared-key sibling selective opening, security under arbitrary source-coin retained secrets, or actual original hash-only WE.
+
+## ORIGINAL-source repair attempt and unchanged equation
+Attempted to apply the graph key transport to a public succinct SHA/AuxPoW state-transition circuit. Builder cannot enumerate future unknown parent headers/coinbases/nonces and source histories. Using `K(q)=H(public||q)` makes terminal material public or fails hidden common-secret convergence; `K(q)=H(secret||q)` makes the correction E_C(q,a) secret-key dependent and not publicly serializable without an independently instantiated secret-program primitive. A SHA proof or Merkle membership path alone does not supply the builder's vertex key. This is an explicit preimplementation rejection, NOT a new original-source construction or generic impossibility theorem. Dynamic implicit-edge Build/Open, hard-TRUE extraction into ACTUAL ORIGINAL evidence, source-faithful FALSE security and full malicious setup/auxiliary/cross-capsule composition remain MISSING. Keep all three ORIGINAL OR challenge branches, the active canonical AuxPoW/modern chain ID rules, the claim-prefix relevance/maturity policy and R225 slot-global-veto versus activation-specific native signature distinction unchanged.
+
+## Executed local reproducibility
+A deterministic CPython3 standard-library SHAKE256 functional checker built an explicit directed diamond+loop transport capsule, with a **synthetic** 7,856-byte frozen token and three distinct valid paths returning identical bytes, plus a FALSE graph whose undirected connectivity does not imply a directed s->t path. It exhaustively checked that a tiny 2-bit-seed-to-3-bit-output deterministic expander has only three outputs (TV 0.625 from uniform), whereas a full three-bit ideal pad XOR is bijective for all 8 secrets. Two byte-identical executions, 18 assertions each. Checker SHA256 `8f1f69c7e52e23f0d28862e1ba2adf3667619f37d5500ca0d96850528852642c`; both JSON SHA256 `bf2d8aab1299865ca9d41f191ecba148858a3e23153be1b109174450e343f98d`. Full derivation, checker and both outputs are **local only** in `/mnt/data/R350_directed_qrom_false_20261117.tar.gz`, SHA256 `9d96396ece2fb4eae19d67f2cce196292d9e0d2719bc07c1ee2c08ce798e71e0`. No Core source test or real source/native/quantum test.
+
+**NONQUALIFYING ORIGINAL foundation.** No PR progress comment, source/prod edit, deployment, or automation change. Do not notify this as the requested missing release advance.
