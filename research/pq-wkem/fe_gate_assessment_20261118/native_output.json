@@ -1,0 +1,42 @@
+{
+  "activation_a_txid": "0a36335232ff8e69880f279771376a57fc4aaa16cecd6f00dc19d3269b08a615",
+  "activation_b_txid": "2f800d7f3645c069776521aece4b4f75b1a5816b245302b248d838e4c238cc0b",
+  "bip143_reference_vector": "c37af31116d1b27caf68aae9e3ac82f1477929014d5b917657d0eb49478cb670",
+  "cancel_a_sighash": "4a5069b7aa0dccf3060a4d827a80d81514ed631df7535ffc1e3baac8daee2784",
+  "cancel_b_sighash": "3e1e380e3199b542d0cddeca4333a8ceb2b2a7a2f20c57a79e71ac624c30dfe2",
+  "changed_recipient_accepted": [
+    false,
+    false,
+    false
+  ],
+  "cross_claim_replay_accepted": [
+    false,
+    false,
+    false
+  ],
+  "cryptography_version": "50.0.0",
+  "duplicate_signature_substitution": [
+    true,
+    true,
+    false
+  ],
+  "no_fe_implementation": true,
+  "no_original_source_or_work_theorem": true,
+  "outpoint_only_replay_accepted": [
+    false,
+    false,
+    false
+  ],
+  "public_test_keys": [
+    "030fdcc78c9da8cf01b663fab11e3b43c470aa249d664ffa559cb1d4e3fef0434c",
+    "03187e4799d3f2d4a1b3e421fa61b6534b4c3f0e70fddbc2a2950b1188e77f51ac",
+    "0385d36ed70e88dfeab4aed2e81707c94d651a9b44a708ba2770c0b268dbc7d0e0"
+  ],
+  "same_message_deterministic_signatures": true,
+  "scope": "native endpoint only; no FE, source evidence, proof system, Bitcoin VM or chain admission",
+  "three_valid_native_signatures": [
+    true,
+    true,
+    true
+  ]
+}
