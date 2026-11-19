@@ -1,0 +1,26 @@
+{
+  "all_valid_subsets": 20,
+  "common_release": 47,
+  "field": 101,
+  "invalid_parent_hashes": [
+    "4db6dab566e967192af0c90e10a49735282b235c3f77aa98397bebc77b2cbf03",
+    "e820cfa6a082bebb2d34de90fb331f90eeb200e8cb327cbee33f427a8c41de8f",
+    "ded72f171d3a79a8ef306847b7e9fce048c75ba834f050ab59620ac5a8173222"
+  ],
+  "recovery_from_three_invalid_parent_hashes": 47,
+  "scope": "synthetic interpolation and rejected headers only; not authenticated Bitcoin/Syscoin, not FE",
+  "single_modified_share_subset_outputs": [
+    9,
+    11,
+    15,
+    16,
+    47,
+    49,
+    50,
+    69,
+    89,
+    99,
+    100
+  ],
+  "threshold": 3
+}
