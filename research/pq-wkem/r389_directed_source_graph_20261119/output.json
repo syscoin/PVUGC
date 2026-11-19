@@ -1,0 +1,29 @@
+{
+  "cases": [
+    {
+      "ciphertext_sha256": "9863b2a5e0875481b9cc2cd7b1c938524bb17dafdb2608568760f86d17d132a1",
+      "fixture": "naive_switching",
+      "learned_vertices": [
+        "a0",
+        "b1",
+        "s",
+        "t"
+      ],
+      "legitimate_open": true,
+      "reachable": true
+    },
+    {
+      "ciphertext_sha256": "9863b2a5e0875481b9cc2cd7b1c938524bb17dafdb2608568760f86d17d132a1",
+      "fixture": "consistent_memory",
+      "learned_vertices": [
+        "a0",
+        "b0",
+        "s"
+      ],
+      "legitimate_open": false,
+      "reachable": false
+    }
+  ],
+  "fabricated_public_edge_unlocks": true,
+  "scope": "explicit public directed graph only; no original SHA/AuxPoW relation, no QPT proof"
+}
