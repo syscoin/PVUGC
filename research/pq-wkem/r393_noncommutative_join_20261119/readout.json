@@ -1,0 +1,13 @@
+{
+  "cases": [
+    {"exact_K_delta_matrix_representable": false, "n": 1, "public_factor_matrix_rank": 1, "required_linear_state_dimension": 2, "test_dimension": 1},
+    {"exact_K_delta_matrix_representable": false, "n": 2, "public_factor_matrix_rank": 2, "required_linear_state_dimension": 4, "test_dimension": 2},
+    {"exact_K_delta_matrix_representable": false, "n": 3, "public_factor_matrix_rank": 4, "required_linear_state_dimension": 8, "test_dimension": 4},
+    {"exact_K_delta_matrix_representable": false, "n": 4, "public_factor_matrix_rank": 8, "required_linear_state_dimension": 16, "test_dimension": 8},
+    {"exact_K_delta_matrix_representable": false, "n": 5, "public_factor_matrix_rank": 16, "required_linear_state_dimension": 32, "test_dimension": 16},
+    {"exact_K_delta_matrix_representable": false, "n": 6, "public_factor_matrix_rank": 32, "required_linear_state_dimension": 64, "test_dimension": 32}
+  ],
+  "field": 257,
+  "no_source_release_implementation": true,
+  "scope": "separated two-claim equality in finite-field noncommutative linear state; not original source or FE"
+}
