@@ -1,0 +1,28 @@
+# R395 — Nonlinear explicit-state source compiler (NONQUALIFYING)
+
+## Provenance and selection
+Opened PVUGC PR #1 on research/pq-wkem-validation-20260918, actual start SHA 447a2d56685f71a35140c79f889835913e64c090 (R394). Read R394 blob 9cc870e0f1853b960de945aa6b2554ece5ff76cc and preceding R393 commit 4e2719cc77ae5bf9f65ac3bcc235c2665aa89a90. PR issue comments since 2026-11-18T19:24:00Z were empty. No new Core source, admission, real source certificate or native signer test; no external web research.
+
+R394 rejects read-once public linear state through an explicit span extractor. R393 leaves nonlinear SHA-state updates outside its linear-rank theorem. This pass examines a mathematically distinct proposed repair: a public program with nonlinear (even SHA-based) transitions but only polynomially many explicitly enumerable states. The goal was an actual serialized public source-dependent evaluator, not another field-basis or coefficient change.
+
+## Exact class and constructive witness extractor
+Let a compiled ORIGINAL source witness have n canonical bits. The public serialized machine has finite enumerable sets Q_j with |Q_j|<=d=poly(lambda), public initial q0, and deterministic PPT nonlinear transitions delta_j:Q_(j-1) x {0,1} -> Q_j. Assume semantic state sufficiency: the ORIGINAL relation is satisfied exactly when the final state is in an accepting subset A, i.e. R_orig(x,w)=1 iff delta*(q0,w) in A. A need not be listed if the actual ORIGINAL verifier is public and all complete prefixes leading to one final state have the same source-validity result. If validity depends on other hidden transcript bits, the representation does NOT meet this premise.
+
+Algorithm: P_0={q0:empty}. For each j, each state q in P_(j-1), and bit b, compute q'=delta_j(q,b); store one genuine prefix P_(j-1)[q]||b in P_j[q'] if none already exists. At j=n, invoke the actual R_orig verifier on each stored full-length prefix and, for any valid one, public Open/native checker. Since each Q_j has at most d states, at most 2nd transitions and d terminal relation checks suffice; storing all prefixes costs O(nd) bits. Induction proves P_j contains an ACTUAL bit-prefix realizing every reachable state. If any qualifying original w exists, its final state is represented, and by semantic state sufficiency the retained representative is also a qualifying ORIGINAL witness. This extraction requires neither a private gauge nor a volunteered representation/query log, and never splices partial witnesses.
+
+Therefore a faithful polynomial-explicit-state compiler for a hard-TRUE original source distribution yields a polynomial-time algorithm for obtaining a real ORIGINAL certificate, contradicting the claimed hardness for that distribution. A nonlinear SHA transition does not repair THIS class. The result is conditional on exact semantic fidelity and enumerable polynomial-sized state space, not a hash-only WE impossibility. SHA's true 256-bit internal state space is exponential and is OUTSIDE the lemma; succinct nonlinear hidden-state programs are not ruled out.
+
+## Executed bounded fixture
+A Python 3 standard-library checker built public SHA256 transitions delta_j(q,b)=int(SHA256(domain||uint16(j)||uint16(q)||b)) mod 257, n=48, states=257, fixed public initial state. The terminal accepting state 75 was planted by computing an arbitrary 48-bit input. Public reachability found a DIFFERENT 48-bit input leading to the same state, using 16,522 transitions (bounded by 2*48*257=24,672). Maximum reachable states in any layer=217; final count=214. Both independently invoked runs completed and yielded identical JSON.
+
+This synthetic 257-state hash machine is NOT a real SHA/AuxPoW source verifier, Bitcoin target-work certificate, FE evaluator, native signing/transaction execution, or quantum test. The planted source predicate is intentionally easy and does not constitute an authenticated original bridge challenge.
+
+Local checker SHA256: b5091a4985da52991cd6155138b75b3aa8852dba9fe55d31f01f961210cb391f.
+Two local outputs SHA256: 1213dcee5102c86ae3055c909890dc9495f8472fa38ff799e342be886d65586f each. Source checker and one captured output are published alongside this note; the second byte-identical local output is not separately published.
+
+## Security, nonprogress, next equation
+No FALSE original-instance public-capsule simulator or hard-TRUE QPT extraction proof was constructed. The algorithm obtains a witness only if the PUBLIC serialized state representation already faithfully recognizes the exact ORIGINAL relation and its state count is small. Adding nonlinear hashing to that explicit table does NOT provide secret delivery. A public terminal literal K exposes K; a private terminal evaluator is not public Build/Open, and an exponential set of future-state tickets is not a classical practical Build.
+
+The class is rejected as the next FE/WKEM foundation; do not resample d, hash, bit order, or table layout. The remaining task is a genuinely succinct, nonlinear, source-authenticated public compiler whose hidden release state is not exhaustively enumerable and whose serialized bytes do not leak the SAME frozen native cancellation signature, with full-public FALSE/hard-TRUE QPT recovery/native-forgery -> ACTUAL ORIGINAL certificate or independently justified break. Preserve all three independent OR branches, strict activated contextual AuxPoW, the R316 correction, relevant LC depth, deadlines, malicious retained source coins, sibling capsules and one-honest N-of-N setup.
+
+NONQUALIFYING — no breakthrough announcement, PR comment, production/Core edit, deployment or automation change.
