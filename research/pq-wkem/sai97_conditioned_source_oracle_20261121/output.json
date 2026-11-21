@@ -1,0 +1,21 @@
+{
+  "1": {
+    "chosen_future_points": 4,
+    "conditioned_ro_exact_multiplicity": 4,
+    "invalid_and_miss_probability": 0.5625,
+    "patched_oracle_tables": 256,
+    "real_certificates_invalid_and_setup_misses": 576,
+    "setup_queries_miss_patch": 768,
+    "total_source_oracle_trials": 1024
+  },
+  "2": {
+    "chosen_future_points": 12,
+    "conditioned_ro_exact_multiplicity": 16,
+    "invalid_and_miss_probability": 0.28125,
+    "patched_oracle_tables": 192,
+    "real_certificates_invalid_and_setup_misses": 864,
+    "setup_queries_miss_patch": 1536,
+    "total_source_oracle_trials": 3072
+  },
+  "scope": "exact uniform 4-point random-oracle conditional law only; no actual SHA, network, source certificate, release program, or QPT execution"
+}
