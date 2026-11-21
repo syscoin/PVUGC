@@ -1,0 +1,1 @@
+{"assertions":1122858,"correlated_two_view_leak":"verified","cryptographic_security":"NOT_PROVED","full_oracle_b2":"identical per-key","profile_widths":[2,4,6,8,10],"run":652}

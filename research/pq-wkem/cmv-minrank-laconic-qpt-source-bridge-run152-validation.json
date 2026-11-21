@@ -1,0 +1,207 @@
+{
+  "assertions": 540,
+  "false_complete_fourier": {
+    "characters_checked": 256,
+    "chi_square": [
+      345,
+      64
+    ],
+    "max_nonzero_fourier": [
+      1,
+      4
+    ],
+    "nonzero_gap_characters": 255,
+    "rank_histogram": {
+      "2": 75,
+      "4": 180
+    },
+    "tv_structured_vs_uniform": [
+      45,
+      64
+    ]
+  },
+  "fixture": {
+    "field": "F2",
+    "randomizer_factor_pairs": 256,
+    "randomizer_outer_products": 1,
+    "t": 2,
+    "uniform_bit1_prob_rank_le_1": [
+      5,
+      8
+    ],
+    "yes_witness_rank_hist": {
+      "0": {
+        "0": 112,
+        "1": 144
+      },
+      "1": {
+        "0": 112,
+        "1": 144
+      }
+    }
+  },
+  "identifier": "RUN152_CMV_MINRANK_LACONIC_QPT_SOURCE_BRIDGE",
+  "random_matrix_deficiency": {
+    "t=2,r=0": {
+      "bound_4x": [
+        1,
+        4
+      ],
+      "prob_rank_le_r": [
+        1,
+        16
+      ]
+    },
+    "t=2,r=1": {
+      "bound_4x": [
+        2,
+        1
+      ],
+      "prob_rank_le_r": [
+        5,
+        8
+      ]
+    },
+    "t=3,r=0": {
+      "bound_4x": [
+        1,
+        128
+      ],
+      "prob_rank_le_r": [
+        1,
+        512
+      ]
+    },
+    "t=3,r=1": {
+      "bound_4x": [
+        1,
+        4
+      ],
+      "prob_rank_le_r": [
+        25,
+        256
+      ]
+    },
+    "t=3,r=2": {
+      "bound_4x": [
+        2,
+        1
+      ],
+      "prob_rank_le_r": [
+        43,
+        64
+      ]
+    },
+    "t=4,r=0": {
+      "bound_4x": [
+        1,
+        16384
+      ],
+      "prob_rank_le_r": [
+        1,
+        65536
+      ]
+    },
+    "t=4,r=1": {
+      "bound_4x": [
+        1,
+        128
+      ],
+      "prob_rank_le_r": [
+        113,
+        32768
+      ]
+    },
+    "t=4,r=2": {
+      "bound_4x": [
+        1,
+        4
+      ],
+      "prob_rank_le_r": [
+        947,
+        8192
+      ]
+    },
+    "t=4,r=3": {
+      "bound_4x": [
+        2,
+        1
+      ],
+      "prob_rank_le_r": [
+        709,
+        1024
+      ]
+    },
+    "t=5,r=0": {
+      "bound_4x": [
+        1,
+        8388608
+      ],
+      "prob_rank_le_r": [
+        1,
+        33554432
+      ]
+    },
+    "t=5,r=1": {
+      "bound_4x": [
+        1,
+        16384
+      ],
+      "prob_rank_le_r": [
+        481,
+        16777216
+      ]
+    },
+    "t=5,r=2": {
+      "bound_4x": [
+        1,
+        128
+      ],
+      "prob_rank_le_r": [
+        18139,
+        4194304
+      ]
+    },
+    "t=5,r=3": {
+      "bound_4x": [
+        1,
+        4
+      ],
+      "prob_rank_le_r": [
+        65333,
+        524288
+      ]
+    },
+    "t=5,r=4": {
+      "bound_4x": [
+        2,
+        1
+      ],
+      "prob_rank_le_r": [
+        23003,
+        32768
+      ]
+    }
+  },
+  "scope": [
+    "All-witness correctness and Fourier identities only on finite fixtures.",
+    "No MinRank hardness or Hair-Sahai encryption theorem is imported.",
+    "No QPT theorem is proved by this checker; the note gives the circuit/Fourier reduction.",
+    "The randomizer distribution is a sum of uniform rank-one outer products, chosen for an exact Fourier law; it is not CMV's exact uniform-rank<=r sampling.",
+    "The tiny bit-1 correctness probability is not a cryptographic parameter set.",
+    "The false tiny fixture is deliberately far from hiding."
+  ],
+  "status": "PASS",
+  "toy_qpt_extraction_interface": {
+    "equal_prior_prediction_success": [
+      5,
+      8
+    ],
+    "source_block_rank": 1,
+    "source_frequency_rank": 1,
+    "structured_response_correlation": [
+      1,
+      2
+    ]
+  }
+}

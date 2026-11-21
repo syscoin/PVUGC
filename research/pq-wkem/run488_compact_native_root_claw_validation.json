@@ -1,0 +1,78 @@
+{
+  "run": 488,
+  "checker": "toy fixed-seed cross-family native-root claw",
+  "security_claim": "NONE; 10/12/14/16-bit noncryptographic mixer, no quantum implementation",
+  "assertions": 224,
+  "fixtures": 32,
+  "all_claws": true,
+  "bit_widths": [
+    10,
+    12,
+    14,
+    16
+  ],
+  "statistics": {
+    "10": {
+      "count": 8,
+      "max_native_tries": 11,
+      "mean_native_tries": 3.875
+    },
+    "12": {
+      "count": 8,
+      "max_native_tries": 16,
+      "mean_native_tries": 8.5
+    },
+    "14": {
+      "count": 8,
+      "max_native_tries": 51,
+      "mean_native_tries": 26.875
+    },
+    "16": {
+      "count": 8,
+      "max_native_tries": 70,
+      "mean_native_tries": 30.875
+    }
+  },
+  "selected_first": [
+    {
+      "root_bits": 10,
+      "context_index": 0,
+      "public_seed": 562084589,
+      "root": 119,
+      "build_coin": 30,
+      "retained_native_seed": 1,
+      "build_tries": 256,
+      "native_tries": 2
+    },
+    {
+      "root_bits": 10,
+      "context_index": 1,
+      "public_seed": 2172332865,
+      "root": 310,
+      "build_coin": 19,
+      "retained_native_seed": 2,
+      "build_tries": 256,
+      "native_tries": 3
+    },
+    {
+      "root_bits": 10,
+      "context_index": 2,
+      "public_seed": 3847012255,
+      "root": 177,
+      "build_coin": 242,
+      "retained_native_seed": 0,
+      "build_tries": 256,
+      "native_tries": 1
+    },
+    {
+      "root_bits": 10,
+      "context_index": 3,
+      "public_seed": 982049892,
+      "root": 343,
+      "build_coin": 199,
+      "retained_native_seed": 3,
+      "build_tries": 256,
+      "native_tries": 4
+    }
+  ]
+}

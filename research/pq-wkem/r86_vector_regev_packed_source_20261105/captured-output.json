@@ -1,0 +1,21 @@
+{
+  "run": "R86-VECTOR-REGEV-PACKED-SOURCE-20261105",
+  "status": "RESTRICTED_CONDITIONAL_NOT_GENERIC_WKEM",
+  "assertions": 14530,
+  "source_decodes": 4608,
+  "all_original_witness_openings": 192,
+  "full_view_toy_couplings": 64,
+  "negative_same_column_controls": 256,
+  "leftover_hash_census": {
+    "public_matrices": 4096,
+    "r_per_matrix": 16,
+    "mean_tv": 0.198883056640625,
+    "bound": 0.3535533905932738
+  },
+  "source_q_symbols": {
+    "before": 2829056,
+    "after": 187136,
+    "ratio": 15.117647058823529
+  },
+  "limitations": "insecure toy A,PRG,signature; no QPT test, no generic NP or malicious setup"
+}

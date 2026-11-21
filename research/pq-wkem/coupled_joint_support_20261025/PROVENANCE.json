@@ -1,0 +1,48 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checks": 1866,
+  "contents": {
+    "COUPLED_METRIC_REPAIR.md": {
+      "bytes": 19875,
+      "sha256": "6358bbe084744b4a7ea0dd61388687049af23b2cfded35576ae9dee0a4b8fdad"
+    },
+    "README.md": {
+      "bytes": 11257,
+      "sha256": "7406aa458976632fe263275140baa4fa5c95124e184c20334dafadca385811ae"
+    },
+    "canonical_release_check.py": {
+      "bytes": 12494,
+      "sha256": "b67a4919dc4b73183311a693f9fb649773a13bd83cbfe498bb61b54ae118cf4c"
+    },
+    "check_coupled_metric.py": {
+      "bytes": 13609,
+      "sha256": "4bc1cb4ae7c39e17c4c3e04a506cf07b6aefd246add0a1b047f14170fc173caf"
+    },
+    "check_joint_schur.py": {
+      "bytes": 7904,
+      "sha256": "b6f3afc7df0f071dc933665cd01b394437f726b3ccfe1fdd95eb69f4fd0029e6"
+    },
+    "quotient_recurrence_check.py": {
+      "bytes": 10857,
+      "sha256": "b227773d7fe65e241bd808a54cf5a91192140e561f67c3b96953da9023a4a464"
+    },
+    "validation_latest_joint.json": {
+      "bytes": 1185,
+      "sha256": "77a50512ac69e3be225bb50ac38801d34f08caf48e266b3087c6a4e122495835"
+    },
+    "verify_joint_coupled_metric.py": {
+      "bytes": 8486,
+      "sha256": "745cdd85aa710f6334734d4f465b10e933fb452fec44c3f808319c8ae5faf29b"
+    }
+  },
+  "distinct_honest_witness_evaluations": 9,
+  "is_QPT_security_proof": false,
+  "is_full_WKEM": false,
+  "latest_public_attack_README_blob": "bc2f71b4b2969132c4eb3c36ff93810de5f2bc21",
+  "predecessor": "local-only offline-coupled-metric-20261025",
+  "repo": "syscoin/PVUGC#1",
+  "reproduction": "python verify_joint_coupled_metric.py > check_output.json && cmp check_output.json validation_latest_joint.json",
+  "research_run": "pq-wkem-hourly-turn8-20261025",
+  "synthetic_setups": 64,
+  "verified_start_SHA": "aa814d446419d84babc294de00b0205d7fe3c636"
+}

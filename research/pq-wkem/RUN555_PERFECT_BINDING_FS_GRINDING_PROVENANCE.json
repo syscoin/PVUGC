@@ -1,0 +1,17 @@
+{
+  "run": 555,
+  "date_utc": "2026-10-16",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "f3f819a96f73c048e1f3249a5a7942f50f180cc7",
+  "run554_exact_blob": "f46d666dc77a5d59ae4181807c171facbfa64123",
+  "run259_exact_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "checker_execution": "Exact JavaScript source eval(code); assertions passed",
+  "published_checker_assertions": 2360,
+  "independent_python_checker_assertions": 2755,
+  "independent_python_repeat_and_syntax": "byte-identical; syntax pass",
+  "quantum_scope": "Grover query formula analytic only; no QPT advantage proven",
+  "literature_scope": "2023 Journal of Cryptology main theorem HTML, 2019/2020 arXiv abstracts",
+  "production_changes": false
+}

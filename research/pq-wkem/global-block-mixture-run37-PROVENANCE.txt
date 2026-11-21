@@ -1,0 +1,29 @@
+Run 37 provenance
+=================
+
+Starting verified PR head:
+c0876497e8a3aeff80815c42415e8c94382021b7
+
+No external literature or web search was used. GitHub access was confined to the requested PVUGC PR/research record.
+
+Locally executed/captured files after the final checker change:
+GLOBAL_BLOCK_MIXTURE_RUN37.md
+  SHA-256 068b836045c9352341722122d8158e3a0e7cd2ec16d67e74aec7b6e89908af2a
+global_block_mixture_run37_check.py
+  SHA-256 c1c71b7ebc224e30c5345bbdbaec83af5af66635b7dba1d8292f0b73ec0a74a9
+global-block-mixture-run37.json
+  SHA-256 c2f6d0e40ffa4bcece71f6531466ef69eea52256ea5b8654847cb064ccb1f555
+
+The final checker was executed twice. The two JSON outputs were byte-identical.
+
+Actual checks in the captured run:
+- 1,008 exhaustive one-step Fourier-identity cases.
+- Exact Gap-OHLC control: G=8, L=4, p=1/2, delta=1/4, honest bias 3/4, minimum-gap false bias 5/8.
+- Two fully enumerated F_2^8 complete-capsule MAP fixtures: witness success 7/8 in both; public MAP success 7/8 and 1 respectively.
+- 128 additional deterministic seeded row-space fixtures; 16,728 exact public-likelihood coordinates checked; MAP was never worse than the designated witness decoder and was strictly better in 81 fixtures.
+- 96 direct T-step convolution/Fourier-power identities.
+- Logarithmic-walk resource/exponent table through lambda=4096.
+
+These tests validate finite algebra and the implemented complete-view likelihood attack. They do not establish security of the logarithmic-walk candidate or hardness of the statement-derived low-weight syndrome problem.
+
+No production file was modified. PR must remain draft/unmerged.

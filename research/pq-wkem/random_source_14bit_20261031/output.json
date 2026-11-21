@@ -1,0 +1,40 @@
+{
+  "checkpoint": "RS14-20261031",
+  "status": "restricted random-source efficiency only, not generic NP witness-KEM",
+  "assertions": 23131,
+  "seed": "0x52533134",
+  "params": {
+    "q": 1099511627689,
+    "d": 512,
+    "n": 20680,
+    "B": 16384,
+    "b": 14,
+    "ell": 512,
+    "h": 3,
+    "caps": 2,
+    "T": 222,
+    "g": 67108863,
+    "u": 33554432
+  },
+  "bounds_log2": {
+    "false_upper": -200,
+    "single_w_tail": -398.320178,
+    "all_w_all_blocks": -190.525762
+  },
+  "storage": {
+    "old_matrix": 53780480,
+    "old_ciphertext": 27101610,
+    "new_matrix": 52940800,
+    "new_ciphertext": 22955910,
+    "ciphertext_savings_pct": 15.296877
+  },
+  "toy": {
+    "trials": 40,
+    "true_sources": 40,
+    "multiple_witness_sources": 40,
+    "all_witness_correct_trials": 39,
+    "witness_capsule_checks": 1284,
+    "mismatches": 1
+  },
+  "known_false_attack": "A=[1],t=[3],nonbinary z=3 cancels secret; generic ORIGINAL soundness is not obtained"
+}

@@ -1,0 +1,50 @@
+{
+  "assertions": 26,
+  "closure_five_theorem": {
+    "binary_15D_closure5_row_support_lower_bound": 12,
+    "consequence": "No e15(D)<=11 witness can have GF(16)-closure dimension 5.",
+    "statement": "Every binary 15D adjoint-domain subspace whose GF(16)-closure has field dimension 5 has binary row support at least 12."
+  },
+  "exact_preimage_census": {
+    "maximum_field_domain_preimage_dimension_for_row_plane": 1,
+    "row_hyperplane_preimage_dimension_histogram": {
+      "2": 4352,
+      "3": 17
+    },
+    "row_hyperplanes_total": 4369,
+    "row_plane_preimage_dimension_histogram": {
+      "0": 69632,
+      "1": 529
+    },
+    "row_planes_total": 70161
+  },
+  "fixture": {
+    "N": 3,
+    "R": 1,
+    "field": "GF(16), x^4+x+1",
+    "field_adjoint_domain_dimension": 6,
+    "field_adjoint_injective": true,
+    "field_adjoint_row_ambient_dimension": 4,
+    "field_column_ambient_dimension": 6,
+    "field_column_ambient_rref_pivots": [
+      0,
+      1,
+      2,
+      13,
+      14,
+      21
+    ],
+    "field_matrix_shape": [
+      56,
+      4
+    ],
+    "field_source_dimension": 4
+  },
+  "python": "3.13.5",
+  "run": 221,
+  "scope": {
+    "not_proved": "Closure six, global e15(D)=12/d5(C)=10, full false-instance hiding, arbitrary-QPT ORIGINAL extraction, malicious distributed setup, or a practical WKEM.",
+    "proved": "Exact finite closure-five exclusion for this literal false-source fixture."
+  },
+  "status": "PASS"
+}

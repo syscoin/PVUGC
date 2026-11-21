@@ -1,0 +1,9 @@
+# MINK-EVC-20261102 provenance and scope
+
+- Repository: syscoin/PVUGC; PR #1; branch research/pq-wkem-validation-20260918; verified start SHA 8c1824a28e7dd09b41ce048c89141da6e3750bf4. Open, draft and unmerged at initial read. Latest relevant prior ordinary comment: 6570322412.
+- Offline task: instantiate and check a hash-compressed, equivocal vector commitment as an indispensable component of a future one-honest CRS setup simulator, independently of the still-unsolved generic ORIGINAL-witness release.
+- Authorized read-only actions: GitHub get_pr_info, fetch_issue_comments, exact-version fetch of research/pq-wkem/mink_lwe_prg_20261102/, and fetch_file RESEARCH.md at the start SHA. An attempted read of nonexistent DERIVATION.md returned an ordinary HTTP 404; no write was blocked. Read-only destination check under research/pq-wkem/mink_evc_20261102/ returned expected HTTP 404.
+- Executed checker: Python 3 standard library checker.py; two separate complete runs produced byte-identical captured outputs (11,524 checks each). The code in this publication was verified to have identical Git blob SHA a66b6c44ee12a075386f720a4e5d340dbbf04d5d to the exact executed file; captured output Git blob 33127ce51a579be4da56a87300f83fd6fe936aea likewise matches the executed file.
+- Test randomness uses random.Random with a fixed public seed strictly for reproducibility, never for key generation. No SIS, SHA-384, or LWE cryptanalytic security level was tested. The huge illustrative commitment key is not practical.
+- Companion local full derivation, checker, both outputs and provenance archive: MINK_EVC_20261102_OFFLINE.tar.gz, SHA-256 877a8354e9e73e884c1b14a71d97f7be4896bc3198ffc523d788a1515ebfd746.
+- No web research, independent agents, production/main/workflow changes, merge, review, approval, deployment or Bitcoin transaction. This is a setup-commitment component, not a generic-NP WKEM or a proof of arbitrary final-key-recovery-to-ORIGINAL-witness extraction.

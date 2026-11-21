@@ -1,0 +1,19 @@
+{
+  "run": "R104-MIXED-MALICIOUS-KEY-MONOTONE-20261105",
+  "status": "RESTRICTED_COMPOSITION_NOT_GENERIC_ORIGINAL_NP",
+  "assertions": 12160,
+  "counts": {
+    "privacy": 125,
+    "qualification": 4000,
+    "public_leak": 25,
+    "joint_manifest": 3
+  },
+  "exact_histogram_entries": 25,
+  "malicious_set": [
+    "A",
+    "B",
+    "C"
+  ],
+  "policy": "(H AND (A OR B)) OR (J AND (A OR C))",
+  "limitations": "GF(5) exhaustive algebra, toy publicly leaking source keys, non-cryptographic digest; no QPT hardness or generic NP bridge"
+}

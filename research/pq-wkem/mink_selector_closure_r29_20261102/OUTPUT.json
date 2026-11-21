@@ -1,0 +1,9 @@
+{
+  "id": "R29-INDEPENDENT-JS",
+  "pass": true,
+  "assertions": 103,
+  "refutation_degree": 1,
+  "source_mask_degree": 3,
+  "OR_true_witnesses": 80,
+  "certificate_identity": "exact integer squarefree quotient"
+}

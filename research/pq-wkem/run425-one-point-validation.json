@@ -1,0 +1,28 @@
+{
+  "run": 425,
+  "assertions": 8052,
+  "cases": [
+    {
+      "d": 2,
+      "source_pairs": 4,
+      "mask_triples_per_pair": 8,
+      "false_assignments": 2,
+      "true_assignments": 2,
+      "isolated_capsule_support": 4,
+      "joint_support_false": 8,
+      "joint_support_true": 8
+    },
+    {
+      "d": 3,
+      "source_pairs": 36,
+      "mask_triples_per_pair": 216,
+      "false_assignments": 24,
+      "true_assignments": 12,
+      "isolated_capsule_support": 18,
+      "joint_support_false": 216,
+      "joint_support_true": 108
+    }
+  ],
+  "qpt": "classical information-theoretic falsifier; not a PQ WE proof",
+  "complete_wkem": false
+}

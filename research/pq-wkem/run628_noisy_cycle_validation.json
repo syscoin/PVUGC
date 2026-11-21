@@ -1,0 +1,64 @@
+{
+  "checks_passed": 3427,
+  "claim_scope": "exact toy counterexample; not CCMR/RIO, Gaussian SOURCE, or full relation-gated WKEM security",
+  "coboundary_assignments": 504,
+  "exact_models": 12,
+  "key_illustration": {
+    "bits": 128,
+    "cycles_per_bit": 16384,
+    "edges_total": 6291456,
+    "packed_edge_bytes": 786432,
+    "security_note": "classical PPT key recovery on a TOY noisily frame-masked bit carrier; not a WKEM",
+    "union_error_upper": "3.29242799698229096e-54"
+  },
+  "majority_exact_pquarter_t3": [
+    {
+      "cycles": 1,
+      "success": 0.5625
+    },
+    {
+      "cycles": 2,
+      "success": 0.5625
+    },
+    {
+      "cycles": 3,
+      "success": 0.59326171875
+    },
+    {
+      "cycles": 7,
+      "success": 0.634602472186089
+    },
+    {
+      "cycles": 15,
+      "success": 0.689418571655353
+    },
+    {
+      "cycles": 31,
+      "success": 0.759400782504656
+    },
+    {
+      "cycles": 63,
+      "success": 0.84135224648655
+    },
+    {
+      "cycles": 127,
+      "success": 0.921761233248588
+    },
+    {
+      "cycles": 255,
+      "success": 0.977567716996708
+    },
+    {
+      "cycles": 511,
+      "success": 0.997731461982651
+    },
+    {
+      "cycles": 1024,
+      "success": 0.999970249320905
+    }
+  ],
+  "model": "independent binary vertex frames and Bernoulli edge noise, t public capsule groups",
+  "quantum_scope": "full transcript is classical; trace distance equals classical TV for common independent quantum advice",
+  "research_id": 628,
+  "single_cycle_t3_pquarter_tv": "1/8"
+}

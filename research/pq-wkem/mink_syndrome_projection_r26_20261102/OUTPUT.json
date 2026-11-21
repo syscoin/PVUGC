@@ -1,0 +1,38 @@
+{
+  "main": {
+    "run": "MINK-SYNDROME-PROJECTION-R26",
+    "q": 257,
+    "checks": 35440,
+    "pass": true,
+    "fixtures": [
+      {
+        "variables": 8,
+        "clauses": 12,
+        "original_rows": 45,
+        "mask_columns": 108,
+        "rank": 24,
+        "syndrome_rows": 21,
+        "original_valid_assignments": 161
+      },
+      {
+        "variables": 10,
+        "clauses": 20,
+        "original_rows": 241,
+        "mask_columns": 220,
+        "rank": 140,
+        "syndrome_rows": 101
+      }
+    ],
+    "false_source": "g0=z0,g1=1-z0: e_empty in image B; no certificate supplied to simulator",
+    "status": "Exact affine-source normal form and reduction; NOT generic FALSE security or hard-TRUE extraction"
+  },
+  "independent_exhaustive": {
+    "run": "MINK-SYNDROME-PROJECTION-R26-EXHAUSTIVE",
+    "q": 3,
+    "matrices": 729,
+    "checks": 67991,
+    "pass": true
+  },
+  "executions_of_each": 2,
+  "byte_identical": true
+}

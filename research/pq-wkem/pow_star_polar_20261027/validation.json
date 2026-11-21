@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "checks": 2913,
+  "scope": "finite algebra and dyadic polar certificate; NOT BTC or QPT hardness",
+  "local": [
+    {
+      "h": 1,
+      "bias": "2/3"
+    },
+    {
+      "h": 2,
+      "bias": "4/7"
+    },
+    {
+      "h": 3,
+      "bias": "8/15"
+    },
+    {
+      "h": 4,
+      "bias": "16/31"
+    },
+    {
+      "h": 5,
+      "bias": "32/63"
+    }
+  ],
+  "whole_quotient_true": {
+    "modes": 1,
+    "distributionEqual": false
+  },
+  "whole_quotient_false": {
+    "modes": 0,
+    "distributionEqual": true
+  },
+  "polar": {
+    "k": 128,
+    "tEffective": 64,
+    "lambda": 64,
+    "oneFourGateStarN": 8192,
+    "oneFourIndependentN": 65536,
+    "twoFourGateStarN": 32768
+  },
+  "published_js_executions": 2,
+  "byte_identical": true,
+  "local_python_assertions": 2781,
+  "local_python_executions": 2
+}

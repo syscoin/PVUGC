@@ -1,0 +1,15 @@
+{
+  "run": "MINK-SPARSE-SUPPORT-R24",
+  "passed": true,
+  "checks": 44451,
+  "true": {
+    "rows": 77,
+    "deleted": 86,
+    "validOriginalWitnesses": 136
+  },
+  "false": {
+    "rows": 57,
+    "nonzeroCertificateEntries": 28
+  },
+  "security": "Only row-projection equivalence; original arbitrary-FALSE and hard-TRUE vulnerabilities remain"
+}

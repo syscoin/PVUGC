@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "assertions": 1737,
+  "ensembles": [
+    {
+      "q": 2,
+      "m": 2,
+      "n": 5,
+      "false_count": 63,
+      "total": 1024
+    },
+    {
+      "q": 4,
+      "m": 2,
+      "n": 2,
+      "false_count": 211,
+      "total": 256
+    }
+  ],
+  "false_law_P_p": 64,
+  "true_witnesses": 2,
+  "true_setups": 60,
+  "scope": "finite exact arithmetic only; NO hardness/security parameter claim"
+}

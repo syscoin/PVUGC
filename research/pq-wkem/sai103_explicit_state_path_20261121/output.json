@@ -1,0 +1,17 @@
+{
+  "domain_key_separation_required_for_siblings": true,
+  "false_no_public_source_to_target_path": true,
+  "false_rom_changed_points_count": 2,
+  "false_rom_coupled_capsules_identical": true,
+  "no_source_certificate_or_native_signature_or_fe": true,
+  "reachable_oracle_points_intersect_changed": false,
+  "scope": "EXPLICIT polynomial-size DAG only; not ORIGINAL certificate; no QPT proof",
+  "true_frozen_same": true,
+  "true_path_count": 2,
+  "true_path_publicly_found_by_bfs": [
+    "s",
+    "a",
+    "c",
+    "t"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "run": 574,
+  "date": "2026-10-16",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "b3afe1e27e067158a9a7b595b0805326cf00c1d0",
+  "starting_tree": "13c5fc606465614d974dfcc23085cbcac58d801f",
+  "latest_substantive_ordinary_comment_id": 6067040320,
+  "scope": "new conditional Goldreich-Levin bit-WE implication; prior denied Run573 payload not retried",
+  "checker": "node run574_checkable_release_we_check.js (self-contained JS; call run())",
+  "checker_assertions": 175534,
+  "independent_local_python_assertions": 788690,
+  "source_reads": [
+    "live PR info",
+    "latest ordinary comments",
+    "Run259 exact note",
+    "Run570 exact note",
+    "CLZ applicability",
+    "Run572 exact commit metadata"
+  ],
+  "literature": [
+    "https://doi.org/10.1145/73007.73010",
+    "https://arxiv.org/abs/quant-ph/0108095"
+  ],
+  "no_production_changes": true,
+  "assumptions_not_proved": [
+    "unique public checking of native signing seed",
+    "false-instance full-view QPT one-wayness",
+    "arbitrary correlated noncopyable quantum advice",
+    "multi-capsule and malicious setup",
+    "practical construction"
+  ]
+}

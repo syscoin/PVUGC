@@ -1,0 +1,23 @@
+{
+  "extracted_is_actual_accepted_witness": true,
+  "extracted_may_differ_from_planted": true,
+  "maximum_reachable_states": 217,
+  "no_source_or_full_public_security_claim": true,
+  "planted_witness_hex": "111110011100000000000010100010100001110100000110",
+  "positions": 48,
+  "public_state_target": 75,
+  "publicly_extracted_witness_bits": "000000000000000000000000000000000000000001000000",
+  "reachable_after_positions": {
+    "0": 1,
+    "12": 198,
+    "16": 199,
+    "24": 202,
+    "32": 207,
+    "4": 16,
+    "48": 214,
+    "8": 119
+  },
+  "scope": "SHA-based explicit polynomial-state program; not ORIGINAL source/FE/WE",
+  "sha_transitions_evaluated": 16522,
+  "states": 257
+}

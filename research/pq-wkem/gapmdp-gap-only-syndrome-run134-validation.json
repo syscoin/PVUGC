@@ -1,0 +1,100 @@
+{
+  "assertions": 33,
+  "asymptotic_ledger": [
+    {
+      "D": 16384,
+      "bad_rate": 0.500030517578125,
+      "bad_tv_lower": 0.9384719222348166,
+      "beta": 0.9785720620877001,
+      "d": 256,
+      "gap_ratio_D_over_d": 64,
+      "good_tv_upper_log2": -511.0000220139484,
+      "log2_lambda": 8,
+      "m": 32768,
+      "max_nontrivial_character_log2": -512.0000000000011,
+      "noise_entropy_rate": 0.030764009221878892,
+      "q_prime_power": 65536
+    },
+    {
+      "D": 589824,
+      "bad_rate": 0.5000008477105035,
+      "bad_tv_lower": 0.9939359288428692,
+      "beta": 0.9979713558551196,
+      "d": 4096,
+      "gap_ratio_D_over_d": 144,
+      "good_tv_upper_log2": -1727.0000006879127,
+      "log2_lambda": 12,
+      "m": 1179648,
+      "max_nontrivial_character_log2": -1727.9999999999818,
+      "noise_entropy_rate": 0.0030320003519753187,
+      "q_prime_power": 2097152
+    },
+    {
+      "D": 16777216,
+      "bad_rate": 0.5000000298023224,
+      "bad_tv_lower": 0.9994797197710097,
+      "beta": 0.9998307889319291,
+      "d": 65536,
+      "gap_ratio_D_over_d": 256,
+      "good_tv_upper_log2": -4095.0000000202344,
+      "log2_lambda": 16,
+      "m": 33554432,
+      "max_nontrivial_character_log2": -4095.9999999987367,
+      "noise_entropy_rate": 0.0002601389837574991,
+      "q_prime_power": 67108864
+    },
+    {
+      "D": 419430400,
+      "bad_rate": 0.5000000011920929,
+      "bad_tv_lower": 0.9999580027469146,
+      "beta": 0.9999867793541217,
+      "d": 1048576,
+      "gap_ratio_D_over_d": 400,
+      "good_tv_upper_log2": -7998.999999999068,
+      "log2_lambda": 20,
+      "m": 838860800,
+      "max_nontrivial_character_log2": -7999.999999997724,
+      "noise_entropy_rate": 2.099858685627762e-05,
+      "q_prime_power": 1073741824
+    }
+  ],
+  "finite_fixture": {
+    "D": 3,
+    "bad_code": {
+      "dimension": 4,
+      "min_distance": 3,
+      "type": "Reed-Solomon",
+      "weight_histogram": {
+        "3": 120,
+        "4": 360,
+        "5": 972,
+        "6": 948
+      }
+    },
+    "beta": "1/2",
+    "beta_hi_entropy_control": {
+      "beta": 0.8,
+      "entropy_tv_lower_bound": 0.32101633078805153,
+      "exact_bad_tv": 0.7099505872553102
+    },
+    "good_code": {
+      "dimension": 2,
+      "min_distance": 3,
+      "type": "direct_sum_repetition",
+      "weight_histogram": {
+        "3": 12,
+        "6": 36
+      }
+    },
+    "good_tv_hybrid_upper": "3/14",
+    "m": 6,
+    "max_nontrivial_character": "1/8",
+    "q": 7,
+    "tv_bad": "873/2744",
+    "tv_bad_float": 0.31814868804664725,
+    "tv_good": "135/784",
+    "tv_good_float": 0.17219387755102042
+  },
+  "run": 134,
+  "theorem_scope": "gap-only false-syndrome separation; no hardness claim"
+}

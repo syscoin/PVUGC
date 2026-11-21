@@ -1,0 +1,52 @@
+{
+  "ending_verified_head": "52b5cc0d3650ed6c29dbf2225ecbfc9c08208503",
+  "github_publication": {
+    "final_readback_head_unchanged": true,
+    "github_files_published_this_run": false,
+    "opening_comment_attempt": "blocked by OpenAI safety checks before reaching GitHub",
+    "opening_comment_retried_or_rerouted": false,
+    "other_run86_file_writes_attempted": false,
+    "proof_file_create_attempt": "blocked by OpenAI safety checks before reaching GitHub",
+    "proof_file_create_retried_or_rerouted": false,
+    "reason_no_additional_writes": "did not bypass or reroute the current safety block"
+  },
+  "literature": [
+    {
+      "source": "Hair-Sahai arXiv:2609.18275",
+      "use": "weighted-table algebra/degree<=R source interface only; classical generic-group security not imported"
+    },
+    {
+      "source": "Jin ePrint 2026/2063",
+      "status": "primary abstract/page accessible; PDF fetch remained restricted; full extraction chain not audited"
+    },
+    {
+      "source": "Jin ePrint 2026/1087",
+      "status": "primary abstract accessible; PDF returned 403; abstract says low-norm Nullstellensatz hypothesis for AND code is false; not used in proof"
+    }
+  ],
+  "pr_number": 1,
+  "production_code_modified": false,
+  "repository": "syscoin/PVUGC",
+  "research_result": {
+    "arbitrary_qpt_source_extraction": "UNPROVED",
+    "bounded_degree_corollary": "if max Boolean feature degree d satisfies R+d+1<=N, the explicit false sum(b_i)=N+1 instance has an anchor-sensitive finite-difference source direction",
+    "classification": "structural algebraic barrier; not a complete security proof or WKEM",
+    "core_theorem": "anchor-sensitive false coefficients on support C exist iff reciprocal violation g_C is outside the feature-weight span W_C",
+    "ppt_scope": "direct classical-PPT construction when R+d=O(log N); also PPT under a public linear bit-update interface as in Run 85",
+    "qpt_false_hiding": "UNPROVED outside explicit vulnerable/non-negligible parameter regions",
+    "refined_rank_bound": "rank <= r_Phi(C)*(R+d+2), where r_Phi(C) <= min(m, sum_{k<=d} binom(R+d+1,k))"
+  },
+  "run": 86,
+  "starting_verified_head": "52b5cc0d3650ed6c29dbf2225ecbfc9c08208503",
+  "stopping_condition_met": false,
+  "tests": {
+    "byte_identical_stdout": true,
+    "checker_sha256": "81ae140a0cba38a5346b5f08210512328ca60e3a3f0ee6201383e196960c75bb",
+    "executions": 2,
+    "generic_family_members_checked": 14,
+    "proof_sha256": "a0a557e6b1b539f9ce4bb4c2ea255b741156f0c3dd106eed8ec37bb15a32610c",
+    "scope": "finite algebra and implementation validation only",
+    "subcube_span_criterion_checks": 14,
+    "validation_sha256": "46cd24b74652a32f199c1deacb725cdc25481bb8937e2b5d3eecf2a3d516aad7"
+  }
+}

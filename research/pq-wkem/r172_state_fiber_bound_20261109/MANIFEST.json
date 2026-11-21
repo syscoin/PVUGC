@@ -1,0 +1,13 @@
+{
+  "status": "NOT a secure WKEM; research and toy checks",
+  "repo": "syscoin/PVUGC",
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_head": "fc21ff7612c948b6d01411861768fdb4c6a3d3a4",
+  "intermediate": "22c2b40395589d8a2a4ec36ed7a1ba28b3309a3d",
+  "checks": {
+    "compact_checker_sha256": "724f3cd7af999fb28b269e47037841778731dab28ada7b7910b92fe35837581f",
+    "compact_captured_sha256": "544323258e4ac2353987fff695d9c73d88b432d635c5b989c08fee654a866805"
+  },
+  "independent_agents": 0,
+  "execution": "python compact_checker.py > compact_captured.json; byte-identical rerun"
+}

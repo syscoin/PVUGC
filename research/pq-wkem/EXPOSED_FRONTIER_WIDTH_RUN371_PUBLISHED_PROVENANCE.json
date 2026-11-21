@@ -1,0 +1,17 @@
+{
+  "run": 371,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "d51d007439bae3ddbe3fe74d48436f675df40ce3",
+  "run259_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "run369_note_blob": "62ee0a75ae9d05cbded37a45d0b2e51029722c33",
+  "checker_sha256": "51d659859cce322da130c251e28c48cabcfd84bf6428a90ad6448b4285d8a578",
+  "output_sha256": "1fd451660ee0c843d3e1a7fbc7080ee607b76d6008cfae5cc37e17811ea46860",
+  "execution": "py_compile succeeded; two independent identical Python checker runs; assertions=149101",
+  "honest_model": "classical PPT witness-independent setup and evaluation",
+  "attacker_model": "arbitrary QPT; explicit break is classical PPT",
+  "premise": "independently callable d<=c log n raw release frontier with complete-public false-instance authorization security",
+  "conclusion": "conditional NP subseteq BPP; no practical WKEM",
+  "production_changed": false
+}

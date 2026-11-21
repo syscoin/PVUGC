@@ -1,0 +1,29 @@
+{
+  "checks": 2176,
+  "groups": {
+    "both_alternatives_claim_conflicts": 128,
+    "common_anchor_available_before_fork": 128,
+    "common_anchor_gives_same_output": 128,
+    "distinct_valid_alternates_have_distinct_fingerprints": 128,
+    "first_alternate_fails_fixed_baseline_seal": 128,
+    "fixed_public_baseline_opens_early": 128,
+    "full_public_key_check_passes": 128,
+    "honest_NOT_consistency": 256,
+    "honest_all_inputs_yield_zero": 256,
+    "inconsistent_occurrence_opens_hidden_output": 128,
+    "original_relation_is_FALSE": 128,
+    "raw_secret_recovered_without_witness": 128,
+    "second_alternate_fails_fixed_baseline_seal": 128,
+    "source_anchor_common": 128,
+    "witness_fingerprint_pads_differ": 128
+  },
+  "limitations": [
+    "no full Bitcoin/Syscoin parser",
+    "no real source proofs",
+    "no actual qualifying witness release",
+    "no simulator/security theorem",
+    "no QPT adversary tested"
+  ],
+  "run": "R201_SOURCE_CONVERGENT_GATE",
+  "scope": "synthetic hash-label circuit and non-PoW fork identities"
+}

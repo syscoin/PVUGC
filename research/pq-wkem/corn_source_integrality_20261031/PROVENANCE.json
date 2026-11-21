@@ -1,0 +1,33 @@
+{
+  "run_id": "2026-10-31-CORN-source-integrality",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "7c6f3be4a1fb46218f9a43969a915294ce02a999",
+  "previous_comment_read": 6549027267,
+  "previous_research_blob": "067883adc59a54de214017f0f86a45da53910f97",
+  "result": "NO_POSITIVE_WKEM_ADVANCE",
+  "JS_checker": {
+    "candidate": "CORN v1 and v2: public alternative opening",
+    "checks": 4204,
+    "cases": 34,
+    "compromised_symbols": 816,
+    "chosen_false_instance": "(x or x or x) and (!x or !x or !x)",
+    "quantum_security_claim": false
+  },
+  "offline_python": {
+    "v1": {
+      "assertions": 4742,
+      "formulas": 62,
+      "two_identical_runs": true
+    },
+    "v2": {
+      "assertions": 3979,
+      "formulas": 43,
+      "two_identical_runs": true
+    }
+  },
+  "local_archive_sha256": "edb0eab2bd608230fb486b19e8b37b6aef530a13f0ad421ad9632facf1fdff1b",
+  "no_external_web": true,
+  "publication_scope": "research/pq-wkem/ only"
+}

@@ -1,0 +1,63 @@
+{
+  "agents": [
+    "/root/fe_security",
+    "/root/fe_setup",
+    "/root/fe_construction"
+  ],
+  "branch": "research/pq-wkem-validation-20260918",
+  "core_source_or_tests_run": false,
+  "executions": [
+    {
+      "command": "python research/pq-wkem/fe_gate_assessment_20261118/native_binding_check.py",
+      "exit_code": 0,
+      "scope": "initial endpoint-only run; output field later renamed for precision",
+      "tool_reported_wall_time_seconds": 0.034803487
+    },
+    {
+      "command": "python research/pq-wkem/fe_gate_assessment_20261118/native_binding_check.py > research/pq-wkem/fe_gate_assessment_20261118/native_output.json",
+      "exit_code": 0,
+      "scope": "final output capture; label-only edit",
+      "tool_reported_wall_time_seconds": 0.05352815
+    }
+  ],
+  "files": [
+    {
+      "bytes": 2612,
+      "git_blob_sha1": "89e9d25d6e29de6069a247297af1f983d9ec0194",
+      "path": "research/pq-wkem/fe_gate_assessment_20261118/CHECKPOINT.md",
+      "sha256": "22a8cc30e128f6b11f8a5d0b61487f0445a412a58ac6616212e4e94a80dbf733"
+    },
+    {
+      "bytes": 19023,
+      "git_blob_sha1": "6cd435772422fdb740d36af25fd7a0f751f8737e",
+      "path": "research/pq-wkem/fe_gate_assessment_20261118/RESEARCH.md",
+      "sha256": "0258d37e26d2fe04cadee2009bb3720e3069b12342940c76eabebef18cb9e85a"
+    },
+    {
+      "bytes": 9019,
+      "git_blob_sha1": "600fbd1ab38cb48920fb7b0214b4d9f8a1ee12f9",
+      "path": "research/pq-wkem/fe_gate_assessment_20261118/native_binding_check.py",
+      "sha256": "49fe2ae3652bfb85cee4c9d597460693a9060b5282e06465591dd89f5e7f0c82"
+    },
+    {
+      "bytes": 1342,
+      "git_blob_sha1": "b312a578a1b796cb0b4bf9a9cbd4e907ad34b136",
+      "path": "research/pq-wkem/fe_gate_assessment_20261118/native_output.json",
+      "sha256": "b0bbecb7d906afe1840b6717ad76ef8a8785e9d141e3203e5b5a7e7638465863"
+    }
+  ],
+  "github_comments_written": 0,
+  "github_write_policy_denial_observed": false,
+  "initial_checkpoint_clock_utc": "2026-11-18 19:18:26 UTC",
+  "initial_clock_utc": "2026-11-18 19:10:58 UTC",
+  "native_vm_or_chain_admission_run": false,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "repo": "syscoin/PVUGC",
+  "start_head": "81dd15fff5cbd6aaccd647fcad452ab36b6390c4",
+  "status": "conditional FE design and endpoint-only check; no source-release breakthrough",
+  "web_access_errors": [
+    "ct.com supplied short-domain URL: DisabledError; canonical cointelegraph.com page succeeded",
+    "IACR full PDFs: HTTP 403 Forbidden; abstracts and indexed passages only where stated",
+    "Stanford guessed FE-paper URL not accessible; not relied upon"
+  ]
+}

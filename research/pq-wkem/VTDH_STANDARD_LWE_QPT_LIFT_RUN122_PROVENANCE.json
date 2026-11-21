@@ -1,0 +1,58 @@
+{
+  "artifacts": {
+    "checker": {
+      "path": "research/pq-wkem/vtdh_standard_lwe_qpt_lift_run122_check.py",
+      "sha256": "17ffb313506f8a9105e58b6c8a34484584586286cff7dee3e8cdd783e7838442"
+    },
+    "output": {
+      "path": "research/pq-wkem/vtdh-standard-lwe-qpt-lift-run122-validation.json",
+      "sha256": "530dba26ed36e32a8f3cb688e69a0d1f627efbf2a4a5a27ef2528129e637f34f"
+    },
+    "proof": {
+      "path": "research/pq-wkem/VTDH_STANDARD_LWE_QPT_LIFT_RUN122.md",
+      "sha256": "bd3b56e1ad546fc6e61ce516ef5913222434045138d54cdfdc040430c33aeb51"
+    }
+  },
+  "branch_at_start": "research/pq-wkem-validation-20260918",
+  "checker_assertions": 4539,
+  "checker_byte_identical": true,
+  "checker_runs": 2,
+  "correction": "current formal Lemma-8 proof uses ordinary LWE(q,n,sigma) with W=G^{-1}(A); BLMR13 is mentioned in overview text but is not invoked by the formal audited step",
+  "latest_starting_comment_id": 5847380543,
+  "merge_action": false,
+  "primary_source": {
+    "audited": [
+      "VTDH definition",
+      "technical overview p.8",
+      "Section 5",
+      "Lemmas 8-10",
+      "Section 5.5"
+    ],
+    "identifier": "IACR ePrint 2024/1514",
+    "revision": "2026-03-30, last of 3 revisions",
+    "title": "Black-Box Non-Interactive Zero Knowledge from Vector Trapdoor Hash"
+  },
+  "prior_checkpoint": {
+    "blob_sha": "415623e48e8b5fe246663e560d3486545b408acd",
+    "path": "research/pq-wkem/VTDH_FIXED_DIGEST_MAJORITY_CANONICALIZATION_RUN121.md"
+  },
+  "production_code_changed": false,
+  "pull_request": 1,
+  "quantum_status": {
+    "adversary": "QPT on classical public output",
+    "assumption": "standard decisional QPT-LWE for exact Section-5 sample/parameter family",
+    "conclusion": "Run-121 VTDH pad hiding conditionally QPT-secure",
+    "honest": "classical PPT",
+    "reduction": "straight-line; no rewinding/cloning/QROM/superposition-query simulation/extraction",
+    "unproved": [
+      "arbitrary challenge-correlated quantum side information outside assumption",
+      "simulation-aware fixed-digest ORIGINAL-source opening",
+      "unauthorized true-statement final-key recovery -> ORIGINAL witness or independent PQ break",
+      "complete practical generic-NP PQ WKEM"
+    ]
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 122,
+  "starting_head": "4198b1815d3edc7be41ec1cb25c0c46fab24610e",
+  "workflow_changed": false
+}

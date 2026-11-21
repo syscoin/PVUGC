@@ -1,0 +1,3 @@
+# R202 intermediate checkpoint
+
+Before any checker was executed, local CHECKPOINT_01.md stated the hypothesis: source work digest y=H(parent_header) either opens under its exact value (inconsistent across future work certificates) or is normalized under target-range y<T (then public digest substitution can release early). Inspect source work and PoB true/false independence. Original actual PR #1 head at start 3bbdb53e8c2c03d370d29ec8ce0e482807c3124d. This file summarizes the earlier local checkpoint, which was written before math/testing; this publication is post-execution. No claim of intermediate GitHub checkpoint creation.

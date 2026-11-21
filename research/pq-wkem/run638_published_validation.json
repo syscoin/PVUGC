@@ -1,0 +1,11 @@
+{
+  "run": 638,
+  "checks": 2088,
+  "states": 625,
+  "sequential_tv": 0.003880539642361083,
+  "theta_tv_bound": 0.01098073223701157,
+  "corrected_max_error": 3.885780586188048e-16,
+  "corrected_acceptance": 0.9932676087982035,
+  "old_global_acceptance_upper_m256": 6.420250520742546e-23,
+  "conditional_only": true
+}

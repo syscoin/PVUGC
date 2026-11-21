@@ -1,0 +1,13 @@
+{
+  "run": 535,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "starting_sha": "c418f591c99391f1b60d585974222722a77e3c41",
+  "predecessor_note_blob_sha": "b7a62027e6d568ae17d4e0eb0741c5063c3a9df6",
+  "reference": "https://arxiv.org/abs/2203.08876",
+  "executed_checker": "node run535_compact_check.js",
+  "checker_local_sha256": "11a750223ad5e7dc4ff565f575fc421572e3ece526fa6332eb41ad054e51cfa9",
+  "validation_local_sha256": "cbcc46cf05cfab69594c0c4c512801ac2c5e99d693a6e5ab29eba55aca0d44f3",
+  "extended_checker_local_sha256": "7e00e52641b9ce2947ccfc9bc7331f85f9bb3404e996ad0e124690802b646ea9",
+  "scope": "symbolic low-treewidth factoring attack; toy shares disclosed; no concrete cryptographic security"
+}

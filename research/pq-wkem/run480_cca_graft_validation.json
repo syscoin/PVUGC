@@ -1,0 +1,13 @@
+{
+  "run": 480,
+  "status": "PASS",
+  "kind": "tiny Paillier public-graft / ordinary IND-CCA2 thought-experiment; not a secure PKE or PQ WKEM",
+  "trials": 576,
+  "assertions": 6336,
+  "direct_challenge_queries_rejected": 576,
+  "related_challenge_queries_allowed": 576,
+  "correct_challenge_guesses": 576,
+  "parameters": "three tiny Paillier n; four contexts; 48 trials/context",
+  "quantum_hardware": false,
+  "concrete_security": false
+}

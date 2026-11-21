@@ -1,0 +1,77 @@
+{
+  "artifacts": {
+    "UP_HASH_ISOLATION_ALL_WITNESS_BARRIER_RUN128.md": {
+      "bytes": 17010,
+      "sha256": "dc1c891d10227a55f3c668852bef9d1fc93f260eb30e21fd0c9338a6f9a6158b"
+    },
+    "up-hash-isolation-all-witness-run128-validation.json": {
+      "bytes": 2545,
+      "sha256": "3989b5dcc7c2a0010c71d40a0f7be84f20e7344cb52272e1fcc9d2a7ed9f5469"
+    },
+    "up_hash_isolation_all_witness_run128_check.py": {
+      "bytes": 7568,
+      "sha256": "f17e823501ad33487651187159ccb4b9021a4cd9aa710d96d1c3565a057c1601"
+    }
+  },
+  "checker": {
+    "assertions": 415313,
+    "byte_identical_stdout": true,
+    "command": "python /mnt/data/pq-wkem-run128/up_hash_isolation_all_witness_run128_check.py",
+    "executions": 2
+  },
+  "github_exact_files_read": [
+    {
+      "blob_sha": "b6ea1b9a2f56bb4fb3a7f46c19386c6047036862",
+      "path": "research/pq-wkem/WPRF_PUBLIC_OPENING_SOURCE_BARRIER_RUN113.md"
+    },
+    {
+      "blob_sha": "415623e48e8b5fe246663e560d3486545b408acd",
+      "path": "research/pq-wkem/VTDH_FIXED_DIGEST_MAJORITY_CANONICALIZATION_RUN121.md"
+    },
+    {
+      "blob_sha": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924",
+      "path": "research/pq-wkem/literature-20260924/ASSESSMENT.md"
+    }
+  ],
+  "limitations": [
+    "finite checker does not prove cryptographic hardness",
+    "MPV WPRF theorem is PPT/classical as written and assumes evasive LWE in addition to LWE",
+    "cover theorem deliberately permits large many-to-one source fibers; it is not a generic impossibility theorem",
+    "dense tautology source examples establish generic correctness/size pressure, not source-search hardness"
+  ],
+  "primary_literature": [
+    {
+      "authors": [
+        "Surya Mathialagan",
+        "Spencer Peters",
+        "Vinod Vaikuntanathan"
+      ],
+      "pdf_header_date": "2024-04-01",
+      "pdf_screenshot_status": "attempted via PDF screenshot tool; failed with restricted-URL fetch error; extracted primary PDF text used",
+      "sections_audited": [
+        "4.5 Evasive LWE",
+        "5.1 Definitions",
+        "5.2 Construction / Theorem 5.5"
+      ],
+      "source": "Cryptology ePrint 2024/227",
+      "title": "Adaptively Sound Zero-Knowledge SNARKs for UP",
+      "url": "https://eprint.iacr.org/2024/227.pdf"
+    },
+    {
+      "authors": [
+        "Leslie G. Valiant",
+        "Vijay V. Vazirani"
+      ],
+      "doi": "10.1016/0304-3975(86)90135-0",
+      "journal": "Theoretical Computer Science 47 (1986), 85-93",
+      "title": "NP is as easy as detecting unique solutions"
+    }
+  ],
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "research_run_id": "PQ_WKEM_RUN128_UP_HASH_ISOLATION_ALL_WITNESS_BARRIER",
+  "run": 128,
+  "scope": "research-only; no production/workflow/review/merge changes",
+  "starting_branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "4198b1815d3edc7be41ec1cb25c0c46fab24610e"
+}

@@ -1,0 +1,8 @@
+{
+  "future_child_nonconvergence": 40,
+  "public_no_witness_recovery": 40,
+  "run": "R257_MIN",
+  "security": "none",
+  "source": "synthetic SHA256d links only",
+  "synthetic_same_key": 80
+}

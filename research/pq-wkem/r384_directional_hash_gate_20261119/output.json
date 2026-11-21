@@ -1,0 +1,21 @@
+{
+  "accepted_cert_indices": [
+    2,
+    101,
+    252,
+    737
+  ],
+  "edge_ciphertexts_needed_at_least": 2050,
+  "false_graph_has_no_directed_path": true,
+  "forward_hash_gate_opens_on_path": true,
+  "no_forward_path_but_undirected_group_extraction": true,
+  "noncommuting_gauges": true,
+  "practical_original_build_open": false,
+  "prefix_nodes_plus_terminal": 2048,
+  "qpt_security": "NOT PROVED; random-oracle hidden-key hybrid is a proposal only",
+  "scope": "synthetic explicit directed hash graph and SOURCE-INCOMPLETE SHA certificate prefix table",
+  "sha_candidates_enumerated_at_build": 1024,
+  "sha_input_bits": 10,
+  "sha_prefix_target_bits": 7,
+  "source_qualification": "NONE: no real AuxPoW, BTC best chain, Syscoin light client, burn, fork, or contextual activation"
+}

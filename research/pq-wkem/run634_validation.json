@@ -1,0 +1,16 @@
+{
+  "run": 634,
+  "checker": "run634_exact_frontier_check.js",
+  "executed": {
+    "run": 634,
+    "fixtures": 112,
+    "checks": 35635,
+    "maxStates": 1024,
+    "seed": 63420261019,
+    "finite_checks": "passed",
+    "security_inference": "none"
+  },
+  "second_execution_byte_identical": true,
+  "native_signature_implemented": false,
+  "real_wkem_security_tested": false
+}

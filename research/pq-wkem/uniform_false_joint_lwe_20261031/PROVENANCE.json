@@ -1,0 +1,26 @@
+{
+  "assertions_per_execution": 10036,
+  "branch": "research/pq-wkem-validation-20260918",
+  "executions": [
+    "python checker.py > output_1.json",
+    "python checker.py > output.json",
+    "cmp output_1.json output.json"
+  ],
+  "external_literature": false,
+  "files_sha256": {
+    "RESEARCH.md": "8b35fe6e73f6c115025c041dbe458d27f7ba463b3d6bf280f76ecd1dcc29512f",
+    "checker.py": "d32b1f4840c9023dea393ef8f47ac67b9a5343b380c5e9fcaa3f0d88285aeb10",
+    "output.json": "8c85669411e6c5d058ca7a94c8a2c8204aba6ba1c8133f695361389df4a7e9e3",
+    "output_1.json": "8c85669411e6c5d058ca7a94c8a2c8204aba6ba1c8133f695361389df4a7e9e3"
+  },
+  "id": "2026-10-31-offline-uniform-false-joint-lwe",
+  "independent_agents": false,
+  "latest_substantive_comment_id": 6543024973,
+  "offline": true,
+  "pr": 1,
+  "pr_state": "open/draft/unmerged",
+  "predecessor_blob": "d3573536bc9d41f73c706d02bfe624091452dc1c",
+  "predecessor_path": "research/pq-wkem/norm_saturated_source_gate_20261031/RESEARCH.md",
+  "repo": "syscoin/PVUGC",
+  "start_sha": "ec1e39256b39eddba5e012641c6bc30c49d255e3"
+}

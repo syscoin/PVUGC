@@ -1,0 +1,22 @@
+{
+  "research_id": "2026-10-31-offline-norm-saturated-source-gate",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "58bd840ceb05efdbb2e217f47794cbd5dad14b1a",
+  "latest_comment_read": 6542499938,
+  "prior_read_file": "research/pq-wkem/quotient_noise_gate_20261031/RESEARCH.md",
+  "prior_read_blob": "30f2e92112ef1508c9c500ea2a604ba0705a3399",
+  "node_checker_assertions": 7201,
+  "node_runs": 2,
+  "node_outputs_identical": true,
+  "independent_python_assertions": 7324,
+  "independent_python_runs": 2,
+  "independent_python_outputs_identical": true,
+  "independent_python_checker_sha256": "6f204fec595b3b9a71b800ea444b0a06037f88aa3681b3250b383b8a7ad23ff8",
+  "independent_python_output_sha256": "d5d589ac2513fe415fea9fd6ee44f62840ae27cdeffa69163c8283336144e7cf",
+  "local_python_test_correction": "Initial assertion typo using FALSE g instead of TRUE g_true; fixed before final runs.",
+  "result": "No positive secure PQ WKEM advance; general classical false-instance recovery",
+  "external_literature": false,
+  "native_signatures_tested": false
+}

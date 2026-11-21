@@ -1,0 +1,65 @@
+{
+  "affine_source_gate_barrier": {
+    "constant_affine_fiber_cases": 350,
+    "nonannihilating_direction_full_field_sweeps": 350,
+    "public_particular_solution_recovers_constant": 350,
+    "trials": 350
+  },
+  "checkpoint_projection": {
+    "identity_ok": 600,
+    "max_centered_rounding_residual": 64,
+    "trials": 600
+  },
+  "directed_chain": {
+    "end_to_end_exact": 300,
+    "length": 6,
+    "trials": 300
+  },
+  "public_input_label_false_splice": {
+    "false_formula_public_both_labels_root_recovery": 400,
+    "source_witnesses": 0,
+    "trials": 400
+  },
+  "resource_examples": [
+    {
+      "approx_token_bits_unpacked": 12895232,
+      "child_bits": 3584,
+      "n": 256,
+      "parents": 1,
+      "q": 12289,
+      "q_bits": 14,
+      "samples_per_edge": 3584,
+      "secret_q_elements": 256,
+      "token_q_elements": 921088
+    },
+    {
+      "approx_token_bits_unpacked": 25740288,
+      "child_bits": 3584,
+      "n": 256,
+      "parents": 2,
+      "q": 12289,
+      "q_bits": 14,
+      "samples_per_edge": 3584,
+      "secret_q_elements": 256,
+      "token_q_elements": 1838592
+    }
+  ],
+  "scope": "finite algebra/correctness controls only; no security claim from tests",
+  "seed": 720072001,
+  "single_parent_directional_lwe": {
+    "challenge_embedding_exact": 500,
+    "forward_exact": 500,
+    "reverse_is_exact_search_lwe": 500,
+    "trials": 500
+  },
+  "two_parent_and_transport": {
+    "known_other_parent_reverse_is_lwe": 500,
+    "trials": 500,
+    "two_parent_forward_exact": 500
+  },
+  "unrounded_public_collapse": {
+    "exact_linear_identity": 500,
+    "public_parent_recovery": 500,
+    "trials": 500
+  }
+}

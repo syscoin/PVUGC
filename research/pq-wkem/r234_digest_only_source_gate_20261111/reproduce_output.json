@@ -1,0 +1,10 @@
+{
+  "assertions": 513,
+  "merkle_roots_distinct": true,
+  "public_anchor_early": true,
+  "run": "R234",
+  "security": "NONE; not actual BTC/SYS, KEM, or QPT security",
+  "semantic_equal_key": 255,
+  "synthetic_early_open": 255,
+  "unknown_future_path_not_presealed": true
+}

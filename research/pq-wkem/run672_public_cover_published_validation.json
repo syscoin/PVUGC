@@ -1,0 +1,36 @@
+{
+  "cases": [
+    {
+      "accepted_pairs": 36,
+      "physical_state_bits": 24,
+      "probability": "9/128",
+      "public_seed_bits": 5,
+      "total_pairs": 512
+    },
+    {
+      "accepted_pairs": 36,
+      "physical_state_bits": 192,
+      "probability": "9/128",
+      "public_seed_bits": 5,
+      "total_pairs": 512
+    },
+    {
+      "accepted_pairs": 36,
+      "physical_state_bits": 384,
+      "probability": "9/128",
+      "public_seed_bits": 5,
+      "total_pairs": 512
+    }
+  ],
+  "checks": 3137,
+  "grover_success": [
+    0.0703125,
+    0.519721984863,
+    0.948504276574,
+    0.908196646204,
+    0.440956781376
+  ],
+  "run": 672,
+  "scope": "counting tests only; NOT WE/PQ security",
+  "source_sha256": "e87d0a12cdeb8f13b2c60605b7f3828cfe7f77979258baef25b9b21b66af0cd9"
+}

@@ -1,0 +1,27 @@
+{
+  "run": 509,
+  "date_utc": "2026-10-14",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "352555f7e1ffa9ca6f3509e28f81a46b6f0435d4",
+  "verified_dependency_blobs": {
+    "run508": "1d5ae7ea8e67988625794cf2bcd120f11e748e71",
+    "run506": "2d5d10c9a1d7063b08ffb377c5d5e8da2113dde8",
+    "run507_unreferenced": "68a408db82ae13abb01b487b2b70d05153e8121b",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  },
+  "checker_results": {
+    "run": 509,
+    "model": "black-box framed guarded-terminal oracle",
+    "fixture_count": 544,
+    "assertions": 4449,
+    "nonzero_event_gaps": 461,
+    "max_event_gap": 1,
+    "max_bound_violation": 0,
+    "status": "PASS; does not establish concrete QPT security"
+  },
+  "checker_executed_in": "connected JS V8 runtime and independent Node v22",
+  "security_scope": "ideal coherent action-oracle extraction only",
+  "production_changes": false
+}

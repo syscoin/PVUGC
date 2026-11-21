@@ -1,0 +1,19 @@
+{
+  "run": 496,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "ffd22e0e1d6ca3aa0da649783764c1f0c5f6a8df",
+  "checker": "run496_compact_check.js",
+  "executed_in": "V8 isolated JavaScript function from identical source text",
+  "assertions": 5634,
+  "exact_validation_file": "run496_compact_validation.json",
+  "note": "RUN496_SETUP_ZK_GAME_SEPARATION_COMPACT.md",
+  "limitations": "Finite diagnostics only; no QPT or ZK implementation",
+  "extended_local_only": [
+    "RUN496_SETUP_PROOF_TRUE_INSTANCE_SEPARATION.md",
+    "run496_true_instance_separation_check.py",
+    "run496_true_instance_validation.json",
+    "RUN496_PROVENANCE.json"
+  ]
+}

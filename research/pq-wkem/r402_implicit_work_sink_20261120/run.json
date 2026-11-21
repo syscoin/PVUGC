@@ -1,0 +1,14 @@
+{
+  "A_depth": 4,
+  "A_first_hash": "00afc87a267f1696fb16855edb86a722be1197568589588dea17d6d602be180b",
+  "B_depth": 4,
+  "B_first_hash": "00264ce9324d2657b9e22354e9bec1405929079cd4e341c07acf4240490dcf3a",
+  "both_chains_satisfy_fixture_rule": true,
+  "frozen_ciphertext_decodes_under_A": true,
+  "frozen_ciphertext_decodes_under_B": false,
+  "hidden_reset_has_no_public_evaluation_algorithm": true,
+  "public_reset_decodes_without_witness": true,
+  "scope": "two synthetic linked 8-bit PoW branch suffixes; NOT ORIGINAL/AuxPoW/FE",
+  "source_anchor": "52b6e8ab8777c898697eff1666caf772f444b4a75332ba873d59e73ff406dcef",
+  "two_hashwalk_sink_labels_equal": false
+}

@@ -1,0 +1,14 @@
+{
+  "run": 535,
+  "status": "PASS",
+  "compound_cases": 22,
+  "recovered_toy_keys": 22,
+  "max_local_join_scope": 3,
+  "local_elimination_steps": 39232,
+  "nonbaseline_queries": 196,
+  "max_witness_pair_count": 96,
+  "max_key_bits": 32,
+  "fixed_bad_order_obdd_width_lower_bound": "2^96 for a nonbaseline bit",
+  "caveat": "public toy shares are not secure and the augmented native-checker treewidth is untested",
+  "scope": "functional public low-width factor graph and fixed known failure baseline; not EOC/RIO or an instantiated WKEM"
+}

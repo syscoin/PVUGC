@@ -1,0 +1,22 @@
+{
+  "id": "MINK-GLOBAL-SQUARE-R25",
+  "checks": 6550,
+  "pass": true,
+  "q": 65537,
+  "delta": 128,
+  "false_certificate": "1=sum(g0..g8)-g4*g7-g5*g8",
+  "nonzero_clause_pairs": [
+    "4,7",
+    "5,8"
+  ],
+  "square_projection": "Delta^2*mu-2*r4*r7",
+  "single_projection_TV": "1/q",
+  "full_public_two_dummy_trials_per_bit": 512,
+  "full_public_attack_errors": [
+    0,
+    0
+  ],
+  "exact_mu1_attack_error_probability": "(3q-3)/q^2",
+  "true_distinct_witnesses": 6,
+  "status": "NO positive advance: noiseless nonlinear carrier broken; noisy full view unproved"
+}

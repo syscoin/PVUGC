@@ -1,0 +1,54 @@
+{
+  "run": "R168 finite-field Booleanity gate vs full coefficient representation",
+  "fields": [
+    7,
+    13
+  ],
+  "checks": 11796,
+  "extractions": 72,
+  "off_boolean_roots_of_false_verifier": {
+    "7": [
+      3,
+      5
+    ],
+    "13": [
+      4,
+      10
+    ]
+  },
+  "case_facts": {
+    "7/false": {
+      "original_boolean_witness_count": 0,
+      "full_field_nonzero_count": 0
+    },
+    "7/andnot": {
+      "original_boolean_witness_count": 1,
+      "full_field_nonzero_count": 1
+    },
+    "7/xonly": {
+      "original_boolean_witness_count": 2,
+      "full_field_nonzero_count": 2
+    },
+    "7/nand": {
+      "original_boolean_witness_count": 3,
+      "full_field_nonzero_count": 3
+    },
+    "13/false": {
+      "original_boolean_witness_count": 0,
+      "full_field_nonzero_count": 0
+    },
+    "13/andnot": {
+      "original_boolean_witness_count": 1,
+      "full_field_nonzero_count": 1
+    },
+    "13/xonly": {
+      "original_boolean_witness_count": 2,
+      "full_field_nonzero_count": 2
+    },
+    "13/nand": {
+      "original_boolean_witness_count": 3,
+      "full_field_nonzero_count": 3
+    }
+  },
+  "security": "NONE: full public coefficient representation exposes K; circuit source also exposes K; no polynomial generic BUILD, original SYS source verifier or QPT theorem"
+}

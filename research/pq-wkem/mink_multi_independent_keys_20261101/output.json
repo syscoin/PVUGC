@@ -1,0 +1,16 @@
+{
+  "run": "MINK-2026-11-01-T15",
+  "source": "restricted signed-XOR",
+  "parties": 4,
+  "related_capsules_per_party": 2,
+  "seed_bytes": 32,
+  "true_original_witnesses": [
+    3,
+    4
+  ],
+  "false_original_witnesses": [],
+  "delta": 7,
+  "public_ciphertexts": 6144,
+  "checks": 8239,
+  "security": "No QPT-ZK, native signature, hard-TRUE extractor, or generic-NP WKEM instantiated"
+}

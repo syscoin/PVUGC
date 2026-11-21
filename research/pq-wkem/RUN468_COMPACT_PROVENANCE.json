@@ -1,0 +1,17 @@
+{
+  "run": 468,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "99dc382d7ce2b91088de3bb71ecf5d9c7102c698",
+  "date": "2026-10-13",
+  "exact_checker": "node research/pq-wkem/run468_compact_check.js",
+  "checker_assertions": 3208,
+  "source_dependencies": [
+    "RUN466_UNARY_ORBIT_COMPACT.md",
+    "CLZ_APPLICABILITY_20261008.md",
+    "GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md"
+  ],
+  "theorem_scope": "conditional projected-graph QPT negative theorem; no secure local mixer or practical PQ WKEM",
+  "artifact_status": "confirm branch publication by returned commit/ref/blob readback"
+}

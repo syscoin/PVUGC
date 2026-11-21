@@ -1,0 +1,14 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "compact_checks": 43421,
+  "conclusion": "Only multiview same-key repeated parity pads are broken. Independent-key single-bit GL and actual local mixers are not refuted.",
+  "error_semantics": "None at creation; publication to be tracked separately.",
+  "exact_compact_execution": "node run500_compact_multiview_check.js",
+  "executions_byte_identical": true,
+  "extended_local_checks": 231066,
+  "pr": 1,
+  "repo": "syscoin/PVUGC",
+  "run": 500,
+  "run499_source_note_blob": "e6107997b46645cdb962b8cf1936df5ef9ac2336",
+  "starting_head": "6c61ed65ac4f9b234c1d75550355d6aa51d86ff3"
+}

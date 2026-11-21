@@ -1,0 +1,32 @@
+{
+  "run": "R39-LWE-REGEV-JOINT-SOURCE-20261103",
+  "checks": 7090,
+  "leftover": {
+    "q": 3,
+    "n": 1,
+    "m": 4,
+    "seeds": 6561,
+    "binary_inputs": 16,
+    "average_TV_num": 515840,
+    "average_TV_den": 1889568,
+    "upper_bound": 0.375,
+    "max_conditional_TV": 0.8888888888888888
+  },
+  "surrogate_true": {
+    "q": 257,
+    "n": 2,
+    "m": 16,
+    "B": 1,
+    "distinct_witnesses": 2,
+    "scopes": 2,
+    "encrypted_key_bits": 128,
+    "bit_ciphertexts": 256,
+    "same_key_decodings": 512,
+    "signature_bytes": 32,
+    "dem_bytes": 32,
+    "CK": 445558162,
+    "aux": 3601888644
+  },
+  "adversarial_false": "A=0,b0=2,B=1 permits perfect plaintext-bit recovery",
+  "caution": "test hash and PRG are insecure; no QPT or generic-NP claim"
+}

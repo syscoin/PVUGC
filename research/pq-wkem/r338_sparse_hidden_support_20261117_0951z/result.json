@@ -1,0 +1,19 @@
+{
+  "attack_recovered_all_bits": true,
+  "attack_unrecovered_bits": 0,
+  "basis_rank": 1396,
+  "candidate": "sparse high-degree hidden multiplier supports; explicit published polynomial P",
+  "false_trivial_transcript_shift_exact": true,
+  "hash_of_public_coefficients": "0270942abf4e6b11f61aa851766bf2b5ec804df7f1feb89f9504fc4daa5439d7",
+  "honest_same_capability": true,
+  "inferred_basis_generators": 3122,
+  "inferred_term_coverage": 70,
+  "maximum_multiplier_degree": 10,
+  "n_constraints": 10,
+  "n_variables": 12,
+  "published_nonzero_monomials": 135,
+  "q_support_hidden_from_attacker": true,
+  "real_original_source": false,
+  "selected_nonzero_multiplier_terms": 70,
+  "valid_witness_count_synthetic": 4
+}

@@ -1,0 +1,26 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "date_utc": "2026-10-21T05:31:59.845182+00:00",
+  "exact_blob_deps": {
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run593": "29b9168bfff6043810284cd1960400579f224e31"
+  },
+  "file_sha256": {
+    "RUN671_CORRELATED_TAPE_LOCAL_MIXING_BOUND.md": "9a09862e599427417b234412a0bb074c208b47bb34413696108a47b223295719",
+    "run671_correlated_tape_cut_check.py": "50388a42d16a7f3aef4e4e19dacf9c650441aef2dd66490f812093c7e4eea2f9",
+    "run671_correlated_tape_cut_validation.json": "3067595663ddd2dabdf325f63f53a20aea66ad3f6c2cfdf68615b3a78cfcf618"
+  },
+  "latest_comment_id": 6241612333,
+  "latest_comment_utc": "2026-10-17T21:42:01Z",
+  "methods": [
+    "connected GitHub PR metadata, date-scoped top-level comments, exact Run259 blob, exact Run593 proof",
+    "web searches for CCMR ePrint full PDF (403), abstract cross-check",
+    "Python compilation, 2 byte-identical runs"
+  ],
+  "pr": 1,
+  "published": false,
+  "repository": "syscoin/PVUGC",
+  "run": 671,
+  "start_sha": "e9fee613f7f3b9ea418b8d8a68e8ca8443d44d9e",
+  "validation": 10651
+}

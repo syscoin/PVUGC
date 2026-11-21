@@ -1,0 +1,17 @@
+{
+  "checks": 13,
+  "name": "R215_sha256d_small_repro",
+  "scope": "SHA256d nonces and public first-block labels only; no authenticated source, release or QPT proof",
+  "templates": {
+    "A": {
+      "first_digest": "0008ed8322d6c5efb6117e6d70999c5dba43f3bf64462d59c04d5ba05cc73a01",
+      "first_nonce": 7317,
+      "solutions": 4
+    },
+    "B": {
+      "first_digest": "0008035d19bfb160d5b541eb79eb6a82bf6a7ddfe6b59b39d78a74d4463e2dc2",
+      "first_nonce": 551,
+      "solutions": 4
+    }
+  }
+}

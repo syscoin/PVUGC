@@ -1,0 +1,18 @@
+{
+  "record": "l1-sphere-lwe-source-20261028-turn11-independent",
+  "status": "PASS",
+  "checks": 40,
+  "count_bit_length": 2546,
+  "entropy_greater_than_ternary": true,
+  "q": 65537,
+  "m": 1600,
+  "n": 128,
+  "h": 696,
+  "g": 1393,
+  "radix": 47,
+  "columns": 47,
+  "expected_nonzero_coordinates": 551.35744743,
+  "exact_joint_bound_stronger": true,
+  "elementary_collision_matrices": 343,
+  "security": "exact integer algebra only; not QPT cryptanalysis"
+}

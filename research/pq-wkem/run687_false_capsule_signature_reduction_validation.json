@@ -1,0 +1,16 @@
+{
+  "assertions": 116,
+  "fixture": "8 possible secrets; 8 fresh mask values per capsule; public injective affine checking-key map",
+  "interpretation": "Toy exact-distribution verification only; no QPT signature security or full WKEM is implemented.",
+  "per_key_exposed_pad_aux_total_variation": [
+    "7/8"
+  ],
+  "per_key_fresh_capsule_total_variation": [
+    "0"
+  ],
+  "per_key_reused_mask_total_variation": [
+    "7/8"
+  ],
+  "public_key_exact_secret_recovery": "8/8",
+  "uniform_pair_distribution_identical_for_all_secrets": true
+}

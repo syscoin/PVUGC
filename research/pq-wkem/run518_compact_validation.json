@@ -1,0 +1,10 @@
+{
+  "run": 518,
+  "status": "PASS",
+  "opaque_frame_points": 56,
+  "false_target_key_recoveries": 7,
+  "nonmarked_fixed_bits": 98,
+  "grover_amplitude_checks": 60,
+  "quantum_hardware": false,
+  "practical_security_proved": false
+}

@@ -1,0 +1,21 @@
+{
+  "run": "R102-EXACT-TILTED-R101-COINS-20261105",
+  "scope": "restricted-LWE-leaf-only; generic-NP ORIGINAL compiler unresolved",
+  "assertions": 6551,
+  "toy_accepted_vectors_checked": 6531,
+  "parameters": {
+    "m": 1656,
+    "budget": 2729,
+    "a": 15,
+    "b": 16,
+    "integer_partition_Z": 25726
+  },
+  "support_decimal_digits": 1398,
+  "log2_support": 4641.2159631294,
+  "baseline_acceptance": 0.004601156368426,
+  "tilted_acceptance": 0.14009964859892,
+  "expected_uniform_draws": 217.336669291,
+  "expected_tilted_draws": 7.13777664684,
+  "proposal_reduction": 30.4487909953,
+  "security": "identical uniform distribution on R101 bounded-L1 coin support; no new cryptographic assumption; toy/exact algebra only; not QPT test"
+}

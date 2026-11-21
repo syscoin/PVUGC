@@ -1,0 +1,47 @@
+{
+  "assertions": 420,
+  "correlated_public_tag": "K mod 4 (toy ONLY)",
+  "fixture": "exact 4-bit OTP; public late-witness encryption; public nonlinear join",
+  "optimal_guess_with_tag": "1/4",
+  "optimal_guess_without_tag": "1/16",
+  "per_witness_statistics": {
+    "11": {
+      "identical_distributions_for_all_16_keys": true,
+      "keys": 16,
+      "optimal_public_recovery": "1/16",
+      "public_output_support": 732,
+      "raw_enumerated_transcripts_per_key": 1024
+    },
+    "15": {
+      "identical_distributions_for_all_16_keys": true,
+      "keys": 16,
+      "optimal_public_recovery": "1/16",
+      "public_output_support": 744,
+      "raw_enumerated_transcripts_per_key": 1024
+    },
+    "3": {
+      "identical_distributions_for_all_16_keys": true,
+      "keys": 16,
+      "optimal_public_recovery": "1/16",
+      "public_output_support": 737,
+      "raw_enumerated_transcripts_per_key": 1024
+    },
+    "7": {
+      "identical_distributions_for_all_16_keys": true,
+      "keys": 16,
+      "optimal_public_recovery": "1/16",
+      "public_output_support": 734,
+      "raw_enumerated_transcripts_per_key": 1024
+    }
+  },
+  "relation": "(w & 3) == 3",
+  "run": 680,
+  "scope": "finite information-theoretic sanity check, not a proof of PKE IND-CPA or WKEM",
+  "two_independently_padded_capsules_leak_no_key_information": true,
+  "valid_original_witnesses": [
+    3,
+    7,
+    11,
+    15
+  ]
+}

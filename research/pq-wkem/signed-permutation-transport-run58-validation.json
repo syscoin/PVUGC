@@ -1,0 +1,161 @@
+{
+  "claim_scope": "finite algebra/implementation controls for signed-permutation affine transport; not a generic affine impossibility theorem and not a PQ security proof",
+  "exhaustive_d2_l2_census": {
+    "false_pairs_with_columnwise_public_evaluator": 3456,
+    "false_program_target_pairs": 19264,
+    "programs": 4096,
+    "programs_with_at_least_one_such_false_target": 1088
+  },
+  "explicit_false_fixture": {
+    "column_routes": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "common_path_exists": false,
+    "dimension": 2,
+    "exact_public_endpoint_recoveries": 1000,
+    "layers": 2,
+    "path_products": {
+      "(0, 0)": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "(0, 1)": [
+        [
+          -1,
+          0
+        ],
+        [
+          0,
+          -1
+        ]
+      ],
+      "(1, 0)": [
+        [
+          0,
+          -1
+        ],
+        [
+          -1,
+          0
+        ]
+      ],
+      "(1, 1)": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "target": [
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  "integral_nonexpansive_rigidity_control": {
+    "2": {
+      "enumerated_matrices": 81,
+      "full_rank_with_all_integer_column_norms_le_1": 8,
+      "signed_permutations": 8
+    },
+    "3": {
+      "enumerated_matrices": 19683,
+      "full_rank_with_all_integer_column_norms_le_1": 48,
+      "signed_permutations": 48
+    }
+  },
+  "noisy_false_fixture": {
+    "common_path_exists": false,
+    "deterministic_abs_noise_bound": 2,
+    "max_observed_abs_noise": 2,
+    "public_key_recoveries": 5000,
+    "trials": 5000
+  },
+  "noisy_true_designated_coordinate": {
+    "deterministic_abs_noise_bound": 8,
+    "dimension": 4,
+    "histograms_identical": true,
+    "honest_decodes": 5000,
+    "honest_signs": [
+      -1,
+      -1,
+      1,
+      1,
+      -1,
+      -1,
+      1,
+      1
+    ],
+    "layers": 8,
+    "max_observed_honest_abs_noise": 7,
+    "max_observed_public_abs_noise": 8,
+    "public_decodes": 5000,
+    "public_signs": [
+      -1,
+      -1,
+      -1,
+      1,
+      -1,
+      1,
+      -1,
+      1
+    ],
+    "ternary_noise_exact_histogram": {
+      "-8": 1,
+      "-7": 8,
+      "-6": 36,
+      "-5": 112,
+      "-4": 266,
+      "-3": 504,
+      "-2": 784,
+      "-1": 1016,
+      "0": 1107,
+      "1": 1016,
+      "2": 784,
+      "3": 504,
+      "4": 266,
+      "5": 112,
+      "6": 36,
+      "7": 8,
+      "8": 1
+    },
+    "trials": 5000
+  },
+  "random_true_instances": {
+    "coefficient_alphabet": [
+      -1,
+      0,
+      1
+    ],
+    "dimension": 4,
+    "exact_public_endpoint_recoveries": 600,
+    "layers": 10,
+    "nonzeros_per_output_column_per_layer": 1,
+    "trials": 600,
+    "trials_where_synthesized_column_routes_not_all_same_word": 590
+  },
+  "run": 58,
+  "seed": 5808510
+}

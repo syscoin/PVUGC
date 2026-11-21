@@ -1,0 +1,60 @@
+{
+  "run": 530,
+  "status": "PASS",
+  "seed": 5302026,
+  "sparse_trials": 144,
+  "sparse_full_rank": 0,
+  "ideal_trials": 144,
+  "ideal_full_rank": 138,
+  "details": [
+    {
+      "k": 3,
+      "h": 5,
+      "r": 0,
+      "trials": 24,
+      "sparse_full_rank": 0,
+      "ideal_full_rank": 24
+    },
+    {
+      "k": 3,
+      "h": 5,
+      "r": 1,
+      "trials": 24,
+      "sparse_full_rank": 0,
+      "ideal_full_rank": 24
+    },
+    {
+      "k": 4,
+      "h": 5,
+      "r": 2,
+      "trials": 24,
+      "sparse_full_rank": 0,
+      "ideal_full_rank": 23
+    },
+    {
+      "k": 5,
+      "h": 5,
+      "r": 3,
+      "trials": 24,
+      "sparse_full_rank": 0,
+      "ideal_full_rank": 23
+    },
+    {
+      "k": 5,
+      "h": 6,
+      "r": 5,
+      "trials": 24,
+      "sparse_full_rank": 0,
+      "ideal_full_rank": 21
+    },
+    {
+      "k": 6,
+      "h": 5,
+      "r": 3,
+      "trials": 24,
+      "sparse_full_rank": 0,
+      "ideal_full_rank": 23
+    }
+  ],
+  "scope": "legitimate k-step public writer outputs; affine-span distinguisher only, not key recovery or a QPT security proof"
+}

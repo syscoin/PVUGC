@@ -1,0 +1,66 @@
+{
+  "artifacts_sha256": {
+    "SETUP_KNOWN_INVARIANT_ADAPTOR_VRF_BOUNDARY_RUN112.md": "f9f1fb903f54297d2ad8e9eceb5fe263629a460cc5feae8b99fc8577b950adf0",
+    "setup-known-invariant-adaptor-vrf-run112-validation.json": "2aed876e6e8a8ee6c0f8d5c5a27ba11d1094ee25cbea42d6539dff29ad827276",
+    "setup_known_invariant_adaptor_vrf_run112_check.py": "2c0a60992974f18e3674715c3778ce0a56d699bb71e3e3352f05a34b372e5ab5"
+  },
+  "latest_comment_at_start": 5843580758,
+  "limitations": [
+    "No practical WKEM construction is claimed.",
+    "No witness-gated VRF evaluator is constructed.",
+    "The 2024 shared-prefix no-go applies to invariants computable from the unchanged pre/full prefix, not every conceivable completion invariant.",
+    "The finite checker validates semantic identities only, not computational security.",
+    "No production code, workflows, or automation settings were changed by the research work."
+  ],
+  "pr": 1,
+  "primary_sources": [
+    {
+      "authors": "Xiangyu Liu; Ioannis Tzannetos; Vassilis Zikas",
+      "evidence": "Primary PDF text retrieved; generic pSign/Adapt/Ext algorithms and PPT definitions inspected.",
+      "identifier": "IACR ePrint 2024/1051",
+      "inspected_sections": "Definitions 10-15; Section 4; Fig. 7; Theorem 2",
+      "title": "Adaptor Signatures: New Security Definition and A Generic Construction for NP Relations",
+      "url": "https://eprint.iacr.org/2024/1051.pdf"
+    },
+    {
+      "authors": "Muhammed F. Esgin; Veronika Kuchta; Amin Sakzad; Ron Steinfeld; Zhenfei Zhang; Shifeng Sun; Shumo Chu",
+      "evidence": "Primary PDF text retrieved; explicit PPT theorem statements and Rewind 1/Rewind 2 inspected.",
+      "identifier": "IACR ePrint 2020/1222; PQCrypto 2021",
+      "inspected_sections": "Definitions 2.4-2.5; Section 3.1; Theorem 3.1 and proof; Appendix B Theorem B.1",
+      "title": "Practical Post-Quantum Few-Time Verifiable Random Function with Applications to Algorand",
+      "url": "https://eprint.iacr.org/2020/1222.pdf"
+    },
+    {
+      "authors": "Masayuki Abe; Dung Bui; Kelong Cong; Miyako Ohkubo; Zehua Shang; Akira Takahashi; Mehdi Tibouchi",
+      "evidence": "Current indexed abstract and author publication records retrieved; full primary PDF not available in this run, so theorem-level claims not imported.",
+      "identifier": "IACR ePrint 2026/2155; ASIACRYPT 2026",
+      "title": "Practical Adaptor Signatures for NP from Online/Offline NIZK",
+      "url": "https://eprint.iacr.org/2026/2155",
+      "version_note": "Indexed current record says minor revision last updated 2026-09-22."
+    }
+  ],
+  "quantum_classification": {
+    "base_lattice_assumptions": "Exact QPT hardness of the paper-specific Module-SIS/Module-LWE distributions and parameters was not independently established in this run.",
+    "esgin_et_al_lb_vrf": "Theorem 3.1 and B.1 quantify over PPT in ROM; uniqueness proof uses explicit classical rewinding/forking; QPT/QROM lifting unproved.",
+    "liu_tzannetos_zikas_2024": "Security definitions/theorems inspected quantify over PPT, not QPT; quantum guarantee unproved here.",
+    "run112_new_lemmas": "Unconditional interface/syntax results; classical attacks/logic apply a fortiori against QPT where relevant."
+  },
+  "research_id": "RUN112_SETUP_KNOWN_INVARIANT_ADAPTOR_VRF_BOUNDARY",
+  "run": 112,
+  "source_access_date": "2026-09-26",
+  "starting_branch": "research/pq-wkem-validation-20260918",
+  "starting_head_sha": "a0803edfa691f184e33ca92620471a81c17c611c",
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  },
+  "starting_repository": "syscoin/PVUGC",
+  "validation": {
+    "command": "python setup_known_invariant_adaptor_vrf_run112_check.py",
+    "python_syntax_check": "PASS",
+    "repeat_byte_identical": true,
+    "status": "PASS",
+    "total_assertions": 17997
+  }
+}

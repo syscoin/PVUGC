@@ -1,0 +1,84 @@
+{
+  "artifact_hashes": {
+    "HAIR_SAHAI_ADJOINT_CLOSURE5_RUN221.md": {
+      "bytes": 11245,
+      "sha256": "61cdc33791f130d2217daa43673a88ae0471c5fbc73269c9c2b64e8343a2fbbd"
+    },
+    "hair-sahai-adjoint-closure5-run221-validation.json": {
+      "bytes": 1443,
+      "sha256": "117428dc13fac986dce57b2d595a1142fa4bf8a05753e3512da0d1668c3713b7"
+    },
+    "hair_sahai_adjoint_closure5_run221_check.py": {
+      "bytes": 4934,
+      "sha256": "d544249236773d30db0252ea6307f7eead41c1584b4f10078d0c9d89e4507901"
+    }
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "assertions": 26,
+    "byte_identical_outputs": true,
+    "execution_seconds": [
+      3.75,
+      3.87
+    ],
+    "executions": 2,
+    "network_used": false,
+    "python_version": "3.13.5",
+    "syntax_check": "passed",
+    "validation_sha256": "117428dc13fac986dce57b2d595a1142fa4bf8a05753e3512da0d1668c3713b7"
+  },
+  "connected_github_reads": [
+    "get_pr_info",
+    "fetch_pr_comments",
+    "list_pr_changed_filenames",
+    "fetch_file at exact head",
+    "fetch raw git commit metadata"
+  ],
+  "conversation_handoff": "Later local closure work selected the closure-five question only; no unpublished file is an input to the standalone checker.",
+  "created_utc": "2026-10-02T03:50:44.334217+00:00",
+  "exact_version_inputs": {
+    "research/pq-wkem/HAIR_SAHAI_GENERALIZED_SUPPORT_RUN214.md": "6a67013fda501295e631d5bb17bb7d50c4bd8be5",
+    "research/pq-wkem/HAIR_SAHAI_GENERALIZED_SUPPORT_RUN214_PROVENANCE.json": "f0433cce9a6ee62be899ce59498660a795ae1b55",
+    "research/pq-wkem/hair-sahai-generalized-support-run214-validation.json": "21a7354f085615d8067073a5de8800616f01fd7c",
+    "research/pq-wkem/hair_sahai_generalized_support_run214_check.py": "b38c7eea6c6a2cb387b5dcb1b97ac018c0b03f32"
+  },
+  "final_read_only_verification": {
+    "draft": true,
+    "head_sha": "aa8f5b0dc257942b40930364a5f18408aca2ea50",
+    "latest_ordinary_comment_id": 5913974235,
+    "merged": false,
+    "run221_paths_present": [],
+    "state": "open"
+  },
+  "latest_substantive_ordinary_comment_id": 5913974235,
+  "prepublication_verification": {
+    "base_tree_sha": "b3f68324613859022e02e1358dc41530c4352ab1",
+    "draft": true,
+    "head_sha": "aa8f5b0dc257942b40930364a5f18408aca2ea50",
+    "latest_ordinary_comment_id": 5913974235,
+    "merged": false,
+    "run221_paths_present_before_write": [],
+    "state": "open"
+  },
+  "publication_attempt": {
+    "correlation_id": null,
+    "error_code": null,
+    "first_write_action": "GitHub.create_blob for finalized Run-221 proof note",
+    "message": "This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "request_id": null,
+    "result": "explicit_safety_denial",
+    "tool_timestamp": null,
+    "writes_after_denial": 0
+  },
+  "publication_status": "BLOCKED_BEFORE_GITHUB",
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "run_id": 221,
+  "scope": "One bounded exact scalar-core/adjoint closure-five iteration on the literal N=3,R=1 GF(16) false source.",
+  "starting_head_sha": "aa8f5b0dc257942b40930364a5f18408aca2ea50",
+  "starting_state": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  }
+}

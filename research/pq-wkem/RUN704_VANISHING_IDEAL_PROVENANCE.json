@@ -1,0 +1,20 @@
+{
+  "run": 704,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "51672b61ca111dcd243964d5ce9fa6fedfe95876",
+  "check_executed_twice": true,
+  "compact_checker_local_sha256": "e627f9a7516a4367a23df870eddf36cbddc9f6085ae05ee216948687c39ddd30",
+  "compact_checker_local_git_blob": "1a8f6928d96ae0fb4e94b1937ba00f39c0446b0a",
+  "compact_validation_local_sha256": "edee8cf99af2ee74ac24bedcef2904a1d6dcffde3fd4d60ca3b646475faa4387",
+  "extended_python_local_sha256": "07f8cef9248e30c839bb8f60ed27f518e7c3a06511cdf6cec2ea72598ad41f5c",
+  "extended_validation_local_sha256": "c692666a22acd3f9cf4d12575b71690779d2333c092b7b39f08b6709d53f182e",
+  "new_claim": "exact false full-public shift-coupling and native-security simulator only for unit-certificate subclass",
+  "excluded_claims": [
+    "all false NP efficient",
+    "hard true recovery extraction",
+    "PQ 128-bit parameters",
+    "malicious setup"
+  ]
+}

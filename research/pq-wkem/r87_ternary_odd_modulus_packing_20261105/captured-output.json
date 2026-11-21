@@ -1,0 +1,44 @@
+{
+  "run": "R87-TERNARY-ODD-MODULUS-PACKING-20261105",
+  "status": "RESTRICTED_CONSTRUCTION_ADVANCE_NOT_GENERIC_WKEM",
+  "assertions": 6475,
+  "checks": {
+    "two_universal_pairs": 36,
+    "lhl_histograms": 1250,
+    "openings": 192,
+    "bit_decodings": 4608,
+    "full_view_checks": 192,
+    "negative_controls": 1
+  },
+  "example": {
+    "q": 65521,
+    "n": 256,
+    "ell": 16,
+    "lambda": 128,
+    "m_binary": 4610,
+    "m_ternary": 2909,
+    "m_reduction_percent": 36.89804772234273,
+    "eps_binary": 7.12164511654339e-40,
+    "eps_ternary": 5.673555975530086e-40,
+    "full_pk_16bit_bytes_binary": 2507840,
+    "full_pk_16bit_bytes_ternary": 1582496,
+    "ciphertext_Zq_elements": 187136,
+    "max_error_beta_binary": 3,
+    "max_error_beta_ternary": 5
+  },
+  "ternary_census": {
+    "mean_tv": 0.06461629629629663,
+    "bound": 0.12422599874998831,
+    "hash_keys": 625,
+    "input_count": 81
+  },
+  "binary_census": {
+    "mean_tv": 0.18687999999999957,
+    "bound": 0.2795084971874737,
+    "hash_keys": 625,
+    "input_count": 16
+  },
+  "even_q_negative_collision_count": 8,
+  "negative_universal_expected": 4,
+  "caveats": "Toy checksums/pad are NOT cryptographic. LWE not QPT calibrated. Generic ORIGINAL recovery extraction remains unproved."
+}

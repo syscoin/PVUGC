@@ -1,0 +1,40 @@
+{
+  "artifacts": {
+    "checker": "5fb296cd8d3fc46bb83c7cf5faeedc5930f17ad58408f5a9c2604779c65799d8",
+    "note": "e7baf50dbe44da843a833f5e75f5a5c059ddce09c6cddd975b8d3cb9a4406be0",
+    "validation": "fbbb2541793d6e0ea8605123f1175d34fb97a0331682d0f804c1fb91dbb11537"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_head_inputs": {
+    "keyless_native": "dffe6c85dc3bf63652ba7927d1593e2ee6549608",
+    "run121": "415623e48e8b5fe246663e560d3486545b408acd",
+    "run126": "94d1a6246da77f561ecacd84ce78917d6121dc33",
+    "run127": "ceb891a850663557169597c0ddf7068b67791ab3"
+  },
+  "execution": {
+    "assertions": 1559,
+    "byte_identical": true,
+    "run1": 0,
+    "run2": 0,
+    "syntax": "PASS"
+  },
+  "identifier": "RUN140_LMOTS_W1_BITCOIN_EVENT_LATCH",
+  "latest_substantive_comment_id": 5852515576,
+  "limitations": [
+    "Source-specific; not generic NP.",
+    "Requires a reserved source one-time slot known before Bitcoin funding.",
+    "Expanded endpoint disclosure requires a separate source-signature security audit.",
+    "Early release by authorized source signers remains possible.",
+    "Current Bitcoin owner ECDSA is not post-quantum.",
+    "No Bitcoin Core regtest or real source-chain signature implementation was run."
+  ],
+  "pr": 1,
+  "primary_sources": [
+    {"name":"RFC8554","url":"https://www.rfc-editor.org/info/rfc8554/"},
+    {"name":"NIST SP800-208","url":"https://csrc.nist.gov/pubs/sp/800/208/final"},
+    {"name":"BIP141","url":"https://bips.dev/141/"},
+    {"name":"BIP143","url":"https://bips.dev/143/"}
+  ],
+  "repository": "syscoin/PVUGC",
+  "starting_sha": "13c84575f767c96d73434089be95679cca232a9f"
+}

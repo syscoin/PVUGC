@@ -1,0 +1,9 @@
+{
+  "checks": 17024,
+  "field": 257,
+  "fixtures": 64,
+  "participants": 4,
+  "result": "two-source interpolation correct; one-message hidden; honest no-equivocation blocks required second source signature",
+  "run": "R168",
+  "security": "toy algebra only, not a QPT proof or PoW WKEM"
+}

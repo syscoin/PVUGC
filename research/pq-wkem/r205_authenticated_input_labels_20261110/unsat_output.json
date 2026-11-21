@@ -1,0 +1,13 @@
+{
+  "classification": "unconditional full-public key release on unsatisfiable source Boolean relation",
+  "counts": {
+    "all_local_gate_tables_saturate": 128,
+    "fabricated_witness_does_not_exist": 128,
+    "honest_inputs_always_false": 256,
+    "unreachable_true_label_recovered": 128
+  },
+  "functional_assertions": 640,
+  "run": "R205-GARBLED-UNSAT-SATURATION",
+  "scope": "Toy hash-garbled gates; not actual SHA circuit or Syscoin evidence",
+  "source_sha256": "9272bad6ee46e5ad38a072bb8a3a81214bdd1fdd469e86af2cc4586962d2c71b"
+}

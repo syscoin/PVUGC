@@ -1,0 +1,28 @@
+{
+  "assertions_passed": 12803,
+  "branch": "research/pq-wkem-validation-20260918",
+  "date_utc": "2026-10-12",
+  "executed": "python3 run461_compact_check.py; py_compile; repeated output byte-identical",
+  "files": {
+    "RUN461_SECTOR_COMPACT.md": {
+      "bytes": 4227,
+      "git_blob_sha1": "07589cc2dba15ae551e68d3645659ab192e33468",
+      "sha256": "304e831997e8df9456082f2b582dc25620a4ce46c4262bf718b9d8ad10fa5c15"
+    },
+    "run461_compact_check.py": {
+      "bytes": 1094,
+      "git_blob_sha1": "b7c11d8d943babbf9b790ca95dd87cbb42715d2a",
+      "sha256": "2aebb31bb275fc3472d736b26e08a29f496585e07abc8af1699cde35089afa2b"
+    },
+    "run461_compact_validation.json": {
+      "bytes": 228,
+      "git_blob_sha1": "0f64784cb49272b36a4481466bfeea7da42f66a7",
+      "sha256": "9128945f6d0e6f20cc6d8c4ca3db39a4dd67d2024b0f5947d0eeb45aebcd0cd5"
+    }
+  },
+  "pr": 1,
+  "repo": "syscoin/PVUGC",
+  "run": 461,
+  "security_claim": "none; restricted move-set syntax leakage; no CCMR/WE construction",
+  "starting_head": "db2124267b8c2c1e384979a13bc014136041658b"
+}

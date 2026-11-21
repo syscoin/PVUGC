@@ -1,0 +1,36 @@
+{
+  "run": 562,
+  "date_utc": "2026-10-16",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "67b4c1edf6ccf5e4d4dc1f96b5d78e7d7fa45a79",
+  "base_tree_sha": "aac5518e3059513cc62820c11abf0e72838bf077",
+  "exact_branch_source_blobs": {
+    "RUN561_KEM_NATIVE_CHECKING_KEY_CORRELATION.md": "34e5e98a17b2dd089041ec723227df5070574db2",
+    "GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "CLZ_APPLICABILITY_20261008.md": "c19d9d9cd515140e3ce62eac960cd548c0add622",
+    "RUN560_PUBLIC_FRONTIER_QUERY_BOUND.md": "bc8bcde5819519bf1519a832813ae26facf5442f"
+  },
+  "primary_literature": [
+    "https://simons.berkeley.edu/talks/ji-luo-mit-csail-2026-07-13",
+    "https://cris.tau.ac.il/en/publications/how-toencrypt-withrandom-reversible-circuits-functional-homomorph/"
+  ],
+  "checker_execution": "new Function(exact JS source + return run562Check()) in V8 isolate",
+  "checker_result": {
+    "run": 562,
+    "status": "PASS",
+    "assertions_passed": 37844,
+    "public_true_orbit_fixtures": 3048,
+    "valid_original_witness_checks": 6096,
+    "outsider_successes_without_witness": 3048,
+    "false_key_independence_grid_pairs": 5460,
+    "toy_permutations_one_way": false,
+    "positive_QPT_WKEM_proof": false,
+    "theorem_A": "unconditional polynomial-orbit enumeration",
+    "theorem_B": "conditional QPT OWP source-extraction separation"
+  },
+  "assumptions": "honest classical PPT setup/evaluation; theorem B assumes nonuniform QPT one-way permutation with advice independent of random target; no assertion of concrete QPT OW permutation or Bitcoin native PQ deployment",
+  "status": "NEW_RESEARCH_PENDING_PUBLICATION",
+  "scope": "pure fixed unary polynomial public orbit only; conditional false/true extraction separation"
+}

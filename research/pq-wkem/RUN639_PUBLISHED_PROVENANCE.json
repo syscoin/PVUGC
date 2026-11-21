@@ -1,0 +1,22 @@
+{
+  "run": 639,
+  "date_utc": "2026-10-19",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "7d552298bcb7bc02e77b2a0c462f8f7c0a6ff72f",
+  "exact_source_path": "research/pq-wkem/RUN638_GLOBAL_GAUSSIAN_RESIDUAL_SAMPLING.md",
+  "source_blob_sha": "d02a36dc6b6be0a740af3da9f3c9f3768b650fc2",
+  "published_note_blob": "836ff201da0e4987f736f9456f6a231b27c06a52",
+  "published_checker_blob": "3f7b8d084742609f9c4984805f5ce5ede44ef227",
+  "published_output_blob": "5e57e805e88e84d4da831d687795d281467f2c47",
+  "checks": "node run639_published_check.js twice, byte-identical output; 631 assertions; expanded local Python 1060 assertions, repeat-identical; py_compile passed",
+  "expanded_local_only_files": [
+    "RUN639_GAUSSIAN_INVERSE_ISIS_BARRIER.md",
+    "run639_inverse_isis_check.py",
+    "run639_inverse_isis_validation.json",
+    "RUN639_INVERSE_ISIS_PROVENANCE.json"
+  ],
+  "scope": "Conditional uniform-matrix ISIS reduction and counting; not a statement about genuine SOURCE-fiber distribution, QPT hiding, or completed WKEM.",
+  "publication": "This record belongs to a research-only draft PR commit; branch and comment outcomes must be independently verified."
+}

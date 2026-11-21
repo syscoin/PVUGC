@@ -1,0 +1,13 @@
+{
+  "run": "R92-THRESHOLD-LWE-LSSS-20261105",
+  "status": "RESTRICTED_CONSTRUCTIVE_ADVANCE_NOT_GENERIC_WKEM",
+  "assertions": 2231,
+  "counts": {
+    "authorized": 624,
+    "unauthorized": 1296,
+    "finite": 55,
+    "field": 255,
+    "efficiency": 1
+  },
+  "warning": "Exact Shamir access structure and GF(5) histogram only, not QPT or cryptographic-security test. Independently executed local Python has full toy LWE and Ed25519 view."
+}

@@ -1,0 +1,45 @@
+{
+  "assertions_by_label": {
+    "adequate_toy_witnesses": 3,
+    "all_qualifying_work_recovers_same_K": 6133,
+    "checking_key_agrees": 6133,
+    "full_header_mask_breaks_completeness": 6130,
+    "public_nonlinear_prefix_same": 3,
+    "raw_capsule_opens_without_header": 3,
+    "raw_capsule_reveals_frozen_capability": 3,
+    "sha256d_work_fixture_accepts": 6133,
+    "shared_anchor_opens_without_competitor": 3,
+    "toy_suffix_degree2_full_rank": 3
+  },
+  "cases": [
+    {
+      "candidate": "prefix-pad common key but publicly extractable; header-pad not all-witness",
+      "degree2_suffix_rank": 56,
+      "first_qualifying_nonce": 23,
+      "qualifying_header_count": 2130,
+      "seed": 0,
+      "sha256d_first": "1fe1da26de8a4d126eaeab33ed33fbe25773ab72de45c2dfc061811561046600"
+    },
+    {
+      "candidate": "prefix-pad common key but publicly extractable; header-pad not all-witness",
+      "degree2_suffix_rank": 56,
+      "first_qualifying_nonce": 7,
+      "qualifying_header_count": 2010,
+      "seed": 1,
+      "sha256d_first": "0843df9526f6c9cddbc67b667925ec3cd67e756ab3e03f7c70a44759041a6f06"
+    },
+    {
+      "candidate": "prefix-pad common key but publicly extractable; header-pad not all-witness",
+      "degree2_suffix_rank": 56,
+      "first_qualifying_nonce": 7,
+      "qualifying_header_count": 1993,
+      "seed": 2,
+      "sha256d_first": "d6e1cd7d9b1d0abc9985dd69acfc13e13639cd7a471b65e634a705330d7d2701"
+    }
+  ],
+  "functional_assertions": 24547,
+  "run": "R210_SHA_WORK_GATE_20261110",
+  "scope": "SHA256d synthetic Bitcoin-format parent headers; toy target D=5; NOT full original-source qualification or cryptographic WE",
+  "security_result": "raw public gate opens without header; selected-header repair violates every-witness correctness",
+  "tool_provenance": "Python stdlib local run; no QPT cryptanalysis, no BTC mining validation"
+}

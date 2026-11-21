@@ -1,0 +1,17 @@
+{
+  "run_id": "MINK-ECZK-2026-11-01-T18",
+  "repo": "syscoin/PVUGC",
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "4ec6ff1ff7c6aa03b3268985d1b1d79f8b71093c",
+  "exact_predecessor_blob": "420295d80d73b6deeead27edee215b8f843973be",
+  "checker_blob_sha": "34d6f34bf9c43f8bcabeca35bde98fadb78ca2d0",
+  "execution": "Two identical direct JS Function executions: 1619 checks each",
+  "local_only_python": "4265 assertion events twice identically in checker.py; local archive SHA256 19bd73837ff66c456480e9070f508bbffd3037e95f9bab19f74f7ce35beedf90",
+  "limitations": [
+    "honest CRS only",
+    "one-honest distributed key generation not proved",
+    "no 128-bit QPT hardness parameters",
+    "no generic-NP witness KEM"
+  ],
+  "offline_research": true
+}

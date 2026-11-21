@@ -1,0 +1,39 @@
+Run 50 provenance — nonvanishing divisor ideal mask
+
+Repository: syscoin/PVUGC
+Pull request: #1
+Starting verified head: e655d10bfa73bdee22e101538a5afe823c79120e
+Checkpoint PR comment: 5795159675
+Scope: research/pq-wkem only; no production-code changes.
+External literature/web search: none.
+
+Local validation actually executed:
+  python /mnt/data/nonvanishing_divisor_mask_run50_check.py > /mnt/data/run50_a.json
+  python /mnt/data/nonvanishing_divisor_mask_run50_check.py > /mnt/data/run50_b.json
+  cmp /mnt/data/run50_a.json /mnt/data/run50_b.json
+
+The two final executions produced byte-identical JSON. The first captured stdout was copied to:
+  /mnt/data/nonvanishing-divisor-mask-run50.json
+
+Local SHA-256:
+  NONVANISHING_DIVISOR_MASK_RUN50.md
+    40dfacfcb8ed202a8b71b7633de946edf29a4f0422ecee63e3df6722cda3815d
+  nonvanishing_divisor_mask_run50_check.py
+    7cc06a84cba6dfe108a3557759673ada549bf91f4e085bb80f19a2b602f4b912
+  nonvanishing-divisor-mask-run50.json
+    8c69fd5224296db4910182feec9dac8faa9aa2c8a04ce06043e49d23d41f3975
+
+Captured result summary:
+  all_checks_passed: true
+  true correctness: 400 random masks/keys; 800/800 witness decapsulations
+  explicit false fixture: delta(1)=3, delta(r)=3
+  subcritical D=2: 300/300 public-separator key recoveries
+  critical D=3: 300/300 key shifts verified inside the mask span
+  reciprocal checks: 2,046 Boolean-cube evaluations across n=1..10; support=2^n and max degree n in every executed case
+  random unsatisfiable 4-variable controls: 50 fixtures, degree-pair histogram {3->3:1, 3->4:17, 4->4:32}; zero observed cases with delta(r)<delta(1)
+
+Proof/security scope:
+  The proof establishes exact correctness and a complete-output linear-subspace dichotomy for the explicit full-coefficient candidate C_K=K r+R, plus the quotient-unit theorem r in I iff 1 in I when r is nonzero on the Boolean cube, and the stated degree relations. The finite checks validate the implementation and examples only. They do not prove a generic impossibility theorem, a QPT security reduction, or a completed WKEM.
+
+Publication state at creation of this provenance file:
+  The four Run-50 files had not yet been published. Remote head/blob IDs are to be verified after publication and recorded in the PR result comment rather than pre-claimed here.

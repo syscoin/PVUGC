@@ -1,0 +1,11 @@
+{
+  "run": 409,
+  "starting_sha": "77bbbc5333c61eb0cce2ae6260f4bf293295090c",
+  "branch": "research/pq-wkem-validation-20260918",
+  "source": "Agrawal-Yadav-Yamada CRYPTO 2022 Section 6 pp 615-617",
+  "source_pdf": "https://crypto.iacr.org/2022/papers/530630_1_En_21_Chapter_OnlinePDF.pdf",
+  "checker": "python3 public_third_slot_sis_run409_compact_check.py",
+  "validation": "7504 assertions; toy finite algebra only",
+  "provenance_note": "Mathematical derivation conditional on exact TrapGen marginal and QPT SIS hardness; no actual WKEM or general impossibility.",
+  "publication_scope": "new research under research/pq-wkem only"
+}

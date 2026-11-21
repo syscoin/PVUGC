@@ -1,0 +1,37 @@
+# R332 — actual-source cycle topology and typed contest-edge obligation (NONQUALIFYING)
+
+## Continuity
+At read time PR #1 was open/draft/unmerged at 0525f5ec7ccd043c4f6507fe5008a298cf9c0845 on research/pq-wkem-validation-20260918 (R331 note blob 2bbfedbd1062ff9dc1c411b8be7feaccb034a77c). R330's preceding note was inspected (blob 17e8378dcf7de5ebefb1861b2641496c99a92ee1); the latest top-level substantive issue comment remains R225 (6796383617). No new Core source or Core tests were run: the post-PQ contextual rules and ancestor reference schedule below are inherited from the user's verified #609 correction. No web or unrelated research sites.
+
+The continuing candidate is R331's source-history cycle-coboundary label scheme. R331 samples secret vertex potentials phi and masks one baseline cut edge e* with frozen cancellation capability S, defining label l(e)=phi(u) XOR phi(v) XOR d(e)*S. For a cycle with odd XOR of d values, XOR of labels returns S. Its artificial common terminal T connects two authenticated incompatible child histories and creates an idealized release cycle. R332 investigates which cycle-generating edges the ACTUAL authenticated source supplies and whether an honest baseline would already release S.
+
+## Rooted predecessor histories do not form a fork cycle
+A semantically identified child block has exactly one predecessor hash. Barring hash collisions, two properly authenticated competing child histories share a prefix then split and cannot rejoin. Represent valid blocks as vertices and immediate predecessor relationships as undirected graph edges. The union is a rooted tree/forest, with cycle rank |E|-|V|+components = 0. Distinct authenticated Bitcoin parent work certificates for the SAME child are wrapper annotations, not new child edges or forks.
+
+Therefore the real source does not supply R331's T join. A relation-level comparison may *introduce* a virtual contest edge between different histories, but this is not a block hash or AuxPoW edge; an actual publicly executable release algorithm must provide its compatible masked label only after a qualifying original source certificate.
+
+## Authentic canonical SYS tags are ancestor shortcuts, not challenger edges
+The parent coinbase's exact post-activation 41-byte SYS tag points to the candidate's own child ancestor at h_ref(n)=10*floor((n-6)/10). If one promotes this authenticated pointer to an extra label-graph edge n->h_ref(n), a single valid baseline already has a graph cycle: parent path h_ref(n)->...->n plus tag shortcut n->h_ref(n). This is a mathematical choice to MODEL tags as edges; it is NOT a defect of the strict consensus tag checker.
+
+Take baseline with claim cut e*=(block102,block103), d(e*)=1, all other ordinary parent/tag edges assigned d=0. For n=106..115, h_ref(n)=100, and the baseline tag cycle 100->...->n->100 contains e*. Every corresponding XOR gives S even with no alternative history. Hence a naive extension of the R331 label scheme to tag arcs fails FALSE security in its own model, regardless of deeper LC maturity. At n=116 the tag references 110, and its baseline tag cycle no longer crosses that cut.
+
+## Typed cut-coboundary repair (topology only)
+Assign chi(v)=1 for baseline descendants of the cut and chi(v)=0 before it; for EACH authenticated baseline parent or tag graph edge set d(e)=chi(u) XOR chi(v). Then d=B chi where B is the edge/vertex incidence matrix over GF(2). Every baseline cycle has XOR d=0, so a forest/cycle-free-baseline ideal label ensemble Y=B phi XOR d S is exactly coupled across S,S' using phi'=phi XOR chi*(S XOR S'). This is only an ideal finite classical label-vector coupling, not a simulator for native VK, sibling capsules, source mining or coherent QPT adversaries.
+
+To release S from a genuine conflicting source history, the verifier must introduce a TYPED virtual contest edge connecting two certified relevant states with a non-coboundary d bit. The exact absent operation is a classical-PPT serializable public function:
+  LabelContest(C, original_witness) = phi(baseline_endpoint) XOR phi(alternate_endpoint) XOR d_contest*S
+with consistent hidden potentials, no online issuer and NO compatible output for false, forged, irrelevant or spliced certificates. This is not an independently realized component: implementing such a function securely is the missing ORIGINAL witness-encryption release problem, not a solution found by redrawing the graph. Globally public SHA vertex potentials immediately disclose S from the published marked baseline label; private hash potentials cannot label future original histories. An arbitrary-string contest label issuer makes fake graph cycles decrypt.
+
+The candidate has no instantiated Build_orig/Open_orig for ANY original challenge; branch-3 is the only topology modeled, and branch-1 greater exact anchored Bitcoin work, branch-2 finite specific invalid/missing burn authorization, and separately typed claimed-wrapper faults remain independently usable OR grounds. Strict modern contextual chain ID and exact canonical tags, authenticated actual claim ancestor, LC depth, source relevance/anchors/windows/reset and frozen native cancellation-binding are unchanged.
+
+## Executed local checker and provenance
+Python3 standard-library /mnt/data/r332_source_cycle_gate/check.py constructed baseline heights 100..116 and alternate fork after 102. With parent-only edges, cycle rank was 0 for both the baseline and the union of competing histories. Adding eleven canonical reference shortcuts (heights 106..116) gave rank 11, and the uncorrected cut marked ten baseline-only odd cycles at 106..115. The repaired d=B chi made ALL baseline tag cycles even. Introducing TWO synthetic terminal edges produced a cycle of rank 1, proving the terminal was not source-native. A public-potential synthetic example recovered the 256-bit marked S immediately. Two actually invoked checker executions gave byte-identical outputs.
+
+Checker SHA256: c1471d841d1dbcc8641e1ac8ae7bd18205e97633a41851347d7d0efba122689a.
+Both captured outputs SHA256: 0bd72565b4c538c155a20c0839d3a847672db16a2210e84d0fdb394a017cdef8.
+Local-only archive R332_source_cycle_gate_20261116.tar.gz SHA256: 2f5198238fa5ae71eea21c08a06e8f25d78181a3dce9815db4241f3f4fa54d11, containing full derivation and the executed checker/outputs. No assumption of sandbox persistence. The archive/checker/output bytes are not claimed to be published by this note commit. The checker uses synthetic symbolic child graphs, not real network AuxPoW admission, native signatures or quantum tests.
+
+## Verdict / exact next equation
+NONQUALIFYING. This pass corrects the representation requirement of R331, not the missing source-release foundation: actual child-history forks have no native rejoining edge; naive canonical-tag pointer labels introduce a FALSE early-opening cycle; baseline coboundary repair does not issue the needed secret-correlated authenticated contest edge. Before pursuing another cycle mask, require a fully specified classical-PPT serialized LabelContest/Build/Open, independent full-public FALSE/hard-TRUE QPT original-certificate-or-hash/native-break reduction, all-witness SAME frozen safe capability, malicious setup/source retention, native VK/context/sibling capsules, and the other two OR grounds. Otherwise reject further cycle relabeling as non-progress.
+
+No Core/production or automation change, deployment, PR comment or progress notification.

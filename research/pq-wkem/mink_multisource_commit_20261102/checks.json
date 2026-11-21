@@ -1,0 +1,31 @@
+{
+  "candidate": "MINK-MULTISOURCE-COMMIT-R16",
+  "checks": 4631,
+  "binding": [
+    {
+      "key": "malicious-zero",
+      "bad": 42904,
+      "total": 4194304,
+      "upperNumerator": 768,
+      "upperDenominator": 2048
+    },
+    {
+      "key": "arbitrary",
+      "bad": 295702,
+      "total": 4194304,
+      "upperNumerator": 768,
+      "upperDenominator": 2048
+    }
+  ],
+  "largeReference": {
+    "q": 65536,
+    "n": 256,
+    "m": 4096,
+    "seedBits": 45056,
+    "stages": 14,
+    "outputBits": 286720,
+    "N": 3,
+    "bindingExponent": -16384
+  },
+  "limitation": "finite algebra only; no quantum hardness or generic NP release"
+}

@@ -1,0 +1,26 @@
+{
+  "result": "PASS",
+  "assertions": 27021,
+  "samples": 3000,
+  "public_openers": 8,
+  "false_relation": "NAND(x,x)=0 AND NAND(x,x)=1",
+  "honest_onehot_norm2": 4,
+  "minimum_fake_integer_norm2": 6,
+  "mixed_public_norm2": "97/28",
+  "predicted_noise_variance": {
+    "single_fake": 980,
+    "honest_reference": 700,
+    "public_mix": 625
+  },
+  "observed_noise_mse": {
+    "single_fake": 967.5323333333333,
+    "honest_reference": 720.1806666666666,
+    "public_mix": 614.3564289965983
+  },
+  "bit_errors": {
+    "single_fake": 307,
+    "honest_reference": 173,
+    "public_mix": 127
+  },
+  "assumptions": "toy qary ciphertext, centered bounded independent errors; no QPT claim"
+}

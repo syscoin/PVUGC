@@ -1,0 +1,19 @@
+{
+  "run_id": "2026-10-31-HDRT",
+  "repo": "syscoin/PVUGC",
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "94084b474263c5dea14a1d92ca63c4970445afc1",
+  "predecessor_blob": "da6f48042ce42633452d39e48f24ec63cf8f1c41",
+  "exact_js_checker": "runChecker.toString() directly executed in Code Mode V8; published checker.js adds only console.log wrapper",
+  "executed_checks": 3710,
+  "extended_local_python_checks": 11019,
+  "extended_python_sha256": "fc3f66b79ce060907bcd860953c1c9aeb1b77a768661893c5797ac801f2433d3",
+  "extended_local_research_sha256": "9d7b83559af2ea642d744adffa8752c578ca251d0a91a3cdf781cbea247d09eb",
+  "no_external_research": true,
+  "limitations": [
+    "average-case random TRUE only",
+    "ordinary QPT LWE and native EUF conditional",
+    "no arbitrary ORIGINAL comp/extraction",
+    "toy arithmetic/native key mock"
+  ]
+}

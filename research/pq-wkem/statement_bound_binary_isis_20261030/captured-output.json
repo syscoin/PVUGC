@@ -1,0 +1,12 @@
+{
+  "checks": 45451,
+  "toy_setups": 32,
+  "legal_openings": 128,
+  "false_exact_cases": 36864,
+  "false_large_complete_masters": 40,
+  "universal_source_pairs": 15,
+  "illustrative_log2_source_entropy": 4428.254611,
+  "illustrative_log2_leftover_bound": -679.127305,
+  "illustrative_reconciliation_margin": 5504,
+  "status": "Restricted planted-source theorem only; arbitrary FALSE broken; no calibrated QPT hardness or native signing test"
+}

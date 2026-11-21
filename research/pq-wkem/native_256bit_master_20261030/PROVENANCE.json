@@ -1,0 +1,21 @@
+{
+  "execution": "automation turn 10, no separate UUID provided",
+  "date": "2026-10-30",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "7d029ab88b1e32f85653d2bc310b1ca0cc53f5f6",
+  "prior_file": "research/pq-wkem/packet_separated_source_open_20261030/RESEARCH.md",
+  "prior_file_blob": "0fc4f9f849526875e135c9d6d3bf8ce12f64931c",
+  "latest_comment_read": 6535156557,
+  "offline": true,
+  "literature_web": false,
+  "node_checker_executed": true,
+  "node_assertions": 4062,
+  "python_checker_executed_twice": true,
+  "python_assertions_per_run": 44507,
+  "python_outputs_identical": true,
+  "full_original_witness_security": false,
+  "actual_native_signature_executed": false,
+  "publication_status": "research-only intended; verify commit+blobs+comment separately"
+}

@@ -1,0 +1,79 @@
+{
+  "run": 495,
+  "assertions": 437,
+  "rates": [
+    {
+      "bits": 2,
+      "total": 4,
+      "bad": 1,
+      "honest_probability": 0.25,
+      "chosen_probability": 1
+    },
+    {
+      "bits": 3,
+      "total": 8,
+      "bad": 1,
+      "honest_probability": 0.125,
+      "chosen_probability": 1
+    },
+    {
+      "bits": 4,
+      "total": 16,
+      "bad": 1,
+      "honest_probability": 0.0625,
+      "chosen_probability": 1
+    },
+    {
+      "bits": 5,
+      "total": 32,
+      "bad": 1,
+      "honest_probability": 0.03125,
+      "chosen_probability": 1
+    },
+    {
+      "bits": 6,
+      "total": 64,
+      "bad": 1,
+      "honest_probability": 0.015625,
+      "chosen_probability": 1
+    },
+    {
+      "bits": 7,
+      "total": 128,
+      "bad": 1,
+      "honest_probability": 0.0078125,
+      "chosen_probability": 1
+    },
+    {
+      "bits": 8,
+      "total": 256,
+      "bad": 1,
+      "honest_probability": 0.00390625,
+      "chosen_probability": 1
+    },
+    {
+      "bits": 9,
+      "total": 512,
+      "bad": 1,
+      "honest_probability": 0.001953125,
+      "chosen_probability": 1
+    },
+    {
+      "bits": 10,
+      "total": 1024,
+      "bad": 1,
+      "honest_probability": 0.0009765625,
+      "chosen_probability": 1
+    }
+  ],
+  "counts": {
+    "contexts": 64,
+    "false_contexts": 32,
+    "valid_witness_releases": 64,
+    "honest_false_rejections": 32,
+    "chosen_coin_false_releases": 32,
+    "exact_encryption_certificates": 64,
+    "exact_evaluation_certificates": 64
+  },
+  "limitations": "Symbolic, plaintext-visible finite model; no FHE, native PQ signature, WE, or QPT hardness proof."
+}

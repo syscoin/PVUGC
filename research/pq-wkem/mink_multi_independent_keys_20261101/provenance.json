@@ -1,0 +1,17 @@
+{
+  "run": "MINK-2026-11-01-T15",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "starting_head": "b402d9707a8c6e411405a2c237b7ac27082fd0c2",
+  "branch": "research/pq-wkem-validation-20260918",
+  "exec": "V8 JavaScript invocation",
+  "check_count": 8239,
+  "external_research": false,
+  "independent_agents": 0,
+  "actual_native_pq_signature": false,
+  "actual_zk_proof": false,
+  "independent_local_python_checks_per_run": 8277,
+  "independent_local_python_runs": 2,
+  "independent_local_python_identical": true,
+  "independent_local_archive_sha256": "4c543c90c9c2fa62d38c59698a2b7a8153164e4553f187ef03e74c267fea4271"
+}

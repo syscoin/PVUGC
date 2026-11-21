@@ -1,0 +1,1 @@
+{"note": "Source SHA256d executed; no real AuxPoW, DAA, best-chain, or WE.", "results": [{"other_header_failures": 241, "qualifying": 242, "unauthorized_early_open": true}, {"other_header_failures": 226, "qualifying": 227, "unauthorized_early_open": true}], "run": "R210_SHA_WORK_GATE_SMALL", "toy_target_bits": 3}

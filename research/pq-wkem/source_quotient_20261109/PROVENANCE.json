@@ -1,0 +1,30 @@
+{
+  "files": {
+    "CHECKPOINT_02.md": {
+      "bytes": 1801,
+      "sha256": "f290e5bcebafa3bbed6851a4787c02575a62c33036e3d3d1b7bda29e531ff8af"
+    },
+    "RESEARCH.md": {
+      "bytes": 13664,
+      "sha256": "6ab8bfc2ce62feecbc36753484d23cb0e97daf16b9b2501bb9365f02b4405d5c"
+    },
+    "captured.json": {
+      "bytes": 652,
+      "sha256": "60b235315c003f146be576242105a578233e277293e4703f90e6c9092998658b"
+    },
+    "checker.py": {
+      "bytes": 6107,
+      "sha256": "0c96eadef75d0b743bfa4055760a92a8ef917161f6be165eb1740d721809e9e5"
+    },
+    "hardcore_captured.json": {
+      "bytes": 401,
+      "sha256": "6a3d86be1fc91fb59b40375a520cc4b940fe4b6ba5e2e7e270f82da5fbd7462f"
+    },
+    "hardcore_check.py": {
+      "bytes": 1944,
+      "sha256": "974745ced06adbe6b1651d45942d7feb79a9c6008a93cce29f5b8d74fd7ccd10"
+    }
+  },
+  "scope": "research-only",
+  "starting_head": "44e0519506be699aba052e30ddb5081ae8b7fd4b"
+}

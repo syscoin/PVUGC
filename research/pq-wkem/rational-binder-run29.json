@@ -1,0 +1,123 @@
+{
+  "common_correctness": {
+    "trials": 2000
+  },
+  "exhaustive_complete_support": {
+    "admissible_denominators": 12,
+    "cross_key_support_intersection": 0,
+    "degree": 1,
+    "pairwise_tv": "1",
+    "q": 7,
+    "set0": [
+      0,
+      1,
+      2
+    ],
+    "set1": [
+      3,
+      4,
+      5
+    ],
+    "setups_per_key": 4116,
+    "support_sizes": {
+      "0": 91,
+      "1": 91
+    }
+  },
+  "false_rational_interpolation_recovery": [
+    {
+      "degree": 1,
+      "max_interpolation_nullity": 2,
+      "most_common_zstar": 0,
+      "q": 101,
+      "recovered": 500,
+      "samples_per_side": 3,
+      "trials": 500
+    },
+    {
+      "degree": 2,
+      "max_interpolation_nullity": 2,
+      "most_common_zstar": 0,
+      "q": 101,
+      "recovered": 500,
+      "samples_per_side": 5,
+      "trials": 500
+    },
+    {
+      "degree": 3,
+      "max_interpolation_nullity": 2,
+      "most_common_zstar": 0,
+      "q": 101,
+      "recovered": 500,
+      "samples_per_side": 7,
+      "trials": 500
+    },
+    {
+      "degree": 5,
+      "max_interpolation_nullity": 2,
+      "most_common_zstar": 0,
+      "q": 101,
+      "recovered": 500,
+      "samples_per_side": 11,
+      "trials": 500
+    },
+    {
+      "degree": 8,
+      "max_interpolation_nullity": 1,
+      "most_common_zstar": 0,
+      "q": 257,
+      "recovered": 500,
+      "samples_per_side": 17,
+      "trials": 500
+    },
+    {
+      "degree": 12,
+      "max_interpolation_nullity": 1,
+      "most_common_zstar": 0,
+      "q": 1009,
+      "recovered": 300,
+      "samples_per_side": 25,
+      "trials": 300
+    }
+  ],
+  "linear_space_meta_control": [
+    {
+      "dimension": 2,
+      "recovered": 100,
+      "trials": 100
+    },
+    {
+      "dimension": 3,
+      "recovered": 100,
+      "trials": 100
+    },
+    {
+      "dimension": 5,
+      "recovered": 100,
+      "trials": 100
+    },
+    {
+      "dimension": 8,
+      "recovered": 100,
+      "trials": 100
+    },
+    {
+      "dimension": 12,
+      "recovered": 100,
+      "trials": 100
+    }
+  ],
+  "seed": 700514286,
+  "single_pair_exact_hiding": {
+    "admissible_denominators": 16,
+    "count_per_output": 80,
+    "d": 1,
+    "outputs": 25,
+    "q": 5,
+    "support_equal_for_keys": [
+      0,
+      1,
+      2
+    ]
+  }
+}

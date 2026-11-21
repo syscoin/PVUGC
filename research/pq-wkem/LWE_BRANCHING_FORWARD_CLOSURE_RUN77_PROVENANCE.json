@@ -1,0 +1,57 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checkpoint_comment_id": 5817963196,
+  "external_web_or_literature_used": false,
+  "github_scope": "requested PQ WKEM research record only",
+  "local_sha256": {
+    "checker": "625b19a108c828fd597b1bbf029aeba0f66ddcaa653369a7cb9cc13c9aec9c1f",
+    "proof": "4f4eecb9f2812976d8e4f88b67859333fc654867cf463cbf6af43a9bf0848602",
+    "validation": "7d5e6a9624b03a9d4c02f27668a658d34e7064c80a2789d638c6dd7640f83f37"
+  },
+  "pr_number": 1,
+  "production_code_modified": false,
+  "progress_comment_id": 5818035114,
+  "publication_commits_before_provenance": {
+    "checker": "e3a6ed624a241d2722615646dadc335884f0bfdd",
+    "proof": "c5e6d69ceea439f71e0b3f5396a663dbd6b96ea7",
+    "validation": "8732d83cc1e88216b8904ae67b8565ee8e55a70f"
+  },
+  "publication_plan": [
+    "research/pq-wkem/LWE_BRANCHING_FORWARD_CLOSURE_RUN77.md",
+    "research/pq-wkem/lwe_branching_forward_closure_run77_check.py",
+    "research/pq-wkem/lwe-branching-forward-closure-run77-validation.json",
+    "research/pq-wkem/LWE_BRANCHING_FORWARD_CLOSURE_RUN77_PROVENANCE.json"
+  ],
+  "repository": "syscoin/PVUGC",
+  "result": {
+    "completed_generic_np_wkem": false,
+    "proved_negative_or_boundary": [
+      "a public root forward-closes every reachable node in an explicit capability graph when parent capability alone opens outgoing edges",
+      "public/raw-bit-derived branch credentials do not repair forward closure under multi-parent transport",
+      "independent per-prefix randomized capability unrolling has exponential public state/token count",
+      "separated-order equality requires width 2^n at the midpoint"
+    ],
+    "proved_positive": [
+      "Run-72 standard-LWE directional transport composes correctly along an intended verifier path",
+      "a recovered accepting capability can carry the common downstream key"
+    ],
+    "remaining": [
+      "compact cryptographic witness-selected hidden-state transition/merge primitive under an independent PQ assumption",
+      "complete-public-output arbitrary-QPT parent/final-key recovery to source witness or PQ break",
+      "false-instance hiding for a completed generic construction",
+      "malicious-secure setup/erasure and auxiliary-input composition",
+      "concrete practical security/resource parameters"
+    ],
+    "stopping_condition_met": false
+  },
+  "run": 77,
+  "starting_verified_head": "bae74cbc16fd07255d9ddb430c1d6d460aa7b195",
+  "tests": {
+    "byte_identical_validation_outputs": true,
+    "checker_executions": 2,
+    "checker_sha256": "625b19a108c828fd597b1bbf029aeba0f66ddcaa653369a7cb9cc13c9aec9c1f",
+    "claim_scope": "finite correctness/closure/resource validation only; LWE edge security inherited from Run 72",
+    "deterministic_seed": 770077001,
+    "validation_sha256": "7d5e6a9624b03a9d4c02f27668a658d34e7064c80a2789d638c6dd7640f83f37"
+  }
+}

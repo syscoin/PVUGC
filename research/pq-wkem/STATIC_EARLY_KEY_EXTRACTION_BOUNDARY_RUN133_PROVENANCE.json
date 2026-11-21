@@ -1,0 +1,96 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "created_utc": "exact artifact creation timestamp not recorded by research logic; filesystem mtime is available locally",
+  "external_primary_sources": [
+    {
+      "author": "Zhengzhong Jin",
+      "id": "ePrint 2026/2063",
+      "retrieval": "HTML metadata/abstract retrieved; PDF endpoint unavailable through current fetch path; no theorem-number/proof-level claims beyond retrievable text",
+      "title": "Witness Encryption for NP from SNARGs and Groups",
+      "url": "https://eprint.iacr.org/2026/2063"
+    },
+    {
+      "author": "Mark Zhandry",
+      "id": "ePrint 2014/301 / TCC 2016",
+      "retrieval": "indexed primary text for Definition 3.7 and Remark 3.8 cross-checked against accessible mirror text",
+      "title": "How to Avoid Obfuscation Using Witness PRFs",
+      "url": "https://eprint.iacr.org/2014/301"
+    },
+    {
+      "authors": "Suvradip Chakraborty, Manoj Prabhakaran, Daniel Wichs",
+      "id": "ePrint 2023/343 / PKC 2023",
+      "retrieval": "abstract/intro statement on UWM, witness PRF, and dv-UWM equivalence retrieved",
+      "title": "A Map of Witness Maps: New Definitions and Connections",
+      "url": "https://eprint.iacr.org/2023/343"
+    }
+  ],
+  "github_inputs": [
+    [
+      "research/pq-wkem/ANCHOR_SHIFT_MINRANK_RUN79.md",
+      "30084603c3b35c449be4e154f6d214533526d3c5"
+    ],
+    [
+      "research/pq-wkem/FINITE_DIFFERENCE_LOWRANK_RUN82.md",
+      "6430557fd1596308db029d17b48549f9ed9490c8"
+    ],
+    [
+      "research/pq-wkem/SYNDROME_EXTRACTOR_CAPACITY_RUN99.md",
+      "e4b5dfe48e6ca05d565fbe81881f2178332abc0e"
+    ],
+    [
+      "research/pq-wkem/ADAPTIVE_LATTICE_OFFLINE_BARRIER_RUN106.md",
+      "d683ef19c15e328e603b0f512051f26adfdcfb67"
+    ],
+    [
+      "research/pq-wkem/SIS_FC_COMMON_TARGET_LINEARIZATION_RUN108.md",
+      "46c28f366d5c17902ac3050f560011496906e06b"
+    ],
+    [
+      "research/pq-wkem/PUBLIC_AFFINE_PSEUDOWITNESS_NOISE_ATTACK_RUN120.md",
+      "46ed0d41fba7c827cb223b2bb952e45957d97a0c"
+    ],
+    [
+      "research/pq-wkem/LOW_RANK_LATTICE_TRAPDOOR_MISMATCH_RUN125.md",
+      "cab474cdd153d096d9d448e5846d814bab5ce26f"
+    ],
+    [
+      "research/pq-wkem/DUAL_MODE_HASH_SECRET_RESAMPLING_BARRIER_RUN126.md",
+      "94d1a6246da77f561ecacd84ce78917d6121dc33"
+    ],
+    [
+      "research/pq-wkem/UP_HASH_ISOLATION_ALL_WITNESS_BARRIER_RUN128.md",
+      "a534790501f9996bf5af45708d8c16a6267f9569"
+    ],
+    [
+      "research/pq-wkem/literature-20260924/ASSESSMENT.md",
+      "8a1bc1db08156c9ff6410f59963c1af3a0d5a924"
+    ]
+  ],
+  "latest_substantive_comment_id": 5850205385,
+  "limitations": [
+    "No concrete WPRF/WE construction is assumed as an endpoint.",
+    "No QPT theorem is imported from PPT-only literature.",
+    "Jin full PDF was not retrievable through the available web PDF path this run, so proof-level quantum/adversary details remain unverified.",
+    "Run 133 does not solve the Run 131 two-sided bilinear hiding problem or arbitrary-QPT source extraction for an actual standard-assumption construction."
+  ],
+  "local_handoff": {
+    "note": "local-only prior handoff supplied in conversation; not claimed present on GitHub",
+    "run132_bundle": "/mnt/data/PQ_WKEM_RUN132_LOCAL_ARTIFACTS.zip"
+  },
+  "pr": 1,
+  "repository": "syscoin/PVUGC",
+  "run": 133,
+  "sha256": {
+    "STATIC_EARLY_KEY_EXTRACTION_BOUNDARY_RUN133.md": "ff65d5c30db80e33de3d0a62d582af96937c34c6434d6e8eef99f8fd7fa0ffe8",
+    "static-early-key-extraction-run133-validation.json": "d9936a57d6fa0b17b70a03da5037dbba019c3d56240c7cca3a382d1aa023f9a3",
+    "static_early_key_extraction_run133_check.py": "94b4c5304352087afd683c0cedec765dce2b2ee9ce5075897af0feca6b85697d"
+  },
+  "starting_head": "76e5b632cf00b4372955b871aadd59ded84c5167",
+  "validation": {
+    "assertions": 619,
+    "byte_identical": true,
+    "executions": 2,
+    "scope": "finite probability/interface checks only",
+    "syntax": "python -m py_compile"
+  }
+}

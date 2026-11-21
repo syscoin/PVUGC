@@ -1,0 +1,21 @@
+{
+  "run": 394,
+  "status": "PASS",
+  "checks": 22,
+  "oracle_inputs": 8,
+  "fully_enumerated_cases": 8192,
+  "real_success": 0.5625,
+  "ideal_success": 0.5,
+  "advantage": 0.0625,
+  "pMeasuredSignature": 0.125,
+  "predicted_lower_bound": 0.0009765625,
+  "repeated_pad_cases": 8,
+  "domain_separated_xor_counts": [
+    2,
+    2
+  ],
+  "quantum_oracle_simulated": false,
+  "classical_exact_distributions": true,
+  "generic_WKEM_constructed": false,
+  "finding": "The QROM O2H reduction is consistent with exact toy coupling; shared pad reuse exposes a two-capsule xor."
+}

@@ -1,0 +1,18 @@
+{
+  "run": "R38-FALSE-NATIVE-OW",
+  "assertions": 2562,
+  "false_clauses": 8,
+  "false_generators": 36,
+  "integer_unit_certificate_terms": 8,
+  "full_public_view_equalities": 32,
+  "exact_bit_capsule_couplings": 1440,
+  "true_original_witnesses": [
+    5,
+    13
+  ],
+  "true_witness_decodings": 960,
+  "matched_ow_embedding": 15,
+  "trials": 32,
+  "hash": "INSECURE square modulo 17 for finite toy checks",
+  "status": "restricted algebra and simulator; no QPT hardness measurement"
+}

@@ -1,0 +1,9 @@
+{
+  "exact_cover_tuples": 349524,
+  "fake_class_candidates": 256,
+  "public_prefix_classes": 256,
+  "public_token_key_recoveries": 256,
+  "run": "R256_FIRST_DIFF",
+  "status": "NONQUALIFYING: public token collapse; full ORIGINAL Build/Open absent",
+  "synthetic_distinct_source_digests": 256
+}

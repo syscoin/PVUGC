@@ -1,0 +1,20 @@
+{
+  "run": 501,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "ad2a67989a69b3fef6dc81db3b68239799bc7d73",
+  "method": "one bounded robust-Simon local-mixing falsification",
+  "checker_execution": "JavaScript function executed directly in V8; identical function body serialized in committed checker",
+  "captured_output": "JSON.stringify(result,null,2) plus newline",
+  "assertions": 4155,
+  "fixtures": 75,
+  "fourier_cells": 3720,
+  "scope": "conditional QPT attack; no practical local mixing, no full RIO theorem, no complete WKEM",
+  "local_extended_artifacts": [
+    "RUN501_SPARSE_SIMON_LOCAL_RELEASE.md",
+    "run501_sparse_simons_check.py",
+    "run501_sparse_simons_validation.json"
+  ],
+  "git_commit_expected": "new draft research-only four-file commit"
+}

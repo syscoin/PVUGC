@@ -1,0 +1,49 @@
+{
+  "run": 426,
+  "status": "all finite assertions passed",
+  "assertions": 205856,
+  "exhaustive_orbits": [
+    {
+      "n": 3,
+      "m": 3,
+      "source_functions": 27,
+      "mask_pairs_per_source": 36,
+      "classes": {
+        "3,0,0": 3,
+        "2,1,0": 18,
+        "1,1,1": 6
+      }
+    },
+    {
+      "n": 4,
+      "m": 3,
+      "source_functions": 81,
+      "mask_pairs_per_source": 144,
+      "classes": {
+        "4,0,0": 3,
+        "3,1,0": 24,
+        "2,2,0": 18,
+        "2,1,1": 36
+      }
+    },
+    {
+      "n": 4,
+      "m": 4,
+      "source_functions": 256,
+      "mask_pairs_per_source": 576,
+      "classes": {
+        "4,0,0,0": 4,
+        "3,1,0,0": 48,
+        "2,2,0,0": 36,
+        "2,1,1,0": 144,
+        "1,1,1,1": 24
+      }
+    }
+  ],
+  "reversible_lift_source_maps": 364,
+  "secret_bit_no_pin_mask_pairs": 1152,
+  "security_claim": "none; exact finite orbit theorem only",
+  "quantum": "classical attack, therefore available to QPT",
+  "native_signatures": "separate local Python checker tests 12 non-PQ Ed25519 cases",
+  "complete_practical_wkem": false
+}

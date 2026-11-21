@@ -1,0 +1,43 @@
+{
+  "assertions": 163,
+  "direct_offline_key_search_recoveries": 16,
+  "genuine_capability_recoveries": 16,
+  "mining": {
+    "fake": {
+      "max": 31794,
+      "mean_attempts": 8658.5625,
+      "min": 54,
+      "total_hashes": 138537,
+      "trials": 16
+    },
+    "genuine": {
+      "max": 38700,
+      "mean_attempts": 9455.8125,
+      "min": 80,
+      "total_hashes": 151293,
+      "trials": 16
+    }
+  },
+  "run": "HPW_R7_POW_PREFIX_SOURCE",
+  "scope": "Toy SHA256d 80-byte parent headers; not real Syscoin consensus nor QPT security. Public tag target leaks equally from invalid source strings.",
+  "source_predicate": {
+    "fake": false,
+    "genuine": true
+  },
+  "source_token_independence": {
+    "distinct_row_vectors": 343,
+    "exact_independent_source_match_probability": "1/343",
+    "field_size": 7,
+    "interpretation": "Independent future PoW hashes do not become correlated hidden table tokens",
+    "matching_tuples": 1,
+    "possible_public_source_token_tuples": 343,
+    "threshold": 3
+  },
+  "toy": {
+    "hidden_token_bits": 9,
+    "per_hash_success_probability": 0.0001220703125,
+    "pow_zero_bits": 4,
+    "theoretical_mean_attempts": 8192
+  },
+  "unauthorized_fake_capability_recoveries": 16
+}

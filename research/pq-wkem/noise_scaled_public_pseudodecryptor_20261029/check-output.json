@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "checks": 16,
+  "uniformSource": {
+    "q": 7,
+    "m": 3,
+    "h": 2,
+    "N": 18,
+    "observedOccupied": "2143/2401",
+    "soundFalseTVLowerBound": "18/24"
+  },
+  "boundedNoise": [
+    {
+      "B": 1,
+      "g": 323,
+      "T": 3095,
+      "L": 69,
+      "log2FailureBound": -57.993089
+    },
+    {
+      "B": 8,
+      "g": 2577,
+      "T": 388,
+      "L": 90,
+      "log2FailureBound": -57.257521
+    },
+    {
+      "B": 128,
+      "g": 41217,
+      "T": 24,
+      "L": 168,
+      "log2FailureBound": -56.309954
+    },
+    {
+      "B": 1024,
+      "g": 329729,
+      "T": 3,
+      "L": 486,
+      "log2FailureBound": -54.774712
+    }
+  ],
+  "replication": [
+    {
+      "r": 1,
+      "N": 160,
+      "f": 32,
+      "norm2": 288,
+      "exponent": 44.846
+    },
+    {
+      "r": 2,
+      "N": 288,
+      "f": 64,
+      "norm2": 544,
+      "exponent": 76.6248
+    },
+    {
+      "r": 4,
+      "N": 544,
+      "f": 128,
+      "norm2": 1056,
+      "exponent": 140.5038
+    },
+    {
+      "r": 8,
+      "N": 1056,
+      "f": 256,
+      "norm2": 2080,
+      "exponent": 268.4404
+    }
+  ],
+  "scope": "exact classical identities and Hoeffding parameters; not a secure WKEM"
+}

@@ -1,0 +1,13 @@
+{
+  "checks": 611,
+  "public_row_checks": 15,
+  "honest_witness_group_openings": 192,
+  "public_fractional_group_recoveries": 128,
+  "group": {
+    "P": 2039,
+    "Q": 1019,
+    "G": 4,
+    "inv4": 255
+  },
+  "scope": "Finite exact group identities; NOT SHA or QPT hardness"
+}

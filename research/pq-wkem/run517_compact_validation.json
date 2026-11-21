@@ -1,0 +1,18 @@
+{
+  "run": 517,
+  "status": "PASS",
+  "counts": {
+    "S8frames": 40320,
+    "S8couplings": 40320,
+    "S8editBreaks": 40320,
+    "S8keyRecovery": 80640,
+    "S8nonfixTotal": 80640,
+    "S16multiclaim": 128,
+    "S16coupledOps": 384,
+    "S16keyRecovery": 256,
+    "S16nonfixTotal": 256,
+    "S16true": 128,
+    "S16trueRecoveries": 256
+  },
+  "scope": "ideal-frame public-admission flag; no concrete QPT mixer or source extraction"
+}

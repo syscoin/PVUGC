@@ -1,0 +1,20 @@
+{
+  "assertions": 1026,
+  "counts": {
+    "FGR_checking_key_confirms_attack": 64,
+    "FGR_correct_for_each_valid_witness": 128,
+    "FGR_invalid_test_open_failure": 256,
+    "FGR_unauthorized_public_zero_extraction": 64,
+    "FGR_valid_checking_key": 128,
+    "nonzero_invalid_residuals": 1,
+    "normalization_restores_completeness": 64,
+    "normalization_restores_early_extraction": 64,
+    "private_salt_differs_from_public_salt": 64,
+    "secret_salt_not_publicly_derived": 64,
+    "trace_alternate_valid_fails": 64,
+    "trace_designated_opens": 64,
+    "two_satisfying_assignments": 1
+  },
+  "run": "R212-residual-factorization",
+  "scope": "synthetic finite SHA256 algebra / direct public computation; NOT source-conditioned WE, a QPT proof, or a SHA break"
+}

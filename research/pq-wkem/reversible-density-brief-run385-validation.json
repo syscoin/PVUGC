@@ -1,0 +1,1 @@
+{"checks": 594, "coherent_rounds": "0..6", "context_permutations_per_case": 3, "finding": "bijection preserves free-input release density", "qpt_security": false, "run": 385, "status": "PASS", "widths": "4..8"}

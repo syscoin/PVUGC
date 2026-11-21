@@ -1,0 +1,20 @@
+{
+  "anchored_accepted_in_256": 12,
+  "anchored_nonce": 45,
+  "candidate": "R324-public-SHA-output-prefix-key",
+  "every_synthetic_anchored_opens": true,
+  "ggm_leaf_row_bytes": 8192,
+  "ggm_leaf_rows": 256,
+  "ggm_public_zero_digest_extracts": true,
+  "note": "Class-conditional direct classical public extraction, not network/ORIGINAL/QPT simulation.",
+  "partial_whitelist_covered_anchored": 4,
+  "partial_whitelist_uncovered_anchored": 8,
+  "public_C_sha256": "5269b7787b883e050f564fc7eeab51c7163a99467e52610fb6f435dbafd214e3",
+  "sha256d_real": "007eb12c91f2f4ad2c3f4487e7d590962f3e8cb6889a664f2550a24600a02fb1",
+  "sha256d_unrelated": "0d8504649cd89b74d040187b9c551e585b8b9f0d465636cbae68070922cfb635",
+  "synthetic_capability_sha256": "a033ae12a02137172781ffa48347b5a0703d01132a11ab2eae726d585e6eff3b",
+  "toy_prefix_accepted_digest_count": "2^252",
+  "unrelated_nonce": 6,
+  "unrelated_nonmember_opens": true,
+  "zero_digest_without_preimage_opens": true
+}

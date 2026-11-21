@@ -1,0 +1,45 @@
+{
+  "artifacts": {
+    "RUN593_COMPACT_NONCOMMUTATIVE_AADP.md": {
+      "bytes": 13761,
+      "sha256": "c274fa267955bb0cf9e1ac8c5b4c6457bebafd887ddaa71790d0516a90c960c7"
+    },
+    "run593_compact_block_check.py": {
+      "bytes": 10444,
+      "sha256": "480b01bcfc169ec8b0ae05d425cbc1f314272a1beb1aa9643927fbd5c00de198"
+    },
+    "run593_compact_block_validation.json": {
+      "bytes": 3724,
+      "sha256": "01daa8fd36c44e2fc3cdfc17cd6aabb4196c985e433635736c8cebe6b0fbad7d"
+    }
+  },
+  "automation_mutation": false,
+  "branch": "research/pq-wkem-validation-20260918",
+  "command": "python research/pq-wkem/run593_compact_block_check.py",
+  "date": "2026-10-17",
+  "exact_repository_source_read": "research/pq-wkem/RUN587_HAMMING_SLICE_MULTI_VIEW.md",
+  "latest_ordinary_comment_id": 6067040320,
+  "literature_pdf_errors": [
+    {
+      "error": "403 Forbidden",
+      "url": "https://eprint.iacr.org/2026/175.pdf"
+    },
+    {
+      "error": "403 Forbidden",
+      "url": "https://eprint.iacr.org/2026/1594.pdf"
+    }
+  ],
+  "literature_scope": "Author patch explanation and rendered author slides; full ePrint PDFs unavailable; no full-proof/errata audit.",
+  "models": "Classical-PPT algebra; arbitrary-QPT target game; no positive QPT hiding theorem.",
+  "numpy": "2.3.5",
+  "pr": 1,
+  "production_mutation": false,
+  "publication_status": "Pending; final publication receipt is separate.",
+  "python": "3.13.5",
+  "repository": "syscoin/PVUGC",
+  "repository_source_ref": "d1d0b0ab5a049d21387d8815269ec8d7ee9cc921",
+  "research_id": "593",
+  "starting_sha": "d1d0b0ab5a049d21387d8815269ec8d7ee9cc921",
+  "starting_tree": "5325f64a85ff15aa0d3c715c371e070f7f4f79fa",
+  "two_final_executions_byte_identical": true
+}

@@ -1,0 +1,81 @@
+{
+  "run": 204,
+  "finalized_utc": "2026-10-01T02:51:51Z",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head_sha": "c33ef82b6c4e77e0dfbaa87122d4582d802701eb",
+  "starting_pr_state": {
+    "open": true,
+    "draft": true,
+    "merged": false
+  },
+  "latest_substantive_top_level_comment_read": 5913974235,
+  "exact_committed_input": {
+    "path": "research/pq-wkem/literature-20260924/ASSESSMENT.md",
+    "git_blob_sha": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924"
+  },
+  "external_primary_sources": [
+    {
+      "title": "Witness Encryption for NP from SNARGs and Groups",
+      "author": "Zhengzhong Jin",
+      "version": "ePrint 2026/2063, approved 2026-09-19",
+      "url": "https://eprint.iacr.org/2026/2063.pdf",
+      "sections_checked": ["Theorem 1.1 and footnote 1", "Definition 2.1", "Theorem 4.1 construction and proof"]
+    },
+    {
+      "title": "Succinct Arguments in the Quantum Random Oracle Model",
+      "authors": ["Alessandro Chiesa", "Peter Manohar", "Nicholas Spooner"],
+      "version": "ePrint 2019/834",
+      "url": "https://eprint.iacr.org/2019/834.pdf",
+      "sections_checked": ["Section 3.3 knowledge definition", "Theorem 7.1", "Corollary 7.2", "Lemma 7.4"]
+    },
+    {
+      "title": "Security of the Fischlin Transform in Quantum Random Oracle Model",
+      "authors": ["Christian Majenz", "Jaya Sharma"],
+      "version": "arXiv:2602.17307v2, revised 2026-06-08",
+      "url": "https://arxiv.org/abs/2602.17307",
+      "sections_checked": ["QROM straight-line extractability definition", "Corollary 1", "Theorem 3.2"]
+    },
+    {
+      "title": "How to Construct Quantum Random Functions",
+      "author": "Mark Zhandry",
+      "version": "ePrint 2012/182 / FOCS 2012 / JACM 2021",
+      "url": "https://eprint.iacr.org/2012/182",
+      "scope": "2q-wise independent family as an oracle-access simulation fact only"
+    },
+    {
+      "title": "FRACTAL: Post-Quantum and Transparent Recursive Proofs from Holography",
+      "authors": ["Alessandro Chiesa", "Michael A. Forbes", "Nicholas Spooner"],
+      "version": "ePrint 2019/1076",
+      "url": "https://eprint.iacr.org/2019/1076.pdf",
+      "scope": "checked preprocessing/URS candidate and explicit heuristic random-oracle instantiation caveat"
+    }
+  ],
+  "artifacts": {
+    "QROM_ORIGINAL_WITNESS_BRIDGE_RUN204.md": {
+      "sha256": "1e3d9ed43822d2fbdefcf0850d56e5c77a4f6b3fc2f101e9288b005076259ef2"
+    },
+    "qrom_original_witness_bridge_run204_check.py": {
+      "sha256": "5cfbbee945867c284e606140f49e317a3447aa8489356a420c6588972c090a17"
+    },
+    "qrom-original-witness-bridge-run204-validation.json": {
+      "sha256": "6906da82fc67488316894e9bb932aa458f76d7ca709cb5fc87b0d4cc699d6aec"
+    }
+  },
+  "checker_execution": {
+    "python": "3.13.5",
+    "syntax_check": "passed",
+    "executions": 2,
+    "byte_identical_outputs": true,
+    "assertion_counter_reported": 17,
+    "network_used_by_checker": false
+  },
+  "scope_limits": [
+    "Finite checks do not prove the cited QROM theorems.",
+    "No arbitrary-QPT theorem is established for Jin's tiny generic-group WE.",
+    "No standard-model compilation of a QROM verifier is established.",
+    "No practical generic-NP PQ WKEM is claimed."
+  ],
+  "publication_note": "Publication outcome is recorded separately after GitHub mutation/readback so this finalized provenance file does not depend circularly on its own eventual Git object identifiers."
+}

@@ -1,0 +1,23 @@
+{
+  "run": 366,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "ca62defc770b003b58bcef8a4296ce7e6f73799b",
+  "note_scope": "oracle-relative coherent-query Simon falsifier, NOT standard-model QPT security",
+  "checker_sha256": "7960d0236f8fd3d504d0a18213aaad8d2bd5cec4a41ee01de13dcd00c7989e3b",
+  "validation_sha256": "0846f06965455c4311dd69028736d62cb469a8fffe06cc2ac9e32ca68a77ccc0",
+  "checks": 4426,
+  "validation": "py_compile passed; two byte-identical executions",
+  "local_extended_checks": 1101703,
+  "source_blobs": {
+    "Run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "Run358": "355829fcfc94d4a7904c78e1993756056a86e21d"
+  },
+  "not_proved": [
+    "classical PPT standard-model setup",
+    "true unauthorized recovery to ORIGINAL witness",
+    "false-instance QPT hiding",
+    "128-bit concrete resources"
+  ]
+}

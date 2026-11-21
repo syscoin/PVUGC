@@ -1,0 +1,38 @@
+{
+  "assertions": 39,
+  "distinct_pow_solutions": 24,
+  "groups": {
+    "all_parent_hashes_distinct": 1,
+    "common_bitcoin_predecessor": 1,
+    "common_prefix_for_all_valid_work": 1,
+    "different_original_witness_cannot_open_same_key": 23,
+    "distinct_semantic_children": 1,
+    "eight_common_zero_hash_bits": 1,
+    "enumerated_local_work_lookup": 1,
+    "enumeration_misses_other_valid_fork": 1,
+    "enumeration_table_not_universal": 1,
+    "fabricated_digest_opens_prefix": 1,
+    "incompatible_parents_do_not_collide": 1,
+    "mined_count": 1,
+    "ninth_bit_target_bound": 1,
+    "public_anchor_opens_early": 1,
+    "synthetic_parent_pow": 1,
+    "unanchored_parent_rejected": 1,
+    "work_specific_keys_differ": 1
+  },
+  "mined_A_first_nonce": 554,
+  "mined_B_first_nonce": 52,
+  "not_implemented": [
+    "real Bitcoin DAA/best-chain",
+    "Syscoin AuxPoW/coinbase tag consensus validation",
+    "PoB burn proofs",
+    "original-witness-conditioned key release",
+    "native signatures",
+    "QPT security"
+  ],
+  "run": "R192_SOURCEHASH_SHA_OR",
+  "sample_sha256d_parent_A": "004983cc5fd6a8d8cca19c4977e32e321d5bd9e57d383ab532da309ed6d10b29",
+  "sample_sha256d_parent_B": "0040da31f0898d93de8e3876aeed01251b8f54f16663ecc68ab68385f5d18d2d",
+  "scope": "Synthetic SHA256d parent-work diversity and direct release attempts only",
+  "source_sha256": "1a8ce3aad394f05bb3b60f1de5e729ba34f2c6d74fec9328b1756dea8ae07cc8"
+}

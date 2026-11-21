@@ -1,0 +1,11 @@
+{
+  "run": 559,
+  "status": "PASS",
+  "assertions_passed": 67000,
+  "binding_support_fixtures": 8100,
+  "positive_entropy_gap_fixtures": 6166,
+  "two_witness_true_instances": 4572,
+  "binding_bound": "Pr[Q(Z,Y')=1] <= d*2^-h",
+  "full_QPT_WKEM_security": false,
+  "toy_one_wayness": false
+}

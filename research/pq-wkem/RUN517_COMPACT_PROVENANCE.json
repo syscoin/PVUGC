@@ -1,0 +1,23 @@
+{
+  "run": 517,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "0b57cdef659cfeaefc619f9f38e883e36838214e",
+  "starting_tree": "6933ab729f77cf44e4e26b098328c9b5a70133ed",
+  "source_note": "research/pq-wkem/RUN516_CLAIM_SECTOR_ISOLATION_COMPACT.md",
+  "source_blob": "fe183bf7b53eb5087e3496d7ae2cdeeef525b979",
+  "last_substantive_comment_id": 6067040320,
+  "checker": "run517_compact_check.js",
+  "output": "run517_compact_validation.json",
+  "checker_execution": "Exact checker eval succeeded in V8 immediately before creating tree",
+  "extended_local": [
+    "RUN517_ADMISSION_FRONTIER_SEAM.md",
+    "run517_admission_frontier_check.py",
+    "run517_admission_frontier_validation.json",
+    "RUN517_PROVENANCE.json"
+  ],
+  "scope": "off-orbit source-support failure, same-claim public b-edit releases false-target seed, restricted no-edit ideal coupling",
+  "practical_wkem": false,
+  "production_changed": false
+}

@@ -1,0 +1,13 @@
+# STM — single-capsule telescoping for polynomially many related capsules
+
+**Status:** a restricted honest-random binary-ISIS SOURCE release/composition proof, not a generic PQ witness-KEM, adversarial-FALSE protection, full ORIGINAL-witness extraction or Bitcoin PQ deployment.
+
+**Construction:** Each related capsule independently shares the SAME precommitted payload using three XOR lanes. To change genuine shares into dummy shares, the full-public QPT simulation switches **one capsule at a time**, guessing only one protected lane per transition. Adaptive disclosure of any two complete lanes per capsule is allowed, with different unopened lanes in different capsules. An exact per-transcript inverse-survival identity loses a factor of 3 **per hybrid bound**, rather than multiplying to 3^C. For C capsules, L packed symbols per lane and exact uniform-source ordinary decisional LWE, the transcript difference is at most 6*C*L*Adv_QPT-LWE. The genuine native checking key, signed preauthorizations, common SOURCE and all other related capsules remain included.
+
+**Native width correction:** 256-parameter hypothetical signing keys have 256-bit SK.seed and 256-bit SK.prf, totaling **512 secret bits**. Encrypting raw 512 bits preserves the prior native-signature assumptions (L=37). A compact option instead encrypts a 256-bit master expanded to both 256-bit fields using SHAKE256 (L=19), but **adds an unproved nonuniform-QPT PRG assumption**; the byte savings are not same-assumption savings. The QPT PRG hybrid must run *after* all capsules are switched to dummy payloads so the checking-key correlations can be generated without the missing master.
+
+**Limits:** no generic ORIGINAL compiler, no arbitrary FALSE/hard-TRUE recovered-key or native forgery -> ORIGINAL witness reduction. Chosen FALSE A=[1],t=[3] remains completely vulnerable to public nonbinary z=3. The native Bitcoin PQ endpoint and malicious setup/funding/DA assumptions are also unresolved. Computational 128-bit QPT parameters are not calibrated.
+
+**Evidence:** [RESEARCH.md](RESEARCH.md) contains the full restricted construction, joint-public distributions, assumptions, equations, reduction order and limits. [checker.js](checker.js) is the **exact executed standalone JavaScript checker** (12,390 assertions); [output.json](output.json) is its captured output; [provenance.json](provenance.json) records exact published blob identities, prior heads and separate extended local-only Python checker (12,453 assertions twice identically). No external research or production/workflow changes.
+
+Do not merge/deploy or disable the ongoing research task: the required ORIGINAL security obligations are not met.

@@ -1,0 +1,49 @@
+# MINK-SLSEED-20261102: compact seeded Lamport capability through the existing signed-XOR SOURCE
+
+**Status:** A finite restricted construction and measurable SOURCE-capsule efficiency improvement, not generic-NP witness encryption. It retains identical release for *every ORIGINAL valid signed-XOR witness* and supplies an exact joint-public FALSE-source simulator. Arbitrary-QPT signature-forgery security is conditional on an **additional SHAKE256 PRG assumption**, independently of QPT SHA-384 one-wayness/collision hardness. Neither that assumption nor a 128-bit QPT security estimate is proved here. The prior independent-Lamport-leaf scheme had fewer assumptions; this optimization must not be described as unconditionally or assumption-for-assumption equivalent.
+
+## Exact classical algorithms and parameters
+
+Let x specify signed-XOR edges (u,v,b) over V vertices. A has one F2 row b*e0 + e_(u+1) + e_(v+1) per edge. ORIGINAL witness z supplies t=(1,z) with A*t=0. Context binds the relation identity, claim/UTXO, branch, anchors/window, intended verification key/capability, path and capsule digest by a typed length-prefixed manifest; the test code implements a finite example, NOT the SYS/BTC parser, AuxPoW validation or Bitcoin native endpoint.
+
+Honest KeyGen draws k uniform from 256 bits (the precommitted secret capability). Expand the single seed with Python's SHAKE256 on domain-separated "PVUGC-MINK-SEEDED-LAMPORT-SHA384-v2" followed by NUL and k, requesting exactly 768*48 = 36,864 output bytes. Parse output into independent-indexed *computationally pseudorandom* 48-byte leaves u_(i,b), 0 <= i < 384, b in {0,1}. The genuine verification key is vk_(i,b)=SHA384(u_(i,b)). The 384-bit challenge digest is SHA384 of the tagged, length-prefixed manifest, path, and intended challenge message. The ordinary native-style Lamport signature reveals the 384 leaves u_(i,h_i), and native-style verification checks their SHA384 digests. Signing uses SHAKE-derived pseudorandom leaves; this is NOT a deployed Bitcoin signature or a proof that SHAKE is a QPT-secure PRG.
+
+For every seed bit k_i independently choose two uniform m_(i,0),m_(i,1) in F2 and let m_(i,2)=k_i+m_(i,0)+m_(i,1). Independently choose s_(i,j) uniform in F2^E, j=0,1,2, where E is number of signed-XOR edges. Publish
+
+    C_(i,j) = A^T*s_(i,j) + m_(i,j)*e0     in F2^(V+1).
+
+For every ORIGINAL valid z, t^T*C_(i,j)=m_(i,j), hence the public Lift outputs
+
+    k'_i = SUM_j t^T*C_(i,j) = k_i
+
+for all 256 bits. No canonical witness, common intermediate trace or shared NP-computation state is required. Derive native-style leaves from k' and require the derived vk equal the precommitted vk before signing on the manifest-scoped challenge path. Honest KeyGen and Build are classical polynomial time; TRUE-source setup consistency and malicious N-of-N pre-funding verification remain unfinished.
+
+## FALSE-source certificate and full-joint exact simulation
+
+When the signed-XOR relation is FALSE, public Gaussian elimination finds delta in F2^E with A^T*delta=e0. A valid witness would imply 0=t^T*A^T*delta=t0=1, a contradiction. For every published lane vector the verifier checks C in Image(A^T) by elimination, and checks the certificate delta. There is no SOURCE-opening oracle.
+
+Fix ANY actual k, its genuinely SHAKE-correlated native vk, an independently generated one-time native signing transcript, public context, and any polynomial number of independently randomized related FALSE signed-XOR capsules. In each lane the real distribution is C=A^T*s + m*e0, with s uniform. Because A^T*delta=e0, define s0=s+m*delta; it is a bijection for every fixed m. Therefore a straight-line simulator that samples s0 uniformly and publishes C=A^T*s0 produces the **exact same entire public capsule distribution conditional on that fixed k and vk**. All public delta certificates and image tests are genuine. A QPT machine coherently processing this classical public distribution cannot distinguish equal distributions.
+
+Classical adaptive opening of at most TWO of the THREE lane shares per seed bit per capsule: memoize an independent uniform m for each revealed lane and return the real opening coins s=s0+m*delta. The remaining unrevealed lane carries the unknown seed bit. These opened lane/coin views have *exactly* the real joint distribution for any fixed k, even conditioned on its vk and independently generated native signing transcript. Fresh independent s0 per capsule also handles polynomially many related FALSE capsules referring to the SAME secret k. The Python checker exhaustively compares the entire one-bit joint visible distribution, including all three Cs and two opened (m,s) pairs, for all three opening patterns, under secret bit 0 and secret bit 1, with identical 256-element supports.
+
+This theorem deliberately excludes a related TRUE capsule for the same key (which may release it), a third lane opening, auxiliary input leaking k or SOURCE coins, coherent superposition opening oracles, malformed adversarial setup, more than one signed digest per Lamport key, and generic NP. Allowed auxiliary input is independent of secret setup coins, or efficiently generated from the public view, authenticated context and permitted classical signing interface. The adversary may be an arbitrary nonuniform QPT algorithm with independent quantum advice and quantum computation over the entire public classical view.
+
+## Native forgery reduction including genuine vk correlation
+
+Define eps_PRG as QPT advantage distinguishing the 36,864-byte SHAKE256 expansion of uniform 256-bit k from a uniform output string of identical length, with independent quantum advice. **This is an explicit, independently unproved computational assumption; SHAKE was instantiated as an algorithm, not given a proven LWE reduction.** In the PRG hybrid the simulator treats challenger output as all 768 Lamport leaves. It computes actual vk, authenticates manifest, generates all exact FALSE capsules/certificates and classical two-of-three openings *without knowing k*, and answers one classical native-signing query from those leaves. Thus all public checking-key/capsule/related-capsule/signing correlations occur in the SAME hybrid; there is no hidden SOURCE-opening oracle or adversary-volunteered internal representation.
+
+In the independent-uniform-leaf hybrid, embed one uniformly chosen SHA384 one-way challenge Y=SHA384(U) with random U in a random one of 768 vk entries; generate all other leaves normally. If the one permitted prior signing request asks for U, abort. For any subsequently accepted forged signature on a genuinely different 384-bit challenge digest, at least one leaf entry required by the forgery was unopened; the random embedded entry hits an unopened required leaf with probability >=1/768. A distinct canonical message mapping to the same signed digest instead breaks SHA384 collision resistance. Consequently, for the described one-time FALSE-source challenge game,
+
+    Pr[accepted unauthorized native-style signature]
+      <= eps_PRG + 768*Adv_QPT_SHA384_preimage
+         + Adv_QPT_SHA384_collision + eps_authenticated_binding.
+
+This is a straight-line classical-message oracle argument against arbitrary QPT internal computation. The final binding term covers claim/path consistency and N-of-N pre-funding graph assumptions, and is **not proved** by this checker. It is not the missing hard-TRUE original-witness extraction theorem. The SHA-384 digest is chosen rather than 256-bit SHA256 because generic quantum collision search on a 256-bit digest has an approximately 2^85-query scale. Concrete 128-bit QPT security, quantum signing-oracle access and multiple signatures remain unassessed.
+
+## Resources, exact execution and unsolved equation
+
+In the verified V=3, E=2 fixture, vector length V+1=4. A hypothetical *same 384-bit SHA384 Lamport variant* with 768 fully independent 48-byte secret leaves would require 442,368 bit-packed SOURCE-capsule bytes (three lanes over every leaf bit). The **actual seeded** variant publishes 384 bit-packed SOURCE-capsule bytes: **1152x fewer**, with two ORIGINAL witnesses recovering the same 32-byte seed. This compares SOURCE capsules at exactly the same expanded-key size, not overall on-chain cost. Genuine vk is still 36,864 bytes, signature 18,432 bytes; SHAKE expansion costs time. An additional QPT PRG assumption is the explicit tradeoff; no security-equivalence claim without it.
+
+The checked and published standalone JS algebra tester completed twice identically: 3,082 assertions, including exhaustive exact two-of-three distribution equality. Separately, the downloadable local Python checker executed twice with byte-identical outputs and 7,189 checks per execution. It exercises actual standard-library SHAKE256 expansion and SHA384 Lamport sign/verify, manifest binding, real and simulated FALSE capsules, two genuine ORIGINAL witnesses, two distinct arbitrary KeyGen seeds consistent with the same simulated FALSE capsule, and the complete supported selective-opening views. Deterministic test PRNG is NEVER deployment randomness. Neither test establishes PRG security, quantum hardness or an authenticated Bitcoin endpoint.
+
+**Next exact original obligation:** build finite, independently justified generic-NP source-dependent Build/Lift, source setup/opening and LWE challenge simulation together, full checking-key/context/auxiliary/related-capsule QPT FALSE-instance security, plus a straight-line or otherwise independently justified arbitrary-QPT unauthorized hard-TRUE final-key/native-forgery -> ORIGINAL witness or independent PQ break. A short PRG seed only compresses a SOURCE carrier; it does not produce that missing carrier or its extraction theorem. The one-honest malicious setup/abort/DA graph and conditional native-PQ Bitcoin path are also not established. No deployment recommendation.

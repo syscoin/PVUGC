@@ -1,0 +1,8 @@
+{
+  "checks": 1922,
+  "related_capsule_couplings": 384,
+  "small_field_full_distribution_states": 25,
+  "coin_exposed_leak_condition_verified": true,
+  "mask_reuse_failure_verified": true,
+  "complete_generic_WKEM": false
+}

@@ -1,0 +1,21 @@
+{
+  "assertions": 6350888,
+  "candidate": "IKOR independent-key OR masked frozen native capability",
+  "groups": {
+    "all_branches_same_capability": 6340992,
+    "joint_marginal_exact_uniformity": 4368,
+    "joint_marginal_full_support": 4368,
+    "public_check_reuse_leaks_secret": 584,
+    "wrong_domain_pad_fails_except_collision": 576
+  },
+  "not_implemented": [
+    "hash-based ORIGINAL source branch-KEMs",
+    "quantum extraction experiment",
+    "native signature security",
+    "real Bitcoin/Syscoin witness validation",
+    "malicious-setup and active related-capsule security"
+  ],
+  "run": "R183_20261109",
+  "scope": "exact algebra/public marginal only, NOT security/real branch Build/Open",
+  "source_sha256": "9f8c5acfcf64ff30f60bc8e8b0a1cd755d73726aa563161520925994fea9515a"
+}

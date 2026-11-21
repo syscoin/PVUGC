@@ -1,0 +1,9 @@
+{
+  "run": 556,
+  "checker": "run556_forward_shift_check.js",
+  "assertions_passed": 19535,
+  "parameter_shift_configurations": 31,
+  "simulated_simon_recovery_trials": 155,
+  "max_fourier_samples_in_toy_trials": 10,
+  "claim": "Finite Simon Fourier/gauge identity, not quantum hardware or QPT security proof"
+}

@@ -1,0 +1,14 @@
+{
+  "assertions": 2648,
+  "assumed_qpt_one_way_permutation_instantiated": false,
+  "false_instance_capsule": "constant independent of K",
+  "native_signature_security_tested": false,
+  "permutations_exhaustively_enumerated": 40320,
+  "practical_wkem": false,
+  "quantum_query_lower_bound_tested": false,
+  "run": 390,
+  "status": "PASS",
+  "true_instance_unauthorized_capability_read": "exact in toy",
+  "valid_original_witness_checks": 192,
+  "zero_query_preimage_count_per_y_and_u": 5040
+}

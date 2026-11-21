@@ -1,0 +1,12 @@
+{
+  "assertions": 3437,
+  "capsules_per_trial": 2,
+  "exact_distribution_states_per_policy": 200,
+  "exact_policies": 5,
+  "honest_before_corrupt_counterchecks": 625,
+  "model": "ideal programmable random function ONLY",
+  "not_proved": "QPT oracle reprogramming, standard-model commitment, ORIGINAL witness release, false-instance secrecy, malicious N-of-N graph",
+  "proved_by_checker": "finite transcript bijections, exact additive challenge embedding, deterministic complete vector consistency",
+  "status": "NO_POSITIVE_WKEM_ADVANCE",
+  "toy_challenge_embedding_trials": 256
+}

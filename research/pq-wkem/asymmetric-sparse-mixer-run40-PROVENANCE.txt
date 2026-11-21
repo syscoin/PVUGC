@@ -1,0 +1,30 @@
+Run 40 provenance
+=================
+Starting verified PR head: abae29c57f94db1b5bba0c6636ee3629e00c0c29
+Scope: research/pq-wkem only; no production files intentionally modified.
+External literature/web browsing: none.
+
+Locally executed commands:
+  python /mnt/data/run40/asymmetric_sparse_mixer_run40_check.py > /mnt/data/run40/asymmetric-sparse-mixer-run40.json
+  python /mnt/data/run40/asymmetric_sparse_mixer_run40_check.py > /mnt/data/run40/asymmetric-sparse-mixer-run40-second.json
+  cmp -s /mnt/data/run40/asymmetric-sparse-mixer-run40.json /mnt/data/run40/asymmetric-sparse-mixer-run40-second.json
+
+The two final JSON outputs were byte-identical.
+
+Local final SHA-256:
+  ASYMMETRIC_SPARSE_MIXER_RUN40.md  a186ae86c7fc0c90f3b773d48929394816b152c799a2750104f782c9d3d4dadd
+  asymmetric_sparse_mixer_run40_check.py  a6e5ecbfffa2a4aeda0ae34c13bed1038a38f24b6bf1228e2d6fb8e56737651e
+  asymmetric-sparse-mixer-run40.json  be580ce94a612516f90e4684fb350b47bfe13304487a19ede7bd74d4825bb15e
+
+Git blob identity verified after publication:
+  ASYMMETRIC_SPARSE_MIXER_RUN40.md  2b1c9201a762307ae6247c349ada600b263c096e
+  asymmetric_sparse_mixer_run40_check.py  5e15d62fd004f99114a0bb8b16f6aff62c567079
+  asymmetric-sparse-mixer-run40.json  bb78f0f121c0c7dd30bee18596f54fec3e0664b8
+
+These Git blob IDs equal git hash-object of the locally tested files.
+
+Important scope distinction:
+- The checker validates exact finite algebra/likelihood identities and public-scramble invariance.
+- The proof document supplies the asymptotic subset-DP and perturbation arguments.
+- Passing tests is not claimed as cryptographic security.
+- No complete WKEM or arbitrary-QPT extraction reduction is claimed.

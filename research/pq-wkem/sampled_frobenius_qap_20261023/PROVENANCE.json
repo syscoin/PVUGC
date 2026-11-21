@@ -1,0 +1,33 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checkpoint": "sampled-frobenius-qap-20261023",
+  "compiler_assertions": 5380,
+  "files": {
+    "SAMPLED_QAP_SOUNDNESS_AND_SAVINGS.md": {
+      "bytes": 14067,
+      "sha256": "6950e2ba5af573ec79acbdb78abaf9c2532942879b2628106d6858c059cb01e2"
+    },
+    "check_sampled.py": {
+      "bytes": 7978,
+      "sha256": "dce9e1f9c01265226761323219f0158dad71d3050bd8205007768867eeb83e5f"
+    },
+    "sampled_qap.py": {
+      "bytes": 7797,
+      "sha256": "271de9c29f497f9daa0c25b11e304d10bf7ab324b22d575cfa8177b558b871e8"
+    },
+    "validation.json": {
+      "bytes": 5091,
+      "sha256": "94a55491fb653e91461c1213ac599e1aadcec8d462a7e4d1776607bd8da2385f"
+    }
+  },
+  "observed_replay": 2,
+  "observed_stdout_byte_identical": true,
+  "pr": 1,
+  "prior_dependency_git_blob": "d5b35ae77076e0e6bbf927a41b819130ac84fead",
+  "prior_dependency_sha256": "6da9e9519c1f9b21d00b736679ba498cb56a7518e9610abc7934ec3aacf66d9a",
+  "publication_status": "NOT_ATTEMPTED",
+  "python": "3.13.5",
+  "repository": "syscoin/PVUGC",
+  "source_security": "statistical honest-node compiler soundness, not full public release hiding",
+  "start_sha": "9d662e07c8031135db8d0c797a1d89e59e722e05"
+}

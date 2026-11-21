@@ -1,0 +1,29 @@
+{
+  "assertions": 210,
+  "groups": {
+    "capsule_ids_distinct": 1,
+    "different_outpoint_changes_native_message": 64,
+    "distinct_wtxids": 1,
+    "ever_fault_latch_aligns_bearer_reuse": 64,
+    "exact_bad_history_pairs": 1,
+    "monotone_capability_memory": 3,
+    "native_does_not_check_capsule_id": 1,
+    "nonmonotone_reorg_risk": 7,
+    "one_fixed_authorization": 1,
+    "same_outpoint": 1,
+    "same_txid_different_witness": 1,
+    "stale_after_reorg": 1,
+    "wtxid_marker_no_native_enforcement": 64
+  },
+  "limitations": [
+    "no actual consensus or native signatures",
+    "conditional ideal release event is not a construction",
+    "no Build/Open",
+    "no QPT simulation"
+  ],
+  "nonmonotone_pairs": 7,
+  "run": "R233_20261111",
+  "txid": "3043107e1e0355037e8e9cf9b16c071892cd6f847997952269e89369bc97a639",
+  "wtxid_a": "7c1573b5c530b4d27fce84013af0cda94246a5e04c776416bd4323d77b0815d7",
+  "wtxid_b": "ff4881a197adc478da5fcffbf293db5d0e25d54b77d7c14fe6f8d9358fffce74"
+}

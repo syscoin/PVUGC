@@ -1,0 +1,42 @@
+{
+  "run_id": "automation_turn_8_20261026_tagless_vector_scalar",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "research_start_sha": "d47fb4cdf4e426ea00749a7e61f2b67850071df0",
+  "research_start_tree": "081d96296310c08a75e63aa3e2006da32ebc123a",
+  "concurrent_nonoverlapping_commit": "a761420306c23f0d409ff2137c49177edeae569d",
+  "expected_publication_parent_sha": "a761420306c23f0d409ff2137c49177edeae569d",
+  "expected_parent_tree_sha": "ebc1ff8ddb3e04bbfe26a46210ff29d583332eb8",
+  "exact_inputs": {
+    "RUN704_VANISHING_IDEAL_SPECTRAL_SHIELD.md": "67e2ea70503c0b4cf9379b89b90d98a536e56bba",
+    "RUN697_SPARSE_PUBLIC_SPECTRAL_OPERATOR.md": "736d8d961f06cc0b26745c27a174d21dc486190b"
+  },
+  "tested_published_blobs": {
+    "README.md": "78f28796d4e56682a33a297de03b447d6b55b101",
+    "check_exact.js": "c8a4bcec32c9feadbd6959f9bf2f3ca5d8b908ec",
+    "validation.json": "d58329b94c97168851f06391bbb942cf3155917d"
+  },
+  "published_checker_assertions": 70514,
+  "published_checker_executed_twice_identically": true,
+  "independent_local_python_checker": {
+    "assertions": 11367,
+    "sha256": "34137fc9fedfe80458a8f64684d16b02d460541f766e657ce74d30f8d3f54d18"
+  },
+  "local_archive_sha256": "de6c88b989c81076d588b338039f1763c7f22fa7ea15d09f155a7a1e49d130bf",
+  "no_external_web_research": true,
+  "assumptions": [
+    "unit certificate for actual multiplier spaces",
+    "independent full-uniform private mask coins",
+    "ordinary QPT EUF-CMA native signature with classic signing queries",
+    "auxiliary and related-capsule correlation restrictions",
+    "classical honest erasure setup"
+  ],
+  "unsolved": [
+    "true hard-instance scalar carrier leaks full key through public linear functional",
+    "false instances without unit coverage leak full key",
+    "generic NP polynomial-size false security",
+    "malicious N-of-N setup/abort and PQ-native Bitcoin endpoint"
+  ],
+  "status": "exact checker executed; commit/comment require separate readback"
+}

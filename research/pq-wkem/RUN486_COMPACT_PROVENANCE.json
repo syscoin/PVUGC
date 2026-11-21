@@ -1,0 +1,16 @@
+{
+  "run": 486,
+  "date": "2026-10-13",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "7e61b96ffe2d0c10f021a672080ea9188abc63c5",
+  "latest_substantive_comment": 6067040320,
+  "result": "known-K QPT false-instance K-recovery hardness yields one-bit WE by Goldreich-Levin",
+  "classical_setup": true,
+  "qpt_limit": "polynomially repeatable advice; singleton setup-correlated quantum advice not proved",
+  "executed_compact_checker": "15 assertions; two identical Node executions",
+  "executed_extended_checker": "2581 assertions; local-only Python",
+  "production_unchanged": true,
+  "complete_practical_wkem": false
+}

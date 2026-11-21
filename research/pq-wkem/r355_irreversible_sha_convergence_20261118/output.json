@@ -1,0 +1,17 @@
+{
+  "limitations": "synthetic 8-bit toy merge; no actual ORIGINAL certificate, no full QPT security",
+  "public_compensation_unauthorized_inputs_recover": 2,
+  "sha256_same_path_terminal_equal": false,
+  "suite": "R355 source-hash path convergence",
+  "toy_8bit_pair": [
+    29,
+    101
+  ],
+  "toy_collision_layer": 6,
+  "toy_distinct_collision_inputs_sha256": [
+    "34068badfcd680842b23c6bee8d348c638b345d36615a9ebb635fe54c6607c1b",
+    "34f31f449b96532594af78c2231e96e7c4071cfb9adc2c800efc042c6250d22e"
+  ],
+  "toy_qualified_count": 57,
+  "toy_terminal_digest": "49"
+}

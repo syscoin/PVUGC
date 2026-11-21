@@ -1,0 +1,25 @@
+{
+  "all_full_tree_corrections": 90,
+  "false": {
+    "absent": 16,
+    "attempts": 0,
+    "checked": 16,
+    "one_missing": 12,
+    "valid": 0
+  },
+  "fresh_leaf_false_coupling": true,
+  "lambda_bits": 256,
+  "leaf_gate_restriction": true,
+  "n": 4,
+  "precise_gap": "polynomial-size, source-gated correlation-preserving public compiler and full-public QPT theorem",
+  "published_correction_entries_false": 66,
+  "scope": "small SHA-differential-tree, full-indexed corrections; no FE, ORIGINAL source, QPT or native Bitcoin tests",
+  "sha_root_difference_not_homomorphic": true,
+  "true": {
+    "absent": 12,
+    "attempts": 0,
+    "checked": 16,
+    "one_missing": 0,
+    "valid": 4
+  }
+}

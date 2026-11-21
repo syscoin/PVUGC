@@ -1,0 +1,26 @@
+{
+  "run": 490,
+  "repository": "syscoin/PVUGC",
+  "pr_number": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "37840b4317645ebd7cab5787bf02b2c91cee28a5",
+  "kind": "bounded ideal-model falsification; no native or WKEM security proof",
+  "compact_checker": "run490_seed_copy_grover_check.js",
+  "compact_fixture_count": 8,
+  "compact_assertions": 56,
+  "compact_validation": "run490_seed_copy_grover_validation.json",
+  "independent_local_extended": {
+    "note": "RUN490_SEED_ADAPTIVE_SEARCH_EXTENDED.md",
+    "note_sha256": "2a466b1d8848150113ddb9ee4a35b4ec893fe919d93b862bae6f7fbb33668356",
+    "checker": "run490_adaptive_seed_grover_check.py",
+    "checker_sha256": "051ee9af92a5045926328d4c7862eb8d9291aa460ee25090e1be846340674271",
+    "validation": "run490_adaptive_seed_grover_validation.json",
+    "validation_sha256": "b318149a16d0ded2ca32616ee22f2e4928e91446232ef87f6dc057a358d05828",
+    "assertions": 56,
+    "fixtures": 9,
+    "identical_repeated_execution": true,
+    "python_syntax_check": "passed",
+    "numerical_method": "explicit phase reflection and inversion-about-mean on complete toy joint search"
+  },
+  "limitations": "No real SLH-DSA implementation; no coherent hashing quantum circuit; no all-witness WKEM; query exponents conditional."
+}

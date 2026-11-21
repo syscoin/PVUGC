@@ -1,0 +1,10 @@
+{
+  "run": 418,
+  "subsets": 2036,
+  "queries": 4017,
+  "fixtures": 1920,
+  "falseChecks": 19200,
+  "assertions": 29032,
+  "result": "bounded public-control enumeration recovers key without ORIGINAL witness",
+  "limits": "ideal opaque oracle and finite tests; no real cryptographic security established"
+}

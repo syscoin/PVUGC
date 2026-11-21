@@ -1,0 +1,13 @@
+{
+  "run": 544,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "d2db016947e4aa6d7a13ba25bf969a57f0e72e7f",
+  "read_run543_blob": "b2a865cd43f09c15f1db40ad94d1604aab8ebaca",
+  "checker": "run544 function exactly executed in V8, with Node wrapper serialized from Function.toString()",
+  "checker_chars": 2099,
+  "validation_chars": 3049,
+  "validation_cases": 16,
+  "python_local_only": true,
+  "scope": "ideal-oracle quantum query UPPER bounds only, no QPT break or WKEM",
+  "production_changes": false
+}

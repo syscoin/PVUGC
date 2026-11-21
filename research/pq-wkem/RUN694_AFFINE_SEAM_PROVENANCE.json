@@ -1,0 +1,53 @@
+{
+  "run": 694,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "316d5768cfd791598d6d87760294c6a273eaf0e5",
+  "exact_dependencies": {
+    "run693_scope_blob": "0f09f53a379881b3998806f84d74dc73181b8a8f",
+    "run259_source_binding_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "latest_substantive_comment": 6241612333
+  },
+  "published_paths": [
+    "research/pq-wkem/RUN694_AFFINE_SEAM_SCOPE.md",
+    "research/pq-wkem/run694_compact_seam_check.py",
+    "research/pq-wkem/run694_compact_seam_validation.json",
+    "research/pq-wkem/RUN694_AFFINE_SEAM_PROVENANCE.json"
+  ],
+  "captured_outputs": {
+    "compact_assertions": 2698,
+    "extended_assertions": 7698,
+    "py_compile": "passed",
+    "byte_identical_rerun": true
+  },
+  "local_and_published_artifacts": {
+    "RUN694_AFFINE_SEAM_SCOPE.md": {
+      "bytes": 4737,
+      "sha256": "e62e3f211fb587af64b6dca10648fdfde6f8d368067ec0ae4e6e9fb8d94cea54"
+    },
+    "run694_compact_seam_check.py": {
+      "bytes": 1601,
+      "sha256": "ea658a6a08ab671c2d1b84c28acea080c0d578435bedd4f76242115e06f94bed"
+    },
+    "run694_compact_seam_validation.json": {
+      "bytes": 279,
+      "sha256": "753272b6d5f1e5fac57e9da019878633e484fd59488e5e945dc63e6e648fd402"
+    },
+    "RUN694_AFFINE_INTERVAL_DOUBLE_COSET_SCOPE.md": {
+      "bytes": 7857,
+      "sha256": "2892f054d8e6ef43f2595c5b5831f0d0f78ca4203f04a4e28b3a8482ad544342"
+    },
+    "run694_affine_seam_check.py": {
+      "bytes": 5359,
+      "sha256": "dac38adde4172acdfc6b5b6f10a14acb5d9774002f6942b48993f9fb497fbea5"
+    },
+    "run694_affine_seam_validation.json": {
+      "bytes": 1062,
+      "sha256": "ee7fbf1245556cfcb6a2361d05d96a70dd86202a92339651add0d6fdb0faaa9f"
+    }
+  },
+  "scope": "restricted subgroup local-frame distinguishability; not generic WE/PQ WKEM security",
+  "literature_audit": "primary metadata and abstracts only; no full-proof or QPT assumption audit",
+  "production_modified": false
+}

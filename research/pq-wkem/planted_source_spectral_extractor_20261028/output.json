@@ -1,0 +1,1 @@
+{"status":"PASS","checks":13,"q":65537,"M":1024,"kernel_dimension":32,"witness_weight":128,"radix":255,"columns":33,"toy_planted_subspaces":31,"toy_unplanted_subspaces":806,"toy_extractor_recovered":true,"hardness_proved":false}

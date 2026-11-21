@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "checks": 155041,
+  "groups": {
+    "normalization": 3,
+    "Fourier_support": 12,
+    "false_law": 1,
+    "same_key_false_joint": 128,
+    "witness_channel": 16,
+    "joint_telescope": 65536,
+    "phase_reflection": 65536,
+    "weighted_extractor_bound": 23808,
+    "bound_tight": 1
+  },
+  "strategies": 65536,
+  "positiveGapStrategies": 23808,
+  "maxSquaredRatio": 1,
+  "scope": "exact small SOURCE quotients, native-pk-conditioned same-key joint laws, and coherent-phase toy; NOT QPT hardness or SYS/BTC proof"
+}

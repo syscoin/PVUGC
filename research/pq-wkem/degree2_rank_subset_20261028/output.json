@@ -1,0 +1,2 @@
+{"status":"PASS","assertions":85,"q":65537,"falseRows":377,"falseMonomials":231,"falseRank":230,"certificateTerms":112,"trueRows":98,"trueMonomials":66,"validWitnesses":3,"radix":2114,"columns":24,"sameCapability":true,"hardTrueSecurityProved":false}
+{"status":"PASS","assertions":638,"falseRowsOriginal":377,"falseRowsSubset":230,"trueRowsOriginal":98,"trueRowsSubset":63,"monomialsFalse":231,"monomialsTrue":66,"padColumns":24,"hardTrueRecoveryProved":false}

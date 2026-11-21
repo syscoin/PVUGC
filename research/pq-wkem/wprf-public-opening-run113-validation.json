@@ -1,0 +1,98 @@
+{
+  "checker_sha256": "39a7e265d0810db642b0df6e5fa995401b67c4a59f7d0b8278e2c8a7d2639ac4",
+  "public_opening_sampler_barrier": {
+    "cases": 162,
+    "claim": "If a public sampler outputs accepted auxiliary openings and every accepted opening source-extracts, sampler+extractor itself performs source witness search."
+  },
+  "recovery_to_distinguishing": {
+    "cases": 819,
+    "claim": "For range size M and exact recovery probability epsilon, one straight-line equality test has distinguishing advantage |epsilon-1/M|.",
+    "sample_rows": [
+      {
+        "distinguishing_advantage": "1/2",
+        "epsilon": "0/2",
+        "range_size": 2
+      },
+      {
+        "distinguishing_advantage": "0/1",
+        "epsilon": "1/2",
+        "range_size": 2
+      },
+      {
+        "distinguishing_advantage": "1/2",
+        "epsilon": "2/2",
+        "range_size": 2
+      },
+      {
+        "distinguishing_advantage": "1/2",
+        "epsilon": "0/3",
+        "range_size": 2
+      },
+      {
+        "distinguishing_advantage": "1/6",
+        "epsilon": "1/3",
+        "range_size": 2
+      },
+      {
+        "distinguishing_advantage": "1/6",
+        "epsilon": "2/3",
+        "range_size": 2
+      },
+      {
+        "distinguishing_advantage": "1/2",
+        "epsilon": "3/3",
+        "range_size": 2
+      },
+      {
+        "distinguishing_advantage": "1/2",
+        "epsilon": "0/5",
+        "range_size": 2
+      },
+      {
+        "distinguishing_advantage": "3/10",
+        "epsilon": "1/5",
+        "range_size": 2
+      },
+      {
+        "distinguishing_advantage": "1/10",
+        "epsilon": "2/5",
+        "range_size": 2
+      },
+      {
+        "distinguishing_advantage": "1/10",
+        "epsilon": "3/5",
+        "range_size": 2
+      },
+      {
+        "distinguishing_advantage": "3/10",
+        "epsilon": "4/5",
+        "range_size": 2
+      }
+    ]
+  },
+  "restricted_subclass": {
+    "cases": 36,
+    "claim": "Avoiding the sampler contradiction requires a stricter witness-restricted subclass beyond ordinary local-opening validity."
+  },
+  "run": 113,
+  "scope": [
+    "Finite semantic/algebraic controls only; no computational security follows from these tests.",
+    "The recovery-to-distinguishing reduction is straight-line and remains valid for a QPT recovery algorithm with classical output, but an actual QPT extractable-WPRF theorem is still required.",
+    "The public-opening sampler barrier is unconditional as a composition statement and does not attack hidden-bits generators or vector commitments themselves.",
+    "The checker does not instantiate a generic-NP post-quantum WPRF or a completed witness KEM."
+  ],
+  "setup_known_value_only_extraction": {
+    "cases": 72,
+    "claim": "A value-only extractor on a setup-computable canonical value composes with setup into a source witness-search algorithm."
+  },
+  "status": "PASS",
+  "total_assertions": 73309,
+  "transcript_simulation": {
+    "claim": "Identical adversary/public-simulator transcript distributions give identical success to every transcript-only deterministic extractor; extraction needs a non-simulatable process feature.",
+    "extractors_checked": 65812
+  },
+  "wprf_same_value": {
+    "cases": 1620,
+    "claim": "WPRF correctness is exactly an all-valid-witness same-value interface in the finite model."
+  }
+}

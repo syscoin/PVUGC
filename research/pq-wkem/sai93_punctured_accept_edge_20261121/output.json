@@ -1,0 +1,15 @@
+{
+  "accept_leaf": 255,
+  "all_255_other_leaves_derivable": true,
+  "approved_synthetic_predecessors": [
+    5,
+    78
+  ],
+  "depth": 8,
+  "key_recovered_without_original_evidence": true,
+  "published_sibling_seeds": 8,
+  "same_key_for_two_synthetic_paths": true,
+  "scope": "punctured GGM + two public accepting-edge patches; no original certificate, FE, or quantum proof",
+  "source_is_only_a_fixture": true,
+  "synthetic_capability_recovered_without_original_evidence": true
+}

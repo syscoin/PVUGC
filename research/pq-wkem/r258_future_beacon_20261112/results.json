@@ -1,0 +1,8 @@
+{
+  "distinct_synthetic_future_beacons": 128,
+  "hypothetical_same_beacon_opens": 256,
+  "known_beacon_no_witness_open": 1,
+  "pre_setup_guess_misses": 128,
+  "run": "R258",
+  "status": "nonqualifying; cannot build prior to future beacon"
+}

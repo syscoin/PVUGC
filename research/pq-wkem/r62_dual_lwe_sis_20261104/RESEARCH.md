@@ -1,0 +1,59 @@
+# R62 — Dual-LWE/SIS: a genuine restricted hard-TRUE release, not a generic WKEM
+
+2026-11-04. Run R62-DUAL-LWE-SIS-20261104. Repository syscoin/PVUGC PR #1, branch research/pq-wkem-validation-20260918. Starting open/draft/unmerged SHA b0ec76de26a9bd2e5b5f448257768a44e7a61bed, substantive comment 6629903937. Continued exact-version R61 RESEARCH/CHECKER_MIN and R58 RESEARCH; no internet literature. Status: independently specified special NP relation and joint ordinary-QPT-LWE reduction, NOT the original generic-NP or SYS/BTC witness-KEM.
+
+## Release algorithm — exact source, all witnesses, no SourceOpen
+
+R61's TRUE quotient still loses the signature to R58's public trace and could not simulate source words depending on hidden LWE (s,e) from an LWE challenge (A,Y). R62 substitutes an algebraically different SOURCE for an explicitly identified SHORT-DUAL-KERNEL NP relation. It does not claim a compiler from arbitrary ORIGINAL NP and does not require the adversary to give a representation.
+
+Let lambda be the security parameter, q=2^t, uniform public A in Z_q^(m x n), and u=(1,0,...,0). For this restricted component the ACTUAL ORIGINAL relation is
+    R_SIS(A,r)=1 iff r in {0,1}^m, r[0]=1, A^T r=0 mod q.
+All ORIGINAL witnesses are distinct permitted binary r. They need not have a common preimage or intermediate state.
+
+Choose independent uniform K in {0,1}^k0 and Kbind in {0,1}^kappa, independently preauthorized actual target native signature sigma* under vk for an immutable m* formed from relation identity, claim/UTXO, authorized branch, anchors/window, intended challenge path, preauthorization graph, and signing policy. The later ciphertexts are NOT included in m*, avoiding a signing cycle. N-of-N honest-erasure, abort, preauthorization and native no-EC-key-path Bitcoin functionality are not proved here.
+
+Independently sample uniform R52-generator matrix A0. Publish ONE masked signature Dsig=sigma* XOR TreeG(A0,K); the tree generator is the explicitly ordinary-QPT-LWE-based R52 construction, not SHAKE assumed secure by fiat. For every bit mu_i of K||Kbind, independently sample s_i uniform in Z_q^n, e_i from chi^m, with chi supported in [-E,E]. Publish only
+    C_i=A*s_i+e_i+Delta*mu_i*u (mod q).
+DO NOT publish Y_i=A*s_i+e_i separately. Select Delta>2mE and q>2(Delta+mE). Honest Build is classical PPT and never needs an ORIGINAL witness, a SourceOpen oracle, a secret SIS trapdoor or a canonical solution.
+
+Define immutable scope and public Base as canonical encoding of (version,R_SIS,A,ctx,manifest,m*,vk,A0,Dsig,ordered C_i,permitted related public records), excluding CK and Aux to avoid circularity. Publish CK=F_Kbind("CK",Base), Aux=F_Kbind("AUX",CK,Base). This defines their complete actual secret-dependent correlation; adversarial rebinding additionally needs independent quantum-secure authentication. The full adversary view contains all stated relation, capsules, CK, Aux, native vk, context, related capsules and permitted opening replies.
+
+Public OFF-CHAIN Open(A,r) verifies the ACTUAL restricted ORIGINAL relation and authorized claim/path, then uses centered modular <r,C_i> and nearest-center decoding between 0 and Delta. Because <r,A*s_i>=0 and <r,u>=1, every legitimate r obtains Delta*mu_i+<r,e_i>, and |<r,e_i>|<=mE; the stated spacing and modulus conditions imply exact SAME bits for EVERY r. It reconstructs K,Kbind, checks CK/Aux, computes sigma=Dsig XOR TreeG(A0,K), and accepts only if ordinary native Verify(vk,m*,sigma) succeeds. The precommitted sigma* is thus identical for all valid ORIGINAL r, without common witness state. Large evidence is off-chain; Bitcoin does not run an ORIGINAL verifier, generic NP/VM/PCP proof, or BitVM trace dispute. This component is not deployed Bitcoin capability.
+
+Source size (k0+kappa)*m*log2(q) bits, plus A of m*n*log2(q) bits, A0, Dsig, vk, manifest, CK/Aux and graph. These parameters are polynomial for polynomial q,m,n, but no practical 128-bit QPT parameterization or secure native signature integration is established.
+
+## Actual hard-TRUE distribution (no planted witness)
+
+A is sampled UNIFORMLY without rejection. For every subset S of {1,...,m-1}, event I_S is A_0+sum_(i in S) A_i=0; this means r=(1,1_S) is a valid ORIGINAL witness. Pr[I_S=1]=q^(-n). For S distinct from T, the coefficient vectors (1,1_S),(1,1_T) have a 2x2 minor of determinant +/-1, hence are pairwise independent images, EVEN in the ring Z_(2^t). With X=sum I_S,
+    E[X]=2^(m-1)/q^n, Var[X]<=E[X],
+    Pr[there is no valid ORIGINAL r]<=q^n/2^(m-1).
+For m-1>=n*log2(q)+lambda, a uniformly sampled A is TRUE with probability >=1-2^(-lambda). This is an explicit second-moment proof, not a claim that a witness can be found efficiently. No truth-conditioning is needed in the simulator; a conditional-TRUE security bound costs at most 1/(1-2^(-lambda)). The finite example q=512,n=2,m=27 has bound 1/256 but is cryptographically insecure.
+
+## Full correlated-public-view ordinary-QPT security proof for this SPECIFIC relation
+
+Standalone assumptions: (1) ordinary nonuniform-QPT decisional LWE for truly uniform A, uniform s, independent e drawn from THE ACTUAL chi in the actual source dimensions, against arbitrary QPT distinguishers; (2) independently ordinary nonuniform-QPT decisional LWE for the R52 tree base parameters and public A0; (3) ordinary QPT native EUF-CMA on a fresh m*; (4) independent QPT binding/MAC assumptions only if adversarial transcript edits are enabled. No uninstantiated witness-release/iO/WE/WPRF assumption; no classical-rewinding or QROM extraction lift. A conventional truncated discrete Gaussian may replace the toy bounded uniform error, with separately quantified tail and LWE parameters; numerical 128-bit QPT hardness is NOT verified.
+
+Adversaries are arbitrary nonuniform QPT, including coherent computation on the full CLASSICAL public view, with polynomial quantum advice independent of target A,A0,source coins,K,Kbind and signing secret. No target witness, target native signature, setup-correlated advice, coherent target opening, malicious matrix choice, post-legitimate target opening, or unmodeled transcript mutation. Polynomially many related claims may have independent source matrices, independent coins, share native vk on DISTINCT messages and yield adaptive CLASSICAL openings when a concrete PPT auxiliary sampler supplies their own witnesses; related openings must not expose a witness usable on target A. For example, a separately planted related r=(1,1,0,...) with Arel[0]=-Arel[1] (other rows random) is a valid PPT related opening sampler, independent of the honest-uniform target A. It is not assumed to be the target distribution.
+
+For each source bit i a straight-line classical PPT simulator given an ACTUAL ordinary LWE challenge (A,Y) with Y either As+e or uniform chooses K,Kbind ITSELF, builds C_i=Y+Delta*mu_i*u, other honest capsules from independent s,e, all allowed related records/openings, and then recomputes the actual Base, CK, Aux. It never needs challenged s,e nor SourceOpen. When Y is real the complete public view equals the genuine target, including secret-Kbind correlations; when Y is uniform C_i is uniformly random and independent of mu_i. Repeat for all Lsrc=k0+kappa bits under the SAME A, costing Lsrc times the specified QPT-DLWE-source advantage. Related transcripts remain generated by the same stipulated sampler.
+
+After all target C are uniform, K is independent of source C; Kbind can remain correlated with CK/Aux and is known to the simulator. Replace TreeG(A0,K) by a uniform signature-length pad using the explicit R52 level-wise ordinary QPT-LWE hybrids, EACH time rebuilding Dsig, Base, CK, Aux and all efficiently simulatable dependencies. This costs at most (2^d-1)*Adv_QPT-DLWE_tree for R52 depth d. In the final game Dsig is uniform without sigma*, and a QPT-EUF-CMA native challenger supplies vk plus ordinary signatures only on related non-target messages. Every accepted signature on the untouched m* is a forgery. A recovered K computes sigma* publicly and is covered too. Thus for the fixed-scope, honest-uniform-A, unopened-target experiment:
+    Pr[accepted target signature OR recovered K]
+       <= Lsrc*Adv_QPT-DLWE_source
+          +(2^d-1)*Adv_QPT-DLWE_tree
+          +Adv_QPT-native-EUF-CMA + optional independent binding term + negligible tails.
+Conditioned on the ACTUAL SIS statement being TRUE, divide the RHS by >=(1-q^n/2^(m-1)) when positive. No attacker-supplied representation is required; arbitrary recovery/native forgery implies an INDEPENDENT QPT primitive break for this restricted hard-TRUE relation. Honest algorithms are classical PPT, adversary arbitrary QPT. This is neither a proof for arbitrary false adversarial A nor for the original generic-NP relation.
+
+Publicly certified FALSE subfamily: if m<=n and A has a verified full-row-rank m x m minor with odd determinant modulo q, then no nonzero r has A^T*r=0. For fixed such A, uniform s maps As EXACTLY uniformly onto Z_q^m, so all C_i are exactly independent of their mu_i even conditioned on A, with any independent error. The remaining correlated CK/Aux/tree/native security composition proceeds as above (no source LWE needed). This only covers the rank-full FALSE subfamily; all other FALSE matrices remain unproved.
+
+## Exact missing ORIGINAL-generic compiler and nontrivial incompatibility
+
+To achieve the real SYS/BTC ORIGINAL relation, one still needs a CLASSICAL PPT sound compiler Comp(x;rho)->(A_x,aux_x) and a transformation of EVERY original valid witness w to some permitted short r, without knowing future fork/burn evidence at Build, and with full source/CK/aux/multiple-capsule QPT challenge simulation for the ACTUAL Comp distribution. Crucially ANY accepted native forgery/capability recovery must yield an ACTUAL ORIGINAL witness or an independently justified QPT primitive break; accepted supplied-SIS-representation -> ORIGINAL is insufficient.
+
+There is a precise obstruction: in the above high-density regime a uniform A is SIS-TRUE with overwhelming probability REGARDLESS of an arbitrary original x. Thus a sound compiler for arbitrary ORIGINAL-FALSE x cannot output a near-uniform A and accept arbitrary short r as original evidence; false statements would have valid short r and unlock the same key. Making A_x structured/x-dependent destroys the ordinary-uniform-A reduction unless one actually constructs a new joint distributional simulator or an independently substantiated structured-LWE bridge. A planted short preimage, public basis change, ideal quotient, ghost/trace mask, canonical witness or local occurrence switch does not solve it. This is the next missing equation, not an assumption to hide in a theorem.
+
+The present component therefore establishes a genuine LWE challenge simulator for a high-probability TRUE special NP source, not the generic-PQ-WKEM stopping criteria. Arbitrary-FALSE, malicious N-of-N abort/erasure/retention, future evidence/DA/censorship, concrete QPT 128-bit parameters, and the hypothetical native Bitcoin PQ endpoint remain open.
+
+## Checker and provenance
+
+CHECKER.js is the EXACT connected-JavaScript code executed twice deterministically; OUTPUT.json is its exact stdout. It tests two distinct ORIGINAL-SIS witness openings, one independently planted RELATED TRUE opening, exact source challenge coupling with full secret-Kbind checking-key and auxiliary recomputation, uniform challenge substitution, modular noise and size bounds. The JS checker uses a toy 8-bit root/8-bit checking key, toy deterministic FNV and PRG and synthetic 32-byte signature; no native signer or cryptographic security test. Separate stdlib Python checker and larger derivation are LOCAL-ONLY, preserved independently, not claimed identical to the published JavaScript. Finite assertions never prove QPT hardness.

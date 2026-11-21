@@ -1,0 +1,70 @@
+{
+  "assertions": 15192,
+  "color_assignments": 81,
+  "crs_coordinates": 2,
+  "edges": 6,
+  "exhaustive_field_q": 7,
+  "false_graph": "K4 3-colorability",
+  "malicious_key_privacy_counterexample": "A=0,b=0 leaks all ternary colors",
+  "max_honest_one_round_acceptance": "5/6",
+  "nonlinear_corrupt_histories": 97,
+  "round_bound": [
+    {
+      "best_case_numerator": 5,
+      "rounds": 1,
+      "uniform_edge_denominator": 6,
+      "upper_probability": "5/6"
+    },
+    {
+      "best_case_numerator": 25,
+      "rounds": 2,
+      "uniform_edge_denominator": 36,
+      "upper_probability": "25/36"
+    },
+    {
+      "best_case_numerator": 125,
+      "rounds": 3,
+      "uniform_edge_denominator": 216,
+      "upper_probability": "125/216"
+    },
+    {
+      "best_case_numerator": 625,
+      "rounds": 4,
+      "uniform_edge_denominator": 1296,
+      "upper_probability": "625/1296"
+    },
+    {
+      "best_case_numerator": 3125,
+      "rounds": 5,
+      "uniform_edge_denominator": 7776,
+      "upper_probability": "3125/7776"
+    },
+    {
+      "best_case_numerator": 15625,
+      "rounds": 6,
+      "uniform_edge_denominator": 46656,
+      "upper_probability": "15625/46656"
+    },
+    {
+      "best_case_numerator": 78125,
+      "rounds": 7,
+      "uniform_edge_denominator": 279936,
+      "upper_probability": "78125/279936"
+    },
+    {
+      "best_case_numerator": 390625,
+      "rounds": 8,
+      "uniform_edge_denominator": 1679616,
+      "upper_probability": "390625/1679616"
+    }
+  ],
+  "run": "MINK_CRS_SLOTS_20261102_R15",
+  "security_scope": "mathematical exact distribution; single-honest-slot soundness only, not ZK or WKEM",
+  "targets_per_history": 49,
+  "valid_edges_histogram": {
+    "0": 3,
+    "3": 24,
+    "4": 18,
+    "5": 36
+  }
+}

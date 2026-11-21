@@ -1,0 +1,27 @@
+{
+  "status": "NO_SECURE_ADVANCE",
+  "checks": 71,
+  "trueResult": {
+    "trials": 3,
+    "ciphertextColumns": 66,
+    "T": 4369,
+    "openedWitnesses": 2
+  },
+  "falseResult": {
+    "trials": 5,
+    "ciphertextColumns": 102,
+    "T": 202,
+    "openedWitnesses": 1
+  },
+  "falseInstance": {
+    "v": 32,
+    "c": 64,
+    "N": 160,
+    "pseudoL1": 224,
+    "acceptedL1": 160,
+    "pseudoL2Squared": 288,
+    "attackFailureLog2Upper": -57.429188
+  },
+  "quantum": false,
+  "native": "mock capability only"
+}

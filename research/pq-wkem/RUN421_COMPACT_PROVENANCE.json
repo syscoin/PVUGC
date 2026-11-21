@@ -1,0 +1,18 @@
+{
+  "run": 421,
+  "started_at": "2026-10-11",
+  "starting_head": "2dfc9c8259f373e51149942d7080c3fe7745bd33",
+  "actual_branch": "research/pq-wkem-validation-20260918",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "compact_checker": "run421_compact_check.js",
+  "checker_execution": "executed via JS V8; no imported packages",
+  "note": "RUN421_IO_SOUNDNESS_COMPACT.md",
+  "validation": "run421-compact-validation.json",
+  "local_extended_sha256": {
+    "proof": "19dfe2be377f130b49f680ea8b2ca5846b7744e93e37358871c86f3b57d96177",
+    "checker": "4aa6cd6c46e1d3260130af5571ecb2e52df40da3dcdaf37e65ff09d53607fbfe",
+    "validation": "f71d62bbb175dbffef922d474c9278be5cf734479cd8d7f3478c6be4a8adf4b1"
+  },
+  "caveat": "Finite check only; no actual one-wayness, QPT iO or practical WKEM"
+}

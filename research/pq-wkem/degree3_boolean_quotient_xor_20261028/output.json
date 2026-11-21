@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "assertions": 2733,
+  "q": 257,
+  "false_d2": {
+    "M": 7,
+    "rows": 12,
+    "rank": 6,
+    "anchor_certificate": false
+  },
+  "false_d3": {
+    "M": 8,
+    "rows": 24,
+    "rank": 8,
+    "anchor_certificate": true,
+    "independent_rows": 8
+  },
+  "true_d3": {
+    "M": 8,
+    "rows": 24,
+    "rank": 6,
+    "independent_rows": 6,
+    "distinct_original_witnesses": [
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        0,
+        1
+      ]
+    ]
+  },
+  "certificate": [
+    [
+      "0:0",
+      -1
+    ],
+    [
+      "2:0",
+      -1
+    ],
+    [
+      "1:0",
+      1
+    ],
+    [
+      "1:1",
+      -2
+    ],
+    [
+      "1:2",
+      -2
+    ],
+    [
+      "1:3",
+      4
+    ]
+  ],
+  "whole_vector_shift_trials": 512,
+  "same_capability_256bit_trials": 16,
+  "radix": {
+    "g": 17,
+    "b": 15,
+    "ell": 66,
+    "ciphertext_coordinates": 528
+  },
+  "limits": "Classical algebra and mock signing seeds; no generic NP, QPT-hardness, malicious setup, or Bitcoin native PQ deployment proof."
+}

@@ -1,0 +1,28 @@
+{
+  "assertions": 4662,
+  "exact_otp_size": 16,
+  "future_universe": 65536,
+  "groups": {
+    "alternate_source_wrong_native_output": 1,
+    "bounded_table_cover": 5,
+    "commitment_not_literal_seed": 1,
+    "guessed_source_correct": 1,
+    "posterior_size": 256,
+    "posterior_uniform": 4096,
+    "public_merkle_root_decrypts_without_path": 1,
+    "published_table_leaks_without_source_membership": 299,
+    "publishing_keyed_seed_opens_early": 1,
+    "target_invariant_public_decryption": 1
+  },
+  "limits": [
+    "local illustrative SHA256 source bytes only",
+    "no Bitcoin/Syscoin work, chain or DA authentication",
+    "no Build/Open witness encryption",
+    "no QPT security claim",
+    "finite-table coverage models uniform independent source values only"
+  ],
+  "non_guessed_source_mismatches": 255,
+  "run": "R231_future_source_entropy_20261111",
+  "sha256_candidate_sources": 256,
+  "source_sha256": "2b1a5a98ea366ac0cb699ff0a60567d1ae1447f335448b68654f33824aaf5105"
+}

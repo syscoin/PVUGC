@@ -1,0 +1,20 @@
+{
+  "run": 401,
+  "date_utc": "2026-10-10",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "63731c18c137077ced1f2fe9549e85c7c51835ec",
+  "dependencies": {
+    "run400_blob": "54ddfa5df2c4225e59c535741774cd83194465b4",
+    "run259_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  },
+  "checker": "quantum_claw_release_seam_run401_check.js",
+  "checker_exact_executed": true,
+  "checker_checks": 235,
+  "validation_recomputed_from_same_function": true,
+  "model": "QROM public F/G and ideal callable insecure seam; honest algorithms classical PPT relative to oracles",
+  "attacker": "arbitrary QPT; coherent chosen G evaluation; no quantum Release oracle needed",
+  "security_result": "Negative conditional interface test; BHT prior art; no practical WKEM/QPT security theorem",
+  "production_modified": false
+}

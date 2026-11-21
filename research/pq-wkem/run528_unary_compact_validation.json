@@ -1,0 +1,11 @@
+{
+  "run": 528,
+  "status": "PASS",
+  "fixed_unary_bound_cases": 980,
+  "tight_cases": 589,
+  "reversible_inverse_cases": 8192,
+  "selectable_witness_cases": 2040,
+  "guarded_identity_cases": 3780,
+  "false_witness_admission_bypass_cases": 945,
+  "scope": "finite semantic algebra only; no QPT security or implemented mixer"
+}

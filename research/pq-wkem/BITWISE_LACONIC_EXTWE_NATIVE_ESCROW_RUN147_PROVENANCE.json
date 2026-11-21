@@ -1,0 +1,83 @@
+{
+  "artifact_sha256": {
+    "checker": "8664c12db2c2f2c56f0ae146fda3db74b734d71597def8f4d98fc22c3520cd4d",
+    "note": "e5bd8f333acb04a2948f1af2eaec1a5d983096700cc54f2fb78a992a018925e4",
+    "validation": "e1779cb59d08076661f4d780dff58d6674145c1c4b83b51653a008d8a6ce0b14"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_head_inputs": {
+    "keyless_native": "dffe6c85dc3bf63652ba7927d1593e2ee6549608",
+    "run123": "2eefa25de7f5a9b9c65abf15a20bb4ae6564702e",
+    "run126": "94d1a6246da77f561ecacd84ce78917d6121dc33",
+    "run127": "ceb891a850663557169597c0ddf7068b67791ab3",
+    "run128": "a534790501f9996bf5af45708d8c16a6267f9569"
+  },
+  "execution": {
+    "assertions": 501,
+    "byte_identical": true,
+    "run1_exit": 0,
+    "run2_exit": 0,
+    "syntax": "PASS"
+  },
+  "identifier": "RUN147_BITWISE_LACONIC_EXTWE_NATIVE_ESCROW",
+  "latest_substantive_comment_id": 5852515576,
+  "limitations": [
+    "No one-bit QPT Ext-WE/PAoK construction.",
+    "FNV theorem classical as published.",
+    "External non-simulatable quantum auxiliary state remains composition obligation.",
+    "Native PQ signature endpoint conditional.",
+    "Malicious N-of-N setup consistency/liveness unresolved.",
+    "Generic-NP practical PQ WKEM unresolved."
+  ],
+  "pr": 1,
+  "primary_sources": [
+    {
+      "authors": [
+        "Antonio Faonio",
+        "Jesper Buus Nielsen",
+        "Daniele Venturi"
+      ],
+      "eprint": "2015/740",
+      "facts_used": [
+        "Definition 3 one-bit Ext-WE",
+        "Theorem 3 classical PAoK iff Ext-WE",
+        "footnote 13 arbitrary-length messages by bitwise independent encryption",
+        "A0 outputs instance and internal state before A1 sees random-bit challenge"
+      ],
+      "full_version_date": "2017-01-13",
+      "title": "Predictable Arguments of Knowledge",
+      "url": "https://eprint.iacr.org/2015/740.pdf"
+    },
+    {
+      "authors": [
+        "Sanjam Garg",
+        "Craig Gentry",
+        "Shai Halevi",
+        "Daniel Wichs"
+      ],
+      "eprint": "2013/860",
+      "scope": "negative evidence against general-purpose arbitrary-aux Ext-WE, not against internally simulatable setup state",
+      "title": "On the Implausibility of Differing-Inputs Obfuscation and Extractable Witness Encryption with Auxiliary Input"
+    },
+    {
+      "authors": [
+        "Elette Boyle",
+        "Rafael Pass"
+      ],
+      "eprint": "2013/703",
+      "scope": "caution on broad distributional auxiliary-input extractability",
+      "title": "Limits of Extractability Assumptions with Distributional Auxiliary Input"
+    },
+    {
+      "arxiv": "quant-ph/0108095",
+      "authors": [
+        "Mark Adcock",
+        "Richard Cleve"
+      ],
+      "scope": "quantum GL exists; full FNV QPT laconicization not imported",
+      "title": "A Quantum Goldreich-Levin Theorem with Cryptographic Applications"
+    }
+  ],
+  "repository": "syscoin/PVUGC",
+  "starting_sha": "ee53ac6383f1327906f05550e2c709a9b7e93ff5"
+}

@@ -1,0 +1,25 @@
+{
+  "D0_bits": 5446,
+  "assertions": 253915,
+  "chernoff_certificate_pass": true,
+  "ciphertext_savings_percent": 10,
+  "cyclic_min_spacing": 4095,
+  "exact_chernoff_certificate": "2^51*25^640*NUM < 28^640*(700^3)^2000*D0",
+  "exact_integer_denominator_sha256": "40e8d64b21124180d8e76fbe9d2d3c067a52dd8cfedd884b0352fcdbfe9c9999",
+  "exact_integer_numerator_sha256": "6725b879d76bd783d4de06f5c415886be430dc5efb7187eea50d97d03f9f3a6e",
+  "integer_recurrence": "coeff P(z)^2000 through degree 2729, exact integer DP",
+  "limitations": "Finite algebra/correctness certification, not QPT hardness; R116 RS decoder and restricted full-public reduction retained.",
+  "p_all_256_occurrences_upper": "strictly less than 2^-147 plus global source-nonuniqueness bound 2^-20502.54",
+  "p_symbol_upper": "strictly less than 2^-50",
+  "per_credential_occurrence_ciphertext_bytes_after": 48960,
+  "per_credential_occurrence_ciphertext_bytes_before": 54400,
+  "phase": "v8=floor(v/256), reconstructed v=256*v8+128 mod 65521",
+  "run": "R117-8BIT-LWE-PHASE-EXACT-COND-MGF-20261106",
+  "status": "PASS \u2014 restricted LWE credential source only; not generic ORIGINAL NP",
+  "tilt": "exp(3 lambda)=28/25",
+  "v_quantization_error": [
+    -127,
+    128
+  ],
+  "weighted_numerator_bits": 62206
+}

@@ -1,0 +1,12 @@
+{
+  "conclusion": "Any valid path to a fixed SHA256d Merkle root reveals the same top-level 64-byte preimage. Root-preimage hashlock also opens for nonqualifying leaves and the tree creator knows the top pair before release. No native SLH domain match, arbitrary-NP compiler, exact frozen signature or future source timing security.",
+  "counts": {
+    "correct_digest_openings": 280,
+    "false_original_rejections": 35,
+    "nonqualifying_leaf_opens_digest": 245,
+    "private_root_without_top_pair_is_not_tested_as_hard": 0,
+    "same_top_preimage_across_all_paths": 35,
+    "trees": 35,
+    "valid_leaf_paths": 280
+  }
+}

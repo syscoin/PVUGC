@@ -1,0 +1,60 @@
+{
+  "run": "R63-ORIGINAL-SHORT-KERNEL-20261104",
+  "cases": [
+    {
+      "label": "TRUE-original",
+      "variables": 2,
+      "clauses": 2,
+      "original_witnesses": 2,
+      "short_binary_kernel_representations": 2,
+      "original_openings": 64,
+      "unauthorized_false_recoveries": 0,
+      "full_view_structured_challenge_couplings": 32,
+      "N": 5,
+      "m": 11,
+      "n": 6,
+      "q": 64,
+      "delta": 15,
+      "false_near_short_l1": null,
+      "false_structured_LWE_distinguisher_advantage_lower_bound": null
+    },
+    {
+      "label": "FALSE-original",
+      "variables": 1,
+      "clauses": 2,
+      "original_witnesses": 0,
+      "short_binary_kernel_representations": 0,
+      "original_openings": 0,
+      "unauthorized_false_recoveries": 32,
+      "full_view_structured_challenge_couplings": 32,
+      "N": 4,
+      "m": 9,
+      "n": 5,
+      "q": 64,
+      "delta": 13,
+      "false_near_short_l1": 6,
+      "false_structured_LWE_distinguisher_advantage_lower_bound": 0.796875
+    },
+    {
+      "label": "FALSE-with-eight-tautologies",
+      "variables": 1,
+      "clauses": 10,
+      "original_witnesses": 0,
+      "short_binary_kernel_representations": 0,
+      "original_openings": 0,
+      "unauthorized_false_recoveries": 8,
+      "full_view_structured_challenge_couplings": 8,
+      "N": 12,
+      "m": 33,
+      "n": 21,
+      "q": 128,
+      "delta": 29,
+      "false_near_short_l1": 14,
+      "false_structured_LWE_distinguisher_advantage_lower_bound": 0.7734375
+    }
+  ],
+  "assertions": 121956,
+  "quantum_security": "NOT_TESTED",
+  "general_source_security": "FALSE_BYPASS",
+  "qpt_original_reduction": "UNPROVED"
+}

@@ -1,0 +1,29 @@
+{
+  "run": "MINK-BHC-2026-11-01-T16",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "6be55c9d3cf2c5e32f8d7c33b01ea338f43531a2",
+  "actions": "local Python checker twice; exact JavaScript function executed; created research Git objects (not yet branch ref)",
+  "checks": 663089,
+  "toy_openings": 662661,
+  "git_blobs": [
+    {
+      "name": "RESEARCH.md",
+      "sha": "ec9a93e99d946b34f110b081b58e1c2685265783",
+      "bytes": 7697
+    },
+    {
+      "name": "checker.js",
+      "sha": "401ea7d12f9fd10de372e6542805663d89ad1daf",
+      "bytes": 2546
+    },
+    {
+      "name": "output.json",
+      "sha": "7b930095a0013b98239ac1eb638b64b57d8a9ff2",
+      "bytes": 525
+    }
+  ],
+  "security": "Conditional honest-beacon proof; QPT LWE assumption; no full WKEM or N-of-N malicious beacon",
+  "external_research": false
+}

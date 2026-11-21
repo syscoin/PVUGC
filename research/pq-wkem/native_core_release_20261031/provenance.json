@@ -1,0 +1,20 @@
+{
+  "run_id": "NCSR-2026-10-31-T12",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head_sha": "94c923208b9deb6a37404bbaff2264994746a3e6",
+  "predecessor_blob_sha": "d151791ea70048497dc5725122d83c2f8f3c9484",
+  "predecessor_comment_id": 6552552416,
+  "checker_command": "node checker.js",
+  "executions": 2,
+  "repeat_output_identical": true,
+  "file_sha256": {
+    "checker.js": "1521dd201a22781c33d83839334bb4b2da2be4367c77598f6e91b5a94520dfea",
+    "output.json": "010207fcf62fae35e2622816057edea75d7281d7c93be4f9d84abd5d7bd48ea7",
+    "RESEARCH.md": "6de23ae06d91dc1da336b0732a83865c392fbc7426e284a7f9e4185c1313b4a6"
+  },
+  "offline_only": true,
+  "scope": "research/pq-wkem/native_core_release_20261031/",
+  "status": "restricted positive native-core release efficiency, generic ORIGINAL open"
+}

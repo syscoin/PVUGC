@@ -1,0 +1,7 @@
+{
+  "all_remainders_same": true,
+  "attempted_random_mask_samples": 12,
+  "extracted_sigma": 13,
+  "run": "R242_QUOTIENT",
+  "scope": "digest-only vanishing ideal; no original SHA/AuxPoW source, not a KEM"
+}

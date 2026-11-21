@@ -1,0 +1,29 @@
+{
+  "run": 358,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "bd725ff1a919714b2e713d332b1fefb56832feb4",
+  "starting_state": "open/draft/unmerged",
+  "newest_ordinary_comment_id": 5945825660,
+  "exact_version_sources": {
+    "run357_note_blob": "93cb228e91f4323307057fc141a874da4db6f945",
+    "run259_note_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run352_note_blob": "04008e51942b131a2d503dafae0b52f529e9a2b5"
+  },
+  "actual_published_note_blob": "355829fcfc94d4a7904c78e1993756056a86e21d",
+  "local_extended_note_sha256": "7f3d51ed85be0b6974a57fe8cae82fb1d98fb2d56fc50f9b2d5b5d8bd77f08e8",
+  "local_extended_note_is_distinct_from_published": true,
+  "exact_executed_checker_sha256": "741ca0032302658cd33f90b09ced17e1e16ed570e7425357efc9f4b0287da19a",
+  "captured_output_sha256": "0b467bc7aaf0debcfee6768b5c4a1742d45066587ec7a0c2155ca11db923464e",
+  "recheck_byte_identical": true,
+  "assertions": 22064,
+  "commands": [
+    "python -m py_compile public_prg_boundary_mask_run358_check.py",
+    "python public_prg_boundary_mask_run358_check.py > public-prg-boundary-mask-run358-validation.json",
+    "python public_prg_boundary_mask_run358_check.py > public-prg-boundary-mask-run358-recheck.json",
+    "byte-for-byte comparison of both outputs"
+  ],
+  "literature": "Canetti et al., ePrint 2024/006 original abstract; full PDF request returned 403, no full-proof audit",
+  "scope": "Tight PRG-masked transparent-boundary impossibility. No PQ PRG security proof, no generic NP witness-KEM, no arbitrary-QPT ORIGINAL extraction, no practical parameters."
+}

@@ -1,0 +1,40 @@
+{
+  "run": "R43-PACKED-JOINT-LWE",
+  "exact_executed_checker": "CHECKER.js",
+  "first": {
+    "run": "R43-PACKED-JOINT-LWE",
+    "tests": 282,
+    "opens": 3,
+    "symbols": 536,
+    "avgTV": 0.2729936154718639,
+    "delta": 0.375,
+    "maxShift": 1.1102230246251565e-16,
+    "toy": {
+      "q": 65537,
+      "n": 2,
+      "m": 12,
+      "B": 1,
+      "p": 256,
+      "kappa": 16,
+      "scopes": 2,
+      "oldPerBranch": 64,
+      "packedPerBranch": 8
+    },
+    "example": {
+      "q": 65537,
+      "n": 64,
+      "m": 2048,
+      "B": 1,
+      "p": 8,
+      "kappa": 256,
+      "J": 3,
+      "old": 1536,
+      "packed": 516
+    },
+    "status": "restricted LWE source algebra; no independent QPT security or ORIGINAL witness extraction"
+  },
+  "repeated_identical": true,
+  "independent_local_python_exact_TV": "16120/59049",
+  "independent_local_python_status": "PASS",
+  "note": "The Python code/output exist only in the downloadable offline archive."
+}

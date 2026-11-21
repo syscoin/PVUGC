@@ -1,0 +1,19 @@
+{
+  "assertions": 1100,
+  "groups": {
+    "claim_context_domain_separation_only": 100,
+    "cross_source_occurrence_mixing_opens_key": 100,
+    "later_distinct_certificate_not_same_key": 100,
+    "n_of_n_cannot_fix_public_label": 100,
+    "no_single_qualifying_record": 100,
+    "postcheck_bypass": 100,
+    "public_bit_label_early_key": 100,
+    "public_mask_leaks_both_labels": 100,
+    "revealed_secret_seed_leaks_label": 100,
+    "single_preselected_certificate_opens": 100,
+    "source_certificate_does_not_supply_hidden_seed": 100
+  },
+  "run": "R224-SOURCE-LABEL-DELIVERY-20261111",
+  "scope": "synthetic public-label availability, witness mixing and completeness ONLY; no genuine source, native sig, WKEM or QPT tests",
+  "source_sha256": "86cfcc98bc40cdb60608f8f7519b3746e30b8116cc854c4e0bff058bdd7ae1c9"
+}

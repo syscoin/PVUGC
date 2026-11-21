@@ -1,0 +1,14 @@
+{
+  "false_directed_path_to_t": false,
+  "false_undirected_xor_key_leaks": true,
+  "fundamental_gap": "a polynomial public graph of exactly qualifying paths gives a public polynomial certificate search; otherwise accepting edges must be cryptographically source-gated",
+  "public_true_graph_reachable_by_bfs": true,
+  "same_frozen_key": true,
+  "scope": "SYNTHETIC directed SHA edge DAG; no real source, FE, Bitcoin or quantum proof",
+  "tiny_12bit_bruteforce_guesses": 4096,
+  "tiny_bruteforce_recovers_key": true,
+  "true_paths": [
+    "s-a-t",
+    "s-b-t"
+  ]
+}

@@ -1,0 +1,1 @@
+{"all_false_consistent_inputs_reject": true, "full_public_source_FE_constructed": false, "inconsistent_public_baseline_recovers_secret": true, "n": 9, "ordinary_true_gate_correct": true, "scope": "small public permutation-gate regression only"}

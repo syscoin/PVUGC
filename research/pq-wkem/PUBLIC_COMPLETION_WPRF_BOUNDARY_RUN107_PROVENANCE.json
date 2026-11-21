@@ -1,0 +1,135 @@
+{
+  "artifact_sha256": {
+    "PUBLIC_COMPLETION_WPRF_BOUNDARY_RUN107.md": "d2c368de8903b5aa59cf5d86c401a715b7d30ace8ef2febb612368eb6a2aef7c",
+    "public-completion-wprf-boundary-run107-validation.json": "ce6b7efe9c011b33f394e1948683ca7bf6fdc33bdf047d295d96ee4a11a1854c",
+    "public_completion_wprf_boundary_run107_check.py": "0b12738a31592e5ef0e2a38f23c86f5d3c13fa0642f380792220c8583d70943f"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker": {
+    "byte_identical_stdout": true,
+    "executions": 3,
+    "path": "research/pq-wkem/public_completion_wprf_boundary_run107_check.py",
+    "status": "PASS",
+    "total_assertions": 15189
+  },
+  "exact_repository_inputs": [
+    {
+      "blob_sha": "f8634c5dd2bc29796f152ebde67064fe55045cc9",
+      "path": "research/pq-wkem/SIS_RANDOMIZED_SHORT_KERNEL_LIFT_RUN42.md"
+    },
+    {
+      "blob_sha": "827812d3774d69955aed5418a8dfa6701273b09e",
+      "path": "research/pq-wkem/IID_NOISE_SHORT_KERNEL_RUN68.md"
+    },
+    {
+      "blob_sha": "4fefd6c364a76fd12fe76169ddbec47e486c786b",
+      "path": "research/pq-wkem/LWE_DIRECTIONAL_TRANSPORT_RUN72.md"
+    },
+    {
+      "blob_sha": "d95cdf58479f0bea5219e5e3c15290cfc5172b13",
+      "path": "research/pq-wkem/QPT_TSABARY_AUDIT_RUN80.md"
+    },
+    {
+      "blob_sha": "82d89e7b519118e3ab375713dbed431753ddde11",
+      "path": "research/pq-wkem/AFFINE_COMMON_TARGET_RTLWE_BARRIER_RUN95.md"
+    },
+    {
+      "blob_sha": "5ec37cfcf47fcdc68d279af1dc1b6c90a7287c8d",
+      "path": "research/pq-wkem/FULL_KEY_ONE_COPY_QPT_EXTRACTION_RUN102.md"
+    },
+    {
+      "blob_sha": "a803478c59af2abdaeeaef35d1952b50a6dd721b",
+      "path": "research/pq-wkem/HIDDEN_SUBSPACE_CONSISTENCY_BUNDLE_RUN103.md"
+    }
+  ],
+  "latest_substantive_comment": {
+    "id": 5839832728,
+    "scope": "Runs 100-103 published and verified"
+  },
+  "literature": [
+    {
+      "verified_scope": "simultaneous public encodings followed by local input-dependent additive-share decoding",
+      "version": "EUROCRYPT 2025 / ePrint 2025/096",
+      "work": "Boyle\u2013Jain\u2013Servan-Schreiber\u2013Srinivasan, Simultaneous-Message and Succinct Secure Computation"
+    },
+    {
+      "verified_scope": "two-round NP-witness-conditioned message release from standard assumptions including LWE/CDH",
+      "version": "FOCS 2019 / ePrint 2019/1353",
+      "work": "D\u00f6ttling\u2013Garg\u2013Goyal\u2013Malavolta, Laconic Conditional Disclosure of Secrets and Applications"
+    },
+    {
+      "limitation": "full primary PDF not retrieved; no theorem-level QPT/extraction claim imported",
+      "verified_scope": "metadata/indexed abstract: special vector-commitment local-opening WPRF; general-purpose WPRFs previously iO-strength; standard pairing assumptions",
+      "version": "IACR ePrint 2026/1079",
+      "work": "Bhadauria\u2013Branco\u2013D\u00f6ttling\u2013Garg\u2013Policharla, Witness Pseudorandom Functions for Vector Commitments and Applications"
+    },
+    {
+      "verified_scope": "WPRFs are related to WE and described as stronger; original construction from multilinear maps",
+      "version": "TCC 2016-A / ePrint 2014/301",
+      "work": "Mark Zhandry, How to Avoid Obfuscation Using Witness PRFs"
+    }
+  ],
+  "local_predecessors": [
+    {
+      "archive_sha256": "138b5cc579d266575d85470acdcc1e2daceb3a63dc2380ebc845132312783339",
+      "publication_status": "BLOCKED_BEFORE_GITHUB",
+      "run": 104
+    },
+    {
+      "archive_sha256": "aa9c04c2d8a92c090e481224766d4d2e8cea9eabd28715805612894e9d0845ff",
+      "publication_status": "BLOCKED_BEFORE_GITHUB",
+      "run": 105
+    },
+    {
+      "archive_sha256": "3f2dad6c3cbd23f210e240ceb506499dfcad509ed50843502361361c7f5a09e1",
+      "publication_status": "BLOCKED_BEFORE_GITHUB",
+      "run": 106
+    }
+  ],
+  "new_results": [
+    "one-sided public completion of the SMS future-input share is itself a witness-release evaluator for relation-gated f((x,K),w)",
+    "trivial perfect false-hiding all-witness completion exists as an exponential 2^n table",
+    "direct transparent circuit compression exposes hard-coded K/r absent extra cryptographic hiding",
+    "vector-commitment WPRF identifies the right primitive class but needs a nontrivial generic-NP-to-local-opening adapter and is not PQ"
+  ],
+  "pr": 1,
+  "publication": {
+    "attempted_action": "mcp__GitHub__create_blob",
+    "attempted_path": "research/pq-wkem/PUBLIC_COMPLETION_WPRF_BOUNDARY_RUN107.md",
+    "comment_id": null,
+    "commit_sha": null,
+    "outstanding_local_only_paths": [
+      "research/pq-wkem/PUBLIC_COMPLETION_WPRF_BOUNDARY_RUN107.md",
+      "research/pq-wkem/public_completion_wprf_boundary_run107_check.py",
+      "research/pq-wkem/public-completion-wprf-boundary-run107-validation.json",
+      "research/pq-wkem/PUBLIC_COMPLETION_WPRF_BOUNDARY_RUN107_PROVENANCE.json"
+    ],
+    "post_block_write_attempts": 0,
+    "pr_state_after_block": {
+      "draft": true,
+      "merged": false,
+      "state": "open"
+    },
+    "request_or_correlation_id": null,
+    "returned_error": "Script error: This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "starting_and_final_head": "5a612472b4f5e16120a6a07097ef25788415cb94",
+    "status": "BLOCKED_BEFORE_GITHUB",
+    "tool_timestamp": null,
+    "verified_path_absent_after_block": true
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 107,
+  "security_classification": {
+    "public_completion_theorem": "functionality-level/information-theoretic",
+    "sms_published_security": "classical model; not imported as QPT",
+    "source_extractable_generic_wprf": "UNPROVED",
+    "stopping_condition": "UNMET",
+    "vector_commitment_wprf": "pairing-based, not PQ; full theorem not audited"
+  },
+  "starting_pr_state": {
+    "draft": true,
+    "merged": false,
+    "state": "open"
+  },
+  "starting_sha": "5a612472b4f5e16120a6a07097ef25788415cb94"
+}

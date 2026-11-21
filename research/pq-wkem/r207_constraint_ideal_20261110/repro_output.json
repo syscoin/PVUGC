@@ -1,0 +1,8 @@
+{
+  "assertions": 512,
+  "result": "two valid witnesses share K, but public coefficient attack opens sigma without any witness",
+  "run": "R207",
+  "scope": "synthetic Boolean/AND constraints, not deployed SHA/AuxPoW or native PQ",
+  "seeds": 128,
+  "source_sha256": "86bbac93d46920f318c6c9f742aed4e1f6a05a6051b4628dd924c2b641ed5399"
+}

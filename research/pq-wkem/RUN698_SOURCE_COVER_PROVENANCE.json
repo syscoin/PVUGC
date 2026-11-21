@@ -1,0 +1,14 @@
+{
+  "run": 698,
+  "date": "2026-10-22",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "parent": "a3d391983bcc354a16a17dece06435135f9b9557",
+  "scope": "source-covered sparse release construction repair, correctness only",
+  "published_compact_checker_expected_git_blob_sha": "efeb7b96eec41ee10314458485bc2c0e50238a89",
+  "published_compact_validation_expected_git_blob_sha": "ce81370fd230d8f38ef8fa5c4557c8bdb4519df8",
+  "extended_local_checker_sha256": "b1aae7d9c8f07014874483a653c9370e7ca148edb96d529a7ea05866c4bdb782",
+  "extended_local_validation_sha256": "403274bd78fdedde0e5362dda557e48080d5d1b0aea76969c8eee7874540a4bf",
+  "tests": "Node syntax check/two byte-identical runs; Python compilation/two byte-identical runs; not security evidence"
+}

@@ -1,0 +1,15 @@
+{
+  "run": "R94-SHARED-KEY-JOINT-CAPSULE-20261105",
+  "assertions": 796,
+  "count": {
+    "shamir_fixed_U_privacy": 44,
+    "authorized_reconstruction": 625,
+    "shared_key_tv": 125,
+    "public_key_resource": 1
+  },
+  "avg_single_tv": 0.1263407407407407,
+  "avg_two_tv": 0.18199879286694082,
+  "saved_mod_q_elements": 107646720,
+  "saved_bytes_at_q_lt_65536": 215293440,
+  "scope": "GF5 and fixed-key product census only; NOT LWE/PQ security"
+}

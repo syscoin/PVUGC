@@ -1,0 +1,19 @@
+{
+  "base_false_points": 5,
+  "extension_point": [
+    0,
+    1
+  ],
+  "extension_projector": [
+    3,
+    4
+  ],
+  "extension_recovered_sigma": [
+    4,
+    0
+  ],
+  "run": "R250_MIN",
+  "status": "NONQUALIFYING: transparent arithmetic leaks, no source Build/Open",
+  "unique_witness_recovered_sigma": 4,
+  "unique_witness_top_coefficient": 2
+}

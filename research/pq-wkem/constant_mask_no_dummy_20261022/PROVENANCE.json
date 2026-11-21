@@ -1,0 +1,50 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checkpoint": "constant-mask-no-dummy-20261022",
+  "files": {
+    "NO_DUMMY_CONSTANT_MASK_RECOVERY.md": {
+      "bytes": 8888,
+      "git_blob_sha1": "bb71a960a8d1661026002b76a10ffbdd764304c0",
+      "sha256": "456da5be9f77b14853a09038e72a924286a7c08b2c475067faaeb9345231f650"
+    },
+    "check_exact_archive.py": {
+      "bytes": 3773,
+      "git_blob_sha1": "6a72a79001799bb8c944b94de3a106102f89d80a",
+      "sha256": "17124b6a851ed089faae7da9a36adaa4fc3758642653ee5462f77da80eb63227"
+    },
+    "exact_archive_validation.json": {
+      "bytes": 852,
+      "git_blob_sha1": "26646dd5c53cc566eeb7289c9d8ea1b6606fed4f",
+      "sha256": "86639e5e870bf3cea5256fa6353baff407c0a1c0b640233b3200900b504f483e"
+    },
+    "repeat_unmasked.py": {
+      "bytes": 3872,
+      "git_blob_sha1": "24a398a6ed379e1f718855e3981472a98b10a1c2",
+      "sha256": "7330cc551bcf56d29bf1d512ff6e08887e6c9294f3b2cf77a037d96ceee87605"
+    },
+    "run706_spectral_source_binding_check.py": {
+      "bytes": 7039,
+      "git_blob_sha1": "f5c0406e18b8a50fec7c84ac9aaee9765bc14a64",
+      "sha256": "390e4abcf81650050b0efca13390ea13c08893bf62c3c6241cbf2444cd281c2f"
+    },
+    "unmasked_rerun_validation.json": {
+      "bytes": 801,
+      "git_blob_sha1": "4ec291b16f3e9acd14b1d60704ccf9469a6715b4",
+      "sha256": "1c39fe23bbbe4494142c5cf05ccc6f714431f88a4c053904b47bfa9342f119f4"
+    }
+  },
+  "invocation": "interactive; no scheduler run ID supplied",
+  "pr": 1,
+  "publication": "pending; final outcome recorded separately",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "read_limitations": [
+    "Files search did not locate the named Run706 checker; exact original archive was available in active runtime and used instead.",
+    "The private /private/tmp links supplied by the user were not accessed."
+  ],
+  "repository": "syscoin/PVUGC",
+  "source_archive_sha256": "f5530e19603bdd3c73a7554fe43ea93793c23b561d0ebd6b78d5b17d52c23940",
+  "source_record": "Exact archive script hash matches its archived provenance; attached unmasked note Git blob matches live commit.",
+  "starting_sha": "fa5c69b4922d142f94fe9c19e38bfd7dfffcaa8f",
+  "utc": "2026-10-23T03:21:21.832756+00:00",
+  "verification": "py_compile passed; two byte-identical executions of both checkers; complete original archive validation still passes"
+}

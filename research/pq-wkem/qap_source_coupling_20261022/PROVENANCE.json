@@ -1,0 +1,67 @@
+{
+  "assertions": 737,
+  "branch": "research/pq-wkem-validation-20260918",
+  "checkpoint": "qap-source-coupling-20261022",
+  "created_utc": "2026-10-23T04:43:08.135891+00:00",
+  "failures": [
+    {
+      "message": "AssertionError: control reproduces earlier key-root mechanism",
+      "resolution": "Record actual control results; the changed normalized source is not the old four-form attack family; do not claim attack remediation from this comparison.",
+      "stage": "initial normalized R1CS control expectation"
+    },
+    {
+      "message": "Command failed because it timed out.",
+      "outcome": "First run completed; repeat emitted no complete stdout and is excluded. Final bounded checker subsequently completed twice.",
+      "stage": "larger repeat within a combined 200-second local command"
+    }
+  ],
+  "files": {
+    "CONSTRUCTION_STATE.md": {
+      "bytes": 2788,
+      "git_blob": "d492be3ce232b2c6bfce384aae65bbff35671f47",
+      "sha256": "a62190b50e4e8964e679df197121b87944117ec2a087931fc73a11c7864421dd"
+    },
+    "QAP_SOURCE_COUPLING.md": {
+      "bytes": 15620,
+      "git_blob": "f201441801d9ccdcb8a2af35a4a579eae563f7a5",
+      "sha256": "c70937bba4befbcd86427473163baa5f43e8e652113f564f22aea8d0c9a11e34"
+    },
+    "check.py": {
+      "bytes": 8518,
+      "git_blob": "094a8107ce64847c30dd13a627549683c2fa8419",
+      "sha256": "27a2cf5d3ba55644fcabf595d17cb85baec04e3f8c99a93521a565d1ca6b6e65"
+    },
+    "qap_coupling.py": {
+      "bytes": 5446,
+      "git_blob": "c52065a432c553705e29ddf792e1403f8e9c7e80",
+      "sha256": "c53644f33ed27703f4621cb58c48cf7000e3cb658ecf6fca572ae610a4ad63ae"
+    },
+    "validation.json": {
+      "bytes": 5379,
+      "git_blob": "ffb444179b90d2d9b68f2f44c19807a0f60b3bfb",
+      "sha256": "3d5af6f3c16e9464c7c676735ca3a87976ebd85bb1335c67054fcdc4613ffb82"
+    }
+  },
+  "final_executions": 2,
+  "invocation": "interactive retry; scheduler execution not established",
+  "larger_completed_execution_assertions": 736,
+  "latest_comments_read": [
+    6356389755,
+    6356648337
+  ],
+  "pr": 1,
+  "primary_command": "OPENBLAS_NUM_THREADS=1 python check.py",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "repository": "syscoin/PVUGC",
+  "security_status": "No arbitrary-QPT hiding or key-only ORIGINAL extraction; no practical WKEM or scheduled recovery claim.",
+  "source_dependency": {
+    "path": "research/pq-wkem/unmasked_spectral_20261022/UNMASKED_SPECTRAL_PUBLIC_RECOVERY.md",
+    "read": "connected GitHub full note",
+    "ref": "278fb342262de40dec3ccf24655d8cf0dcbf4d3f"
+  },
+  "starting_sha": "278fb342262de40dec3ccf24655d8cf0dcbf4d3f",
+  "stdout_byte_identical": true,
+  "warnings": [
+    "SymPy modular-integer ordering deprecation; nonfatal"
+  ]
+}

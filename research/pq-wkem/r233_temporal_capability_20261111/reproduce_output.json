@@ -1,0 +1,10 @@
+{
+  "different_capsule": true,
+  "different_wtxid": true,
+  "histories": 64,
+  "reorg_stale_cases": 7,
+  "run": "R233",
+  "same_native_message": true,
+  "shared_txid": "3043107e1e0355037e8e9cf9b16c071892cd6f847997952269e89369bc97a639",
+  "status": "conditional policy demonstration; no WKEM or consensus"
+}

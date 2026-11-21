@@ -1,0 +1,85 @@
+{
+  "checks": 2826,
+  "limitations": [
+    "all false signed XOR graphs only",
+    "QPT postprocessing of classical openings, not quantum opening oracle",
+    "native EUF and authenticated manifests independent assumptions",
+    "no generic false/hard-true ORIGINAL extraction"
+  ],
+  "parameters": [
+    {
+      "B": 40768549816063795430619984967185285878120448,
+      "H_max": 78,
+      "M": 63,
+      "T": 3072,
+      "bytes_per_residue": 20,
+      "ciphertext_bytes": 3870720,
+      "n": 31,
+      "old_32byte_size": 6193152,
+      "proth_k": 81,
+      "proth_p": 148,
+      "proth_witness": 5,
+      "q": 28901765777295687591430290881352276511750619137,
+      "q_bits": 155,
+      "tv_bound_power_of_two": "at most 2^-128"
+    },
+    {
+      "B": 132236450044412054409575079444844581117493248,
+      "H_max": 253,
+      "M": 203,
+      "T": 3072,
+      "bytes_per_residue": 20,
+      "ciphertext_bytes": 12472320,
+      "n": 101,
+      "old_32byte_size": 19955712,
+      "proth_k": 81,
+      "proth_p": 152,
+      "proth_witness": 5,
+      "q": 462428252436731001462884654101636424188009906177,
+      "q_bits": 159,
+      "tv_bound_power_of_two": "at most 2^-128"
+    },
+    {
+      "B": 1308252310123175384138997722729035519909429248,
+      "H_max": 2503,
+      "M": 2003,
+      "T": 3072,
+      "bytes_per_residue": 21,
+      "ciphertext_bytes": 129217536,
+      "n": 1001,
+      "old_32byte_size": 196902912,
+      "proth_k": 43,
+      "proth_p": 158,
+      "proth_witness": 3,
+      "q": 15711142601307206370689611951700042461301274836993,
+      "q_bits": 164,
+      "tv_bound_power_of_two": "at most 2^-128"
+    }
+  ],
+  "run": "PNIDR-2026-11-01-T10",
+  "seed": 202611010940,
+  "status": "restricted NIDR modulus compression; generic NP unresolved",
+  "tests": [
+    {
+      "actual_H": 69,
+      "false_openings": 64,
+      "n": 31,
+      "true_tries": 64,
+      "valid_and_false_instances": 2
+    },
+    {
+      "actual_H": 224,
+      "false_openings": 16,
+      "n": 101,
+      "true_tries": 16,
+      "valid_and_false_instances": 2
+    },
+    {
+      "actual_H": 2249,
+      "false_openings": 2,
+      "n": 1001,
+      "true_tries": 2,
+      "valid_and_false_instances": 2
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "exact_coin_equivocations": 2916,
+  "fixed_noise_full_ciphertext_support": 27,
+  "limitations": "finite exact classical distributions; mock pk; no native SLH, QPT hardness, arbitrary NP or Bitcoin check",
+  "q": 3,
+  "single_capsule": {
+    "0": {
+      "exact_transcripts": 157464,
+      "probability_equality": true,
+      "real_worlds": 157464,
+      "sim_worlds": 314928
+    },
+    "1": {
+      "exact_transcripts": 157464,
+      "probability_equality": true,
+      "real_worlds": 157464,
+      "sim_worlds": 314928
+    }
+  },
+  "source": "false ORIGINAL x AND NOT x, A=[(1,-1),(0,1),(1,0)], U=(0,0,1)",
+  "status": "PASS",
+  "test": "adaptive_exact_selective_opening_no_guess",
+  "two_same_key_capsules": {
+    "0": {
+      "exact_transcripts": 104976,
+      "probability_equality": true,
+      "real_worlds": 104976,
+      "sim_worlds": 419904
+    },
+    "1": {
+      "exact_transcripts": 104976,
+      "probability_equality": true,
+      "real_worlds": 104976,
+      "sim_worlds": 419904
+    }
+  },
+  "whole_key_posthoc_equivocation": {
+    "capsules": 2,
+    "changed_hidden_digits": 245,
+    "native_key_bits": 256,
+    "reconciled_hidden_digits": 512,
+    "status": "PASS"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "counts": {
+    "all_valid_same": 128,
+    "early_open": 64,
+    "normalized_early_open": 64,
+    "trace_other_fails": 64
+  },
+  "run": "R212-mini",
+  "security": "no; deterministic early recovery"
+}

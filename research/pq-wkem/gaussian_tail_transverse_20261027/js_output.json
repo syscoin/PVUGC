@@ -1,0 +1,16 @@
+{
+  "run": "gaussian-transverse-tail-20261027-turn10",
+  "assertions": 100247,
+  "toy_openings": 93312,
+  "integer_certificate": "2*ell*C(n,h)*exp(-1600) < 2^-777; n*ell*TV(chi,G) < 2^-139",
+  "sampler": {
+    "sigma": "16/5",
+    "T": 56,
+    "P": 320
+  },
+  "linear_columns": {
+    "certified": 32,
+    "deterministic_same_error": 43
+  },
+  "limits": "finite algebra / exact integer upper bounds; no QPT hardness, ORIGINAL PoW compiler, or native-BTC proof"
+}

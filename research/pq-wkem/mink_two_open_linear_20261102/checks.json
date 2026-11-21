@@ -1,0 +1,27 @@
+{
+  "candidate": "MINK-TWO-OPEN-LINEAR-R17",
+  "checks": 1941,
+  "results": {
+    "2": {
+      "bad_keys": 1,
+      "total_keys": 4,
+      "statistical_bound": 3
+    },
+    "4": {
+      "bad_keys": 4,
+      "total_keys": 16,
+      "statistical_bound": 0.75
+    },
+    "6": {
+      "bad_keys": 4,
+      "total_keys": 64,
+      "statistical_bound": 0.1875
+    },
+    "8": {
+      "bad_keys": 4,
+      "total_keys": 256,
+      "statistical_bound": 0.046875
+    }
+  },
+  "security": "finite algebra only; QPT-LWE conditional; no SOURCE release"
+}

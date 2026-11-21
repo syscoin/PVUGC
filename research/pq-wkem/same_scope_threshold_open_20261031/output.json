@@ -1,0 +1,22 @@
+{
+  "case": "SSTO actual 2-of-3 same-key share lane openings",
+  "seed": 20261031,
+  "assertions_passed": 18963,
+  "q": 257,
+  "d": 4,
+  "n": 6,
+  "gap": 64,
+  "error_bound": 1,
+  "lanes": 3,
+  "related_capsules": 2,
+  "secret_bits": 512,
+  "valid_original_witnesses": 2,
+  "opened_lanes": [
+    0,
+    2
+  ],
+  "chosen_false_recovered_key_bits": 512,
+  "authentic_toy_signatures": true,
+  "QPT_hardness": "NOT TESTED",
+  "generic_WKEM": "NOT ESTABLISHED"
+}

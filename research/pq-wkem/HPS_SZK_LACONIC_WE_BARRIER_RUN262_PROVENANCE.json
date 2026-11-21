@@ -1,0 +1,99 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_live_files": [
+    {
+      "blob_sha": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+      "path": "research/pq-wkem/GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md"
+    },
+    {
+      "blob_sha": "9d85bf844695de69d6b86e19cf4cc2dcaabad1ca",
+      "path": "research/pq-wkem/global_fingerprint_source_binding_run259_check.py"
+    },
+    {
+      "blob_sha": "2eefa25de7f5a9b9c65abf15a20bb4ae6564702e",
+      "path": "research/pq-wkem/STAT_DUAL_MODE_SOURCE_HASH_QPT_EXTRACTION_RUN123.md"
+    },
+    {
+      "blob_sha": "94d1a6246da77f561ecacd84ce78917d6121dc33",
+      "path": "research/pq-wkem/DUAL_MODE_HASH_SECRET_RESAMPLING_BARRIER_RUN126.md"
+    },
+    {
+      "blob_sha": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924",
+      "path": "research/pq-wkem/literature-20260924/ASSESSMENT.md"
+    }
+  ],
+  "github_publication": {
+    "checker_blob_sha": "525d6e48773fa08b656e9b5f78d0d950ae29078d",
+    "comment_id": null,
+    "commit_sha": null,
+    "note": "This provenance snapshot is finalized before tree/commit construction; final commit/ref/comment readback is recorded in the run receipt and checkpoint response.",
+    "prewrite_head": "808f12c90397c3d25a7bd48606096f640773e8dd",
+    "prewrite_paths_absent": true,
+    "proof_note_blob_sha": "5c9471b0498577a17d62d17f6553c08eeafcf75d",
+    "provenance_blob_sha": null,
+    "ref_update": null,
+    "tree_sha": null,
+    "validation_blob_sha": "6b9d21a78d4dccc33661737638b7bba15f7078b7"
+  },
+  "latest_substantive_comment_id": 5945825660,
+  "local_validation": {
+    "assertions": 25049,
+    "decoder_tv_cases": 25028,
+    "py_compile": "PASS",
+    "python": "/usr/bin/python3",
+    "tight_cases": 942,
+    "two_byte_identical_runs": true
+  },
+  "path_resolution": "read-only recursive Git tree at starting SHA resolved exact Run-123/126 paths",
+  "pdf_screenshot_attempts": [
+    {
+      "outcome": "403 Forbidden from screenshot fetch; parsed PDF text remained available",
+      "page": 0,
+      "source": "ePrint 2024/1932"
+    },
+    {
+      "outcome": "403 Forbidden from screenshot fetch; parsed PDF text remained available",
+      "page": 10,
+      "source": "ePrint 2023/1230"
+    },
+    {
+      "outcome": "screenshot tool reported content-type resolution failure; parsed PDF text remained available",
+      "page": 0,
+      "source": "ePrint 2013/258"
+    }
+  ],
+  "pr": 1,
+  "publication_status": "ARTIFACT_BLOBS_CREATED_PENDING_COMMIT",
+  "read_failures": [
+    {
+      "correlation_id": null,
+      "error": "GitHub API 404 NOT_FOUND",
+      "path": "research/pq-wkem/STATISTICAL_DUAL_MODE_SOURCE_EXTRACTION_RUN123.md",
+      "request_id": null,
+      "stage": "exact dependency read with guessed filename"
+    },
+    {
+      "correlation_id": null,
+      "error": "GitHub API 404 NOT_FOUND",
+      "path": "research/pq-wkem/DUAL_MODE_RESAMPLING_BARRIER_RUN126.md",
+      "request_id": null,
+      "stage": "exact dependency read with guessed filename"
+    }
+  ],
+  "repository": "syscoin/PVUGC",
+  "run": "Run 262",
+  "security_scope": [
+    "statistical-WE/SZK reduction is information-theoretic once encryption distributions exist",
+    "laconic-SHVZK equivalence is cited in the source paper's classical polynomial-time model; no QPT lift claimed",
+    "pr-QA-HPS source result is not promoted to QPT security",
+    "fixed-instance sampler lemma is an interface/rejection-sampling statement, not a cryptanalytic break",
+    "final arbitrary-QPT WKEM remains unproved"
+  ],
+  "starting_sha": "808f12c90397c3d25a7bd48606096f640773e8dd",
+  "starting_state": "open,draft,unmerged",
+  "web_sources": [
+    "https://eprint.iacr.org/2013/258.pdf",
+    "https://eprint.iacr.org/2024/1932.pdf",
+    "https://eprint.iacr.org/2023/1230.pdf"
+  ]
+}

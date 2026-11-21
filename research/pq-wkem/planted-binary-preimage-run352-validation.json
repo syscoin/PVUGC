@@ -1,0 +1,186 @@
+{
+  "checks": 531394,
+  "exact_censuses": [
+    {
+      "average_tv": [
+        16,
+        81
+      ],
+      "lhl_upper_bound_squared": [
+        3,
+        32
+      ],
+      "m": 3,
+      "mean": [
+        10,
+        3
+      ],
+      "n": 1,
+      "number_matrices": 27,
+      "q": 3,
+      "variance": [
+        14,
+        9
+      ]
+    },
+    {
+      "average_tv": [
+        64,
+        729
+      ],
+      "lhl_upper_bound_squared": [
+        3,
+        128
+      ],
+      "m": 5,
+      "mean": [
+        34,
+        3
+      ],
+      "n": 1,
+      "number_matrices": 243,
+      "q": 3,
+      "variance": [
+        62,
+        9
+      ]
+    },
+    {
+      "average_tv": [
+        256,
+        6561
+      ],
+      "lhl_upper_bound_squared": [
+        3,
+        512
+      ],
+      "m": 7,
+      "mean": [
+        130,
+        3
+      ],
+      "n": 1,
+      "number_matrices": 2187,
+      "q": 3,
+      "variance": [
+        254,
+        9
+      ]
+    },
+    {
+      "average_tv": [
+        2624,
+        6561
+      ],
+      "lhl_upper_bound_squared": [
+        9,
+        32
+      ],
+      "m": 3,
+      "mean": [
+        16,
+        9
+      ],
+      "n": 2,
+      "number_matrices": 729,
+      "q": 3,
+      "variance": [
+        56,
+        81
+      ]
+    },
+    {
+      "average_tv": [
+        16120,
+        59049
+      ],
+      "lhl_upper_bound_squared": [
+        9,
+        64
+      ],
+      "m": 4,
+      "mean": [
+        8,
+        3
+      ],
+      "n": 2,
+      "number_matrices": 6561,
+      "q": 3,
+      "variance": [
+        40,
+        27
+      ]
+    },
+    {
+      "average_tv": [
+        176,
+        625
+      ],
+      "lhl_upper_bound_squared": [
+        5,
+        32
+      ],
+      "m": 3,
+      "mean": [
+        12,
+        5
+      ],
+      "n": 1,
+      "number_matrices": 125,
+      "q": 5,
+      "variance": [
+        28,
+        25
+      ]
+    },
+    {
+      "average_tv": [
+        1936,
+        15625
+      ],
+      "lhl_upper_bound_squared": [
+        5,
+        128
+      ],
+      "m": 5,
+      "mean": [
+        36,
+        5
+      ],
+      "n": 1,
+      "number_matrices": 3125,
+      "q": 5,
+      "variance": [
+        124,
+        25
+      ]
+    },
+    {
+      "average_tv": [
+        282048,
+        390625
+      ],
+      "lhl_upper_bound_squared": [
+        25,
+        32
+      ],
+      "m": 3,
+      "mean": [
+        32,
+        25
+      ],
+      "n": 2,
+      "number_matrices": 15625,
+      "q": 5,
+      "variance": [
+        168,
+        625
+      ]
+    }
+  ],
+  "pair_independence_cases": 425196,
+  "planted_hps_decryptions": 77552,
+  "run": 352,
+  "scope": "exact small-field algebra and moments; no SIS/LWE or QPT hardness established",
+  "status": "PASS"
+}

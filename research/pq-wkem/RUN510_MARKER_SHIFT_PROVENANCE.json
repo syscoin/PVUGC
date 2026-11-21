@@ -1,0 +1,24 @@
+{
+  "run": 510,
+  "date": "2026-10-14",
+  "repo": "syscoin/PVUGC",
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "638673dec73785e05ca3b95ac5806d2983976106",
+  "sources": {
+    "run509_blob": "44fe66f6265fd93b2e21ddd0f70b991b916948bc",
+    "run507_unreferenced_blob": "68a408db82ae13abb01b487b2b70d05153e8121b",
+    "run259_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  },
+  "checker_output": {
+    "run": 510,
+    "exact_oracle_fixtures": 254,
+    "exact_fourier_checks": 74896,
+    "rank_formula_checks": 49,
+    "assertions": 96789,
+    "status": "PASS; pure algebra, no concrete security proof"
+  },
+  "execution": "connected JavaScript V8; two identical executions",
+  "independent_local_python": "75030 exact finite assertions; local-only",
+  "claim": "QPT hidden-shift extraction from any source-independent displaced marker pair; no unauthorized-source bypass in guarded terminal",
+  "scope": "research only, classical-PPT terminal unavailable; no production changes"
+}

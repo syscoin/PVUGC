@@ -1,0 +1,22 @@
+{
+  "run": 567,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "f2cdd54649131a180de77c4b3e434ac6614cef2d",
+  "starting_tree": "1976e669ff761eaca55526ce3937f1417559fd25",
+  "dependencies": {
+    "GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "RUN566_AFFINE_HYPERPLANE_BARRIER.md": "7e21c5fbb9d7a872b91a9415da52d15e60f2efa7"
+  },
+  "checker": "node research/pq-wkem/run567_sis_folded_language_check.js",
+  "checker_executed_in": "connected V8 JS isolated evaluator; same check() source embedded in file",
+  "validation": {
+    "status": "PASS",
+    "assertions_passed": 88696,
+    "total_matrices_exhausted": 87453
+  },
+  "methodology": "Exact finite algebra checker. Proof is self-contained. No cryptographic implementation or security inference.",
+  "production_changed": false,
+  "pr_draft": true
+}

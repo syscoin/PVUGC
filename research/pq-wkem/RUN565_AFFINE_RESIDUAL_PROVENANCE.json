@@ -1,0 +1,25 @@
+{
+  "run": 565,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "starting_head": "c8696f2182ca28dc0ab5595f6b74eb323b497071",
+  "branch": "research/pq-wkem-validation-20260918",
+  "files": [
+    "research/pq-wkem/RUN565_AFFINE_RESIDUAL_SPAN_BARRIER.md",
+    "research/pq-wkem/run565_affine_residual_check.js",
+    "research/pq-wkem/run565_affine_residual_validation.json",
+    "research/pq-wkem/RUN565_AFFINE_RESIDUAL_PROVENANCE.json"
+  ],
+  "checker_execution": "node run565_affine_residual_check.js",
+  "checker_assertions": 127008,
+  "independent_execution_environment": "Node.js container",
+  "executed_result": "PASS",
+  "model": "symbolic plaintext field triples; no cryptographic security or QPT implementation",
+  "source_blobs": {
+    "run564": "fc6b3e6e17d24eeca9d53586a047fc63adaff1aa",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "clz": "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  },
+  "production_unchanged": true,
+  "not_a_complete_wkem": true
+}

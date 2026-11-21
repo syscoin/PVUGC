@@ -1,0 +1,32 @@
+{
+  "run": "R76-WITNESS-ANNIHILATOR-20261104",
+  "status": "NO_POSITIVE_WKEM_ADVANCE",
+  "executedLanguage": "JavaScript V8",
+  "assertions": 16655,
+  "rounded": {
+    "q": 32,
+    "p": 8,
+    "maskColumnsExamined": 512,
+    "compatibleColumns": 8,
+    "compatibleEqualsSourceImage": true,
+    "results": [
+      {
+        "mu": 0,
+        "badSuccessR1": 128,
+        "badSuccessR2": 1024,
+        "total": 1024
+      },
+      {
+        "mu": 1,
+        "badSuccessR1": 128,
+        "badSuccessR2": 1024,
+        "total": 1024
+      }
+    ]
+  },
+  "field": {
+    "q": 17,
+    "badMaskFirstWitnessSuccess": "1/17"
+  },
+  "scope": "Exact finite sources; no QPT, generic NP, security or key-recovery extraction claim"
+}

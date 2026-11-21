@@ -1,0 +1,34 @@
+{
+  "run": 393,
+  "status": "PASS",
+  "checks": 1334,
+  "fixtures": 108,
+  "three_input_state_dimensions": [
+    4,
+    9
+  ],
+  "zero_world_extractor_bound": "(pReal-pZero)_+^2 / (4q^2)",
+  "native_signature_implemented": false,
+  "real_WKEM": false,
+  "QPT_hardness": false,
+  "representative": [
+    {
+      "n": 6,
+      "m": 3,
+      "q": 3,
+      "pReal": 0.9981388254,
+      "pZero": 0.046875,
+      "pExtract": 0.046875,
+      "lower": 0.0251361907
+    },
+    {
+      "n": 8,
+      "m": 1,
+      "q": 6,
+      "pReal": 0.5276176773,
+      "pZero": 0.00390625,
+      "pExtract": 0.00390625,
+      "lower": 0.0019046782
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "run": 70,
+  "starting_head": "542199445749a3cae6605ac751bc24e50f8b5fa5",
+  "scope": "research/pq-wkem only",
+  "external_literature_or_web_search": false,
+  "production_code_changed": false,
+  "construction_attempts": [
+    "commutative multiplicative secret-factor telescope",
+    "noncommutative transparent matrix-unit telescope"
+  ],
+  "proved_results": [
+    "public exponent-module pseudorepresentation theorem for monomial tokens",
+    "all-exclusions signed false-instance key recovery",
+    "odd-cycle fractional false-instance key recovery without discrete log or negative token powers",
+    "public projective row/column label recovery for rank-one conjugated matrix units",
+    "alternating public scalar-gauge recovery of K on an explicit no-directed-path false instance"
+  ],
+  "not_claimed": [
+    "generic impossibility for all noncommutative encodings",
+    "LWE/SIS break",
+    "security from passing tests",
+    "completed generic-NP PQ witness KEM"
+  ],
+  "checker": {
+    "path": "research/pq-wkem/multiplicative_matrix_binder_run70_check.py",
+    "executed_local_sha256": "e82ba0076f5695aec940c4812b94131d5ff614fa276e9bf0020d33250186a93e",
+    "published_git_blob": "a4e540b695d499110d6e53d86d70e3ea5f68cbd9",
+    "published_byte_identity_with_executed_local": false,
+    "publication_note": "The connector-published checker removes unused helpers/comments relative to the executed local checker. Its complete public algorithms were read back, but the published bytes were not rerun locally; no remote/local byte-identity claim is made.",
+    "executions_of_local_checker": 2,
+    "byte_identical_local_outputs": true
+  },
+  "validation": {
+    "path": "research/pq-wkem/multiplicative-matrix-binder-run70-validation.json",
+    "sha256": "417be1788636405ab519fb6094cae6e8c313812312dda42eeb128337171d81a1",
+    "published_git_blob": "a0e6c3c46519971cf855035fb1f00712e88486c2",
+    "published_byte_identity_with_local": true
+  },
+  "proof": {
+    "path": "research/pq-wkem/MULTIPLICATIVE_MATRIX_BINDER_RUN70.md",
+    "published_git_blob": "e80486f2c37ff9a8500bde7b5eb92246492719c3"
+  },
+  "test_counts": {
+    "all_exclusions_false_trials": 300,
+    "all_exclusions_public_key_recoveries": 300,
+    "odd_cycle_source_witnesses": 0,
+    "odd_cycle_false_trials": 300,
+    "odd_cycle_public_key_recoveries": 300,
+    "matrix_unit_false_trials": 360,
+    "matrix_unit_false_directed_paths": 0,
+    "matrix_unit_false_public_key_recoveries": 360,
+    "matrix_unit_true_controls": 180,
+    "matrix_unit_true_key_recoveries": 180
+  },
+  "stopping_condition_met": false
+}

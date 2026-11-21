@@ -1,0 +1,16 @@
+{
+  "claim": "finite witness-lift and soundness of Tseitin grammar only",
+  "input_witness_lifts_checked": 12480,
+  "not_verified": [
+    "NP hardness of Syscoin challenge relation",
+    "WE security",
+    "local-mixing QPT security",
+    "malicious setup",
+    "native signature security"
+  ],
+  "rejected_complete_assignments": 44364,
+  "relation": "fixed 3CNF checker with claim-context binding",
+  "run": 692,
+  "satisfying_complete_assignments": 5556,
+  "toy_gate_circuits": 1560
+}

@@ -1,0 +1,23 @@
+{
+  "run": 387,
+  "date_utc": "2026-10-09",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "40d3e24e1724a35e1bae7d1a4c003d197d5e384c",
+  "latest_substantive_comment": 6067040320,
+  "scoped_exact_head_read_blobs": [
+    "c19d9d9cd515140e3ce62eac960cd548c0add622",
+    "c973d19d9967870b4ef4d74f4062ee510e5fcfdd"
+  ],
+  "checker_source_sha256": "2232bdb466c3c006d773948fae485c3b435ad7af54287ff51409879e321308b2",
+  "checker_captured_output_sha256": "1c81be897b9050f1b4db9caa8b71e5f4abc8e1185429702b4a09b51660bb63c1",
+  "syntax_pass": true,
+  "repeated_runs_byte_identical": true,
+  "assertions": 7139,
+  "scope": "QPT ciphertext-only FHE hybrid barrier with restricted simulatable true-witness and auxiliary distribution",
+  "is_real_fhe": false,
+  "is_actual_qpt_security_test": false,
+  "is_complete_wkem": false,
+  "local_extended_note": "FHE_ONLY_HYBRID_BARRIER_RUN387.md (local-only, distinct from published brief)"
+}

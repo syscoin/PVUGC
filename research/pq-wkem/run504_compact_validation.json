@@ -1,0 +1,8 @@
+{
+  "run": 504,
+  "scope": "public short-state release and native verifying oracle",
+  "grover_cases": 201,
+  "assertions": 403,
+  "max_absolute_error": 1.1191048088221578e-13,
+  "claim": "mathematical amplitude check only; not an actual quantum device or PQ WKEM"
+}

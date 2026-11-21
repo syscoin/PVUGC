@@ -1,0 +1,87 @@
+{
+  "assertions": 632,
+  "claims_checked": [
+    "zero padding makes Y independent of the last m-(N+1) coordinates of r",
+    "conditional structured support is at most m^(N+1)",
+    "joint exponent-space TV is at least 1-m^(N+1)/p^k",
+    "span-membership distinguisher has exact advantage 1-E_s[p^(rank(A_s)-k)]",
+    "if k>N+1 then span advantage is at least 1-p^(-(k-N-1))",
+    "paper parameter formula makes m^(N+1)/2^m exponentially small already for k=1"
+  ],
+  "fixture_overdetermined": {
+    "joint_tv": "112374/117649",
+    "k": 3,
+    "m_total": 4,
+    "max_structured_support": 16,
+    "n_eff": 2,
+    "p": 7,
+    "rank_hist": {
+      "0": 1,
+      "1": 132,
+      "2": 2268
+    },
+    "span_test_advantage": "711486/823543",
+    "support_lower_bound": "327/343"
+  },
+  "fixture_square": {
+    "joint_tv": "1776/2401",
+    "k": 2,
+    "m_total": 4,
+    "max_structured_support": 16,
+    "n_eff": 2,
+    "p": 7,
+    "rank_hist": {
+      "0": 49,
+      "1": 588,
+      "2": 1764
+    },
+    "span_test_advantage": "552/2401",
+    "support_lower_bound": "33/49"
+  },
+  "minimum_k1_gap_bits_N2_to_64": 15.279328,
+  "paper_parameter_rows": [
+    {
+      "N": 2,
+      "R": 1,
+      "k1_gap_bits": 15.279328,
+      "m": 30
+    },
+    {
+      "N": 3,
+      "R": 1,
+      "k1_gap_bits": 32.77058,
+      "m": 56
+    },
+    {
+      "N": 4,
+      "R": 2,
+      "k1_gap_bits": 465.028233,
+      "m": 510
+    },
+    {
+      "N": 8,
+      "R": 3,
+      "k1_gap_bits": 8702.040934,
+      "m": 8820
+    },
+    {
+      "N": 16,
+      "R": 4,
+      "k1_gap_bits": 153217.124457,
+      "m": 153510
+    },
+    {
+      "N": 32,
+      "R": 5,
+      "k1_gap_bits": 2668731.512584,
+      "m": 2669436
+    },
+    {
+      "N": 64,
+      "R": 6,
+      "k1_gap_bits": 46184485.037818,
+      "m": 46186140
+    }
+  ],
+  "status": "PASS"
+}

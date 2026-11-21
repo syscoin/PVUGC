@@ -1,0 +1,9 @@
+{
+  "builder_hits": 10,
+  "classical_query_trace_extractions": 10,
+  "first_bit_accepted": 128,
+  "hard_true_fixtures": 64,
+  "leaf_rows": 128,
+  "model": "SHA256 toy, not QROM/Bitcoin/security",
+  "sound_prefix_rows": 1
+}

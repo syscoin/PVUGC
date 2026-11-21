@@ -1,0 +1,138 @@
+{
+  "candidate": "public affine self-indexed dense local-view challenge",
+  "main_fixture": {
+    "adaptive_full_rank_rounds": 128,
+    "adaptive_rounds_solved": 128,
+    "blocks_B": 256,
+    "complete_representation_coordinates": 65288,
+    "first_prefix_with_no_single_common_nullspace_solution": 31,
+    "fixed_canonical_representation_passes": 1,
+    "ideal_round_shares_recovered": 128,
+    "ideal_xor_key_recovered": true,
+    "integral_nullity_D": 246,
+    "k": 8,
+    "malformed_block_coordinates": 255,
+    "max_malformed_block_abs_coefficient": 12,
+    "max_malformed_block_l1": 285,
+    "max_malformed_block_norm2": 541,
+    "max_particular_solution_hamming_weight": 7,
+    "representation_block_coordinates": 65280,
+    "rounds": 128,
+    "shared_marginals": 8
+  },
+  "probabilities": {
+    "R_round_union_failure_upper_bound": 2.8864977063760146e-70,
+    "R_round_union_failure_upper_bound_log2": -231.00564656314114,
+    "exact_one_round_full_rank_probability_fraction": "99584463529091154738381967794776278292960348088235580973699255585299671099668013567085823508293791205548189322930150585463721718531751411100225859743420286804723783174475058217776896630023821457622521501813973940692572623436054293273834793172042804739636631597772439771736302291932103526509403522997046143676772430345081748888702429011923643647017493076513740986538476099099775250681258571959587027634982013895652044842282633925175312064831082300099858181852934689158042753611063824107696372025719085628933266799587939982081366005981095133508206956753449461674974031432353354428186625/99584463529091154738381967794776278292960348088235580973699255585299671324238580416622926137467711013438566011647274410973414059197657219621614296479217043454807205571127880217627957548168254948488363987854186808163655754115573991806888350491038618450289652895906360529618685938794367092041924014916090443283604960616038023759454236867519736926940614619674539267831838074246729567772889745378973074087589240594057761925812239394571088110669542698157119387221147058723636789544987647053513356660273284390473233481972880766799881991004120368560291971691601407356005810237282632415051776",
+    "exact_one_round_rank_failure_probability": 2.2550763331062614e-72,
+    "exact_one_round_rank_failure_probability_fraction": "224570566849537102629173919807890376688717123825509692340665905808521388436735796756650083422396652821999851060918144433490865842486040212867471083130679519698533053557318995813710653021298133920757882383646862263565532520491919044299606832530270956274870751807855596093279923121543160798281293361975146954317091631173419386046452607226698405717083529605469395776045838460398057261205368212369565594035933923822945816984634554198761539966682384940784718515985023025235052085014938151945681031778804929277986865151/99584463529091154738381967794776278292960348088235580973699255585299671324238580416622926137467711013438566011647274410973414059197657219621614296479217043454807205571127880217627957548168254948488363987854186808163655754115573991806888350491038618450289652895906360529618685938794367092041924014916090443283604960616038023759454236867519736926940614619674539267831838074246729567772889745378973074087589240594057761925812239394571088110669542698157119387221147058723636789544987647053513356660273284390473233481972880766799881991004120368560291971691601407356005810237282632415051776",
+    "fixed_representation_all_rounds_pass_log2": -1024.0,
+    "fixed_representation_one_round_pass_probability": 0.00390625,
+    "one_round_rank_failure_log2": -238.00564656314114
+  },
+  "run": 60,
+  "scope": {
+    "not_claimed": [
+      "security or insecurity of every deterministic hash family",
+      "a random-oracle theorem",
+      "an implementation of a witness-selective local release gate",
+      "a generic impossibility theorem for nonlinear/computational common-witness binders",
+      "LWE/SIS security or an arbitrary-QPT extraction reduction"
+    ],
+    "proved_by_algebra_not_tests": [
+      "malformed-block integral nullity D=2^k-k-2 via an explicit unimodular pivot minor",
+      "mod-2 reductions of the explicit integral kernel basis span a D-dimensional selector-grinding space",
+      "a full-row-rank restricted affine selector can be solved for an exact false representation whose only malformed block is the omitted block",
+      "for uniform selector restriction, full-rank probability is product_{i=0}^{k-1}(1-2^(i-D))",
+      "ordinary per-round key sharing does not force the same representation across rounds"
+    ],
+    "tests_validate": [
+      "explicit integral kernel identities and parity rank",
+      "128 adaptive k=8 selector solves and exact malformed-block equations",
+      "absence of a single common solution after a finite prefix in this deterministic fixture",
+      "finite rank/solvability diagnostics for k=3..6",
+      "idealized per-round share reconstruction after adaptive switching"
+    ]
+  },
+  "seed": 1623261166,
+  "smaller_rank_trials": {
+    "3": {
+      "exact_full_rank_probability": 0.328125,
+      "nullity_D": 3,
+      "observed_full_rank": 653,
+      "observed_solvable": 1300,
+      "trials": 2000
+    },
+    "4": {
+      "exact_full_rank_probability": 0.9854182080016471,
+      "nullity_D": 10,
+      "observed_full_rank": 1956,
+      "observed_solvable": 1978,
+      "trials": 2000
+    },
+    "5": {
+      "exact_full_rank_probability": 0.9999990761282813,
+      "nullity_D": 25,
+      "observed_full_rank": 2000,
+      "observed_solvable": 2000,
+      "trials": 2000
+    },
+    "6": {
+      "exact_full_rank_probability": 0.9999999999999991,
+      "nullity_D": 56,
+      "observed_full_rank": 2000,
+      "observed_solvable": 2000,
+      "trials": 2000
+    }
+  },
+  "structural_checks": {
+    "3": {
+      "blocks_B": 8,
+      "canonical_l1": 7,
+      "canonical_norm2": 7,
+      "integral_nullity_D": 3,
+      "malformed_block_coordinates": 7,
+      "parity_nullspace_rank": 3
+    },
+    "4": {
+      "blocks_B": 16,
+      "canonical_l1": 15,
+      "canonical_norm2": 15,
+      "integral_nullity_D": 10,
+      "malformed_block_coordinates": 15,
+      "parity_nullspace_rank": 10
+    },
+    "5": {
+      "blocks_B": 32,
+      "canonical_l1": 31,
+      "canonical_norm2": 31,
+      "integral_nullity_D": 25,
+      "malformed_block_coordinates": 31,
+      "parity_nullspace_rank": 25
+    },
+    "6": {
+      "blocks_B": 64,
+      "canonical_l1": 63,
+      "canonical_norm2": 63,
+      "integral_nullity_D": 56,
+      "malformed_block_coordinates": 63,
+      "parity_nullspace_rank": 56
+    },
+    "7": {
+      "blocks_B": 128,
+      "canonical_l1": 127,
+      "canonical_norm2": 127,
+      "integral_nullity_D": 119,
+      "malformed_block_coordinates": 127,
+      "parity_nullspace_rank": 119
+    },
+    "8": {
+      "blocks_B": 256,
+      "canonical_l1": 255,
+      "canonical_norm2": 255,
+      "integral_nullity_D": 246,
+      "malformed_block_coordinates": 255,
+      "parity_nullspace_rank": 246
+    }
+  }
+}

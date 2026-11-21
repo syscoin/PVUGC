@@ -1,0 +1,43 @@
+# R33 BRANCHWISE-BILINEAR-OR — restricted OR composition, NOT generic PQ WKEM
+
+Provenance: offline, 2026-11-03. Continued R32 bilinear-ideal SOURCE on syscoin/PVUGC#1, research/pq-wkem-validation-20260918, exact prior head edb1cbc85123886f465eaa6c7193fdcbf463caca; latest relevant prior comment 6597387946. The exact R32 RESEARCH.md and CHECKER.js were read at that head. This note's standalone CHECKER.js and OUTPUT.json are the actual executed code/result of this run, not a quantum security experiment.
+
+## Explicit classical release (source-dependent data instantiated, no SourceOpen)
+
+An outer ORIGINAL OR relation is R_OR(x,(i,w_i))=R_i(x_i,w_i), for branch index i. Every x_i and x bind the same outer relation identity, UTXO/claim, branch, anchor/window, context, intended native verification key and target challenge path. A faithful classical compiler maps each ORIGINAL R_i to a branch 3CNF F_i with genuine clause failure polynomials f_{ia} in the Boolean quotient A_i=F_q[z]/(z_j^2-z_j). The preauthorization setup precommits one native verification key vk and corresponding signing capability K. Its malicious N-of-N security and the conditional no-EC-key-path native PQ Bitcoin endpoint are still *not* established.
+
+Fix odd prime q, Delta=(q-1)/2, m_i clause polynomials, and M_i=sum_{h=0}^{min(6,n_i)} binom(n_i,h). Honest classical Build_OR(x,vk,K) processes every branch i and capability bit mu_b of *the same K*: independently draw t_i pairs r_{ibj},s_{ibj} uniform from F_q^{m_i} and independent bounded coefficient noise e_{ib}. Form U_{ibj}=sum_a r_{ibja} f_{ia} and V_{ibj}=sum_a s_{ibja} f_{ia}; publish C_{ib}=sum_j U_{ibj}V_{ibj}+Delta*mu_b*1+e_{ib} in A_i, alongside all relations, C_i, vk, public context, and *deterministic public* CK/derivation data. Distinct base scopes use independent mask/noise coins. Publicly derived related capsules must be deterministic transformations of the base view. This is a real source-dependent compiler; it does not invoke a SourceOpen oracle or an LWE simulator.
+
+Lift_OR(x,(i,w_i),C) checks ORIGINAL branch evidence off chain and faithfully constructs its Boolean assignment. As every f_{ia}(w_i)=0, C_{ib}(w_i)=Delta*mu_b+e_{ib}(w_i), so nearest-center decoding recovers the same K for *every* genuine ORIGINAL branch witness if M_i*eta<(q-1)/4. Distinct valid witnesses may have unrelated states; no canonical witness/common preimage is required. The only Bitcoin action would be a native signature under the conditional future endpoint, not NP verification. No online committee is added.
+
+## Proved joint-QPT restricted FALSE branch-stripping lemma
+
+Let W_i=span_Fq{f_{ia} f_{ic}}. R32 independently proved, by a finite additive-character/Fourier argument, that if a FALSE branch satisfies 1 in W_i then replacing all its ell-bit same-K ciphertexts by honest ZERO-bit ciphertexts changes the branch distribution by at most
+
+delta_i = ell*S*q^(M_i/2-t_i),
+
+for S independent base instances; independent coin sampling and genuine uniform field elements are essential. This premise is *not* proved for arbitrary FALSE x.
+
+For F a set of such certified-class FALSE branches and T the remaining branches, sample the real T capsules and replace each F capsule independently by a publicly sampled zero-plaintext capsule. Keep the *real* native vk, x, context, other legitimate public metadata and any other public/quantum auxiliary system correlated with (x,vk,K) but independent of fresh SOURCE mask/noise coins conditional on (x,vk,K). Recompute CK and related capsules only by known public deterministic operations on the resulting public view. Never simulate target private openings, leaked mask coins, secret-correlated opaque CK, or malicious builder output.
+
+For any arbitrary QPT adversary A, including coherent attacks on the entire combined transcript, the event probability change is at most sum_{i in F} delta_i. Proof: condition on K, vk, x, correlated quantum auxiliary data and all non-F source coins. R32 gives a statistical replacement bound uniform over the K bits. Sequential replacement adds the individual bounds; classical public postprocessing and quantum CPTP operations cannot increase trace distance. This is straight-line, no quantum rewinding, no random oracle, no adversary-supplied representation.
+
+**One hard TRUE branch G:** given the *actual* single-G challenge capsule/vk/metadata but not K, a reduction samples zero capsules for all the F branches, builds the same allowed public CK and related fields, runs A, and forwards the *actual recovered K or accepted native forgery*. Thus a multi-branch attack becomes a single-G attack with advantage loss at most sum delta_i, with no representation/extractor oracle. This materially reduces the multi-branch security obligation; it does NOT provide the missing further step from single-G unauthorized recovery or native forgery to an actual ORIGINAL witness or independently justified QPT break. Two or more TRUE branches cannot be stripped this way. For all FALSE branches, a separate native QPT-EUF-CMA reduction using the native challenger vk can sample all-zero branches and forward a fresh accepted signature, within the same restricted public metadata/signature-query model.
+
+Resource: branchwise capsule size ell*sum_i M_i symbols, rather than encoding a single selector-gadget 4CNF polynomial of degree up to eight with M_joint symbols. All honest algorithms are classical PPT for fixed degree but the O(n^6) component is still enormous; no practical 128-bit-security parameters or deployment are claimed.
+
+## Independent Boolean-gadget identity (algebraic, not added assumption)
+
+Let F,G each have a product-span unit identity 1=sum a_{ij} f_i f_j and 1=sum b_{kl} h_k h_l. With Boolean selector t and s=1-t, *authentic guarded 4CNF* failure polynomials are g_i=s f_i and g'_j=t h_j. Then 1=s+t=sum a_{ij}g_i g_j+sum b_{kl}g'_k g'_l in the Boolean quotient, because s^2=s, t^2=t. If only F is FALSE certified, s remains in the product span of the guarded OR; this blocks the specific false-selector-only pseudo-evaluation of that span, not every hard-TRUE attack. Translating guarded 4CNF back into 3CNF requires a separately proved aux/multiplier degree lift; Build_OR avoids that lift.
+
+The R32 four-variable ten-clause FALSE F supplies its exact published eleven-term integer product certificate. Let G have single-variable failure polynomials h0=y and h1=1-y, with h0^2+h1^2=1. The resulting two-branch guarded FALSE relation has a 13-term exact integer certificate on all 64 Boolean assignments. A TRUE alternative H with only failure h=y has sixteen valid assignments, all in its own branch; the exact false-branch selector certificate survives.
+
+## Checked examples and security limitations
+
+This run's standalone JavaScript CHECKER.js executes exact Boolean certificate identities, genuine TRUE branch bit recovery, finite F3 convolution and restricted joint-FALSE bound; OUTPUT.json is its captured result. An independently implemented Python stdlib checker executed twice with 8,554 assertions per run and byte-identical outputs, including exact rational 3-adic convolution values. It is preserved in a separate local archive. Neither checker establishes QPT hardness.
+
+Example q=101, ell=256, S=2, M_F=16, t_F=30, M_G=2,t_G=23 gives a restricted all-FALSE two-branch bound approximately 2^-136.48065. This is NOT a parameter security certification. The toy branchwise source has 18 field symbols/bit versus 64 field symbols/bit in a naive full six-variable degree<=8 quotient.
+
+## Next exact missing construction/proof
+
+Construct one classical-PPT generic-NP SINGLE hard-TRUE SOURCE whose full public (x,capsule,vk,CK,context,aux,related/selectively opened views) QPT challenge distribution can be simulated without the secret while all distinct ORIGINAL witnesses recover the SAME precommitted K, and prove that arbitrary unauthorized recovered-K/accepted-native-forgery success => an actual ORIGINAL witness or an independently justified independent QPT break, *without the adversary volunteering a decoder, representation, or witness*. R32's bilinear SOURCE does NOT satisfy that reduction; R31 showed why ordinary affine LWE embedding fails. Arbitrary adversarial FALSE statements without 1 in W, multiple TRUE branches, malicious one-honest N-of-N preauthorization/abort, target private openings, source CK correlations, DA before funding and the conditional PQ native Bitcoin endpoint remain open. No claim of a complete WKEM, a practical 128-bit scheme, production readiness or deployment.

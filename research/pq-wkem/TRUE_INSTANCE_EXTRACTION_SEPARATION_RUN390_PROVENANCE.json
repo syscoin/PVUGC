@@ -1,0 +1,22 @@
+{
+  "run": 390,
+  "date": "2026-10-09",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "d5b4b1479eb3c199becddb7e56b99755b3b1fec1",
+  "exact_checker_local_sha256": "89a9632dbdc8bb4718f88865b896b7cbac1ae6c4e33c8ac6e36af428fe9d7d86",
+  "exact_validation_local_sha256": "9028ee968d2c3b1dff6f4424908640524e3e24d1d4b80f4b942f82268f085edc",
+  "validation": {
+    "status": "PASS",
+    "assertions": 2648,
+    "permutations": 40320
+  },
+  "source_blobs": {
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run387": "ee41c9ae3d794f62fd5208e4b59fc1a1d3730312",
+    "run388": "0a01c1a5d7a12af4ab8cab9c7edae3fa05be88ce",
+    "CLZ": "c19d9dcd515140e3ce62eac960cd548c0add622"
+  },
+  "note": "Published brief is shorter than the separately preserved local derivation. Finite checker does not substantiate QPT OWP or signature security. No production changes."
+}

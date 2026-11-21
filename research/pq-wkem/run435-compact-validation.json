@@ -1,0 +1,139 @@
+{
+  "run": 435,
+  "model": "aligned three-capsule complementary faults",
+  "assertions": 1047,
+  "fixtures": [
+    {
+      "n": 4,
+      "period": 5,
+      "copies": 3,
+      "views": [
+        {
+          "j": 0,
+          "modified": 6,
+          "wrongEquationNumerator": 32,
+          "denominator": 256
+        },
+        {
+          "j": 1,
+          "modified": 5,
+          "wrongEquationNumerator": 48,
+          "denominator": 256
+        },
+        {
+          "j": 2,
+          "modified": 5,
+          "wrongEquationNumerator": 48,
+          "denominator": 256
+        }
+      ],
+      "exactRecovery": true
+    },
+    {
+      "n": 5,
+      "period": 9,
+      "copies": 3,
+      "views": [
+        {
+          "j": 0,
+          "modified": 11,
+          "wrongEquationNumerator": 160,
+          "denominator": 1024
+        },
+        {
+          "j": 1,
+          "modified": 11,
+          "wrongEquationNumerator": 160,
+          "denominator": 1024
+        },
+        {
+          "j": 2,
+          "modified": 10,
+          "wrongEquationNumerator": 192,
+          "denominator": 1024
+        }
+      ],
+      "exactRecovery": true
+    },
+    {
+      "n": 6,
+      "period": 17,
+      "copies": 3,
+      "views": [
+        {
+          "j": 0,
+          "modified": 22,
+          "wrongEquationNumerator": 640,
+          "denominator": 4096
+        },
+        {
+          "j": 1,
+          "modified": 21,
+          "wrongEquationNumerator": 704,
+          "denominator": 4096
+        },
+        {
+          "j": 2,
+          "modified": 21,
+          "wrongEquationNumerator": 704,
+          "denominator": 4096
+        }
+      ],
+      "exactRecovery": true
+    },
+    {
+      "n": 7,
+      "period": 33,
+      "copies": 3,
+      "views": [
+        {
+          "j": 0,
+          "modified": 43,
+          "wrongEquationNumerator": 2688,
+          "denominator": 16384
+        },
+        {
+          "j": 1,
+          "modified": 43,
+          "wrongEquationNumerator": 2688,
+          "denominator": 16384
+        },
+        {
+          "j": 2,
+          "modified": 42,
+          "wrongEquationNumerator": 2816,
+          "denominator": 16384
+        }
+      ],
+      "exactRecovery": true
+    },
+    {
+      "n": 8,
+      "period": 65,
+      "copies": 3,
+      "views": [
+        {
+          "j": 0,
+          "modified": 86,
+          "wrongEquationNumerator": 10752,
+          "denominator": 65536
+        },
+        {
+          "j": 1,
+          "modified": 85,
+          "wrongEquationNumerator": 11008,
+          "denominator": 65536
+        },
+        {
+          "j": 2,
+          "modified": 85,
+          "wrongEquationNumerator": 11008,
+          "denominator": 65536
+        }
+      ],
+      "exactRecovery": true
+    }
+  ],
+  "positiveQPTSecurity": false,
+  "practicalWKEM": false
+}

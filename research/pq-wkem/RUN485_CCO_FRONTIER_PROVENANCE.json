@@ -1,0 +1,19 @@
+{
+  "run": 485,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "72291a21abafb29010fb1fd47729702ae21c96a7",
+  "publication_scope": "new compute-and-compare public-target falsifier",
+  "artifacts": [
+    "RUN485_CCO_FRONTIER.md",
+    "run485_cco_frontier_check.js",
+    "run485_cco_frontier_validation.json",
+    "RUN485_CCO_FRONTIER_PROVENANCE.json"
+  ],
+  "checker_result": "576 assertions; 48 fixtures",
+  "independent_local_checker": "3520 assertions; 64 contexts; native Ed25519 false-source diagnostic",
+  "literature": "Wichs and Zirdelis FOCS 2017 pp. 601, 607",
+  "security_scope": "one-query identity; no LWE/CCO/PQ proof",
+  "executed_tool": "Node.js v22.16.0; compact source equivalent to locally executed run485_compact_check.js"
+}

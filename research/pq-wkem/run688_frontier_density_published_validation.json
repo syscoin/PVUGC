@@ -1,0 +1,1 @@
+{"assertions": 63, "cases": 15, "colliding_witnesses": "40->4", "cryptographic_claim": false, "minimum_success": 0.9453125, "query_exponents": {"b256_M2^32": 112, "b288_M2^32": 128}, "randomized_density": "21/512", "run": 688}

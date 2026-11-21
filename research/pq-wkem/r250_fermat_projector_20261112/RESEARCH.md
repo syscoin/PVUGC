@@ -1,0 +1,39 @@
+# R250 — finite-field source projector, extension-field recovery, and normal-form exposure (NONQUALIFYING)
+
+**Not a cryptographic advance.** An exact base-field satisfaction gate is built and its same-output/falsity arithmetic checked, but the full public representation leaks the secret. There is NO classical-PPT ORIGINAL AuxPoW-conditioned Build/Open, no QPT extraction/indistinguishability theorem, no real SHA256d/AuxPoW source compiler, and no native PQ signing implementation. This is a negative research checkpoint, not a release recommendation.
+
+## Continuity and scope
+
+PVUGC PR #1, research/pq-wkem-validation-20260918. Observed starting head 4e75222bd4af868ebc0efb1422a1d21476244f49. Read R249 at research/pq-wkem/r249_public_source_linear_20261112/RESEARCH.md, blob d616a5cc0df910e07a6e8eab2b8f6c88d18fd06b. Queried PR issue comments since the R225 comment time; none returned. Core #609 was NOT reread or retested here; its contextual post-PQ modern chain ID and sole exact 41-byte tag are inherited source constraints, not deployment evidence.
+
+Original relation: ONE initiating notary, ANYONE with original qualified evidence challenging, N-of-N preauthorization separately. Three OR grounds: greater comparable Bitcoin work; finite authenticated burn/withdrawal defect; qualified authenticated Syscoin claim-prefix inconsistency or separately permitted tag fault. Context binds exact UTXO/claim, BTC source windows and anchor, source slot, maturity/fork depth, withdrawal burn/amount/recipient, cancel native message/VK, deadline/reset, and capsule ID. The missing release algorithm must extract the SAME safe native capability for every original qualified witness without fake PoW, invented labels, privileged signers or post-hoc checks. R225's slot-global versus activation-bound native cancel message remains an open endpoint issue.
+
+## FP250: polynomial-time finite-field satisfaction gate
+
+Work over F_q, q=p^k, with constraints c_j(z)=0, including Boolean constraints z_i(z_i-1)=0. In principle these include ALL original SHA256d/AuxPoW, ancestry, Bitcoin anchoring, burn and relevance logic; this run does not implement that exact compiler. Define I_q(c)=1-c^(q-1) and V_q(z)=product_j I_q(c_j(z)). Trial scalar Build samples rho uniform and exposes a program for C(z)=rho+(sigma-rho)*V_q(z). Trial Open evaluates C(w) for the source input w. Since a^(q-1)=0 for a=0 and 1 otherwise over F_q, V_q(z) is 1 exactly on satisfying field inputs and 0 elsewhere. Each valid Boolean witness therefore yields the identical sigma. For a FALSE source statement, the *restricted base-field evaluation function* is constant rho, independent of sigma. Repeated squaring computes all gates in polynomial arithmetic-circuit size O(m log q).
+
+**Full public simulation FAILS:** If the literal arithmetic circuit is public, its constants include rho and sigma-rho, so sigma is recoverable immediately. Even a hypothetical representation exposing only liftable arithmetic evaluation (with hidden literal scalar decomposition) has the following extension-field failure. Functional FALSE hiding of an oracle on F_q is neither actual public-circuit hiding nor a cryptographic assumption providing the required release.
+
+## Explicit extension-field failure
+
+FALSE formula z=0 AND z=1 over F_5 gives V(z)=(1-z^4)(1-(z-1)^4). V(z)=0 for all 5 base-field inputs. Yet in F_25=F_5[t]/(t^2-2), alpha=t yields V(alpha)=3+4t. Set rho=2 and sigma=4: C(alpha)=3+3t, and the unauthorized evaluator computes sigma=rho+(C(alpha)-rho)/V(alpha)=4. This is a classical raw-program attack, hence also within QPT. This demonstrates the algebraic lift only for public arithmetic operations or an extendible evaluation interface; it does not claim to break a separately implemented opaque base-field-only cryptographic evaluator.
+
+General model-specific lemma: no nonzero finite polynomial P over F_q can have P(0)=1 and P(a)=0 for every nonzero a in the algebraic closure. It would have infinitely many roots and be the zero polynomial. This does not rule out hash-based witness encryption or type-protected cryptographic encodings.
+
+## Two concrete repairs and why they fail here
+
+(1) Honest input parsing permits only canonical F_q elements: necessary but ineffective against source-visible arithmetic, because the adversary executes a lift outside honest Open. A genuinely opaque, non-liftable program would be an unsupplied independent security construction.
+
+(2) Reduce the polynomial modulo z_i^q-z_i and publish its canonical base-field normal form. The FALSE V above has eight nonzero formal terms but reduces to zero mod z^5-z; this closes that particular extension evaluation when only the normal form is exposed. Yet for a hard-TRUE relation with exactly one satisfying point a in F_q^n, its exact normal-form indicator is delta_a(z)=product_i (1-(z_i-a_i)^(q-1)). The coefficient at product_i z_i^(q-1) is (-1)^n regardless of a. Thus a public normal form for rho+(sigma-rho)*delta_a has that top coefficient equal to (-1)^n(sigma-rho). A known invalid input gives rho, then sigma is publicly extracted WITHOUT finding a. The checker verifies this with (a1,a2)=(2,3), q=5, rho=2, sigma=4: top coefficient 2, reconstructed sigma 4. Unique qualifying original witnesses are not proved to occur, but any universal security claim needs to address such instances if they are within the accepted input distribution. Explicit normal forms across n variables may need q^n coefficients. No lower bound for all succinct cryptographic encodings follows.
+
+## Actually executed evidence and limits
+
+Local expanded checker checker_full.py: all 5 base-field FALSE evaluations, explicit F25 premature sigma extraction, 25 base-field evaluations for the two-variable unique-point instance, 340 symbolic unique-point sign checks, and formal eight-term/nonzero versus reduced zero representation. checker_full.py SHA256 cd8e9fd25f562b27d9cf1642fcd2d19021ecf328e9b2a323bea0042aec23a1a2; output_full.json SHA256 45315856c2a313c35f8b079b59860ffc843b19adabb8357d8f51759a92ab34fd. A separate minimum checker (included here) ran twice with exactly matching JSON bytes: checker_min.py SHA256 ee6cc35d680dff8fd80eae03da572abb54c171b8f66d3de7c1da4aaf003fcee2 and output_min.json SHA256 dd2b006f9abe1a6efc01de7c1fcbb1b42b599f8174f6744128531f2f780e9799. Local genuine pre-test checkpoints: CHECKPOINT_01.md SHA256 91a30f055fe5a195504615158643d44afe770c22bc58e7b8ef35cdc6f07e7e80, CHECKPOINT_02.md SHA256 93aa9e35da243633121fe31ebe5ba7483364cc6b62e0396069d1780486d75f65. Expanded checker and checkpoints are local-only, not silently represented as published.
+
+None of these data demonstrate real BTC/SYS consensus checks, source-relative admissibility, deployed PQ signatures, adversarial quantum security, malicious N-of-N setup or multi-capsule composition. The sole positive arithmetic result—exact F_q Boolean truth indicator—does not materially instantiate cryptographic original-source release.
+
+## Exact missing step and next useful direction
+
+Find a classical-PPT, **full-public** hash-only source-conditioned Build_inc(x_W,sigma_cancel) and Open_inc(C,w) which returns the SAME frozen claim/path-scoped safe cancellation credential for EVERY genuinely authenticated ORIGINAL challenge. A QPT early-key recovery or native forgery must yield an ACTUAL original challenge certificate or independently justified PQ hash/native break, with all public checking-key, auxiliary, sibling and malicious setup correlations, without supplied representations, private issuance or quantum rewinding. FP250 exhibits no such algorithm. Further iterations should look for a genuinely non-liftable SHA/AuxPoW source-to-secret label-delivery mechanism, and test its raw evaluator before any packing or performance optimization. Do not treat an ideal field-only evaluator as the missing release primitive.
+
+No ordinary PR progress comment or user notification warranted.

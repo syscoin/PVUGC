@@ -1,0 +1,38 @@
+{
+  "checks": [
+    {
+      "domain_bits": 8,
+      "exact_hit_probability": "127/5440",
+      "hidden_points": 2,
+      "hit_decimal": 0.023345588,
+      "union_bound": "3/128",
+      "witness_queries": 3
+    },
+    {
+      "domain_bits": 10,
+      "exact_hit_probability": "100623629/3253216384",
+      "hidden_points": 8,
+      "hit_decimal": 0.030930506,
+      "union_bound": "1/32",
+      "witness_queries": 4
+    },
+    {
+      "domain_bits": 12,
+      "exact_hit_probability": "434559267/55766437376",
+      "hidden_points": 8,
+      "hit_decimal": 0.007792488,
+      "union_bound": "1/128",
+      "witness_queries": 4
+    },
+    {
+      "domain_bits": 14,
+      "exact_hit_probability": "388943571353212284147469/49944553232315338989577216",
+      "hidden_points": 16,
+      "hit_decimal": 0.007787507,
+      "union_bound": "1/128",
+      "witness_queries": 8
+    }
+  ],
+  "model": "classical independent hidden-point lookup only; not universal hash-only WE",
+  "small_domain_census_pass": true
+}

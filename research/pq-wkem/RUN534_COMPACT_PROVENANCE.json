@@ -1,0 +1,19 @@
+{
+  "run": 534,
+  "type": "research-checkpoint",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "e93b727429f02adc6110c2ac89794629b9f1cb94",
+  "predecessor_blob": "58b1ae695eb40e0b382aed12c49f043efc7fc933",
+  "checker": "run534_obdd_compact_check.js",
+  "checker_executed": "Node.js local and independently in JS tool environment",
+  "exact_validation": "run534_obdd_compact_validation.json",
+  "validation_summary": {
+    "symbolic_cases": 72,
+    "exact_key_recoveries": 72,
+    "junk_nonrecoveries": 80
+  },
+  "crypto_status": "NO PRACTICAL QPT WKEM",
+  "scope": "transparent whole-terminal output OBDDs with fixed public failure baseline; no per-chip EOC break"
+}

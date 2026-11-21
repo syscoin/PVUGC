@@ -1,0 +1,26 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_command": "node run493_compact_check.js",
+  "checks": 87870,
+  "date": "2026-10-13",
+  "files": {
+    "RUN493_COMPACT_SIMON_QUANTUM.md": {
+      "bytes": 4360,
+      "sha256": "2f537139a36fb490bbb52ff65746485ad4f4900ef12a593b97f70359d27d7fcd"
+    },
+    "run493_compact_check.js": {
+      "bytes": 1012,
+      "sha256": "69b1f3ce908c9afcf5975d9678c0c43cfa345bf118699ddbbee446ac27d0c8b0"
+    },
+    "run493_compact_validation.json": {
+      "bytes": 791,
+      "sha256": "a3bc4125ca1d15367d814b2256efb3409ff2ff374bbf410d64ddada16684d848"
+    }
+  },
+  "pr": 1,
+  "repeat_execution_byte_identical": true,
+  "repo": "syscoin/PVUGC",
+  "run": 493,
+  "scope": "exact finite Simon interference; no crypto",
+  "starting_sha": "4696a47c6563d432114d6e2f79e204d7325fae45"
+}

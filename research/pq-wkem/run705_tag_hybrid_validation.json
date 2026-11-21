@@ -1,0 +1,1 @@
+{"assertions": 203, "exhaustive_reprogramming_law": true, "false_capsules_full_matrix_couplings": 3, "finite_hybrid_domain": 4, "finite_hybrid_range": 4, "oracle_functions": 256, "public_key_tag_correlation_tested": true, "quantum_O2H_not_empirically_proved": true, "run": 705, "unit_certificate_degree": 1}

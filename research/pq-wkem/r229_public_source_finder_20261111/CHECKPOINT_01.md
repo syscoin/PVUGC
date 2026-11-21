@@ -1,0 +1,11 @@
+# R229 intermediate hypothesis — source-record enumerability and ORIGINAL extraction
+
+Status at checkpoint: hypothesis and plan only; NOT an instantiated hash-only release mechanism or a solved QPT security claim.
+
+Repo continuity: syscoin/PVUGC PR #1 open/draft, branch research/pq-wkem-validation-20260918, observed initial HEAD a3d732c04f6b1b659f67a8f4b96b51c630b429e3. Read current R228 RESEARCH.md blob c31c2cbbb426a832c14b83936264730e3a3d9c93, R226 OR-SEAL blob 685f4371f781cf45d8c31f57d44d1b831d85a8c3, and R227 source-label gate blob 3bef7943c233ff04ae020ebabfa1f2d7272ab308. Latest PR comments since 2026-11-11T00:00Z contained the known R225 correction. No outside web, literature or unrelated repository.
+
+Hypothesis: For the *published and finitely observable* subset of ORIGINAL BTC-work / burn / AuxPoW-tag challenge evidence, an efficient deterministic witness finder could remove the need to extract an adversary's private QPT state or oracle queries in the hard-TRUE part. This does not construct or replace Build/Open. Source qualification and DA coverage are the critical, potentially unfulfilled premises.
+
+Formal candidate: Let S(x,t) be a fully public polynomial-size time-window source snapshot, with a deterministic polynomial-time source-independent candidate enumerator E(x,S). Each enumerated w is checked by the ORIGINAL R_cancel(x,w), including all authenticated branches, before output. If every *eligible* true witness has a representation among E(x,S), Find(x,S) outputs an actual ORIGINAL witness when the instance is true. The resulting extraction is straight-line and works regardless of QPT adversary representation. However privately held authenticated source histories absent from S are NOT covered; requiring public inclusion changes the relation and must be explicit.
+
+Experiment: implement a finite representative three-branch source-record scanner with an authenticated-source verifier boundary, document a private-fork counterexample, attempt a publication/DA admission repair that does not add an online release authority, and determine whether DA coverage is independent of desired key release. Do not claim a hash-only WKEM, source compiler or QPT security theorem from this intermediate hypothesis.

@@ -1,0 +1,14 @@
+{
+  "run": "planted-source-spectral-extractor-20261028-turn11",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_head": "26647ce15635d41e1a7eb74f2284636bab5e6777",
+  "predecessor_blob": "5fd1813a28d544ecb8b9d0d95de4743c47b691ec",
+  "checker": "node verify.js",
+  "checker_two_identical_runs": true,
+  "checker_assertions_per_run": 13,
+  "additional_local_only": "Python verify.py passed 3454 assertions twice",
+  "claims": "restricted planted source only; QPT planted search hardness and generic NP remain open",
+  "offline": true
+}

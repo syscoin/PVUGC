@@ -1,0 +1,66 @@
+{
+  "complete_fiber": {
+    "checked_pairs": 81,
+    "d": 2,
+    "fiber_factor": 9,
+    "public_pairs": 81,
+    "q": 3,
+    "sphere_size": 4
+  },
+  "false_2_plus_3": {
+    "d": 4,
+    "joint_key1_vs_key2_tv": "73/512",
+    "joint_key1_vs_key2_tv_float": 0.142578125,
+    "q": 3
+  },
+  "fixed_point": {
+    "correct": 250,
+    "d": 8,
+    "q": 101,
+    "trials": 250
+  },
+  "fourier_coefficients": [
+    {"argmax":[0,0,2,2],"beta":0.49999999999999994,"d":4,"k":1,"max_nontrivial_fourier":0.25,"q":3},
+    {"argmax":[0,2,2,1],"beta":0.25,"d":4,"k":2,"max_nontrivial_fourier":0.13483616572915808,"q":5},
+    {"argmax":[0,0,2,1,0,0],"beta":0.125,"d":6,"k":1,"max_nontrivial_fourier":0.0714285714285715,"q":3}
+  ],
+  "nonunit_coefficients": {
+    "d":4,"key":1,"q":5,"unit_coeff_tv":"152/1875",
+    "variants":[
+      {"coeffs":[1,2],"float":0.05226666666666667,"tv_uniform":"98/1875"},
+      {"coeffs":[2,3],"float":0.08106666666666666,"tv_uniform":"152/1875"},
+      {"coeffs":[4,2],"float":0.05226666666666667,"tv_uniform":"98/1875"},
+      {"coeffs":[3,4],"float":0.05226666666666667,"tv_uniform":"98/1875"}
+    ]
+  },
+  "parameter_examples": [
+    {"d":8,"field_bits_lower_bound":64,"per_false_orbit_eps_upper_approx":1.4693679385278594e-39},
+    {"d":8,"field_bits_lower_bound":128,"per_false_orbit_eps_upper_approx":4.3180842775472223e-78},
+    {"d":8,"field_bits_lower_bound":192,"per_false_orbit_eps_upper_approx":0.0}
+  ],
+  "sampler_weights": [
+    {"d":4,"k":1,"pair_counts":{"0":1,"1":4,"2":4},"q":3,"scaled_point_weight":"1/4","sphere_size":24},
+    {"d":4,"k":1,"pair_counts":{"0":1,"1":8,"2":8,"3":8,"4":8,"5":8,"6":8},"q":7,"scaled_point_weight":"1/8","sphere_size":336},
+    {"d":4,"k":3,"pair_counts":{"0":1,"1":8,"2":8,"3":8,"4":8,"5":8,"6":8},"q":7,"scaled_point_weight":"1/8","sphere_size":336}
+  ],
+  "scope":"finite algebra/statistical validation only; not a generic-NP WKEM security test",
+  "small_convolutions": [
+    {"d":4,"fourier_bound":1.1249999999999998,"h":2,"k":1,"q":3,"sphere_size":24,"tv_uniform":"35/324","tv_uniform_float":0.10802469135802469},
+    {"d":4,"fourier_bound":0.5624999999999998,"h":3,"k":1,"q":3,"sphere_size":24,"tv_uniform":"91/2592","tv_uniform_float":0.03510802469135803},
+    {"d":4,"fourier_bound":1.1249999999999998,"h":2,"k":2,"q":3,"sphere_size":24,"tv_uniform":"35/324","tv_uniform_float":0.10802469135802469},
+    {"d":4,"fourier_bound":0.5624999999999998,"h":3,"k":2,"q":3,"sphere_size":24,"tv_uniform":"91/2592","tv_uniform_float":0.03510802469135803},
+    {"d":4,"fourier_bound":0.78125,"h":2,"k":1,"q":5,"sphere_size":120,"tv_uniform":"152/1875","tv_uniform_float":0.08106666666666666},
+    {"d":4,"fourier_bound":0.1953125,"h":3,"k":1,"q":5,"sphere_size":120,"tv_uniform":"479/40000","tv_uniform_float":0.011975},
+    {"d":4,"fourier_bound":0.78125,"h":2,"k":2,"q":5,"sphere_size":120,"tv_uniform":"152/1875","tv_uniform_float":0.08106666666666666},
+    {"d":4,"fourier_bound":0.1953125,"h":3,"k":2,"q":5,"sphere_size":120,"tv_uniform":"479/40000","tv_uniform_float":0.011975},
+    {"d":4,"fourier_bound":0.78125,"h":2,"k":3,"q":5,"sphere_size":120,"tv_uniform":"152/1875","tv_uniform_float":0.08106666666666666},
+    {"d":4,"fourier_bound":0.1953125,"h":3,"k":3,"q":5,"sphere_size":120,"tv_uniform":"479/40000","tv_uniform_float":0.011975},
+    {"d":4,"fourier_bound":0.78125,"h":2,"k":4,"q":5,"sphere_size":120,"tv_uniform":"152/1875","tv_uniform_float":0.08106666666666666},
+    {"d":4,"fourier_bound":0.1953125,"h":3,"k":4,"q":5,"sphere_size":120,"tv_uniform":"479/40000","tv_uniform_float":0.011975},
+    {"d":6,"fourier_bound":0.2109375,"h":2,"k":1,"q":3,"sphere_size":252,"tv_uniform":"55/2268","tv_uniform_float":0.024250440917107582},
+    {"d":6,"fourier_bound":0.0263671875,"h":3,"k":1,"q":3,"sphere_size":252,"tv_uniform":"23/9072","tv_uniform_float":0.002535273368606702},
+    {"d":6,"fourier_bound":0.2109375,"h":2,"k":2,"q":3,"sphere_size":252,"tv_uniform":"55/2268","tv_uniform_float":0.024250440917107582},
+    {"d":6,"fourier_bound":0.0263671875,"h":3,"k":2,"q":3,"sphere_size":252,"tv_uniform":"23/9072","tv_uniform_float":0.002535273368606702}
+  ],
+  "status":"PASS"
+}

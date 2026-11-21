@@ -1,0 +1,22 @@
+{
+  "research_iteration": "Run 572",
+  "status": "bounded research-only, no complete WKEM",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "1855cc3cbec7180689676db1f4cd74e1b24cb8cc",
+  "dependencies": {
+    "run571": "30d5b3cc8997f085e9590d20e0e4b09f72e0dc25",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "clz": "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  },
+  "note": "Published note is a concise proof; expanded derivation is retained in local archive.",
+  "checker_sha256": "56c34e697b9f3b06df05d77b0e706ef13ea467b6d7148d98928d3688a7a68ad1",
+  "validation_sha256": "7b9773d556f611f403b961ee9c59a113f90eee541eda22348c79dd3fa89c03d1",
+  "literature": "Gharibi arxiv:1207.4537v2 actual theorem and proof PDF pages 3-4 inspected",
+  "checker_executions": 2,
+  "checker_byte_identical": true,
+  "py_compile": true,
+  "expected_assertions": 34392,
+  "production_changes": false
+}

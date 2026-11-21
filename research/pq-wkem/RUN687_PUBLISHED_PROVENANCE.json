@@ -1,0 +1,21 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_assertions": 116,
+  "checks": "python compile passed; exact checker twice byte-identical",
+  "date": "2026-10-21",
+  "dependencies": {
+    "run114": "f5ff350ee6a3105b7f9c2b9bbf88b551cdf390e9",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run685": "3f2fa1e67532cacf11a3f0120d9f84d06dfc7d46"
+  },
+  "note": "Conditional false-instance native EUF-CMA simulation theorem; not a PQ WKEM",
+  "pr": 1,
+  "repository": "syscoin/PVUGC",
+  "run": 687,
+  "sha256": {
+    "RUN687_PUBLISHED_SCOPE.md": "1cc5a9b3114c8eedfe858f3e7d1c7b1d193d1c485b0bca6cebb605ba7a8b3094",
+    "run687_false_capsule_signature_reduction_check.py": "c9480a09a743e0787fc4fb99f94c75faa367d08d7f838ec9ff3fdb533e421b8f",
+    "run687_false_capsule_signature_reduction_validation.json": "41e28e44086be067bf90c6c4756516b0654ac07680f574304f29a5bae0eb8274"
+  },
+  "starting_sha": "d918eb97df6b821e9cbe5fe1e01ea07a9544b7be"
+}

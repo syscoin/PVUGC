@@ -1,0 +1,26 @@
+{
+  "run": 695,
+  "purpose": "all-witness correctness of full-rank spectral release only",
+  "status": "finite algebra verified; no hiding, QPT extraction, or real signature verification",
+  "field": 101,
+  "gates": 2,
+  "width": 5,
+  "key": 17,
+  "setups": 12,
+  "valid_recoveries": 48,
+  "forced_zero_cofactor": {
+    "seed": 40,
+    "w": [
+      1,
+      1,
+      1
+    ],
+    "source_rank": 4,
+    "old_cofactor": 0,
+    "new_roots": [
+      17,
+      46
+    ]
+  },
+  "assertions_passed": 405
+}

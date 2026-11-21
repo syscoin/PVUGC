@@ -1,0 +1,34 @@
+{
+  "run": 538,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "7de2a4d847a8d722b010eab53e5bb43e7c20cc1c",
+  "date_utc": "2026-10-15",
+  "published_scope": "compact conditional black-box theorem and exactly executed JS checker",
+  "checker_run": {
+    "run": 538,
+    "status": "PASS",
+    "seed": 53820261015,
+    "permutation_witness_scenarios": 216,
+    "postrelease_query_responses": 3024,
+    "coherent_basis_checks": 13824,
+    "widths": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "warning": "Toy deterministic oracle identity only; NOT QPT hardness or native signing security"
+  },
+  "extended_local_artifacts": [
+    "RUN538_POSTRELEASE_BLACKBOX_EXTRACTION.md",
+    "run538_postrelease_oracle_check.py",
+    "run538_postrelease_validation.json",
+    "RUN538_LOCAL_PROVENANCE.json"
+  ],
+  "negative_controls": "toy permutation injectivity, exact oracle response equality; no QPT hardness",
+  "safety": "research-only, draft/unmerged, no production edits"
+}

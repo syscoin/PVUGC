@@ -1,0 +1,16 @@
+{
+  "run": 672,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "db8f192e0aa3cee1af3383a754d7fed030efdccf",
+  "previous_note_blob": "a9d9f7f9533b94889273d9434f45aacfb70f3233",
+  "original_binding_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+  "local_extended_checker_assertions": 3905,
+  "published_checker_assertions": 3137,
+  "published_checker_sha256": "e87d0a12cdeb8f13b2c60605b7f3828cfe7f77979258baef25b9b21b66af0cd9",
+  "published_output_sha256": "874f9b0b4b1c9b43a9954ff0f2e206b69ec34b1ab34de9cb9e7d39315d5e659a",
+  "test": "Python py_compile and two byte-identical executions; 3 widths, 512 seed-tape pairs each, 5 amplitude checks",
+  "claim": "conditional mathematical public-cover attack, NOT PQ secrecy or a WKEM",
+  "literature": "CCMR 2024/006 and arXiv:2609.40289 abstracts/metadata; not full proofs"
+}

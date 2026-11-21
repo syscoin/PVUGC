@@ -1,0 +1,37 @@
+{
+  "fixed_anchor_pad_is_early_public": true,
+  "fork_child_work_buckets": [
+    151,
+    126,
+    112
+  ],
+  "full_header_pad_only_opens_preselected_header": true,
+  "ideal_hit_prob_16_m128_union_bound": 4.70197740328915e-38,
+  "ideal_hit_prob_16_m8_attempts": 0.06070190410618359,
+  "ideal_hit_prob_m8_setup_bucket": 0.00390625,
+  "limitations": [
+    "synthetic 80-byte SHA256d headers, no true BTC difficulty/DAA",
+    "no AuxPoW coinbase Merkle, canonical inclusion or context",
+    "no native signature or secure Build/Open",
+    "no quantum extractor"
+  ],
+  "mining_hash_tries": 36939,
+  "parent_header_bytes": 80,
+  "raw_unauthenticated_table_releases_all_256_buckets": true,
+  "run": "R178-SSHT-20261109",
+  "same_child_multiple_work_ids_not_semantic_fork": true,
+  "same_child_work_buckets": [
+    79,
+    73,
+    18
+  ],
+  "same_child_work_ids": [
+    "0004f86b5132b927280ac0e4fa6c408eb30da91e4385ffc9370750fab99890f2",
+    "00049aa54f254b42093501d60243cc69f2c8698c42b248600937a24ec83c57fd",
+    "00012b109b7d1e08b1a3f7a778ac2dfd2cabaac25ffa2fdfe6d187b45f6f6479"
+  ],
+  "scope": "synthetic SHA256d work certificates, not Bitcoin/Syscoin inclusion or WE security",
+  "source_sha256": "ac1e23e0f556e9a2c41b0f199ddfde64e4cff3a3cc86dc1d8a02f997f66eff17",
+  "synthetic_leading_zero_bits": 12,
+  "valid_fork_table_releases_all": true
+}
