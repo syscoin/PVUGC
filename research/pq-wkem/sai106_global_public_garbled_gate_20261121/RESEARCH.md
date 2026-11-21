@@ -1,0 +1,24 @@
+# SAI106 — whole-circuit SHA garbling, public witness-input labels (NONQUALIFYING)
+## Continuity
+Live open/draft PVUGC #1 branch research/pq-wkem-validation-20260918 was read at eca31d036211b898e98d5e25c98fef36505d1933 (SAI105). Recent top-level issue comments since 2026-11-20 were empty. SAI103 established same-frozen-S correctness only for a publicly enumerated DAG; SAI105's GGM prefix seed selection did not solve the source-conditioned terminal gate. This pass deliberately changes from local clause masks (R289/R366) to ONE globally garbled Boolean circuit to test whether it removes inconsistent partial-evaluation splicing. No Core source or network tests were run.
+
+## Concrete classical hash-only public Build/Open, synthetic verifier
+For each Boolean wire v select independent 256-bit labels L[v,0],L[v,1] with opposite random point-and-permute parity bits p(L). Publish SHA256-xor-garbled gates:
+
+NOT[p(L[x,b])] = L[y,1-b] XOR H("not",L[x,b])
+GATE[2p(L[x,b])+p(L[y,c])] = L[z,g(b,c)] XOR H("gate",L[x,b],L[y,c])
+D = S XOR H("terminal",L[z,1]).
+
+Here y=NOT x; g is AND (FALSE fixture) or OR (TRUE fixture). Exact H uses length framing and domain-separated SHA256, specified in check.py. C includes BOTH x input labels, all gate ciphertext rows, and D, allowing any future bit value to be supplied with no online dealer. Prescribed Open evaluates whole input x and returns D XOR H("terminal",output label). For TRUE x OR NOT x, both x=0 and x=1 yield the identical frozen S.
+
+## Full-public FALSE extraction and screened repair
+For FALSE x AND NOT x, no consistent whole x reaches acceptance. Yet an arbitrary public evaluator decrypts the NOT row with input label L[x,0] to obtain L[y,1], then combines it with the separately public L[x,1] to decrypt the (x=1,y=1) AND row and recover L[z,1]. The terminal then reveals S exactly, even for FALSE and without SHA inversion or a witness. Randomized point-and-permute indexing does not prevent this. A full globally garbled circuit alone does NOT prevent mixing of two incompatible evaluations if both input labels are public.
+
+Withholding an input label prevents some qualifying future witnesses from opening, unless a separate public source-dependent label-delivery primitive exists. Deriving labels from SHA256(full original witness) changes label values per future witness, which Build cannot pre-garble into a fixed polynomial-size table before that witness exists. A conventional public Merkle proof, SNARK verifier outside the protected code, or a publicly available GGM prefix seed does not provide the missing label-delivery operation. This is NOT a generic hash-only impossibility claim: it rejects precisely this candidate and flags any further published-both-input-label variants as already broken, not as future projects.
+
+The unimplemented equation is practical public token delivery tied to ONE actual globally consistent ORIGINAL source certificate, for every qualifying future w, without revealing labels that support inconsistent gate traversal and without a secret online issuer; jointly derive full-public FALSE/hard-TRUE QPT recovery-to-ORIGINAL or independently justified hash/native break. Simply assuming an FE/OT evaluator would rename the obligation.
+
+## Executed bounded checker
+The attached check.py ran twice with byte-identical JSON output (captured output.json); 64 independent deterministic test-only seeds, each with an unsatisfiable AND and a universally TRUE OR verifier. Both whole TRUE assignments open the same S; neither whole FALSE assignment opens S, while the adversary obtains S from mixed public labels in every checked case. Seeded randomness is for reproducibility, not cryptographic setup. SHA256(check.py) 26a0101c501bf9ac3165f9311b626d2b14055820c808f4c14457d6741798d64b; SHA256(output.json) ca28ecd6e2207c1fe82d49f36c8906e6fdbd731b8e4869c6468841f93eb982a3. This is NOT the full SHA trace, a real Bitcoin/Syscoin AuxPoW certificate, Bitcoin Script, native signature, FE or QPT test. The complete local RESEARCH.md and two outputs are retained in /mnt/data/sai106_public_garbled_consistency/ and not assumed to persist beyond execution.
+
+The original relation remains the three independent OR grounds (qualified strictly greater same-anchor BTC work, finite authenticated burn fault, qualified Syscoin inconsistency/tag fault at required LC depth), with modern contextual AuxPoW ID, exact strict SYS ancestor tag, separate child Merkle commitment, all interval checks, claim/burn/recipient/amount/outpoint/baseline/deadline/reset/native safe-message/VK/capsule binding, and one-honest setup requirements. Different parents certifying one child are not a fork; R316 is only tag-lag coverage. No original public Build/Open, accepted native signature security, malicious setup or full-public QPT proof is established. No PR progress comment or user breakthrough notification qualifies.
