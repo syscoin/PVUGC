@@ -9,6 +9,7 @@ for width in [4,8,12]:
             continue
         z=a^b
         category=z.bit_length()-1
+        # The category captures the highest differing bit, a canonical first bit in MSB order.
         assert category in range(width)
         assert (a^b)&(~((1<<(category+1))-1))==0
         assert ((a^b)>>category)&1==1
