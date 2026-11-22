@@ -1,0 +1,21 @@
+{
+  "all_spliced_locals_recover_secret": true,
+  "all_trace_det_fixed_probes_hidden": true,
+  "example": {
+    "all_16_global_probes_nilpotent": true,
+    "choices_inconsistent": true,
+    "hidden_scalar": 94,
+    "locally_satisfying_choices": [
+      0,
+      0,
+      2
+    ],
+    "recovered_secret": 94,
+    "seed": 0,
+    "spliced_product_is_K_times_identity": true,
+    "valid_global_assignments": 0
+  },
+  "fixtures": 24,
+  "model": "noncommutative gauge with nilpotent invalid traces; synthetic FALSE Ch clauses",
+  "scope": "not a practical serialized source-conditioned FE/WE; does not process ORIGINAL certificates or attest security"
+}
