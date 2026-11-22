@@ -1,0 +1,22 @@
+{
+  "adaptive_source_distribution": "P(W|Y,D), independent of hidden tau conditional on public view",
+  "different_synthetic_proof_hashes": true,
+  "exact_conditional_posterior_equalities": 1984,
+  "hidden_token_states": 32,
+  "max_abs_posterior_difference": 0,
+  "model": "FINITE synthetic independent-source latent-token model; no SHA mining, original certificates, FE or QPT test",
+  "positive_construction": false,
+  "public_image_preimage_count": {
+    "0": 5,
+    "1": 2,
+    "2": 3,
+    "3": 4,
+    "4": 5,
+    "5": 1,
+    "6": 6,
+    "7": 6
+  },
+  "public_image_states": 8,
+  "secret_states": 32,
+  "source_witness_types": 2
+}
