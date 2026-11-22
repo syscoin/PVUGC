@@ -1,0 +1,19 @@
+{
+  "all_extra_secret_arm_responses_expose_r": true,
+  "all_source_reopenings_extract_w_only": true,
+  "fixtures": 32,
+  "generator": 64,
+  "missing_original_gate": true,
+  "not_security_test": true,
+  "one_fixture": {
+    "first_overall_challenge": 77,
+    "publishing_second_secret_response_exposes_setup_secret": true,
+    "second_overall_challenge": 78,
+    "secret_arm_remains_on_same_challenge": true,
+    "source_public_statement_is_preselected_y_w": 343,
+    "source_reopening_extracts_source_witness": true
+  },
+  "p": 607,
+  "q": 101,
+  "scope": "algebraic Sigma-OR control only; NOT FE, not secure at toy parameters, no ORIGINAL source release"
+}
