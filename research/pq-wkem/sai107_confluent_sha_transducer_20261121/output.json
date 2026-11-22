@@ -1,0 +1,11 @@
+{
+  "distinct_paths": [
+    "0000001101",
+    "0000010111"
+  ],
+  "implicit_labels_equal": false,
+  "model": "10-bit input with 8-bit truncated SHA semantic state; no original PoW",
+  "public_semantic_canonicalization_reveals_secret_without_path": true,
+  "same_semantic_state": "5a",
+  "status": "candidate falsified; no independently instantiated implicit state delegation; not a release advance"
+}
