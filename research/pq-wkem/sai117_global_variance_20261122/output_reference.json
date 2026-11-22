@@ -1,0 +1,11 @@
+{
+  "false_global_satisfying_paths": 0,
+  "false_locally_accepted_inconsistent_paths": 512,
+  "field_bits": 127,
+  "frozen_synthetic_payload_recovered_without_original_witness": true,
+  "invalid_power_identity": true,
+  "one_invalid_pre_power_sample_recovers_secret_projector": true,
+  "path_violation": 10,
+  "scope": "synthetic arithmetic; NO original evidence, FE or native signing",
+  "true_global_satisfying_paths": 4
+}
