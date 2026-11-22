@@ -1,0 +1,33 @@
+{
+  "does_not_claim_concrete_sha_no_go": true,
+  "no_encryptor_or_oracle_simulator_implemented": true,
+  "parent_digest_prefixes_counterfactual": [
+    "0000fe",
+    "0000a5",
+    "000015"
+  ],
+  "parent_digest_prefixes_real": [
+    "79e792",
+    "fedf13",
+    "a9e1b0"
+  ],
+  "same_public_setup_hashes_after_source_patches": true,
+  "scope": "synthetic hash-oracle source fixture only; no FE, no Bitcoin/Syscoin admission, no native signing",
+  "source_certificate_with_local_patched_SHA256d_oracle": {
+    "accept": true,
+    "reason": "toy-context-accepted"
+  },
+  "source_certificate_with_real_sha256d": {
+    "accept": false,
+    "reason": "btc-work"
+  },
+  "source_child_hashes": [
+    "2b91c4b73013d97ba9d0f072abafc2c418eb8f4366a26e6e09cb907bf6ed9cad",
+    "acfbfa53e3fd56a5361cd75cc1b8897ec3eba9cb91ed1597673a12cbfbceba08",
+    "999e48e4d37416ad9d65a3926fcf3b3f3e949e87250e051bc5f6ff6df9f0cf18"
+  ],
+  "source_oracle_changes": 3,
+  "strict_tag_length": 41,
+  "synthetic_chain_merkle_depth": 5,
+  "toy_lc_depth": 2
+}
