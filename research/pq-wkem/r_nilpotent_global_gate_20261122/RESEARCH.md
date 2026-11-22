@@ -1,0 +1,26 @@
+# Global nilpotent source-gate attempt — NONQUALIFYING
+
+## Continuity and new mathematical repair
+Started from open draft syscoin/PVUGC#1 branch research/pq-wkem-validation-20260918 at 1f1b06bdd3f8a09d2335ca4e182389207ffc5ed2; read r_global_projector_20261122/RESEARCH.md blob 30a363a66716fe7bf00b1003398f56a572fa2318 and output blob 91ce3b51f458a331be5ef7c082c66fc684c6fe08. No new top-level comments since 2026-11-19. The source note's public A=K G^-1 P G exposed K on hard TRUE by A^2=KA. Unlike changes of gauge/basis/degree, this iteration changes the operator's minimal polynomial to remove that exact leak.
+
+Let d=2^n, original Boolean relation R_x(w) be an abstract predicate (NOT an implemented original Syscoin/BTC checker), and P=diag_w(R_x(w)) of dimension d. Let J be the 2d-by-2d block matrix [0 P;0 0]. It satisfies J^2=0 even on TRUE inputs. For a scalar S != 0, sample independently K in F_q* and G uniformly from GL_(2d)(F_q). Publish A=G^-1 (KJ) G and D=S*K. Full matrices require exponential size, so this is NOT a polynomial-time public Build and S is not a native cancellation signature.
+
+For any K,K' != 0, put lambda=K'/K, T=diag(lambda I_d,I_d), and G'=TG. Then T^-1 (K'J) T = KJ and (G')^-1 (K'J) G'=A EXACTLY. Left multiplication by T permutes uniform GL, so the full-public A distribution is the same for all K on FALSE **and TRUE** instances. For any two nonzero messages S,S', choose K'=(S/S')K. The same tape change gives D'=S'K'=SK=D and A'=A pointwise. Thus (A,D) has an *exact* joint secret-independent distribution for ALL R_x, including hard TRUE. This statement remains valid under arbitrary quantum processing of the classical bytes for independent uniform setup tapes; it does NOT establish a practical QPT FE theorem.
+
+The same coupling proves the decisive decoder limitation. If a qualifying witness w is sampled independently of K,G, then (x,w,A,D) is identically distributed for every S. Given only those objects, no randomized public Open can recover uniformly random S with probability greater than 1/(q-1), even if R_x(w)=1. Consequently this nilpotent spectral repair eliminates the spectral K leak **by also eliminating every-witness release**.
+
+## Exact additional interface needed; local splice avoided algebraically
+For full assignment w, let e_up,w be the upper basis row and e_low,w the lower basis column. Correlated boundary vectors ell_w=e_up,w^T G and r_w=G^-1 e_low,w satisfy
+
+    ell_u A r_v = K * delta_(u,v) * R_x(u).
+
+Any one valid whole witness obtains the SAME K; invalid assignments and mixed *different* full assignments give zero, avoiding the earlier independent local-clause splice within this algebra. However ell'_w=lambda ell_w under the K->K' coupling (and r'_w=r_w), so the opening vectors **must** add a K-correlated part to the public view. This is not just convenient metadata: without it information theory prohibits correctness.
+
+A classical polynomial-size public compiler for unpredictable original witnesses must construct, serialize and secure a globally correlated family of those boundary maps without exposing the underlying K through arbitrary public computation. No such algorithm is supplied here. Publishing G, a giant witness table, a source-independent verifier accept-bit, or an opaque/ideal FE gate is not that advance. Simple tensor-local factorizations must first defeat existing R365/R366 mixed/finite-cover attacks. The exact next equation is a CONSTRUCTION, not a chosen assumption: poly-size serialized C and public ell_C(w),r_C(w),A_C such that ell_C(w) A_C r_C(w)=K for EVERY ORIGINAL R_x(w)=1, AND arbitrary complete-public TRUE/FALSE QPT recovery/forgery reduces to a qualifying ORIGINAL certificate or independently justified hash/native break under malicious setup/coins/sibling openings.
+
+## Executed bounded validation (synthetic only)
+The standard-library Python source check.py was executed twice, output compared byte-for-byte, and no assertion failed. Three prime-field F_101 full-matrix fixtures included FALSE and two TRUE relations on 4 possible whole assignments: it verified equality of *all matrix entries* after changing K=17 to K'=59 with T gauge, A^2=0, same-key openings using correlated boundary vectors, zero cross-assignment probes, and the changed boundary hint under the coupling. This does NOT parse or authenticate BTC/Syscoin AuxPoW certificates, implement SHA source gates, execute Bitcoin VM/FE/ZK or prove native security. It does not make the exponential candidate practical.
+
+Original local test script SHA256 79db2a640bd1895a588457f55b52cf72b1bfd7294e15caf44ea1f651cbd376c0; captured output SHA256 252c3e7e57c26ea55fc21a20a72f908c8fb2af23d9f8f3de6da1b8dd24c1e750. Full longer local-only derivation at /mnt/data/nilpotent_gate_research.md, SHA256 6bb47165ed8122776c716b95f4dd8ce3b7975df8163f8d6803b5e74509082f19; do not assume local persistence in other runs.
+
+NO ORIGINAL source-conditioned Build/Open, practical security, hard-TRUE extraction, malicious N-of-N setup, safe native signing or deployment was constructed. This is a bounded rejection of a specific attempted new spectral repair, not an advance warranting a user notification, PR progress comment or task disablement. Approved original three-branch OR and strict contextual AuxPoW qualification are unchanged.
