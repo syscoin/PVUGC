@@ -1,0 +1,70 @@
+{
+  "actual_source_tests": false,
+  "dimension": 2,
+  "field": 101,
+  "noncommuting_AB": true,
+  "original_release_construction": false,
+  "scope": "toy finite-field global masked-word failure; no ORIGINAL witness/FE",
+  "trials": [
+    {
+      "consistent_false": true,
+      "public_inconsistent_recovers_secret": true,
+      "trial": 0
+    },
+    {
+      "consistent_false": true,
+      "public_inconsistent_recovers_secret": true,
+      "trial": 1
+    },
+    {
+      "consistent_false": true,
+      "public_inconsistent_recovers_secret": true,
+      "trial": 2
+    },
+    {
+      "consistent_false": true,
+      "public_inconsistent_recovers_secret": true,
+      "trial": 3
+    },
+    {
+      "consistent_false": true,
+      "public_inconsistent_recovers_secret": true,
+      "trial": 4
+    },
+    {
+      "consistent_false": true,
+      "public_inconsistent_recovers_secret": true,
+      "trial": 5
+    },
+    {
+      "consistent_false": true,
+      "public_inconsistent_recovers_secret": true,
+      "trial": 6
+    },
+    {
+      "consistent_false": true,
+      "public_inconsistent_recovers_secret": true,
+      "trial": 7
+    },
+    {
+      "consistent_false": true,
+      "public_inconsistent_recovers_secret": true,
+      "trial": 8
+    },
+    {
+      "consistent_false": true,
+      "public_inconsistent_recovers_secret": true,
+      "trial": 9
+    },
+    {
+      "consistent_false": true,
+      "public_inconsistent_recovers_secret": true,
+      "trial": 10
+    },
+    {
+      "consistent_false": true,
+      "public_inconsistent_recovers_secret": true,
+      "trial": 11
+    }
+  ]
+}
