@@ -1,4 +1,5 @@
 {
+  "all_256_possible_semantic_states_require_explicit_state_specific_secret_tokens": true,
   "distinct_paths": [
     "0000001101",
     "0000010111"
