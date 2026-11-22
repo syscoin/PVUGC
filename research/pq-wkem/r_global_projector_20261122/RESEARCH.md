@@ -1,0 +1,39 @@
+# Global source projectors — exact FALSE coupling, unresolved serialized release (NONQUALIFYING)
+
+## Provenance / unfinished target
+On 2026-11-22 I read open draft syscoin/PVUGC#1 at branch research/pq-wkem-validation-20260918, head f2437fa39966f0852a734b4d26faca95c1ba46d6. The exact R-source-global-gate note was blob 12ce54f69fbf224cda60deb160eed49edc580256 and its immediate Sigma-OR predecessor note was blob 268b7b080a0277077cef8b0080227589d69a2300. Recent top-level issue comments since 2026-11-20 returned empty. No Core source/new external reference was read and no actual original source certificate processed. This is a substantive algebraic screen, not an implemented WKEM/FE or a practical bridge result.
+
+R-source-global-gate exposed independent public locally accepting transition matrices; it could recover K on a FALSE conjunction by splicing DIFFERENT locally accepted source tuples. This candidate's deliberate change is to encode all predicates as projections of ONE common Boolean trace space: inconsistent assignments then annihilate algebraically. This exact change, rather than larger masks or more tests, addresses that attack.
+
+## Global operator compiler (explicitly exponential, NOT a practical PPT Build)
+Let R_x(w)=AND_{j=1}^m c_j(w) be the bounded Boolean circuit for the ORIGINAL three-branch OR source relation, with n total Boolean trace bits. Each c_j is a local Boolean consistency constraint; Booleanizing the OR does not change its three sufficient grounds. The actual original source validation, strict contextual AuxPoW, reference schedule versus LC depth, claim/outpoint/recipient/burn/anchors/windows/reset/native-signature binding, etc. are NOT implemented by this mathematical fixture.
+
+Write d=2^n and index a basis by all w in {0,1}^n. Let Q_j=diag_w(c_j(w)), so Q_j^2=Q_j, Q_i Q_j=Q_j Q_i and Π=Q_1...Q_m=diag_w(R_x(w)). Select field F_q, K∈F_q*, random R_0∈GL_d(F_q), independently uniform R_1,...,R_(m-1)∈GL_d(F_q), and R_m=K R_0. Publish full matrices L_j=R_(j-1)^(-1) Q_j R_j and the R_0 basis frame. Public product A=L_1...L_m=K R_0^(-1) Π R_0. For a complete single assignment w and its basis vector e_w,
+
+    (e_w^T R_0) A (R_0^(-1)e_w) = K R_x(w).
+
+Every satisfying trace therefore gives the SAME K; a rejecting trace gives zero. A nonzero field-group payload S can be masked as D=S*K and recovered as S=D/K by a satisfying w. This group payload is NOT an actual native signature representation. The definition of R_x is semantic; this checker does not parse original Syscoin/Bitcoin bytes. Public size Θ(m*4^n) and inversion cost at least exponential in n make this model NOT a classical practical KEM.
+
+## Exact full-public FALSE simulator / change-of-variables theorem
+Assume the whole conjunction is FALSE: every full w has at least one rejected c_j. Take ANY nonzero K,K' and λ=K'/K. For each w let r(w) be the FIRST rejected clause index. Define invertible diagonal T_j for j=0..m by T_0=I and
+
+    T_j[w,w]= 1 if j<r(w), otherwise λ.
+
+Because all w reject somewhere, T_m=λ I. For each j, on every diagonal coordinate where Q_j is nonzero the two adjacent T entries coincide; where Q_j is zero the relation holds trivially. Thus T_(j-1)^(-1) Q_j T_j=Q_j. Keep R'_0=R_0; set R'_j=T_j R_j for all intermediate j; and set R'_m=K'R_0=T_m R_m. Then EVERY published L'_j=(R'_(j-1))^(-1)Q_j R'_j equals L_j EXACTLY. Multiplication of a uniform GL_d matrix by a fixed invertible T_j is measure-preserving, so the entire public tuple (R_0,L_1,...,L_m) has exactly the same distribution for every K on FALSE inputs. This holds even for arbitrary QPT processing of the resulting *classical, full-matrix transcript* under independent setup randomness; no random-oracle programming is involved.
+
+For nonzero field secrets S,S', set K'=(S/S')K, so D'=S'K'=SK=D as well. The SAME change of variables therefore couples the joint (D,R_0,L_1,...,L_m) public distribution pointwise for any two nonzero scalar payloads. The proof requires uniform independent intermediate gauges. It excludes setup-proof bytes, native-VK/payload correlated malicious tape, dishonest participant choices, sibling capsules and selective openings; its conclusion is strictly FALSE hiding for this exponential model, not hard-TRUE source security.
+
+The global projection algebra eliminates the R-source local splice: choosing incompatible locally accepted tuples on different clauses does not create an accepting coordinate in Π. It is NOT sufficient to publish local independently callable shares or merely put a Merkle-root check outside an independent release operation.
+
+## Public hard-TRUE disclosure (precise failure)
+If an accepted trace exists then Π≠0. The full public matrix A obeys A²=K A. The attacker multiplies PUBLIC matrices, finds any nonzero A[u,v], and recovers K=(A²)[u,v]/A[u,v] without a witness. Also Tr(A)=K rank(A), when rank(A) is nonzero modulo characteristic. Thus it has an explicit unauthorized hard-TRUE break polynomial in the exponentially large public representation, NOT an original-evidence extraction theorem. It would be incorrect to promote FALSE secrecy or the projector correctness to a secure release scheme. The hard-TRUE leak is not automatically prevented by a symbolic/short representation; that representation and its arbitrary-public security need a real construction and proof.
+
+## Executed bounded checker / evidence
+An exact standard-library Python prime-field checker ran successfully in this execution. It exhaustively enumerated 480 invertible GL_2(F_5) masks for two orthogonal rejecting clauses, confirming the entire PUBLIC pair distribution is identical for every K=1,2,3,4 (96 distinct pairs). On the synthetic four-bit Ch system A:t=Ch(x,y,z), B:t=Ch(x,z,y), C:y!=z, all three locally have eight accepted assignments but none globally; a 16-dimensional full-public gauge-coupling K=37->79 left EACH L_j unchanged. On the related TRUE C:y=z system, four full witnesses each yield K=37, while the fully published A²/A attack recovered 37 without a witness (Tr(A)=45 mod103, rank=4). These checks are NOT original SHA256 traces or qualified BTC/Syscoin source proofs, native signature or QPT experiments.
+
+Local-only bounded reproducibility package /mnt/data/r_global_projector_20261122.tar.gz, SHA256 6982ccc344eed31bfa72ff70e03a83db7651b0d87e9ebffd9e26f883b2b5cd12, contains the full longer derivation plus EXACT executed check.py and captured output.json. Checker SHA256 1944ecad9831d8a9d6b28dd9911533384d150b525e52fbbb7a6f0a5937a07743; output SHA256 561fc481f7e45175ae92bc76f0878ea0c23303d6609b7d6c6836dd2aa59524e4. This note is a repo handoff; these precise checker bytes remain local-only, not assumed persistently accessible later.
+
+## Exact missing original-source step
+Find an ACTUAL serialized classical-PPT compiler with polynomial public representation that preserves a cryptographically global trace-consistency gate and efficient ANY-witness same-capability Open, while preventing arbitrary hard-TRUE K recovery from the full published representation, and give an independent QPT ORIGINAL certificate/native-break reduction for all public auxiliary correlations. Full random GL_(2^n) is impractical. Publishing raw private gauge seeds makes K directly visible; opening local independent transition pieces reintroduces the previous splice. A hypothetical compressed global gauge, opaque evaluator or ideal FE is not the missing advance. Full ORIGINAL OR policy, one-honest N-of-N offline setup, claim-specific native cancellation, no on-chain general verifier, source/DA/timing qualifications, and malicious/sibling security remain unconstructed.
+
+**NONQUALIFYING.** No progress comment, user breakthrough notification, production/core edit, deployment or automation change.

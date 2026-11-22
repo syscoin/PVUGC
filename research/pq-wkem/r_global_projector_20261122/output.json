@@ -1,0 +1,27 @@
+{
+  "candidate": "global commuting projectors with random boundary gauges",
+  "false_2clause_exact": {
+    "all_GL2_matrices": 480,
+    "distinct_public_pairs": 96,
+    "field": 5,
+    "public_pair_distribution_identical_all_nonzero_keys": true
+  },
+  "false_nontrivial": {
+    "different_secret_coupling_all_public_matrices": true,
+    "full_operator_zero": true,
+    "independently_nonempty_clause_supports": [
+      8,
+      8,
+      8
+    ],
+    "witness_count": 0
+  },
+  "no_original_source_recovery_reduction": true,
+  "no_serialized_PPT_builder": true,
+  "true_nontrivial": {
+    "trace": 45,
+    "trace_over_rank": 37,
+    "whole_matrix_recovery": 37,
+    "witness_count": 4
+  }
+}
