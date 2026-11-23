@@ -1,0 +1,48 @@
+{
+  "all_links_reach_public_root": true,
+  "build_pair_trials": [
+    190,
+    59,
+    68,
+    136,
+    25,
+    87,
+    85
+  ],
+  "digest_bits": 12,
+  "full_256_bit_expected_link_trials_log2_with_8_leaves": 253,
+  "independent_linking_does_not_authenticate_source": true,
+  "leaf_count": 8,
+  "levels": 3,
+  "no_private_preimage_path_derived": true,
+  "one_256_bit_collision_generic_birthday_log2": 128,
+  "public_root_pad_immediately_recovers_secret": true,
+  "root": 645,
+  "scope": "weak 12-bit hash toy; no original certificate, no security/FE",
+  "source_links": [
+    {
+      "label": "ORIGINAL-valid-synthetic",
+      "leaf": 1808,
+      "link_nonce": 400,
+      "trials": 401
+    },
+    {
+      "label": "NOT-ORIGINAL-invalid-synthetic",
+      "leaf": 192,
+      "link_nonce": 1215,
+      "trials": 1216
+    },
+    {
+      "label": "junk-zero",
+      "leaf": 1808,
+      "link_nonce": 1219,
+      "trials": 1220
+    },
+    {
+      "label": "junk-one",
+      "leaf": 474,
+      "link_nonce": 368,
+      "trials": 369
+    }
+  ]
+}
