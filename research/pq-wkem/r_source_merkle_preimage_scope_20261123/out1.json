@@ -1,0 +1,35 @@
+{
+  "claim_specific_false_membership_relabel_attack": {
+    "claimed_nonmembership_is_false": true,
+    "fake_absence_check_does_not_authenticate_root": true,
+    "public_path_pad_recovers_secret": true
+  },
+  "different_source_roots_do_not_provide_one_frozen_key": true,
+  "distinct_roots_have_distinct_pads": true,
+  "false_instance_all_eight_paths_unmask": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "false_instance_qualified_witness_exists": false,
+  "false_instance_unrelated_authenticated_merkle_proof_unmasks_capability": true,
+  "false_root": "e67f8f20779905797236e563dc0259a145b137bcde4bbfb4f12b929cff825470",
+  "scope": "synthetic SHA256d root-preimage release, not authentic Bitcoin/Syscoin or protected Build/Open",
+  "true_instance_all_eight_paths_unmask": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "true_instance_qualified_witness_exists": true,
+  "true_root": "ae050c9373993e37f622f85eceec53196451b23837c10af7c22212821fe7045c"
+}
