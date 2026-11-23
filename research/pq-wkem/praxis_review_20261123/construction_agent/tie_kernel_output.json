@@ -1,0 +1,130 @@
+{
+  "checks": [
+    {
+      "c": 2,
+      "n": 4,
+      "omega": 2,
+      "q": 5,
+      "results": [
+        {
+          "honest_stack_span_dimension": 4,
+          "injective_lemma_applicable": true,
+          "passing_tied_stack_dimension": 4,
+          "policy": "none",
+          "witness_count": 4
+        },
+        {
+          "honest_stack_span_dimension": 3,
+          "injective_lemma_applicable": true,
+          "passing_tied_stack_dimension": 3,
+          "policy": "product_zero",
+          "witness_count": 3
+        },
+        {
+          "honest_stack_span_dimension": 0,
+          "injective_lemma_applicable": true,
+          "passing_tied_stack_dimension": 0,
+          "policy": "false_sum_and_product",
+          "witness_count": 0
+        }
+      ],
+      "stack_coefficient_count": 36,
+      "z_has_kernel": false
+    },
+    {
+      "c": 3,
+      "n": 4,
+      "omega": 13,
+      "q": 17,
+      "results": [
+        {
+          "honest_stack_span_dimension": 4,
+          "injective_lemma_applicable": true,
+          "passing_tied_stack_dimension": 4,
+          "policy": "none",
+          "witness_count": 4
+        },
+        {
+          "honest_stack_span_dimension": 3,
+          "injective_lemma_applicable": true,
+          "passing_tied_stack_dimension": 3,
+          "policy": "product_zero",
+          "witness_count": 3
+        },
+        {
+          "honest_stack_span_dimension": 0,
+          "injective_lemma_applicable": true,
+          "passing_tied_stack_dimension": 0,
+          "policy": "false_sum_and_product",
+          "witness_count": 0
+        }
+      ],
+      "stack_coefficient_count": 36,
+      "z_has_kernel": false
+    },
+    {
+      "c": 2,
+      "n": 4,
+      "omega": 2,
+      "q": 5,
+      "results": [
+        {
+          "honest_stack_span_dimension": 4,
+          "injective_lemma_applicable": false,
+          "passing_tied_stack_dimension": 6,
+          "policy": "none",
+          "witness_count": 4
+        },
+        {
+          "honest_stack_span_dimension": 3,
+          "injective_lemma_applicable": false,
+          "passing_tied_stack_dimension": 3,
+          "policy": "product_zero",
+          "witness_count": 3
+        },
+        {
+          "honest_stack_span_dimension": 0,
+          "injective_lemma_applicable": false,
+          "passing_tied_stack_dimension": 1,
+          "policy": "false_sum_and_product",
+          "witness_count": 0
+        }
+      ],
+      "stack_coefficient_count": 36,
+      "z_has_kernel": true
+    },
+    {
+      "c": 3,
+      "n": 4,
+      "omega": 13,
+      "q": 17,
+      "results": [
+        {
+          "honest_stack_span_dimension": 4,
+          "injective_lemma_applicable": false,
+          "passing_tied_stack_dimension": 6,
+          "policy": "none",
+          "witness_count": 4
+        },
+        {
+          "honest_stack_span_dimension": 3,
+          "injective_lemma_applicable": false,
+          "passing_tied_stack_dimension": 3,
+          "policy": "product_zero",
+          "witness_count": 3
+        },
+        {
+          "honest_stack_span_dimension": 0,
+          "injective_lemma_applicable": false,
+          "passing_tied_stack_dimension": 1,
+          "policy": "false_sum_and_product",
+          "witness_count": 0
+        }
+      ],
+      "stack_coefficient_count": 36,
+      "z_has_kernel": true
+    }
+  ],
+  "scope": "Finite algebra check of Praxis Eq. (5), not its encryption/security.\n\nThree coordinates w=(w0,w1,w2), n=4, six symmetric matrix copies.\nAll candidate stacks have rank <=3, so Lemma B.6 predicts their exact\nspan when the public form z is injective on this three-dimensional space.\nThis checks equations over small fields; it is not a production-parameter\ntest, GGM simulator, MSIS attack, or source-relation implementation.\n",
+  "source_sha256": "993ce9a616a4723a31423060d3baf4e6e64c9186846075fc9554291bb912783e"
+}
