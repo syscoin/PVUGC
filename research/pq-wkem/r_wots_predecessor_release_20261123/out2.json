@@ -1,0 +1,12 @@
+{
+  "all_distinct_messages_release_same_secret": true,
+  "baseline_known_signature": true,
+  "different_messages_tested": 256,
+  "distinct_chosen_coordinates": 8,
+  "fixture": "abstract WOTS-like chains, not real WOTS+ or Core",
+  "no_authentication_of_original_source": true,
+  "no_false_hard_true_qpt_security_claim": true,
+  "no_original_bridge_build_open": true,
+  "unauthenticated_second_statement_chosen_coordinate": 0,
+  "unauthenticated_second_statement_releases_secret": true
+}
