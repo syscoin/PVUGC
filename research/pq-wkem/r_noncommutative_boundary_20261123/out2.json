@@ -1,0 +1,8 @@
+{
+  "field": 101,
+  "forced_local_transitions_identical": 500,
+  "forced_local_transitions_reveal_shared_step": 500,
+  "independent_missing_bit_transitions_identical": 0,
+  "scope": "linear-algebraic boundary check only; no WE, SHA history, source, QPT or native signature",
+  "trials": 500
+}
