@@ -1,0 +1,34 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "comment": "UNVERIFIED_NOT_YET",
+  "date": "2026-10-27",
+  "exact_file_read": "research/pq-wkem/even_mod_refutation_20261027/check.js",
+  "external_research": "none",
+  "files": {
+    "PROOF.md": {
+      "bytes": 8255,
+      "sha256": "d0238c6952ac30557c4303e35abfb20ea2ea562a331253f7454545b0a495d921"
+    },
+    "check.py": {
+      "bytes": 4633,
+      "sha256": "3a4cf921e6f09a98fbc0578144a1b15bcfd24280c926b32236a0a8e96dc6d519"
+    },
+    "output.json": {
+      "bytes": 804,
+      "sha256": "e0d2b78828eda064b1aa7341e6f0adb67e65a82b150f5f2413840c5aac8a3ae7"
+    }
+  },
+  "observed_start_sha": "61d884952ff29eb3c9dde06f657885116ced69de",
+  "pr": 1,
+  "published_commit": "UNVERIFIED_NOT_YET",
+  "repository": "syscoin/PVUGC",
+  "run_label": "rowshift-decision-bound-20261027",
+  "status": "NO_QUALIFIED_CONSTRUCTIVE_ADVANCE",
+  "tool_actions": [
+    "GitHub get_pr_info",
+    "GitHub fetch_issue_comments",
+    "GitHub compare_commits",
+    "GitHub fetch_file exact head",
+    "local Python checker twice; byte comparison"
+  ]
+}

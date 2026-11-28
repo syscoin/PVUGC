@@ -1,0 +1,34 @@
+{
+  "external_literature_or_web_search": false,
+  "local_files": {
+    "NONLINEAR_SUPPORT_SCRAMBLE_RUN52.md": {
+      "bytes": 12016,
+      "sha256": "422248ffeddfe4f4788975cfce7f088e19efe3144ea9fac73160ac62298f737d"
+    },
+    "nonlinear-support-scramble-run52.json": {
+      "bytes": 1167,
+      "sha256": "dacd055fc718afb60d8defb82e4c42803374cd749486a9618bbbf02383748c37"
+    },
+    "nonlinear_support_scramble_run52_check.py": {
+      "bytes": 8798,
+      "sha256": "da9d8a0eb24677ead4fadb48fcb44a40809a6cfddfa5deaf3bb9aef1290a095b"
+    }
+  },
+  "pr_must_remain_draft_unmerged": true,
+  "production_code_changed": false,
+  "qualifications": [
+    "The support-only quotient theorem assumes realized additive masks lie in public linear vanishing subspaces.",
+    "The interpolation theorem assumes an ordinary public evaluator is available on a polynomial-size unisolvent set.",
+    "A genuinely witness-selective post-erasure evaluator is not constructed or ruled out.",
+    "No arbitrary-QPT key-recovery-to-witness reduction is claimed for a surviving construction."
+  ],
+  "repository_scope": "syscoin/PVUGC pull/1 research record only",
+  "run": 52,
+  "starting_head": "98dfda35a4e1a00860cad41fd6ec5331e0f3dedd",
+  "tests": {
+    "byte_identical_stdout": true,
+    "command": "python3 /mnt/data/nonlinear_support_scramble_run52_check.py",
+    "executed_twice": true,
+    "result": "pass"
+  }
+}

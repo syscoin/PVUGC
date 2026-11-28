@@ -1,0 +1,33 @@
+{
+  "false_full_mask": {
+    "count_per_output": 9,
+    "dimension": 2,
+    "keys": 3,
+    "q": 3,
+    "samples_per_key": 729,
+    "support_size": 81
+  },
+  "multi_carrier": {
+    "full_rank_references": 500,
+    "recoveries": 500,
+    "trials": 500
+  },
+  "status": "PASS",
+  "true_xy0": {
+    "all_witness_complete": 1951,
+    "honest_decodes_checked": 5853,
+    "public_attack_success": 2000,
+    "theory_all_complete": 0.9705901479276444,
+    "trials": 2000
+  },
+  "unique_witness": {
+    "nonzero_honest_denominator": 793,
+    "trials": 800
+  },
+  "xor_composition": {
+    "operator_counts": "1..6",
+    "prediction_equivalence_checks": 252,
+    "raw_share_reveal_negative_control": "2/2 forced final zero",
+    "uniform_xor_controls": 2
+  }
+}

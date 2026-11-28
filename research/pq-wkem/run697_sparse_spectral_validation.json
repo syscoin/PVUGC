@@ -1,0 +1,47 @@
+{
+  "run": 697,
+  "scope": "exact sparse public pencil correctness and representation only; QPT security unproved",
+  "field": 257,
+  "counts": {
+    "assertions": 128,
+    "witnesses": 56,
+    "recoveries": 12,
+    "public_equals_private": 56,
+    "lossless_decodings": 3
+  },
+  "fixtures": [
+    {
+      "gates": 3,
+      "n": 7,
+      "degree": 3,
+      "public_common_edges": 49,
+      "dense_per_slice": 49,
+      "valid_witnesses": 8
+    },
+    {
+      "gates": 4,
+      "n": 9,
+      "degree": 3,
+      "public_common_edges": 78,
+      "dense_per_slice": 81,
+      "valid_witnesses": 16
+    },
+    {
+      "gates": 5,
+      "n": 11,
+      "degree": 3,
+      "public_common_edges": 117,
+      "dense_per_slice": 121,
+      "valid_witnesses": 32
+    }
+  ],
+  "illustrative": {
+    "gates": 15000,
+    "degree": 3,
+    "slices": 15002,
+    "common_edges_upper": 2190001,
+    "dense_bytes": 432086404320064,
+    "sparse_bytes_upper": 1051349400068,
+    "compression_lower": 410.98
+  }
+}

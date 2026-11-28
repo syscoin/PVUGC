@@ -1,0 +1,18 @@
+{
+  "local_gate_correctness": {
+    "all_four_honest_rows_correct": true,
+    "audited_rows": 4,
+    "deliberately_corrupted_row_rejected": true,
+    "input_output_labels_in_clear_would_destroy_security": true,
+    "public_two_label_false_source_bypass": true,
+    "zk_proof_of_audit_not_implemented": true
+  },
+  "pointwise_counterexample": {
+    "all_witness_success_exact": 0,
+    "distinct_failure_positions_under_fixed_committed_seed": 256,
+    "fixed_seed_and_public_beacon_do_not_establish_universal_correctness": true,
+    "pointwise_failure_exact": 0.00390625,
+    "public_beacon_domain_size": 65536
+  },
+  "scope": "synthetic universal completeness and cleartext gate audit only; no source FE/WE, native signing, ZK, QPT or original witness"
+}

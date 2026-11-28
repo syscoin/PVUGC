@@ -1,0 +1,1 @@
+{"status":"PASS","assertions":215669,"full_q11_states":6655,"all_group_subsets":16,"group_queries":83,"coordinate_queries":255,"actual_witness_indices":[0,7,19,34,68,111,173,245],"dual_witness_digit_trials":12,"scope":"bounded classical checks; no independent QPT hardness"}

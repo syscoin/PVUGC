@@ -1,0 +1,65 @@
+{
+  "run": 697,
+  "date": "2026-10-22",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "e3013235e33554b4cf86e6bd39d5d17653d27d03",
+  "published_checker": "run697_sparse_spectral_check.js",
+  "published_checker_result": {
+    "run": 697,
+    "scope": "exact sparse public pencil correctness and representation only; QPT security unproved",
+    "field": 257,
+    "counts": {
+      "assertions": 128,
+      "witnesses": 56,
+      "recoveries": 12,
+      "public_equals_private": 56,
+      "lossless_decodings": 3
+    },
+    "fixtures": [
+      {
+        "gates": 3,
+        "n": 7,
+        "degree": 3,
+        "public_common_edges": 49,
+        "dense_per_slice": 49,
+        "valid_witnesses": 8
+      },
+      {
+        "gates": 4,
+        "n": 9,
+        "degree": 3,
+        "public_common_edges": 78,
+        "dense_per_slice": 81,
+        "valid_witnesses": 16
+      },
+      {
+        "gates": 5,
+        "n": 11,
+        "degree": 3,
+        "public_common_edges": 117,
+        "dense_per_slice": 121,
+        "valid_witnesses": 32
+      }
+    ],
+    "illustrative": {
+      "gates": 15000,
+      "degree": 3,
+      "slices": 15002,
+      "common_edges_upper": 2190001,
+      "dense_bytes": 432086404320064,
+      "sparse_bytes_upper": 1051349400068,
+      "compression_lower": 410.98
+    }
+  },
+  "extended_local_only": {
+    "note": "/mnt/data/pq_run697/RUN697_SPARSE_PUBLIC_SPECTRAL_OPERATOR.md",
+    "note_sha256": "bd4a098b9361bbf166f2c94895aa4be93b5b2e5e707038f7afbb972611cb82e9",
+    "checker": "/mnt/data/pq_run697/run697_sparse_spectral_check.py",
+    "checker_sha256": "dc5cfd3440575baa7460ecb62efb727008e2d20389231e33021415a046f3bf90",
+    "validation": "/mnt/data/pq_run697/run697_sparse_spectral_validation.json",
+    "validation_sha256": "928bab3f5e5409b104c21d6e04fe3033fe4f121f56a450a00f8ea510a8e23ae2"
+  },
+  "scope": "classical correctness and public representation only; no QPT security proof"
+}

@@ -1,0 +1,15 @@
+{
+  "checks": 512,
+  "run": "R222-EPR-20261111",
+  "source_sha256": "56728032b265f849fa24dcbd0dbc221ee78979a9c1832546fcfaa3caaa384b36",
+  "status": "failed candidate, not a WKEM",
+  "tests": {
+    "different_paths_same_key": 64,
+    "fabricated_path_releases_without_source_authentication": 64,
+    "independent_future_path_does_not_supply_secret_endpoint": 64,
+    "public_potential_releases_all_authenticated_paths": 128,
+    "public_root_releases_directly": 64,
+    "secret_label_missing_on_future_edges": 64,
+    "secret_seed_retention_releases_early": 64
+  }
+}

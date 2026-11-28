@@ -1,0 +1,107 @@
+{
+  "algorithm": "SHA256 and Git blob SHA1",
+  "files": [
+    {
+      "bytes": 3226,
+      "git_blob_sha1": "81faa72be1bd63918dcc7527d28e2efd7537c7ae",
+      "path": "CHECKPOINT_01.md",
+      "sha256": "2d1653c98374db07ddfa22016a09b320d2f4b66d6b95ae9d00dcf262c70d3d22"
+    },
+    {
+      "bytes": 3962,
+      "git_blob_sha1": "f972e840090b0780fbb675bb693b1283598fa05a",
+      "path": "PROVENANCE.json",
+      "sha256": "432c0f95ed51b704b57bd17faf801823796cd16aa921a132c80a08c2ddeaf59b"
+    },
+    {
+      "bytes": 13514,
+      "git_blob_sha1": "700fe61258c2e8f83069ce3a315aae6a9e9aaa9a",
+      "path": "RESEARCH.md",
+      "sha256": "e445a0895cd74ddad1555b15d57789f7b0a64ec670db354f06b6e6006890f697"
+    },
+    {
+      "bytes": 2702,
+      "git_blob_sha1": "14893d971fb6deb1dfa9cb539a23580b1241e1d7",
+      "path": "construction_agent/extract_rank4_witness.py",
+      "sha256": "e9492a3ccee7d12ec6fbaff4b9c85ad26298eff7f0cf13f5d24e9f28bd25563b"
+    },
+    {
+      "bytes": 3988,
+      "git_blob_sha1": "420079b8df8d142cc50563eed97ae095b653ecae",
+      "path": "construction_agent/rank4_certificate.json",
+      "sha256": "6c67da59348598d536e44dd4c1015c2aa7ba9dd9292ae78d3b62135419346273"
+    },
+    {
+      "bytes": 5470,
+      "git_blob_sha1": "88df9b30e6368019a6b7fca34c9bf583e56cd12e",
+      "path": "construction_agent/tie_kernel_check.py",
+      "sha256": "993ce9a616a4723a31423060d3baf4e6e64c9186846075fc9554291bb912783e"
+    },
+    {
+      "bytes": 3877,
+      "git_blob_sha1": "5ea6071f2bd36e2cea55dd0cf4a72031ebb525fb",
+      "path": "construction_agent/tie_kernel_output.json",
+      "sha256": "cbca8ca59148b4f9c435220fc49e4f983e07ccd91d55e55f2deaddfb29f52434"
+    },
+    {
+      "bytes": 4638,
+      "git_blob_sha1": "0a675920236ad358bd24f372cce381a02bf048d9",
+      "path": "construction_agent/tie_rank4_boundary.py",
+      "sha256": "b83ed3e0c4bca3449921999e1c935fd5677f9d1b1fd436d1a30211108fce4a4f"
+    },
+    {
+      "bytes": 19380,
+      "git_blob_sha1": "95ca7325a523b16f096b0ea0d8f08b31a6254573",
+      "path": "construction_agent/tie_rank4_boundary_output.json",
+      "sha256": "bdc0f94d3d78eee794b7e556e7b8fa2b1ac589b3ecfd548e2f023312605e0c5b"
+    },
+    {
+      "bytes": 6388,
+      "git_blob_sha1": "750d33e4d2ca6b6e33a6191acf35feab9913e11a",
+      "path": "construction_agent/tie_subspace_check.py",
+      "sha256": "a5459a8512f0bb1136392e4eb2ac4cecbda4b260d9c0480a9c30d85ea58718cd"
+    },
+    {
+      "bytes": 38371,
+      "git_blob_sha1": "fcd836908d57cca4c5cf25c1958fcdf9c7fbd785",
+      "path": "construction_agent/tie_subspace_output.json",
+      "sha256": "24f3c86868a976019186bc72c428c88b81a1e13f446606f34e0241c53646af79"
+    },
+    {
+      "bytes": 15210,
+      "git_blob_sha1": "25d4879315910e5bfa776ace19a6a393a9feb09d",
+      "path": "daybreak_agent/LIFTING_AUDIT.md",
+      "sha256": "36584f8e2118ab714e3fd06833d56cc0290e5b38ed03d513b2fa21b2667991aa"
+    },
+    {
+      "bytes": 10747,
+      "git_blob_sha1": "ef5b6bceef6c07ff0e9d91a621864327c005ed86",
+      "path": "parameters_agent/ASSESSMENT.md",
+      "sha256": "d62da4f20dd95719a366809cefda96741b8afeb61de58983e4b5e97514ae9dd3"
+    },
+    {
+      "bytes": 5919,
+      "git_blob_sha1": "20ae3d19e8d3229e9e7c2f42a410a5bf7a5fce77",
+      "path": "parameters_agent/check_parameters.py",
+      "sha256": "d3b90681cd673830c11d7fbe2761cb262767cec9f90ea5fdd5b39e2cbbd29731"
+    },
+    {
+      "bytes": 3251,
+      "git_blob_sha1": "d34c90203c60e3f7de6df40e806e076195f21190",
+      "path": "parameters_agent/parameter_output.json",
+      "sha256": "8af879bd34c07bad828c90c5c1b283295669e9d3c73d7d33f3f473bca7aeb463"
+    },
+    {
+      "bytes": 3105,
+      "git_blob_sha1": "86e5d9e679eb62e2cb3052ae1170a539bb49e49c",
+      "path": "recovery_equations_check.py",
+      "sha256": "07150ac726b5dc9d14d89bccc48907aa47faa893bc521e22d244cc39676e80b4"
+    },
+    {
+      "bytes": 1798,
+      "git_blob_sha1": "9442c1de623af62c59021e45be033cd69eda9013",
+      "path": "recovery_equations_output.json",
+      "sha256": "9bb77e118ffdc7dd31ee81761708ad32195af89302f1d7bcd6b44ef92fb4cac3"
+    }
+  ]
+}

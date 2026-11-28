@@ -1,0 +1,30 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_checker_command": "node research/pq-wkem/run457_native_key_ind_check.js",
+  "files": {
+    "RUN457_NATIVE_KEY_IND_COMPACT.md": {
+      "git_blob_sha1": "7a8954e0d822f7e0019ad8a41cf9c6f006752203",
+      "sha256": "4ddab85761b36a9e65a035743b8173eb10d87544c42fcf8d377ac85441270940",
+      "size": 5240
+    },
+    "run457_native_key_ind_check.js": {
+      "git_blob_sha1": "3a7651dcd6a07236be1313bdca64af4d02176df7",
+      "sha256": "b68486e5d0215e5c89861d9252e4c4618238f48120f494a8687a6d772cc8a1e3",
+      "size": 2749
+    },
+    "run457_native_key_ind_validation.json": {
+      "git_blob_sha1": "f5c6adcebde7e9857b4c4ad06e68303d76bb6680",
+      "sha256": "eab5f4f4c6176efbfbb676dde70a99f5959cff9d7aa8443ea66e813fabdbf4bc",
+      "size": 457
+    }
+  },
+  "model": "native Ed25519 NON-PQ diagnostics; classical conditional theorem; no QPT security proof",
+  "pr": 1,
+  "publication": "not yet claimed; commit/ref/comment receipt separate",
+  "repository": "syscoin/PVUGC",
+  "run": 457,
+  "scope": "research-only, no production or merges",
+  "starting_sha": "1fb447f9796e98f2dd9a9b5eded75558f3baf2f7",
+  "utc_date": "2026-10-12",
+  "validation": "312 assertions, 12 real accepts, 0/132 independent accepts, 0 wrong-context accepts; 2 byte-identical executions"
+}

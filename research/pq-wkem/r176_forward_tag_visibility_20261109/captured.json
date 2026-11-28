@@ -1,0 +1,30 @@
+{
+  "checks": {
+    "child_fork_before_tag_visibility": 1,
+    "delayed_tag_later_conflicts": 1,
+    "depth_and_tag_availability": 600,
+    "different_fork_children": 9,
+    "different_work_identifiers": 191,
+    "earliest_tag_height_formula": 120,
+    "first_eligible_tag_refs_fork": 120,
+    "future_fork_requires_later_witnesses": 1,
+    "height_gap_6_to_15": 120,
+    "one_sided_future_evidence_compatible": 1,
+    "one_tag_pad_not_common": 9,
+    "opposite_bit_table_opens_fake_conflict": 9,
+    "opposite_bit_table_opens_real_conflict": 9,
+    "post_baseline_fork_shares_old_baseline": 1,
+    "previous_child_does_not_reference_fork": 120,
+    "public_slot_leaks": 9,
+    "same_child_different_work_no_fork": 191,
+    "same_semantic_tag_no_release": 9,
+    "shared_predecessor": 9,
+    "tag_consistency_with_fork_start": 191,
+    "two_later_tags_conflict": 1,
+    "unique_fork_start": 9
+  },
+  "run": "R176-tag-slot-20261109",
+  "source_sha256": "277e06358c96fe4240dcc09e8de8dfe9883675d20316fc67a645c2e59113bc6f",
+  "status": "source tag-window normalization and raw-release counterchecks only; no WKEM, native signing, QPT, or real source authentication",
+  "total_assertions": 1731
+}

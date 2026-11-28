@@ -1,0 +1,17 @@
+{
+  "run": 538,
+  "status": "PASS",
+  "seed": 53820261015,
+  "permutation_witness_scenarios": 216,
+  "postrelease_query_responses": 3024,
+  "coherent_basis_checks": 13824,
+  "widths": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "warning": "Toy deterministic oracle identity only; NOT QPT hardness or native signing security"
+}

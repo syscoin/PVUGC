@@ -1,0 +1,14 @@
+{
+  "run": 400,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "parent": "4d4ca3d1197c1b9e418cbb3dda70604e14dc34c8",
+  "executed_checker": "projection_causal_view_run400_check.js",
+  "checks": 6210,
+  "scope": "projected-view simulator, not total-state simulator",
+  "proof_hardness": "conditional quantum-one-way permutation for full-state example",
+  "security_status": "NO practical WKEM/QPT secrecy proof",
+  "local_independent_extended_checker": "projection_coset_run400_check.py (106780 assertions, local only)",
+  "read_pr_head_verified": true
+}

@@ -1,0 +1,40 @@
+{
+  "run": 524,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "013e6a81425ccd1b5bc0fd9b7c7dab4395bd4919",
+  "proof": "RUN524_THREE_ROUND_FEISTEL_COMPACT.md",
+  "checker": "run524_feistel_compact_check.js",
+  "validation": "run524_feistel_compact_validation.json",
+  "exact_executed_checker": "V8 run524() in this invocation; standalone source is function.toString() plus JSON output",
+  "checker_output": {
+    "run": 524,
+    "pass": true,
+    "model": "3-round inverse-first Feistel, full known opened-reference anchor pairs",
+    "records": [
+      {
+        "n": 4,
+        "polynomial": 19,
+        "full_difference_pairs": 240,
+        "number_of_four_root_equations": 15,
+        "reference_tests": 128,
+        "false_target_key_list_successes": 128,
+        "unique_frame_tests": 110,
+        "maximum_key_candidates": 4
+      },
+      {
+        "n": 8,
+        "polynomial": 283,
+        "full_difference_pairs": 65280,
+        "number_of_four_root_equations": 255,
+        "reference_tests": 128,
+        "false_target_key_list_successes": 128,
+        "unique_frame_tests": 125,
+        "maximum_key_candidates": 2
+      }
+    ]
+  },
+  "scope": "finite algebraic verification and exact two-reference theorem, no practical WKEM",
+  "commit_intent": "only four new research files; PR remains draft/unmerged"
+}

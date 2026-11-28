@@ -1,0 +1,10 @@
+{
+  "case": "R198-SCPRF-PUBLISHED",
+  "cover_nodes": 5,
+  "distinct_valid_digest_leaves": true,
+  "fabricated_digest_accepted_without_header": true,
+  "interval_values_checked": 1024,
+  "other_valid_digest_fails_same_key": true,
+  "public_prefix_row_opens_without_source": true,
+  "security": "classical counterexample only; no ORIGINAL KEM/QPT claim"
+}

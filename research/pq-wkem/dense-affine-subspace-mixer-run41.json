@@ -1,0 +1,85 @@
+{
+  "json_payload_sha256_before_self_field": "88684fdc42905e6e4294012c7a0f32f3bfc254f95280ecca45538a375cc0cdb8",
+  "large_dense_control": {
+    "n": 16,
+    "public_membership_decoder": "perfect",
+    "rank_R": 4,
+    "rank_R_plus_S": 13,
+    "rank_S": 10,
+    "support_per_key": 8192,
+    "tv": "1"
+  },
+  "polynomial_affine_mixtures": {
+    "cases": 180,
+    "claim": "public exact MAP from affine-subspace membership dominates every tested decoder; public invertible scrambles preserve likelihood after inversion",
+    "decoder_comparisons": 4320,
+    "exact_likelihood_coordinates_checked": 43200,
+    "examples": [
+      {
+        "components": 6,
+        "map_success": "83/124",
+        "n": 5,
+        "rank_R": 2,
+        "support0": 32,
+        "support1": 32,
+        "tv": "21/62"
+      },
+      {
+        "components": 4,
+        "map_success": "7/12",
+        "n": 5,
+        "rank_R": 3,
+        "support0": 32,
+        "support1": 32,
+        "tv": "1/6"
+      },
+      {
+        "components": 5,
+        "map_success": "27/38",
+        "n": 5,
+        "rank_R": 0,
+        "support0": 20,
+        "support1": 20,
+        "tv": "8/19"
+      },
+      {
+        "components": 3,
+        "map_success": "39/44",
+        "n": 5,
+        "rank_R": 1,
+        "support0": 32,
+        "support1": 32,
+        "tv": "17/22"
+      },
+      {
+        "components": 3,
+        "map_success": "19/26",
+        "n": 5,
+        "rank_R": 1,
+        "support0": 12,
+        "support1": 12,
+        "tv": "6/13"
+      },
+      {
+        "components": 4,
+        "map_success": "1/2",
+        "n": 5,
+        "rank_R": 3,
+        "support0": 32,
+        "support1": 32,
+        "tv": "0"
+      }
+    ],
+    "scramble_cases": 180,
+    "strict_map_improvements": 4142
+  },
+  "scope_note": "Finite tests validate algebra/implementation only. They are not a cryptographic security claim.",
+  "seed": 1101353342,
+  "single_subspace": {
+    "cases": 420,
+    "claim": "TV is exactly 0 iff delta in R+S, else exactly 1",
+    "disjoint_cases": 255,
+    "equal_cases": 165,
+    "membership_decoder_point_checks": 14840
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "run_id": "MINK-FWT-20261102",
+  "scope": "research-only restricted setup graph proof; NOT generic witness-KEM",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "fb874ea19adbadde95e5562fea029cc5f6125d5a",
+  "predecessor_exact_file": "research/pq-wkem/mink_dense_crs_20261101/RESEARCH.md",
+  "predecessor_blob": "b667b8d155f90e39718bc521de1e21161b5fa02a",
+  "checker": "node checker.js",
+  "checker_node_version": "v22.16.0",
+  "published_checker_passes": 2,
+  "published_checker_checks_each": 72913,
+  "published_output_identical": true,
+  "additional_local_only_python_checker_checks_each": 126806,
+  "additional_local_only_python_passes": 2,
+  "additional_python_output_identical": true,
+  "assumptions": "same decisional QPT LWE distribution as predecessor, plus honest public coin proof CRS; no new QPT assumption",
+  "limitations": "no generic-NP source release, no true-key-to-ORIGINAL witness reduction, no one-honest malicious ceremony, no QPT concrete parameter estimate or deployment",
+  "external_research": false
+}

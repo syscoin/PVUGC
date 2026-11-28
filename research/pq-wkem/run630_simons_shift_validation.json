@@ -1,0 +1,14 @@
+{
+  "actual_np_wkem_constructed": false,
+  "check_count": 535448,
+  "classical_query_set_cases": 28,
+  "cryptographic_security_established": false,
+  "exact_fourier_output_cases": 2016,
+  "mathematical_failure_bound": "2^(-10) for n+10 independent Simon samples",
+  "model": "ideal forward-only random permutation; coherent quantum queries",
+  "pair_validity_cases": 2016,
+  "quantum_sample_count_per_trial": "n+10",
+  "quantum_simon_success": 399,
+  "quantum_simon_trials": 400,
+  "run": 630
+}

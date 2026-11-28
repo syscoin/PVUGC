@@ -1,0 +1,12 @@
+{
+  "B": 47,
+  "assertions": 2730,
+  "bound_log2_t_ell_delta": -234.382464875,
+  "complete_256bit_sameK_trials": 4,
+  "ell": 47,
+  "full_coin_open_limit": 2,
+  "result": "PASS",
+  "scope": "restricted LWE; no QPT hardness or arbitrary-NP security proven",
+  "sphere_log2_N": 2545.04687221,
+  "two_valid_original_witnesses": true
+}

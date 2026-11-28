@@ -1,0 +1,17 @@
+{
+  "run": 434,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "054d8c16487face8f7817d936a604ab3078f7684",
+  "reference_run429_blob": "19d8d84b12d9264e068b943f034689cb6b8f5803",
+  "reference_run428_blob": "a82a5a7efbb852462894fc62ac1d910df0e636f2",
+  "last_substantive_comment": 6067040320,
+  "checker": "node research/pq-wkem/run434_compact_check.js",
+  "executed_assertions": 1263,
+  "checker_output_exactly_captured": true,
+  "source_model": "classical PPT deterministic publicly executable circuit, conditional sparse Simon approximation; QPT coherent evaluator",
+  "literature": "May-Schlieper-Schwinger arXiv:1910.00802v3 Sections 2,5,6",
+  "complete_pq_wkem": false,
+  "production_unchanged": true
+}

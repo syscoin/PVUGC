@@ -1,0 +1,39 @@
+{
+  "claims_scope": {
+    "noise_theorem": "over real iid Gaussian transcript noise, the publicly computable minimum-Euclidean-norm evaluator has per-output standard deviation no larger than any witness-path evaluator",
+    "not_claimed": "no universal attack on modular LWE-style noise; rational minimum-norm coefficients can have denominators that do not preserve centered smallness modulo q; tests are not security evidence",
+    "proved_by_algebra": "true instance => endpoint functional lies in public row span of the noiseless affine transport operator; singular branch differences do not prevent exact public synthesis"
+  },
+  "finite_field_exact": {
+    "L": 6,
+    "all_branch_differences_singular": 500,
+    "d": 3,
+    "false_control_targets": 500,
+    "false_controls_with_public_evaluator": 500,
+    "field": 101,
+    "fixtures": 500,
+    "max_branch_difference_rank": 1,
+    "qm_scalar_checks": 31500,
+    "true_public_evaluator_recoveries": 500
+  },
+  "rational_minimum_energy": {
+    "L": 8,
+    "branch_difference_rank": 1,
+    "d": 3,
+    "exact_constraint_checks": 81,
+    "gaussian_trials_diagnostic": 30000,
+    "max_minimum_evaluator_denominator": 4,
+    "minimum_norm_over_honest_norm2_ratios": [
+      0.3125,
+      0.3125,
+      0.5
+    ],
+    "noiseless_rational_public_recoveries": 300,
+    "output0_empirical_rmse_honest": 2.8216995757011083,
+    "output0_empirical_rmse_public": 1.5805142822628546,
+    "output0_theoretical_std_honest": 2.8284271247461903,
+    "output0_theoretical_std_public": 1.5811388300841898
+  },
+  "run": 57,
+  "seed": 570057
+}

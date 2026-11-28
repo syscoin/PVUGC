@@ -1,0 +1,13 @@
+{
+  "capsules_with_at_least_one_failed_valid_witness": 512,
+  "domain_size": 4096,
+  "duplicate_point_exceptions_leave_a_hole": true,
+  "every_witness_correctness_not_implied_by_pointwise_correctness": true,
+  "fixed_witness_failure_fraction": "1/512",
+  "malicious_selected_bad_coin_fails_all": true,
+  "scope": "finite quantifier counterexample only; no FE/ZK/PoW/source validation",
+  "two_distinct_point_exceptions_cover_all_valid_witnesses": true,
+  "uniform_bad_coin_probability": "1/4096",
+  "valid_witnesses": 512,
+  "xor_beacon_bad_probability": "1/4096"
+}

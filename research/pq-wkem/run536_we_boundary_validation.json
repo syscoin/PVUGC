@@ -1,0 +1,13 @@
+{
+  "run": 536,
+  "checker": "run536_we_boundary_check.js",
+  "seed": "53620261015",
+  "status": "PASS",
+  "balanced_nonzero_secret_cases": 1013,
+  "naive_public_key_otp_distinguish_wins": 96,
+  "naive_cases": 96,
+  "iid_noise_pairwise_parity_recoveries": 40,
+  "iid_noise_cases": 40,
+  "iid_noise_oracle_calls": 102400,
+  "qualification": "Finite algebra, flawed-OTP attack and iid-noise decoding only; arbitrary-predictor inversion uses Goldreich-Levin theorem, not this checker. No concrete QPT WKEM."
+}

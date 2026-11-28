@@ -1,0 +1,16 @@
+{
+  "run": 528,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "6e4a92587a7256bb920f82679233742ac86fd080",
+  "checker": "exact JS source above, check() executed in V8 before creating tree; Node reproducer prints the captured JSON",
+  "note": "Compact publication; extended independent Python checker and derivation preserved locally",
+  "security": "no obfuscation/WE construction/QPT proof",
+  "files": [
+    "RUN528_UNARY_ADMISSION_COMPACT.md",
+    "run528_unary_compact_check.js",
+    "run528_unary_compact_validation.json",
+    "RUN528_COMPACT_PROVENANCE.json"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "status": "NO_POSITIVE_ADVANCE",
+  "run": "fractional_lp_spike_no_go_20261030",
+  "assertions": 3617,
+  "sourceCubeCount": 1,
+  "worstFalseNoise": 13,
+  "worstValidNoise": 15,
+  "spacing": 48,
+  "trueChecks": 1024,
+  "falseChecks": 512,
+  "relatedCapsules": 2,
+  "q": 1009,
+  "spikeAmplitude": 8
+}

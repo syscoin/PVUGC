@@ -1,0 +1,12 @@
+{
+  "candidate": "ICSO-2",
+  "exact_opening_patterns": 49,
+  "adaptive_plaintext_policy_equal": true,
+  "inverse_survival_normalization": "1/9 with guessed lane per capsule",
+  "guesses": 9,
+  "restricted_hybrid_target_ciphertexts": 38,
+  "realization": "independent XOR shares per related capsule",
+  "assertions": 157,
+  "security_scope": "honest random SOURCE; arbitrary QPT with classical whole-lane adaptive opens; not ORIGINAL NP",
+  "status": "algebraic checker, not a QPT security experiment"
+}

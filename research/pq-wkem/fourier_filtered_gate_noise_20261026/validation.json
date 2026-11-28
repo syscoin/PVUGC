@@ -1,0 +1,11 @@
+{
+  "name": "FOURIER_FILTER_GATE_EXACT_JS_20261026",
+  "status": "PASS",
+  "assertions": 162,
+  "false_odd_characters_killed": 8,
+  "all_32_false_full_quotient_probabilities_equal": true,
+  "true_distinct_original_witnesses": 4,
+  "rho4": "2/3",
+  "rho7": "16/35",
+  "disclaimer": "not a generic PPT WKEM; hard true key->ORIGINAL extraction unresolved"
+}

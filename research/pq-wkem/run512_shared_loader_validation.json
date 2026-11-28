@@ -1,0 +1,13 @@
+{
+  "run": 512,
+  "scope": "false-target complete public-view coupling under independently secret per-claim seed translations; compact/QPT-white-box security unproved",
+  "counts": {
+    "exhaustive_S8_frames": 40320,
+    "sampled_S16_frames": 128,
+    "transplant_algebra": 330752,
+    "full_public_multiset_equalities": 82176,
+    "mask_reuse_leaks": 163328,
+    "reference_masks": 81152
+  },
+  "negative_control": "shared target/reference delta leaks full target seed"
+}

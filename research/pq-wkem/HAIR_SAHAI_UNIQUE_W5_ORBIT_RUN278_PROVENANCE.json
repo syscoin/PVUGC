@@ -1,0 +1,65 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "conversation_local_handoff": [
+    "The surviving field-span-three W5 profile and dual [5,2] rank spectrum came from the immediately preceding interactive checkpoint; this run independently classifies that finite abstract object.",
+    "No unpublished artifact is used as GitHub branch evidence."
+  ],
+  "exact_live_files": [
+    {
+      "blob_sha": "bdf9b7d699864e616aedd69dfe77df40a7b955af",
+      "path": "research/pq-wkem/HAIR_SAHAI_CLOSURE_BARRIER_RUN220.md"
+    },
+    {
+      "blob_sha": "7cfe00449e9e7730bb7dca301fc103b824f3c014",
+      "path": "research/pq-wkem/hair_sahai_closure_barrier_run220_check.py"
+    },
+    {
+      "blob_sha": "8e30d1a6215d4842fa5ffb9b3383401d7bf2a49d",
+      "path": "research/pq-wkem/HAIR_SAHAI_ADJOINT_CLOSURE5_RUN221.md"
+    },
+    {
+      "blob_sha": "f58a7ed0e686e85516a549ca07abe980ebd73d4b",
+      "path": "research/pq-wkem/hair_sahai_adjoint_closure5_run221_check.py"
+    },
+    {
+      "blob_sha": "5c9471b0498577a17d62d17f6553c08eeafcf75d",
+      "path": "research/pq-wkem/HPS_SZK_LACONIC_WE_BARRIER_RUN262.md"
+    }
+  ],
+  "github_publication": {
+    "checker_blob_sha": "0a83c624e485a51d33ed8a8a6a69704487901eab",
+    "comment_id": null,
+    "commit_sha": null,
+    "note": "Final tree/commit/ref/comment outcomes are recorded in the run receipt and checkpoint response.",
+    "prewrite_head": "421a03f2882149051a086e23a56ee9149bf4d500",
+    "prewrite_note_path_absent": true,
+    "prewrite_tree": "b9a7b3c2d443712451e1de1d6c5a6f635246185c",
+    "proof_note_blob_sha": "8fd8b3238d7a4232fe83a00121f9e7984726172f",
+    "provenance_blob_sha": null,
+    "ref_update": null,
+    "tree_sha": null,
+    "validation_blob_sha": "960cc490bcea903a586d76707cc109f31b3faed4"
+  },
+  "latest_substantive_comment_id": 5945825660,
+  "local_validation": {
+    "all_binary_5spaces": 97155,
+    "assertions": 183657,
+    "orbit_size": 61200,
+    "py_compile": "PASS",
+    "python": "/usr/bin/python3",
+    "target_profile_count": 61200,
+    "two_byte_identical_runs": true
+  },
+  "pr": 1,
+  "publication_status": "ARTIFACT_BLOBS_CREATED_PENDING_COMMIT",
+  "repository": "syscoin/PVUGC",
+  "run": "Run 278",
+  "scope": [
+    "Complete abstract classification of the surviving field-span-three W5 core.",
+    "No claim that GL3(GF16) is an automorphism group of the Hair-Sahai tensor.",
+    "Actual tensor embedding exclusion remains unproved.",
+    "No QPT hiding, ORIGINAL extraction, malicious setup, or practical WKEM completion is claimed."
+  ],
+  "starting_sha": "421a03f2882149051a086e23a56ee9149bf4d500",
+  "starting_state": "open,draft,unmerged"
+}

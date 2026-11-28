@@ -1,0 +1,11 @@
+{
+  "checks": 258,
+  "different_valid_signatures": 14,
+  "false_preimage_instance_rejections": 16,
+  "fixtures": 40,
+  "independent_fake_rejections": 40,
+  "multi_preimage_fixtures": 14,
+  "original_source_invalid_early_unlock": 40,
+  "status": "TOY hash-preimage OTS component only: NOT generic WKEM; same sigma fails; source validity unbound",
+  "valid_preimage_partial_signatures": 40
+}

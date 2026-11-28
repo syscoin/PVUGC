@@ -1,0 +1,47 @@
+{
+  "run": 582,
+  "date": "2026-10-17",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "live_start_sha": "08f8af4bff5fceca42b7fd5537f10f3106df78d5",
+  "exact_run580_note_blob": "fba4dadaad8b942d3c6887f449081d0b52367e6b",
+  "run581_unreferenced_commit": "5f2145bce5adf57aee65d957bd7c74c47ae7e7e7",
+  "executed_checker": "run582_degree_check.js",
+  "checker_output": {
+    "run": 582,
+    "assertions": 147789,
+    "polynomials": 65808,
+    "minimum_weights": {
+      "1": {
+        "0": 2,
+        "1": 1
+      },
+      "2": {
+        "0": 4,
+        "1": 2,
+        "2": 1
+      },
+      "3": {
+        "0": 8,
+        "1": 4,
+        "2": 2,
+        "3": 1
+      },
+      "4": {
+        "0": 16,
+        "1": 8,
+        "2": 4,
+        "3": 2,
+        "4": 1
+      }
+    },
+    "affine_bijections": 168,
+    "affine_cases": 8064,
+    "quantum_executed": false,
+    "practical_wkem": false
+  },
+  "local_independent_python_assertions": 148907,
+  "security_status": "scoped falsifier only; no WKEM",
+  "production_unchanged": true
+}

@@ -1,0 +1,10 @@
+{
+  "fixed_public_nonbaseline_label_recovers_payload_early": true,
+  "full_domain_checks": 1024,
+  "model": "synthetic 10-bit attribute index only, NOT original certificate",
+  "no_original_qpt_reduction": true,
+  "no_source_gated_compiler": true,
+  "public_sibling_seed_count": 10,
+  "punctured_leaf_count": 1,
+  "unqualified_nonbaseline_attribute_can_get_ggm_label": true
+}

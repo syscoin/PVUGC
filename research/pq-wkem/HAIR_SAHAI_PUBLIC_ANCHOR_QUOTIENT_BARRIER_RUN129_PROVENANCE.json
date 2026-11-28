@@ -1,0 +1,78 @@
+{
+  "run": 129,
+  "created_utc": "2026-09-26T22:45:33Z",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head_sha": "76e5b632cf00b4372955b871aadd59ded84c5167",
+  "publication_status_at_capture": "not_yet_attempted",
+  "scope": "research-only focused falsification of the public linear canonical-quotient branch on the actual Hair--Sahai weighted-table source space",
+  "primary_sources": [
+    {
+      "title": "Witness Encryption via Prime-Order Generic Groups",
+      "authors": ["Isaac M. Hair", "Amit Sahai"],
+      "version": "arXiv:2609.18275v1",
+      "date": "2026-09-16",
+      "url": "https://arxiv.org/html/2609.18275v1",
+      "sections_rechecked": ["3.1", "4.3", "4.4", "4.5", "4.6"],
+      "facts_used": [
+        "the stacked assignment matrix A(b) uses a shared right factor v(b)",
+        "the listed weight family includes the constant polynomial h=1",
+        "every satisfying A(b) lies in the public source space S_x",
+        "an ordered basis of S_x is deterministically computable in polynomial time"
+      ],
+      "security_imported": false
+    }
+  ],
+  "artifacts": {
+    "note": {
+      "path": "research/pq-wkem/HAIR_SAHAI_PUBLIC_ANCHOR_QUOTIENT_BARRIER_RUN129.md",
+      "sha256": "adb9ae135c831eba473103a1126dfb6db4418b50f52d5a65cd8c114ca59f1fe9"
+    },
+    "checker": {
+      "path": "research/pq-wkem/hair_sahai_anchor_quotient_run129_check.py",
+      "sha256": "d714b35d67168adaed874a63cb4509e8cfee2424e8f2b31e7da960e2d0e3c713"
+    },
+    "captured_output": {
+      "path": "research/pq-wkem/hair-sahai-anchor-quotient-run129-validation.json",
+      "sha256": "d13c477cb841b101488b1f1b9d4360ed1a745e4d017fe6628b95e36fc80adc2d"
+    }
+  },
+  "execution": {
+    "command": "python hair_sahai_anchor_quotient_run129_check.py",
+    "executions": 2,
+    "stdout_byte_identical": true,
+    "stderr": "empty",
+    "python_syntax_check": "python -m py_compile hair_sahai_anchor_quotient_run129_check.py",
+    "checker_dependencies": "Python standard library only",
+    "captured_stdout_sha256": "d13c477cb841b101488b1f1b9d4360ed1a745e4d017fe6628b95e36fc80adc2d",
+    "summary": {
+      "literal_v1_weighted_table_cases": 6,
+      "satisfying_witnesses_checked": 33,
+      "all_quotient_dimensions": 1,
+      "all_honest_quotient_coordinates": 1,
+      "cases_with_strict_ambient_pseudodirections": 3
+    }
+  },
+  "claim_scope": {
+    "proved": [
+      "on every satisfiable Hair--Sahai source space, the public h=1 top-left anchor has nonzero restriction and its kernel has codimension one",
+      "a normalized source-space representative U_x with anchor one is computable from the public source basis without a witness",
+      "every honest satisfying assignment encoding lies in the same public coset U_x + (S_x intersect ker anchor)",
+      "every public linear invariant that annihilates that anchor-zero source kernel is witness-free computable"
+    ],
+    "not_proved": [
+      "impossibility of nonlinear or secret-mode all-witness canonicalization",
+      "QPT hiding for any surviving construction",
+      "arbitrary-QPT final-key recovery to ORIGINAL-witness extraction",
+      "standard-LWE/SIS realization of the surviving source gate",
+      "a complete practical generic-NP PQ witness KEM"
+    ]
+  },
+  "quantum_classification": {
+    "new_theorem_hardness_assumption": "none",
+    "new_attack_model": "classical polynomial-time public linear algebra; therefore also valid against a QPT-security target",
+    "hair_sahai_security_theorem_imported": false,
+    "full_qpt_target_status": "UNPROVED"
+  }
+}

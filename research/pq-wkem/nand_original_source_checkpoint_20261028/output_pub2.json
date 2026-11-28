@@ -1,0 +1,1 @@
+{"QPT_security_claim": false, "checks": 3869, "different_valid_witnesses": 3, "false_attack_probability": 0.975705646887, "false_source_insecure": true, "original_cases": {"false": {"accepted_original_witnesses": 0, "h": 8, "m": 21, "r": 17}, "true": {"accepted_original_witnesses": 3, "h": 5, "m": 11, "r": 8}}, "same_K_full_seed_trials": 16, "status": "PASS"}

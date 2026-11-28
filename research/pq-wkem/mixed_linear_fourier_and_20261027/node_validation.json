@@ -1,0 +1,6 @@
+{
+  "record": "mixed-linear-fourier-and-20261027-turn9",
+  "assertions": 295938,
+  "kind": "exact finite algebra only",
+  "scope": "QPT hardness, Bitcoin and native signatures not tested"
+}

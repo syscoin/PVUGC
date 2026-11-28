@@ -1,0 +1,122 @@
+{
+  "run": "R32-MINK-BILINEAR-IDEAL-MIX",
+  "outcome": "PASS algebraic and finite checks; conditional FALSE-class QPT statistical hiding, no hard-TRUE security",
+  "checks": 11149,
+  "q": 101,
+  "degree": 3,
+  "ambient_dimension": 16,
+  "t": 30,
+  "false_clauses": 10,
+  "rank_linear": 10,
+  "rank_product": 13,
+  "exact_integer_product_unit_certificate": [
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      2,
+      1
+    ],
+    [
+      2,
+      6,
+      -1
+    ],
+    [
+      3,
+      3,
+      1
+    ],
+    [
+      4,
+      4,
+      1
+    ],
+    [
+      5,
+      5,
+      1
+    ],
+    [
+      5,
+      9,
+      -1
+    ],
+    [
+      6,
+      6,
+      1
+    ],
+    [
+      8,
+      8,
+      1
+    ],
+    [
+      9,
+      9,
+      1
+    ]
+  ],
+  "distinct_true_witnesses": 14,
+  "bit_tests": 256,
+  "actual_valid_recoveries": 3584,
+  "false_joint_log2_tv_upper_bound": -137.48065262053947,
+  "rank_checks": {
+    "101": {
+      "linear": 10,
+      "product": 13,
+      "unit_in_linear": false,
+      "unit_in_product": true
+    },
+    "65537": {
+      "linear": 10,
+      "product": 13,
+      "unit_in_linear": false,
+      "unit_in_product": true
+    }
+  },
+  "scalar_convolution": [
+    {
+      "t": 1,
+      "tv": 0.33333333333333337
+    },
+    {
+      "t": 2,
+      "tv": 0.1111111111111111
+    },
+    {
+      "t": 3,
+      "tv": 0.03703703703703698
+    },
+    {
+      "t": 4,
+      "tv": 0.012345679012345623
+    },
+    {
+      "t": 5,
+      "tv": 0.0041152263374485964
+    },
+    {
+      "t": 6,
+      "tv": 0.001371742112482921
+    },
+    {
+      "t": 7,
+      "tv": 0.00045724737082764033
+    },
+    {
+      "t": 8,
+      "tv": 0.00015241579027591712
+    }
+  ],
+  "warning": "Only restricted-FALSE statistical hiding and honest correctness; no generic WKEM, QPT LWE reduction, malicious setup or arbitrary TRUE extraction"
+}

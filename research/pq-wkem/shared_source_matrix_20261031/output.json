@@ -1,0 +1,40 @@
+{
+  "candidate": "SSMA 2026-10-31",
+  "assertions": 2020,
+  "finite": {
+    "q": 3,
+    "d": 1,
+    "n": 6,
+    "matrices": 729,
+    "source_tuples": 19683,
+    "joint_false_count": 254,
+    "single_false_count": 14
+  },
+  "toy": {
+    "q": 257,
+    "d": 2,
+    "n": 8,
+    "scopes": 4,
+    "witnesses_per_scope": 2,
+    "share_lanes": 3,
+    "capsules_per_scope": 2,
+    "protected_target": 0,
+    "unopened_lane": 1,
+    "opened_sibling_coins_verified": true,
+    "nonbinary_false_recovery": true
+  },
+  "illustrative": {
+    "scopes": 8,
+    "matrix_bytes": 53780480,
+    "t_bytes_per_scope": 2560,
+    "ciphertext_bytes_per_scope": 27101610,
+    "ciphertext_vectors_per_scope": 258,
+    "separate_bytes": 647077200,
+    "shared_bytes": 270613840,
+    "saved_bytes": 376463360,
+    "savings_percent": 58.179048805923,
+    "log2_group_false_bound": -525.0000000584478,
+    "log2_group_error_conditioning": -1174.2261951557034
+  },
+  "limitation": "toy checks neither QPT security nor generic ORIGINAL soundness"
+}

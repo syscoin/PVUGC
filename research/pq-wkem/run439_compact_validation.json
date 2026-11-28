@@ -1,0 +1,92 @@
+{
+  "run": 439,
+  "checks": 220,
+  "finite_group": "S_4",
+  "frame_assignments_per_fixture": 13824,
+  "fixtures": {
+    "ref": {
+      "histogram": {
+        "A": 2,
+        "B": 2
+      },
+      "anchor_colors": [
+        "A"
+      ],
+      "support": 6912,
+      "multiplicity": 2
+    },
+    "alt": {
+      "histogram": {
+        "A": 2,
+        "B": 2
+      },
+      "anchor_colors": [
+        "A"
+      ],
+      "support": 6912,
+      "multiplicity": 2
+    },
+    "pin_mismatch": {
+      "histogram": {
+        "B": 2,
+        "A": 2
+      },
+      "anchor_colors": [
+        "B"
+      ],
+      "support": 6912,
+      "multiplicity": 2
+    },
+    "histogram_mismatch": {
+      "histogram": {
+        "A": 3,
+        "B": 1
+      },
+      "anchor_colors": [
+        "A"
+      ],
+      "support": 6912,
+      "multiplicity": 2
+    },
+    "unpinned_ref": {
+      "histogram": {
+        "A": 2,
+        "B": 2
+      },
+      "anchor_colors": [],
+      "support": 3456,
+      "multiplicity": 4
+    },
+    "unpinned_alt": {
+      "histogram": {
+        "B": 2,
+        "A": 2
+      },
+      "anchor_colors": [],
+      "support": 3456,
+      "multiplicity": 4
+    }
+  },
+  "same_distribution": [
+    "ref",
+    "alt"
+  ],
+  "disjoint_pairs": [
+    [
+      "ref",
+      "pin_mismatch"
+    ],
+    [
+      "ref",
+      "histogram_mismatch"
+    ]
+  ],
+  "unpinned_same_distribution": [
+    "unpinned_ref",
+    "unpinned_alt"
+  ],
+  "terminal_decoder_trials": 64,
+  "terminal_decoder_bypasses": 64,
+  "demo_only": true,
+  "post_quantum_or_witness_kem_security": false
+}

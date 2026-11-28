@@ -1,0 +1,18 @@
+{
+  "checks": 7398,
+  "groups": {
+    "fake_selector_raw_key_recovery": 8,
+    "first_divergence_guard_rejects_irrelevant_fork": 870,
+    "fixed_baseline_misses_later_fork": 140,
+    "immature_lightclient_depth_blind_spot": 50,
+    "immature_tag_blind_spot": 140,
+    "mature_baseline": 140,
+    "minimal_baseline": 140,
+    "relevant_fork_single_alternate": 2520,
+    "tag_mismatch_can_be_irrelevant": 870,
+    "workid_variation_same_child": 2520
+  },
+  "name": "R177 claim-relevant one-sided tag completeness",
+  "scope": "synthetic SHA-linked histories, NOT actual AuxPoW/Bitcoin qualification or any release proof",
+  "source_sha256": "33fc029ff2bd6b05840801b9445dab28e9b9945edc2d93b765b1fdcfa9fdcad2"
+}

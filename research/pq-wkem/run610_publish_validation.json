@@ -1,0 +1,13 @@
+{
+  "all_valid_witness_checks": 578,
+  "false_source_recovery_checks": 67048,
+  "false_source_statements": 232,
+  "keyed_transcripts_distinguished": 289,
+  "q": 17,
+  "raw_noise_agreement": "21/81",
+  "run": 610,
+  "scope": "exact toy falsifier only; not PQ/native Bitcoin",
+  "short_images": 57,
+  "true_original_witnesses": 2,
+  "verified_assertions": 67915
+}

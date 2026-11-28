@@ -1,0 +1,14 @@
+{
+  "run": "MINK-LWE-NATIVE-SOURCE-20261102-R11",
+  "checks": 2568,
+  "toy_q": 257,
+  "toy_m": 22,
+  "source_relation": "R_LWE",
+  "distinct_original_witnesses": 2,
+  "related_capsules": 3,
+  "protected_lane": 2,
+  "uniform_keys_enumerated": 59049,
+  "mean_TV": 0.352927229928,
+  "leftover_bound": 0.474341649025,
+  "scope": "algebraic test only; all-FALSE-instance security fails"
+}

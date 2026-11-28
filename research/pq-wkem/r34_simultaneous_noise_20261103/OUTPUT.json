@@ -1,0 +1,58 @@
+{
+  "run_id": "R34-SIMULTANEOUS-NOISE-20261103",
+  "executions": 2,
+  "byte_identical": true,
+  "result": {
+    "status": "PASS",
+    "checks": 16432,
+    "release": {
+      "q": 127,
+      "variables": 6,
+      "clauses": 4,
+      "validAssignments": 38,
+      "bits": 144,
+      "simultaneousWitnessBitRecoveries": 5472
+    },
+    "convolution": {
+      "modulus": 3,
+      "t": 2,
+      "tvBefore": 0.1440329218106996,
+      "tvAfter": 0.06378600823045268
+    },
+    "parameters": [
+      {
+        "n": 11,
+        "M": 1486,
+        "qDeterministic": 5953,
+        "qCentered": 2237,
+        "ratio": 2.661,
+        "failureUpperLog2": -129.1024
+      },
+      {
+        "n": 20,
+        "M": 60460,
+        "qDeterministic": 241847,
+        "qCentered": 14633,
+        "ratio": 16.528,
+        "failureUpperLog2": -128.0632
+      },
+      {
+        "n": 30,
+        "M": 768212,
+        "qDeterministic": 3072857,
+        "qCentered": 53759,
+        "ratio": 57.16,
+        "failureUpperLog2": -128.0165
+      },
+      {
+        "n": 50,
+        "M": 18260636,
+        "qDeterministic": 73042547,
+        "qCentered": 277157,
+        "ratio": 263.542,
+        "failureUpperLog2": -128.067
+      }
+    ],
+    "provenance": "offline deterministic V8 finite algebra; not PQ hardness"
+  }
+}

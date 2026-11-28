@@ -1,0 +1,14 @@
+{
+  "assertions": 768,
+  "checker_sha256": "3badc640c20a373c3a65120547266fc028ea8d11eb0aab93472a0359c709f209",
+  "counts": {
+    "distinct_source_pad_not_same_key": 128,
+    "notary_signature_annex_bound": 128,
+    "setup_signature_annex_independent": 128,
+    "source_slot_raw_leak": 128,
+    "txid_unchanged_wtxid_changed": 128,
+    "witness_commitment_selects_actual_assertion": 128
+  },
+  "run": "SBR-20261109",
+  "scope": "Synthetic branch pads and current-input annex witness binding only; no qualified Bitcoin/Syscoin evidence, PQ endpoint, WE or QPT proof"
+}

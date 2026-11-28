@@ -1,0 +1,8 @@
+{
+  "results": [
+    {"dimension":4,"extracted_key_matches":true,"invalid_assignments":36,"max_reachable_basis_size":4,"n":6,"public_extracted_witness":"000011","recovered_secret_matches":true,"valid_assignments":28},
+    {"dimension":4,"extracted_key_matches":true,"invalid_assignments":136,"max_reachable_basis_size":4,"n":8,"public_extracted_witness":"00000011","recovered_secret_matches":true,"valid_assignments":120},
+    {"dimension":4,"extracted_key_matches":true,"invalid_assignments":528,"max_reachable_basis_size":4,"n":10,"public_extracted_witness":"0000000011","recovered_secret_matches":true,"valid_assignments":496}
+  ],
+  "scope":"public read-once linear-state toy; not ORIGINAL FE/WE, PoW or QPT tests"
+}

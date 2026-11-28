@@ -1,0 +1,27 @@
+{
+  "record": "or-policy-joint-fourier-20261027",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "4e72c613bdc1f624eb2d40bc40c309edc92f2a3e",
+  "predecessor_blobs": [
+    "d68b015397f46caf30d579bff12220ad04e94d7c",
+    "039e2706200aaf8cb6cf0a2bd9e0d730684abda5",
+    "0ae1aaf2d580e37d8332871245b49df3369b5d23"
+  ],
+  "run_executed": true,
+  "checker_assertions": 155041,
+  "executions": 2,
+  "byte_identical": true,
+  "independent_local_python_assertions": 155726,
+  "independent_local_python_executions": 2,
+  "local_archive_sha256": "396c495e7f07bc3122073e4a84f991dff73e96806f50bb434b92381aa64be4ad",
+  "publication_scope": "research/pq-wkem/or_policy_joint_fourier_20261027/",
+  "unsupported": [
+    "generic NP polynomial rate",
+    "actual Bitcoin work bound",
+    "unrestricted selective opening",
+    "native PQ endpoint",
+    "malicious N-of-N setup"
+  ]
+}

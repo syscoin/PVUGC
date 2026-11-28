@@ -1,0 +1,1 @@
+{"adaptive_true_cases": 30, "assert_checks": 124, "collision": "one-byte deliberately weak hash, NOT SHA-256 break", "false_cases": 2, "full_native_release": "NOT CONSTRUCTED"}

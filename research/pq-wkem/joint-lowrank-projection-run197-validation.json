@@ -1,0 +1,158 @@
+{
+  "direct_cmv_bridge_cases": [
+    {
+      "fixture": "rho1_r1",
+      "histogram_matches_ABt_exactly": true,
+      "m_equals_r_rho": 1,
+      "r": 1,
+      "rho": 1,
+      "tv_to_uniform": "3/8"
+    },
+    {
+      "fixture": "rho1_r2",
+      "histogram_matches_ABt_exactly": true,
+      "m_equals_r_rho": 2,
+      "r": 2,
+      "rho": 1,
+      "tv_to_uniform": "15/64"
+    },
+    {
+      "fixture": "rho2_r1",
+      "histogram_matches_ABt_exactly": true,
+      "m_equals_r_rho": 2,
+      "r": 1,
+      "rho": 2,
+      "tv_to_uniform": "15/64"
+    }
+  ],
+  "illustrative_necessary_condition_rows": [
+    {
+      "R": 8,
+      "classification": "rank-event-advantage-exceeds-2^-lambda-by-coarse-constant-factor-bound",
+      "lambda": 128,
+      "r": 8,
+      "r_times_Rplus2_minus_t": 60,
+      "t": 20
+    },
+    {
+      "R": 16,
+      "classification": "rank-event-advantage-exceeds-2^-lambda-by-coarse-constant-factor-bound",
+      "lambda": 128,
+      "r": 8,
+      "r_times_Rplus2_minus_t": 124,
+      "t": 20
+    },
+    {
+      "R": 16,
+      "classification": "not-ruled-out-by-this-coarse-necessary-condition",
+      "lambda": 128,
+      "r": 10,
+      "r_times_Rplus2_minus_t": 158,
+      "t": 22
+    }
+  ],
+  "product_law_cases": [
+    {
+      "full_rank_product": "0",
+      "full_rank_uniform": "3/8",
+      "m": 0,
+      "p_B_full": "0",
+      "rank_event_advantage": "3/8",
+      "t": 2,
+      "tv": "15/16",
+      "tv_lower": "3/8",
+      "tv_upper": "1"
+    },
+    {
+      "full_rank_product": "0",
+      "full_rank_uniform": "3/8",
+      "m": 1,
+      "p_B_full": "0",
+      "rank_event_advantage": "3/8",
+      "t": 2,
+      "tv": "3/8",
+      "tv_lower": "3/8",
+      "tv_upper": "1"
+    },
+    {
+      "full_rank_product": "9/64",
+      "full_rank_uniform": "3/8",
+      "m": 2,
+      "p_B_full": "3/8",
+      "rank_event_advantage": "15/64",
+      "t": 2,
+      "tv": "15/64",
+      "tv_lower": "15/64",
+      "tv_upper": "5/8"
+    },
+    {
+      "full_rank_product": "63/256",
+      "full_rank_uniform": "3/8",
+      "m": 3,
+      "p_B_full": "21/32",
+      "rank_event_advantage": "33/256",
+      "t": 2,
+      "tv": "33/256",
+      "tv_lower": "33/256",
+      "tv_upper": "11/32"
+    },
+    {
+      "full_rank_product": "315/1024",
+      "full_rank_uniform": "3/8",
+      "m": 4,
+      "p_B_full": "105/128",
+      "rank_event_advantage": "69/1024",
+      "t": 2,
+      "tv": "69/1024",
+      "tv_lower": "69/1024",
+      "tv_upper": "23/128"
+    },
+    {
+      "full_rank_product": "1395/4096",
+      "full_rank_uniform": "3/8",
+      "m": 5,
+      "p_B_full": "465/512",
+      "rank_event_advantage": "141/4096",
+      "t": 2,
+      "tv": "141/4096",
+      "tv_lower": "141/4096",
+      "tv_upper": "47/512"
+    },
+    {
+      "full_rank_product": "0",
+      "full_rank_uniform": "21/64",
+      "m": 1,
+      "p_B_full": "0",
+      "rank_event_advantage": "21/64",
+      "t": 3,
+      "tv": "231/256",
+      "tv_lower": "21/64",
+      "tv_upper": "1"
+    },
+    {
+      "full_rank_product": "0",
+      "full_rank_uniform": "21/64",
+      "m": 2,
+      "p_B_full": "0",
+      "rank_event_advantage": "21/64",
+      "t": 3,
+      "tv": "483/1024",
+      "tv_lower": "21/64",
+      "tv_upper": "1"
+    },
+    {
+      "full_rank_product": "441/4096",
+      "full_rank_uniform": "21/64",
+      "m": 3,
+      "p_B_full": "21/64",
+      "rank_event_advantage": "903/4096",
+      "t": 3,
+      "tv": "3759/16384",
+      "tv_lower": "903/4096",
+      "tv_upper": "43/64"
+    }
+  ],
+  "run": 197,
+  "scope": "exact shared-factor full-t-by-t public projection law and rank-event distinguisher controls; not full WKEM security",
+  "status": "PASS"
+}

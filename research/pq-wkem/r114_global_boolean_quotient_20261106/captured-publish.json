@@ -1,0 +1,51 @@
+{
+  "run": "R114-GLOBAL-BOOLEAN-QUOTIENT-MASK-20261106",
+  "status": "REJECTED / NO SECURE WKEM ADVANCE",
+  "assertions": 937,
+  "counts": {
+    "false-quotient-zero": 1,
+    "false-all-boolean": 125,
+    "full-false-coefficient-histogram": 4,
+    "false-uniform-25-image-support": 1,
+    "true-quotient-nonzero": 1,
+    "four-distinct-witnesses": 1,
+    "all-witnesses-common-K": 200,
+    "invalid-boolean-zero": 200,
+    "public-quotient-recovers-K": 200,
+    "quotient-normalization": 200,
+    "degree-bounded-ideal-surjection": 4
+  },
+  "false_full_coefficient_distributions_identical": true,
+  "true_valid_original_witnesses": 4,
+  "true_key_recovered_without_witness": true,
+  "mask_dimension_checks": [
+    {
+      "n": 1,
+      "D": 3,
+      "coefficients": 4,
+      "ideal_rank": 2,
+      "quotient_rank": 2
+    },
+    {
+      "n": 2,
+      "D": 3,
+      "coefficients": 10,
+      "ideal_rank": 6,
+      "quotient_rank": 4
+    },
+    {
+      "n": 3,
+      "D": 3,
+      "coefficients": 20,
+      "ideal_rank": 12,
+      "quotient_rank": 8
+    },
+    {
+      "n": 3,
+      "D": 4,
+      "coefficients": 35,
+      "ideal_rank": 27,
+      "quotient_rank": 8
+    }
+  ]
+}

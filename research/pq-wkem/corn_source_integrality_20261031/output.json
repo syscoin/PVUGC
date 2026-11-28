@@ -1,0 +1,8 @@
+{
+  "candidate": "CORN v1 and v2: public alternative opening",
+  "checks": 4204,
+  "cases": 34,
+  "compromised_symbols": 816,
+  "chosen_false_instance": "(x or x or x) and (!x or !x or !x)",
+  "quantum_security_claim": false
+}

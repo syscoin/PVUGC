@@ -1,0 +1,78 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "github_readback": {
+    "assessment_blob": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924",
+    "assessment_path": "research/pq-wkem/literature-20260924/ASSESSMENT.md",
+    "latest_substantive_comment_id": 5827487806,
+    "run89_blob": "0f93693ad51f7d84c249fd02ffa361bcadd3dd84",
+    "run89_path": "research/pq-wkem/SPECTRAL_DIMENSION_FLOOR_RUN89.md",
+    "run92_blob": "5fc79b25e140d2fba30e00c6fd168b619beabd45",
+    "run92_path": "research/pq-wkem/GAPMDP_SHORT_KERNEL_BRIDGE_RUN92.md"
+  },
+  "local_immediate_handoff": {
+    "run96_proof_sha256": "46a98112ec1ed1115dd5b8981c2976505e62172e183cc525030447e1c11752d7",
+    "run96_zip": "/mnt/data/wkem_hamming_spectral_release_run96.zip",
+    "run96_zip_sha256": "8a65baace853ff8cd35b5e4fc31fe563aee8959d0d5e00a094f040496db0c3e6",
+    "status": "local-only handoff from prior run; not claimed present on GitHub"
+  },
+  "new_claim_scope": {
+    "negative": "successful decoding alone does not imply heavy/low-weight response Fourier modes; explicit deterministic bent-family counterexample",
+    "not_claimed": [
+      "complete PQ WKEM",
+      "unconditional arbitrary-QPT original-witness extraction",
+      "Jin full-proof audit",
+      "security from tests"
+    ],
+    "positive": "exact arbitrary-QPT response identity; coherent low-weight source-relation extraction under polynomial key-sensitive response-spectrum support and coherently re-preparable adversary/auxiliary-state access"
+  },
+  "pr": 1,
+  "pr_state_at_start": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  },
+  "publication": {
+    "attempted_path": "research/pq-wkem/DECODER_FOURIER_RIGIDITY_RUN97.md",
+    "branch": "research/pq-wkem-validation-20260918",
+    "comment_id": null,
+    "commit_sha": null,
+    "exact_diagnostic_availability": "No request/correlation ID or tool timestamp was returned by the blocked write.",
+    "final_verified_sha": "f127e33fb43ed2898bcc0a67ddbc944c5f514ca9",
+    "further_write_attempts_after_block": 0,
+    "invoked_write_action": "mcp__GitHub__create_file",
+    "post_block_readback": "PR remained open/draft/unmerged at f127e33fb43ed2898bcc0a67ddbc944c5f514ca9; attempted Run-97 path returned GitHub 404.",
+    "pr": 1,
+    "repository": "syscoin/PVUGC",
+    "request_or_correlation_id": null,
+    "returned_error": "This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "starting_sha": "f127e33fb43ed2898bcc0a67ddbc944c5f514ca9",
+    "status": "BLOCKED_BEFORE_GITHUB",
+    "tool_timestamp": null
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 97,
+  "starting_head": "f127e33fb43ed2898bcc0a67ddbc944c5f514ca9",
+  "validation": {
+    "byte_identical": true,
+    "captured": "decoder-fourier-rigidity-run97-validation.json",
+    "checker": "decoder_fourier_rigidity_run97_check.py",
+    "checker_sha256": "d3bbfbd748bc8c82fd2d9dc8df3e8f49946760dcc8e7fc3d9113e460afc38b13",
+    "executions": 2,
+    "proof_sha256": "49f9a0e51e604759755efe7be1ef02a3d6c89688b1d31e723de1ef8a8d1ad52d",
+    "validation_sha256": "ed7c05523a468d7ac3442f34b5c6b00c822a9ae21c2dade490c8eb340612c07c"
+  },
+  "web_primary_or_direct_sources": [
+    {
+      "checked": "current ePrint HTML metadata/abstract; PDF link existed but fetch was restricted in this environment",
+      "claims_used": "polylog-circuit SAT to GapMDP; prime field lambda^{omega(1)}; approximation omega(log lambda); generic-group extractable WE",
+      "title": "Witness Encryption for NP from SNARGs and Groups",
+      "url": "https://eprint.iacr.org/2026/2063"
+    },
+    {
+      "checked": "HTML Theorem 6.6 lines 1041-1048",
+      "claims_used": "quantum Goldreich-Levin assumes unitary U and adjoint U*; polynomial in inverse heavy-coefficient threshold",
+      "title": "Quantum Talagrand, KKL and Friedgut\u2019s Theorems and the Learnability of Quantum Boolean Functions",
+      "url": "https://link.springer.com/article/10.1007/s00220-024-04981-0"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "status": "abstract-model-only",
+  "assertions": 86,
+  "cyclesCaught": 3,
+  "tamperRejects": 12,
+  "readyStates": 1,
+  "readyVectors": 64,
+  "outpoint": "e66d2cbda5efcea2836e0a511d01b3a1d977bb5be624402273596a238a6458fd",
+  "manifestSha512": "75805c1fbdcbb40ad56d8dbd16ff0502425969b518e20e18c84966c0c08f537e67baa69452c761d8a3aaef10d4da855af61aee7729d4d71c2de9baba84cc4b9c",
+  "sourceRelease": "NOT IMPLEMENTED"
+}

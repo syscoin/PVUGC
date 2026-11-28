@@ -1,0 +1,77 @@
+{
+  "run": 530,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "1a3443cbe5c3b3729821406c299fc3e42042fa8f",
+  "research_type": "honest-path affine-orbit ideal-frame distinguisher",
+  "checker": "run530_orbit_compact_check.js",
+  "captured_validation": "run530_orbit_compact_validation.json",
+  "validation": {
+    "run": 530,
+    "status": "PASS",
+    "seed": 5302026,
+    "sparse_trials": 144,
+    "sparse_full_rank": 0,
+    "ideal_trials": 144,
+    "ideal_full_rank": 138,
+    "details": [
+      {
+        "k": 3,
+        "h": 5,
+        "r": 0,
+        "trials": 24,
+        "sparse_full_rank": 0,
+        "ideal_full_rank": 24
+      },
+      {
+        "k": 3,
+        "h": 5,
+        "r": 1,
+        "trials": 24,
+        "sparse_full_rank": 0,
+        "ideal_full_rank": 24
+      },
+      {
+        "k": 4,
+        "h": 5,
+        "r": 2,
+        "trials": 24,
+        "sparse_full_rank": 0,
+        "ideal_full_rank": 23
+      },
+      {
+        "k": 5,
+        "h": 5,
+        "r": 3,
+        "trials": 24,
+        "sparse_full_rank": 0,
+        "ideal_full_rank": 23
+      },
+      {
+        "k": 5,
+        "h": 6,
+        "r": 5,
+        "trials": 24,
+        "sparse_full_rank": 0,
+        "ideal_full_rank": 21
+      },
+      {
+        "k": 6,
+        "h": 5,
+        "r": 3,
+        "trials": 24,
+        "sparse_full_rank": 0,
+        "ideal_full_rank": 23
+      }
+    ],
+    "scope": "legitimate k-step public writer outputs; affine-span distinguisher only, not key recovery or a QPT security proof"
+  },
+  "source_readback_blobs": [
+    "115bc4a63811779d3350250460b75698155a16b9",
+    "5ecc680e4409e55cebab4318fa3a61ece574fe1d",
+    "f44a4d4486fdbb396f5456eebc240fb4661e4060",
+    "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  ],
+  "claims": "No practical WKEM or arbitrary-QPT hiding; only a classical polynomial-time distinguisher."
+}

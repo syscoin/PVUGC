@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "assertions": 3120,
+  "seed": 20261029,
+  "toy": {
+    "q": 1009,
+    "n": 2,
+    "m": 17,
+    "B": 1,
+    "N": 4,
+    "J": 2,
+    "weight": 4,
+    "digits": 86,
+    "key_bits": 256,
+    "distinct_source_witnesses": 2,
+    "max_observed_noise": 7
+  },
+  "exhaustive": {
+    "q": 3,
+    "m": 4,
+    "coin_support": 24,
+    "hash_matrices": 6561,
+    "colliding_matrices": 729,
+    "mean_full_tv": 0.217175566,
+    "mean_shift_tv": 0.257277854,
+    "second_moment_delta": 0.288675135
+  },
+  "illustrative": {
+    "q": 16777213,
+    "n": 256,
+    "m": 6800,
+    "N": 4,
+    "B": 128,
+    "J": 2,
+    "weight": 2000,
+    "g": 2097151,
+    "max_error": 1024000,
+    "half_center_gap": 1048575.5,
+    "log2_coin_support": 7936.51367,
+    "log2_joint_bound_new": -876.830603,
+    "log2_joint_bound_previous_binary_approx": -308.000033,
+    "aggregate_bytes_new": 66306,
+    "aggregate_bytes_previous": 98688,
+    "all_contributors_bytes_new": 265224
+  },
+  "limitation": "Honest TRUE-LWE SOURCE only; no generic ORIGINAL-NP compiler or fixed-FALSE/full-original recovery theorem."
+}

@@ -1,0 +1,10 @@
+{
+  "bit_flip_rejects": 64,
+  "identical_message_replays": 64,
+  "second_preimage_example_searches": 57704,
+  "sibling_message_replay_rejects": 64,
+  "status": "event partition tests only; no source Build/Open or native consensus validation",
+  "unissued_message_rejects": 64,
+  "valid_opens": 64,
+  "weak_hash_same_message_alternate_accepts": 1
+}

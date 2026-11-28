@@ -1,0 +1,14 @@
+{
+  "status": "PASS: algebraic toy source, NO generic-NP security",
+  "assertions": 131641,
+  "q": "1099511627776",
+  "p": "8388608",
+  "lambda_scaled": 65,
+  "ciphertext_before_bytes": 5120,
+  "ciphertext_after_bytes": 3072,
+  "change_percent": 40,
+  "two_witness_cases": 80,
+  "full_real_LWE_challenge_views": 64,
+  "signed_kernel_bypasses": 32,
+  "boundary_decodings": 131072
+}

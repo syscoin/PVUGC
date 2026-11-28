@@ -1,0 +1,125 @@
+{
+  "assertions": 40102,
+  "compute_compare_normalization": {
+    "all_valid_hashes_covered_by_one_equality_target_iff_accepting_set_singleton": true,
+    "cases": 135,
+    "public_equality_target_conditional_min_entropy_bits": 0
+  },
+  "conditional_fresh_oracle": {
+    "cases": 168,
+    "result": "conditioning on a disjoint setup oracle value leaves the future oracle value uniform; conditioning on validity makes it uniform on the accepting set"
+  },
+  "cprf_single_offset": {
+    "cases": 30,
+    "exact_law": "Pr[random function constant on m satisfying inputs]=q^(1-m)",
+    "examples": [
+      {
+        "all_functions": 4,
+        "constant_functions": 2,
+        "group": 2,
+        "same_key_probability": [
+          1,
+          2
+        ],
+        "satisfying_inputs": 2
+      },
+      {
+        "all_functions": 27,
+        "constant_functions": 3,
+        "group": 3,
+        "same_key_probability": [
+          1,
+          9
+        ],
+        "satisfying_inputs": 3
+      },
+      {
+        "all_functions": 16807,
+        "constant_functions": 7,
+        "group": 7,
+        "same_key_probability": [
+          1,
+          2401
+        ],
+        "satisfying_inputs": 5
+      }
+    ]
+  },
+  "key_homomorphic_difference": {
+    "result": "key homomorphism alone does not imply a constant evaluation difference on the satisfying set",
+    "rows": [
+      {
+        "constant_difference_pairs": 8,
+        "function_pairs": 16,
+        "group": 2,
+        "inputs": 2
+      },
+      {
+        "constant_difference_pairs": 16,
+        "function_pairs": 64,
+        "group": 2,
+        "inputs": 3
+      },
+      {
+        "constant_difference_pairs": 27,
+        "function_pairs": 81,
+        "group": 3,
+        "inputs": 2
+      },
+      {
+        "constant_difference_pairs": 81,
+        "function_pairs": 729,
+        "group": 3,
+        "inputs": 3
+      }
+    ]
+  },
+  "model": "finite exact interface checks; not a cryptographic hardness proof",
+  "one_local_query": {
+    "parameter_cases": 30,
+    "result": "every correctness-satisfying evaluator returns K on every privately simulated accepting local answer",
+    "sum_correct_evaluator_tables": 228
+  },
+  "run": 338,
+  "two_local_query": {
+    "range": 4,
+    "rows": [
+      {
+        "accepting_first_values": 1,
+        "accepting_local_views": 4,
+        "correct_evaluator_tables": 4096,
+        "key": 0
+      },
+      {
+        "accepting_first_values": 1,
+        "accepting_local_views": 4,
+        "correct_evaluator_tables": 4096,
+        "key": 1
+      },
+      {
+        "accepting_first_values": 2,
+        "accepting_local_views": 8,
+        "correct_evaluator_tables": 256,
+        "key": 0
+      },
+      {
+        "accepting_first_values": 2,
+        "accepting_local_views": 8,
+        "correct_evaluator_tables": 256,
+        "key": 1
+      },
+      {
+        "accepting_first_values": 3,
+        "accepting_local_views": 12,
+        "correct_evaluator_tables": 16,
+        "key": 0
+      },
+      {
+        "accepting_first_values": 3,
+        "accepting_local_views": 12,
+        "correct_evaluator_tables": 16,
+        "key": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "run": 477,
+  "status": "PASS",
+  "checks": 43258,
+  "cases": [
+    {
+      "q": 5,
+      "n": 1,
+      "m": 2,
+      "matrices": 25,
+      "targets": 125,
+      "missing": 52,
+      "missing_fraction": "52/125",
+      "planted_match_fraction": "73/100"
+    },
+    {
+      "q": 5,
+      "n": 1,
+      "m": 3,
+      "matrices": 125,
+      "targets": 625,
+      "missing": 128,
+      "missing_fraction": "128/625",
+      "planted_match_fraction": "497/1000"
+    },
+    {
+      "q": 5,
+      "n": 1,
+      "m": 4,
+      "matrices": 625,
+      "targets": 3125,
+      "missing": 260,
+      "missing_fraction": "260/3125",
+      "planted_match_fraction": "2865/10000"
+    },
+    {
+      "q": 7,
+      "n": 1,
+      "m": 3,
+      "matrices": 343,
+      "targets": 2401,
+      "missing": 744,
+      "missing_fraction": "744/2401",
+      "planted_match_fraction": "1657/2744"
+    }
+  ],
+  "scope": "finite exact binary-syndrome census only; SIS QPT hardness untested"
+}

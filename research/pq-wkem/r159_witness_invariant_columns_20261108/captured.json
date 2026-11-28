@@ -1,0 +1,44 @@
+{
+  "assertions": 13928,
+  "cases": [
+    {
+      "formulas": 4,
+      "invariant_instances": 1,
+      "variables": 1
+    },
+    {
+      "formulas": 16,
+      "invariant_instances": 1,
+      "variables": 2
+    },
+    {
+      "formulas": 256,
+      "invariant_instances": 1,
+      "variables": 3
+    }
+  ],
+  "interpretation": "Finite confirmation only. Worst-case coNP-completeness proved separately by deterministic circuit reduction; no QPT or LWE security claim.",
+  "phase_law": [
+    {
+      "q": 5,
+      "total": 25,
+      "zero_count": 9
+    },
+    {
+      "q": 7,
+      "total": 49,
+      "zero_count": 13
+    },
+    {
+      "q": 11,
+      "total": 121,
+      "zero_count": 21
+    },
+    {
+      "q": 13,
+      "total": 169,
+      "zero_count": 25
+    }
+  ],
+  "run": "R159-ORIGINAL-INVARIANT-COLUMN-HARDNESS-20261108"
+}

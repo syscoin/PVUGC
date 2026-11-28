@@ -1,0 +1,19 @@
+{
+  "run": 546,
+  "result": "PASS",
+  "assertions": 1014,
+  "mask_pairs_per_family": 576,
+  "case0_support": 144,
+  "case1_support": 576,
+  "case0_weight": 4,
+  "case1_weight": 1,
+  "equal_marginals": [
+    "single table",
+    "base/alternative 1",
+    "base/alternative 2"
+  ],
+  "pair_alternatives_separated": true,
+  "s4_conjugacy_classes": 5,
+  "recovered_demo_bits": 256,
+  "scope": "Only transparent publicly composable shared-frame reversible tables; not WKEM or a PQ security proof."
+}

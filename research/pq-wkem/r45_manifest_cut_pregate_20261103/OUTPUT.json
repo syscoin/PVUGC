@@ -1,0 +1,19 @@
+{
+  "checker": "exact published V8 source run twice byte-identically",
+  "run": "R45-MANIFEST-CUT-PREGATE-20261103",
+  "tests": 36,
+  "negative": 17,
+  "grid": 18,
+  "allowed": 10,
+  "scope": "abstract authenticated edge and one-honest signature reduction only",
+  "ORIGINAL": "UNSOLVED",
+  "QPT": "assumptions only",
+  "nativeBitcoinPQ": "CONDITIONAL",
+  "localIndependentNode": {
+    "assertions": 39,
+    "negativeControls": 20,
+    "gridCases": 18,
+    "gridAccepted": 10,
+    "outputSHA256": "4df84c6c9b28adf92535aa01d100d863546413ef041259181cdd5d435ded4e5e"
+  }
+}

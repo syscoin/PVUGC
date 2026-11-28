@@ -1,0 +1,8 @@
+{
+  "early_public_coefficient_recoveries": 128,
+  "isolated_one_share_bijections": 9,
+  "public_hash_non_collinearity": 128,
+  "qualifying_synthetic_triplets": 128,
+  "run": "R199-SOURCE-POLY-20261110",
+  "scope": "finite-field synthetic arithmetic only; NO ORIGINAL Build/Open, mining or QPT proof"
+}

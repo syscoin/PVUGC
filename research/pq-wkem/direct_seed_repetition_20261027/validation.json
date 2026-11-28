@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "assertions": 45,
+  "case_true_witnesses": 3,
+  "case_false_witnesses": 0,
+  "one_gate_bias": "2/3",
+  "scope": "exact toy full SOURCE and native-pk-correlated null law; no QPT-hardness implementation",
+  "hybrid_rates": [
+    0.4296875,
+    0.43359375,
+    0.4197048611
+  ]
+}

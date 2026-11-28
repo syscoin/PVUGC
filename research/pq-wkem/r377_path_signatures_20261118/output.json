@@ -1,0 +1,13 @@
+{
+  "bip340_accepted": 0,
+  "distinct_claim_or_source_implemented": false,
+  "ecdsa_base_valid": true,
+  "ecdsa_sign_flip_valid": true,
+  "ecdsa_simple_additive_tweaks_accepted": 0,
+  "fixed_challenge_equations": 64,
+  "native_bip340_valid_initial": true,
+  "new_challenge_equal": 0,
+  "path_tweaks": 64,
+  "scope": "public additive signature tweak only, not a generic signature impossibility or FE",
+  "source_witness_extracted": false
+}

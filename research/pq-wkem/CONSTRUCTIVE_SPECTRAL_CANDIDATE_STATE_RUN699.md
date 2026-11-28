@@ -1,0 +1,9 @@
+# Cumulative source-rank spectral candidate — Run 699
+Live parent 6c2008bda0d47c4d59b9ebb8acc9c834589beda1. Draft PR, research only. Run 698 setup, factors and source-covered public matrix distribution UNCHANGED.
+Setup/Build: honest-erasure N-of-N (not yet proved), full context x, intended native key K and pk, sparse private L/R and full affine typed G_i, source-covered C(z)=K z0 I+sum_i L_i G_i(z)R_i; output deterministic Run 699 direction dictionary or RAW fallback, pk and x.
+Encode: ORIGINAL witness -> accepted complete SOURCE z (Run 259 actual domain must still be audited).
+Recover: dictionary dot products, identical old C(z), unchanged Run 696 Krylov/Berlekamp–Massey/Frobenius and full native checking-key identification, ordinary conditional native signing off chain. Valid SOURCE rank <n and common eigenvalue K; pointwise success bound inherited with same qualifications.
+Verified components: Run 593 typed rank, Run 695 spectral common K, Run 696 cofactor-free Krylov, Run 697 lossless sparse operator, Run 698 complete baseline diagonal, Run 699 lossless normalized public direction codec with exact QPT representation equivalence. Run 259 SOURCE=>ORIGINAL only after valid accepted SOURCE.
+Resource delta: compact executed fixture 9,961,848 -> 1,853,836 bytes (5.3736x); extended local m128 42,683,520 -> 4,841,596 bytes (8.816x). No field/security parameters claimed. Krylov and malicious setup costs remain.
+Open: independently prove full-view QPT hiding/unauthorized final-key recovery+native forgery -> accepted SOURCE or independent QPT break; real Syscoin relation lift, malicious setup/abort, multi-capsules, BTC pre-funded graph, native PQ endpoint. Compression DOES NOT solve hiding.
+Next exact constructive step: a compact QPT-secure operator that protects the now-visible public coefficient directions, while preserving source rank and recovery. Do not restart canonicalization/hash collapse.

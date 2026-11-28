@@ -1,0 +1,23 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "captured_assertions": 8589,
+  "checker_expected_git_blob": "92332a54e2abf8d2b2dc4b1630b3254218986b7c",
+  "checker_sha256": "f7505b5e0211f93a7c96028d5e0cf3c298b15ae0d976790343cc695e1645b2d6",
+  "compile": "PASS",
+  "date": "2026-10-20",
+  "exact_dependency_blobs": {
+    "clz": "c19d9d9cd515140e3ce62eac960cd548c0add622",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run652": "742c204b56c71d39e88704e608053587c0d41551"
+  },
+  "local_expanded_note_sha256": "fee9d30a57191edc0570e8e5b32de43ac334ace2d50f76c4025afb11d25858e6",
+  "pr": 1,
+  "repository": "syscoin/PVUGC",
+  "run": 653,
+  "scope": "finite exact mathematical check, no QPT claim; live PR branch research only",
+  "starting_sha": "3032765b859db54ba408ee6bcc865009df367788",
+  "starting_tree_sha": "6ad506d8dba0f706d3a292965d7cfbdb080eee0c",
+  "two_executions_byte_identical": true,
+  "validation_expected_git_blob": "2222e9dae30581cd6d00918c563f3eebd86e342d",
+  "validation_sha256": "054772b811e170144b8f766158d241d3ef8a312211740fb2df7de9a3f5fb0bcb"
+}

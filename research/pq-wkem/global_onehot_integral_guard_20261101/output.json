@@ -1,0 +1,16 @@
+{
+  "research": "GOIL",
+  "seed": 20261101,
+  "q": 65537,
+  "d": 5,
+  "E": 2,
+  "bits": 8,
+  "g": 256,
+  "tests": 518,
+  "original_false_binary_witnesses": 0,
+  "counterfeit_l1": 8,
+  "unauth_false_symbol_decryptions": 128,
+  "guard_changed_symbol_count": 128,
+  "public_kernel": true,
+  "status": "PASS — SOURCE LEMMA ONLY; RELEASE INSECURE"
+}

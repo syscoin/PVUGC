@@ -1,0 +1,24 @@
+{
+  "research_id": 628,
+  "date": "2026-10-19",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "77b0723b3d69b6c66c340cf58bcd1aa0851896c4",
+  "original_local_checker_stdout": "3427 assertions; 12 exact models; 504 coboundary assignments",
+  "validation": "Executed same standard-library checker twice with identical captured stdout; py_compile passed. Published code and output to be independently read back.",
+  "blob_shas": {
+    "RUN628_NOISY_CYCLE_RECONCILIATION.md": "58ff20854a72ea62d3f0c349a2b0dc8b52aae420",
+    "run628_noisy_cycle_check.py": "58a195fb0cace87074a53531d96c8776b3cf9a7f",
+    "run628_noisy_cycle_validation.json": "000acb9ff8b3742636a0983fa53fce1ef536ba3b"
+  },
+  "scope": "toy independent-noise XOR local frames only; no CCMR/RIO/Gaussian SOURCE break; no completed WKEM",
+  "source_read": "RUN627_CYCLE_SPACE_FALSIFIER.md at starting SHA, blob fe81ed4924baff2ba9828b3a9ae00cc1c4df0e0e",
+  "original_existing_files_modified": 0,
+  "dependencies": [
+    "classical finite probability and parity identities",
+    "Hoeffding inequality"
+  ],
+  "qpt_scope": "classical key recovery; common independent quantum advice only for the positive marginal claim",
+  "no_production_changes": true
+}

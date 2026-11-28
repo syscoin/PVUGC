@@ -1,0 +1,44 @@
+{
+  "actual_local_commands": [
+    "python checker.py > captured.json",
+    "python checker.py > captured_rerun.json",
+    "cmp captured.json captured_rerun.json"
+  ],
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_rerun_identical": true,
+  "errors": [
+    {
+      "http_status": 404,
+      "kind": "expected new research-directory preflight",
+      "request_id": "not supplied"
+    }
+  ],
+  "external_research": false,
+  "files": {
+    "RESEARCH.md": {
+      "bytes": 14467,
+      "git_blob_sha1": "fd6576b982733e9ff7065f34b2a6cfe20f2e4820",
+      "sha256": "baf0f5a7d32b46dd99b3589b29a98bb81202b7dcc565ce0fe34d87857cc178f2"
+    },
+    "captured.json": {
+      "bytes": 3557,
+      "git_blob_sha1": "730562bd6f0d0cc398b11dc4588ff77fb7cb97b4",
+      "sha256": "599d291f51e249d01b384c76cbd3f64fa067bc1313360d722ac2a9f8ffc2ab5b"
+    },
+    "checker.py": {
+      "bytes": 16148,
+      "git_blob_sha1": "047eb818889202ce48430abb4d7d0412e893b25f",
+      "sha256": "1d67c9c32ea4666e04ddbb7ea1532961fc1b7f8a1c256bd80384529da981ab31"
+    }
+  },
+  "final_publication": "Final commit intentionally omitted to avoid self-reference; verify the containing Git commit and separate readback receipt.",
+  "independent_agent_invoked": false,
+  "intermediate_commit": "b93b597941e23cfe2e4eff4fcf58ac492f953cdb",
+  "intermediate_file_blob": "c7fa760ba55331c57de591358511b73fdc59ca13",
+  "intermediate_tree": "62530dba3d5561e32c745f088ea68fbbb9ac9c21",
+  "pr": 1,
+  "recorded_at_utc": "2026-11-09T02:20:55.176347+00:00",
+  "repo": "syscoin/PVUGC",
+  "run": "HPW-HSS-20261109",
+  "start_sha": "21ef9abc289e40c02bb119121978d813d222c60a"
+}

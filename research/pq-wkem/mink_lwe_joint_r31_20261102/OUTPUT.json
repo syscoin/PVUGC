@@ -1,0 +1,13 @@
+{
+  "checks": 38080,
+  "correct_exact": 49,
+  "correct_fraction": "49/343",
+  "m": 3,
+  "q": 7,
+  "rank_B": 1,
+  "run": "R31-MINK-LWE-JOINT",
+  "statistical_distance_uniform_to_supported": "48/49",
+  "status": "PASS algebra only; no generic PQ WKEM security proved",
+  "supported_A": 7,
+  "uniform_A_total": 343
+}

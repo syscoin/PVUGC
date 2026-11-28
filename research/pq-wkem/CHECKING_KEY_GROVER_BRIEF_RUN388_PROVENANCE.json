@@ -1,0 +1,26 @@
+{
+  "actual_QPT_security": false,
+  "actual_WKEM": false,
+  "assertions": 105,
+  "branch": "research/pq-wkem-validation-20260918",
+  "checker_sha256": "7c6a50abbd789bc6446fbdd35017d5b64c3925e58d7d368c9e3286188da2c1d1",
+  "claimed_practical_128bit": false,
+  "extended_local_checker_sha256": "c218c801296b7fb39916d092abf4b04e99c1682c55ffe83d4eb404fc244e5a66",
+  "extended_local_output_sha256": "73ee5bba84f9d82f86b6f4cb3869108002f6f76a8364338a245473f9094a7caf",
+  "latest_top_level_comment_id": 6067040320,
+  "note_sha256": "983d60565eb65da29d357f76899e767e01c6b190090efac2d1ec25266e83360a",
+  "phase": "prepublication provenance",
+  "pr": 1,
+  "published_checker": "checking_key_grover_brief_run388_check.py",
+  "read_exact_blobs": [
+    "ee41c9ae3d794f62fd5208e4b59fc1a1d3730312",
+    "c973d19d9967870b4ef4d74f4062ee510e5fcfdd"
+  ],
+  "repo": "syscoin/PVUGC",
+  "run": 388,
+  "starting_sha": "ade99d5a6ea2585b3c13a45a7cdcab3983c97883",
+  "syntax_pass": true,
+  "toy_fixtures": 12,
+  "two_runs_byte_identical": true,
+  "validation_sha256": "574c342bf593dcbecef15465e989563ef6d55443c59d4bea2b5a6153a1668aa3"
+}

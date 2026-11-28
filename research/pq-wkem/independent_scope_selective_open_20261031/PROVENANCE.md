@@ -1,0 +1,9 @@
+# ISOC research provenance — 2026-10-31
+
+Repository: syscoin/PVUGC PR #1, branch research/pq-wkem-validation-20260918, actual start SHA a68941843208d5c6ccd06f576a61e5ea2fd1f10a; at read, PR open, draft and unmerged. Latest substantive ordinary top-level comment read: 6545643057. Exact prior files: research/pq-wkem/native_preauth_joint_qpt_20261031/RESEARCH_AND_CHECKER.md blob 14beadb2399283d82eea13509bbf2341878e27c5 and research/pq-wkem/one_honest_pathcut_20261031/README.md blob c3ee37581adf700e5e0deffd1417e125018a8022. No PR-wide diff or external literature research.
+
+Exact checker reproduction from this directory: python3 checker.py > run1.json; python3 checker.py > run2.json; cmp run1.json run2.json. Both local executions passed 2,080 assertions with byte-identical output. Exact checker SHA-256: 14f29013fb69d964b23704cc480b463d100a7a45aa22afab9cb5f87aa258c017; captured output SHA-256: 90106040821103c3bcac740430807ffddb8c2fa40163c26ad328b9965a361977. Source/checker Git blob identity separately confirmed when uploaded. Toy signature RSA moduli are deliberately factorable; no native PQ implementation or QPT cryptographic experiment was executed.
+
+An extended local archive, SHA-256 406950cfe79817bc12f58e6e07c7e595e46b10c7142af334ddbaa65693f17cd8, holds the longer 17,618-byte original derivation, alternative 9,114-byte Merkle/Lamport toy checker, 2,132-assertion captured output and independent provenance; this extended archive remains LOCAL-ONLY unless separately published and verified.
+
+The result is a narrow independent-key sibling selective-opening theorem from ordinary nonuniform QPT DLWE and native EUF-CMA, conditional on the exact distribution and signing-query restrictions. Main ORIGINAL-witness recovery-to-witness gap remains open. No web research, independent agents, production/main/workflow changes, deployments or transfers.

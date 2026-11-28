@@ -1,0 +1,27 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "command": "python run458_qpt_gl_check.py",
+  "date_utc": "2026-10-12",
+  "files": {
+    "RUN458_QPT_GL_COMPACT.md": {
+      "git_blob_sha1": "14ee2273004fd86f87ef991e033a572f3c593ce2",
+      "sha256": "f6769645f1767e38d689ca946ce463c1d170d6be4c5a507ffa446006c3284067"
+    },
+    "run458_qpt_gl_check.py": {
+      "git_blob_sha1": "85131996ed3b209082c0718c007b3821bdec2e4a",
+      "sha256": "cab6bf4d8e3cb6afa7d3a26d712497f51dc855e88e5e0b91d4da620854088a39"
+    },
+    "run458_qpt_gl_validation.json": {
+      "git_blob_sha1": "07c74b10e4e8b53a41edda8cca56c066a3cc5e6b",
+      "sha256": "8724e85a744c36a5ab9321eac632ccd2f6b85aa10f075faa05de3fe506b2346c"
+    }
+  },
+  "pr": 1,
+  "publication_status": "unpublished pending connected GitHub commit and readback",
+  "repeat_run_byte_identical": true,
+  "repo": "syscoin/PVUGC",
+  "run": 458,
+  "runtime": "3.13.5",
+  "scope": "restartable-QPT Goldreich-Levin reduction; NOT complete PQ WKEM",
+  "verified_start_sha": "51b774b2754a61eab310866f39cdfc6eec7b92d5"
+}

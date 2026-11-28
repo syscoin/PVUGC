@@ -1,0 +1,13 @@
+{
+  "run": "MINK-SLSEED-20261102",
+  "checks": 3082,
+  "exact_selective_support": [
+    256,
+    256,
+    256
+  ],
+  "compression": 1152,
+  "old_bytes": 442368,
+  "new_bytes": 384,
+  "security": "algebra only, no QPT claim"
+}

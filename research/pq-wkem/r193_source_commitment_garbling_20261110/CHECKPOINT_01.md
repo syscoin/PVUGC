@@ -1,0 +1,11 @@
+# R193 — Intermediate hypothesis: source-commitment-bound hash garbling
+
+Status: UNTESTED hypothesis checkpoint, NOT a construction or progress claim. Run 2026-11-10.
+
+Repository syscoin/PVUGC PR #1, existing draft branch research/pq-wkem-validation-20260918. Observed start SHA 08f7ce851fdb059d115cbb7238041af762496cd2; prior R192 SHA-only direct hash-gate note and R191 claim/witness-binding note were read at exact versions; no new ordinary PR comments after 2026-11-10T05:00Z. No external web/literature.
+
+Choose ONE capsule-dependent hash circuit candidate, SCG (Source Commitment Garbling), rather than repeating R192's direct witness-hash-as-key family. Build before source activation samples independent random wire labels l[v,0], l[v,1], constructs hash-masked rows T[g,a,b]=l[out,f_g(a,b)] XOR SHA256("SCG"|g|l[left,a]|l[right,b]|z), and protects a fixed cancellation signature under a pad derived from the accepting output label. z is proposed as SHA256 of an ORIGINAL source transcript / authenticated parent SHA256d certificate; source checks (anchor, actual AuxPoW, parent coinbase, tag, burn, competing BTC work and SYS ancestry) are evaluated INSIDE the circuit, not as a post-hoc honest Open guard.
+
+For permissionless arbitrary-witness opening, both input labels for each original witness bit are published, or must be publicly computable from any future source certificate; Setup does not know the unknown source history. Hypothesis: public availability of both labels and gate tables lets an arbitrary full-public attacker recover BOTH internal labels gate-by-gate, including accept=1, for a fixed public z without supplying a valid source witness. A global z or Merkle root may authenticate bytes but does not necessarily prevent this dual-label induction. Repair test: bind all hashes to a SINGLE public z, attempt an authenticated input-label root, and test whether honest all-witness opening and false-instance secrecy can simultaneously hold without hidden future labels, an online issuer, or a new independent PoW puzzle.
+
+This deliberately scoped hypothesis is to be tested with a gate-level SHA256 implementation and a FALSE example. No result, checker execution, PQ security theorem or production change is claimed by this checkpoint.

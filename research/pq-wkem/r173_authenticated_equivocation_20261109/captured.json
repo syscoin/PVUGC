@@ -1,0 +1,10 @@
+{
+  "assertions": 780,
+  "forged_second_opening_rejected": 60,
+  "malicious_source_retention_opens_early": 60,
+  "one_honest_single-signature_stops_early_release_but_blocks_liveness": 60,
+  "prepublished_honest_second_opening_releases_early": 60,
+  "same_outcome_work_variants_not_forks": 60,
+  "status": "restricted pair-opening correctness; early retention and online-authority failure; no ORIGINAL NP release",
+  "valid_conflicts_open": 480
+}

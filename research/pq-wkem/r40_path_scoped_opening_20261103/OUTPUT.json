@@ -1,0 +1,32 @@
+{
+  "run": "R40-PATH-SEPARATED-SOURCE-OPENINGS-20261103",
+  "checks": 9093,
+  "toy": {
+    "q": 257,
+    "n": 2,
+    "m": 16,
+    "B": 1,
+    "paths": 3,
+    "scopes": 2,
+    "keyBits": 128,
+    "distinct_witnesses_per_path": 3,
+    "recovered_bits": 2304,
+    "non_target_source_and_capability_openings": 8,
+    "target_sign_queries": 0,
+    "sim_target_source_secret": null,
+    "negative_shared_key_compromises_target": true,
+    "negative_shared_source_key_compromises_target": true
+  },
+  "finite": {
+    "q": 3,
+    "n": 1,
+    "m": 4,
+    "seeds": 6561,
+    "binary_inputs": 16,
+    "average_target_TV": 0.37098003353147385,
+    "average_joint_with_open_other_source_TV": 0.37098003353147385,
+    "max_per_key_TV": 1
+  },
+  "caution": "Toy 2nd zero A row, native signature/hash/PRG/PRNG insecure. No original NP compiler, practical QPT security or Bitcoin deployment claim.",
+  "reproduced_twice_identically": true
+}

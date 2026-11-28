@@ -1,0 +1,75 @@
+{
+  "G2_modulus": 607,
+  "GT_modulus": 809,
+  "confluence": [
+    {
+      "lambda": 61,
+      "psi": 8,
+      "r": 3,
+      "recovered_kappa": 37,
+      "xi": 1
+    },
+    {
+      "lambda": 36,
+      "psi": 7,
+      "r": 9,
+      "recovered_kappa": 37,
+      "xi": 2
+    },
+    {
+      "lambda": 58,
+      "psi": 0,
+      "r": 4,
+      "recovered_kappa": 37,
+      "xi": 78
+    },
+    {
+      "lambda": 35,
+      "psi": 65,
+      "r": 99,
+      "recovered_kappa": 37,
+      "xi": 100
+    }
+  ],
+  "dlp_conditional_recovery": [
+    {
+      "K_alpha": 260,
+      "S": 527,
+      "S_alpha": 8,
+      "recovered_alpha": 17,
+      "recovered_key": 723,
+      "same_capability": true
+    },
+    {
+      "K_alpha": 393,
+      "S": 308,
+      "S_alpha": 369,
+      "recovered_alpha": 48,
+      "recovered_key": 723,
+      "same_capability": true
+    },
+    {
+      "K_alpha": 555,
+      "S": 313,
+      "S_alpha": 64,
+      "recovered_alpha": 100,
+      "recovered_key": 723,
+      "same_capability": true
+    },
+    {
+      "K_alpha": 723,
+      "S": 356,
+      "S_alpha": 356,
+      "recovered_alpha": 1,
+      "recovered_key": 723,
+      "same_capability": true
+    }
+  ],
+  "generators": [
+    64,
+    256
+  ],
+  "group_order": 101,
+  "scope": "Check two algebraic identities used in this review; NOT a Praxis implementation.\n\n1. Witness-dependent (xi,r,psi) combinations converge to the same kappa.\n2. Given a relative discrete logarithm alpha, public alpha copies reveal K.\n\nTiny prime-order subgroups let us execute DLP exhaustively in (2). This does\nnot execute a quantum algorithm, attack BN254, instantiate the full ciphertext,\nor contradict a classical security theorem at admissible parameters.\n",
+  "source_sha256": "07150ac726b5dc9d14d89bccc48907aa47faa893bc521e22d244cc39676e80b4"
+}

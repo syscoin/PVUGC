@@ -1,0 +1,15 @@
+{
+  "assertions": 193,
+  "groups": {
+    "all_assertions_same_cancel_outpoint": 1,
+    "cross_variant_proof_fails": 32,
+    "public_wtxid_pad_opens_early": 32,
+    "stripped_txid_equal": 32,
+    "witness_commitments_differ": 32,
+    "wtxid_pad_not_common": 32,
+    "wtxids_differ": 32
+  },
+  "run": "R200-source-identity",
+  "scope": "synthetic SegWit equations only; NOT secure release or valid chain",
+  "source_sha256": "6f8abe7737e7b70207decf54b6582fc8c2b95761da90b31221de4ed7a64f0aa1"
+}

@@ -1,0 +1,14 @@
+{
+  "run": "R75-ADAPTIVE-SAME-ROOT-CERTIFIED-FALSE-20261104",
+  "status": "RESTRICTED_CERTIFIED_FALSE_COMPOSITION__NOT_GENERIC_WKEM",
+  "assertions": 13895,
+  "source_fullview_couplings": 320,
+  "adaptive_transcripts": 128,
+  "exact_root_values": 3,
+  "joint_seed_pairs_per_root": 59049,
+  "joint_support": 6561,
+  "true_original_witnesses": 3,
+  "true_sibling_leak_controls": 16,
+  "reused_coins_negative_controls": 9,
+  "limitations": "Toy FNV and parameters, no QPT hardness or hard-TRUE recovery-to-ORIGINAL witness reduction"
+}

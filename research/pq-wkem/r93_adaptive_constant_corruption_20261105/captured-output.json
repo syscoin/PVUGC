@@ -1,0 +1,44 @@
+{
+  "assertions_passed": 954290,
+  "complete_adaptive_transcripts": 15625,
+  "enumerated_real_random_tapes": 78125,
+  "event_counts": {
+    "": 0,
+    "0": 0,
+    "01": 13425,
+    "02": 15000,
+    "03": 12150,
+    "1": 0,
+    "12": 11400,
+    "13": 12600,
+    "2": 0,
+    "23": 13550,
+    "3": 0
+  },
+  "events_match": true,
+  "exact_fixed_subset_histograms": 55,
+  "limitations": "toy OTP, tiny PRG, not LWE/PQ; exact adaptive reduction valid only for fixed CONSTANT maximum t and ordinary classical corruption queries",
+  "pre_guessed_subset_events": 11,
+  "prg_image_toy": {
+    "image_size": 32,
+    "output_bits": 10,
+    "seed_bits": 5,
+    "uniform_image_probability": 0.03125,
+    "universal_upper_bound": 0.03125
+  },
+  "run": "R93-ADAPTIVE-THRESHOLD-OPENINGS-20261105",
+  "status": "RESTRICTED_PROOF_ADVANCE_NOT_GENERIC_NP_WKEM",
+  "subset_guess_sizes": {
+    "128,3": 349633,
+    "16,2": 137,
+    "16,3": 697,
+    "16,7": 26333,
+    "64,2": 2081
+  },
+  "toy_parameters": {
+    "field": 5,
+    "max_adaptive_opens": 2,
+    "n": 4,
+    "threshold": 3
+  }
+}

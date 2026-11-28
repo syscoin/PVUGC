@@ -1,0 +1,30 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "external_literature": false,
+  "files": {
+    "RESEARCH.md": {
+      "bytes": 9385,
+      "sha256": "bc1c5bdb9b4a24479f61937031e1d332dfd0d58764962ef249c68cb52dbda824"
+    },
+    "captured.json": {
+      "bytes": 390,
+      "sha256": "7f1228900d88c28225568f93d61ba5becd4ab95b458e68be94855ad2987c3eea"
+    },
+    "checker.py": {
+      "bytes": 3664,
+      "sha256": "39f35214f6ace6fde0bab8c86570d62d1f198ae81625c0509fabf8200ebb3840"
+    },
+    "merkle_captured.json": {
+      "bytes": 625,
+      "sha256": "8dabb6ec754511bfb85d660ede457d2f2fcecf4dd6621f8a4622c39fdce208cc"
+    },
+    "merkle_fiber_checker.py": {
+      "bytes": 2997,
+      "sha256": "6716b6b033e402677ce3edc9d9f3b58cf8735be9791165c1d10d8e6cea9e140f"
+    }
+  },
+  "pr": "syscoin/PVUGC#1",
+  "run": "2026-11-09 constructive PQ WKEM scheduled pass #4",
+  "starting_pr_head": "b03e86b0186bd1367260450fd68c820af51500e6",
+  "verification": "Executed local standard-library toy checks twice each. No QPT or live SYS/BTC proof."
+}

@@ -1,0 +1,34 @@
+{
+  "actual_LWE_assumption_verified": false,
+  "actual_QPT_security_verified": false,
+  "assertions": 7139,
+  "complete_key_recovery_with_published_pad": true,
+  "model_is_FHE": false,
+  "model_is_public_key_encryption": false,
+  "models": [
+    {
+      "best_posterior_exact_key_success": "1/4",
+      "capsules": 1,
+      "conditional_key_candidates": 4,
+      "public_views": 32
+    },
+    {
+      "best_posterior_exact_key_success": "1/4",
+      "capsules": 2,
+      "conditional_key_candidates": 4,
+      "public_views": 256
+    },
+    {
+      "best_posterior_exact_key_success": "1/4",
+      "capsules": 3,
+      "conditional_key_candidates": 4,
+      "public_views": 2048
+    }
+  ],
+  "parameter_q": 8,
+  "public_auxiliary": "vk = K mod 2 (toy leakage, not native signing)",
+  "run": 387,
+  "status": "PASS",
+  "takeaway": "Finite statistical sanity check only; QPT theorem is a separate hybrid proof.",
+  "theorem_validated_by_checker": false
+}

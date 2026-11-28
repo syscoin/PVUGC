@@ -1,0 +1,44 @@
+{
+  "run": 61,
+  "starting_pr_head": "117328390e67a302d2605100010e42073d7a71c0",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "scope": "research/pq-wkem only",
+  "external_literature_or_web_search": false,
+  "production_code_changed": false,
+  "executed_at_utc": "2026-09-24T00:26:15Z",
+  "checker": {
+    "path": "research/pq-wkem/global_stacked_self_challenge_run61_check.py",
+    "local_sha256": "d427c0c38193fa58e91f0282357db6bd82ad0f7e7c6e8dd7350f7755bcbfc90c",
+    "executions_after_finalization": 2,
+    "byte_identical_stdout": true
+  },
+  "captured_validation": {
+    "path": "research/pq-wkem/global-stacked-self-challenge-run61-validation.json",
+    "local_sha256": "f64e73fc046042ca98c5558c3541623292ce83487fcac8e2205b41d0dda3e8ff"
+  },
+  "claims": {
+    "proved": [
+      "uniform restriction of a public affine selector to each full-rank false fiber",
+      "single-fiber survival probability at most 2^(D-Rk)",
+      "B-fiber union bound 2^(k+D-Rk)",
+      "honest all-one-hot completeness for dense omit-one challenges",
+      "separable public-share composition remains vulnerable to roundwise representation switching"
+    ],
+    "implemented": [
+      "GF(2) consistency/rank checker",
+      "small exact exhaustive solution-count comparison",
+      "Run-60 k=8,D=246,R=48 global-stack diagnostic",
+      "roundwise separability countercontrol",
+      "dimension-threshold diagnostic"
+    ],
+    "not_claimed": [
+      "completed witness KEM",
+      "cryptographic implementation of a nonseparable global witness gate",
+      "standard LWE/SIS reduction for the stacked verifier",
+      "arbitrary-QPT early-key-recovery extraction theorem",
+      "malicious-secure ceremony composition for a surviving inner primitive",
+      "deployment parameters or production recommendation"
+    ]
+  }
+}

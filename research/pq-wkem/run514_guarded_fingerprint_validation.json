@@ -1,0 +1,16 @@
+{
+  "run": 514,
+  "status": "PASS",
+  "seed": 514,
+  "counts": {
+    "frames": 322944,
+    "maps": 323328,
+    "involution": 323328,
+    "fixed": 323328,
+    "commutation": 384,
+    "valid_bits": 648192,
+    "false_identity": 80832,
+    "cycle_law": 8
+  },
+  "scope": "finite invariant checks only; not a practical or QPT security proof"
+}

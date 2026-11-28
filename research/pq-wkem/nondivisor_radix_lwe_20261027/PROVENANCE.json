@@ -1,0 +1,15 @@
+{
+  "record": "nondivisor-radix-20261027-turn9",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start": "bc7bec84ef2dd73933821566589e020c7547b80e",
+  "predecessor_proof_blob": "6b39e9d9093fd07adcbeca98887ce8b2e90ab8b8",
+  "checker_checks": 796267,
+  "checker_execution": "isolated Javascript runtime; no external library or web",
+  "limitations": [
+    "uncertified QPT LWE parameters",
+    "reference only, no ORIGINAL BTC/SYS compiler",
+    "no native transaction graph or malicious setup"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "exact_noise_distribution_cases": 32,
+  "failures": [],
+  "identity_trials": 4500,
+  "kernel_classifications": 6,
+  "norm_bound_trials": 2000,
+  "ok": true,
+  "quotient_probe_trials": 1200,
+  "seed": 284007205154,
+  "semantic_survival_trials": 1000
+}

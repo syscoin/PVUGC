@@ -1,0 +1,1 @@
+{"result":"PASS","assertions":6445,"restrictedFalseWholeView":"EXACT","fullSeedTrials":12,"distinctOriginalWitnesses":2,"radix":51,"columns":46,"rankBridgeQ":65537,"rankBridgeExamples":[[230,27],[63,24]],"genericHardTrueRecoveryProved":false,"nativePQTest":false}

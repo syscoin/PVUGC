@@ -1,0 +1,8 @@
+{
+  "assertions": 900,
+  "relation": "R(x)=x AND NOT(x), false for x=0 and x=1",
+  "result": "garbled local-input wire mixing opens the sealed accepted-output capability without a globally consistent input",
+  "run": "R224-LOCAL-GARBLED-FALSE",
+  "scope": "100 synthetic seeded circuits; no real source, no native signature, no QPT or WE",
+  "source_sha256": "a191e7d56673c76fef936485dc51afe73d35b38946bf715e06bd6fbff626d35f"
+}

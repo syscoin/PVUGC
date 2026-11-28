@@ -1,0 +1,23 @@
+{
+  "QPT_security_proven": false,
+  "WKEM_completed": false,
+  "all_witness_selected_steps_same_capability": true,
+  "checks": 44072,
+  "exhaustive_nonempty_acceptance_subsets": true,
+  "fixtures": 3006,
+  "orbit_lengths": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "real_CLZ_implementation": false,
+  "rerandomization_only_changes_nonce": true,
+  "run": 397,
+  "status": "PASS",
+  "toy_native_signature": true,
+  "witness_free_t_query_enumeration": true
+}

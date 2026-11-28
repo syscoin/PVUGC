@@ -1,0 +1,62 @@
+{
+  "run": 566,
+  "date": "2026-10-17",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "0a64be1e4d636a262422ef06493524cba78ddbf7",
+  "exact_source_blobs": {
+    "run565": "ece2e0af4e964caab839d4be5ec94b6b5b0530db",
+    "run259": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "CLZ": "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  },
+  "checker": "run566_affine_hyperplane_check.js, run566Check() executed in V8 before commit, exact function toString() serialized in artifact",
+  "captured_output": {
+    "run": 566,
+    "status": "PASS",
+    "assertions_passed": 1560,
+    "subsets_exhausted": 414,
+    "unsafe_subsets": 292,
+    "safe_subsets": 122,
+    "grids": [
+      {
+        "q": 2,
+        "m": 1,
+        "subsets": 2
+      },
+      {
+        "q": 2,
+        "m": 2,
+        "subsets": 8
+      },
+      {
+        "q": 2,
+        "m": 3,
+        "subsets": 128
+      },
+      {
+        "q": 3,
+        "m": 1,
+        "subsets": 4
+      },
+      {
+        "q": 3,
+        "m": 2,
+        "subsets": 256
+      },
+      {
+        "q": 5,
+        "m": 1,
+        "subsets": 16
+      }
+    ],
+    "vector_affine_forgery_fixtures": 213,
+    "booleanized_affine_only_nonrelease_fixtures": 208,
+    "constant_injection_forgery_fixtures": 208,
+    "public_boolean_zero_test_vectors": 91,
+    "real_encryption_implemented": false,
+    "QPT_security_established": false
+  },
+  "claim_scope": "finite algebra and ideal-gate counterexamples only; no actual WKEM or QPT security",
+  "production_changed": false
+}

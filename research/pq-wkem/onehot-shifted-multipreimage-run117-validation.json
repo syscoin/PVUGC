@@ -1,0 +1,24 @@
+{
+  "correlated_matrix_attack": {
+    "claim": "For A_i tail B-u_i tensor G and two distinct labels sharing the same secret s, differencing any changed label block yields +/-G^T s plus difference noise. Under per-sample infinity error E with 2E<q/6, powers-of-two gadget decoding recovers s uniquely.",
+    "trials": 240
+  },
+  "independent_secret_control": {
+    "claim": "With independent secrets the same cancellation produces the secret tied to the changed matrix block rather than a global shared secret; this is a semantic control, not a security proof.",
+    "trials": 50
+  },
+  "onehot_affine_compiler": {
+    "claim": "For the tested 3CNF one-hot compiler, every centered modular preimage with l1 <= B=n+m and q>2(B+1) unwraps to an integer solution and extracts a satisfying Boolean assignment. The accompanying note gives the general proof.",
+    "formula_fixtures": 10,
+    "l1_ball_vectors_checked": 188616,
+    "short_modular_solutions_checked": 59
+  },
+  "run": 117,
+  "scope": [
+    "The one-hot compiler is a supplied-short-preimage-to-original-3SAT-witness theorem; it does not make the structured matrix LWE-random.",
+    "The correlated-matrix attack targets a naive same-secret use of Waters-Wee-Wu matrices and does not contradict their individual-marginal somewhere-hardness theorem.",
+    "No QPT security is inferred from finite checks. The paper's stated SIS/LWE theorem is not silently upgraded from efficient/PPT adversaries to QPT here."
+  ],
+  "status": "PASS",
+  "total_assertions": 1265
+}

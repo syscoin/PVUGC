@@ -1,0 +1,51 @@
+{
+  "additive_trials": {
+    "101": 100,
+    "12": 100,
+    "15": 100,
+    "2": 100,
+    "4": 100,
+    "6": 100,
+    "8": 100
+  },
+  "claims_checked": [
+    "orbit sums equal h*K in additive telescoping transfer",
+    "2+3 orbit Bezout combination recovers K over every tested modulus",
+    "orbit products equal K^h in multiplicative telescoping transfer",
+    "K^3/K^2 recovers K without discrete logarithms",
+    "nonabelian orbit products are conjugates of K^2 and K^3",
+    "distinct-sixth-power semisimple matrix eigenvalues recover canonical K class"
+  ],
+  "matrix_example": {
+    "eig_K2": [
+      4,
+      47
+    ],
+    "eig_K3": [
+      55,
+      93
+    ],
+    "recovered": [
+      42,
+      99
+    ],
+    "truth": [
+      42,
+      99
+    ]
+  },
+  "matrix_trials": 120,
+  "monodromy": {
+    "fixed_points": [],
+    "orbit_lengths": [
+      2,
+      3
+    ]
+  },
+  "multiplicative_trials": {
+    "101": 100,
+    "17": 100,
+    "29": 100
+  },
+  "status": "PASS"
+}

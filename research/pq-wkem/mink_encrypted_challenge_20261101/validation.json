@@ -1,0 +1,15 @@
+{
+  "run": "MINK-ECZK-2026-11-01-T18",
+  "checks": 1619,
+  "toy": {
+    "q": 257,
+    "n": 3,
+    "m": 40,
+    "eta": 1
+  },
+  "honest_rounds": 96,
+  "simulated_rounds": 96,
+  "false_K4_assignments": 81,
+  "max_good_K4_edges": 5,
+  "quantum_hardness_tested": false
+}

@@ -1,0 +1,149 @@
+{
+  "assertions": 48,
+  "flip_probability": 0.14,
+  "min_correlation": 0.6,
+  "n": 14,
+  "not_tested": "a hash-only WKEM, QPT hardness, real source or Bitcoin PoW",
+  "null": {
+    "candidate_count": 0,
+    "predictor_calls": 1640,
+    "prefix_widths": [
+      0
+    ]
+  },
+  "positive": [
+    {
+      "candidate_count": 1,
+      "candidate_list": [
+        3854
+      ],
+      "fixture": 0,
+      "measured_advantage": 0.342,
+      "predictor_calls": 11960,
+      "prefix_widths": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "secret": 3854
+    },
+    {
+      "candidate_count": 2,
+      "candidate_list": [
+        12242,
+        12243
+      ],
+      "fixture": 1,
+      "measured_advantage": 0.35,
+      "predictor_calls": 11960,
+      "prefix_widths": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2
+      ],
+      "secret": 12242
+    },
+    {
+      "candidate_count": 1,
+      "candidate_list": [
+        2404
+      ],
+      "fixture": 2,
+      "measured_advantage": 0.352,
+      "predictor_calls": 11960,
+      "prefix_widths": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "secret": 2404
+    },
+    {
+      "candidate_count": 1,
+      "candidate_list": [
+        15603
+      ],
+      "fixture": 3,
+      "measured_advantage": 0.358,
+      "predictor_calls": 11960,
+      "prefix_widths": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "secret": 15603
+    },
+    {
+      "candidate_count": 1,
+      "candidate_list": [
+        7466
+      ],
+      "fixture": 4,
+      "measured_advantage": 0.353,
+      "predictor_calls": 11960,
+      "prefix_widths": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "secret": 7466
+    }
+  ],
+  "samples_per_prefix": 160,
+  "test": "paired-query Fourier-prefix / Goldreich-Levin reconstruction"
+}

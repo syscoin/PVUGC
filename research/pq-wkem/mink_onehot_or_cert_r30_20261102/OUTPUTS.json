@@ -1,0 +1,79 @@
+{
+  "run_id": "R30-MINK-ONEHOT-OR-CERT-20261102",
+  "source": "syscoin/PVUGC#1",
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "3efd9e1b7ad4c1caa0fb7b520561619f7915d52b",
+  "latest_prior_comment_id": 6594964037,
+  "main_checks": [
+    {
+      "certificate_nonzero_columns": 131,
+      "checks": 567,
+      "correct_bit_recoveries": 240,
+      "false_branches": 3,
+      "false_source_clauses": 68,
+      "false_source_variables": 46,
+      "full_ciphertext_shift_couplings": 24,
+      "max_mask_degree": 3,
+      "pass": true,
+      "run": "R30-MINK-ONEHOT-OR-CERT",
+      "scope": "exact squarefree algebra and small-sample correctness; not QPT security",
+      "selector_valid_assignments": 3,
+      "true_OR_distinct_witnesses": 118
+    },
+    {
+      "certificate_nonzero_columns": 174,
+      "checks": 962,
+      "correct_bit_recoveries": 240,
+      "false_branches": 4,
+      "false_source_clauses": 90,
+      "false_source_variables": 61,
+      "full_ciphertext_shift_couplings": 24,
+      "max_mask_degree": 3,
+      "pass": true,
+      "run": "R30-MINK-ONEHOT-OR-CERT",
+      "scope": "exact squarefree algebra and small-sample correctness; not QPT security",
+      "selector_valid_assignments": 4,
+      "true_OR_distinct_witnesses": 119
+    },
+    {
+      "certificate_nonzero_columns": 217,
+      "checks": 2509,
+      "correct_bit_recoveries": 240,
+      "false_branches": 5,
+      "false_source_clauses": 112,
+      "false_source_variables": 76,
+      "full_ciphertext_shift_couplings": 24,
+      "max_mask_degree": 3,
+      "pass": true,
+      "run": "R30-MINK-ONEHOT-OR-CERT",
+      "scope": "exact squarefree algebra and small-sample correctness; not QPT security",
+      "selector_valid_assignments": 5,
+      "true_OR_distinct_witnesses": 117
+    }
+  ],
+  "independent_check": {
+    "run": "R30-ONEHOT-INDEPENDENT-JS",
+    "pass": true,
+    "assertions": 425,
+    "cases": [
+      {
+        "k": 3,
+        "clause_count": 68,
+        "valid_states": 3
+      },
+      {
+        "k": 4,
+        "clause_count": 90,
+        "valid_states": 4
+      },
+      {
+        "k": 5,
+        "clause_count": 112,
+        "valid_states": 5
+      }
+    ]
+  },
+  "repeat_checks": "Each k=3,4,5 Python run and independent JS run reproduced byte-identically twice",
+  "sha256_checker_python": "a89817b99c822f5a71c149f5328dcd4e63da157c51663f045b2a9ff72b88d080",
+  "sha256_checker_js": "20f3b12a5fc0c7a28eed8624fc617f8e7415a719bf530a8228d21e02ac62a590"
+}

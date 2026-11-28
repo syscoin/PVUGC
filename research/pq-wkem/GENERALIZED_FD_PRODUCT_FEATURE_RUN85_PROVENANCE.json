@@ -1,0 +1,58 @@
+{
+  "run": 85,
+  "repository": "syscoin/PVUGC",
+  "pr_number": 1,
+  "starting_verified_head": "adcf3b578848c454c99191bc073f6ed430f4da42",
+  "production_code_modified": false,
+  "classification": {
+    "result": "generalized finite-difference attack/boundary for Run-84 product-feature lift",
+    "honest_algorithms": "classical polynomial time in explicit compiler dimensions",
+    "attack_adversary": "classical PPT via public Hamming-weight dynamic program and Gaussian elimination; therefore applicable to QPT security claims",
+    "qpt_false_hiding": "UNPROVED except that non-negligible explicit public character bias breaks the corresponding parameter choices",
+    "arbitrary_qpt_source_extraction": "UNPROVED"
+  },
+  "new_claims": [
+    "For every m <= N-R on the explicit false equation sum b_i = N+1, an (R+m)-fold finite difference satisfies all Run-84 product-feature source constraints.",
+    "Every such matrix has nonzero public anchor and rank at most m(R+m+1).",
+    "For fixed free coordinates there are 2^(N-R-m) distinct projective anchor-sensitive directions.",
+    "The matrices are publicly polynomial-time constructible using O((R+m)^2) applications of the existing linear partial-assignment update maps; exponential support enumeration is unnecessary.",
+    "The corresponding rank-mask public character has magnitude at least q^(-r*m(R+m+1)); the explicit family supplies a squared spectral-mass lower tail of at least 2^(N-R-m) q^(-2r*m(R+m+1)).",
+    "Escaping this particular generalized finite-difference construction solely by feature count requires m > N-R; this is not a sufficiency theorem for security."
+  ],
+  "literature": [
+    {
+      "title": "Witness Encryption via Prime-Order Generic Groups",
+      "authors": "Isaac M. Hair, Amit Sahai",
+      "arxiv": "2609.18275v1",
+      "used_for": "weighted-table degree bound/source algebra only; classical generic-group encryption security not imported"
+    },
+    {
+      "title": "Witness Encryption for NP from SNARGs and Groups",
+      "author": "Zhengzhong Jin",
+      "eprint": "2026/2063",
+      "status": "current listing/abstract verified; full manuscript unavailable through accessible source in this run; extraction chain not imported"
+    },
+    {
+      "title": "Polynomial-Factor Deterministic NP-Hardness for SVP in Every lp Norm with p > 2",
+      "authors": "Isaac M. Hair, Amit Sahai",
+      "arxiv": "2608.14529",
+      "status": "worst-case deterministic NP-hardness only; not relabeled as random-instance SIS/LWE or QPT hardness"
+    }
+  ],
+  "tests": {
+    "executions": 2,
+    "byte_identical_stdout": true,
+    "checker_sha256": "0fd260f67d360ef15cc0069900971084d124f4bdc022262fa5cb43cb5ac3d5df",
+    "validation_sha256": "d28938f788b85e67c84c6f9fafeaf1e8845ea9bd71861674da7ec9728fb1fd1e",
+    "generalized_family_members_checked": 22,
+    "scope": "finite algebra/constructibility/resource controls only; no cryptographic security test"
+  },
+  "publication": {
+    "github_checkpoint_attempted": true,
+    "github_checkpoint_result": "blocked by OpenAI safety checks before reaching GitHub",
+    "publication_retried_or_rerouted": false,
+    "github_files_published_this_run": false,
+    "local_artifacts_preserved": true
+  },
+  "stopping_condition_met": false
+}

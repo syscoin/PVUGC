@@ -1,0 +1,1 @@
+{"run":515,"status":"PASS","counts":{"quotient4":576,"recovery4":1152,"marginalFrames4":24,"independentViews4":27648,"independentHistogramEqual":1,"n8Pads":40320,"n8Identities":241920},"commonTrueEqual":[288,576],"randomPairEqual":[144,576],"scope":"finite permutation identities only; not a WE break or QPT security proof"}

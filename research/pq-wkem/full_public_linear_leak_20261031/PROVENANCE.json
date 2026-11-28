@@ -1,0 +1,21 @@
+{
+  "run": "2026-10-31-offline-full-public-factor",
+  "start_sha": "0ab4f17947dc8a3ca0f49beadfdedbd20a898006",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "predecessor_document_blob": "cede7a438ecea7d0705e264679ab8ba24796425f",
+  "predecessor_checker_blob": "ddfb2e39c53fe88fbdd607b108cf856c06d1ddd0",
+  "prior_comment": 6541390949,
+  "executed_checker": "JS researchCheck() invoked before publication, generated checker.js calls same function",
+  "results": {
+    "checks": 1922,
+    "related_capsule_couplings": 384,
+    "small_field_full_distribution_states": 25,
+    "coin_exposed_leak_condition_verified": true,
+    "mask_reuse_failure_verified": true,
+    "complete_generic_WKEM": false
+  },
+  "python_extended": "local companion archive; 2513 checks repeated identically",
+  "offline": true,
+  "security_status": "restricted exact joint distribution proof only"
+}

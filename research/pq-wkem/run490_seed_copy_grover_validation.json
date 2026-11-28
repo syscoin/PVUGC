@@ -1,0 +1,113 @@
+{
+  "run": 490,
+  "fixtures": 8,
+  "assertions_passed": 56,
+  "cases": [
+    {
+      "root_bits": 4,
+      "context": 0,
+      "pairs": 256,
+      "marked": 14,
+      "unreachable_builder_coins": 8,
+      "matched_coin": 1,
+      "matched_signer_seed": 8,
+      "seed": 6,
+      "root": 3,
+      "grover_iterations": 3,
+      "simulated_success": 0.993375895945
+    },
+    {
+      "root_bits": 4,
+      "context": 1,
+      "pairs": 256,
+      "marked": 13,
+      "unreachable_builder_coins": 6,
+      "matched_coin": 0,
+      "matched_signer_seed": 13,
+      "seed": 15,
+      "root": 11,
+      "grover_iterations": 3,
+      "simulated_success": 0.999588062985
+    },
+    {
+      "root_bits": 5,
+      "context": 0,
+      "pairs": 1024,
+      "marked": 33,
+      "unreachable_builder_coins": 12,
+      "matched_coin": 0,
+      "matched_signer_seed": 17,
+      "seed": 22,
+      "root": 24,
+      "grover_iterations": 4,
+      "simulated_success": 0.997122501056
+    },
+    {
+      "root_bits": 5,
+      "context": 1,
+      "pairs": 1024,
+      "marked": 24,
+      "unreachable_builder_coins": 18,
+      "matched_coin": 0,
+      "matched_signer_seed": 16,
+      "seed": 15,
+      "root": 27,
+      "grover_iterations": 5,
+      "simulated_success": 0.985698339768
+    },
+    {
+      "root_bits": 6,
+      "context": 0,
+      "pairs": 4096,
+      "marked": 64,
+      "unreachable_builder_coins": 19,
+      "matched_coin": 1,
+      "matched_signer_seed": 39,
+      "seed": 6,
+      "root": 51,
+      "grover_iterations": 6,
+      "simulated_success": 0.996585680787
+    },
+    {
+      "root_bits": 6,
+      "context": 1,
+      "pairs": 4096,
+      "marked": 72,
+      "unreachable_builder_coins": 20,
+      "matched_coin": 0,
+      "matched_signer_seed": 16,
+      "seed": 15,
+      "root": 27,
+      "grover_iterations": 5,
+      "simulated_success": 0.988363750292
+    },
+    {
+      "root_bits": 7,
+      "context": 0,
+      "pairs": 16384,
+      "marked": 134,
+      "unreachable_builder_coins": 51,
+      "matched_coin": 0,
+      "matched_signer_seed": 107,
+      "seed": 22,
+      "root": 56,
+      "grover_iterations": 8,
+      "simulated_success": 0.99902206463
+    },
+    {
+      "root_bits": 7,
+      "context": 1,
+      "pairs": 16384,
+      "marked": 112,
+      "unreachable_builder_coins": 47,
+      "matched_coin": 1,
+      "matched_signer_seed": 41,
+      "seed": 36,
+      "root": 64,
+      "grover_iterations": 9,
+      "simulated_success": 0.999996337291
+    }
+  ],
+  "correction": "adaptive PK.seed copying gives h-bit root predicate; ideal Grover O(2^(h/2)), NOT generic independent full-key 2^(2h/3)",
+  "limitations": "toy arithmetic maps and ideal phase reflections; no FIPS 205, quantum circuit, WKEM, or 128-bit security proof"
+}

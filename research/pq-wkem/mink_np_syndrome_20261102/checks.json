@@ -1,0 +1,16 @@
+{
+  "run": "MINK-NP-SYNDROME-20261102-R18",
+  "checks": 122030,
+  "exhaustive_formulas": 4096,
+  "false_formulas": 4,
+  "valid_assignment_checks": 12544,
+  "distinct_valid_witnesses": 2,
+  "false_recovered_q41": "512/512",
+  "q23_noise_exact": {
+    "success": 116559,
+    "failure": 1539
+  },
+  "per_clause_xor_repair_attack": "256/256",
+  "result": "REJECTED: public wrong-assignment signed solution decrypts; no generic PQ WKEM security",
+  "independent_longer_python_checker": "129296 checks twice, identical; local-only archive"
+}

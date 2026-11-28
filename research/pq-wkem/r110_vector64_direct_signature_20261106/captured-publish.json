@@ -1,0 +1,22 @@
+{
+  "run": "R110-VECTOR64-UNIFORM-BOUNDED-L1-20261106",
+  "status": "PASS_RESTRICTED_NOT_GENERIC_NP",
+  "assertions": 50,
+  "q": 65521,
+  "d": 256,
+  "m": 2000,
+  "ell": 64,
+  "L1": 2729,
+  "source_entropy_log2": 5445.079378072014,
+  "support_integer_bits": 5446,
+  "full_public_groups": 125696,
+  "uniform_false_full_bundle_log2_distance": -146.6529489392254,
+  "corrected_R109_full_bundle_log2_distance": -126.71331560029226,
+  "corrected_R109_cipher_bytes_per_occurrence": 1068416,
+  "new_cipher_bytes_per_occurrence": 314240,
+  "corrected_R109_full_public_key_and_cipher_bytes": 287928320,
+  "new_full_public_key_and_cipher_bytes": 147005440,
+  "actual_public_bytes_saved": 140922880,
+  "expected_exact_sampler_proposals": 32.26403613016352,
+  "checked_only": "algebra, exact combinatorial support, budget; QPT assumptions UNPROVEN"
+}

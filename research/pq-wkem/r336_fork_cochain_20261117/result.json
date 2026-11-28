@@ -1,0 +1,23 @@
+{
+  "assertions": 768,
+  "candidate": "fork-cochain",
+  "fixtures": 128,
+  "mode": "synthetic graph hashes only, no authentic sources",
+  "passed": true,
+  "samples": [
+    {
+      "distinct_tips": true,
+      "early_open": true,
+      "length": 3,
+      "root": "c19910ce1a2fcc45",
+      "sibling_open": true
+    },
+    {
+      "distinct_tips": true,
+      "early_open": true,
+      "length": 4,
+      "root": "7660f39210352e54",
+      "sibling_open": true
+    }
+  ]
+}

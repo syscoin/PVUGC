@@ -1,0 +1,24 @@
+Validation readme (local runs only; never Core/actual-source tests)
+
+The corresponding check.py was independently written as check_remote.py and
+actually executed twice locally on Python 3; both executions exited zero and
+emitted byte-identical JSON. Its SHA256 is
+7e981e37136739dee4723cca57b9f8675dd4c4b4f2474e60a22f0e8e8f7a33bf.
+Both check_remote.py outputs SHA256:
+60e3adf10ef2c1dcb15d4ec3bedaa51e59e5b6cffe42326297bbf84067592e75.
+
+An earlier non-identical but mathematically equivalent local check.py was also
+executed twice, source SHA256
+295ed672c047589dbfeee997296a26c2828544cc4f83286fde979fa24fc0a4dd,
+output SHA256
+4fe6cb09ac45166f9e86da29d5a32a879312837139756a4a605ab597b9e8b107.
+That earlier script is not claimed as the byte-identical GitHub checker.
+The GitHub check.py is the tested reformatted script shown above.
+
+These tests only expose insecurity of this synthetic global-gauge design.
+They are NOT FE security, source-authenticated witness checks, Bitcoin script
+execution, native signing, PoW certification, or QPT reductions.
+
+Start branch head 69d4a071e0c68fce7c43c5233bd4839b66efb58a.
+All paths in this commit are research/pq-wkem/ only.
+No user/PR breakthrough comment is warranted.

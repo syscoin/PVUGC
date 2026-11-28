@@ -1,0 +1,30 @@
+{
+  "assertions": 1440,
+  "groups": {
+    "baseline_only_unlocks_without_future_source": 96,
+    "bit_label_fabrication_opens_early": 96,
+    "both_labels_published_open_early": 96,
+    "different_real_future_fails_same_capability": 96,
+    "fake_certificate_different": 96,
+    "fake_future_not_same_capability": 96,
+    "full_private_pair_opens": 96,
+    "future_certificate_misses_precommitted_key": 96,
+    "known_certificate_opens": 96,
+    "known_witness_can_open": 96,
+    "legit_normalization_is_identical": 96,
+    "private_labels_commit": 96,
+    "public_normalization_opens_early": 96,
+    "real_source_lacks_private_label": 96,
+    "second_real_source_lacks_label": 96
+  },
+  "not_implemented": [
+    "real BTC/SYS source authentication",
+    "actual source-to-secret-label compiler",
+    "secure Build/Open",
+    "native cancellation signature",
+    "quantum/QROM security reduction"
+  ],
+  "run": "R214-SLB-20261110",
+  "scope": "toy one-sided hash label timing tests only",
+  "source_sha256": "02e20aa3198f6706a0fb42ec808f1c14ccd480ed3b1a646421b4c12b432da94c"
+}

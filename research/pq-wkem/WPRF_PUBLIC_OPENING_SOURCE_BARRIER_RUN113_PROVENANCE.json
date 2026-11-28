@@ -1,0 +1,89 @@
+{
+  "artifact_sha256": {
+    "WPRF_PUBLIC_OPENING_SOURCE_BARRIER_RUN113.md": "63361dc3319c86881fb085630559e560bf93abad1271e65e7af0ba0a3aa8054e",
+    "wprf-public-opening-run113-validation.json": "25adc30140dd8550c34de23e1c8cb027ba382beea73c8972b00c1fb93b8708b3",
+    "wprf_public_opening_run113_check.py": "39a7e265d0810db642b0df6e5fa995401b67c4a59f7d0b8278e2c8a7d2639ac4"
+  },
+  "branch": "research/pq-wkem-validation-20260918",
+  "exact_repository_inputs": [
+    {
+      "blob_sha": "0e4a294539a949af5a178ed7cc5d6659ed79a42b",
+      "path": "research/pq-wkem/ADAPTOR_INVARIANT_COMMON_KEY_RUN111.md"
+    },
+    {
+      "blob_sha": "5ec37cfcf47fcdc68d279af1dc1b6c90a7287c8d",
+      "path": "research/pq-wkem/FULL_KEY_ONE_COPY_QPT_EXTRACTION_RUN102.md"
+    },
+    {
+      "blob_sha": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924",
+      "path": "research/pq-wkem/literature-20260924/ASSESSMENT.md"
+    },
+    {
+      "note": "read at starting head; exact content used for current barrier handoff",
+      "path": "research/pq-wkem/NOISY_GADGET_PROJECTION_BARRIER_RUN110.md"
+    }
+  ],
+  "latest_substantive_comment_id": 5843580758,
+  "literature": [
+    {
+      "author": "Mark Zhandry",
+      "evidence": "Search-indexed full-text excerpts covering Definition 3.1, Definitions 3.3/3.5/3.7, Remarks 3.6-3.10, Construction 4.13, Definition 4.15, and Theorems 4.14/4.4. Formal security text explicitly quantifies PPT adversaries.",
+      "title": "How to Avoid Obfuscation Using Witness PRFs",
+      "url": "https://eprint.iacr.org/2014/301",
+      "version": "ePrint 2014/301 / TCC 2016 line"
+    },
+    {
+      "authors": "Rishabh Bhadauria; Pedro Branco; Nico D\u00f6ttling; Sanjam Garg; Guru-Vamsi Policharla",
+      "evidence": "Primary ePrint abstract and metadata read. PDF fetch returned HTTP 403, so exact theorem/assumption names beyond the abstract were not audited.",
+      "title": "Witness Pseudorandom Functions for Vector Commitments and Applications",
+      "url": "https://eprint.iacr.org/2026/1079",
+      "version": "ePrint 2026/1079, primary page current on 2026-09-26"
+    },
+    {
+      "authors": "Brent Waters; Hoeteck Wee; David J. Wu",
+      "evidence": "Primary PDF text audited for Lemma 4.1, shifted multi-preimage syntax, Definition 5.1, Construction 5.4, Corollaries 5.19 and 5.20. Required screenshot calls were attempted but failed with cache/403 errors; no OCR was used.",
+      "title": "New Techniques for Preimage Sampling: Improved NIZKs and More from LWE",
+      "url": "https://eprint.iacr.org/2024/1401.pdf",
+      "version": "ePrint 2024/1401, parsed primary PDF"
+    },
+    {
+      "authors": "Sanjam Garg; Craig Gentry; Shai Halevi; Daniel Wichs",
+      "evidence": "Primary-author institutional abstract checked for the auxiliary-input limitation. No stronger theorem than the abstract was imported in this run.",
+      "title": "On the Implausibility of Differing-Inputs Obfuscation and Extractable Witness Encryption with Auxiliary Input",
+      "url": "https://research.ibm.com/publications/on-the-implausibility-of-differing-inputs-obfuscation-and-extractable-witness-encryption-with-auxiliary-input",
+      "version": "CRYPTO 2014 / Algorithmica 2017"
+    }
+  ],
+  "new_results": [
+    "Exact straight-line reduction from exact raw WPRF-value recovery probability epsilon to WPRF distinguishing advantage |epsilon-1/|Y||; the reduction remains QPT when the recovery adversary is QPT with classical output.",
+    "Prior-art correction: the desired same-value witness-release functionality is the WPRF / reusable witness-KEM interface; Zhandry already defined process-style extractable WPRF security, but only against PPT adversaries and with sampler/auxiliary-input caveats.",
+    "Unconditional public-opening source-extraction barrier: if an auxiliary opening is publicly samplable without a source witness and every accepted opening source-extracts, sampler plus extractor solves source witness search.",
+    "Transcript-simulation corollary: an extractor that sees only a transcript perfectly simulatable by the public sampler cannot certify adversary-specific source knowledge without also enabling public source search."
+  ],
+  "pr_state_at_start": {
+    "draft": true,
+    "merged": false,
+    "open": true
+  },
+  "publication_note": "Run 112's previously denied GitHub payload was not retried, renamed, split, encoded, or rerouted. Run 113 is new research and is eligible for the normal authorized publication path subject to current tool controls.",
+  "pull_request": 1,
+  "quantum_status": {
+    "exact_recovery_to_distinguishing": "QPT-valid straight-line reduction, assuming classical output comparison",
+    "public_opening_barrier": "unconditional composition theorem",
+    "wprf_2026_vector_commitment": "pairing-group construction per primary abstract; not post-quantum; full theorem not audited",
+    "www_hbg_computational_mode": "paper says efficient adversaries; QPT extension not established in this run",
+    "www_hbg_statistical_hiding": "information-theoretic against computationally unbounded adversaries in hiding mode",
+    "zhandry_wprf": "PPT-only security statement in audited text; not promoted to QPT"
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 113,
+  "starting_head": "a0803edfa691f184e33ca92620471a81c17c611c",
+  "title": "WPRF reduction and public-opening source barrier",
+  "validation": {
+    "assertions": 73309,
+    "byte_identical": true,
+    "captured_output": "wprf-public-opening-run113-validation.json",
+    "checker": "wprf_public_opening_run113_check.py",
+    "executions": 3
+  }
+}

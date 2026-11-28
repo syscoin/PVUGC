@@ -1,0 +1,48 @@
+{
+  "run": 532,
+  "status": "PASS",
+  "cases": 21,
+  "recovered": 21,
+  "tokenQueries": 120,
+  "allWitnessDistinctTokens": 3,
+  "minIdealGroverProbability": 0.9453125,
+  "sample": [
+    {
+      "bits": 4,
+      "m": 1,
+      "queries": 6,
+      "groverIterations": 3
+    },
+    {
+      "bits": 4,
+      "m": 2,
+      "queries": 3,
+      "groverIterations": 2
+    },
+    {
+      "bits": 4,
+      "m": 3,
+      "queries": 3,
+      "groverIterations": 1
+    },
+    {
+      "bits": 10,
+      "m": 1,
+      "queries": 6,
+      "groverIterations": 25
+    },
+    {
+      "bits": 10,
+      "m": 2,
+      "queries": 6,
+      "groverIterations": 17
+    },
+    {
+      "bits": 10,
+      "m": 3,
+      "queries": 6,
+      "groverIterations": 14
+    }
+  ],
+  "scope": "toy public-callable short frontier; not WKEM security or native SLH"
+}

@@ -1,0 +1,91 @@
+{
+  "assertions": 8240,
+  "conclusion": "All 1024 tested FALSE phase decryptions succeed, so this candidate is rejected.",
+  "delta": 4096,
+  "noise_abs_max": 3,
+  "q": 65521,
+  "results": [
+    {
+      "fractional_norm2": "9/4",
+      "max_abs_noise": 22,
+      "n": 3,
+      "phase_bound": 33,
+      "phase_trials": 256,
+      "scaled_vector_nonzero": 9,
+      "unsatisfiable": false,
+      "valid_witness_count": 2
+    },
+    {
+      "fractional_norm2": "9/4",
+      "max_abs_noise": 23,
+      "n": 3,
+      "phase_bound": 33,
+      "phase_trials": 256,
+      "scaled_vector_nonzero": 9,
+      "unsatisfiable": true,
+      "valid_witness_count": 0
+    },
+    {
+      "fractional_norm2": "15/4",
+      "max_abs_noise": 29,
+      "n": 5,
+      "phase_bound": 51,
+      "phase_trials": 256,
+      "scaled_vector_nonzero": 15,
+      "unsatisfiable": false,
+      "valid_witness_count": 2
+    },
+    {
+      "fractional_norm2": "15/4",
+      "max_abs_noise": 26,
+      "n": 5,
+      "phase_bound": 51,
+      "phase_trials": 256,
+      "scaled_vector_nonzero": 15,
+      "unsatisfiable": true,
+      "valid_witness_count": 0
+    },
+    {
+      "fractional_norm2": "21/4",
+      "max_abs_noise": 37,
+      "n": 7,
+      "phase_bound": 69,
+      "phase_trials": 256,
+      "scaled_vector_nonzero": 21,
+      "unsatisfiable": false,
+      "valid_witness_count": 2
+    },
+    {
+      "fractional_norm2": "21/4",
+      "max_abs_noise": 31,
+      "n": 7,
+      "phase_bound": 69,
+      "phase_trials": 256,
+      "scaled_vector_nonzero": 21,
+      "unsatisfiable": true,
+      "valid_witness_count": 0
+    },
+    {
+      "fractional_norm2": "27/4",
+      "max_abs_noise": 32,
+      "n": 9,
+      "phase_bound": 87,
+      "phase_trials": 256,
+      "scaled_vector_nonzero": 27,
+      "unsatisfiable": false,
+      "valid_witness_count": 2
+    },
+    {
+      "fractional_norm2": "27/4",
+      "max_abs_noise": 31,
+      "n": 9,
+      "phase_bound": 87,
+      "phase_trials": 256,
+      "scaled_vector_nonzero": 27,
+      "unsatisfiable": true,
+      "valid_witness_count": 0
+    }
+  ],
+  "run": "R156",
+  "seed": 15620261108
+}

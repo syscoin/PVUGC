@@ -1,0 +1,23 @@
+{
+  "run": "R178-SSHT-20261109",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "initial_head": "94a3313a41da9e664d427d8749f733cd0749f0c1",
+  "intermediate_commit": "eb0e0618247e4a8d12588aef8cbf186a373e798d",
+  "checked_intermediate_blob": "bb876e2d48e3fcef37859f965f0ad83ac2686106",
+  "checker_git_blob": "85cf8f1f2b25c9adf1e82fcdfa8ba65f950ab06c",
+  "captured_git_blob": "a204f5610bc1243a7f568211f1defb327a6cfe7f",
+  "research_git_blob": "ad1d0d1120f57b0de625952ebb73e10e1dbf5b2d",
+  "checker_sha256": "ac1e23e0f556e9a2c41b0f199ddfde64e4cff3a3cc86dc1d8a02f997f66eff17",
+  "captured_sha256": "f2681146587ef74cfa0becfabb2d9b93e122e321a21efa95e04500c9174a3fb6",
+  "full_local_derivation_sha256": "4a52cb0bd4fd53e8fce3ce638b1f61a04ec7e3dd3489019c176e6538a2fd3c5b",
+  "experiment": "SHA256d synthetic parent work SHA digest class, not deployed Bitcoin source",
+  "result": "UNSUCCESSFUL: bucket lookup bypass and no future-work common key",
+  "new_security_theorem": false,
+  "qpt_experiment": false,
+  "third_party_audit": false,
+  "ordinary_pr_comment": false,
+  "external_web": false,
+  "source_scope": "user-approved syscoin/PVUGC research/pq-wkem/ only"
+}

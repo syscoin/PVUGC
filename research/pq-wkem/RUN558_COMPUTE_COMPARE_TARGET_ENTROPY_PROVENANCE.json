@@ -1,0 +1,30 @@
+{
+  "run": 558,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "bd643632156f5d15aab2536f9b04cbf460bb7a4b",
+  "execution": "V8 JS source stored verbatim as run558_cc_target_entropy_check.js",
+  "validation": {
+    "run": 558,
+    "checker": "run558_cc_target_entropy_check.js",
+    "status": "PASS",
+    "assertions_passed": 234474,
+    "public_accept_bit_models": 10920,
+    "independent_target_exhaustive_cases": 135408,
+    "hash_label_collisions": 1365,
+    "noncolliding_adapters": 9555,
+    "programmed_target_conditional_min_entropy_bits": 0,
+    "independent_target_all_valid_success": "2^-k exactly",
+    "restricted_true_instances": 128,
+    "restricted_false_instances": 129,
+    "restricted_true_witness_multiplicity": 2,
+    "toy_permutation_modulus": 257,
+    "cryptographic_obfuscation_executed": false,
+    "QPT_security_proved": false
+  },
+  "primary_source": "https://ieee-focs.org/FOCS-2017-Papers/3464a600.pdf",
+  "primary_scope": "specific theorem assumptions, introductory MBCC description, not full or QPT audit",
+  "integrity": "Commit and exact blob readback required",
+  "production_unchanged": true
+}

@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "checks": 617,
+  "fixture": "2-variable / 4-factor complete false and 3-witness true control",
+  "source": {
+    "m": 17,
+    "rank": 14,
+    "quotient_dimension": 3
+  },
+  "false_kernel_factor_profile": {
+    "odd6": 4,
+    "even8": 3,
+    "zero": 1
+  },
+  "exhaustive_error_masks": 4096,
+  "exact_Fourier_probabilities_checked": 16,
+  "noise": "factor columns Ber(1/6); constant and variable noise exactly zero",
+  "honest_capacity": 0.028331809084516935,
+  "false_information": 0.02024993341478421,
+  "secrecy_rate_gap": 0.008081875669732723,
+  "old_gap": 0.0006061461164073309,
+  "rate_gap_factor": 13.333213644318217,
+  "limits": "Restricted fixed SOURCE only; no arbitrary key recovery to ORIGINAL witness or QPT-LWE challenge simulator; no practical polar parameters."
+}

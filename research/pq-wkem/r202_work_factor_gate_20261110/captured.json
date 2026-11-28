@@ -1,0 +1,33 @@
+{
+  "assertions": 224,
+  "examples": [
+    {
+      "nonce_work_a": 6703,
+      "nonce_work_b": 1859,
+      "seed": 0
+    },
+    {
+      "nonce_work_a": 837,
+      "nonce_work_b": 7229,
+      "seed": 1
+    }
+  ],
+  "groups": {
+    "both_valid_toy_work": 32,
+    "different_valid_parent_digests": 32,
+    "early_raw_key_recovery": 32,
+    "exact_digest_pad_not_common": 32,
+    "fake_digest_opens_range_pad": 32,
+    "range_pad_common": 32,
+    "work_pad_does_not_enforce_burn_fault": 32
+  },
+  "limitations": [
+    "only digest-factored hash pad",
+    "headers and PoW are synthetic",
+    "source ancestry and Merkle proofs unimplemented",
+    "not a complete source-dependent compiler",
+    "no QPT attack/proof"
+  ],
+  "run": "R202-WOF",
+  "source_sha256": "e00489bf2c77d168c26995a675d222fc46954e561c33ec114e18a48fb070f284"
+}

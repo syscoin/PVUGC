@@ -1,0 +1,193 @@
+{
+  "model": "globally stacked affine self-challenges on one-bad-block affine false fibers",
+  "run": 61,
+  "seed": 102371790,
+  "tests": {
+    "overhead": {
+      "128": {
+        "R_min_union_bound": 48,
+        "stacked_bits": 384,
+        "union_bound_log2": -130
+      },
+      "192": {
+        "R_min_union_bound": 56,
+        "stacked_bits": 448,
+        "union_bound_log2": -194
+      },
+      "64": {
+        "R_min_union_bound": 40,
+        "stacked_bits": 320,
+        "union_bound_log2": -66
+      },
+      "96": {
+        "R_min_union_bound": 44,
+        "stacked_bits": 352,
+        "union_bound_log2": -98
+      }
+    },
+    "phase_transition": {
+      "232": {
+        "fraction": 1.0,
+        "rank_histogram": {
+          "232": 250
+        },
+        "simple_upper_bound": 1.0,
+        "solvable": 250,
+        "trials": 250
+      },
+      "240": {
+        "fraction": 1.0,
+        "rank_histogram": {
+          "239": 1,
+          "240": 249
+        },
+        "simple_upper_bound": 1.0,
+        "solvable": 250,
+        "trials": 250
+      },
+      "246": {
+        "fraction": 0.56,
+        "rank_histogram": {
+          "238": 1,
+          "239": 1,
+          "240": 1,
+          "241": 4,
+          "242": 6,
+          "243": 24,
+          "244": 48,
+          "245": 104,
+          "246": 61
+        },
+        "simple_upper_bound": 1.0,
+        "solvable": 140,
+        "trials": 250
+      },
+      "248": {
+        "fraction": 0.236,
+        "rank_histogram": {
+          "236": 1,
+          "238": 1,
+          "239": 2,
+          "240": 1,
+          "241": 4,
+          "242": 8,
+          "243": 20,
+          "244": 23,
+          "245": 64,
+          "246": 126
+        },
+        "simple_upper_bound": 0.25,
+        "solvable": 59,
+        "trials": 250
+      },
+      "256": {
+        "fraction": 0.0,
+        "rank_histogram": {
+          "237": 1,
+          "240": 1,
+          "241": 3,
+          "242": 5,
+          "243": 15,
+          "244": 17,
+          "245": 67,
+          "246": 141
+        },
+        "simple_upper_bound": 0.0009765625,
+        "solvable": 0,
+        "trials": 250
+      },
+      "264": {
+        "fraction": 0.0,
+        "rank_histogram": {
+          "238": 1,
+          "240": 1,
+          "241": 4,
+          "242": 6,
+          "243": 19,
+          "244": 28,
+          "245": 56,
+          "246": 135
+        },
+        "simple_upper_bound": 3.814697265625e-06,
+        "solvable": 0,
+        "trials": 250
+      }
+    },
+    "roundwise_separable": {
+      "D": 246,
+      "fibers_per_round": 256,
+      "full_row_rank": 8192,
+      "k": 8,
+      "rounds": 32,
+      "solvable": 8192,
+      "systems": 8192,
+      "unsolved": 0
+    },
+    "run60_joint_global": {
+      "B": 256,
+      "D": 246,
+      "R": 48,
+      "fibers": 256,
+      "full_column_rank_fibers": 135,
+      "inconsistent_fibers": 256,
+      "k": 8,
+      "stacked_bits": 384,
+      "surviving_fibers": 0,
+      "union_bound_log2": -130
+    },
+    "small_exact_enumeration": {
+      "3": {
+        "B": 8,
+        "D": 3,
+        "per_m": {
+          "2": {
+            "count_mismatches": 0,
+            "survivors": 68,
+            "systems": 80
+          },
+          "3": {
+            "count_mismatches": 0,
+            "survivors": 54,
+            "systems": 80
+          },
+          "4": {
+            "count_mismatches": 0,
+            "survivors": 37,
+            "systems": 80
+          },
+          "6": {
+            "count_mismatches": 0,
+            "survivors": 9,
+            "systems": 80
+          }
+        }
+      },
+      "4": {
+        "B": 16,
+        "D": 10,
+        "per_m": {
+          "10": {
+            "count_mismatches": 0,
+            "survivors": 25,
+            "systems": 40
+          },
+          "11": {
+            "count_mismatches": 0,
+            "survivors": 15,
+            "systems": 40
+          },
+          "14": {
+            "count_mismatches": 0,
+            "survivors": 3,
+            "systems": 40
+          },
+          "9": {
+            "count_mismatches": 0,
+            "survivors": 33,
+            "systems": 40
+          }
+        }
+      }
+    }
+  }
+}

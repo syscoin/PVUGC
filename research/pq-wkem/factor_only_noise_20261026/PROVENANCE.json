@@ -1,0 +1,17 @@
+{
+  "run": "turn11_factor_noise_20261026",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "expected_head": "78416840a3500bc2a1c762e2d71fecbcae7f4646",
+  "parent_file_blob": "7d0c77cbe82ab73a30184598a3ae925caafaeea2",
+  "executed_checker": "checker.js",
+  "assertions": 617,
+  "duplicate_identical": true,
+  "external_web_research": false,
+  "local_independent_python_assertions": 952,
+  "local_python_checker_sha256": "c3754a4f5a77b3d3932a95fa4f6a5e7efa22692171038d2eee363924ac96f5e7",
+  "full_local_archive_sha256": "bc715e435c96efe4c4f873e0705b01f432545a0a1d3d2644e4364298e29d4aae",
+  "scope": "fixed false/true family rate improvement, not general QPT secrecy",
+  "writes": "research-only"
+}

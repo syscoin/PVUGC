@@ -1,0 +1,9 @@
+{
+  "assertion_groups": 128,
+  "cases": 32,
+  "private_builder_recovers_pre_evidence": 32,
+  "qualified_message_recovers": 32,
+  "run": "R260_HASH_SIGNATURE_GATE",
+  "status": "nonqualifying signer-controlled release; not original source WE",
+  "unrelated_message_recovers": 32
+}

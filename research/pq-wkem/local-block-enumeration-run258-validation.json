@@ -1,0 +1,53 @@
+{
+  "assertions": 27693,
+  "core_false_instance": {
+    "candidate_tests": 4,
+    "capability_mod_q": 54,
+    "constraints": [
+      "x0=0",
+      "x1=1",
+      "x0=x1"
+    ],
+    "global_solution_count": 0,
+    "local_witnesses_found": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "share_centers_mod_q": [
+      17,
+      91,
+      203
+    ]
+  },
+  "exhaustive_csp_census": {
+    "all_false_local_systems_blockwise_recovered": 457,
+    "false_but_every_block_locally_nonempty": 457,
+    "systems_checked": 793
+  },
+  "gate_counterexample": {
+    "and_gate_valid_local_assignments": 4,
+    "candidate_tests": 4,
+    "capability_mod_q": 167,
+    "constraints": [
+      "x0=0",
+      "x1=!x0",
+      "x1=0"
+    ],
+    "global_solution_count": 0
+  },
+  "run": 258,
+  "same_center_attack": {
+    "blocks_needed": 1,
+    "common_center": 173
+  },
+  "scope": "finite algebra/combinatorics only; no LWE/SIS/QPT hardness proof",
+  "union_bound_grid_checks": 19530
+}

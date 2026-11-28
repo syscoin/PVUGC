@@ -1,0 +1,78 @@
+{
+  "D": 12,
+  "N": 16,
+  "assertions": 1034,
+  "checkpoint": "paired-rank-threshold-20261023",
+  "exact_large_parameters": {
+    "L": 27635,
+    "N": 117292,
+    "base_N": 110541,
+    "combined_source_outer_less_than_2minus128": true,
+    "h": 6752,
+    "k": 27000,
+    "outer_bound_at_most": "56*2^-256",
+    "outer_bound_less_than_2minus129": true,
+    "public_bytes": 11886405060096000,
+    "public_field_elements": 371450158128000,
+    "source_bound_less_than_2minus128": true
+  },
+  "experiments": [
+    {
+      "false_rank_acceptance": 0,
+      "invalid_rejected": 254,
+      "seed": 31,
+      "valid": [
+        [
+          0,
+          0,
+          12
+        ],
+        [
+          1,
+          0,
+          12
+        ]
+      ]
+    },
+    {
+      "false_rank_acceptance": 0,
+      "invalid_rejected": 254,
+      "seed": 47,
+      "valid": [
+        [
+          0,
+          0,
+          12
+        ],
+        [
+          1,
+          0,
+          12
+        ]
+      ]
+    },
+    {
+      "false_rank_acceptance": 0,
+      "invalid_rejected": 254,
+      "seed": 79,
+      "valid": [
+        [
+          0,
+          0,
+          12
+        ],
+        [
+          1,
+          0,
+          12
+        ]
+      ]
+    }
+  ],
+  "fixture_field": "GF(16)",
+  "h": 4,
+  "key_security_proved": false,
+  "public_rank_checks": 768,
+  "source_toy_exhaustive_cases": 256,
+  "status": "SCOPED_SUPPLIED_REPRESENTATION_EXTRACTION_ONLY"
+}

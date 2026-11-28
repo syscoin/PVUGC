@@ -1,0 +1,42 @@
+{
+  "checks": 417,
+  "collisions_by_pair": [
+    25,
+    25,
+    25,
+    25,
+    25,
+    25
+  ],
+  "field_elements": {
+    "1": {
+      "percent_saved": 0.0,
+      "repeated": 228904,
+      "shared": 228904
+    },
+    "2": {
+      "percent_saved": 44.73491,
+      "repeated": 457808,
+      "shared": 253008
+    },
+    "10": {
+      "percent_saved": 80.52284,
+      "repeated": 2289040,
+      "shared": 445840
+    },
+    "100": {
+      "percent_saved": 88.57512,
+      "repeated": 22890400,
+      "shared": 2615200
+    }
+  },
+  "generic_NP": false,
+  "mock_capability_bits": 256,
+  "per_source_B_and_ciphertexts": 24104,
+  "qpt_test": false,
+  "shared_A_elements": 204800,
+  "shares_per_source": 3,
+  "sources": 2,
+  "status": "PASS",
+  "whole_H_cases": 625
+}

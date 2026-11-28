@@ -1,0 +1,16 @@
+{
+  "run": 557,
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "5b8c39387b39cbfe10b57f81525104b110eca7fd",
+  "kind": "research-only bounded Boolean hidden-shift falsifier",
+  "literature": "Gavinsky-Roetteler-Roland 2011 arXiv:1103.3017 known result; no novelty claim for BHSP",
+  "executed_checker": "run557_boolean_output_check.js",
+  "assertions": 14960,
+  "validation": "run557_boolean_output_validation.json",
+  "checker_model": "V8 deterministic xorshift test fixtures",
+  "additional_local": "independent Python checker and extended note in conversation sandbox, not GitHub",
+  "scope": "ideal random Boolean hidden shift, no practical WKEM, no QPT positive theorem",
+  "notes": "Exact checker function executed before generating the file via function.toString; committed JS source uses identical function body."
+}

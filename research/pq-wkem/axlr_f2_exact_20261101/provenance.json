@@ -1,0 +1,14 @@
+{
+  "run": "AXLR-2026-11-01-T11",
+  "source_repository": "syscoin/PVUGC",
+  "base_head": "c02051009c8212c1a6265b7ca65ff604083979fb",
+  "branch": "research/pq-wkem-validation-20260918",
+  "predecessor_blob": "8073375957cfaaaa8f2452fafbb9b3a65369d531",
+  "checker": "checker.js executed twice in current tool runtime",
+  "checker_assertions": 48156,
+  "local_extended_checker": "Python, 247123 assertions twice identically, SHA256=8d5c0ee2657c82c95bdfa31b1bf00c858902cb3e0ecca168a9b642ba1e01a6ed",
+  "offline": true,
+  "git_base_tree": "52101562cffe9a2a821f2c12511de34e7dc3c478",
+  "project_scope": "research/pq-wkem/ only",
+  "security_scope": "signed-XOR P family, no generic NP or protected finite nonlinear source"
+}

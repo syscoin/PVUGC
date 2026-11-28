@@ -1,0 +1,55 @@
+{
+  "cases": [
+    {
+      "A_zero": true,
+      "conjugate_full_public_A_same_for_K_17_and_59": true,
+      "cross_witness_outputs_all_zero": true,
+      "d": 4,
+      "honest_diagonal_openings": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "nilpotent_A2_zero": true,
+      "same_public_A_with_different_K_requires_correlated_boundary_hints": true,
+      "valid_count": 0,
+      "witness_boundary_hint_changes_under_coupling": true
+    },
+    {
+      "A_zero": false,
+      "conjugate_full_public_A_same_for_K_17_and_59": true,
+      "cross_witness_outputs_all_zero": true,
+      "d": 4,
+      "honest_diagonal_openings": [
+        0,
+        17,
+        0,
+        17
+      ],
+      "nilpotent_A2_zero": true,
+      "same_public_A_with_different_K_requires_correlated_boundary_hints": true,
+      "valid_count": 2,
+      "witness_boundary_hint_changes_under_coupling": true
+    },
+    {
+      "A_zero": false,
+      "conjugate_full_public_A_same_for_K_17_and_59": true,
+      "cross_witness_outputs_all_zero": true,
+      "d": 4,
+      "honest_diagonal_openings": [
+        17,
+        0,
+        17,
+        0
+      ],
+      "nilpotent_A2_zero": true,
+      "same_public_A_with_different_K_requires_correlated_boundary_hints": true,
+      "valid_count": 2,
+      "witness_boundary_hint_changes_under_coupling": true
+    }
+  ],
+  "construction": "nilpotent_global_gate",
+  "field": 101,
+  "meaning": "source-independent synthetic algebra, NOT FE or source evidence"
+}

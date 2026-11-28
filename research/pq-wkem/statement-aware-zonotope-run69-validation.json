@@ -1,0 +1,46 @@
+{
+  "false_statement_complete_output_counterexample": {
+    "boolean_assignments": 16,
+    "boolean_vanishing_generators": 28,
+    "clauses": 9,
+    "dual_affine_dimension": 12,
+    "feature_dimension": 50,
+    "minimum_violated_clauses_per_assignment": 1,
+    "n": 4,
+    "public_dual_exact_decodes": 200,
+    "rank_W": 37,
+    "rank_W_plus_u": 38
+  },
+  "field_q": 257,
+  "invalid_boolean_pointwise_uniformity": {
+    "histogram": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "invalid_assignment": "000",
+    "q": 5
+  },
+  "public_zonotope_support_lp": {
+    "cases": 160,
+    "max_public_to_best_witness_radius_ratio": 1.0,
+    "public_lp_no_worse_than_best_witness": 160,
+    "public_lp_non_witness_functional_cases": 153,
+    "sampling_attempts": 161,
+    "strictly_better_cases": 150
+  },
+  "run": 69,
+  "seed": 690069,
+  "true_statement_statement_aware_mask": {
+    "cases": 120,
+    "conservative_log2_union_bound_max": -100,
+    "dual_affine_dimension_max": 17,
+    "dual_affine_dimension_min": 13,
+    "exact_witness_decodes": 120,
+    "non_evaluation_duals_constructed": 120,
+    "public_non_evaluation_dual_decodes": 120,
+    "total_rejected_boolean_evaluation_samples": 0
+  }
+}

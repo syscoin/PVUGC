@@ -1,0 +1,35 @@
+# R150 — public ideal-coefficient release and QPT-LWE PRG hard-FALSE padding
+
+**STATUS: REJECTED family. Not a secure generic-NP WKEM or a constructive advance; no notification milestone.** One bounded offline theoretical iteration, no efficiency research. GitHub continuity: syscoin/PVUGC PR #1, open/draft/unmerged; source R149 at head 1e2d500fd43740b015ce19ebff568b24eea4588f, R149 RESEARCH.md blob a898438d6b223c5bcdd60acaa696a1f0703116a9, R138 exact source blob ab60fb64fe925a5bb23b4ef5fb61053a49826723, prior substantive PR comment 6698876958. Independent local CPython checker used alongside this actually executed V8 checker.
+
+## Concrete ORIGINAL-dependent release attempt
+
+Compile a generic NP relation R(x,w), including statement identity, claim/UTXO, challenge path, anchors/window, context and intended native VK, into Boolean gate/output equations f_i(z)=0 over an odd prime field F_p. The circuit has n=poly(|x|) variables and degree-at-most-two constraints. Fix constant cutoff D and the finite coefficient vector space V_D of degree ≤D polynomials, of dimension binomial(n+D,D)=poly(n). Let S_D(x)=span_Fp{m(z) f_i(z): deg(m f_i)≤D}, with monomial m.
+
+Classical-PPT Build chooses a precommitted capability symbol K∈F_p and independent uniform r_(i,m)∈F_p, and **publishes the complete coefficients** of P_K(z)=K+sum_(i,m) r_(i,m) m(z)f_i(z). For a larger precommitted native signature/capability, use independently encoded symbols (not a proof of native signing). Honest off-chain Open verifies the actual ORIGINAL R(x,w), computes full Boolean gate trace z_w and returns P_K(z_w)=K. Every distinct valid ORIGINAL witness recovers the SAME K. No canonical witness or shared intermediate state is assumed. This source contains no working LWE challenge ciphertext and no legitimate native graph integration.
+
+## Exact public linear-algebra theorem — independently proved for this source
+
+If 1 is **not** in S_D, publicly solve the linear equations for a functional L:V_D→F_p satisfying L(1)=1 and L(s)=0 for every s∈S_D. Such L exists by quotient-space linear algebra and is found in deterministic polynomial time for constant D. The attacker reads only public coefficients and calculates **L(P_K)=K**, on EVERY honest random setup tape, without finding or volunteering an ORIGINAL witness. If x is TRUE, evaluation at any satisfying trace annihilates S_D and sends 1 to 1, proving 1 is never in S_D. Consequently this complete family catastrophically fails unauthorized hard-TRUE security for every TRUE instance.
+
+If 1 **is** in S_D, independent uniform coefficients make the mask uniform over S_D. Then the public distributions for K and K+1 are identical as cosets, but a satisfying trace cannot exist. Thus low-degree ideal membership creates perfect hiding only for certain FALSE instances; absence creates public recovery on BOTH TRUE instances and some FALSE instances. This is NOT an impossibility theorem for non-affine encrypted source representations.
+
+All CK/J/Aux, related capsules, public context and VK added as public functions of these coefficient bytes cannot remove an already perfect public recovery attack. This is an affine coefficient-source failure, not an attack on ordinary QPT-LWE.
+
+## Independently based QPT-LWE hard-FALSE gadget does not repair this release
+
+Let (A,G_A(U_k)) be a public-parameter classical-PPT QPT-secure PRG against arbitrary nonuniform QPT distinguishing from (A,U_L), with L-k=ω(log λ), founded on decisional QPT-LWE with any independently simulatable auxiliary information. R119 supplies an explicit scalar-QPT-LWE-derived PRG candidate and exact statistical bias accounting but NOT calibrated 128-bit quantum hardness. Encode its entire bit circuit with polynomial-size Boolean equations.
+
+Transform any fixed ORIGINAL x into R'_(x,A,y)(w,s)=R(x,w) OR [G_A(s)=y], with independent honest y←U_L, plus the full original claim/path/VK binding. Every original valid w remains valid for R'. On FALSE x, y has any spurious PRG preimage with probability at most 2^(k-L); malicious N-of-N setup/coin-flipping remains unproved.
+
+For any constant D, let Ref_D(A,y) decide by public Gaussian elimination whether 1∈S_D(R'_(x,A,y)). For y=G_A(s), the OR relation is TRUE, so Ref_D(A,y) is ALWAYS false. Therefore the distinguishing advantage of Ref_D between random y and PRG-generated y is exactly Pr_(A,y←U_L)[Ref_D(A,y)=true]. By the independently justified QPT PRG assumption, this probability must be negligible. Hence for a truly FALSE x and honest uniform y, with probability ≥1−Adv_PRG−2^(k−L), the augmented relation is false and has NO degree-D refutation, making the PUBLIC coefficient release above perfectly extractable through L. **A hard-FALSE padding gadget cannot repair this architecture; it amplifies the leakage precondition.**
+
+This statement is about (A,y) sampled jointly; it does not assume security of every fixed A or magical simulation of source-dependent CK/J/Aux. It does not instantiate a QPT-secure complete SOURCE compiler, a SourceOpen algorithm, or a reduction from arbitrary native forgery to ORIGINAL witness. For a QPT auxiliary/advice model, the PRG claim only extends to independently simulatable public fields and advice permitted by the underlying assumption; arbitrary y-correlated leakage is not supplied.
+
+## Exact executed checker and bounded verification
+
+This file is accompanied by **checker.js** and captured.json; checker.js source was extracted from the exact V8 function executed before creating any Git object. It checks toy G(a,b)=(a,b,a XOR b) over eight three-bit outputs, NOT a cryptographic PRG. Four outputs are false. At D=1, the public ideal has no unit refutation for all eight; the public degree-one coefficient mask returns K for all 2704 checked masks, including false instances. At D=2, all four false outputs have a unit refutation and all true outputs do not. For y=(0,0,1), f_xor−f_a−f_b+2 b f_a=−1 is an explicit degree-two certificate. Exact field is F_101. Independent local CPython standard-library checker passed 2721 assertions; its SHA256 is 79f627840227da3975e6abedef7e705b74a23bd0ae36a4a5d5e781ce27b62468, captured local JSON SHA256 42c56fa26d71ddb37e8dd58851c680a005561f5633e73a03ac4918cecd83feb9. The two toy checkers are functionality tests, not QPT-hardness or key-recovery-extraction experiments.
+
+## Handoff and scope
+
+This source is REJECTED. No positive original-witness recovery advance, and no optimization. Next concrete requirement is a non-public-affine ORIGINAL-dependent release with jointly instantiated genuine LWE source distributions, source openings, public CK/J/Aux and sibling capsules, and a straight-line arbitrary-QPT reduction from unauthorized final capability/native forgery to an actual ORIGINAL witness or independently justified PQ break, with every valid witness opening the same frozen capability. The R138/R149 rational/denominator dual attacks remain mandatory tests. N-of-N malicious setup/abort, DA/pre-funding, source finality/censorship, and hypothetical Bitcoin-native PQ endpoint remain open. Do not promote the result to security.

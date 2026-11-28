@@ -1,0 +1,8 @@
+{
+  "btc_sys_source_verifier": false,
+  "checks": 5,
+  "false_world_broken": true,
+  "qpt_security": false,
+  "run": "R241_MIN",
+  "source_root_repair_all_witness_correct": false
+}

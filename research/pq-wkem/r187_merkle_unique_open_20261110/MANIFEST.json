@@ -1,0 +1,18 @@
+{
+  "run": "R187-CANONICAL-R2",
+  "initial_pr_head": "ce1539be0b7e2cf930adc44b2fd58caab83bae34",
+  "intermediate_checkpoint_commit": "39510eb1e96c0bb00a9a98517cc729a7e7f4d61c",
+  "executed_checker_archive_sha256": "5809ce8e940a0d54ed4eda9007ed30d5b361ba4baed40e6577a0955b0240561a",
+  "executed_checker_archive_blob": "b71ddb0af46b60a30120c1c91638be4d97fa7a8a",
+  "files": {
+    "checker_py_sha256": "37e2cff09d8e21a04e7e14e8d5f50bb5459f01da707e4e1e55eabf40d0437a88",
+    "captured_json_sha256": "59a2d5dca9a6262a605367243d97f5118344186eb1315698612f406faad6a534",
+    "rerun_json_sha256": "59a2d5dca9a6262a605367243d97f5118344186eb1315698612f406faad6a534"
+  },
+  "runs": 2,
+  "byte_identical": true,
+  "functional_assertions": 11607,
+  "quantum_security_tests": 0,
+  "real_btc_sys_verifier": false,
+  "status": "fixed-root path uniqueness and independent pad release gap, not WKEM"
+}

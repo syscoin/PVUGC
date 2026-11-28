@@ -1,0 +1,11 @@
+{
+  "accepted_witnesses": 27,
+  "attacker_bruteforce_recoveries": 24,
+  "checks": 99,
+  "enumerated_candidates": 98304,
+  "false_witness_rejections": 24,
+  "fixtures": 24,
+  "max_witnesses_per_fixture": 3,
+  "security": "NONE: exhaustive Build; very small source domain; no QPT experiment",
+  "test": "OW-KEM implication toy from exponential witness-indexed hash table"
+}

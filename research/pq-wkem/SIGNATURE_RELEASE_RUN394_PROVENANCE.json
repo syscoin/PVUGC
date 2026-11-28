@@ -1,0 +1,17 @@
+{
+  "run": 394,
+  "date_utc": "2026-10-09",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "verified_start_sha": "a3f98f8c6bf7e8c7e0dc507be1e4e76a815c2e5e",
+  "exact_dependencies": {
+    "research/pq-wkem/ZERO_WORLD_QUERY_EXTRACTION_RUN393.md": "7ee3cc73f1115a2788a4d54021ca808f865405dd",
+    "research/pq-wkem/GLOBAL_FINGERPRINT_SOURCE_BINDING_RUN259.md": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  },
+  "latest_top_level_comment_id": 6067040320,
+  "checker_command": "node signature_release_to_we_run394_check.js",
+  "checker_result": "PASS; 22 checks; 8192 exhaustive cases; repeat byte identical",
+  "security_scope": "conditional universal-NP signature-release implies witness encryption in the QROM; no concrete QPT construction",
+  "github_publication": "PENDING_VERIFICATION"
+}

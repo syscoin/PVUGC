@@ -1,0 +1,37 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "independent_local_only": {
+    "python_checker_assertions": 367140,
+    "python_checker_sha256": "c546c71cbffff139c80b7409b442505dd922adaf53e63ee7874d67f3ef386e74"
+  },
+  "literature": [
+    "https://www.cs.toronto.edu/~vinodv/KV-PAKE.pdf",
+    "https://arxiv.org/pdf/2209.04149",
+    "https://eprint.iacr.org/2017/997"
+  ],
+  "methods": "node run576_joint_projection_check.js; python3 run576_projective_release_check.py; deterministic reexecutions matched outputs",
+  "pr": 1,
+  "publication_status": "PENDING",
+  "repository": "syscoin/PVUGC",
+  "research_files": {
+    "RUN576_JOINT_PROJECTIVE_CAPSULE_THEOREM.md": {
+      "bytes": 6262,
+      "git_blob_sha1": "da186c9b8f42e047d7f795f59a5294517bd1fb57",
+      "sha256": "2167d53622be393ee02c3eb24223ddd96a5715955daec1c8155fc593c7835aeb"
+    },
+    "run576_joint_projection_check.js": {
+      "bytes": 1832,
+      "git_blob_sha1": "691032331e6017fa82fbec74e111c6bb4821a0d0",
+      "sha256": "30a0457b4d1bd99affdee7b2403b2d1bb6c46a29b7939de2e4a3d15f620e724e"
+    },
+    "run576_joint_projection_validation.json": {
+      "bytes": 269,
+      "git_blob_sha1": "7455697d2994aa0be0b625fcf948f45bdefeb2dc",
+      "sha256": "02bb6b62b792e6cdf2f4d4725042e49486c86bafc666359f82e281b134043154"
+    }
+  },
+  "research_scope": "Exact joint-projection rank theorem, independently false individual capsules leak via shared H; no general NP WKEM",
+  "run": 576,
+  "starting_sha": "d09bd472a6b840ead693da943cab74cbe2c18890",
+  "starting_tree": "9374ae4c5de744150f03d919efe6a5c2a4934d58"
+}

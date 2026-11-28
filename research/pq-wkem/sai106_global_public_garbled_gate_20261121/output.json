@@ -1,0 +1,11 @@
+{
+  "candidate": "global SHA256 point-and-permute garbled circuit with both PUBLIC input bit labels",
+  "cases": 64,
+  "expected_test_secret": "51241825363e3ae5a8a0bc1df3c6da0df678f5543221022c322fd6d22dc021b7",
+  "false_predicate": "x AND NOT x, no satisfying whole x",
+  "false_recovered_without_original_witness": true,
+  "false_secret_from_inconsistent_gates": "51241825363e3ae5a8a0bc1df3c6da0df678f5543221022c322fd6d22dc021b7",
+  "scope": "synthetic two-gate circuit only; no original source, FE, Bitcoin, native signatures, QPT, or actual SHA PoW certificates",
+  "true_predicate": "x OR NOT x, both witnesses 0 and 1 accepted",
+  "true_same_frozen_output_for_both_witnesses": true
+}

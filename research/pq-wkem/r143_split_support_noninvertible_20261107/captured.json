@@ -1,0 +1,11 @@
+{
+  "run": "R143",
+  "field": 257,
+  "ambient_dimension": 6,
+  "support_rank": 3,
+  "fixtures": 48,
+  "assertions": 4944,
+  "legitimate_true_releases": 48,
+  "false_public_bypasses": 48,
+  "status": "REJECTED: nonlinear rank-deficient support frames remain publicly composable"
+}

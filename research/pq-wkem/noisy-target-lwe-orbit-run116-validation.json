@@ -1,0 +1,141 @@
+{
+  "error_bound_cases": 1125,
+  "l1_ball_rows": [
+    {
+      "B": 2,
+      "m": 3,
+      "nonzero_short": 24,
+      "nonzero_total": 1330,
+      "prob": "12/665",
+      "q": 11
+    },
+    {
+      "B": 2,
+      "m": 4,
+      "nonzero_short": 40,
+      "nonzero_total": 14640,
+      "prob": "1/366",
+      "q": 11
+    },
+    {
+      "B": 3,
+      "m": 4,
+      "nonzero_short": 128,
+      "nonzero_total": 28560,
+      "prob": "8/1785",
+      "q": 13
+    }
+  ],
+  "left_orbit": {
+    "A_count": 81,
+    "gl_size": 48,
+    "m": 2,
+    "n": 2,
+    "nonzero_target_count": 8,
+    "per_pair_count": 6,
+    "q": 3
+  },
+  "mask_cases": 8,
+  "noisy_wrapper": {
+    "cases": 15552,
+    "claim": "b^T u + (c_K-y)=c_K+e^T u-e0 and K,d recover y exactly."
+  },
+  "rank_conditioning_rows": [
+    {
+      "exact_rank_def": "1/27",
+      "m": 3,
+      "n": 1,
+      "q": 3,
+      "union_bound": "2/27"
+    },
+    {
+      "exact_rank_def": "35/243",
+      "m": 3,
+      "n": 2,
+      "q": 3,
+      "union_bound": "8/27"
+    },
+    {
+      "exact_rank_def": "29/125",
+      "m": 2,
+      "n": 2,
+      "q": 5,
+      "union_bound": "24/25"
+    }
+  ],
+  "right_randomization": {
+    "A_orbit": 24,
+    "gl_size": 480,
+    "m": 2,
+    "q": 5,
+    "short_probabilities": [
+      {
+        "B": 0,
+        "count": 0,
+        "den": 24,
+        "prob": "0"
+      },
+      {
+        "B": 1,
+        "count": 4,
+        "den": 24,
+        "prob": "1/6"
+      },
+      {
+        "B": 2,
+        "count": 12,
+        "den": 24,
+        "prob": "1/2"
+      },
+      {
+        "B": 3,
+        "count": 20,
+        "den": 24,
+        "prob": "5/6"
+      },
+      {
+        "B": 4,
+        "count": 24,
+        "den": 24,
+        "prob": "1"
+      }
+    ],
+    "u_orbit": 24
+  },
+  "run": 116,
+  "scope": [
+    "Finite algebra/distribution checks only; tests do not establish computational LWE security.",
+    "The security theorem in the note is a straight-line reduction conditional on exact-parameter decisional LWE against QPT adversaries and a compiler whose matrix is uniform (or quantified-close) independent of a nonzero target.",
+    "No generic-NP uniform-matrix short-preimage compiler or practical parameter set is constructed."
+  ],
+  "secret_change_basis_cases": 3888,
+  "status": "PASS",
+  "target_conditioning_tv": [
+    {
+      "n": 1,
+      "q": 3,
+      "tv": "1/3"
+    },
+    {
+      "n": 2,
+      "q": 3,
+      "tv": "1/9"
+    },
+    {
+      "n": 2,
+      "q": 5,
+      "tv": "1/25"
+    },
+    {
+      "n": 2,
+      "q": 7,
+      "tv": "1/49"
+    },
+    {
+      "n": 3,
+      "q": 3,
+      "tv": "1/27"
+    }
+  ],
+  "total_assertions": 56134
+}

@@ -1,0 +1,13 @@
+{
+  "run": 584,
+  "date": "2026-10-17",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "8dc12eb56c23eee0bc8b03ff248afca2a9d79454",
+  "executed_command": "node run584_3local_toffoli_check.js",
+  "repeatability": "twice; byte-identical stdout",
+  "assertions": 8284,
+  "scope": "finite algebra and conditional acceptance-only falsifier; no PQ WKEM security",
+  "original_source_extraction": "Run 259 applies only to complete accepted representations"
+}

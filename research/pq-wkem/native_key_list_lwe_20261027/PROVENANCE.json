@@ -1,0 +1,23 @@
+{
+  "record": "native-key-list-lwe-20261027-turn10",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "a906fb4201b93905c15dbdddf406a0e2b064d63e",
+  "publication_scope": "research/pq-wkem/native_key_list_lwe_20261027/ only; ordinary PR comment after readback",
+  "pinned_predecessor_blob": "f2c8aafee7a5b625ccee544cd2fe840f864d35d5",
+  "pinned_gaussian_certificate_blob": "6b39e9d9093fd07adcbeca98887ce8b2e90ab8b8",
+  "result": "restricted nondivisor-radix transverse-LWE release: new bounded native-pk-checked list decoder; 28 to 24 LWE encrypted vectors; not ORIGINAL generic-NP mapping",
+  "executed_python_checker": "368925 exact assertions twice, identical JSON",
+  "executed_node_checker_local": "396987 exact assertions twice, identical JSON; 25920 explicit LWE-column algebra checks",
+  "python_local_sha256": "7ced8f717d7126c851c5a25000b4f4e221e9c5b31c1ef244385e386aa00a47cc",
+  "python_output_local_sha256": "a042cf83e0bb20f096846510e636ae70d23e5aae4a4206221d8b1e526384416e",
+  "node_local_sha256": "f9c37f36f1e0a3166e6ae1d7e2be6daf11641f49399d3b1e4bac35c6caf0fa6f",
+  "node_output_local_sha256": "d5fa36aa046ff3834a1dda9740972839d218e319c3b35721c6d077edec118d1b",
+  "limitations": "not a standard-LWE ORIGINAL source compiler, not generic polynomial-NP WE, not QPT security certification, not native Bitcoin graph or malicious N-of-N proof",
+  "offline_research_only": true,
+  "external_literature_access": false,
+  "production_modification": false,
+  "local_corrected_prechecks": "JavaScript initial BigInt/Number type errors fixed before successful double runs",
+  "publication_receipt": "pending exact branch update; do not treat blob creation as published commit"
+}

@@ -1,0 +1,23 @@
+{
+  "adaptive_corrupt_policies": 6,
+  "assertions": 562,
+  "bitcoin_native_signature_NOT_instantiated": true,
+  "full_public_QPT_security_NOT_tested": true,
+  "honest_positions": 4,
+  "illustrative_four_ciphertexts_per_capsule_bytes": 82224,
+  "illustrative_four_source_reveals_bytes": 21049344,
+  "illustrative_nonreceiver_seed_reveal_bytes": 384,
+  "illustrative_source_matrix_bytes_each": 5262336,
+  "joint_distribution_laws": 120,
+  "prefunding_abort_cases": 60,
+  "related_capsules": 3,
+  "result": "PASS",
+  "source_draws_until_multisolution": 8,
+  "source_preimage_counts": [
+    3,
+    3
+  ],
+  "source_preimages_are_NOT_original_witnesses": true,
+  "stage1_public_prefixes": 5,
+  "tuples_per_joint_law": 25
+}

@@ -1,0 +1,39 @@
+{
+  "start_head": "3878bac0a3a12d2e55aab932c796e8f75b3c4a1f",
+  "branch": "research/pq-wkem-validation-20260918",
+  "source_repo": "syscoin/PVUGC",
+  "continuity": [
+    "research/pq-wkem/opt_vkscan_20261120/RESEARCH.md",
+    "research/pq-wkem/otp_opaque_path_fold_20261120/RESEARCH.md"
+  ],
+  "scope": "synthetic noncommutative branch-product preflight, exact FALSE public-secret leak",
+  "executed_commands": [
+    "python /mnt/data/nc1_trial/noncommutative_preflight.py > /mnt/data/nc1_trial/run1.json",
+    "python /mnt/data/nc1_trial/noncommutative_preflight.py > /mnt/data/nc1_trial/run2.json",
+    "cmp /mnt/data/nc1_trial/run1.json /mnt/data/nc1_trial/run2.json"
+  ],
+  "successful_checker_executions": 2,
+  "synthetic_group_degrees": [
+    5,
+    17,
+    67
+  ],
+  "actual_original_certificate": false,
+  "actual_FE": false,
+  "actual_quantum_test": false,
+  "actual_Bitcoin_native_test": false,
+  "core_source_reread": false,
+  "github_comment_written": false,
+  "sha256": {
+    "executed_checker": "1bdbb8da80e48b8c5c0797980fb13e3e425ff34f4b24f30ed966add534c124f7",
+    "run1": "be310b9b35543f9d3730581c4baf6679bc0629c3d970b64af165a8e899a60af7",
+    "run2": "be310b9b35543f9d3730581c4baf6679bc0629c3d970b64af165a8e899a60af7",
+    "full_local_derivation": "7e234eb22a3914e77ee9a651520bed8f5e6f16b419d18cd74458616f199d0dc3"
+  },
+  "known_git_blob_sha1": {
+    "checker": "d919de7d9acb03501a59d44dd96da9c5f0228f75",
+    "run1": "caa505c89caa6de484554f586eac0ba110da4ca1",
+    "run2": "caa505c89caa6de484554f586eac0ba110da4ca1"
+  },
+  "status": "nonqualifying negative; not a source-conditioned Build/Open or QPT security"
+}

@@ -1,0 +1,9 @@
+{
+  "checked_cases": 192,
+  "consistent_failures_to_open": 128,
+  "original_source_compiler": false,
+  "qpt_security": false,
+  "run": "R248_MIN",
+  "trials": 64,
+  "unauthorized_full_public_recoveries": 64
+}

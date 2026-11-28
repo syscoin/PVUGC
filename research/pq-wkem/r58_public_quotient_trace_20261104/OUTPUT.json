@@ -1,0 +1,22 @@
+{
+  "run": "R58-PUBLIC-QUOTIENT-TRACE-20261104",
+  "checks": 3971,
+  "rank": 61,
+  "quotient_dimension": 3,
+  "public_trace_basis": [
+    "3",
+    "2",
+    "1"
+  ],
+  "public_noise_bound": "192",
+  "minimum_trace_codeword_distance": "65299",
+  "recovered_words": 257,
+  "fixture_witnesses_validation_only": [
+    10,
+    11,
+    43
+  ],
+  "full_capability_recovery_without_original_witness": true,
+  "hard_true_qpt_security": "UNPROVED",
+  "positive_construction_advance": false
+}

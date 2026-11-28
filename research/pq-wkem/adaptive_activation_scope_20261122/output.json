@@ -1,0 +1,12 @@
+{
+  "activation_domain": 65536,
+  "adaptive_exposure_count": 65536,
+  "adaptive_probability": "65536/65536",
+  "example_public_selector": 19459,
+  "fe_implementation": false,
+  "fixed_prechosen_activation": 0,
+  "original_release_achieved": false,
+  "scope": "exact selective/adaptive quantifier regression only; no FE, no Bitcoin source certificate",
+  "selective_exposure_count": 1,
+  "selective_probability": "1/65536"
+}

@@ -1,0 +1,45 @@
+{
+  "assertions": 3542,
+  "parameters": {
+    "q": 101,
+    "D": 3,
+    "monomials": 10,
+    "clauses": 10
+  },
+  "counts": {
+    "sat": 149,
+    "unsat": 26,
+    "falseExposed": 0
+  },
+  "example": {
+    "formula": [
+      [
+        0
+      ]
+    ],
+    "witnesses": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "projector": [
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    "masks": 12
+  },
+  "status": "REJECTED coefficient-exposed generic ORIGINAL SOURCE"
+}

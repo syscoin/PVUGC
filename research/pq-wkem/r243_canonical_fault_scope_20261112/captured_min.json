@@ -1,0 +1,6 @@
+{
+  "assertions": 13,
+  "release_status": "different source pads fail common-key correctness; public constant pad exposes sigma",
+  "run": "R243_MIN",
+  "source_status": "synthetic predicate inputs, not real BTC/SYS proofs"
+}

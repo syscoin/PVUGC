@@ -1,0 +1,12 @@
+{
+  "run": 568,
+  "result": "PASS",
+  "assertions": 47710,
+  "fixtures": 42,
+  "orbits": 3048,
+  "walshChecks": 36576,
+  "derivedKeys": 42,
+  "low_width_extra_collisions": true,
+  "model": "Finite classical evaluation and exact Fourier-identity checks. No quantum hardware.",
+  "security_proved": false
+}

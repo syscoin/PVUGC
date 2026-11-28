@@ -1,0 +1,31 @@
+{
+  "conditional_same_key": {
+    "cases": 96,
+    "claim": "If every valid witness can obtain the same hidden value v, C=K xor v gives exact all-witness same-key correctness. The missing witness-gated evaluator is intentionally not implemented."
+  },
+  "generic_adaptor_prefix_exposure": {
+    "cases": 2016,
+    "claim": "For the 2024 generic adaptor syntax pre=(bar_sigma,Y,c,d0), full=(bar_sigma,Y,c,d), any public invariant of the unchanged prefix (bar_sigma,Y,c) is already computable from pre; one-mask keying by that invariant is therefore early-recoverable."
+  },
+  "process_vs_value_extraction": {
+    "cases": 32,
+    "claim": "The recovered value alone does not encode how it was obtained; a valid source-extraction reduction may need adversary code/trace/oracle behavior rather than only the final value."
+  },
+  "run": 112,
+  "scope": [
+    "Deterministic finite semantic/algebra checks only; no computational security is inferred.",
+    "The 2024 adaptor shared-prefix claim is a syntactic consequence of the published generic construction; the checker models that syntax rather than re-proving the paper's security theorem.",
+    "The VRF block checks only unique-value/non-unique-proof shape. It does not implement Esgin et al.'s lattice VRF and does not establish QPT/QROM security.",
+    "Run 112 does not construct the missing witness-gated public evaluator."
+  ],
+  "status": "PASS",
+  "total_assertions": 17997,
+  "value_only_extraction": {
+    "cases": 197,
+    "claim": "If witness-free setup computes z and an extractor given only public setup plus z returns a source witness, setup can invoke that extractor itself. The finite test validates the composition identity, not hardness."
+  },
+  "vrf_common_value_shape": {
+    "cases": 189,
+    "claim": "A unique/deterministic value can coexist with many randomized proof encodings; this is a canonicalization shape only, not a security proof."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "field": 101,
+  "samples": [
+    {
+      "capsule_sha256": "890a7ccb23eab40041da65c28491d55438b2ac9b05bab9394860e5b884473e21",
+      "commutator_trace": 16,
+      "invalid_word_1010_hits_target": true,
+      "private_a_trace": 92,
+      "private_b_trace": 33,
+      "public_recovery_without_valid_witness": true,
+      "seed": 20261118,
+      "unpublished_generator_sha256": "0864eace0389dcbf59afb51df631f02454e9d5001d816c2e527caf37e3108a5f",
+      "valid_words_hit_target": false
+    },
+    {
+      "capsule_sha256": "b5a1b7af487914d2458180bb04e52c2c7b9fc0238875e23defe156409881229a",
+      "commutator_trace": 90,
+      "invalid_word_1010_hits_target": true,
+      "private_a_trace": 51,
+      "private_b_trace": 100,
+      "public_recovery_without_valid_witness": true,
+      "seed": 20261119,
+      "unpublished_generator_sha256": "b3849ce819bb3ee8a12ae1d9b49fcd131abb53c0663f709a976f3e3fbfc868e0",
+      "valid_words_hit_target": false
+    },
+    {
+      "capsule_sha256": "c34bdbbc0fb17f14d32b32316fbf1621db87f1b25d033ace1089e620d08edb3a",
+      "commutator_trace": 81,
+      "invalid_word_1010_hits_target": true,
+      "private_a_trace": 4,
+      "private_b_trace": 27,
+      "public_recovery_without_valid_witness": true,
+      "seed": 20261120,
+      "unpublished_generator_sha256": "e54707e5c02667f290cc32893929b8fc0c51abc2b381f76f9460b1a8ed81c168",
+      "valid_words_hit_target": false
+    }
+  ],
+  "scope": "two-generator private-global-BP FALSE fixture, not original authenticated source"
+}

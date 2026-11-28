@@ -1,0 +1,40 @@
+# AXLR — exact F2 affine release for the *restricted* signed-XOR NIDR testbed
+Run AXLR-2026-11-01-T11; predecessor PNIDR at commit `c02051009c8212c1a6265b7ca65ff604083979fb`, path `research/pq-wkem/nidr_narrow_proth_20261101/RESEARCH.md`, exact blob `8073375957cfaaaa8f2452fafbb9b3a65369d531`. Offline research; no external literature. **This is NOT generic-NP witness encryption, not a hard-TRUE witness extractor, and not a practical BTC PQ adapter.** The original signed-XOR relation is in deterministic polynomial time; this is an independently proved efficiency improvement over the surviving restricted NIDR experiment, not a security breakthrough.
+
+## Concrete algorithms and distributions
+
+For public signed graph (G=(V,E,b)), with (n=|V|), set (d=n+1) and work over (𝔽_2). The authenticated statement must bind ORIGINAL relation identity, claim/UTXO, branch, anchor/window, context, intended native verification key and capsule identifiers; only the actual signed-XOR predicate is analysed here. For edge (e=(u,v,b_e)), publicly build the row (A_e=b_e e_0+e_{u+1}+e_{v+1}in𝔽_2^{d}). This is the exact characteristic-two Boolean XOR relation, **not** a fractional relaxation of an AND gate. Build does not need a witness.
+
+Let the native signing core K have k bits (not assumed uniformly distributed). For each bit and each independently reshared related capsule, choose independent uniform bits (r_0,r_1) and let (r_2=K_i+r_0+r_1). Encrypt each lane bit m independently using (sleftarrow U(𝔽_2^{|E|})) and publish (C=A^T s+m e_0). Publish the source A, C vectors (packed into (lceil d/8ceil) bytes), genuine checking key and authenticated contextual manifest. The finite payload uses independent s for **every lane, key bit and capsule**, retaining the original 2-of-3 classical-adaptive plaintext-plus-coin opening cap *per bit and capsule*. Do not publish undisclosed s or all 3 opened lanes.
+
+For each **valid ORIGINAL** signed-XOR witness W, (v(W)=(1,W)) satisfies (Av=0). Lift verifies the actual ORIGINAL signed-XOR predicate and returns (v^T C=m), exactly for every honest encryption coin, without rounding or decryption failure. XOR of 3 lane bits yields the **same precommitted K for every valid W**, even for distinct W with distinct local states.
+
+## Exact FALSE hiding and full permitted joint view
+
+By the duality (operatorname{row}(A)=(ker A)^perp), (G) is FALSE **iff** (e_0inoperatorname{row}(A)). Indeed (v_0=1, Av=0) is precisely an ORIGINAL XOR witness; if (e_0) were in the rowspace, it would annihilate every kernel vector. Over (𝔽_2), absence from the rowspace conversely produces a kernel vector with (v_0=1). Consequently, on every FALSE signed-XOR graph Gaussian elimination finds a public (δin𝔽_2^{|E|}) with (A^Tδ=e_0) in classical polynomial time. This is a **coNP certificate only for the P signed-XOR family**, not for arbitrary FALSE NP instances.
+
+Since (A^Ts) is uniform over the rowspace, (A^Ts+m e_0) has exactly the same distribution for m=0,1. The full capsule is therefore *perfectly* (TV=0) FALSE-hiding even under arbitrary QPT processing of its entire published classical encoding. For adaptive *classical* plaintext-and-coin opening, sample ciphertext (C=A^Ts_0), then when opening actual lane bit m return (s_m=s_0+mδ). This satisfies the genuine encryption equation exactly and is distributed uniformly on the correct coin fiber conditioned on ((C,m)). Memoize repeated openings; reject attempts to reveal a third lane for the same capsule/key-bit. Any at most 2 of 3 independently XOR-shared bits are jointly uniform **even conditioned on K and its authentic native vk**, so on-demand shares can be sampled without K. This remains exact with independently reshared related capsules, arbitrarily many public ciphertexts, a genuine vk, permitted signing transcripts, and auxiliary data that are independently simulatable from the native-signature EUF challenger. It does NOT cover superposition opening/signing oracles, arbitrary K-correlated auxiliary leakage, disclosed protected coins, malicious setup, or unauthorized third-lane openings. The target challenge-path signing query remains forbidden; signature EUF and manifest authentication are independent external QPT assumptions.
+
+For a hypothetical native signature verifier, a FALSE accepted fresh target-path forgery in this perfectly simulated permitted view would violate its QPT EUF security (or a separate manifest-authentication assumption), with *zero transcript statistical loss*. TRUE signed-XOR witnesses are publicly findable by linear algebra; this says nothing about **hard TRUE** generic-NP extraction.
+
+## Exact measured savings for the identical restricted disclosure policy
+
+For 2 capsules, k=512 core bits and 3 lanes, T=3072 ciphertexts. Dense bit-packed F2 payload is (3072lceil(n+1)/8ceil) bytes for n-cycle graphs:
+
+| cycle n | PNIDR certified-prime payload | AXLR F2 payload | ratio |
+|---:|---:|---:|---:|
+|31|3,870,720 bytes|12,288 bytes|315.0x|
+|101|12,472,320 bytes|39,936 bytes|312.308x|
+|1001|129,217,536 bytes|387,072 bytes|333.833x|
+
+Both exclude source serialization, checking key, native signatures, manifests and off-chain evidence. PNIDR had restricted statistical FALSE advantage below (2^{-128}); AXLR has exact zero for the **same P family** and the same per-bit opening rule. These gains categorically do not carry to nonlinear generic NP.
+
+## Exact missing nonlinear equation and why interpolation does not solve it
+
+An AND source requires an enforced condition (t=z_u z_v) rather than merely an affine row binding a *new independent variable* t. E.g. (z=1,y=1-z,t=zy,t=1) is FALSE for binary z but the affine relaxation with independent t admits (z=0,y=1,t=1), a spurious short kernel opener that directly decrypts a FALSE original statement. The public rowspace simulator therefore does not generalize. More broadly, a polynomial-size classical public bit-encryption compiler with perfect correctness on all TRUE NP statements and statistical FALSE hiding would imply NP=coNP: two opposite-bit encoder random tapes producing identical ciphertext certify each FALSE input. Hence a general solution must genuinely use computational QPT hiding and cannot simply postulate a universal short shift/refutation.
+
+**Next release obligation:** jointly instantiate a finite witness-free *nonlinear* ORIGINAL source, capsule, and standard-assumption QPT challenge simulator including genuine vk, context, independently admissible auxiliary input and related capsules; prove all-valid-ORIGINAL same-K completeness and arbitrary unauthorized hard-TRUE final-key recovery/native forgery -> actual ORIGINAL witness or independent QPT break **without an adversary-volunteered representation or SourceOpen oracle**. The ideal whole-input random oracle extractor from the previous discussion remains an uninstantiated comparator, not a protected public program. Maintain independent obligations for one-honest N-of-N preauthorization/erasure, abort/DA, authentic SYS/BTC AuxPoW and tags/window, enforcement, and hypothetical no-EC Bitcoin-native PQ signing.
+
+## Exact reproducibility and provenance
+
+Published `checker.js` is the exact JavaScript function executed twice in this research run, with byte-identical JSON results; `output.json` captures it. It exhausts all 729 configurations of 6 edges on 4 vertices (393 TRUE, 336 FALSE), verifies original-witness versus rowspace duality, exact all-valid-witness decryption, full finite ciphertext equality and equivocal coins, as well as exact joint transcript equality after any 2 of 3 lane openings and one adaptive two-opening policy on a FALSE triangle. An independent **local-only** standard-library Python checker (SHA-256 `8d5c0ee2657c82c95bdfa31b1bf00c858902cb3e0ecca168a9b642ba1e01a6ed`) passed 247,123 assertions twice identically with additional seeded multi-capsule tests. Tests establish finite identities, not QPT computational security or native Bitcoin availability. The local evidence archive is independently reproducible and is not implicitly published by this commit. No code outside `research/pq-wkem/` is changed.

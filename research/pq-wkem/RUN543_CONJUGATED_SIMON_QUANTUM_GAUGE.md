@@ -1,0 +1,27 @@
+# Run 543 — Nonlinear reversible hash mixing still exposes a quantum hidden period
+
+Live base: draft \`syscoin/PVUGC#1\`, branch \`research/pq-wkem-validation-20260918\`, SHA \`82a1b921dcf717953d097c8b442cd38ebebaa5cb\`. The exact live Run 541 note (blob \`d327fdc8c540fa7a868266704bd094eac6950f68\`) was inspected. Run 542 is a user-provided unpublished local checkpoint, not pinned GitHub history.
+
+## Exact new falsification
+
+Let V=F_2^n, let nonzero K in V be the capability, H:V->{0,1}^M a truly random function, and pi:V->V an arbitrary *public efficiently invertible* permutation (possibly nonlinear). Consider the hypothetical public evaluator F(s)=H(pi(s)) XOR H(pi(s) XOR K). A collision pair s!=t could release D(s,t)=pi(s) XOR pi(t). As long as H has no accidental collisions across the cosets {u,u XOR K}, *every* valid toy collision pair releases the same K while intermediate states differ.
+
+There are N=2^(n-1) cosets. Their H-pair-XOR outputs are independent uniform M-bit values because the pairs use disjoint oracle cells. Hence Pr[an accidental cross-coset collision] <= C(N,2)/2^M < 2^(2n-3-M). Under its complement, F is exactly two-to-one, paired by t=pi^{-1}(pi(s) XOR K), and every accepted collision yields K. For M=2n+lambda the failure bound is <2^(-lambda-3).
+
+### Quantum theorem: conjugated Simon attack
+
+Because pi^{-1} is public and efficiently reversible, an arbitrary QPT adversary with coherent oracle access to the proposed *public* F can evaluate G(u)=F(pi^{-1}(u)) with one F query. G(u)=H(u) XOR H(u XOR K) has Simon period K and no other collisions except on the event bounded above. Each Simon measurement is uniformly distributed on the hyperplane K-perp. After m=n+lambda measurements, failure to span K-perp has probability <2^(n-1-m)=2^(-lambda-1), by a union bound on its nonzero linear functionals. Gaussian elimination gives K. Therefore the explicit QPT algorithm returns K with probability at least 1-2^(2n-3-M)-2^(-lambda-1), in n+lambda coherent evaluator queries plus polynomial reversible gates and linear algebra. This is a *quantum coherent* attack, not Grover search and not a classical attack translated into a quantum cost figure.
+
+A public nonlinear Feistel pi can destroy every nonzero *literal* XOR period of F in the raw s coordinates. This does not matter: public inverse preprocessing restores the exact Simon promise. A public injective output relabeling similarly cannot remove equality fibers.
+
+### Executed reproducible finite checks
+
+The included executable JavaScript checker uses a published seven-round nonlinear reversible Feistel mixer and a deterministic **toy SplitMix64**, NOT a cryptographic random oracle. Four complete 8- and 10-bit fixtures check each input inverse, every valid pair's common key, all two-to-one fibers, every possible nonzero raw XOR period, and raw vs conjugated Fourier support. All four fixtures show **no raw XOR period** while the hidden key is exactly recoverable in conjugate coordinates; all raw Fourier outcomes are supported but conjugated support is precisely K-perp. The checker was executed through the connected runtime, and its JSON output is captured exactly. Separate independent Node/SHA-256 and Python/SHA-256 checkers with byte-identical reruns are preserved locally. The theorem follows analytically, not from toy tests.
+
+### Attack ledger and scope
+
+(1) No local seam needed; (2) public-inverse global frame synchronization is the attack; (3) random-looking outputs do not hide equality-fiber structure; (4) one capsule suffices; (5) public coherent chosen-input evaluation drives Simon queries; (6) honest classical setup already fails, retained coins do not help; (7) context separation/replay protection does not eliminate per-capsule hidden periods; (8) correlated public native checking key is unnecessary for this attack, but may verify its K; (9) genuine joint/coherent QPT oracle queries are essential to the polynomial-query attack.
+
+**Honest model:** classical-PPT generation of secret K and public efficient reversible pi, random-oracle H, hypothetically published coherent evaluator F. **Adversary:** uniform QPT with all public program data, checking keys, auxiliary classical/quantum input and arbitrary coherent F/H access; the exhibited attack does not need advice, rewinding, malicious coins or extra capsules. The conclusion is unauthorized recovery *in this ideal public-evaluation model*, NOT a concrete security result for SHAKE/SHA-256. Publishing a practical classical circuit F without exposing its embedded K is **unconstructed**, and the toy collision relation is **not ORIGINAL Syscoin/BTC evidence**.
+
+A **one-way/noninvertible** public input map is outside the present conjugacy theorem, but neither source-to-protected-state admission nor secure public computation is supplied by merely replacing pi with a hash. Generic collision algorithms and all nine attack families remain applicable. Run 259 supplies ORIGINAL extraction only for representations within its theorem, never for this toy pair. Full-public-output false-instance QPT hiding, early unauthorized native-signature-to-ORIGINAL extraction, all-ORIGINAL-witness completeness, honest-erasure N-of-N graph ceremony, malicious setup, multi-capsule binding, and native P2MR/SLH endpoint/resources are **UNPROVED**. No WE/WPRF/iO equivalence or PQ security is assumed from these tests. No complete practical WKEM, and no stopping criterion reached.

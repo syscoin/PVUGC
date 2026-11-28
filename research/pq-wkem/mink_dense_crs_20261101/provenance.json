@@ -1,0 +1,35 @@
+{
+  "run": "MINK-DENSE-2026-11-01-T19",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "adcdebcd491126b031a60ce19de5c64079bb5d77",
+  "predecessor_blob": "174a59f3d737a715b10ba8466d94c5efb313548e",
+  "comment_read": 6566563906,
+  "offline": true,
+  "checker_executions": 2,
+  "checker_identical": true,
+  "checker_checks": 470,
+  "local_extended_checks": 6070,
+  "local_extended_checker_runs": 2,
+  "local_extended_outputs_identical": true,
+  "native_qpt_security_proved": false,
+  "generic_wkem_solved": false,
+  "published_blobs": [
+    {
+      "name": "RESEARCH.md",
+      "sha": "b667b8d155f90e39718bc521de1e21161b5fa02a",
+      "length": 11625
+    },
+    {
+      "name": "checker.js",
+      "sha": "46ca53c6ead13befa8d0b02347f0e009babd5db5",
+      "length": 2778
+    },
+    {
+      "name": "validation.json",
+      "sha": "63836feb5d129a29f6ce73b64f4cbe836e874b0f",
+      "length": 339
+    }
+  ]
+}

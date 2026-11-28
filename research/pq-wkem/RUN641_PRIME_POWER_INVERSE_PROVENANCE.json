@@ -1,0 +1,31 @@
+{
+  "run": 641,
+  "date": "2026-10-19",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "dc70382508f395be9ea357f7c19ef5d1ba89d07c",
+  "starting_tree": "58606330c2f21b69e929dceda2eb4e3b1513e110",
+  "exact_sources": {
+    "run640_note": "a29eaac5bb6da4473d403db6fd5240de40897992",
+    "run639_note": "836ff201da0e4987f736f9456f6a231b27c06a52",
+    "review_packet": "GPT_PRO_WE_REVIEW_PACKET.md, 2026-10-18, A07/A11; user Library"
+  },
+  "published_blobs": {
+    "note": "ac631ac1242e440d53d5e1e77253ef850b798c94",
+    "exact_checker": "c24cc08411d948aabcad8b66555bfdb13a7b0849",
+    "captured_validation": "f9aba8abd2ec8b6e8cb50dad30e3e4e11b11c6a3"
+  },
+  "execution": {
+    "command": "python3 run641_primepower_inverse_check.py",
+    "compile": "python3 -m py_compile run641_primepower_inverse_check.py",
+    "assertions": 331,
+    "repeated_output_byte_identical": true,
+    "checker_sha256": "31fbc1882915ec3bc674d1a02ef25cd910fb565c69bea6b6ad0c6dd2552a9098",
+    "output_sha256": "54019b435f804865b9327993c10e1e703b749f5650f97b38e587f25b0c41c522"
+  },
+  "math_scope": "Actual A07 residue assumption only; power-two inverse-column counting barrier, not WE construction or full-QPT proof",
+  "security_scope": "Honest classical SOURCE sampling, all original witnesses still required; arbitrary QPT attacker but bound is information-theoretic on D under A07; malicious setup and correlated quantum advice outside premise",
+  "production_changed": false,
+  "publication": "DRAFT_COMMIT_PENDING"
+}

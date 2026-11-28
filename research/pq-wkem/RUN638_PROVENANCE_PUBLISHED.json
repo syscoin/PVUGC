@@ -1,0 +1,34 @@
+{
+  "run": 638,
+  "date": "2026-10-19",
+  "repository": "syscoin/PVUGC",
+  "pr_number": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "cb8b28ac355f17b8ecaf517b421549dadcfcf85f",
+  "scope": "Gaussian SOURCE conditional proof-only residual sampler. Not a WKEM or QPT security result.",
+  "note_blob": "d02a36dc6b6be0a740af3da9f3c9f3768b650fc2",
+  "executed_checker_blob": "592dcc4fc82c08de12640828097cf5f610b431ce",
+  "captured_output_blob": "407af304e56b59c55af7dddfd95b8cf22abba5d0",
+  "checks": 2088,
+  "repro": "node research/pq-wkem/run638_published_check.js",
+  "execution": "node --check passed; two exact byte-identical stdout executions; Git blob SHA of local executed JS matched 592dcc4fc82c08de12640828097cf5f610b431ce",
+  "independent_local_checker": "run638_residual_sampler_check.py: 48834 assertions, exact rational LDL and 2D/3D numerical finite checks",
+  "prior_local_dependency": "Run637 noise-matched reconstruction note preserved in previous turn local-only archive; not published on starting PR head",
+  "connected_reads": [
+    "get_pr_info syscoin/PVUGC#1",
+    "fetch latest issue comments page 27",
+    "fetch_file RUN635_PUBLIC_TENSOR_MARGINAL_ATTACK.md at cb8b28ac...",
+    "fetch_file RUN593_COMPACT_NONCOMMUTATIVE_AADP.md at cb8b28ac..."
+  ],
+  "primary_literature": [
+    "Gentry Peikert Vaikuntanathan STOC 2008",
+    "Peikert CRYPTO 2010"
+  ],
+  "unproved": [
+    "genuine Gaussian-fiber right inverse distribution",
+    "full-public-output false-statement QPT hiding",
+    "arbitrary QPT true-instance recovery and native-forgery to ORIGINAL extraction",
+    "malicious one-honest N-of-N setup and related capsules",
+    "practical 128-bit parameters and Bitcoin endpoint"
+  ]
+}

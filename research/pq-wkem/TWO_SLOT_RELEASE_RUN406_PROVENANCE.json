@@ -1,0 +1,21 @@
+{
+  "run": 406,
+  "utc": "2026-10-10",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "f27dd89e9b7cbe1d1dde2d72ec8c40e15e1b56e2",
+  "source_refs": {
+    "Run405": "314686b02acec45f57cc21acee677dea61b41b89",
+    "CLZ_applicability": "c19d9d9cd515140e3ce62eac960cd548c0add622"
+  },
+  "exact_test": "python3 two_slot_release_run406_check.py",
+  "captured_validation": "7898 PASS; repeat byte-identical; py_compile passed",
+  "scope": "Finite toy checks; theorem is conditional; no QPT/LWE or Bitcoin implementation; no production changes",
+  "published_paths": [
+    "research/pq-wkem/TWO_SLOT_RELEASE_FRONTIER_RUN406.md",
+    "research/pq-wkem/two_slot_release_run406_check.py",
+    "research/pq-wkem/two-slot-release-run406-validation.json",
+    "research/pq-wkem/TWO_SLOT_RELEASE_RUN406_PROVENANCE.json"
+  ]
+}

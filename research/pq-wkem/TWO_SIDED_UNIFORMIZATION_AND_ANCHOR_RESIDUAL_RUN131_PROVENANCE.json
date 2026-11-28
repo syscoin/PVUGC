@@ -1,0 +1,92 @@
+{
+  "run": 131,
+  "title": "Two-sided rank-mask uniformization, effective span capacities, and anchor-residual criterion",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "head_branch_at_start": "research/pq-wkem-validation-20260918",
+  "starting_sha": "76e5b632cf00b4372955b871aadd59ded84c5167",
+  "starting_pr_state": {
+    "state": "open",
+    "draft": true,
+    "merged": false
+  },
+  "latest_substantive_ordinary_comment_read": {
+    "id": 5850205385,
+    "description": "Runs 122-128 publication checkpoint and live canonical-value bottleneck"
+  },
+  "exact_repository_inputs": [
+    {
+      "path": "research/pq-wkem/ANCHOR_SHIFT_MINRANK_RUN79.md",
+      "blob_sha": "30084603c3b35c449be4e154f6d214533526d3c5"
+    },
+    {
+      "path": "research/pq-wkem/FINITE_DIFFERENCE_LOWRANK_RUN82.md",
+      "blob_sha": "6430557fd1596308db029d17b48549f9ed9490c8"
+    },
+    {
+      "path": "research/pq-wkem/UP_HASH_ISOLATION_ALL_WITNESS_BARRIER_RUN128.md",
+      "blob_sha": "a534790501f9996bf5af45708d8c16a6267f9569"
+    },
+    {
+      "path": "research/pq-wkem/literature-20260924/ASSESSMENT.md",
+      "blob_sha": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924"
+    }
+  ],
+  "local_prior_checkpoint_used_only_as_handoff": {
+    "run": 130,
+    "proof_sha256": "231dd7c10be4dd00b913ae4af9695465721849915ff2c684c5154543ccd27fb5",
+    "checker_sha256": "788f4092a51816a78c8071eeb0d031c625972a65c025fb4b984942d43228084a",
+    "validation_sha256": "e9cb19379b779f31ac10a47aa3637a3288dca25f1690bc0188096347d5af0885",
+    "note": "Run 130 is the immediate local mathematical handoff. Its prior blocked branch-update operation is not retried, repackaged, or included in Run 131 publication."
+  },
+  "external_primary_source_checked": {
+    "hair_sahai": {
+      "title": "Witness Encryption via Prime-Order Generic Groups",
+      "authors": "Isaac M. Hair; Amit Sahai",
+      "arxiv": "2609.18275",
+      "version_used": "v1 / initial submission dated 16 September 2026",
+      "scope_used": "weighted-table / prime-field source and rank interface only; classical generic-group security is not treated as concrete PQ security"
+    }
+  },
+  "new_claims": [
+    "Conditioning on the right rank-one factors gives a symmetric exact full-output uniformization theorem; its rank-failure probability is controlled by a horizontal-stack source spectrum.",
+    "The effective right-conditioned resource is the total source column-span capacity c_col=rank([B1 ... Bk]), not the raw Hair-Sahai row count a; correctness-compatible full uniformization requires 2k<c_col.",
+    "The corresponding left-conditioned resource is c_row=rank([B1;...;Bk]); Run 130's 2k<b barrier is a coarse consequence of c_row<=b.",
+    "For the weighted-table source, c_col is bounded by the degree-(R+1) Boolean feature dimension sum_{d<=R+1} binom(N,d), so swapping conditioning sides does not automatically exploit the full table height.",
+    "Literal false weighted-table fixtures N=2..6 have exact (k,c_col,c_row) values recorded by the checker; only N=2 satisfies either correctness-compatible full-uniformization capacity inequality.",
+    "Full conditioned uniformity is only sufficient. The exact weaker same-left-factor condition is surjectivity of the anchor map restricted to ker(L_K), where K=S cap ker(alpha).",
+    "For the N=3,p=11 false fixture, the anchor-zero evaluation spectrum is exactly 40 vectors of evaluation rank 2 and 14600 of rank 3; the 40 form four projective lines with four distinct one-dimensional K-kernels, yielding the closed-form tuple first-moment bound recorded in the proof."
+  ],
+  "security_classification": {
+    "honest_algorithms": "classical finite-field linear algebra and sampling",
+    "adversary_model_for_full_uniformization_hiding": "information-theoretic/unbounded when the stated rank-failure probability is negligible; therefore arbitrary QPT is included",
+    "hardness_assumptions_for_new_hiding_implication": "none",
+    "reduction_model": "straight statistical coupling; no rewinding, extraction, QROM programming, or quantum auxiliary-information simulation",
+    "generic_false_statement_qpt_hiding": "UNPROVED outside the sufficient conditional-uniformization event",
+    "arbitrary_qpt_true_statement_source_extraction": "UNPROVED",
+    "generic_np_wkem": "UNPROVED"
+  },
+  "checker_execution": {
+    "command": "python research/pq-wkem/two_sided_uniformization_run131_check.py",
+    "executions": 2,
+    "byte_identical_stdout": true,
+    "py_compile_succeeded": true,
+    "python": "3.13.5",
+    "platform": "Linux x86_64 glibc 2.41",
+    "seed": 13120260926,
+    "assertions_reported": 3455
+  },
+  "artifacts": {
+    "TWO_SIDED_UNIFORMIZATION_AND_ANCHOR_RESIDUAL_RUN131.md": {
+      "sha256": "8eb3aba8194230915fc3fceb54ceb776878f07813977623350bce6a16aa81e1a"
+    },
+    "two_sided_uniformization_run131_check.py": {
+      "sha256": "3f7dcfaf00dc7a3d747a2179c20946ed3c11b340b29bb1db236c1a4c7d047864"
+    },
+    "two-sided-uniformization-run131-validation.json": {
+      "sha256": "960042889208d5c2cc1fd19d7778be02311db0cdfa854d09db735c4e9d14f4fd"
+    }
+  },
+  "publication_scope": "Only these four Run 131 research artifacts are eligible for publication in this run. No production/workflow/review/merge changes are authorized.",
+  "stopping_condition_met": false
+}

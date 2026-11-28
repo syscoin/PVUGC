@@ -1,0 +1,59 @@
+{
+  "run": 395,
+  "status": "PASS",
+  "assertions": 280308,
+  "results": [
+    {
+      "N": 4,
+      "configurations": 8,
+      "valid_witnesses": 2,
+      "trials": 128,
+      "real_pass": 128,
+      "zero_pass": 32,
+      "real_probability": 1,
+      "zero_probability": 0.25,
+      "distinguishing_advantage": 0.75,
+      "witness_checks": 64
+    },
+    {
+      "N": 8,
+      "configurations": 32,
+      "valid_witnesses": 4,
+      "trials": 2048,
+      "real_pass": 2048,
+      "zero_pass": 256,
+      "real_probability": 1,
+      "zero_probability": 0.125,
+      "distinguishing_advantage": 0.875,
+      "witness_checks": 1024
+    },
+    {
+      "N": 16,
+      "configurations": 128,
+      "valid_witnesses": 8,
+      "trials": 32768,
+      "real_pass": 32768,
+      "zero_pass": 2048,
+      "real_probability": 1,
+      "zero_probability": 0.0625,
+      "distinguishing_advantage": 0.9375,
+      "witness_checks": 16384
+    },
+    {
+      "N": 32,
+      "configurations": 512,
+      "valid_witnesses": 16,
+      "trials": 524288,
+      "real_pass": 524288,
+      "zero_pass": 16384,
+      "real_probability": 1,
+      "zero_probability": 0.03125,
+      "distinguishing_advantage": 0.96875,
+      "witness_checks": 262144
+    }
+  ],
+  "scope": "exact finite joint public-key correlation and witnessed real/zero distinguisher",
+  "real_signature": false,
+  "obfuscation_implemented": false,
+  "QPT_security_established": false
+}

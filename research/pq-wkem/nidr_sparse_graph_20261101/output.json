@@ -1,0 +1,36 @@
+{
+  "run": "SPNIDR-2026-11-01-T09",
+  "status": "restricted support projection and all signed XOR graphs; generic NP unsolved",
+  "checks": 58278,
+  "true_original_bit_decryptions": 40,
+  "false_cases": 4,
+  "graphs": 4,
+  "coin_equations": 60,
+  "dense_sparse_projection_cases": 20,
+  "seed_initial": 20261101,
+  "storage": [
+    {
+      "n": 31,
+      "dense": 497,
+      "sparse": 63,
+      "dense_bytes": 48857088,
+      "sparse_bytes": 6193152
+    },
+    {
+      "n": 101,
+      "dense": 5152,
+      "sparse": 203,
+      "dense_bytes": 506462208,
+      "sparse_bytes": 19955712
+    },
+    {
+      "n": 1001,
+      "dense": 501502,
+      "sparse": 2003,
+      "dense_bytes": 49299652608,
+      "sparse_bytes": 196902912
+    }
+  ],
+  "q_bits": 255,
+  "B_bits": 149
+}

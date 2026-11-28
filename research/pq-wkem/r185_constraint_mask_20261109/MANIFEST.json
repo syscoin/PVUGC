@@ -1,0 +1,15 @@
+{
+  "run": "R185-20261109",
+  "initial_branch_head": "0d56b39cbe2f643c67082b9f1ddc8ac97a1d2fbb",
+  "intermediate_commit": "29060193eb454c37c89878dd0da5e757543e9b39",
+  "checkpoint_blob": "38f76dc281cc669df63e340b8c8729e9a6140c4d",
+  "executed_checker_git_blob_archive": "55634e24cb3d196b722010ebbe3957771dd7f625",
+  "archive_sha256": "fa237dbaa61abf09a6baa3fed4f1bd806430f9c2eb77ba137feb6dc0a6397dbb",
+  "source_sha256": "81a0ebba3ea41958510c691c7fd2436692fe891417f64862a5de585d2154e6a6",
+  "captured_sha256": "e8a4b3de85f26c7181db224bac51484beea2369c73ed8429cf119230d9277cb6",
+  "twice_executed_byte_identical": true,
+  "actual_model": "8-wire synthetic quotient only; no real BTC/SYS source; no QPT experiment",
+  "independent_agents_invoked": false,
+  "ordinary_pr_comment": false,
+  "release_construction_obtained": false
+}

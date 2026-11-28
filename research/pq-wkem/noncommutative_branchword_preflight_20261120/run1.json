@@ -1,0 +1,71 @@
+{
+  "fixtures": [
+    {
+      "accepted_inputs": 1,
+      "all_prescribed_false_inputs_reject": false,
+      "conjugacy_candidates": 1,
+      "did_not_query_accepting_witness": true,
+      "direct_public_word_recovery": false,
+      "false": false,
+      "n": 5,
+      "public_branch_rows": 8,
+      "secret_from_public_algebra": true
+    },
+    {
+      "accepted_inputs": 0,
+      "all_prescribed_false_inputs_reject": true,
+      "conjugacy_candidates": 1,
+      "did_not_query_accepting_witness": true,
+      "direct_public_word_recovery": true,
+      "false": true,
+      "n": 5,
+      "public_branch_rows": 8,
+      "secret_from_public_algebra": true
+    },
+    {
+      "accepted_inputs": 1,
+      "all_prescribed_false_inputs_reject": false,
+      "conjugacy_candidates": 1,
+      "did_not_query_accepting_witness": true,
+      "direct_public_word_recovery": false,
+      "false": false,
+      "n": 17,
+      "public_branch_rows": 8,
+      "secret_from_public_algebra": true
+    },
+    {
+      "accepted_inputs": 0,
+      "all_prescribed_false_inputs_reject": true,
+      "conjugacy_candidates": 1,
+      "did_not_query_accepting_witness": true,
+      "direct_public_word_recovery": true,
+      "false": true,
+      "n": 17,
+      "public_branch_rows": 8,
+      "secret_from_public_algebra": true
+    },
+    {
+      "accepted_inputs": 1,
+      "all_prescribed_false_inputs_reject": false,
+      "conjugacy_candidates": 1,
+      "did_not_query_accepting_witness": true,
+      "direct_public_word_recovery": false,
+      "false": false,
+      "n": 67,
+      "public_branch_rows": 8,
+      "secret_from_public_algebra": true
+    },
+    {
+      "accepted_inputs": 0,
+      "all_prescribed_false_inputs_reject": true,
+      "conjugacy_candidates": 1,
+      "did_not_query_accepting_witness": true,
+      "direct_public_word_recovery": true,
+      "false": true,
+      "n": 67,
+      "public_branch_rows": 8,
+      "secret_from_public_algebra": true
+    }
+  ],
+  "scope": "synthetic, no original source/FE/Bitcoin/QPT security"
+}

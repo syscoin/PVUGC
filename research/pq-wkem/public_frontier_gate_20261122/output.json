@@ -1,0 +1,14 @@
+{
+  "all_valid_small_open_same_secret": 1023,
+  "false_fixture_reachable_accept": false,
+  "invalid_small_cannot_prescribed_open": 1,
+  "long_input_length": 24,
+  "long_public_table_rows": 96,
+  "public_bfs_found_valid_witness": "000000000000000000000001",
+  "public_bfs_max_frontier": 3,
+  "public_bfs_recovers_exact_s": true,
+  "public_bfs_total_frontier_states": 72,
+  "qpt_full_public_security_proved": false,
+  "scope": "synthetic public serialized automaton; no original source or QPT security",
+  "test_seed_public": true
+}

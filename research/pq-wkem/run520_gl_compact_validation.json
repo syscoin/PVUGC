@@ -1,0 +1,58 @@
+{
+  "run": 520,
+  "status": "PASS",
+  "scope": "finite algebra only; no release or cryptographic security",
+  "leak_parameters": 42,
+  "leak_key_mask_pairs": 757296,
+  "honest_pad_cases": 43688,
+  "exact_walsh_spectra": [
+    {
+      "h": 3,
+      "secret": 2,
+      "decoy": 3,
+      "nonzero": 2,
+      "heavy_at_quarter": 1,
+      "parseval": "25/32"
+    },
+    {
+      "h": 4,
+      "secret": 13,
+      "decoy": 14,
+      "nonzero": 2,
+      "heavy_at_quarter": 1,
+      "parseval": "25/32"
+    },
+    {
+      "h": 5,
+      "secret": 16,
+      "decoy": 17,
+      "nonzero": 2,
+      "heavy_at_quarter": 1,
+      "parseval": "25/32"
+    },
+    {
+      "h": 6,
+      "secret": 19,
+      "decoy": 20,
+      "nonzero": 2,
+      "heavy_at_quarter": 1,
+      "parseval": "25/32"
+    },
+    {
+      "h": 7,
+      "secret": 22,
+      "decoy": 23,
+      "nonzero": 2,
+      "heavy_at_quarter": 1,
+      "parseval": "25/32"
+    },
+    {
+      "h": 8,
+      "secret": 25,
+      "decoy": 26,
+      "nonzero": 2,
+      "heavy_at_quarter": 1,
+      "parseval": "25/32"
+    }
+  ]
+}

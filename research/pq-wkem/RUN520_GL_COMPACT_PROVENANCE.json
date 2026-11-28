@@ -1,0 +1,17 @@
+{
+  "run": 520,
+  "date": "2026-10-15",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "c9afa9483bd5cf799695e9edced5fded074eaa51",
+  "starting_tree": "25a74ef08b5080449f6f96ca15d79b1aadf90850",
+  "predecessor_blob": "f44a4d4486fdbb396f5456eebc240fb4661e4060",
+  "checker_executed_in_this_js_isolate": true,
+  "checker": "run520_gl_compact_check.js",
+  "validation": "run520_gl_compact_validation.json",
+  "claim": "General-NP one-way common seed release implies post-quantum bit-WE via GL conditional on fixed classical public view; no independent construction",
+  "additional_local_extended_python_checker": true,
+  "security_not_proven": true,
+  "production_modified": false
+}

@@ -1,0 +1,94 @@
+{
+  "branch": "research/pq-wkem-validation-20260918",
+  "classification": "new exact classical zeroizer theorem + deterministic algebraic validation; not a completed WKEM, not a break of Tsabary Assumption 31",
+  "executions": {
+    "byte_identical": true,
+    "captured_validation": "trapdoor-target-zeroizer-run91-validation.json",
+    "checker": "trapdoor_target_zeroizer_run91_check.py",
+    "deterministic_seed": 9100910026,
+    "runs": 2,
+    "summary": {
+      "column_norm_checks": 32,
+      "failures": 0,
+      "lwe_zeroizer_samples": 3200,
+      "prefix_zeroizer_samples": 320,
+      "preimage_table_identities": 32,
+      "uniform_exact_controls": 9
+    }
+  },
+  "generated_utc": "2026-09-25T07:35:52.228333+00:00",
+  "limitations": [
+    "toy preimage-table generator is not TrapGen and is not a hardness/security experiment",
+    "the theorem does not break Tsabary's actual construction or Assumption 31 in general",
+    "standard LWE alone does not automatically simulate the correlated public K,T,prefix view",
+    "false-statement QPT hiding and arbitrary-QPT final-key-to-original-witness extraction remain unproved"
+  ],
+  "literature": [
+    {
+      "author": "Rotem Tsabary",
+      "inspected": "Assumption 31 and EncodeEdge in full proceedings PDF; screenshot inspection used for Assumption 31 page",
+      "publication": "CRYPTO 2022",
+      "title": "Candidate Witness Encryption from Lattice Techniques",
+      "url": "https://crypto.iacr.org/2022/papers/530630_1_En_19_Chapter_OnlinePDF.pdf"
+    },
+    {
+      "authors": "Tzu-Hsiang Huang, Wei-Hsiang Hung, Shota Yamada",
+      "eprint": "2025/421",
+      "inspected": "primary abstract/metadata",
+      "title": "A Note on Obfuscation-based Attacks on Private-coin Evasive LWE",
+      "url": "https://eprint.iacr.org/2025/421"
+    },
+    {
+      "authors": "Shweta Agrawal, Anuja Modi, Anshu Yadav, Shota Yamada",
+      "eprint": "2025/375",
+      "inspected": "publication abstract/metadata via ISTA/other indexed source; no claim of exact Tsabary-Assumption-31 break",
+      "publication": "TCC 2025",
+      "title": "Zeroizing Attacks Against Evasive and Circular Evasive LWE",
+      "url": "https://eprint.iacr.org/2025/375"
+    }
+  ],
+  "pr": 1,
+  "publication_attempt": {
+    "action": "mcp__GitHub__create_file",
+    "comment_id": null,
+    "commit_sha": null,
+    "correlation_id": null,
+    "error": "This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "path": "research/pq-wkem/TRAPDOOR_TARGET_ZEROIZER_RUN91.md",
+    "post_attempt_readback": {
+      "head_sha": "ff14c55c7d3449d692d0f1da0243239f2472bd21",
+      "path_exists": false
+    },
+    "request_id": null,
+    "status": "BLOCKED_BEFORE_GITHUB",
+    "tool_timestamp": "not supplied"
+  },
+  "repository": "syscoin/PVUGC",
+  "run": 91,
+  "sha256": {
+    "TRAPDOOR_TARGET_ZEROIZER_RUN91.md": "d56240d13ef31bc599fb2a9071fc477a0c88159d039515c8035ea5eab0b7d2b0",
+    "trapdoor-target-zeroizer-run91-validation.json": "e0cd944002788e64cffb0ef5da2b23d7c6619c1656f5a7ad6fdcce251baed26b",
+    "trapdoor_target_zeroizer_run91_check.py": "4ef7709b27f3cbb7b4eadc6a4571bbcaa76c39bb17d24adf5cd50446323cb95b"
+  },
+  "source_versions": {
+    "ANCHOR_SHIFT_MINRANK_RUN79.md": {
+      "git_blob": "30084603c3b35c449be4e154f6d214533526d3c5"
+    },
+    "LWE_DIRECTIONAL_TRANSPORT_RUN72.md": {
+      "git_blob": "4fefd6c364a76fd12fe76169ddbec47e486c786b"
+    },
+    "SHORT_KERNEL_LWE_BOUNDARY.md": {
+      "git_blob": "8b630ef9f0bbafeb2eaa153745aff49ad66ea121"
+    },
+    "SIS_RANDOMIZED_SHORT_KERNEL_LIFT_RUN42.md": {
+      "git_blob": "f8634c5dd2bc29796f152ebde67064fe55045cc9"
+    },
+    "SPECTRAL_DIMENSION_FLOOR_RUN89.md": {
+      "git_blob": "0f93693ad51f7d84c249fd02ffa361bcadd3dd84"
+    },
+    "short_kernel_wkem_check.py": {
+      "git_blob": "361a53dbfdebdb007be8da25376509385a804f58"
+    }
+  },
+  "starting_head": "ff14c55c7d3449d692d0f1da0243239f2472bd21"
+}

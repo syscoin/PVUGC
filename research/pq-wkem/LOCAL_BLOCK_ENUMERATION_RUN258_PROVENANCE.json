@@ -1,0 +1,33 @@
+{
+  "run": 258,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "0d9435bb72a418345da7b86153852ea558c5e770",
+  "pr_state": "open/draft/unmerged",
+  "latest_substantive_comment_id": 5945825660,
+  "exact_github_dependencies": {
+    "research/pq-wkem/STAT_DUAL_MODE_SOURCE_HASH_QPT_EXTRACTION_RUN123.md": "2eefa25de7f5a9b9c65abf15a20bb4ae6564702e",
+    "research/pq-wkem/DUAL_MODE_HASH_SECRET_RESAMPLING_BARRIER_RUN126.md": "94d1a6246da77f561ecacd84ce78917d6121dc33",
+    "research/pq-wkem/HAIR_SAHAI_COMMON_KERNEL_DICHOTOMY_RUN251.md": "adf223622a6ed75a1f060706fd7bd522c1c6ede1"
+  },
+  "local_predecessor": {
+    "archive": "/mnt/data/run257_work/PQ_WKEM_RUN257_BLOCKED_PUBLICATION.zip",
+    "note": "SHARED_SECRET_SECOND_DIFFERENCE_AND_RECENTERING_RUN257.md",
+    "status": "locally preserved predecessor; not branch-visible"
+  },
+  "external_sources": [
+    "https://eprint.iacr.org/2024/1401.pdf",
+    "https://iacr.org/submit/files/slides/2025/crypto/crypto2025/545/545_slides.pdf",
+    "ePrint 2026/1079 Witness Pseudorandom Functions for Vector Commitments and Applications"
+  ],
+  "checker": {
+    "path": "local_block_enumeration_run258_check.py",
+    "language": "Python 3 standard library only",
+    "py_compile": "passed",
+    "executions": 2,
+    "byte_identical": true,
+    "assertions_per_execution": 27693
+  },
+  "scope": "Unconditional barrier only for decompositions with independently searchable local relations, witness-independent local centers, and a public combiner. Does not rule out nonseparable global source-binding encodings, WE in general, or standard-LWE constructions outside this model."
+}

@@ -1,0 +1,28 @@
+{
+  "run_id": "SSMA-2026-10-31",
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "1c943352dda27878798e7e657f29d76fba7f2c8d",
+  "offline": true,
+  "source_component": "C12 / uniform TRUE binary-ISIS SOURCE-LWE",
+  "new_component": "SSMA shared A across independent scopes",
+  "files": {
+    "RESEARCH.md": "067883adc59a54de214017f0f86a45da53910f97",
+    "checker.js": "90f59da245d1a689a1455b518d4c9adba2b6cc52",
+    "output.json": "a3214f9e61242022c5c38187b4b39befdf9d6cda"
+  },
+  "published_checker": "self-contained exact executed JavaScript function",
+  "checker_assertions": 2020,
+  "independent_local_python_assertions": 264833,
+  "independent_local_python_runs": 2,
+  "local_archive_sha256": "c5faa12cac5226d4d184dc0b11a9d897135e072e9c9be06d180fc6c565c3d5b1",
+  "rejected_initial_local_fixture": "A preliminary alternate JS checker erroneously asserted that independently sampled 12-bit toy keys can never coincide; it was not published and was replaced by exact reproducible checker.",
+  "limitations": [
+    "no adversarial FALSE",
+    "no generic ORIGINAL witness",
+    "no hard-TRUE reduction",
+    "no QPT 128-bit calibration",
+    "no malicious setup or native Bitcoin implementation"
+  ]
+}

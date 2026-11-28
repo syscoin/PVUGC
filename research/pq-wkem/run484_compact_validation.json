@@ -1,0 +1,37 @@
+{
+  "run": 484,
+  "status": "PASS",
+  "assertions": 24,
+  "toy_digest_bits": 16,
+  "cases": [
+    {
+      "claim": 0,
+      "saltA": 851,
+      "saltB": 121,
+      "shared_root": 55073,
+      "hybrid_accepted": true
+    },
+    {
+      "claim": 1,
+      "saltA": 862,
+      "saltB": 20,
+      "shared_root": 62417,
+      "hybrid_accepted": true
+    },
+    {
+      "claim": 2,
+      "saltA": 571,
+      "saltB": 15,
+      "shared_root": 61243,
+      "hybrid_accepted": true
+    },
+    {
+      "claim": 3,
+      "saltA": 724,
+      "saltB": 56,
+      "shared_root": 6416,
+      "hybrid_accepted": true
+    }
+  ],
+  "scope": "toy classical chosen-root collisions; conditional quantum query analysis only"
+}

@@ -1,0 +1,31 @@
+{
+  "run": "R54-CK-NORMALIZED-IDEAL-CLOSURE-20261103",
+  "assertions": 773,
+  "source_field": 65537,
+  "unsat": {
+    "clauses": 19,
+    "old_pair_rank": 50,
+    "old_quotient": 14,
+    "old_certified": false,
+    "new_closure_rank": 64,
+    "new_quotient": 0,
+    "new_certified": true
+  },
+  "true": {
+    "clauses": 18,
+    "witnesses": [
+      10,
+      11,
+      43
+    ],
+    "old_quotient": 15,
+    "new_quotient": 3,
+    "successful_witness_openings": 192
+  },
+  "composition": {
+    "exact_basis_transform_tests": 128,
+    "full_CK_aux_false_couplings": 128
+  },
+  "hard_TRUE_extraction": "UNPROVED",
+  "QPT_hardness": "NOT TESTED"
+}

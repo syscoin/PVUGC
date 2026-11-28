@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "assertions": 192014,
+  "release_opens_rechecked": 82944,
+  "noise_bound": 1,
+  "nonprimitive_helper_bits": 0,
+  "scope": "finite exact equalities only; not a QPT-LWE hardness or native signature test"
+}

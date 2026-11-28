@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "assertions": 9241,
+  "q": 3,
+  "n": 1,
+  "m": 3,
+  "h": 2,
+  "N": 18,
+  "quantum_dimension": 2,
+  "one_source_trace_distance": 0.178539184959,
+  "one_source_bound": 0.235702260396,
+  "two_joint_sources_shared_A_trace_distance": 0.160196370796,
+  "two_sources_bound": 0.471404520791,
+  "hilbert_schmidt_observed": 0.037037037037,
+  "hilbert_schmidt_formula": 0.037037037037,
+  "scope": "Finite noncommuting cq density-matrix enumeration, not QPT hardness"
+}

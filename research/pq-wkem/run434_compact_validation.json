@@ -1,0 +1,58 @@
+{
+  "run": 434,
+  "checker": "exact finite Fourier spectrum, not quantum hardware",
+  "assertions_passed": 1263,
+  "cases": [
+    {
+      "n": 4,
+      "period": 10,
+      "patch_count": 0,
+      "patch_fraction": "0/16",
+      "bad_fourier_numerator": 0,
+      "bad_fourier_denominator": 256,
+      "disagreement_count": 0,
+      "total_variation": 0
+    },
+    {
+      "n": 5,
+      "period": 24,
+      "patch_count": 1,
+      "patch_fraction": "1/32",
+      "bad_fourier_numerator": 32,
+      "bad_fourier_denominator": 1024,
+      "disagreement_count": 2,
+      "total_variation": 0.03125
+    },
+    {
+      "n": 6,
+      "period": 10,
+      "patch_count": 2,
+      "patch_fraction": "2/64",
+      "bad_fourier_numerator": 128,
+      "bad_fourier_denominator": 4096,
+      "disagreement_count": 4,
+      "total_variation": 0.03125
+    },
+    {
+      "n": 8,
+      "period": 121,
+      "patch_count": 1,
+      "patch_fraction": "1/256",
+      "bad_fourier_numerator": 256,
+      "bad_fourier_denominator": 65536,
+      "disagreement_count": 2,
+      "total_variation": 0.00390625
+    },
+    {
+      "n": 8,
+      "period": 142,
+      "patch_count": 2,
+      "patch_fraction": "2/256",
+      "bad_fourier_numerator": 512,
+      "bad_fourier_denominator": 65536,
+      "disagreement_count": 4,
+      "total_variation": 0.0078125
+    }
+  ],
+  "complete_pq_wkem": false
+}

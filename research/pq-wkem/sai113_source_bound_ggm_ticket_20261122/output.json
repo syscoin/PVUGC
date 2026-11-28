@@ -1,0 +1,14 @@
+{
+  "domain_bits": 16,
+  "no_source_certificate_or_release_compiler": true,
+  "output_range_prefix_keys": 1,
+  "scope": "synthetic SHA256d output range vs random accepted 16-bit header-domain GGM prefixes; NOT ORIGINAL source",
+  "source_input_cover_by_size": {
+    "0": 3840,
+    "1": 108
+  },
+  "source_input_minimal_prefix_keys": 3948,
+  "target_prefix_bits": 4,
+  "unconstrained_output_hash_0_grants_access": true,
+  "valid_headers": 4056
+}

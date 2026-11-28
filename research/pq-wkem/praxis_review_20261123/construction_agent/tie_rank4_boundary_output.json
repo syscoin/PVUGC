@@ -1,0 +1,1186 @@
+{
+  "cases": [
+    {
+      "M": [
+        [
+          [
+            6,
+            3
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            4,
+            3
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            6,
+            2
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 3,
+      "n": 6,
+      "q": 7,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 0,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            1,
+            4
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            6,
+            0
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 3,
+      "n": 6,
+      "q": 7,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 1,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            6,
+            6
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            6,
+            1
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 3,
+      "n": 6,
+      "q": 7,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 2,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            1,
+            4
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        [
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            0
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 3,
+      "n": 6,
+      "q": 7,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 3,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 3,
+      "n": 6,
+      "q": 7,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 4,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        [
+          [
+            6,
+            5
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            0,
+            6
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 3,
+      "n": 6,
+      "q": 7,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 5,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            6,
+            4
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            5,
+            4
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 3,
+      "n": 6,
+      "q": 7,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 6,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            6,
+            4
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            0
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 3,
+      "n": 6,
+      "q": 7,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 7,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            6,
+            4
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 3,
+      "n": 6,
+      "q": 7,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 8,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            6,
+            5
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            3
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 3,
+      "n": 6,
+      "q": 7,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 9,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            6,
+            12
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        [
+          [
+            7,
+            6
+          ],
+          [
+            12,
+            4
+          ],
+          [
+            7,
+            5
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 2,
+      "n": 6,
+      "q": 13,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 0,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            2,
+            9
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            1,
+            4
+          ]
+        ],
+        [
+          [
+            1,
+            7
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            7,
+            10
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 2,
+      "n": 6,
+      "q": 13,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 1,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            11
+          ]
+        ],
+        [
+          [
+            12,
+            10
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            9,
+            3
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 2,
+      "n": 6,
+      "q": 13,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 2,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            3,
+            9
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            5,
+            9
+          ]
+        ],
+        [
+          [
+            7,
+            10
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            9,
+            0
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 2,
+      "n": 6,
+      "q": 13,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 3,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            11
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            6,
+            8
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 2,
+      "n": 6,
+      "q": 13,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 4,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            9,
+            4
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            12,
+            11
+          ]
+        ],
+        [
+          [
+            11,
+            10
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            7,
+            12
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 2,
+      "n": 6,
+      "q": 13,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 5,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            12,
+            9
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            12,
+            4
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            9,
+            7
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 2,
+      "n": 6,
+      "q": 13,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 6,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            8,
+            1
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            0,
+            8
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 2,
+      "n": 6,
+      "q": 13,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 7,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            3,
+            5
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            3,
+            11
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            12,
+            8
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 2,
+      "n": 6,
+      "q": 13,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 8,
+      "z_rank": 4
+    },
+    {
+      "M": [
+        [
+          [
+            7,
+            9
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        [
+          [
+            10,
+            0
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            7,
+            9
+          ]
+        ]
+      ],
+      "ambient": 4,
+      "c": 2,
+      "n": 6,
+      "q": 13,
+      "results": [
+        {
+          "gap": 1,
+          "honest_dim": 8,
+          "passing_dim": 9,
+          "policy": "none"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 6,
+          "passing_dim": 6,
+          "policy": "product_zero"
+        },
+        {
+          "gap": 0,
+          "honest_dim": 0,
+          "passing_dim": 0,
+          "policy": "false_sum_and_product"
+        }
+      ],
+      "rowspace_dimension": 4,
+      "seed": 9,
+      "z_rank": 4
+    }
+  ],
+  "scope": "Exact rank-four boundary probe of Praxis Eq.(5), outside Lemma B.6.\n\nUse actual Forms(M) with d_R=2,k=2,n=6 and a full four-dimensional\nrowspace. Comparing passing stack dimensions to honest-stack spans is a\nfinite algebra check, not a group attack or production parameter test.\n",
+  "source_sha256": "b83ed3e0c4bca3449921999e1c935fd5677f9d1b1fd436d1a30211108fce4a4f"
+}

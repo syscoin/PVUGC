@@ -1,0 +1,24 @@
+{
+  "run": "R59-MIXED-TRUE-LWE-JOINT-20261104",
+  "checks": 8003,
+  "true_original_witnesses": [
+    10,
+    11,
+    43
+  ],
+  "false_target_quotient_dim": 2,
+  "false_target_p1_zero": true,
+  "full_joint_real_challenge_couplings": 64,
+  "related_true_original_openings": 384,
+  "uniform_lwe_hybrids_with_related_true_openings": 64,
+  "shared_secret_negative_controls": 64,
+  "illustrative_lwe": {
+    "q": 256,
+    "n": 4,
+    "m": 8
+  },
+  "checking_key": "finite toy secret-dependent hash of whole D/Z/A/context, NOT a PQ MAC",
+  "source_open_oracle_for_target": false,
+  "hard_true_original_extraction": "UNPROVED",
+  "qpt_hardness_tested": false
+}

@@ -1,0 +1,11 @@
+{
+  "all_fourier_weights": 0.0625,
+  "checks": 131360,
+  "key_guess_probability": "1/16",
+  "known_high_nibble": "0xA",
+  "predictor_success": "17/32",
+  "secret_bits": 8,
+  "security": "NONE. Exhaustive algebraic toy only.",
+  "theorem": "One-bit IND distinguisher gives a parity predictor; nonnegligible bias allows GL list recovery under reproducible QPT attacks.",
+  "walsh_candidate_count": 16
+}

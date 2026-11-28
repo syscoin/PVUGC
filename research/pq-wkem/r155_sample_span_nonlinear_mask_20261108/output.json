@@ -1,0 +1,54 @@
+{
+  "N": 8,
+  "checks": 1545,
+  "exact_skew_law_probabilities": [
+    [
+      1,
+      2
+    ],
+    [
+      13,
+      32
+    ],
+    [
+      85,
+      256
+    ],
+    [
+      559,
+      2048
+    ],
+    [
+      3697,
+      16384
+    ],
+    [
+      24583,
+      131072
+    ],
+    [
+      164305,
+      1048576
+    ],
+    [
+      1103479,
+      8388608
+    ],
+    [
+      7444417,
+      67108864
+    ]
+  ],
+  "failures": 0,
+  "hidden_mask_span_dim": 4,
+  "nonlinear_mask": "(r0*r1, r1^2+r2, r2*r3+r0, r0^3+r3) times fixed hidden independent mask basis",
+  "q": 101,
+  "recovered_without_witness": 512,
+  "run": "R155-KNOWN-KEY-SAMPLE-SPAN-20261108",
+  "sample_count_per_trial": 32,
+  "scope": "finite algebra only; no QPT hardness or full WKEM",
+  "theorem": "P[target outside span(m iid samples)] <= N/(m+1); conditional public known-key sampler; exact linear witness evaluators",
+  "trials": 512,
+  "witness_evaluators": 2,
+  "witness_exact_checks": 1024
+}

@@ -1,0 +1,10 @@
+{
+  "run": 579,
+  "assertions": 41325,
+  "exhaustiveGaugePairs": 96,
+  "permutationCases": 84,
+  "negativeControls": 72,
+  "lowWidthCases": 10,
+  "quantumExecution": false,
+  "practicalWKEM": false
+}

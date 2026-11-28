@@ -1,0 +1,74 @@
+{
+  "commutator": [
+    2,
+    0,
+    1
+  ],
+  "group": "S3",
+  "inconsistent_occurrence_assignment": [
+    1,
+    0,
+    1,
+    0
+  ],
+  "inconsistent_product": [
+    0,
+    2,
+    1
+  ],
+  "proof_scope": "symbolic telescoping with supplementary deterministic finite check",
+  "public_transitions": [
+    [
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        1,
+        2
+      ]
+    ],
+    [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        1,
+        0,
+        2
+      ]
+    ],
+    [
+      [
+        2,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        2
+      ]
+    ],
+    [
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        1,
+        2
+      ]
+    ]
+  ],
+  "scope": "FALSE x AND NOT x group-program spoof; no original source, FE or native signature",
+  "secret_recovered_with_public_transitions": true,
+  "true_original_witnesses": 0,
+  "two_consistent_readouts_equal": true
+}

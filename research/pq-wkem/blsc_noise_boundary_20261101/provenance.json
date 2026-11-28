@@ -1,0 +1,34 @@
+{
+  "run": "BLSC-NOISE-2026-11-01-T14",
+  "date_utc": "2026-11-01",
+  "repository": "syscoin/PVUGC",
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_pr_head": "75d8f76a4e20eec24f4642c56d608b415446e9dd",
+  "published_paths": [
+    {
+      "path": "research/pq-wkem/blsc_noise_boundary_20261101/RESEARCH.md",
+      "sha": "d71eabfa5ad2005334a279ce2aaa024fb4ff96a8"
+    },
+    {
+      "path": "research/pq-wkem/blsc_noise_boundary_20261101/checker.js",
+      "sha": "9af9fab17604efb8cc6cb13a0e57d96ff0f2184a"
+    },
+    {
+      "path": "research/pq-wkem/blsc_noise_boundary_20261101/output.json",
+      "sha": "70dda8e574552bf24ac1fbb52aa04fd981715cbc"
+    }
+  ],
+  "checker": {
+    "checks": 86,
+    "exact_executed": true,
+    "output_sha": "70dda8e574552bf24ac1fbb52aa04fd981715cbc"
+  },
+  "offline_local_python": {
+    "two_identical_executions": true,
+    "checks_per_run": 943,
+    "full_false_ciphertexts": 288,
+    "status": "LOCAL ONLY"
+  },
+  "research_status": "NO POSITIVE SECURE-WKEM ADVANCE",
+  "external_research": false
+}

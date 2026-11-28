@@ -1,0 +1,13 @@
+{
+  "run": 479,
+  "status": "PASS",
+  "assertions": 576,
+  "fixtures": 64,
+  "valid_original_witnesses_per_fixture": 2,
+  "different_plaintext_states": 64,
+  "witnessless_capability_recoveries": 64,
+  "refresh_checks": 64,
+  "context_separation_checks": 64,
+  "public_step_budget": 12,
+  "limitations": "finite transparent semantics only; no encrypted implementation or native signing; extended local Python independently checks Ed25519"
+}

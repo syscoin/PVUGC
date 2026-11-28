@@ -1,0 +1,35 @@
+{
+  "run": "R64-PACK16-DUAL-LWE-SIS-20261104",
+  "configuration": {
+    "q": 16777216,
+    "m": 64,
+    "n": 2,
+    "E": 1,
+    "delta": 129,
+    "packing_bits": 16,
+    "maximum_packing_bits_at_fixed_q_delta": 16,
+    "root_bits": 256,
+    "checking_key_seed_bits": 256
+  },
+  "checks": 594389,
+  "boundary_decode_exhaustive": 196608,
+  "original_witness_openings_planted_fixture": 32,
+  "full_public_planted_matrix_couplings": 16,
+  "honest_uniform_matrix_real_LWE_couplings": 16,
+  "uniform_source_hybrid_translations": 16,
+  "adaptive_independent_related_openings": 32,
+  "context_binding_checks": 16,
+  "source_samples": {
+    "binary": 512,
+    "packed": 32
+  },
+  "source_bytes": {
+    "binary": 98304,
+    "packed": 6144
+  },
+  "source_reduction_percent": 93.75,
+  "special_original_relation": "SIS_ONLY",
+  "honest_uniform_target_qpt_hardness": "NOT_ESTABLISHED",
+  "generic_NP_security": "UNPROVED",
+  "native_signature": "SYNTHETIC_TOY"
+}

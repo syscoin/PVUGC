@@ -1,0 +1,118 @@
+{
+  "agents": [
+    {
+      "name": "/root/fe_construction",
+      "role": "construction, low-rank ties, finite algebra checks"
+    },
+    {
+      "name": "/root/fe_security",
+      "role": "security theorem, quantifiers, original-witness composition"
+    },
+    {
+      "name": "/root/fe_setup",
+      "role": "parameters, formalization scope, artifact inventory"
+    },
+    {
+      "model": "gpt-daybreak-blue-latest",
+      "name": "/root/praxis_daybreak",
+      "role": "focused deductive audit of Lemma B.9; no security scan"
+    }
+  ],
+  "automation_changes": 0,
+  "base_tree": "796fb283902d88c509eef403f07a1b9062b39080",
+  "branch": "research/pq-wkem-validation-20260918",
+  "comments_query_result_count": 0,
+  "comments_query_since_utc": "2026-11-21T00:00:00Z",
+  "errors": [
+    {
+      "action": "local direct requests to official and mirror PDF",
+      "policy_denial": false,
+      "request_id_exposed": null,
+      "result": "HTTPError HTTP Error 403: Forbidden"
+    },
+    {
+      "action": "web open of pinned GitHub README",
+      "policy_denial": false,
+      "request_id_exposed": null,
+      "result": "DisabledError; connected GitHub read succeeded"
+    },
+    {
+      "action": "read AGENTS.md and research/pq-wkem/AGENTS.md at starting head",
+      "policy_denial": false,
+      "request_id_exposed": null,
+      "result": "GitHub 404 NOT_FOUND"
+    },
+    {
+      "action": "several root calls reported aborted before dispatch; cause was not supplied",
+      "request_id_exposed": null,
+      "result": "aborted before dispatch; no dispatched action claimed"
+    }
+  ],
+  "executed_python": [
+    {
+      "by": "/root/fe_construction",
+      "exit_code_reported": 0,
+      "script": "construction_agent/tie_kernel_check.py"
+    },
+    {
+      "by": "/root/fe_construction",
+      "exit_code_reported": 0,
+      "script": "construction_agent/tie_subspace_check.py"
+    },
+    {
+      "by": "/root/fe_construction",
+      "exit_code_reported": 0,
+      "script": "construction_agent/tie_rank4_boundary.py"
+    },
+    {
+      "by": "/root/fe_construction",
+      "exit_code_reported": 0,
+      "script": "construction_agent/extract_rank4_witness.py"
+    },
+    {
+      "by": "/root/fe_setup",
+      "exit_code_reported": 0,
+      "script": "parameters_agent/check_parameters.py"
+    },
+    {
+      "by": "/root",
+      "exit_code_reported": 0,
+      "script": "recovery_equations_check.py"
+    }
+  ],
+  "external_comments_created": 0,
+  "initial_clock_utc": "2026-11-23 14:16:17 UTC",
+  "not_executed": [
+    "full Praxis Enc/Dec",
+    "Lean build or axioms check",
+    "lattice estimator",
+    "Core test suite",
+    "quantum algorithm",
+    "original source verifier",
+    "native signature or funded transaction"
+  ],
+  "paper": {
+    "authors": [
+      "David Tse",
+      "Nikhil Vanjani",
+      "Psi Vesely"
+    ],
+    "extracted_lines": 5565,
+    "extracted_pages": 66,
+    "local_pdf_sha256": null,
+    "requested_url": "https://eprint.iacr.org/2026/2971.pdf",
+    "retrieved_url": "https://eprint.iacr.asia/2026/2971.pdf",
+    "title": "Praxis: Practical Witness Encryption for NP"
+  },
+  "prepublication_checkpoint_utc": "2026-11-23T14:34:57.303247+00:00",
+  "prepublication_head": "67dea8d5cb19b083e4f29cfa86bf2a306359107a",
+  "publication_state_at_this_checkpoint": "not attempted; receipt must be verified separately",
+  "pull_request": 1,
+  "repository": "syscoin/PVUGC",
+  "reviewed_formalization_commit": "60d3defeebd77caa0e57babe97991e672b948bb6",
+  "root_additional_verification": "Read checkers and outputs; parsed JSON; checked recorded source hashes; read pinned Enc/Dec/Main/Games/README.",
+  "run": "praxis_review_20261123",
+  "starting_head": "67dea8d5cb19b083e4f29cfa86bf2a306359107a",
+  "status": "No verified classical in-model break; conditional external advance; original hash-only/QPT bridge incomplete.",
+  "user_task": "Adversarial review of https://eprint.iacr.org/2026/2971.pdf, without presuming a break."
+}

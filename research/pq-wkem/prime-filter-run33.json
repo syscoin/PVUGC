@@ -1,0 +1,72 @@
+{
+  "bounded_prime_coverage": {
+    "U": 64,
+    "max_prime": 127,
+    "nonboolean_u_values_checked": 127,
+    "prime_count": 30
+  },
+  "false_two_vector_splicing": {
+    "boolean_kernel_points": 0,
+    "component_decodes": 12500,
+    "components_per_trial": 25,
+    "fixed_x0_bad_pair_p3_is_identical_channel": true,
+    "fixed_x1_bad_pair_p3_is_identical_channel": true,
+    "formula": "(z OR z OR z) AND (!z OR !z OR !z)",
+    "key_failures": 0,
+    "pair_count": 5,
+    "pair_cover_vector_index": [
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "trials": 500,
+    "x0_norm_sq": 10,
+    "x0_pair_diffs": [
+      -1,
+      -1,
+      3,
+      1,
+      -1
+    ],
+    "x1_norm_sq": 10,
+    "x1_pair_diffs": [
+      -1,
+      3,
+      1,
+      1,
+      -1
+    ]
+  },
+  "full_capsule_toy_enumeration": [
+    {
+      "hiding_support_size": 144,
+      "hiding_total_mass_count": 288,
+      "leaking_support_intersection": 0,
+      "leaking_support_size_per_key": 144,
+      "p": 3
+    },
+    {
+      "hiding_support_size": 400,
+      "hiding_total_mass_count": 800,
+      "leaking_support_intersection": 0,
+      "leaking_support_size_per_key": 400,
+      "p": 5
+    }
+  ],
+  "local_support_dichotomy": {
+    "cases": 510,
+    "disjoint_otherwise": 424,
+    "identical_when_p_divides_d": 86
+  },
+  "seed": 330033,
+  "source_sha256": "ec5aec805b2a72248039e4446fec88181c1abd87230d33c2bbbc734e3b60967f",
+  "true_two_witness_control": {
+    "component_decodes": 9000,
+    "components_per_trial": 15,
+    "key_failures": 0,
+    "trials": 300,
+    "witnesses_per_trial": 2
+  }
+}

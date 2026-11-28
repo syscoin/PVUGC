@@ -1,0 +1,62 @@
+# Crossed special-soundness transcript release — 2026-11-28 UTC
+
+Research only; nonqualifying. No original relation or native endpoint changes. This is an attempted construction, not a generic impossibility or a secure WKEM.
+
+## Selection and provenance
+
+Read actual syscoin/PVUGC PR #1 metadata (open, draft, unmerged, same-repo head, branch research/pq-wkem-validation-20260918), recent substantive discussion through R225, exact head commit filename and SOURCE_TWO_KEY_FSS_PULLBACK_20261128.md at head 5045e6c8e02c6f066c8fa8cae076f706a40dcacd (blob cbcf2ab15d64a4a4705e0f778ddbeb600be5fdd8). Re-read same head and checked new path absent (404 NOT_FOUND). No new consensus-source claim. No external research or source repo writes.
+
+Missing operation: setup knows the fixed native cancellation signature sigma but no future qualifying original witness. It must publish a transcript and all auxiliary bytes from which *every* such witness can construct a second transcript, and the public two-transcript extractor must return the same sigma, not just that particular source witness. The proposed mathematical change from R327/private-coefficient evaluation and the last two-key FSS tree is to use a *binding first-message commitment plus different-challenge special soundness*. There is no additive hidden trace evaluator, no pair of independently selectable wire labels, and no terminal-output tree queried by a fabricated validity bit. Test whether source adaptation can be crossed with the secret branch before attempting large fixtures.
+
+## 1. A concrete source adaptation, without a secret evaluator
+
+Let R(x,w) be the entire unchanged original predicate with canonical bounded witness encoding and three OR grounds. Compile the finite deterministic checker to a Boolean circuit, then via a witness-preserving NP reduction to a Hamiltonian-cycle instance G_x. The following is a mathematical construction at the graph level; no source compiler or Bitcoin/Syscoin checker was run or newly validated. Require a constructive witness map w -> cycle and an inverse witness extractor from any Hamiltonian cycle in the generated graph. Do not use a graph that only recognizes a subset of the source relation.
+
+Take the two-challenge graph commitment protocol. Setup samples permutation pi of graph vertices and independent salts r_ij. Let B be the adjacency matrix of pi(G_x). Publish A_ij = H(commit-domain, context, i, j, B_ij, r_ij) for each pair, with unambiguous fixed-length encoding. For this preflight assume binding and appropriate salted hiding, not a concrete SHA/QROM theorem. Challenge 0 response z0 consists of pi and all B_ij, r_ij, so the verifier recomputes the commitments and checks the permuted graph. Challenge 1 response z1 consists of a Hamiltonian cycle of the committed graph and the bit-1 openings on the cycle edges. Challenge 1 verifier checks the cycle visits every vertex exactly once and the corresponding openings bind to A.
+
+Build can publish (A,0,z0) without w, including on a false statement. Adapt(A,z0,w) maps the supplied original witness to a cycle, permutes it, and selects the corresponding openings from z0. This is an actual classical public response-generation algorithm at the graph level, without a source-key issuer, protected labels, or a secret evaluator. It is important that producing the response requires the complete cycle, not a public accepted output bit. Given an accepting response to challenge 1 and the public challenge 0 transcript, binding yields a real cycle of G_x (otherwise a commitment collision), from which the witness-preserving reduction recovers an original certificate. The extraction is straight line from explicit accepting responses; no claim is made about QPT rewinding or extracting a response from an arbitrary recovery algorithm.
+
+But the ordinary special-soundness output is the original witness, not sigma. This is useful for diagnosing the crossed-transcript proposal, not a secret release. It does not rely on hard-TRUE certificates being unique. The builder cannot simply compute the challenge 1 response in advance because the cycle is unknown; challenge 0 opens *every* salt. There is no hidden opening available to release as a consequence of the cycle selection. Changing the public first transcript to challenge 1 instead allows simulation on a chosen committed cycle, but then producing a challenge 0 transcript requires that the committed graph actually be a permutation of G_x, with known openings. An actual cycle of G_x does not provide the missing random openings or change a binding commitment to the simulated graph.
+
+## 2. Crossed OR transcript (the candidate repair)
+
+Use two special-sound protocols P_s for knowledge of a native-valid cancellation signature (public VK and fixed message) and P_w for knowledge of an ORIGINAL witness. P_s can conceptually be obtained by a witness-preserving NP reduction of deterministic native verification, with an explicit signature witness. This only specifies the relation and transcript mechanics, not a new PQ proof of native security. Build knows sigma, hence can prove P_s, and need not know w.
+
+In a usual two-branch OR protocol with additive challenge split in a finite challenge group, the transcript is
+
+    T = (a_s,a_w, c, e_s,z_s, e_w,z_w),
+    e_s + e_w = c,
+    V_s(a_s,e_s,z_s) = V_w(a_w,e_w,z_w) = 1.
+
+For binary challenges, use XOR. Build produces a real secret-branch first message/response and source-branch public challenge-0 response as in section 1. The real total challenge may be computed from the fixed public context; the following considers response adaptation to a second challenge for special soundness, not a claim that two distinct Fiat-Shamir challenges are admissible for the same first message/context.
+
+A holder of w can generate z_w' for e_w'=1 and set
+
+    T' = (a_s,a_w, e_s+e_w', e_s,z_s, e_w',z_w').
+
+This is the standard OR relation's accepting second interactive transcript. Both transcripts share first messages. The changed local branch is P_w, whose extractor returns w. The local secret branch has exactly the same challenge and response in both transcripts; its special-soundness premise is not met. If the outer challenge is kept fixed by Fiat-Shamir instead, changing e_w requires e_s' = c-e_w' and a new z_s'. That is precisely the missing native-witness-dependent response, not something supplied by z_w'.
+
+Try forcing both branch challenges to change by replacing OR with an AND or a fixed linked-challenge rule e_s=e_w=c. The builder can still produce the initial pair at c=0 via the concrete challenge-0 source transcript and an honest secret branch, but adaptation of the source branch alone gives no way to compute an accepting secret response at c=1. Publishing a public witness-independent adjustment for z_s' at fixed a_s lets anyone obtain the two secret-branch responses; special soundness then yields a native-valid cancellation signature without a source certificate. If the extractor returns a different native-valid signature rather than the exact precommitted sigma, that already violates the unauthorized native acceptance objective; same-message EUF cannot be invoked to excuse it. If adjustment rerandomizes a_s, special soundness at the original first message is no longer applicable.
+
+The crossed-transcript repair thus needs an actual new public adapter with the following property:
+
+    Build(x,VK,M,sigma) -> (a_s,e_s,z_s, A,z0, aux)
+    Adapt(aux,z0,z1) -> z_s'
+    V_s(a_s,e_s',z_s')=1, e_s' != e_s
+    Ext_s(a_s,e_s,z_s,e_s',z_s')=sigma,
+
+for every genuine original z1. There must be an arbitrary-full-view recovery reduction, not just a proof that explicitly supplied z1 extracts an original witness. This is an exact specification of the missing crossed response, NOT a constructed primitive or assumption.
+
+## 3. Attempt to realize the adapter with hash-only transcript response pads
+
+The most direct candidate is to precompute a second secret response Z, publish E=Z XOR K, and derive K from the source transcript adaptation using a domain-separated hash. This removes the need for a private evaluator in the adapter *if* Build knows the same K before future source witnesses exist. For the concrete graph adaptation, z1 includes the cycle and its selected public openings. Different witnesses can give different cycles and hence distinct canonical z1. A single E with fixed Z must have exactly one K. If K(z1)=H_pad(context,A,z0,z1), then for distinct z1 inputs independent of the corresponding fresh oracle outputs, two independent ell-bit pads agree with probability 2^-ell; m such distinct inputs have common pad with probability 2^(-ell*(m-1)). This is an ideal fresh-output calculation only. It is not a bound against a correlated construction that actually generates the desired pad. A K based solely on the publicly exposed shared transcript fields (challenge 1, A, z0, context) is computable without adaptation. The challenge group cannot serve as a secret pad: both possible challenges and the fixed challenge split are public.
+
+Could publish one masked Z for each possible response. This requires an actual PPT mechanism to generate the corresponding entries for all future cycles, not just all syntactic edge openings. A table indexed by a full cycle may be exponential and must not be represented as a claimed practical Build. Replacing that table by per-edge shares whose aggregate is common on all valid cycles is a *new source-dependent pad compiler*; merely postulating it does not implement the adapter. In particular, the graph protocol only binds edges and extracts from a complete accepting response; it does not keep the per-edge openings hidden in the public challenge-0 transcript. A public algorithm that first validates the assembled z1 and then selects a publicly computable common pad is an optional if-check, not a release gate. Independently hiding per-edge labels reintroduces the earlier mixed-label problem unless a distinct joint construction and proof are supplied. Do not run such variants unchanged.
+
+A different idea was to choose z_s' itself as a function of z1 so that all resulting accepting secret-branch pairs extract sigma, rather than masking a fixed Z. This avoids the fixed-pad equality condition; it does NOT avoid the obligation to generate accepting responses for the same a_s using only public data and the actual source transcript. No equation for that generator follows from binding, zero knowledge, OR composition or special soundness. A source-dependent special-soundness protocol coupling the two branches more deeply might be relevant; it must specify its actual first-message generation without w and public crossed response generation without sigma. The independent branch protocols here have no such coupling.
+
+## 4. Full-public composition and precise handoff
+
+Section 1 provides an explicit way for a source witness holder to adapt a simulated/real challenge-0 graph transcript, with extraction from the *supplied response*. It does not hide or release a common capability. Sections 2–3 fail the crossed secret response preflight. In particular an arbitrary QPT recovering a signature or its accepted forgery need not ever output a second source transcript, so even a proof of the graph protocol's special soundness is insufficient for the desired reduction. Do not confuse this with special-soundness extraction from observed oracle queries, classical rewinding, or quantum proof of knowledge. The native VK/message, full public first transcripts, auxiliary inputs (including retained source coins), sibling capsules and selective openings all remain in the required joint security game. No simulator for that game was constructed. No implementation fixtures, tests, agents or external literature invoked; no claim of SHA programming or source-specific impossibility.
+
+Next candidate, if using transcripts at all, must replace independent OR/AND challenge routing by an explicitly generated coupled first message and crossed adapter, and demonstrate joint simulation/recovery. Simply changing challenge modulus, number of repetitions, salts, response encoding, or adding Fiat-Shamir cannot create the missing response. Keep all three original grounds, exact authenticated source scope and maturity, same capability and native safety, setup correctness/DA and R225 endpoint scope. No qualifying advance; no ordinary PR comment or production change.

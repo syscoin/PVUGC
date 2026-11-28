@@ -1,0 +1,40 @@
+{
+  "run": 391,
+  "status": "PASS",
+  "assertions": 121354,
+  "all_three_bit_gates": 40320,
+  "six_bit_degree_fixtures": 24,
+  "seed": 391391,
+  "n": 12,
+  "results": {
+    "1": {
+      "degree_bound": 2,
+      "derivative_order": 3,
+      "queries": 8,
+      "fixtures": 80,
+      "shallow_nonzero": 0,
+      "uniform_even_nonzero": 48
+    },
+    "2": {
+      "degree_bound": 4,
+      "derivative_order": 5,
+      "queries": 32,
+      "fixtures": 80,
+      "shallow_nonzero": 0,
+      "uniform_even_nonzero": 32
+    },
+    "3": {
+      "degree_bound": 8,
+      "derivative_order": 9,
+      "queries": 512,
+      "fixtures": 80,
+      "shallow_nonzero": 0,
+      "uniform_even_nonzero": 47
+    }
+  },
+  "scope": "isolated chosen-input depth<=3 3-local reversible forward mixers",
+  "wkem": false,
+  "prp_security": false,
+  "rio_break": false,
+  "qpt_security": false
+}

@@ -1,0 +1,20 @@
+{
+  "false_accepting_state_unreachable": true,
+  "false_all_32_inputs_return_bottom": true,
+  "false_public_capsule_digest": "0846698e4f494813a9a2eb183eee9ed30d356d7b88236afb09ec700b4e88e9f5",
+  "model": "SHA256 domain-separated hash OTP with independent per-state labels",
+  "scope": "enumerated-width-4 DFA, no authentic source, no QPT theorem",
+  "true_accepted_inputs": [
+    "00010",
+    "00110",
+    "01010",
+    "01110",
+    "10010",
+    "10110",
+    "11010",
+    "11110"
+  ],
+  "true_accepting_count": 8,
+  "true_all_witnesses_return_same_secret": true,
+  "true_public_capsule_digest": "38ad3e38e3bed7dceb938dded8455497935f36e0d5c12adea17236de45c307a4"
+}

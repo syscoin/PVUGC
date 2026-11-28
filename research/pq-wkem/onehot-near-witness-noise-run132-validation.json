@@ -1,0 +1,161 @@
+{
+  "direct_noisy_hps_attack": {
+    "claim": "On the explicit false u=1 family, the B+2 pseudowitness recovers the Run-115 hidden bit after an arbitrary public left mixing A=H M whenever the projected error is within the normal nearest-center radius. In these finite fixtures the recovery is deterministic from the worst-case bound.",
+    "error": "iid Rademacher +/-1",
+    "q": 257,
+    "recoveries": 280,
+    "trials": 280
+  },
+  "explicit_false_family": [
+    {
+      "B": 3,
+      "columns": 16,
+      "m": 2,
+      "n": 1,
+      "pseudo_l1": 5,
+      "rows": 9
+    },
+    {
+      "B": 5,
+      "columns": 25,
+      "m": 3,
+      "n": 2,
+      "pseudo_l1": 7,
+      "rows": 14
+    },
+    {
+      "B": 7,
+      "columns": 34,
+      "m": 4,
+      "n": 3,
+      "pseudo_l1": 9,
+      "rows": 19
+    },
+    {
+      "B": 9,
+      "columns": 43,
+      "m": 5,
+      "n": 4,
+      "pseudo_l1": 11,
+      "rows": 24
+    },
+    {
+      "B": 11,
+      "columns": 52,
+      "m": 6,
+      "n": 5,
+      "pseudo_l1": 13,
+      "rows": 29
+    },
+    {
+      "B": 13,
+      "columns": 61,
+      "m": 7,
+      "n": 6,
+      "pseudo_l1": 15,
+      "rows": 34
+    },
+    {
+      "B": 15,
+      "columns": 70,
+      "m": 8,
+      "n": 7,
+      "pseudo_l1": 17,
+      "rows": 39
+    },
+    {
+      "B": 17,
+      "columns": 79,
+      "m": 9,
+      "n": 8,
+      "pseudo_l1": 19,
+      "rows": 44
+    },
+    {
+      "B": 19,
+      "columns": 88,
+      "m": 10,
+      "n": 9,
+      "pseudo_l1": 21,
+      "rows": 49
+    },
+    {
+      "B": 21,
+      "columns": 97,
+      "m": 11,
+      "n": 10,
+      "pseudo_l1": 23,
+      "rows": 54
+    }
+  ],
+  "near_witness_theorem": {
+    "claim": "For any Boolean assignment a, the Run-117 one-hot compiler has an explicit integer affine preimage z_a with coefficients in {-1,0,1}, M z_a=t, and ||z_a||_1=B+2*u(a), where B=n+m and u(a) is the number of unsatisfied clauses.",
+    "one_clause_assignment_cases": 64
+  },
+  "projected_error_distance": [
+    {
+      "B": 3,
+      "B_times_tv": 0.375,
+      "tv_B_vs_Bplus2": 0.125
+    },
+    {
+      "B": 5,
+      "B_times_tv": 0.390625,
+      "tv_B_vs_Bplus2": 0.078125
+    },
+    {
+      "B": 10,
+      "B_times_tv": 0.439453125,
+      "tv_B_vs_Bplus2": 0.0439453125
+    },
+    {
+      "B": 20,
+      "B_times_tv": 0.4620552062988281,
+      "tv_B_vs_Bplus2": 0.023102760314941406
+    },
+    {
+      "B": 50,
+      "B_times_tv": 0.47567215059718393,
+      "tv_B_vs_Bplus2": 0.009513443011943679
+    },
+    {
+      "B": 100,
+      "B_times_tv": 0.4760868418667306,
+      "tv_B_vs_Bplus2": 0.004760868418667306
+    },
+    {
+      "B": 200,
+      "B_times_tv": 0.48043467673427687,
+      "tv_B_vs_Bplus2": 0.0024021733836713842
+    },
+    {
+      "B": 500,
+      "B_times_tv": 0.48279004071352266,
+      "tv_B_vs_Bplus2": 0.0009655800814270453
+    },
+    {
+      "B": 1000,
+      "B_times_tv": 0.48333365021021635,
+      "tv_B_vs_Bplus2": 0.00048333365021021636
+    }
+  ],
+  "run": 132,
+  "scope": [
+    "Finite checks validate exact compiler identities, explicit false pseudowitnesses, projected-noise identities, and the sparse-kernel distinguisher. They are not hardness evidence.",
+    "The attack is classical PPT, so it also refutes QPT hiding for the attacked parameter/error regimes.",
+    "This does not rule out a different source compiler with a multiplicative short-preimage gap, a nonlinear carrier, or a public transform that simultaneously preserves all honest witnesses and destroys short dual dependencies.",
+    "No claim is made that generic standard-LWE is insecure; the vulnerable public matrix family A=H M is highly structured and retains short public kernel relations."
+  ],
+  "sparse_kernel": {
+    "bounded_error_E": 1,
+    "claim": "Every one-hot clause block contains an explicit four-column +/-1 affine parallelogram dependency. For A=H M it remains a public kernel vector, so the corresponding LWE linear combination cancels the secret and leaves only four errors.",
+    "distinguishing_advantage": 0.7096774193548387,
+    "kernel_l1": 4,
+    "kernel_support": 4,
+    "q": 31,
+    "real_small_event_probability": 1.0,
+    "uniform_small_event_probability": 0.2903225806451613
+  },
+  "status": "PASS",
+  "total_assertions": 1092
+}

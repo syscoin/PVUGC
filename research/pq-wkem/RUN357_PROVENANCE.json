@@ -1,0 +1,33 @@
+{
+  "run": 357,
+  "research_status": "new bounded exact finite group-theoretic falsification; complete practical PQ WKEM unproved",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "719417e64894c6cf3159ca642754ccee3e789486",
+  "starting_state": "open/draft/unmerged",
+  "latest_ordinary_comment_at_start": 5945825660,
+  "exact_read_dependencies": {
+    "run259_blob": "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2",
+    "run115_blob": "cf2ec9575948e16b58acbd870208686759f14e44",
+    "run352_blob": "04008e51942b131a2d503dafae0b52f529e9a2b5"
+  },
+  "published_blob_sha": {
+    "ANCHORED_ACYCLIC_DECODER_SEAM_RUN357.md": "93cb228e91f4323307057fc141a874da4db6f945",
+    "anchored_open_chain_run357_check.py": "5de709e66e79d54bf588dbec978ecc328e2a8ec5",
+    "anchored-open-chain-run357-validation.json": "a4ec735ca76012edb8160b9479ebc2d1fdfd162d"
+  },
+  "executed_checker_source_sha256": "7b29b79d78b5e95e321c758c18ac7b4a04bf14281cb585f60dddca1bb96ac3c4",
+  "captured_output_sha256": "4ce949868d35cb1c81a8264b193e44824f59a15540f14a30a15b7f5534183158",
+  "checker_assertions": 22926,
+  "executed_commands": [
+    "python -m py_compile anchored_open_chain_run357_check.py",
+    "python anchored_open_chain_run357_check.py > anchored-open-chain-run357-validation.json",
+    "python anchored_open_chain_run357_check.py > anchored-open-chain-run357-recheck.json",
+    "cmp anchored-open-chain-run357-validation.json anchored-open-chain-run357-recheck.json"
+  ],
+  "recheck_byte_identical": true,
+  "local_long_note": "ANCHORED_ACYCLIC_DECODER_SEAM_RUN357.md in local package is a longer derivation; GitHub note is deliberately a compact standalone version",
+  "scope_limits": "No QPT security proof, no original-witness compiler, no iO/RIO/WE instantiation, no native signature/security claims, no production changes.",
+  "literature_review_scope": "Canetti et al. TCC2024 architectural context; Gheorghiu et al. arXiv2609.40289 abstract only; no full quantum paper proof read."
+}

@@ -1,0 +1,33 @@
+Run 39 provenance
+captured_utc=2026-09-23T01:25:00Z
+starting_verified_pr_head=1a772a7bcdb1b3ee8dbdd6e031550f87fe49f58a
+repository=syscoin/PVUGC
+pull_request=1
+scope=research/pq-wkem only
+external_literature_or_web_search=none
+
+Locally executed command:
+python /mnt/data/run39/direct_sum_notch_run39_check.py > /mnt/data/run39/direct-sum-notch-run39.json
+
+Independent local rerun:
+python /mnt/data/run39/direct_sum_notch_run39_check.py > /mnt/data/run39/direct-sum-notch-run39-rerun.json
+cmp /mnt/data/run39/direct-sum-notch-run39.json /mnt/data/run39/direct-sum-notch-run39-rerun.json
+result=byte-identical
+
+Local SHA-256 before GitHub publication:
+DIRECT_SUM_NOTCH_DP_RUN39.md=550ba3c24c9a89c1461961ee587798b35acb69ab5b1bf1ddccd1043591d04b0f
+direct_sum_notch_run39_check.py=a57254230d29a5ea1951425184cd1b3d7b0c9de2f5d38b407954be9ae64e2835
+direct-sum-notch-run39.json=fe9301d83e2fbd04347ba91dd2d84d6ed1cd517ff655ed58624177bd31ebad0e
+
+Executed validation scope:
+- derived the Run-38 (1,2,7,7) local affine system, public affine reference, kernel basis, and seven coordinate transition types;
+- checked source gap = 1/4;
+- checked the canonical direct-sum augmented-nullspace basis for m=1..6;
+- checked full generic quotient TV against histogram-DP TV for m=1..4 and C=1,2;
+- checked exact mandatory/optional signed masses and L1 norms 1/2 and 3/5;
+- computed exact finite DP convergence rows for C=1..6 and m=100,1000,10000;
+- checked the coupling intervals emitted by the checker;
+- computed illustrative polynomial false-family rows.
+
+Interpretation boundary:
+Passing tests validate the finite algebra and the implemented exact likelihood attack. They are not evidence that any surviving construction is secure. The proof note separately states the analytic direct-sum theorem and its scope. No production code was changed locally or requested for publication.

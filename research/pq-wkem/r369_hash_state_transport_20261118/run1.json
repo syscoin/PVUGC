@@ -1,0 +1,26 @@
+{
+  "false": {
+    "accepted_witness_count": 0,
+    "bfs": {
+      "message": null,
+      "path": null,
+      "reachable_nodes": 7
+    },
+    "edge_count": 22,
+    "serialized_capsule_sha256": "46ae6e12b6492553b3209c6c0a73eba73adcb5ef1ba2a156d8f32063ef987c95",
+    "state_count": 13
+  },
+  "sha256_payload": "ba3c12892b30e46404a040c51e713dabef28d19ac316a54a2fe17dd5c5ccd687",
+  "status": "restricted explicit polynomial-state finite automata only; no original source proof or QPT theorem",
+  "true": {
+    "accepted_witness_count": 32,
+    "bfs": {
+      "message": "ba3c12892b30e46404a040c51e713dabef28d19ac316a54a2fe17dd5c5ccd687",
+      "path": "100000",
+      "reachable_nodes": 13
+    },
+    "edge_count": 22,
+    "serialized_capsule_sha256": "e0ec5887edd1cc12833997797a162f73ce4d45665554304d0970a74a00b9a433",
+    "state_count": 13
+  }
+}

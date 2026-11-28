@@ -1,0 +1,13 @@
+{
+  "run": "R103-MONOTONE-FORMULA-LWE-SOURCE-20261105",
+  "status": "RESTRICTED_NONTHRESHOLD_RELEASE_NOT_GENERIC_NP",
+  "checks": 49545,
+  "counts": {
+    "tapes": 41000,
+    "privacy": 152,
+    "reconstruction": 41000,
+    "bindings": 4
+  },
+  "policies": 2,
+  "caveat": "GF(5) privacy; toy hash dependency; not QPT security or arbitrary original NP extraction"
+}

@@ -1,0 +1,17 @@
+{
+  "run_id": "2026-10-31-certified-12bit-coin-release",
+  "date": "2026-10-31",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "start_sha": "f267d64d43a3b66df2c329bb891adfc98632d29e",
+  "prior_exact_research_blob": "e825c07ed97474ec886a4774ae043589cc99785a",
+  "candidate": "C12-source-independent-noise-cert",
+  "public_js_assertions": 7660,
+  "offline_python_assertions": 6331,
+  "offline_python_repeated_identical": true,
+  "external_literature": false,
+  "independent_agents": false,
+  "scope": "research/pq-wkem/ only",
+  "status": "restricted average-case efficiency; generic ORIGINAL reduction UNSOLVED"
+}

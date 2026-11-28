@@ -1,0 +1,9 @@
+{
+  "instances": 32,
+  "run": "R260_EQUIVOCATION_HASH_GATE",
+  "signer_knows_cancel_key_at_setup": 32,
+  "single_signature_no_dual_row": 32,
+  "status": "semantic two-OTS gate; fails actual source integrity and source-key separation",
+  "two_conflicting_signatures_open": 32,
+  "two_unrelated_signatures_open": 32
+}

@@ -1,0 +1,94 @@
+{
+  "augmented_partial_assignment_transition_checks": 37,
+  "exact_false_census": {
+    "N": 4,
+    "R": 1,
+    "m": 3,
+    "minimum_rank": 9,
+    "nonzero_matrices": 4912,
+    "p": 17,
+    "rank_histogram": {
+      "9": 448,
+      "10": 4464
+    },
+    "source_dimension": 3
+  },
+  "exhaustive_true_lowrank_extraction": {
+    "N": 3,
+    "R": 1,
+    "extracted": 40,
+    "m": 2,
+    "rank_le_R_nonzero": 40,
+    "source_dimension": 4
+  },
+  "generic_false_minimum_coefficient_support_lower_bound": 4,
+  "generic_false_sparse_support_subsets_checked": 92,
+  "honest_rank1_and_base_block_checks": 24,
+  "injective_assignment_labels_checked": 40,
+  "run82_sparse_family_rejection": {
+    "N": 4,
+    "R": 1,
+    "m": 4,
+    "nonzero_constraint_residuals": 43,
+    "support": 4
+  },
+  "scope": "product-feature source compiler algebra/finite controls only; no PPT/QPT hiding theorem",
+  "seed": 202609250035,
+  "size_ledger": [
+    {
+      "N": 32,
+      "R": 5,
+      "aug_columns": 2112,
+      "aug_entries": 5637848832,
+      "base_rows": 2669436,
+      "feature_m": 64,
+      "field_bits_at_least": 33
+    },
+    {
+      "N": 64,
+      "R": 6,
+      "aug_columns": 8320,
+      "aug_entries": 384268684800,
+      "base_rows": 46186140,
+      "feature_m": 128,
+      "field_bits_at_least": 65
+    },
+    {
+      "N": 128,
+      "R": 7,
+      "aug_columns": 33024,
+      "aug_entries": 26214824503296,
+      "base_rows": 793811304,
+      "feature_m": 256,
+      "field_bits_at_least": 129
+    },
+    {
+      "N": 256,
+      "R": 8,
+      "aug_columns": 131584,
+      "aug_entries": 1783120604728320,
+      "base_rows": 13551196230,
+      "feature_m": 512,
+      "field_bits_at_least": 257
+    },
+    {
+      "N": 512,
+      "R": 9,
+      "aug_columns": 525312,
+      "aug_entries": 120764483667210240,
+      "base_rows": 229890967020,
+      "feature_m": 1024,
+      "field_bits_at_least": 513
+    },
+    {
+      "N": 1024,
+      "R": 10,
+      "aug_columns": 2099200,
+      "aug_entries": 8141930516628480000,
+      "base_rows": 3878587326900,
+      "feature_m": 2048,
+      "field_bits_at_least": 1025
+    }
+  ],
+  "status": "PASS"
+}

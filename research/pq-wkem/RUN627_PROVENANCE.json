@@ -1,0 +1,24 @@
+{
+  "research_id": 627,
+  "date": "2026-10-19",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "2a24fba14f341c82ee796554c09b4ed59fad8d0b",
+  "scope": "forest uniformity, gauge orbit classification, full t-cycle higher-order leakage; not a witness KEM break",
+  "honest": "classical PPT",
+  "attacker": "arbitrary QPT; explicit deterministic classical PPT distinguisher",
+  "validation": {
+    "compact_checker_assertions": 4698,
+    "expanded_checker_assertions": 4819,
+    "python_compile": "passed",
+    "deterministic_replay": "passed"
+  },
+  "source": "live exact Run626 note blob e387250835417df6b8b2809d34ce0b19321a11a3",
+  "github_actions": [
+    "get_pr_info",
+    "fetch",
+    "fetch_file"
+  ],
+  "notes": "Published note and checker are compact; extended proof and independent checker are preserved in local Run627 archive. No claim of true-instance QPT source extraction, security of CCMR/RIO, native PQ Bitcoin readiness, or production change."
+}

@@ -1,0 +1,26 @@
+{
+  "run": 395,
+  "run_date": "2026-10-09",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "bba5c4bb4e37144a390b40f0b58a7ff633d7a1f1",
+  "base_tree": "97f9c31ea847daf368c09087e7fc87aa8a477f8d",
+  "checks": {
+    "executed": "V8 runCheck() as contained in exact saved checker",
+    "assertions": 280308,
+    "returned_result": "PASS"
+  },
+  "reads": [
+    "get_pr_info",
+    "fetch recent issue comments",
+    "fetch_file Run393",
+    "fetch_file Run394",
+    "fetch_file Run259",
+    "get_pr_info recheck",
+    "fetch base git commit",
+    "fetch targeted duplicate path (expected 404)"
+  ],
+  "publication": "create_tree only; pending commit, ref and comment",
+  "scope": "No practical WKEM security proof"
+}

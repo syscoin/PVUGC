@@ -1,0 +1,62 @@
+{
+  "cases": [
+    {
+      "adjacent_valid_pairs": 29,
+      "d": 3,
+      "full_subtree_merges": 29,
+      "full_subtree_sizes": {
+        "1": 29
+      },
+      "ideal_random_expected_keys": 479.74996948242097,
+      "key_to_valid_ratio": 0.9417670682730924,
+      "minimum_exact_prefix_keys": 469,
+      "n": 12,
+      "valid_fraction": 0.12158203125,
+      "valid_inputs": 498
+    },
+    {
+      "adjacent_valid_pairs": 31,
+      "d": 4,
+      "full_subtree_merges": 31,
+      "full_subtree_sizes": {
+        "1": 31
+      },
+      "ideal_random_expected_keys": 991.9374995231628,
+      "key_to_valid_ratio": 0.9683673469387755,
+      "minimum_exact_prefix_keys": 949,
+      "n": 14,
+      "valid_fraction": 0.059814453125,
+      "valid_inputs": 980
+    },
+    {
+      "adjacent_valid_pairs": 131,
+      "d": 4,
+      "full_subtree_merges": 132,
+      "full_subtree_sizes": {
+        "1": 131,
+        "2": 1
+      },
+      "ideal_random_expected_keys": 3967.7499980926514,
+      "key_to_valid_ratio": 0.9684437006932823,
+      "minimum_exact_prefix_keys": 4051,
+      "n": 16,
+      "valid_fraction": 0.0638275146484375,
+      "valid_inputs": 4183
+    },
+    {
+      "adjacent_valid_pairs": 15,
+      "d": 6,
+      "full_subtree_merges": 15,
+      "full_subtree_sizes": {
+        "1": 15
+      },
+      "ideal_random_expected_keys": 1015.9990234374709,
+      "key_to_valid_ratio": 0.985014985014985,
+      "minimum_exact_prefix_keys": 986,
+      "n": 16,
+      "valid_fraction": 0.0152740478515625,
+      "valid_inputs": 1001
+    }
+  ],
+  "model": "bounded 12-16 bit synthetic header encodings; actual SHA256d computation; random-function expectation is an idealization"
+}

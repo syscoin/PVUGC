@@ -1,0 +1,38 @@
+{
+  "assertions": 2978,
+  "cmv_projection_fixture": {
+    "cmv_rank_lt_r_probability": 0.00044076375523335426,
+    "fixture_r": 3,
+    "fixture_t": 8,
+    "full_factor_failure_probability": 0.027130603790283203
+  },
+  "deterministic_attack_fixture_count": 32,
+  "exhaustive_independence_fixture": {
+    "clean_instances": 2688,
+    "exact_clean_fraction": "2688/4096",
+    "expected_fraction": "21/32",
+    "total_free_instances": 4096
+  },
+  "python": "3.13.5",
+  "run": 211,
+  "sample_parameters": {
+    "Y_corank_at_least_2_probability_log2": -46.584962574428005,
+    "all_bad_Y_probability_log2": -22.0000001146551,
+    "classical_expected_trials_log2": 50.984561902604426,
+    "clean_kernel_marked_fraction_log2": -50.984561902604426,
+    "d": 53,
+    "independence_constant": 0.5775761901732048,
+    "principal_bad_probability_log2": -22.000000171982656,
+    "quantum_amplitude_iterations_log2": 25.492280951302213,
+    "r": 50,
+    "rs_minus_t": 22,
+    "s": 3,
+    "t": 128,
+    "uniform_false_positive_bound_log2": -104.39231742277876
+  },
+  "security_margin_examples": {
+    "if_uniform_rank_error_target_is_2^-128_simple_gap_sqrt_bound": 12,
+    "illustrative_t_if_r_256_and_gap_12": 268,
+    "lambda_128_min_r_for_quantum_kernel_exponent": 256
+  }
+}

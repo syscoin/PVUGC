@@ -1,0 +1,14 @@
+{
+  "run": 516,
+  "status": "PASS",
+  "counts": {
+    "exhaustiveS8": 40320,
+    "S8Recovered": 80640,
+    "witnessS16": 384,
+    "S16Recovered": 768,
+    "untaggedRecovered": 768,
+    "twoRefS16": 256,
+    "twoRefRecovered": 512
+  },
+  "scope": "ideal claim-sector action coupling; public cross-sector switching falsifier, not practical cryptography"
+}

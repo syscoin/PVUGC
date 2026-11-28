@@ -1,0 +1,74 @@
+{
+  "run": 92,
+  "date": "2026-09-25",
+  "repository": "syscoin/PVUGC",
+  "pull_request": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_head": "ff14c55c7d3449d692d0f1da0243239f2472bd21",
+  "scope": "research-only GapMDP-to-short-Euclidean-kernel source-interface analysis; no production changes",
+  "github_inputs": [
+    {
+      "path": "research/pq-wkem/SPECTRAL_DIMENSION_FLOOR_RUN89.md",
+      "blob": "0f93693ad51f7d84c249fd02ffa361bcadd3dd84"
+    },
+    {
+      "path": "research/pq-wkem/LWE_DIRECTIONAL_TRANSPORT_RUN72.md",
+      "blob": "4fefd6c364a76fd12fe76169ddbec47e486c786b"
+    },
+    {
+      "path": "research/pq-wkem/MASKED_VERIFIER_ORACLE_RUN76.md",
+      "blob": "1de16fa3048233c4bbad2af6e746d20033a811de"
+    },
+    {
+      "path": "research/pq-wkem/SHORT_KERNEL_LWE_BOUNDARY.md",
+      "blob": "8b630ef9f0bbafeb2eaa153745aff49ad66ea121"
+    },
+    {
+      "path": "research/pq-wkem/SIS_RANDOMIZED_SHORT_KERNEL_LIFT_RUN42.md",
+      "blob": "f8634c5dd2bc29796f152ebde67064fe55045cc9"
+    },
+    {
+      "path": "research/pq-wkem/literature-20260924/ASSESSMENT.md",
+      "blob": "8a1bc1db08156c9ff6410f59963c1af3a0d5a924"
+    }
+  ],
+  "literature_checked": [
+    {
+      "work": "Zhengzhong Jin, Witness Encryption for NP from SNARGs and Groups, ePrint 2026/2063",
+      "author_page": "https://zhengzhongjin.github.io/",
+      "eprint": "https://eprint.iacr.org/2026/2063",
+      "evidence": "author page and current ePrint metadata/abstract-level statement",
+      "limitation": "full paper/proof inaccessible through available primary-source path in this run; honest codeword amplitude and exact low-weight source-extractor threshold remain unverified"
+    },
+    {
+      "work": "Dumer, Micciancio, Sudan, Hardness of Approximating the Minimum Distance of a Linear Code",
+      "source": "https://eccc.weizmann.ac.il/eccc-reports/1999/TR99-029/index.html",
+      "evidence": "primary ECCC abstract/report metadata; hardness over every finite field including binary",
+      "limitation": "complexity hardness only; not a QPT cryptographic assumption or source-preserving compressed reduction"
+    }
+  ],
+  "new_claims": [
+    "For centered field vectors, Hamming weight is at most squared l2 norm.",
+    "A GapMDP source with honest centered amplitude B converts a Hamming gap gamma into Euclidean gap sqrt(gamma)/B.",
+    "A supplied codeword of l2 norm at most B*sqrt(d) has support at most B^2*d, so a source extractor through that threshold yields the original witness.",
+    "Any nonzero linear symbol encoder F_p -> F_p^L has worst-case centered Linf amplitude (p-1)/2.",
+    "Canonical radix decoding has an explicit support-two kernel, and homogeneous linear checks cannot enforce canonicality for every field symbol because valid power encodings span the full digit space."
+  ],
+  "quantum_status": {
+    "honest_algorithms": "classical polynomial-time conditional interface",
+    "adversary_security": "not proved",
+    "qpt_false_statement_hiding": "UNPROVED",
+    "arbitrary_qpt_final_key_to_original_witness_or_pq_break": "UNPROVED",
+    "new_reduction": "straight-line supplied-representation algebra only; no rewinding/QROM/superposition-query claim"
+  },
+  "checker": "gapmdp_short_kernel_bridge_run92_check.py",
+  "captured_output": "gapmdp-short-kernel-bridge-run92-validation.json",
+  "checker_runs": 2,
+  "checker_outputs_byte_identical": true,
+  "notes": "No prior blocked Run-86/87/88/90/91 publication was retried or rerouted. This run is new coverage only.",
+  "artifact_sha256": {
+    "proof": "eb8ee6c9c7d8cf202f50c289fcd2c8cb9c38f76d7356453859c4d65df9e35acd",
+    "checker": "532846ba5c73321f9a70e638ac2f954310f95676dffadda51c4c7e0241260ed6",
+    "captured_output": "91d56fa9d85ec65ad7d4d3e4d455d37d1a0acb9e3c98a5e51594b08caf4d02c5"
+  }
+}

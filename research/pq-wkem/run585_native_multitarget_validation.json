@@ -1,0 +1,132 @@
+{
+  "run": 585,
+  "assertions_passed": 224,
+  "fixtures": {
+    "shared": 34,
+    "salted": 34,
+    "upstream_context": 7
+  },
+  "parameter_ledger": [
+    {
+      "native_secret_bits": 128,
+      "log2_target_count": 0,
+      "shared_log2_root_queries": 64,
+      "per_claim_seeded_log2_root_queries": 64
+    },
+    {
+      "native_secret_bits": 128,
+      "log2_target_count": 10,
+      "shared_log2_root_queries": 59,
+      "per_claim_seeded_log2_root_queries": 64
+    },
+    {
+      "native_secret_bits": 128,
+      "log2_target_count": 20,
+      "shared_log2_root_queries": 54,
+      "per_claim_seeded_log2_root_queries": 64
+    },
+    {
+      "native_secret_bits": 128,
+      "log2_target_count": 32,
+      "shared_log2_root_queries": 48,
+      "per_claim_seeded_log2_root_queries": 64
+    },
+    {
+      "native_secret_bits": 192,
+      "log2_target_count": 0,
+      "shared_log2_root_queries": 96,
+      "per_claim_seeded_log2_root_queries": 96
+    },
+    {
+      "native_secret_bits": 192,
+      "log2_target_count": 10,
+      "shared_log2_root_queries": 91,
+      "per_claim_seeded_log2_root_queries": 96
+    },
+    {
+      "native_secret_bits": 192,
+      "log2_target_count": 20,
+      "shared_log2_root_queries": 86,
+      "per_claim_seeded_log2_root_queries": 96
+    },
+    {
+      "native_secret_bits": 192,
+      "log2_target_count": 32,
+      "shared_log2_root_queries": 80,
+      "per_claim_seeded_log2_root_queries": 96
+    },
+    {
+      "native_secret_bits": 256,
+      "log2_target_count": 0,
+      "shared_log2_root_queries": 128,
+      "per_claim_seeded_log2_root_queries": 128
+    },
+    {
+      "native_secret_bits": 256,
+      "log2_target_count": 10,
+      "shared_log2_root_queries": 123,
+      "per_claim_seeded_log2_root_queries": 128
+    },
+    {
+      "native_secret_bits": 256,
+      "log2_target_count": 20,
+      "shared_log2_root_queries": 118,
+      "per_claim_seeded_log2_root_queries": 128
+    },
+    {
+      "native_secret_bits": 256,
+      "log2_target_count": 32,
+      "shared_log2_root_queries": 112,
+      "per_claim_seeded_log2_root_queries": 128
+    },
+    {
+      "native_secret_bits": 276,
+      "log2_target_count": 0,
+      "shared_log2_root_queries": 138,
+      "per_claim_seeded_log2_root_queries": 138
+    },
+    {
+      "native_secret_bits": 276,
+      "log2_target_count": 10,
+      "shared_log2_root_queries": 133,
+      "per_claim_seeded_log2_root_queries": 138
+    },
+    {
+      "native_secret_bits": 276,
+      "log2_target_count": 20,
+      "shared_log2_root_queries": 128,
+      "per_claim_seeded_log2_root_queries": 138
+    },
+    {
+      "native_secret_bits": 276,
+      "log2_target_count": 32,
+      "shared_log2_root_queries": 122,
+      "per_claim_seeded_log2_root_queries": 138
+    },
+    {
+      "native_secret_bits": 288,
+      "log2_target_count": 0,
+      "shared_log2_root_queries": 144,
+      "per_claim_seeded_log2_root_queries": 144
+    },
+    {
+      "native_secret_bits": 288,
+      "log2_target_count": 10,
+      "shared_log2_root_queries": 139,
+      "per_claim_seeded_log2_root_queries": 144
+    },
+    {
+      "native_secret_bits": 288,
+      "log2_target_count": 20,
+      "shared_log2_root_queries": 134,
+      "per_claim_seeded_log2_root_queries": 144
+    },
+    {
+      "native_secret_bits": 288,
+      "log2_target_count": 32,
+      "shared_log2_root_queries": 128,
+      "per_claim_seeded_log2_root_queries": 144
+    }
+  ],
+  "limitation": "Toy permutations/cardinality and query arithmetic only; no SLH-DSA implementation, no quantum circuit, no QPT WKEM security claim."
+}

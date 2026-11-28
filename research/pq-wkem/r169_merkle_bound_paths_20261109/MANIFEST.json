@@ -1,0 +1,17 @@
+{
+  "run": "R169-MBVP-20261109",
+  "repo": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "observed_start_head": "959b23f80d66b70a39189836e78a5f8b2f951796",
+  "observed_related_blob": "071dcec5ccc827c91db6c356504652e11e9c90fb",
+  "status": "conditional Merkle collision binding, no original-dependent protected release",
+  "checker_sha256": "5d0328743913000f4572daa6f271cb8d77ca82bce5ff536fb1e3cad252f0db0e",
+  "captured_sha256": "1ce409f6bb5f6ce912bd35ceef55f68f3cad3ff659ad007167906091139c1010",
+  "executed": true,
+  "internet": false,
+  "independent_agent": false,
+  "qpt_hardness_tested": false,
+  "deployed_source_verified": false,
+  "complete_wkem": false
+}

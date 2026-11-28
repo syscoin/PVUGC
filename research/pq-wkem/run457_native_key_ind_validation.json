@@ -1,0 +1,13 @@
+{
+  "run": 457,
+  "model": "public native signing-verification-key candidate test",
+  "algorithm": "Ed25519 NON-PQ diagnostic",
+  "fixture_count": 12,
+  "real_accepted": 12,
+  "independent_accepted": 0,
+  "independent_trials": 132,
+  "wrong_context_accepted": 0,
+  "assertions": 312,
+  "public_keys_sha256": "c9da675e5d38275c90ff341d4afca90de8afcef067423c7cdfc38ce67d224418",
+  "claim": "finite diagnostic only, not a cryptographic or QPT security proof"
+}

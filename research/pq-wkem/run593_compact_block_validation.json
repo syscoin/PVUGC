@@ -1,0 +1,247 @@
+{
+  "algebra_pairs": 64,
+  "assertions_passed": 751,
+  "claims": {
+    "full_aadp_attack_implemented": false,
+    "generic_source_rank_bound": true,
+    "new_pq_security_proof": false,
+    "production_modification": false
+  },
+  "field_prime": 257,
+  "full_ciphertext_quotient_slices": 12,
+  "gate_tests": [
+    {
+      "abcd": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "block": 1,
+      "rank": 2
+    },
+    {
+      "abcd": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "block": 1,
+      "rank": 2
+    },
+    {
+      "abcd": [
+        2,
+        3,
+        1,
+        6
+      ],
+      "block": 1,
+      "rank": 2
+    },
+    {
+      "abcd": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "block": 1,
+      "rank": 4
+    },
+    {
+      "abcd": [
+        2,
+        3,
+        1,
+        5
+      ],
+      "block": 1,
+      "rank": 4
+    },
+    {
+      "abcd": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "block": 2,
+      "rank": 4
+    },
+    {
+      "abcd": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "block": 2,
+      "rank": 4
+    },
+    {
+      "abcd": [
+        2,
+        3,
+        1,
+        6
+      ],
+      "block": 2,
+      "rank": 4
+    },
+    {
+      "abcd": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "block": 2,
+      "rank": 8
+    },
+    {
+      "abcd": [
+        2,
+        3,
+        1,
+        5
+      ],
+      "block": 2,
+      "rank": 8
+    },
+    {
+      "abcd": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "block": 3,
+      "rank": 6
+    },
+    {
+      "abcd": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "block": 3,
+      "rank": 6
+    },
+    {
+      "abcd": [
+        2,
+        3,
+        1,
+        6
+      ],
+      "block": 3,
+      "rank": 6
+    },
+    {
+      "abcd": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "block": 3,
+      "rank": 12
+    },
+    {
+      "abcd": [
+        2,
+        3,
+        1,
+        5
+      ],
+      "block": 3,
+      "rank": 12
+    }
+  ],
+  "group_algebra_dimension": 6,
+  "illustrative_dense_sizes_not_security_parameters": [
+    {
+      "block": 1,
+      "bytes_per_field_element_assumed": 32,
+      "coefficient_count_assumed": 15001,
+      "dense_bytes": 432057602400032,
+      "gates": 15000,
+      "matrix_size": 30001
+    },
+    {
+      "block": 2,
+      "bytes_per_field_element_assumed": 32,
+      "coefficient_count_assumed": 15001,
+      "dense_bytes": 1728172804320032,
+      "gates": 15000,
+      "matrix_size": 60001
+    }
+  ],
+  "normalized_commutator_diagnostics": [
+    {
+      "anchor_rank": 25,
+      "block": 1,
+      "commutator_rank": 10,
+      "seed": 800,
+      "size": 25
+    },
+    {
+      "anchor_rank": 25,
+      "block": 1,
+      "commutator_rank": 10,
+      "seed": 801,
+      "size": 25
+    },
+    {
+      "anchor_rank": 25,
+      "block": 1,
+      "commutator_rank": 10,
+      "seed": 802,
+      "size": 25
+    },
+    {
+      "anchor_rank": 25,
+      "block": 1,
+      "commutator_rank": 10,
+      "seed": 803,
+      "size": 25
+    },
+    {
+      "anchor_rank": 49,
+      "block": 2,
+      "commutator_rank": 49,
+      "seed": 800,
+      "size": 49
+    },
+    {
+      "anchor_rank": 49,
+      "block": 2,
+      "commutator_rank": 49,
+      "seed": 801,
+      "size": 49
+    },
+    {
+      "anchor_rank": 49,
+      "block": 2,
+      "commutator_rank": 49,
+      "seed": 802,
+      "size": 49
+    },
+    {
+      "anchor_rank": 49,
+      "block": 2,
+      "commutator_rank": 49,
+      "seed": 803,
+      "size": 49
+    }
+  ],
+  "quotient_message_cases": 256,
+  "regular_representation_entries": 36,
+  "research_id": "593",
+  "status": "PASS",
+  "witness_cases": 64,
+  "zero_cofactor_cases": 0
+}

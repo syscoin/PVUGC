@@ -1,0 +1,30 @@
+{
+  "run": "R97-TWO-WITNESS-LWE-CHALLENGE-20261105",
+  "status": "NO_POSITIVE_CONSTRUCTION_ADVANCE",
+  "assertions": 3566,
+  "exact_census": [
+    {
+      "q": 7,
+      "total": 441,
+      "both": 81,
+      "numerator": 9,
+      "denominator": 49
+    },
+    {
+      "q": 11,
+      "total": 1089,
+      "both": 81,
+      "numerator": 9,
+      "denominator": 121
+    },
+    {
+      "q": 13,
+      "total": 1521,
+      "both": 81,
+      "numerator": 9,
+      "denominator": 169
+    }
+  ],
+  "scope": "fixed distinct prescribed secrets independent of honest LWE challenge A; classical algebra check, no QPT claim",
+  "provenance": "executed V8 function source; no web"
+}

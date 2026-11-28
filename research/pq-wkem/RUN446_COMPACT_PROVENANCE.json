@@ -1,0 +1,35 @@
+{
+  "run": 446,
+  "repository": "syscoin/PVUGC",
+  "pr": 1,
+  "branch": "research/pq-wkem-validation-20260918",
+  "starting_sha": "6172bd8549734708878ad818a8c736f9d481f590",
+  "source_reads": [
+    "get_pr_info",
+    "fetch_issue_comments",
+    "fetch_file:CLZ",
+    "fetch_file:Run444",
+    "fetch_file:Run259",
+    "fetch:GitRef",
+    "fetch:GitCommit"
+  ],
+  "exact_dependency_blobs": [
+    "c19d9d9cd515140e3ce62eac960cd548c0add622",
+    "50eb9ccf38fa7336ea22a9cee199e3b82d6be33d",
+    "c7f3b77f0273ca1cbe6f0b31c1a086b8eb3acbf2"
+  ],
+  "checker_executed": "run446CompactCheck()",
+  "checker_assertions": 3124,
+  "compiler": "JavaScript function executed in connected GitHub orchestration isolate",
+  "reproducibility": "standalone JS code is function.toString() plus invocation; exact source byte readback required",
+  "toy_not_one_way": true,
+  "extended_python_local_assertions": 49256,
+  "published_files": [
+    "RUN446_SNARG_FALSE_PROOF_IO_GAP_COMPACT.md",
+    "run446_compact_check.js",
+    "run446_compact_validation.json",
+    "RUN446_COMPACT_PROVENANCE.json"
+  ],
+  "security_conclusion": "negative extensional equivalence counterexample, not a QPT break or complete WKEM",
+  "production_unchanged": true
+}

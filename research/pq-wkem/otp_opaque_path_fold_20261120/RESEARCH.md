@@ -1,0 +1,49 @@
+# OTP — opaque-token path-folding repair of PSTC (nonqualifying source-release preflight)
+
+## Provenance and exact open step
+
+Read current open/draft syscoin/PVUGC PR #1 at head `a7f220ea4ca62f525967100a2566ac61bbe27337`, branch `research/pq-wkem-validation-20260918`; exact latest note `research/pq-wkem/pstc_semantic_state_20261120/RESEARCH.md` blob `ecac90316671719f59351e382f62fd25c8c04818`, plus its HSA predecessor blob `d34335e127a88a2c0799b0fd2e6e6bc3d4df870b` and R403 predecessor blob `3d13cabb272634ca127bd9567fe55694f1dc20db`. A narrow issue-comment query since 2026-11-19 returned no comments. No new Core #609 source claim or Core test; Core remains read-only. No web or outside literature accessed.
+
+PSTC's unfinished step was to conceal the *semantic-state identity/topology* so an observer cannot breadth-first-search the public polynomial-state graph, yet allow arbitrary future qualifying ORIGINAL witnesses to use a public finite capsule to reach one frozen cancellation capability. This pass targets **one specific repair**: keep only hash-opaque state tokens, publish hash-locked transition rows, and remove all explicit public state identifiers. This is a different hypothesis from PSTC's explicit-graph assumption. Before further synthesis, determine if the opaque labeling genuinely stops public path exploration or only hides cosmetic names.
+
+Original relation stays `R_x = R_BTC_greater OR R_specific_burn_fault OR R_qualified_Syscoin_inc/tagfault`, with exact modern contextual AuxPoW, actual ancestry, relevant claim, BTC anchor, LC depth, finite authenticated burn invalidity, source/carrier proof, deadline/reset and exact native cancellation/message/VK/capsule binding. No conversion to an easier arbitrary hash puzzle or fabricated OTS label is allowed. Neither this note nor the prior notes implement this original verifier inside a capsule.
+
+## Candidate: deterministic hash-opaque state tokens
+
+Let a hypothetical deterministic, layered verifier have polynomially many semantic states `q` and deterministic public next-state map `delta_j(q,b)`. Builder selects uniformly independent hidden lambda-bit tokens `L_(j,q)`. It does *not* publish q or delta. It publishes:
+- the unique start token `L_(0,q0)`;
+- an unordered set of transition records with selector `tag_(j,q,b)=H("OTP/tag"||sid||j||b||L_(j,q))` and body `ct_(j,q,b)=L_(j+1,delta_j(q,b)) XOR H("OTP/step"||sid||j||b||L_(j,q))`;
+- one accepting-terminal pad `D_q=S XOR H("OTP/accept"||sid||q_bind||L_(L,q))` per accepted terminal state, with lookup tags computed from terminal token and public session context. For this preflight `q_bind` must not require unrevealed q; replace it by a public terminal-row identifier or hash of the terminal token for evaluation. If that mapping cannot be made public, honest Open is also undefined.
+
+`Open(C,w)` begins at the public start label, processes each bit with a public tag lookup and XOR decrypt, then decrypts the accepting pad. It has classical-PPT time provided the builder can enumerate polynomially many states/records. Different accepted witnesses can end at the same or different accepted q; each D_q is precomputed from the same frozen S. The hash-opaque tokens eliminate the explicit state-ID listing that PSTC's BFS algorithm used.
+
+### The still-public copy-and-explore operation
+
+The above repair is **not secure**, and one can prove this without knowing hidden q or guessing H preimages. The current token is a *classical copyable string*. Starting with the public token, an adversary can call exactly the same public transition lookup on **both** b=0 and b=1. Every valid transition returns the next canonical token. It may be opaque, but it is a completely comparable byte string. Deduplicating equal pairs (j,token) gives at most one queue entry for each reachable builder-generated token at that layer. Under polynomial state/row count, a breadth-first traversal finds a reachable accepted token and stores its predecessor bits in polynomial time.
+
+**Opaque-token closure lemma (restricted, exact).** Let `C` provide a deterministic, publicly executable `Step_C(j,t,b)` for b in {0,1}, a public start t0 and a public `Accept_C(j,t)` or output gate. Suppose all reachable `(j,t)` pairs have at most `M=poly(lambda)` *distinct serialized strings*, with length at most L=poly(lambda), and that every reachable accepting path decodes to an ACTUAL qualifying ORIGINAL certificate under the full relation. Then one classical algorithm explores at most 2M step calls and M acceptance calls, stores `O(M+L)` records, and returns an actual certificate whenever an accepting path exists. The algorithm does not need public semantic state IDs, keys, pseudonyms, a source preimage, or prior knowledge of a future fork. The only graph equality test is equality of the byte strings that the honest public step algorithm already returns. If the accepting path is public-source-hard, the compiler has made it easy or has performed source work in setup.
+
+Proof: queue (0,t0,empty prefix), pop, query both successors, deduplicate exactly on (j+1,t'), and save one predecessor. A deterministic Markov `Step_C` and terminal `Accept_C` depend on nothing besides the represented state and level. Any path discarded as a duplicate has the same future Step/Accept possibilities as its retained representative. Inductively a representative of every reachable token class is explored. A reachable accepting class yields a bit path; whole-graph soundness makes the decoded bit path an ORIGINAL certificate. Total calls are bounded as above. This is a classical attack and so included in the QPT threat class, but it is **not** a theorem about arbitrary concealed or rerandomizable circuit encodings.
+
+This strengthens the PSTC regression: hiding *names* and the visible graph is insufficient as long as token equality and local branching remain publicly accessible. A source verifier in a separate wrapper cannot repair a publicly routable gate.
+
+## Attempted repair: path-randomize the token representation
+
+Try to ensure that paths reaching the same semantic q have independently rerandomized opaque token strings, defeating deduplication. A public hash-only token encoder must still enable Step for arbitrary future witnesses from the frozen finite C.
+
+1. **Reversible XOR pad:** `t=(r, s_q XOR H("OTP/mask"||r))` with public r permits any observer to recover the canonical state seed `s_q`. They then deduplicate on s_q, so the old traversal returns. This fails without attacking SHA.
+
+2. **One-way SHA seal:** `t=(r, H("OTP/seal"||s_q||r))` does not expose `s_q` to the evaluator. But for a fresh, future r' the usual public SHA interface supplies no way to compute `H("OTP/seal"||s_q||r')` from one old sealed token, without knowing s_q, precomputing the new response, or adding an independently specified state-transform mechanism. The builder can publish selected (r,label) pairs but cannot precompute unbounded future randomized paths in a polynomial-size capsule. This observation is narrowly about this hash-seal attempt, **not** an impossibility of public rerandomization from all cryptography.
+
+3. **Source-hash state salt:** choosing r from `H(Encode(x,w_prefix))` only postpones canonicalization. If Step can compute both legal next tokens for a prefix, the adversary forks the prefix token itself; no ORIGINAL proof is yet required to evaluate raw SHA on candidate bit strings. A certificate-local public verifier called only after secret recovery is bypassable.
+
+The desired escape would have to satisfy, jointly, an actual finite classical-PPT Build, public Next for a legitimate complete ORIGINAL certificate, one frozen S for every legitimate witness, and cryptographic inability to explore or splice invalid prefixes despite free copying of all public bytes. A private transition signer, trusted hardware, hidden online authority, exponential precomputation or assumption of an ideal `SourceNext` is not a solution. A postulated public rerandomizable token transform without independently instantiated hash-only algorithms is also not a solution.
+
+## Security boundary / decision
+
+**Rejected at symbolic preflight as a source-release construction.** The only proved extension is a restricted canonical-token exploration lemma; there is no useful TRUE-source work lower bound, full-public FALSE simulator, QPT hard-TRUE extraction for arbitrary adversarial processing, malicious-setup or sibling-capsule proof. The lemma produces an original certificate if its exact strong graph-soundness premise holds; it does not prove native cancellation signature leakage or universal impossibility. Conversely, if graph soundness is removed, a discovered accepting token might be a forged local trace rather than source evidence: that is not a satisfactory repair.
+
+This run did not implement FE/WE, a source-conditioned signed gate, actual source witnesses or a runnable checker. It performed exact symbolic construction/repair reasoning on the live latest candidate. No user advance report, ordinary PR comment, Core changes, production changes, deployment or automation changes. Keep the recurring research task enabled.
+
+Next exact missing equation (not a renamed assumption):
+`C=Build_inc(x_W,S;rho)`, `Open_inc(C,w)=S` for **every** fully qualified ORIGINAL `R_x(w)=1`, with a *serialized* public cryptographic restriction preventing global invalid-prefix exploration and a jointly simulatable complete public view. An independently instantiated construction must give a reduction from arbitrary hard-TRUE QPT recovery/accepted native signing to an ACTUAL original certificate or justified hash/native break. More hashed state names or guessed salts should not be attempted without an algorithm that survives the above attack.

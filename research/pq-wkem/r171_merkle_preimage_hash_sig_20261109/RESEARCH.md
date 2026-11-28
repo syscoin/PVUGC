@@ -1,0 +1,52 @@
+# R171 — Merkle-top-preimage / hash-signature fiber, a constructive restricted source correlation and its source-soundness boundary
+
+**Status:** A real hash-only *restricted* public release primitive with a straight-line preimage extractor, but **NOT** the required generic ORIGINAL witness-KEM, native SLH-DSA implementation, or completed Syscoin PoW release. This is intentionally preserved as a falsifiable building-block experiment; do not count it as an ORIGINAL breakthrough or notify as such.
+
+## Continuity and selected unfinished step
+
+Repository `syscoin/PVUGC`, PR #1, existing branch `research/pq-wkem-validation-20260918`. Starting head observed `b03e86b0186bd1367260450fd68c820af51500e6`, draft/open/unmerged. Read R170 at blob `85b19520ff428f1a221628a9f59b3d062577a57b`. Its black-box QROM transplant proof excludes public-source-oracle gates but leaves genuinely nonblackbox SHA correlations to explore. This run explores an **actual same-preimage correlation across different Merkle witnesses**, followed by a concrete hash-only signature carrier and independent ORIGINAL-source bypass tests. No external sources, LWE, DLog, oracle-only token issuers or autonomous work between runs.
+
+## Constructive lemma: one top preimage shared by every path in one Merkle tree
+
+Let `D(u)=SHA256(SHA256(u))` and let a fixed complete SHA256d Merkle tree with >=2 leaves have 32-byte root `y`. Its top level consists of child hashes `a,b`, so `y=D(a||b)`. For *every* valid leaf-to-root membership proof in **this same fixed tree**, its last hashing step is exactly the same ordered pair `p=a||b`. A public derivation `ExtractTop(leaf, direction, siblings)` computes `p` in O(log n) hashes. Hence for every such proof `w`,
+
+    D(ExtractTop(w)) = y,
+    ExtractTop(w) = SAME p (no distinct-certificate canonicalization needed).
+
+This is an exact identity for one fixed tree, not a secrecy claim and not a proof about two independent trees with equal roots. Distinct top children of two different trees yielding the same y would be a SHA256d collision.
+
+This supplies a **real**, preexisting source-to-token equation for *Merkle inclusion proofs of a fixed commitment*: the setup can know y without storing every leaf/path, and any inclusion proof reveals p. Unlike prior independent hash-token tables, it is not asking a future witness to match a random preset table entry. However `p` is not necessarily secret (the block/tree creator already knows it), so it is not by itself a safe future-source capability.
+
+## Fixed-message Lamport partial signature carrier (fully explicit, deliberately non-native)
+
+Take `F: {0,1}^* -> {0,1}^k`, e.g. SHA256d with precisely specified input-length/domain formatting. For a fixed message bit-vector `m` and a selected signing slot j, choose all Lamport secret-key elements except the one required at position `(j,m_j)`; set its public verification element equal to a **given** target `y`, and construct the full public verification key from that element and known other leaves. Publish the pre-signed message's other private leaf elements as a partial signature `pi`.
+
+`Finish(pi,w)` inserts any supplied `u` at slot j and runs the ordinary hash-only signature verifier. This accepts if and only if `F(u)=y` (assuming other slots are correctly fixed and verifier enforces the fixed message). A straight-line extractor from *any* accepted completed signature reads slot j and outputs `u` satisfying `F(u)=y`. This holds even when the attacking signer is QPT, without rewinding or a supplied representation: acceptance itself contains a preimage. A false preimage instance cannot yield an accepted signature absent a verifier/hash correctness failure. With Merkle root y and `u=ExtractTop(w)`, **all membership proofs in one fixed tree produce exactly the same completed partial signature bytes** and fixed public key (because their top pair is identical). Setup is polynomial and needs no witness for the *preimage* relation.
+
+This is a partial-signature adaptor, **not a precommitted full signature**: its missing u is unknown to Build; it only fixes the remaining bytes and VK. For a general hash-preimage relation, distinct preimages may lead to different signature bytes. A specialized OTS verifier is used; real SLH-DSA/FORS tweakable hashes and SHA256d Bitcoin Merkle nodes are **not automatically compatible**. It is NOT an available Bitcoin opcode or native SLH integration.
+
+## The decisive ORIGINAL-source failures
+
+1. **Witness extraction is too weak:** accepted signature -> top pair `p` with `D(p)=y`, not -> a COMPLETE original source proof. A non-qualifying leaf/path to the same tree also yields that p and completes the signature. Therefore it has NO claim/path/anchor/fork/interval validity gate. An attacker may simply obtain the top pair from an ordinary public transaction Merkle proof, or from the tree creator, and unlock without a qualified source event.
+2. **Setup timing:** if y is precommitted before the source event and generated by constructing the tree, the creator already has p and can spend early unless honestly erased and no adversarial source holds it. If y is chosen without its preimage, a fresh future source tree cannot be expected to hash to that exact y without targeted SHA inversion. If y is only learned after future Bitcoin mining, it is too late to fix a prior preauthorization. This is a *causal* gap, not a missing Merkle or Bitcoin consensus verification step.
+3. **Generic ORIGINAL NP:** a fixed SHA preimage language is only a restricted source relation. To satisfy arbitrary R_original(x,w), a polynomial compiler would need to derive a fixed y before seeing future w such that (i) every ORIGINAL valid w computes a compatible u, (ii) extraction of ANY u with F(u)=y yields an ACTUAL ORIGINAL w, (iii) creator/source retention cannot open early, and (iv) full public auxiliary/multi-capsule views are QPT secure. Constructing those properties is unsolved. Inlining R(x,w) into a *public custom* hash F_x is not a native SHA verifier; a release verifier modified to check R is explicitly forbidden at the Bitcoin endpoint. No 'generic original witness compiler' is claimed.
+4. **Native σ and KEM:** the Lamport partial signature is NOT the frozen native SLH-like signature and does NOT implement Build_hash(R,x,σ) for a preselected σ, encrypted K, or off-chain PublicDerive of that σ. Even for fixed preimage y, a full-public KEM from y without u would require encrypting to the preimage holder (the prior public-key-transport gap). This experiment does not convert source preimages into the same preselected K.
+5. **Syscoin identity separation:** multiple Bitcoin parent-work certificates for one Syscoin child may share a child Merkle root/top pair; that does NOT make them incompatible ORIGINAL forks. Different conflicting children need not share this root, while parent Merkle roots differ across genuine parent PoW certificates. A child-root hashlock consequently cannot stand for authenticated AuxPoW fork qualification, parent/header lineage, coinbase tags, cumulative-work comparison or best-chain observations.
+
+## Actual bounded experiments
+
+`checker.py` implements a fixed-message toy Lamport hash-preimage partial signature with one unknown signing slot, 40 SHA256-derived 16-bit target instances, and a deliberately smaller digest domain for collision tests. It executed twice with byte-identical captured output, 258 assertions: 40 genuine preimages complete a signature, 40 independent fake strings are rejected, 14 collision-bearing fixtures produce different valid signatures for distinct preimages, 40 deliberately unqualified 'source' preimages complete a signature anyway, and 16 short-domain false-preimage candidates fail. This tests the mathematical preimage/signature interface, not quantum security or any native SLH path.
+
+`merkle_fiber_checker.py` builds 35 eight-leaf synthetic SHA256d Merkle trees (not real Bitcoin transaction Merkle proof parsing). It checked 280 distinct leaf paths; every tree's paths yield precisely one common 64-byte top pair and correct root. **245 non-qualifying ordinary leaves also open the same digest**, a concrete source-soundness failure. 35 sibling mutations fail the synthetic Merkle verification. Two identical runs; no source-history authentication claim. Both sources and captured outputs have exact SHA256 hashes in `MANIFEST.json`.
+
+## Precise next constructive step
+
+Do **not** optimize this restricted adaptor or declare a solution. The unresolved, research-worthy equation is a **native-compatible, source-extractable, unreleasable-before-event common hidden fiber**:
+
+    ComputeTag(R_original,x) -> public y       (classical PPT, no actual witness),
+    ExtractFiber(w) -> u for EVERY R_original(x,w)=1,
+    F_native(u)=y,
+    ANY u with F_native(u)=y -> efficiently extract FULL ORIGINAL w,
+    and no adversarial party can derive u before admissible source evidence.
+
+This is stronger than ordinary public Merkle inclusion or plain PoW and is NOT known to exist from SHA/AuxPoW alone. The mandatory same precommitted σ and hard-TRUE full-public QPT release conditions remain strictly additional. A different line is needed if no such native fiber can be obtained. Preserve the Merkle top-pair identity as a composable positive equation only, and do not promote the partial-signature example as a generic WKEM.
